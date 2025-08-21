@@ -1,440 +1,562 @@
-# 
+#
 # Translators:
-# John Molakvoæ <skjnldsv@protonmail.com>, 2023
-# Manuela Silva <mmsrs@sky.com>, 2023
-# Ana Louro, 2025
-# 
+# Joas Schilling, 2025
+# artur25 <arturdiogo1997@hotmail.com>, 2025
+#
 msgid ""
 msgstr ""
-"Last-Translator: Ana Louro, 2025\n"
-"Language-Team: Portuguese (Portugal) (https://app.transifex.com/nextcloud/teams/64236/pt_PT/)\n"
-"Content-Type: text/plain; charset=UTF-8\n"
+"Last-Translator: artur25 <arturdiogo1997@hotmail.com>, 2025\n"
+"Language-Team: Portuguese (Portugal) (https://app.transifex.com/nextcloud/"
+"teams/64236/pt_PT/)\n"
 "Language: pt_PT\n"
-"Plural-Forms: nplurals=3; plural=(n == 0 || n == 1) ? 0 : n != 0 && n % 1000000 == 0 ? 1 : 2;\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Plural-Forms: nplurals=3; plural=(n == 0 || n == 1) ? 0 : n != 0 && n % "
+"1000000 == 0 ? 1 : 2;\n"
 
-msgid "{tag} (invisible)"
-msgstr "{tag} (invisível)"
+#~ msgid "{tag} (invisible)"
+#~ msgstr "{tag} (invisível)"
 
-msgid "{tag} (restricted)"
-msgstr "{tag} (restrito)"
+#~ msgid "{tag} (restricted)"
+#~ msgstr "{tag} (restrito)"
 
-msgid "A color with a HEX value {hex}"
-msgstr "Uma cor com o valor HEX  {hex}"
+#~ msgid "A color with a HEX value {hex}"
+#~ msgstr "Uma cor com o valor HEX  {hex}"
 
-msgid "a few seconds ago"
-msgstr "há alguns segundos"
+#~ msgid "a few seconds ago"
+#~ msgstr "há alguns segundos"
 
-#. TRANSLATORS: A color name for RGB(110, 166, 143)
-msgid "Acapulco"
-msgstr "Acapulco"
+#~ msgid "Acapulco"
+#~ msgstr "Acapulco"
 
-msgid "Actions"
-msgstr "Ações"
+#~ msgid "Actions"
+#~ msgstr "Ações"
 
-msgid "Activities"
-msgstr "Atividades"
+#~ msgid "Activities"
+#~ msgstr "Atividades"
 
-msgid "Add to a project"
-msgstr "Adicionar a um projeto"
+#~ msgid "Add to a project"
+#~ msgstr "Adicionar a um projeto"
 
-msgid "Animals & Nature"
-msgstr "Animais e Natureza"
+#~ msgid "Animals & Nature"
+#~ msgstr "Animais e Natureza"
 
-msgid "Any link"
-msgstr "Qualquer hiperligação"
+#~ msgid "Any link"
+#~ msgstr "Qualquer hiperligação"
 
-msgid "Anything shared with the same group of people will show up here"
-msgstr ""
-"Qualquer coisa partilhada com o mesmo grupo de pessoas irá aparecer aqui"
+#~ msgid "Anything shared with the same group of people will show up here"
+#~ msgstr ""
+#~ "Qualquer coisa partilhada com o mesmo grupo de pessoas irá aparecer aqui"
 
-msgid "Avatar of {displayName}"
-msgstr "Avatar de {displayName}"
+#~ msgid "Avatar of {displayName}"
+#~ msgstr "Avatar de {displayName}"
 
-msgid "Avatar of {displayName}, {status}"
-msgstr "Avatar de {displayName}, {status}"
+#~ msgid "Avatar of {displayName}, {status}"
+#~ msgstr "Avatar de {displayName}, {status}"
 
-#. TRANSLATORS: User status if the user is currently away from keyboard
-msgid "away"
-msgstr "longe"
+#~ msgid "away"
+#~ msgstr "longe"
 
-msgid "Back"
-msgstr "Anterior"
+#~ msgid "Back"
+#~ msgstr "Anterior"
 
-msgid "Back to provider selection"
-msgstr "Voltar à seleção de fornecedor"
+#~ msgid "Back to provider selection"
+#~ msgstr "Voltar à seleção de fornecedor"
 
-#. TRANSLATORS: A color name for RGB(91, 100, 179)
-msgid "Blue Violet"
-msgstr "Azul violeta"
+#~ msgid "Blue Violet"
+#~ msgstr "Azul violeta"
 
-#. TRANSLATORS: A color name for RGB(55, 148, 172)
-msgid "Boston Blue"
-msgstr "Azul Boston"
+#~ msgid "Boston Blue"
+#~ msgstr "Azul Boston"
 
-msgid "busy"
-msgstr "ocupado"
+#~ msgid "busy"
+#~ msgstr "ocupado"
 
-msgid "Cancel changes"
-msgstr "Cancelar alterações"
+#~ msgid "Calendar icon"
+#~ msgstr "Ícone de calendário"
 
-msgid "Change name"
-msgstr "Alterar nome"
+#~ msgid "Cancel"
+#~ msgstr "Cancelar"
 
-msgid "Choose"
-msgstr "Escolher"
+#~ msgid "Cancel changes"
+#~ msgstr "Cancelar alterações"
 
-msgid "Clear search"
-msgstr "Limpar pesquisa"
+#~ msgid "Change name"
+#~ msgstr "Alterar nome"
 
-msgid "Clear selected"
-msgstr "Limpeza selecionada"
+#~ msgid "Choose"
+#~ msgstr "Escolher"
 
-msgid "Clear text"
-msgstr "Limpar texto"
+#~ msgid "Clear search"
+#~ msgstr "Limpar pesquisa"
 
-msgid "Close"
-msgstr "Fechar"
+#~ msgid "Clear selected"
+#~ msgstr "Limpeza selecionada"
 
-msgid "Close navigation"
-msgstr "Fechar navegação"
+#~ msgid "Clear text"
+#~ msgstr "Limpar texto"
 
-msgid "Close sidebar"
-msgstr "Fechar barra lateral"
+#~ msgid "Clear value"
+#~ msgstr "Limpar valor"
 
-msgid "Close Smart Picker"
-msgstr "Fechar \"Smart Picker\""
+#~ msgid "Close"
+#~ msgstr "Fechar"
 
-msgid "Collapse menu"
-msgstr "Ocultar menu"
+#~ msgid "Close navigation"
+#~ msgstr "Fechar navegação"
 
-msgid "Color picker"
-msgstr "seletor de cores"
+#~ msgid "Close sidebar"
+#~ msgstr "Fechar barra lateral"
 
-msgid "Confirm changes"
-msgstr "Confirmar alterações"
+#~ msgid "Close Smart Picker"
+#~ msgstr "Fechar \"Smart Picker\""
 
-msgid "Connect items to a project to make them easier to find"
-msgstr "Ligar itens a um projeto para serem mais facilmente encontrados"
+#~ msgid "Close time Picker"
+#~ msgstr "Fechar seletor de hora"
 
-msgid "Custom"
-msgstr "Personalizado"
+#~ msgid "Collapse menu"
+#~ msgstr "Ocultar menu"
 
-msgid "Dark skin tone"
-msgstr "Tom de pele escuro"
+#~ msgid "Color picker"
+#~ msgstr "seletor de cores"
 
-#. TRANSLATORS: A color name for RGB(136, 85, 168)
-msgid "Deluge"
-msgstr "Deluge"
+#~ msgid "Confirm changes"
+#~ msgstr "Confirmar alterações"
 
-msgid "Deselect {option}"
-msgstr "Desmarcar {option}"
+#~ msgid "Connect items to a project to make them easier to find"
+#~ msgstr "Ligar itens a um projeto para serem mais facilmente encontrados"
 
-msgid "do not disturb"
-msgstr "não incomodar"
+#~ msgid "Custom"
+#~ msgstr "Personalizado"
 
-msgid "Edit item"
-msgstr "Editar item"
+#~ msgid "Dark skin tone"
+#~ msgstr "Tom de pele escuro"
 
-msgid "Emoji picker"
-msgstr "seletor de emoji"
+#~ msgid "Datepicker input"
+#~ msgstr "Campo do seletor de data"
 
-msgid "Enable interactive view"
-msgstr "Ativar vista interativa"
+#~ msgid "Datepicker menu"
+#~ msgstr "Menu do seletor de data"
 
-msgid "Enter link"
-msgstr "Inserir hiperligação"
+#~ msgid "Decrement hours"
+#~ msgstr "Diminuir horas"
 
-msgid ""
-"Error getting related resources. Please contact your system administrator if"
-" you have any questions."
-msgstr ""
-"Erro ao obter os recursos relacionados. Por favor, contacte o administrador "
-"do sistema se tiver quaisquer  perguntas."
+#~ msgid "Decrement minutes"
+#~ msgstr "Diminuir minutos"
 
-msgid "External documentation for {name}"
-msgstr "Documentação externa para {name}"
+#~ msgid "Decrement seconds"
+#~ msgstr "Diminuir segundos"
 
-msgid "Failed to add the item to the project"
-msgstr "Não foi possível adicionar item ao projeto"
+#~ msgid "Deluge"
+#~ msgstr "Deluge"
 
-msgid "Failed to create a project"
-msgstr "Não foi possível criar um projeto"
+#~ msgid "Deselect {option}"
+#~ msgstr "Desmarcar {option}"
 
-msgid "Failed to rename the project"
-msgstr "Não foi possível alterar o nome do projeto"
+#~ msgid "do not disturb"
+#~ msgstr "não incomodar"
 
-msgid "Favorite"
-msgstr "Favorito"
+#~ msgid "Edit item"
+#~ msgstr "Editar item"
 
-#. TRANSLATORS: A color name for RGB(201, 136, 121)
-msgid "Feldspar"
-msgstr "Feldspar"
+#~ msgid "Emoji picker"
+#~ msgstr "seletor de emoji"
 
-msgid "Flags"
-msgstr "Bandeiras"
+#~ msgid "Enable interactive view"
+#~ msgstr "Ativar vista interativa"
 
-msgid "Food & Drink"
-msgstr "Comida e Bebida"
+#~ msgid "Enter link"
+#~ msgstr "Inserir hiperligação"
 
-msgid "Frequently used"
-msgstr "Mais utilizados"
+#~ msgid ""
+#~ "Error getting related resources. Please contact your system administrator "
+#~ "if you have any questions."
+#~ msgstr ""
+#~ "Erro ao obter os recursos relacionados. Por favor, contacte o "
+#~ "administrador do sistema se tiver quaisquer  perguntas."
 
-msgid "Global"
-msgstr "Global"
+#~ msgid "External documentation for {name}"
+#~ msgstr "Documentação externa para {name}"
 
-msgid "Go back to the list"
-msgstr "Voltar para a lista"
+#~ msgid "Failed to add the item to the project"
+#~ msgstr "Não foi possível adicionar item ao projeto"
 
-msgid "Gold"
-msgstr "Ouro"
+#~ msgid "Failed to create a project"
+#~ msgstr "Não foi possível criar um projeto"
 
-msgid "Hide details"
-msgstr "Ocultar detalhes"
+#~ msgid "Failed to rename the project"
+#~ msgstr "Não foi possível alterar o nome do projeto"
 
-msgid "Hide password"
-msgstr "Ocultar palavra-passe"
+#~ msgid "Favorite"
+#~ msgstr "Favorito"
 
-msgid "invisible"
-msgstr "invisível"
+#~ msgid "Feldspar"
+#~ msgstr "Feldspar"
 
-msgid "Keyboard navigation help"
-msgstr "Ajuda à navegação no teclado"
+#~ msgid "Flags"
+#~ msgstr "Bandeiras"
 
-msgid "Light skin tone"
-msgstr "Tom de pele claro"
+#~ msgid "Food & Drink"
+#~ msgstr "Comida e Bebida"
 
-msgid "Load more \"{options}\""
-msgstr "Carregar mais \"{options}\""
+#~ msgid "Frequently used"
+#~ msgstr "Mais utilizados"
 
-#. TRANSLATORS: The button is in a loading state
-msgid "Loading …"
-msgstr "A carregar..."
+#~ msgid "Global"
+#~ msgstr "Global"
 
-#. TRANSLATORS: A color name for RGB(45, 115, 190)
-msgid "Mariner"
-msgstr "Mariner"
+#~ msgid "Go back to the list"
+#~ msgstr "Voltar para a lista"
 
-msgid "Medium dark skin tone"
-msgstr "Tom de pele escuro médio"
+#~ msgid "Gold"
+#~ msgstr "Ouro"
 
-msgid "Medium light skin tone"
-msgstr "Tom de pele claro médio"
+#~ msgid "Hide details"
+#~ msgstr "Ocultar detalhes"
 
-msgid "Medium skin tone"
-msgstr "Tom de pele médio"
+#~ msgid "Hide password"
+#~ msgstr "Ocultar palavra-passe"
 
-msgid "Message limit of {count} characters reached"
-msgstr "Atingido o limite de {count} carateres da mensagem."
+#~ msgid "Increment hours"
+#~ msgstr "Aumentar horas"
 
-msgid "More items …"
-msgstr "Mais itens…"
+#~ msgid "Increment minutes"
+#~ msgstr "Aumentar minutos"
 
-msgid "More options"
-msgstr "Mais opções"
+#~ msgid "Increment seconds"
+#~ msgstr "Aumentar segundos"
 
-msgid "Neutral skin color"
-msgstr "Cor de pele neutra"
+#~ msgid "invisible"
+#~ msgstr "invisível"
 
-msgid "Next"
-msgstr "Seguinte"
+#~ msgid "Keyboard navigation help"
+#~ msgstr "Ajuda à navegação no teclado"
 
-msgid "Nextcloud blue"
-msgstr "Nextcloud azul"
+#~ msgid "Light skin tone"
+#~ msgstr "Tom de pele claro"
 
-msgid "No emoji found"
-msgstr "Nenhum emoji encontrado"
+#~ msgid "Load more \"{options}\""
+#~ msgstr "Carregar mais \"{options}\""
 
-msgid "No link provider found"
-msgstr "Nenhum fornecedor de link encontrado"
+#~ msgid "Loading …"
+#~ msgstr "A carregar..."
 
-msgid "No results"
-msgstr "Sem resultados"
+#~ msgid "Mariner"
+#~ msgstr "Mariner"
 
-msgid "Objects"
-msgstr "Objetos"
+#~ msgid "Medium dark skin tone"
+#~ msgstr "Tom de pele escuro médio"
 
-msgid "offline"
-msgstr "offline"
+#~ msgid "Medium light skin tone"
+#~ msgstr "Tom de pele claro médio"
 
-#. TRANSLATORS: A color name for RGB(165, 184, 114)
-msgid "Olivine"
-msgstr "Olivine"
+#~ msgid "Medium skin tone"
+#~ msgstr "Tom de pele médio"
 
-msgid "online"
-msgstr "online"
+#~ msgid "Message limit of %n character reached"
+#~ msgid_plural "Message limit of %n characters reached"
+#~ msgstr[0] "Limite de mensagem de %n carácter atingido"
+#~ msgstr[1] "Limite de mensagem de %n caracteres atingido"
+#~ msgstr[2] "Limite de mensagem de %n caracteres atingido"
 
-msgid "Open link to \"{resourceName}\""
-msgstr "Abrir link para \"{resourceName}\""
+#~ msgid "Month picker"
+#~ msgstr "Seletor de mês"
 
-msgid "Open menu"
-msgstr "Abrir menu"
+#~ msgid "Month picker overlay"
+#~ msgstr "Janela do seletor de mês"
 
-msgid "Open navigation {shortcut}"
-msgstr "Abrir navegação {shortcut}"
+#~ msgid "More items …"
+#~ msgstr "Mais itens…"
 
-msgid "Open sidebar"
-msgstr "Abrir barra lateral"
+#~ msgid "More options"
+#~ msgstr "Mais opções"
 
-msgid "Options"
-msgstr "Opções"
+#~ msgid "Neutral skin color"
+#~ msgstr "Cor de pele neutra"
 
-msgid "Password is secure"
-msgstr "A palavra-passe é segura"
+#~ msgid "Next"
+#~ msgstr "Seguinte"
 
-msgid "Pause slideshow"
-msgstr "Pausar diaporama"
+#~ msgid "Next month"
+#~ msgstr "Próximo mês"
 
-msgid "People & Body"
-msgstr "Pessoas e Corpo"
+#~ msgid "Next year"
+#~ msgstr "Próximo ano"
 
-msgid "Pick a date"
-msgstr "Escolha uma data"
+#~ msgid "Nextcloud blue"
+#~ msgstr "Nextcloud azul"
 
-msgid "Pick a date and a time"
-msgstr "Escolha uma data e uma hora"
+#~ msgid "No emoji found"
+#~ msgstr "Nenhum emoji encontrado"
 
-msgid "Pick a month"
-msgstr "Escolha um mês"
+#~ msgid "No link provider found"
+#~ msgstr "Nenhum fornecedor de link encontrado"
 
-msgid "Pick a time"
-msgstr "Escolha uma hora"
+#~ msgid "No results"
+#~ msgstr "Sem resultados"
 
-msgid "Pick a week"
-msgstr "Escolha uma semana"
+#~ msgid "Now"
+#~ msgstr "Agora"
 
-msgid "Pick a year"
-msgstr "Escolha um ano"
+#~ msgid "Objects"
+#~ msgstr "Objetos"
 
-msgid "Pick an emoji"
-msgstr "Escolha um emoji"
+#~ msgid "offline"
+#~ msgstr "offline"
 
-msgid "Please select a time zone:"
-msgstr "Por favor, selecione um fuso horário: "
+#~ msgid "Olivine"
+#~ msgstr "Olivine"
 
-msgid "Previous"
-msgstr "Anterior"
+#~ msgid "online"
+#~ msgstr "online"
 
-msgid "Provider icon"
-msgstr "Ícone do fornecedor"
+#~ msgid "Open hours overlay"
+#~ msgstr "Abrir janela de horas"
 
-msgid "Purple"
-msgstr "Púrpura"
+#~ msgid "Open link to \"{resourceName}\""
+#~ msgstr "Abrir link para \"{resourceName}\""
 
-msgid "Raw link {options}"
-msgstr "Link inicial {options}"
+#~ msgid "Open menu"
+#~ msgstr "Abrir menu"
 
-msgid "Related resources"
-msgstr "Recursos relacionados"
+#~ msgid "Open minutes overlay"
+#~ msgstr "Abrir janela de minutos"
 
-msgid "Related team resources"
-msgstr "Recursos relacionados com a equipa"
+#~ msgid "Open months overlay"
+#~ msgstr "Abrir janela de meses"
 
-msgid "Rename project"
-msgstr "Alterar nome do projeto"
+#~ msgid "Open navigation"
+#~ msgstr "Abrir navegação"
 
-#. TRANSLATORS: A color name for RGB(191, 103, 139)
-msgid "Rosy brown"
-msgstr "Castanho rosado"
+#~ msgid "Open seconds overlay"
+#~ msgstr "Abrir janela de segundos"
 
-msgid "Save changes"
-msgstr "Gravar alterações"
+#~ msgid "Open sidebar"
+#~ msgstr "Abrir barra lateral"
 
-msgid "Search"
-msgstr "Pesquisar"
+#~ msgid "Open time picker"
+#~ msgstr "Abrir seletor de hora"
 
-msgid "Search emoji"
-msgstr "Pesquisar emoji"
+#~ msgid "Open years overlay"
+#~ msgstr "Abrir janela de anos"
 
-msgid "Search for time zone"
-msgstr "Pesquisar fuso horário"
+#~ msgid "Options"
+#~ msgstr "Opções"
 
-msgid "Search results"
-msgstr "Resultados da pesquisa"
+#~ msgid "Password is secure"
+#~ msgstr "A palavra-passe é segura"
 
-msgid "Search…"
-msgstr "Procurar..."
+#~ msgid "Pause slideshow"
+#~ msgstr "Pausar diaporama"
 
-#. FOR TRANSLATORS: If possible in your language an even shorter version of 'a
-#. few seconds ago'
-msgid "sec. ago"
-msgstr "seg. atrás"
+#~ msgid "People & Body"
+#~ msgstr "Pessoas e Corpo"
 
-#. FOR TRANSLATORS: Shorter version of 'a few seconds ago'
-msgid "seconds ago"
-msgstr "segundos atrás"
+#~ msgid "Pick"
+#~ msgstr "Selecionar"
 
-msgid "Select a tag"
-msgstr "Selecionar uma etiqueta"
+#~ msgid "Pick an emoji"
+#~ msgstr "Escolha um emoji"
 
-msgid "Select provider"
-msgstr "Selecionar fornecedor"
+#~ msgid "Please choose a date"
+#~ msgstr "Por favor, escolha uma data"
 
-msgid "Selected"
-msgstr "Selecionado"
+#~ msgid "Previous"
+#~ msgstr "Anterior"
 
-msgid "Settings"
-msgstr "Definições"
+#~ msgid "Previous month"
+#~ msgstr "Mês anterior"
 
-msgid "Settings navigation"
-msgstr "Navegação de configurações"
+#~ msgid "Previous year"
+#~ msgstr "Ano anterior"
 
-msgid "Show details"
-msgstr "Ver detalhes"
+#~ msgid "Provider icon"
+#~ msgstr "Ícone do fornecedor"
 
-msgid "Show password"
-msgstr "Mostrar palavra-passe"
+#~ msgid "Purple"
+#~ msgstr "Púrpura"
 
-msgid "Skin tone"
-msgstr "Tom de pele"
+#~ msgid "Raw link {options}"
+#~ msgstr "Link inicial {options}"
 
-msgid "Skip to app navigation"
-msgstr "Saltar para navegação da app"
+#~ msgid "Related resources"
+#~ msgstr "Recursos relacionados"
 
-msgid "Skip to main content"
-msgstr "Saltar para conteúdo principal"
+#~ msgid "Related team resources"
+#~ msgstr "Recursos relacionados com a equipa"
 
-msgid "Smart Picker"
-msgstr "Smart Picker"
+#~ msgid "Rename project"
+#~ msgstr "Alterar nome do projeto"
 
-msgid "Smileys & Emotion"
-msgstr "Sorrisos e Emoções"
+#~ msgid "Rosy brown"
+#~ msgstr "Castanho rosado"
 
-msgid "Start slideshow"
-msgstr "Iniciar diaporama"
+#~ msgid "Save changes"
+#~ msgstr "Gravar alterações"
 
-msgid "Start typing to search"
-msgstr "Comece a digitar para pesquisar"
+#~ msgid "Search"
+#~ msgstr "Pesquisar"
 
-msgid "Submit"
-msgstr "Submeter"
+#~ msgid "Search emoji"
+#~ msgstr "Pesquisar emoji"
 
-msgid "Symbols"
-msgstr "Símbolos"
+#~ msgid "Search for timezone"
+#~ msgstr "Pesquisar fuso horário"
 
-msgid "Travel & Places"
-msgstr "Viagens e Lugares"
+#~ msgid "Search results"
+#~ msgstr "Resultados da pesquisa"
 
-msgid "Type to search for existing projects"
-msgstr "Digite para procurar projetos existentes"
+#~ msgid "Search…"
+#~ msgstr "Procurar..."
 
-msgid "Type to search time zone"
-msgstr "Digite para pesquisar o fuso horário "
+#~ msgid "sec. ago"
+#~ msgstr "seg. atrás"
 
-msgid "Unable to search the group"
-msgstr "Não é possível pesquisar o grupo"
+#~ msgid "seconds ago"
+#~ msgstr "segundos atrás"
 
-msgid "Undo changes"
-msgstr "Anular alterações"
+#~ msgid "Select a tag"
+#~ msgstr "Selecionar uma etiqueta"
 
-msgid "User status: {status}"
-msgstr "Estado do utilizador: {status}"
+#~ msgid "Select date"
+#~ msgstr "Selecionar data"
 
-msgid "View team"
-msgstr "Ver equipa"
+#~ msgid "Select date and time"
+#~ msgstr "Selecionar data e hora"
 
-#. TRANSLATORS: A color name for RGB(211, 169, 103)
-msgid "Whiskey"
-msgstr "Whiskey"
+#~ msgid "Select month"
+#~ msgstr "Selecionar mês"
 
-msgid "Write a message …"
-msgstr "Escreva uma mensagem..."
+#~ msgid "Select provider"
+#~ msgstr "Selecionar fornecedor"
+
+#~ msgid "Select time"
+#~ msgstr "Selecionar hora"
+
+#~ msgid "Select time range"
+#~ msgstr "Selecionar intervalo de horas"
+
+#~ msgid "Select week"
+#~ msgstr "Selecionar semana"
+
+#~ msgid "Select year"
+#~ msgstr "Selecionar ano"
+
+#~ msgid "Selected"
+#~ msgstr "Selecionado"
+
+#~ msgid "Settings"
+#~ msgstr "Definições"
+
+#~ msgid "Settings navigation"
+#~ msgstr "Navegação de configurações"
+
+#~ msgid "Show details"
+#~ msgstr "Ver detalhes"
+
+#~ msgid "Show password"
+#~ msgstr "Mostrar palavra-passe"
+
+#~ msgid "Skin tone"
+#~ msgstr "Tom de pele"
+
+#~ msgid "Skip to app navigation"
+#~ msgstr "Saltar para navegação da app"
+
+#~ msgid "Skip to main content"
+#~ msgstr "Saltar para conteúdo principal"
+
+#~ msgid "Smart Picker"
+#~ msgstr "Smart Picker"
+
+#~ msgid "Smileys & Emotion"
+#~ msgstr "Sorrisos e Emoções"
+
+#~ msgid "Start slideshow"
+#~ msgstr "Iniciar diaporama"
+
+#~ msgid "Start typing to search"
+#~ msgstr "Comece a digitar para pesquisar"
+
+#~ msgid "Submit"
+#~ msgstr "Submeter"
+
+#~ msgid "Switch AM/PM mode"
+#~ msgstr "Alternar modo AM/PM"
+
+#~ msgid "Symbols"
+#~ msgstr "Símbolos"
+
+#~ msgid "Time picker"
+#~ msgstr "Seletor de hora"
+
+#~ msgid "Timezone"
+#~ msgstr "Fuso horário"
+
+#~ msgid "Toggle overlay"
+#~ msgstr "Alternar sobreposição"
+
+#~ msgid "Travel & Places"
+#~ msgstr "Viagens e Lugares"
+
+#~ msgid "Type to search for existing projects"
+#~ msgstr "Digite para procurar projetos existentes"
+
+#~ msgid "Type to search time zone"
+#~ msgstr "Digite para pesquisar o fuso horário "
+
+#~ msgid "Unable to search the group"
+#~ msgstr "Não é possível pesquisar o grupo"
+
+#~ msgid "Undo changes"
+#~ msgstr "Anular alterações"
+
+#~ msgid "User status: {status}"
+#~ msgstr "Estado do utilizador: {status}"
+
+#~ msgid "View team"
+#~ msgstr "Ver equipa"
+
+#~ msgid "W"
+#~ msgstr "S"
+
+#~ msgid "Whiskey"
+#~ msgstr "Whiskey"
+
+#~ msgid "Write a message …"
+#~ msgstr "Escreva uma mensagem..."
+
+#~ msgid "Year picker"
+#~ msgstr "Seletor de ano"
+
+#~ msgid "Year picker overlay"
+#~ msgstr "Janela do seletor de ano"
+
+#~ msgid "Message limit of {count} characters reached"
+#~ msgstr "Atingido o limite de {count} carateres da mensagem."
+
+#~ msgid "Open navigation {shortcut}"
+#~ msgstr "Abrir navegação {shortcut}"
+
+#~ msgid "Pick a date"
+#~ msgstr "Escolha uma data"
+
+#~ msgid "Pick a date and a time"
+#~ msgstr "Escolha uma data e uma hora"
+
+#~ msgid "Pick a month"
+#~ msgstr "Escolha um mês"
+
+#~ msgid "Pick a time"
+#~ msgstr "Escolha uma hora"
+
+#~ msgid "Pick a week"
+#~ msgstr "Escolha uma semana"
+
+#~ msgid "Pick a year"
+#~ msgstr "Escolha um ano"
+
+#~ msgid "Please select a time zone:"
+#~ msgstr "Por favor, selecione um fuso horário: "
+
+#~ msgid "Search for time zone"
+#~ msgstr "Pesquisar fuso horário"

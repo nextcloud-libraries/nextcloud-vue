@@ -1,16 +1,16 @@
-# 
+#
 # Translators:
 # Martin "phnoggie" Trads, 2023
 # Rasmus Rosendahl-Kaa, 2024
 # Martin Bonde <Martin@maboni.dk>, 2024
 # John Molakvoæ <skjnldsv@protonmail.com>, 2024
-# 
+#
 msgid ""
 msgstr ""
 "Last-Translator: John Molakvoæ <skjnldsv@protonmail.com>, 2024\n"
 "Language-Team: Danish (https://app.transifex.com/nextcloud/teams/64236/da/)\n"
-"Content-Type: text/plain; charset=UTF-8\n"
 "Language: da\n"
+"Content-Type: text/plain; charset=UTF-8\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 msgid "{tag} (invisible)"
@@ -145,8 +145,8 @@ msgid "Enter link"
 msgstr "Indtast link"
 
 msgid ""
-"Error getting related resources. Please contact your system administrator if"
-" you have any questions."
+"Error getting related resources. Please contact your system administrator if "
+"you have any questions."
 msgstr ""
 "Fejl ved hentning af relaterede ressourcer. Kontakt venligst din "
 "systemadministrator, hvis du har spørgsmål."
@@ -223,8 +223,10 @@ msgstr "Medium lys skin tone"
 msgid "Medium skin tone"
 msgstr "Medium skin tone"
 
-msgid "Message limit of {count} characters reached"
-msgstr "Begrænsning på {count} tegn er nået"
+msgid "Message limit of %n character reached"
+msgid_plural "Message limit of %n characters reached"
+msgstr[0] ""
+msgstr[1] ""
 
 msgid "More items …"
 msgstr "Mere ..."
@@ -354,8 +356,7 @@ msgstr "Søgeresultater"
 msgid "Search…"
 msgstr "Søg…"
 
-#. FOR TRANSLATORS: If possible in your language an even shorter version of 'a
-#. few seconds ago'
+#. FOR TRANSLATORS: If possible in your language an even shorter version of 'a few seconds ago'
 msgid "sec. ago"
 msgstr "sek. siden"
 
@@ -365,6 +366,9 @@ msgstr "sekunder siden"
 
 msgid "Select a tag"
 msgstr "Vælg et mærke"
+
+msgid "Select account"
+msgstr ""
 
 msgid "Select provider"
 msgstr "Vælg udbyder"
@@ -438,3 +442,6 @@ msgstr "Whiskey"
 
 msgid "Write a message …"
 msgstr "Skriv en besked ..."
+
+#~ msgid "Message limit of {count} characters reached"
+#~ msgstr "Begrænsning på {count} tegn er nået"
