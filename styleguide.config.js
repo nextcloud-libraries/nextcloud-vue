@@ -4,6 +4,7 @@
  */
 
 const path = require('path')
+const webpack = require('webpack')
 const { merge } = require('webpack-merge')
 const webpackConfig = require('./webpack.config.js')
 
@@ -27,9 +28,12 @@ module.exports = async () => {
 
 	return {
 		require: [
+			path.join(__dirname, 'styleguide/window.js'),
 			path.join(__dirname, 'styleguide/global.requires.js'),
 			path.join(__dirname, 'styleguide/assets/icons.css'),
-			path.join(__dirname, 'styleguide/assets/additional.css'),
+			!!process.env.NEXTCLOUD_LEGACY
+				? path.join(__dirname, 'styleguide/assets/legacy.css')
+				: path.join(__dirname, 'styleguide/assets/additional.css'),
 			path.join(__dirname, 'styleguide/assets/styleguide.css'),
 		],
 
@@ -41,6 +45,11 @@ module.exports = async () => {
 		verbose: false,
 
 		webpackConfig: merge(newConfig, {
+			plugins: [
+				new webpack.DefinePlugin({
+					NEXTCLOUD_VERSION: JSON.stringify(`${!process.env.NEXTCLOUD_LEGACY ? '32' : '31'}.0.0`),
+				})
+			],
 			// https://webpack.js.org/configuration/dev-server/#devserverproxy
 			devServer: {
 				proxy: {
