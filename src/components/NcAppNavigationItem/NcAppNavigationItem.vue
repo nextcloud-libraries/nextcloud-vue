@@ -360,7 +360,7 @@ Just set the `pinned` prop.
 						:boundaries-element="actionsBoundariesElement"
 						:placement="menuPlacement"
 						:open="menuOpen"
-						:type="(isActive && to) || active ? 'primary' : null"
+						:type="(isActive && to) || active ? 'tertiary-on-primary' : 'tertiary'"
 						:force-menu="forceMenu"
 						:default-icon="menuIcon"
 						@update:open="onMenuToggle">
@@ -387,7 +387,10 @@ Just set the `pinned` prop.
 						<slot name="actions" />
 					</NcActions>
 				</div>
-				<NcAppNavigationIconCollapsible v-if="isCollapsible()" :open="opened" @click.prevent.stop="toggleCollapse" />
+				<NcAppNavigationIconCollapsible v-if="isCollapsible()"
+					:active="(isActive && to) || active"
+					:open="opened"
+					@click.prevent.stop="toggleCollapse" />
 
 				<!-- @slot Slot for anything (virtual) that should be mounted in the component, like a related modal -->
 				<slot name="extra" />

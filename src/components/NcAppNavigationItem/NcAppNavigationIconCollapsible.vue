@@ -6,9 +6,12 @@
 <template>
 	<!-- Button to expand or collapse children -->
 	<NcButton class="icon-collapse"
-		:class="{'icon-collapse--open':open}"
+		:class="{
+			'icon-collapse--active': active,
+			'icon-collapse--open': open,
+		}"
 		:aria-label="labelButton"
-		variant="tertiary"
+		:variant="active ? 'tertiary-on-primary' : 'tertiary'"
 		@click="onClick">
 		<template #icon>
 			<ChevronUp v-if="open"
@@ -40,6 +43,10 @@ export default {
 			type: Boolean,
 			default: true,
 		},
+		active: {
+			type: Boolean,
+			required: true,
+		},
 	},
 
 	emits: ['click'],
@@ -60,17 +67,16 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.button-vue.icon-collapse {
+.icon-collapse {
 	position: relative;
-	z-index: 105; // above a, under button
-	color: var(--color-main-text);
 	inset-inline-end: 0;
-	&--open {
-		color: var(--color-main-text);
-		&:hover{
-			color: var(--color-primary-element);
-		}
+
+	// the whole navigation item is hovered thus will have the hover color - to distinguish we need to set a different color here.
+	&:hover {
+		background-color: var(--color-background-dark) !important;
+	}
+	&--active:hover {
+		background-color: var(--color-primary-element) !important;
 	}
 }
-
 </style>
