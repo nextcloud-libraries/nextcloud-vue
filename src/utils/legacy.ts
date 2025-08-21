@@ -3,5 +3,5 @@
  * SPDX-License-Identifier: AGPL-3.0-or-later
  */
 
-const version = window.OC?.config?.version?.split('.')[0] || '32'
-export const isLegacy = Number.parseInt(version) < 32
+const [majorVersion] = window.OC?.config?.version?.split('.') ?? []
+export const isLegacy = Number.parseInt(majorVersion ?? '32') < 32

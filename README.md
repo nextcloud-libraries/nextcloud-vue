@@ -106,9 +106,10 @@ npm run l10n:extract
 
 ### 🐸 Styleguidist
 
-When developing new components or extending components, make sure to also have some bits of related documentation like examples, where applicable.
-To test components and the documentation in that context, you can run `npm run styleguide` to run a local server that serves the style guide
-with all the components.
+When developing new components or extending components, make sure to also have some bits of related documentation like examples, where applicable. To test components and the documentation in that context, you can run `npm run styleguide` to run a local server that serves the style guide with all the components.
+
+You can also test if the design still works with a legacy Nextcloud version.
+To do so just run `NEXTCLOUD_LEGACY=y npm run styleguide`.
 
 #### Using vue-devtools in Firefox
 
