@@ -170,6 +170,8 @@ import NcPopover from '../NcPopover/index.js'
 import CalendarBlank from 'vue-material-design-icons/CalendarBlank.vue'
 import Web from 'vue-material-design-icons/Web.vue'
 
+import './index.scss'
+
 import {
 	getFirstDay,
 	getDayNames,
