@@ -1947,7 +1947,7 @@ export default {
 <style lang="scss">
 // We overwrote the popover base class, so we can style
 // the popover__inner for actions only.
-.v-popper--theme-dropdown.v-popper__popper.action-item__popper .v-popper__wrapper {
+.v-popper--theme-nc-popover-9.v-popper__popper.action-item__popper .v-popper__wrapper {
 	border-radius: var(--border-radius-element);
 
 	.v-popper__inner {
