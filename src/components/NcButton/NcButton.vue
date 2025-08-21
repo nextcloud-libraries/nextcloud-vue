@@ -988,6 +988,11 @@ function onClick(event: MouseEvent) {
 		// no border
 		border: none;
 	}
+	&--legacy#{&}--error,
+	&--legacy#{&}--success,
+	&--legacy#{&}--warning {
+		color: white;
+	}
 }
 
 </style>
