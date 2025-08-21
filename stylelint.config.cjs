@@ -13,7 +13,7 @@ module.exports = {
 		'selector-pseudo-class-no-unknown': [
 			true,
 			{
-				ignorePseudoClasses: [...stylelintConfig.rules['selector-pseudo-class-no-unknown'][1].ignorePseudoClasses, 'global'],
+				ignorePseudoClasses: [...stylelintConfig.rules['selector-pseudo-class-no-unknown'][1].ignorePseudoClasses, 'global', 'slotted'],
 			},
 		],
 		'scss/load-partial-extension': ['always'],
