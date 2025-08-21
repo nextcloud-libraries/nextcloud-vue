@@ -1057,6 +1057,7 @@ export default {
 	&--legacy {
 		--button-inner-size: var(--button-size);
 		border: none;
+		padding-block: 0;
 
 		&.button-vue--vue-error,
 		&.button-vue--vue-success,
