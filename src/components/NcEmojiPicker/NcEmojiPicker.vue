@@ -119,77 +119,78 @@ This component allows the user to pick an emoji.
 		<template #trigger="slotProps">
 			<slot v-bind="slotProps" />
 		</template>
-		<Picker ref="picker"
-			class="nc-emoji-picker"
-			color="var(--color-primary-element)"
-			:data="emojiIndex"
-			:emoji="previewFallbackEmoji"
-			:i18n="i18n"
-			:native="native"
-			:emoji-size="20"
-			:per-line="8"
-			:picker-styles="{ width: '320px' }"
-			:show-preview="showPreview"
-			:skin="currentSkinTone"
-			:show-skin-tones="false"
-			:title="previewFallbackName"
-			role="dialog"
-			aria-modal="true"
-			:aria-label="t('Emoji picker')"
-			v-bind="$attrs"
-			@keydown.native.tab.prevent="handleTabNavigationSkippingEmojis"
-			@select="select">
-			<template #searchTemplate="{ onSearch }">
-				<div class="search__wrapper">
-					<NcTextField ref="search"
-						class="search"
-						:value.sync="search"
-						:label="t('Search')"
-						:label-visible="true"
-						:placeholder="i18n.search"
-						trailing-button-icon="close"
-						:trailing-button-label="t('Clear search')"
-						:show-trailing-button="search !== ''"
-						@keydown.left="callPickerArrowHandlerWithScrollFix('onArrowLeft', $event)"
-						@keydown.right="callPickerArrowHandlerWithScrollFix('onArrowRight', $event)"
-						@keydown.down="callPickerArrowHandlerWithScrollFix('onArrowDown', $event)"
-						@keydown.up="callPickerArrowHandlerWithScrollFix('onArrowUp', $event)"
-						@keydown.enter="$refs.picker.onEnter"
-						@trailing-button-click="clearSearch(); onSearch('');"
-						@update:value="onSearch(search)" />
-					<NcColorPicker palette-only
-						:container="container"
-						:palette="skinTonePalette"
-						:value="currentColor.color"
-						@update:value="onChangeSkinTone">
-						<NcButton :aria-label="t('Skin tone')" variant="tertiary-no-background">
-							<template #icon>
-								<IconCircle :style="{ color: currentColor.color }" :title="currentColor.name" :size="20" />
-							</template>
-						</NcButton>
-					</NcColorPicker>
-				</div>
-			</template>
-			<template v-if="allowUnselect && selectedEmoji" #customCategory>
-				<div class="emoji-mart-category-label">
-					<h3 class="emoji-mart-category-label">
-						{{ t('Selected') }}
-					</h3>
-				</div>
-				<Emoji class="emoji-selected"
-					:data="emojiIndex"
-					:emoji="selectedEmoji"
-					:native="true"
-					:size="32"
-					@click="unselect" />
-				<Emoji class="emoji-delete"
-					:data="emojiIndex"
-					emoji=":x:"
-					:native="true"
-					:size="10"
-					@click="unselect" />
-			</template>
-		</Picker>
+		<div class="nc-emoji-picker-container">
+			<Picker ref="picker"
+				color="var(--color-primary-element)"
+				:data="emojiIndex"
+				:emoji="previewFallbackEmoji"
+				:i18n="i18n"
+				:native="native"
+				:emoji-size="20"
+				:per-line="8"
+				:picker-styles="{ width: '320px' }"
+				:show-preview="showPreview"
+				:skin="currentSkinTone"
+				:show-skin-tones="false"
+				:title="previewFallbackName"
+				role="dialog"
+				aria-modal="true"
+				:aria-label="t('Emoji picker')"
+				v-bind="$attrs"
+				@keydown.native.tab.prevent="handleTabNavigationSkippingEmojis"
+				@select="select">
+				<template #searchTemplate="{ onSearch }">
+					<div class="search__wrapper">
+						<NcTextField ref="search"
+							class="search"
+							:value.sync="search"
+							:label="t('Search')"
+							:label-visible="true"
+							:placeholder="i18n.search"
+							trailing-button-icon="close"
+							:trailing-button-label="t('Clear search')"
+							:show-trailing-button="search !== ''"
+							@keydown.left="callPickerArrowHandlerWithScrollFix('onArrowLeft', $event)"
+							@keydown.right="callPickerArrowHandlerWithScrollFix('onArrowRight', $event)"
+							@keydown.down="callPickerArrowHandlerWithScrollFix('onArrowDown', $event)"
+							@keydown.up="callPickerArrowHandlerWithScrollFix('onArrowUp', $event)"
+							@keydown.enter="$refs.picker.onEnter"
+							@trailing-button-click="clearSearch(); onSearch('');"
+							@update:value="onSearch(search)" />
+						<NcColorPicker palette-only
+							:container="container"
+							:palette="skinTonePalette"
+							:value="currentColor.color"
+							@update:value="onChangeSkinTone">
+							<NcButton :aria-label="t('Skin tone')" variant="tertiary-no-background">
+								<template #icon>
+									<IconCircle :style="{ color: currentColor.color }" :title="currentColor.name" :size="20" />
+								</template>
+							</NcButton>
+						</NcColorPicker>
+					</div>
+				</template>
+				<template v-if="allowUnselect && selectedEmoji" #customCategory>
+					<div class="emoji-mart-category-label">
+						<h3 class="emoji-mart-category-label">
+							{{ t('Selected') }}
+						</h3>
+					</div>
+					<Emoji class="emoji-selected"
+						:data="emojiIndex"
+						:emoji="selectedEmoji"
+						:native="true"
+						:size="32"
+						@click="unselect" />
+					<Emoji class="emoji-delete"
+						:data="emojiIndex"
+						emoji=":x:"
+						:native="true"
+						:size="10"
+						@click="unselect" />
+				</template>
+			</Picker>
+		</div>
 	</NcPopover>
 </template>
 
@@ -462,10 +463,14 @@ export default {
 }
 </script>
 
-<style lang="scss">
-@import 'emoji-mart-vue-fast/css/emoji-mart.css';
+<style scoped lang="scss">
+@use "sass:meta";
 
-.nc-emoji-picker.emoji-mart {
+.nc-emoji-picker-container :deep() {
+	@include meta.load-css('emoji-mart-vue-fast/css/emoji-mart.css');
+}
+
+.nc-emoji-picker-container :deep(.emoji-mart) {
 	background-color: var(--color-main-background) !important;
 	border: 0;
 	color: var(--color-main-text) !important;
@@ -580,9 +585,7 @@ export default {
 		}
 	}
 }
-</style>
 
-<style scoped lang="scss">
 .search__wrapper {
 	display: flex;
 	flex-direction: row;
