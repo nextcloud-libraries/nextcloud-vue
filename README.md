@@ -18,7 +18,7 @@
 
 | Version        | Target                | Documentation                                         |
 |----------------|-----------------------|-------------------------------------------------------|
-| v9.x [main]    | Nextcloud 32+ (Vue 3) | https://nextcloud-vue-components.netlify.app          |
+| v9.x [main]    | Nextcloud 31+ (Vue 3) | https://nextcloud-vue-components.netlify.app          |
 | v8.x [stable8] | Nextcloud 28+ (Vue 2) | https://stable8--nextcloud-vue-components.netlify.app |
 | v7.x [stable7] | Nextcloud 25 - 27     | https://stable7--nextcloud-vue-components.netlify.app |
 | v6.x [stable6] | Nextcloud 24 - 25     | https://stable6--nextcloud-vue-components.netlify.app |
