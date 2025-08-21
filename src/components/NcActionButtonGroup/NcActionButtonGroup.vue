@@ -126,7 +126,7 @@ export default defineComponent({
 })
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 .nc-button-group-base {
 	>div {
 		text-align: center;
@@ -137,11 +137,12 @@ export default defineComponent({
 		display: flex;
 		gap: 4px; // required for the focus-visible outline
 		justify-content: space-between;
-		li {
+
+		:deep(li) {
 			flex: 1 1;
 		}
 
-		.action-button {
+		:deep(.action-button) {
 			// Fix action buttons beeing shifted to the left (right padding)
 			padding: 0 !important;
 			width: 100%;
