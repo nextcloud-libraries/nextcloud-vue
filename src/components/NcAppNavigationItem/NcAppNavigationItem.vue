@@ -382,7 +382,7 @@ Just set the `pinned` prop.
 						:open="menuOpen"
 						:force-menu="forceMenu"
 						:default-icon="menuIcon"
-						:variant="(isActive && to) || active ? 'primary' : null"
+						:variant="(isActive && to) || active ? 'tertiary-on-primary' : 'tertiary'"
 						@update:open="onMenuToggle">
 						<template #icon>
 							<!-- @slot Slot for the custom menu icon -->
