@@ -360,7 +360,7 @@ Just set the `pinned` prop.
 						:boundaries-element="actionsBoundariesElement"
 						:placement="menuPlacement"
 						:open="menuOpen"
-						:type="(isActive && to) || active ? 'primary' : null"
+						:type="(isActive && to) || active ? 'tertiary-on-primary' : 'tertiary'"
 						:force-menu="forceMenu"
 						:default-icon="menuIcon"
 						@update:open="onMenuToggle">
