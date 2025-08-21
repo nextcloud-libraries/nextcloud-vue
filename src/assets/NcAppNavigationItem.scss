@@ -66,6 +66,15 @@
 		}
 	}
 
+	// ensure the actions have proper hover styles
+	// because the whole navigation item is highlighted we need a different color if only this part is hovered
+	.app-navigation-entry__actions:hover :deep(.button-vue) {
+		background-color: var(--color-background-dark) !important;
+	}
+	&.active .app-navigation-entry__actions:hover :deep(.button-vue) {
+		background-color: var(--color-primary-element) !important;
+	}
+
 	/* hide deletion/collapse of subitems */
 	&.app-navigation-entry--deleted > ul {
 		// NO ANIMATE because if not really hidden, we can still tab through it

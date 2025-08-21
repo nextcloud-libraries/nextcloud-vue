@@ -382,7 +382,7 @@ Just set the `pinned` prop.
 						:open="menuOpen"
 						:force-menu="forceMenu"
 						:default-icon="menuIcon"
-						:variant="(isActive && to) || active ? 'primary' : null"
+						:variant="(isActive && to) || active ? 'tertiary-on-primary' : 'tertiary'"
 						@update:open="onMenuToggle">
 						<template #icon>
 							<!-- @slot Slot for the custom menu icon -->
@@ -407,7 +407,10 @@ Just set the `pinned` prop.
 						<slot name="actions" />
 					</NcActions>
 				</div>
-				<NcAppNavigationIconCollapsible v-if="allowCollapse && !!$slots.default" :open="opened" @click.prevent.stop="toggleCollapse" />
+				<NcAppNavigationIconCollapsible v-if="allowCollapse && !!$slots.default"
+					:active="(isActive && to) || active"
+					:open="opened"
+					@click.prevent.stop="toggleCollapse" />
 
 				<!-- @slot Slot for anything (virtual) that should be mounted in the component, like a related modal -->
 				<slot name="extra" />
