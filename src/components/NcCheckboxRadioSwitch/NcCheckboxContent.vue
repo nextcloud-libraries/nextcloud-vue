@@ -193,8 +193,6 @@ export default {
 	padding: var(--default-grid-baseline) calc((var(--default-clickable-area) - var(--icon-height)) / 2);
 	// Set to 100% to make text overflow work on button style
 	width: 100%;
-	// but restrict to content so plain checkboxes / radio switches do not expand
-	max-width: fit-content;
 
 	&__text {
 		flex: 1 0;

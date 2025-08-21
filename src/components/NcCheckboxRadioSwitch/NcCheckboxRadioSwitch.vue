@@ -257,6 +257,7 @@ export default {
 		class="checkbox-radio-switch"
 		:class="[
 			$props.class,
+			fieldsetContainerClass,
 			{
 				['checkbox-radio-switch-' + type]: type,
 				'checkbox-radio-switch--checked': isChecked,
@@ -265,6 +266,7 @@ export default {
 				'checkbox-radio-switch--button-variant': buttonVariant,
 				'checkbox-radio-switch--button-variant-v-grouped': buttonVariant && buttonVariantGrouped === 'vertical',
 				'checkbox-radio-switch--button-variant-h-grouped': buttonVariant && buttonVariantGrouped === 'horizontal',
+				'checkbox-radio-switch--in-fieldset': !!fieldsetContainerClass,
 				'button-vue': isButtonType,
 			},
 		]"
@@ -314,6 +316,7 @@ export default {
 import NcCheckboxContent, { TYPE_BUTTON, TYPE_CHECKBOX, TYPE_RADIO, TYPE_SWITCH } from './NcCheckboxContent.vue'
 import { createElementId } from '../../utils/createElementId.ts'
 import { t, n } from '../../l10n.ts'
+import { FIELDSET_CONTAINER_CLASS_KEY } from '../NcFieldset/constants.ts'
 
 export default {
 	name: 'NcCheckboxRadioSwitch',
@@ -479,6 +482,13 @@ export default {
 
 	emits: ['update:modelValue'],
 
+	inject: {
+		fieldsetContainerClass: {
+			from: FIELDSET_CONTAINER_CLASS_KEY,
+			default: '',
+		}
+	},
+
 	computed: {
 		isButtonType() {
 			return this.type === TYPE_BUTTON
@@ -637,7 +647,7 @@ export default {
 .checkbox-radio-switch {
 	--icon-size: v-bind('cssIconSize');
 	--icon-height: v-bind('cssIconHeight');
-	--checkbox-radio-switch--border-radius: var(--border-radius-element);
+	--checkbox-radio-switch--border-radius: var(--component-border-radius, var(--border-radius-element));
 	// keep inner border width in mind
 	--checkbox-radio-switch--border-radius-outer: calc(var(--checkbox-radio-switch--border-radius) + 2px);
 	// general setup
@@ -649,6 +659,7 @@ export default {
 	line-height: var(--default-line-height);
 	padding: 0;
 	position: relative;
+	width: fit-content;
 
 	&__input {
 		position: absolute;
@@ -675,6 +686,10 @@ export default {
 		&.checkbox-content :deep(*:not(a)) {
 			cursor: default !important;
 		}
+	}
+
+	&--in-fieldset &__content {
+		background-color: var(--color-primary-element-light);
 	}
 
 	&:not(&--disabled, &--checked):focus-within &__content,
