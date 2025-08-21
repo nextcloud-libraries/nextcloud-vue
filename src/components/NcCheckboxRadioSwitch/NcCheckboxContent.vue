@@ -9,7 +9,7 @@
 			['checkbox-content-' + type]: true,
 			'checkbox-content--button-variant': buttonVariant,
 			'checkbox-content--has-text': !!$slots.default,
-			'checkbox-content-switch-end': !isLegacy && type === 'switch',
+			'checkbox-content--reverse': reverse,
 		}">
 		<!--
 			label can't be used here because of shift+click firefox bug
@@ -157,9 +157,17 @@ export default {
 			type: String,
 			default: null,
 		},
+
+		/**
+		 * Reverse
+		 */
+		reverse: {
+			type: Boolean,
+			default: false,
+		},
 	},
 
-	data() {
+	setup() {
 		return {
 			isLegacy,
 		}
@@ -221,7 +229,7 @@ export default {
 	// Set to 100% to make text overflow work on button style
 	width: 100%;
 
-	&:not(&-switch-end) {
+	&:not(&--reverse) {
 		// but restrict to content so plain checkboxes / radio switches do not expand
 		max-width: fit-content;
 	}
@@ -252,7 +260,7 @@ export default {
 		margin-block-end: 0;
 	}
 
-	&-switch-end:not(&--button-variant) {
+	&--reverse:not(&--button-variant) {
 		flex-direction: row-reverse;
 	}
 
@@ -279,8 +287,6 @@ export default {
 	&--has-text {
 		padding-inline-end: $icon-margin;
 	}
-
-	__
 
 	&, * {
 		cursor: pointer;
