@@ -63,6 +63,7 @@ import type { Slot } from 'vue'
 import { mdiAlert, mdiAlertDecagram, mdiCheckboxMarkedCircle, mdiInformation } from '@mdi/js'
 import { computed } from 'vue'
 import NcIconSvgWrapper from '../NcIconSvgWrapper/index.ts'
+import { isLegacy } from '../../utils/legacy.ts'
 
 const props = withDefaults(defineProps<{
 	/**
@@ -120,7 +121,10 @@ const iconPath = computed(() => {
 
 <template>
 	<div class="notecard"
-		:class="`notecard--${type}`"
+		:class="{
+			[`notecard--${type}`]: type,
+			'notecard--legacy': isLegacy,
+		}"
 		:role="shouldShowAlert ? 'alert' : 'note'">
 		<slot name="icon">
 			<NcIconSvgWrapper :path="iconPath"
@@ -188,6 +192,11 @@ const iconPath = computed(() => {
 	&--warning {
 		--note-background: var(--color-warning);
 		--note-theme: var(--color-warning-text);
+	}
+
+	&--legacy {
+		background-color: color-mix(in srgb, var(--note-background), var(--color-main-background) 80%) !important;
+		color: var(--color-main-text) !important;
 	}
 }
 </style>

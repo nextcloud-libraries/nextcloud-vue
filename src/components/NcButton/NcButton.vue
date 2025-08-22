@@ -438,6 +438,7 @@ import type { RouteLocationRaw } from 'vue-router'
 
 import { computed, inject } from 'vue'
 import { routerKey } from 'vue-router'
+import { isLegacy } from '../../utils/legacy.ts'
 
 export type ButtonAlignment = 'start'
 	| 'start-reverse'
@@ -687,6 +688,7 @@ function onClick(event: MouseEvent) {
 				'button-vue--wide': wide,
 				[`button-vue--${flexAlignment}`]: flexAlignment !== 'center',
 				'button-vue--reverse': isReverseAligned,
+				'button-vue--legacy': isLegacy,
 			},
 		]"
 		:aria-label
@@ -978,6 +980,18 @@ function onClick(event: MouseEvent) {
 		&:active {
 			background-color: var(--color-error);
 		}
+	}
+
+	// before Nextcloud 32
+	&--legacy {
+		--button-inner-size: var(--button-size);
+		// no border
+		border: none;
+	}
+	&--legacy#{&}--error,
+	&--legacy#{&}--success,
+	&--legacy#{&}--warning {
+		color: white;
 	}
 }
 

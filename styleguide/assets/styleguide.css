@@ -2,6 +2,23 @@
  * SPDX-FileCopyrightText: 2017 Nextcloud GmbH and Nextcloud contributors
  * SPDX-License-Identifier: AGPL-3.0-or-later
  */
+div[data-preview] * {
+	box-sizing: border-box;
+}
+
+body {
+	position: relative;
+}
+
+div[data-preview="AppNavigationItem"],
+div[data-preview="AppNavigationCaption"] {
+	width: auto;
+}
+
+div[data-preview="AppNavigationItem"] > div,
+div[data-preview="AppNavigationCaption"] > div {
+	width: 300px;
+}
 
 #rsg-root {
 	height: 100%;

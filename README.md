@@ -18,7 +18,7 @@
 
 | Version        | Target                | Documentation                                         |
 |----------------|-----------------------|-------------------------------------------------------|
-| v9.x [main]    | Nextcloud 32+ (Vue 3) | https://nextcloud-vue-components.netlify.app          |
+| v9.x [main]    | Nextcloud 31+ (Vue 3) | https://nextcloud-vue-components.netlify.app          |
 | v8.x [stable8] | Nextcloud 28+ (Vue 2) | https://stable8--nextcloud-vue-components.netlify.app |
 | v7.x [stable7] | Nextcloud 25 - 27     | https://stable7--nextcloud-vue-components.netlify.app |
 | v6.x [stable6] | Nextcloud 24 - 25     | https://stable6--nextcloud-vue-components.netlify.app |
@@ -106,9 +106,10 @@ npm run l10n:extract
 
 ### 🐸 Styleguidist
 
-When developing new components or extending components, make sure to also have some bits of related documentation like examples, where applicable.
-To test components and the documentation in that context, you can run `npm run styleguide` to run a local server that serves the style guide
-with all the components.
+When developing new components or extending components, make sure to also have some bits of related documentation like examples, where applicable. To test components and the documentation in that context, you can run `npm run styleguide` to run a local server that serves the style guide with all the components.
+
+You can also test if the design still works with a legacy Nextcloud version.
+To do so just run `NEXTCLOUD_LEGACY=y npm run styleguide`.
 
 #### Using vue-devtools in Firefox
 
