@@ -143,6 +143,7 @@ import { createFocusTrap } from 'focus-trap'
 import { inject, onMounted, onUnmounted, ref, useTemplateRef, warn, watch, watchEffect } from 'vue'
 import NcAppNavigationList from '../NcAppNavigationList/index.js'
 import NcAppNavigationToggle from './NcAppNavigationToggle.vue'
+import { HAS_APP_NAVIGATION_KEY } from '../NcContent/constants.ts'
 import { useIsMobile } from '../../composables/useIsMobile/index.ts'
 import { getTrapStack } from '../../utils/focusTrap.ts'
 
@@ -180,7 +181,11 @@ defineSlots<{
 }>()
 
 let focusTrap: FocusTrap
-const setHasAppNavigation = inject<(v: boolean) => void>('NcContent:setHasAppNavigation', () => warn('NcAppNavigation is not mounted inside NcContent, this is probably an error.'), false)
+const setHasAppNavigation = inject(
+	HAS_APP_NAVIGATION_KEY,
+	() => warn('NcAppNavigation is not mounted inside NcContent, this is probably an error.'),
+	false,
+)
 
 const appNavigationContainer = useTemplateRef('app-navigation-container-key')
 const isMobile = useIsMobile()

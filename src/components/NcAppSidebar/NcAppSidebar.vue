@@ -721,6 +721,7 @@ export default {
 import { vOnClickOutside as ClickOutside } from '@vueuse/components'
 import { createFocusTrap } from 'focus-trap'
 import { provide, ref, warn } from 'vue'
+import { CONTENT_SELECTOR_KEY } from '../NcContent/constants.ts'
 import { useIsSmallMobile } from '../../composables/useIsMobile/index.js'
 import { createElementId } from '../../utils/createElementId.ts'
 import { getTrapStack } from '../../utils/focusTrap.ts'
@@ -766,7 +767,7 @@ export default {
 
 	inject: {
 		ncContentSelector: {
-			from: 'NcContent:selector',
+			from: CONTENT_SELECTOR_KEY,
 			default: undefined,
 		},
 	},

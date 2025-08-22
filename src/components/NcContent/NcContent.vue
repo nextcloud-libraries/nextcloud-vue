@@ -75,6 +75,7 @@ import { t } from '../../l10n.ts'
 /* eslint-disable import/no-unresolved */
 import contentSvg from './content-selected.svg?raw'
 import navigationSvg from './navigation-selected.svg?raw'
+import { CONTENT_SELECTOR_KEY, HAS_APP_NAVIGATION_KEY } from './constants.ts'
 /* eslint-enable import/no-unresolved */
 
 const props = defineProps<{
@@ -92,8 +93,8 @@ defineSlots<{
 	default?: Slot
 }>()
 
-provide('NcContent:setHasAppNavigation', setAppNavigation)
-provide('NcContent:selector', '#content-vue')
+provide(HAS_APP_NAVIGATION_KEY, setAppNavigation)
+provide(CONTENT_SELECTOR_KEY, '#content-vue')
 provide('appName', computed(() => props.appName))
 
 const isMobile = useIsMobile()
