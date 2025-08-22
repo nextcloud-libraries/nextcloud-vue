@@ -140,13 +140,13 @@ import type { Slot } from 'vue'
 
 import { emit, subscribe, unsubscribe } from '@nextcloud/event-bus'
 import { createFocusTrap } from 'focus-trap'
-import { inject, onMounted, onUnmounted, ref, useTemplateRef, warn, watch } from 'vue'
+import { inject, onMounted, onUnmounted, ref, useTemplateRef, warn, watch, watchEffect } from 'vue'
 import NcAppNavigationList from '../NcAppNavigationList/index.js'
 import NcAppNavigationToggle from './NcAppNavigationToggle.vue'
 import { useIsMobile } from '../../composables/useIsMobile/index.ts'
 import { getTrapStack } from '../../utils/focusTrap.ts'
 
-defineProps<{
+const props = defineProps<{
 	/**
 	 * The aria label to describe the navigation
 	 */
@@ -185,6 +185,12 @@ const setHasAppNavigation = inject<(v: boolean) => void>('NcContent:setHasAppNav
 const appNavigationContainer = useTemplateRef('app-navigation-container-key')
 const isMobile = useIsMobile()
 const open = ref(!isMobile.value)
+
+watchEffect(() => {
+	if (!props.ariaLabel && !props.ariaLabelledby) {
+		warn('NcAppNavigation requires either `ariaLabel` or `ariaLabelledby` to be set for accessibility.')
+	}
+})
 
 watch(isMobile, () => {
 	open.value = !isMobile.value
