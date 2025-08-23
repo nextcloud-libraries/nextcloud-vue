@@ -6,11 +6,9 @@
 /**
  * Return true if the DOM event is an accessible mouse or keyboard element activation, false otherwise
  *
- * @param {Event} event DOM event
- *
- * @return {boolean}
+ * @param event - DOM event
  */
-export const isA11yActivation = (event: Event) => {
+export function isA11yActivation(event: Event): boolean {
 	if (event.type === 'click') {
 		return true
 	}

@@ -15,7 +15,7 @@ export const n = (...args) => gettext.ngettext(...args)
 export const t = (...args) => gettext.gettext(...args)
 
 /**
- * @param {{ l: string, t: Record<string, { v: string[], p?: string }> }[]} chunks 
+ * @param {{ l: string, t: Record<string, { v: string[], p?: string }> }[]} chunks
  */
 export function register(...chunks) {
 	for (const chunk of chunks) {
@@ -29,17 +29,15 @@ export function register(...chunks) {
 				continue
 			}
 
-			const decompressed = Object.fromEntries(
-				Object.entries(translations)
+			const decompressed = Object.fromEntries(Object.entries(translations)
 				.map(([id, value]) => [
 					id,
 					{
 						msgid: id,
 						msgid_plural: value.p,
 						msgstr: value.v,
-					}
-				])
-			)
+					},
+				]))
 
 			gettext.addTranslations({
 				translations: {

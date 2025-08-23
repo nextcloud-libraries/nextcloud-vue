@@ -130,7 +130,7 @@ msgstr ""
 msgid "Message limit of {count} characters reached"
 msgstr "{count} karakteres üzenetkorlát elérve"
 
-msgid "More items …"
+msgid "More items …"
 msgstr "További elemek..."
 
 msgid "More options"
@@ -276,7 +276,7 @@ msgstr "Változtatások visszavonása"
 
 msgid ""
 "Write message, use \"@\" to mention someone, use \":\" for emoji "
-"autocompletion …"
+"autocompletion …"
 msgstr ""
 "Írjon egy üzenetet, használja a „@”-ot valaki megemlítéséhet, illetve a "
 "„:”-ot az emodzsik automatikus kiegészítéséhez…"

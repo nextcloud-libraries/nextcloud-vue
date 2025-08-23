@@ -3,16 +3,19 @@
  * SPDX-License-Identifier: AGPL-3.0-or-later
  */
 
-import { join, basename } from 'path'
 import { readdir, readFile } from 'fs/promises'
 import { po as poParser } from 'gettext-parser'
+import { basename, join } from 'path'
 
+/**
+ * @param baseDir - Base directory to look for translations
+ */
 export async function loadTranslations(baseDir: string) {
 	const files = await readdir(baseDir)
 
 	const promises = files
-		.filter(name => name !== 'messages.pot' && name.endsWith('.pot'))
-		.map(file => join(baseDir, file))
+		.filter((name) => name !== 'messages.pot' && name.endsWith('.pot'))
+		.map((file) => join(baseDir, file))
 		.map(parseFile)
 
 	const parsedTranslations = await Promise.all(promises)
@@ -25,7 +28,9 @@ export async function loadTranslations(baseDir: string) {
 }
 
 /**
- * @param fileName - The full filename to open and parse
+ * Read a .po file and return the locale and the content as parsed JSON.
+ *
+ * @param fileName - The full filename to parse
  *
  * @see https://github.com/alexanderwallin/node-gettext#usage
  * @see https://github.com/alexanderwallin/node-gettext#load-and-add-translations-from-mo-or-po-files

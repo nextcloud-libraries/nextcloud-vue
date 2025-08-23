@@ -12,4 +12,4 @@ const gt = gtBuilder.build()
 const n = gt.ngettext.bind(gt)
 const t = gt.gettext.bind(gt)
 
-export { t, n }
+export { n, t }

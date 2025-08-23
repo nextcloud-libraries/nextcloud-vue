@@ -3,7 +3,6 @@
  * SPDX-License-Identifier: AGPL-3.0-or-later
  */
 import { expect, test } from '@playwright/experimental-ct-vue'
-
 import AppSidebar from './AppSidebar.story.vue'
 
 test.skip(({ browserName }) => browserName !== 'chromium')
@@ -12,7 +11,10 @@ test.skip(({ browserName }) => browserName !== 'chromium')
 test.beforeEach(async ({ page }) => {
 	const handle = await page.locator('#content').elementHandle()
 	expect(handle).not.toBeNull()
-	await handle!.evaluate((node) => { node.innerHTML = ''; node.id = 'root' })
+	await handle!.evaluate((node) => {
+		node.innerHTML = ''
+		node.id = 'root'
+	})
 })
 
 new Array(2 ** 5)
@@ -28,12 +30,12 @@ new Array(2 ** 5)
 		test(
 			`Sidebar header${props.compact ? ': compact ' : (index > 0 ? ': ' : '')}${props.subname ? 'subname ' : ''}${props.nameEditable ? 'editable ' : ''}${props.header ? 'header ' : ''}${props.secondaryActions ? 'actions' : ''}`,
 			{ tag: '@visual' },
-			async ({ mount },
-			) => {
+			async ({ mount }) => {
 				const component = await mount(AppSidebar, {
 					props,
 				})
 				await expect(component).toBeVisible()
 				await expect(component.locator('header')).toHaveScreenshot({ caret: 'hide' })
-			})
+			},
+		)
 	})

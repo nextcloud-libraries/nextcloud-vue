@@ -71,12 +71,9 @@ import NcButton from '../NcButton/NcButton.vue'
 import NcIconSvgWrapper from '../NcIconSvgWrapper/NcIconSvgWrapper.vue'
 import { useIsMobile } from '../../composables/useIsMobile/index.js'
 import { t } from '../../l10n.ts'
-
-/* eslint-disable import/no-unresolved */
+import { CONTENT_SELECTOR_KEY, HAS_APP_NAVIGATION_KEY } from './constants.ts'
 import contentSvg from './content-selected.svg?raw'
 import navigationSvg from './navigation-selected.svg?raw'
-import { CONTENT_SELECTOR_KEY, HAS_APP_NAVIGATION_KEY } from './constants.ts'
-/* eslint-enable import/no-unresolved */
 
 const props = defineProps<{
 	/**
@@ -155,7 +152,8 @@ function setAppNavigation(value: boolean): void {
 					{{ t('Keyboard navigation help') }}
 				</div>
 				<div class="vue-skip-actions__buttons">
-					<NcButton v-show="hasAppNavigation"
+					<NcButton
+						v-show="hasAppNavigation"
 						href="#app-navigation-vue"
 						variant="tertiary"
 						@click.prevent="openAppNavigation"
@@ -163,14 +161,16 @@ function setAppNavigation(value: boolean): void {
 						@mouseover="currentFocus = 'navigation'">
 						{{ t('Skip to app navigation') }}
 					</NcButton>
-					<NcButton href="#app-content-vue"
+					<NcButton
+						href="#app-content-vue"
 						variant="tertiary"
 						@focusin="currentFocus = 'content'"
 						@mouseover="currentFocus = 'content'">
 						{{ t('Skip to main content') }}
 					</NcButton>
 				</div>
-				<NcIconSvgWrapper v-show="!isMobile"
+				<NcIconSvgWrapper
+					v-show="!isMobile"
 					class="vue-skip-actions__image"
 					:svg="currentImage"
 					size="auto" />

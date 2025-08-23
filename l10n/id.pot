@@ -148,7 +148,7 @@ msgstr "Muat \"{options}\" lainnya"
 msgid "Message limit of {count} characters reached"
 msgstr "Batas jumlah karakter pesan ({count} karakter) tercapai"
 
-msgid "More items …"
+msgid "More items …"
 msgstr "Item lainnya…"
 
 msgid "More options"
@@ -319,5 +319,5 @@ msgstr "Urungkan perubahan"
 msgid "User status: {status}"
 msgstr "Status pengguna: {status}"
 
-msgid "Write a message …"
+msgid "Write a message …"
 msgstr "Tulis pesan ..."

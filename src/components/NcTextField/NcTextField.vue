@@ -125,7 +125,8 @@ export default {
 </docs>
 
 <template>
-	<NcInputField v-bind="propsToForward"
+	<NcInputField
+		v-bind="propsToForward"
 		ref="input-field-key"
 		v-model="modelValue">
 		<template v-if="!!$slots.icon" #icon>
@@ -146,9 +147,15 @@ import type { NcInputFieldProps } from '../NcInputField/index.ts'
 
 import { mdiArrowRight, mdiClose, mdiUndo } from '@mdi/js'
 import { computed, useTemplateRef } from 'vue'
+import { t } from '../../l10n.ts'
 import NcIconSvgWrapper from '../NcIconSvgWrapper/index.ts'
 import NcInputField from '../NcInputField/index.ts'
-import { t } from '../../l10n.ts'
+
+/**
+ * The value of the input field
+ * If type is 'number' and a number is passed as value than the type of `update:value` will also be 'number'
+ */
+const modelValue = defineModel<string | number>('modelValue', { default: '' })
 
 const props = withDefaults(defineProps<NcInputFieldProps & {
 	/**
@@ -169,24 +176,17 @@ const props = withDefaults(defineProps<NcInputFieldProps & {
 	trailingButtonLabel: undefined,
 })
 
-/**
- * The value of the input field
- * If type is 'number' and a number is passed as value than the type of `update:value` will also be 'number'
- */
-const modelValue = defineModel<string | number>('modelValue', { default: '' })
-
-// public API
-defineExpose({
-	focus,
-	select,
-})
-
 defineSlots<{
 	/**
 	 * Leading icon, set the size to 20.
 	 */
 	icon?: Slot
 }>()
+
+defineExpose({
+	focus,
+	select,
+})
 
 const inputField = useTemplateRef('input-field-key')
 
@@ -198,10 +198,8 @@ const defaultTrailingButtonLabels = {
 
 const NcInputFieldPropNames = new Set(Object.keys(NcInputField.props))
 const propsToForward = computed<NcInputFieldProps>(() => {
-	const sharedProps = Object.fromEntries(
-		Object.entries(props)
-			.filter(([key]) => NcInputFieldPropNames.has(key)),
-	)
+	const sharedProps = Object.fromEntries(Object.entries(props)
+		.filter(([key]) => NcInputFieldPropNames.has(key)))
 
 	sharedProps.trailingButtonLabel ??= defaultTrailingButtonLabels[props.trailingButtonIcon]
 	return sharedProps satisfies NcInputFieldProps

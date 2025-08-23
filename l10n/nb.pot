@@ -205,7 +205,7 @@ msgid "Load more \"{options}\""
 msgstr "Last inn flere \"{options}\""
 
 #. TRANSLATORS: The button is in a loading state
-msgid "Loading …"
+msgid "Loading …"
 msgstr "Laster inn..."
 
 #. TRANSLATORS: A color name for RGB(45, 115, 190)
@@ -224,7 +224,7 @@ msgstr "Middels hudtone"
 msgid "Message limit of {count} characters reached"
 msgstr "Karakter begrensing {count} nådd i melding"
 
-msgid "More items …"
+msgid "More items …"
 msgstr "Flere gjenstander..."
 
 msgid "More options"
@@ -434,5 +434,5 @@ msgstr "Se lag"
 msgid "Whiskey"
 msgstr "Whiskey"
 
-msgid "Write a message …"
+msgid "Write a message …"
 msgstr "Skriv en melding..."

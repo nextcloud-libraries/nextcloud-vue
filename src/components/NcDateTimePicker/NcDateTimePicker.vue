@@ -167,10 +167,10 @@ export default {
 
 <script setup lang="ts">
 import type {
-	// The emitted object for time picker
-	TimeObj as LibraryTimeObject,
 	// The accepted model value
 	ModelValue as LibraryModelValue,
+	// The emitted object for time picker
+	TimeObj as LibraryTimeObject,
 	VueDatePickerProps,
 } from '@vuepic/vue-datepicker'
 
@@ -184,20 +184,29 @@ import {
 	mdiClose,
 } from '@mdi/js'
 import {
-	getFirstDay,
+	getCanonicalLocale,
 	getDayNames,
 	getDayNamesMin,
-	getCanonicalLocale,
+	getFirstDay,
 } from '@nextcloud/l10n'
-import { computed, useTemplateRef } from 'vue'
-import { t } from '../../l10n.ts'
-
 import VueDatePicker from '@vuepic/vue-datepicker'
-import NcButton from '../NcButton/index.ts'
+import { computed, useTemplateRef } from 'vue'
 import NcIconSvgWrapper from '../NcIconSvgWrapper/NcIconSvgWrapper.vue'
 import NcTimezonePicker from '../NcTimezonePicker/NcTimezonePicker.vue'
+import { t } from '../../l10n.ts'
+import NcButton from '../NcButton/index.ts'
 
 type LibraryFormatOptions = VueDatePickerProps['format']
+
+/**
+ * The preselected IANA time zone ID for the time zone picker,
+ * only relevant in combination with `show-timezone-select`.
+ * The prop supports two-way binding through v-model directive.
+ *
+ * @example `Europe/Berlin`
+ * @default 'UTC'
+ */
+const timezoneId = defineModel<string>('timezoneId', { default: 'UTC' })
 
 const props = withDefaults(defineProps<{
 	/**
@@ -229,6 +238,7 @@ const props = withDefaults(defineProps<{
 
 	/**
 	 * Do not auto-apply the date but require clicking the confirmation button.
+	 *
 	 * @default false
 	 */
 	confirm?: boolean
@@ -251,6 +261,7 @@ const props = withDefaults(defineProps<{
 
 	/**
 	 * Default increment step for minutes in the time picker.
+	 *
 	 * @default 10
 	 */
 	minuteStep?: number
@@ -308,19 +319,6 @@ const props = withDefaults(defineProps<{
 	type: 'date',
 })
 
-/**
- * The preselected IANA time zone ID for the time zone picker,
- * only relevant in combination with `show-timezone-select`.
- * The prop supports two-way binding through v-model directive.
- *
- * @example `Europe/Berlin`
- * @default 'UTC'
- */
-const timezoneId = defineModel<string>('timezoneId', { default: 'UTC' })
-
-const target = useTemplateRef('target-key')
-const picker = useTemplateRef('picker-key')
-
 const emit = defineEmits<{
 	/**
 	 * If range picker is enabled then an array containing start and end date are emitted.
@@ -330,6 +328,9 @@ const emit = defineEmits<{
 	'update:modelValue': [Date | [Date, Date] | null]
 	'update:timezoneId': [string]
 }>()
+
+const target = useTemplateRef('target-key')
+const picker = useTemplateRef('picker-key')
 
 /**
  * Mapping of the model-value prop to the format expected by the library.
@@ -464,6 +465,7 @@ const pickerType = computed(() => ({
 
 /**
  * Called on model value update of the library.
+ *
  * @param value The value emitted from the underlying library
  */
 function onUpdateModelValue(value: LibraryModelValue): void {
@@ -585,7 +587,8 @@ function cancelSelection() {
 
 <template>
 	<div class="vue-date-time-picker__wrapper">
-		<VueDatePicker ref="picker-key"
+		<VueDatePicker
+			ref="picker-key"
 			:aria-labels
 			:auto-apply="!confirm"
 			class="vue-date-time-picker"
@@ -617,7 +620,8 @@ function cancelSelection() {
 				</NcButton>
 			</template>
 			<template #clear-icon="{ clear }">
-				<NcButton :aria-label="t('Clear value')"
+				<NcButton
+					:aria-label="t('Clear value')"
 					variant="tertiary-no-background"
 					@click="clear">
 					<template #icon>
@@ -644,7 +648,8 @@ function cancelSelection() {
 				<NcIconSvgWrapper inline :path="mdiChevronUp" :size="20" />
 			</template>
 			<template v-if="showTimezoneSelect" #action-extra>
-				<NcTimezonePicker v-model="timezoneId"
+				<NcTimezonePicker
+					v-model="timezoneId"
 					class="vue-date-time-picker__timezone"
 					:append-to-body="false"
 					:input-label="t('Timezone')" />

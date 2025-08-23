@@ -5,8 +5,8 @@
 
 import type { DeepReadonly, MaybeRefOrGetter, Ref } from 'vue'
 
-import { createSharedComposable, usePreferredDark, useMutationObserver } from '@vueuse/core'
-import { computed, inject, ref, readonly, toValue, watch } from 'vue'
+import { createSharedComposable, useMutationObserver, usePreferredDark } from '@vueuse/core'
+import { computed, inject, readonly, ref, toValue, watch } from 'vue'
 import { checkIfDarkTheme } from '../../functions/isDarkTheme/index.ts'
 import { INJECTION_KEY_THEME } from './constants.ts'
 
@@ -14,8 +14,9 @@ import { INJECTION_KEY_THEME } from './constants.ts'
  * Check whether the dark theme is enabled on a specific element.
  * If you need to check an entire page, use `useIsDarkTheme` instead for better performance.
  * Reacts on element attributes change and system theme change.
+ *
  * @param el - The element to check for the dark theme enabled on (default is `document.body`)
- * @return {DeepReadonly<Ref<boolean>>} - computed boolean whether the dark theme is enabled
+ * @return - computed boolean whether the dark theme is enabled
  */
 export function useIsDarkThemeElement(el?: MaybeRefOrGetter<HTMLElement>): DeepReadonly<Ref<boolean>> {
 	const element = computed(() => toValue(el) ?? document.body)

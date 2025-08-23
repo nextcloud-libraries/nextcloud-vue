@@ -5,9 +5,9 @@
 
 import { mount } from '@vue/test-utils'
 import { beforeAll, describe, expect, it, vi } from 'vitest'
-import NcAppSettingsDialog from '../../../../src/components/NcAppSettingsDialog/NcAppSettingsDialog.vue'
 import { defineComponent, h, inject, nextTick, onMounted } from 'vue'
-import { resizeWindowWidth } from '../../testing-utils'
+import NcAppSettingsDialog from '../../../../src/components/NcAppSettingsDialog/NcAppSettingsDialog.vue'
+import { resizeWindowWidth } from '../../testing-utils.ts'
 
 /**
  * Mocked AppSettingsSection that just registers it self
@@ -15,7 +15,7 @@ import { resizeWindowWidth } from '../../testing-utils'
 const MockSection = defineComponent({
 	props: { id: { type: String, default: 'test_id' } },
 	setup(props) {
-		const register = inject<(id: string, name: string)=> void>('registerSection')
+		const register = inject<(id: string, name: string) => void>('registerSection')
 		onMounted(() => register?.(props.id, 'test_name'))
 		return () => h('li', ['empty'])
 	},
@@ -44,7 +44,6 @@ describe('NcAppSettingsDialog: Sections registration', () => {
 	})
 
 	it('can register a new section', async () => {
-		// eslint-disable-next-line @typescript-eslint/no-explicit-any
 		const wrapper = mount<Vue & { registerSection: any }>(NcAppSettingsDialog, {
 			props: {
 				open: true,
@@ -59,7 +58,6 @@ describe('NcAppSettingsDialog: Sections registration', () => {
 	})
 
 	it('warn on register a already registered section name', async () => {
-		// eslint-disable-next-line @typescript-eslint/no-explicit-any
 		const wrapper = mount<Vue & { registerSection: any }>(NcAppSettingsDialog, {
 			props: {
 				open: true,
@@ -84,7 +82,6 @@ describe('NcAppSettingsDialog: Sections registration', () => {
 	})
 
 	it('error on register a already registered section ID', async () => {
-		// eslint-disable-next-line @typescript-eslint/no-explicit-any
 		const wrapper = mount<Vue & { registerSection: any }>(NcAppSettingsDialog, {
 			props: {
 				open: true,
@@ -104,7 +101,6 @@ describe('NcAppSettingsDialog: Sections registration', () => {
 	})
 
 	it('can unregister a section', async () => {
-		// eslint-disable-next-line @typescript-eslint/no-explicit-any
 		const wrapper = mount<Vue & { registerSection: any, unregisterSection: any }>(NcAppSettingsDialog, {
 			props: {
 				open: true,

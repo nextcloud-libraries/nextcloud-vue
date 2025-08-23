@@ -132,7 +132,7 @@ msgstr ""
 msgid "Message limit of {count} characters reached"
 msgstr "Se ha alcanzado el límite de caracteres del mensaje {count}"
 
-msgid "More items …"
+msgid "More items …"
 msgstr "Más elementos..."
 
 msgid "More options"
@@ -279,5 +279,5 @@ msgstr "No se puede buscar en el grupo"
 msgid "Undo changes"
 msgstr "Deshacer cambios"
 
-msgid "Write a message …"
+msgid "Write a message …"
 msgstr ""

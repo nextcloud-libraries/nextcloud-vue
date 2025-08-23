@@ -4,6 +4,7 @@
  */
 
 import type { Directive } from 'vue'
+
 import { linkifyString } from '../../utils/linkify.ts'
 
 const directive: Directive = function(el: HTMLElement, { value }) {

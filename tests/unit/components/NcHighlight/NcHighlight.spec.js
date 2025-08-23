@@ -5,7 +5,6 @@
 
 import { mount } from '@vue/test-utils'
 import { describe, expect, it } from 'vitest'
-
 import NcHighlight from '../../../../src/components/NcHighlight/NcHighlight.vue'
 
 describe('NcHighlight.vue', () => {

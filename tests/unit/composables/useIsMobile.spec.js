@@ -3,9 +3,9 @@
  * SPDX-License-Identifier: AGPL-3.0-or-later
  */
 
-import { isRef, nextTick } from 'vue'
 import { mount } from '@vue/test-utils'
 import { describe, expect, it } from 'vitest'
+import { isRef, nextTick } from 'vue'
 import { useIsMobile } from '../../../src/composables/useIsMobile/index.js'
 import { resizeWindowWidth } from '../testing-utils.ts'
 

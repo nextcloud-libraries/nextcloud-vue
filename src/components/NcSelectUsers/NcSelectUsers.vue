@@ -166,7 +166,6 @@ export default {
 
 <script setup lang="ts">
 import { ref, watch } from 'vue'
-
 import NcListItemIcon from '../NcListItemIcon/index.js'
 import NcSelect from '../NcSelect/index.js'
 
@@ -212,6 +211,15 @@ export interface IUserData {
 	 */
 	isNoUser?: boolean
 }
+
+/**
+ * Currently selected value.
+ * The `v-model` directive may be used for two-way data binding.
+ *
+ * If the `multiple` property is set then an array of users is emitted,
+ * otherwise a single user data object will be emitted.
+ */
+const modelValue = defineModel<IUserData | IUserData[]>('modelValue')
 
 defineProps<{
 	/**
@@ -298,15 +306,6 @@ defineProps<{
 	required?: boolean
 }>()
 
-/**
- * Currently selected value.
- * The `v-model` directive may be used for two-way data binding.
- *
- * If the `multiple` property is set then an array of users is emitted,
- * otherwise a single user data object will be emitted.
- */
-const modelValue = defineModel<IUserData | IUserData[]>('modelValue')
-
 const emit = defineEmits<{
 	/**
 	 * Emitted when the user enters some query.
@@ -345,20 +344,23 @@ function filterBy(option: { subname?: string }, label: string, search: string) {
 </script>
 
 <template>
-	<NcSelect v-model="modelValue"
+	<NcSelect
+		v-model="modelValue"
 		class="nc-select-users"
 		v-bind="$props"
 		:filter-by
 		label="displayName"
 		@search="search = $event">
 		<template #option="option">
-			<NcListItemIcon v-bind="option"
+			<NcListItemIcon
+				v-bind="option"
 				:avatar-size="32"
 				:name="option.displayName"
 				:search />
 		</template>
 		<template #selected-option="selectedOption">
-			<NcListItemIcon v-bind="selectedOption"
+			<NcListItemIcon
+				v-bind="selectedOption"
 				:avatar-size
 				:name="selectedOption.displayName"
 				no-margin

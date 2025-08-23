@@ -11,7 +11,7 @@
 export function isUrl(str: string): boolean {
 	try {
 		return Boolean(new URL(str))
-	} catch (error) {
+	} catch {
 		return false
 	}
 }

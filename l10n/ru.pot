@@ -244,7 +244,7 @@ msgid "Load more \"{options}\""
 msgstr "Загрузить больше \"{options}\"\""
 
 #. TRANSLATORS: The button is in a loading state
-msgid "Loading …"
+msgid "Loading …"
 msgstr "Загрузка ..."
 
 #. TRANSLATORS: A color name for RGB(45, 115, 190)
@@ -273,7 +273,7 @@ msgstr "Выбор месяца"
 msgid "Month picker overlay"
 msgstr "Окно выбора месяца"
 
-msgid "More items …"
+msgid "More items …"
 msgstr "Больше элементов..."
 
 msgid "More options"
@@ -537,8 +537,8 @@ msgstr "Н"
 msgid "Whiskey"
 msgstr "Виски"
 
-msgid "Write a message …"
-msgstr "Напиши сообщение …"
+msgid "Write a message …"
+msgstr "Напиши сообщение …"
 
 msgid "Year picker"
 msgstr "Выбор года"

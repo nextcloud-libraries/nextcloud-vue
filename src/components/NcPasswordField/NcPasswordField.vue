@@ -94,8 +94,8 @@ export default {
 </docs>
 
 <script setup lang="ts">
-import type { NcInputFieldProps } from '../NcInputField/NcInputField.vue'
 import type { Writable } from '../../utils/VueTypes.ts'
+import type { NcInputFieldProps } from '../NcInputField/NcInputField.vue'
 
 import { mdiEye, mdiEyeOff } from '@mdi/js'
 import axios from '@nextcloud/axios'
@@ -107,6 +107,14 @@ import NcIconSvgWrapper from '../NcIconSvgWrapper/NcIconSvgWrapper.vue'
 import NcInputField from '../NcInputField/NcInputField.vue'
 import { t } from '../../l10n.ts'
 import logger from '../../utils/logger.ts'
+
+const modelValue = defineModel<string>({ default: '' })
+
+/**
+ * The visibility of the password.
+ * If this is set to true then the password will not be obfuscated by the browser.
+ */
+const visible = defineModel<boolean>('visible', { default: false })
 
 const props = withDefaults(defineProps<Omit<NcInputFieldProps, 'trailingButtonLabel' | 'type'> & {
 	/**
@@ -139,19 +147,12 @@ const props = withDefaults(defineProps<Omit<NcInputFieldProps, 'trailingButtonLa
 	showTrailingButton: true,
 })
 
-const modelValue = defineModel<string>({ default: '' })
-watch(modelValue, debounce(checkPassword, 500))
-
-/**
- * The visibility of the password.
- * If this is set to true then the password will not be obfuscated by the browser.
- */
-const visible = defineModel<boolean>('visible', { default: false })
-
 const emit = defineEmits<{
 	valid: []
 	invalid: []
 }>()
+
+watch(modelValue, debounce(checkPassword, 500))
 
 // public API
 defineExpose({
@@ -286,7 +287,8 @@ function select() {
 </script>
 
 <template>
-	<NcInputField v-bind="propsToForward"
+	<NcInputField
+		v-bind="propsToForward"
 		ref="input-field-key"
 		v-model="modelValue"
 		:error="error || isValid === false"

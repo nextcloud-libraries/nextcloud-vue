@@ -3,9 +3,7 @@
  * SPDX-License-Identifier: AGPL-3.0-or-later
  */
 
-import { mount, shallowMount } from '@vue/test-utils'
-import NcInputField from '../../../../src/components/NcInputField/index.js'
-
+import { mount } from '@vue/test-utils'
 import { describe, expect, it } from 'vitest'
 import NcTextField from '../../../../src/components/NcTextField/NcTextField.vue'
 

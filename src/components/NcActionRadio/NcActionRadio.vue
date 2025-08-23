@@ -46,15 +46,16 @@ So that only one of each name set can be selected at the same time.
 <template>
 	<li class="action" :class="{ 'action--disabled': disabled }" :role="isInSemanticMenu && 'presentation'">
 		<span class="action-radio" role="menuitemradio" :aria-checked="ariaChecked">
-			<input :id="id"
+			<input
+				:id="id"
 				ref="radio"
 				v-model="model"
+				class="radio action-radio__radio"
+				:class="{ focusable: isFocusable }"
 				:disabled="disabled"
 				:name="name"
 				:value="value"
-				:class="{ focusable: isFocusable }"
 				type="radio"
-				class="radio action-radio__radio"
 				@keydown.enter.exact.prevent="toggleInput"
 				@change="onChange">
 			<label ref="label" :for="id" class="action-radio__label">{{ text }}</label>
@@ -67,8 +68,8 @@ So that only one of each name set can be selected at the same time.
 
 <script>
 import { useModel } from 'vue'
-import { createElementId } from '../../utils/createElementId.ts'
 import ActionGlobalMixin from '../../mixins/actionGlobal.js'
+import { createElementId } from '../../utils/createElementId.ts'
 import { NC_ACTIONS_IS_SEMANTIC_MENU } from '../NcActions/useNcActions.ts'
 
 export default {
@@ -90,7 +91,7 @@ export default {
 		id: {
 			type: String,
 			default: () => createElementId(),
-			validator: id => id.trim() !== '',
+			validator: (id) => id.trim() !== '',
 		},
 
 		/**
@@ -154,7 +155,7 @@ export default {
 		 *
 		 * @return {'true'|'false'|undefined} aria-checked value if needed
 		 */
-		 ariaChecked() {
+		ariaChecked() {
 			if (this.isInSemanticMenu) {
 				return this.modelValue === this.value ? 'true' : 'false'
 			}
@@ -167,6 +168,7 @@ export default {
 			// by clicking we also trigger the change event
 			this.$refs.label.click()
 		},
+
 		onChange(event) {
 			/**
 			 * Emitted when the radio state is changed

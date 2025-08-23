@@ -191,7 +191,8 @@ const originalCountAsTitleIfNeeded = computed(() => {
 </script>
 
 <template>
-	<div class="counter-bubble__counter"
+	<div
+		class="counter-bubble__counter"
 		:class="{
 			active,
 			'counter-bubble__counter--highlighted': type === 'highlighted',

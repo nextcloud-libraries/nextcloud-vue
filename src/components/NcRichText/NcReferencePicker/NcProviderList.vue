@@ -5,7 +5,8 @@
 
 <template>
 	<div class="provider-list">
-		<NcSelect ref="provider-select"
+		<NcSelect
+			ref="provider-select"
 			v-model="selectedProvider"
 			class="provider-list--select"
 			input-id="provider-select-input"
@@ -24,10 +25,12 @@
 					<span>{{ option.title }}</span>
 				</div>
 				<div v-else class="provider">
-					<img class="provider-icon"
+					<img
+						class="provider-icon"
 						:src="option.icon_url"
 						:alt="providerIconAlt">
-					<NcHighlight class="option-text"
+					<NcHighlight
+						class="option-text"
 						:search="query"
 						:text="option.title" />
 				</div>
@@ -42,14 +45,13 @@
 </template>
 
 <script>
+import LinkVariantIcon from 'vue-material-design-icons/LinkVariant.vue'
 import { searchProvider } from '../../../functions/reference/providerHelper.ts'
-import { isUrl } from './utils.js'
+import { t } from '../../../l10n.ts'
 import NcEmptyContent from '../../NcEmptyContent/index.ts'
 import NcHighlight from '../../NcHighlight/index.ts'
 import NcSelect from '../../NcSelect/index.js'
-import { t } from '../../../l10n.ts'
-
-import LinkVariantIcon from 'vue-material-design-icons/LinkVariant.vue'
+import { isUrl } from './utils.js'
 
 export default {
 	name: 'NcProviderList',
@@ -59,10 +61,12 @@ export default {
 		NcEmptyContent,
 		LinkVariantIcon,
 	},
+
 	emits: [
 		'selectProvider',
 		'submit',
 	],
+
 	data() {
 		return {
 			selectedProvider: null,
@@ -71,6 +75,7 @@ export default {
 			providerIconAlt: t('Provider icon'),
 		}
 	},
+
 	computed: {
 		options() {
 			const result = []
@@ -85,12 +90,14 @@ export default {
 			return result
 		},
 	},
+
 	methods: {
 		focus() {
 			setTimeout(() => {
 				this.$refs['provider-select']?.$el?.querySelector('#provider-select-input')?.focus()
 			}, 300)
 		},
+
 		onProviderSelected(p) {
 			if (p !== null) {
 				if (p.isLink) {
@@ -101,6 +108,7 @@ export default {
 				this.selectedProvider = null
 			}
 		},
+
 		onSearch(query) {
 			this.query = query
 		},

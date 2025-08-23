@@ -149,7 +149,7 @@ msgstr "Carica più \"{options}\""
 msgid "Message limit of {count} characters reached"
 msgstr "Limite dei messaggi di {count} caratteri raggiunto"
 
-msgid "More items …"
+msgid "More items …"
 msgstr "Più elementi ..."
 
 msgid "More options"
@@ -320,5 +320,5 @@ msgstr "Cancella i cambiamenti"
 msgid "User status: {status}"
 msgstr "Stato dell'utente: {status}"
 
-msgid "Write a message …"
+msgid "Write a message …"
 msgstr "Scrivi un messaggio ..."

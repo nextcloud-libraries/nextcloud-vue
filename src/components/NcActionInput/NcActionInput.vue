@@ -122,38 +122,43 @@ For the `NcSelect` component, all events will be passed through. Please see the 
 </docs>
 
 <template>
-	<li class="action" :class="[{ 'action--disabled': disabled }, $props.class ]">
-		<span :class="{
+	<li class="action" :class="[{ 'action--disabled': disabled }, $props.class]">
+		<span
+			class="action-input"
+			:class="{
 				'action-input-picker--disabled': disabled,
 				'action-input--visible-label': labelOutside && label,
 			}"
-			class="action-input"
 			@mouseleave="onLeave">
 			<span class="action-input__icon-wrapper">
 				<!-- @slot Manually provide icon -->
 				<slot name="icon">
-					<span :class="[isIconUrl ? 'action-input__icon--url' : icon]"
-						:style="{ backgroundImage: isIconUrl ? `url(${icon})` : null }"
+					<span
 						aria-hidden="true"
-						class="action-input__icon" />
+						class="action-input__icon"
+						:class="[isIconUrl ? 'action-input__icon--url' : icon]"
+						:style="{ backgroundImage: isIconUrl ? `url(${icon})` : null }" />
 				</slot>
 			</span>
 
 			<!-- form and input -->
-			<form ref="form"
+			<form
+				ref="form"
 				class="action-input__form"
 				:disabled="disabled"
 				@submit.prevent="onSubmit">
 				<div class="action-input__container">
-					<label v-if="label && labelOutside"
+					<label
+						v-if="label && labelOutside"
 						class="action-input__text-label"
-						:class="{ 'action-input__text-label--hidden': !labelOutside}"
+						:class="{ 'action-input__text-label--hidden': !labelOutside }"
 						:for="inputId">
 						{{ label }}
 					</label>
 					<div class="action-input__input-container">
 
-						<NcDateTimePicker v-if="datePickerType"
+						<NcDateTimePicker
+							v-if="datePickerType"
 							ref="datetimepicker"
 							:model-value="modelValue"
 							style="z-index: 99999999999;"
@@ -165,7 +170,8 @@ For the `NcSelect` component, all events will be passed through. Please see the 
 							v-bind="$attrs"
 							@update:model-value="onUpdateModelValue" />
 
-						<NcDateTimePickerNative v-else-if="isNativePicker"
+						<NcDateTimePickerNative
+							v-else-if="isNativePicker"
 							:id="idNativeDateTimePicker"
 							:model-value="modelValue"
 							:type="nativeDatePickerType"
@@ -174,7 +180,8 @@ For the `NcSelect` component, all events will be passed through. Please see the 
 							v-bind="$attrs"
 							@update:model-value="onUpdateModelValue" />
 
-						<NcSelect v-else-if="isMultiselectType"
+						<NcSelect
+							v-else-if="isMultiselectType"
 							:model-value="modelValue"
 							:placeholder="text"
 							:disabled="disabled"
@@ -184,7 +191,8 @@ For the `NcSelect` component, all events will be passed through. Please see the 
 							v-bind="$attrs"
 							@update:model-value="onUpdateModelValue" />
 
-						<NcPasswordField v-else-if="type==='password'"
+						<NcPasswordField
+							v-else-if="type === 'password'"
 							:id="inputId"
 							:model-value="modelValue"
 							:label="label"
@@ -197,27 +205,31 @@ For the `NcSelect` component, all events will be passed through. Please see the 
 							@update:model-value="onUpdateModelValue" />
 
 						<div v-else-if="type === 'color'" class="action-input__container">
-							<label v-if="label && type === 'color'"
+							<label
+								v-if="label && type === 'color'"
 								class="action-input__text-label"
-								:class="{ 'action-input__text-label--hidden': !labelOutside}"
+								:class="{ 'action-input__text-label--hidden': !labelOutside }"
 								:for="inputId">
 								{{ label }}
 							</label>
 							<div class="action-input__input-container">
-								<NcColorPicker id="inputId"
+								<NcColorPicker
+									id="inputId"
 									:model-value="modelValue"
 									class="colorpicker__trigger"
 									v-bind="$attrs"
 									@update:model-value="onUpdateModelValue"
 									@submit="$refs.form.requestSubmit()">
-									<button :style="{'background-color': modelValue}"
+									<button
 										class="colorpicker__preview"
-										:class="{ focusable: isFocusable }" />
+										:class="{ focusable: isFocusable }"
+										:style="{ 'background-color': modelValue }" />
 								</NcColorPicker>
 							</div>
 						</div>
 
-						<NcTextField v-else
+						<NcTextField
+							v-else
 							:id="inputId"
 							:model-value="modelValue"
 							:label="label"
@@ -241,12 +253,12 @@ For the `NcSelect` component, all events will be passed through. Please see the 
 
 <script>
 import { defineAsyncComponent } from 'vue'
+import { t } from '../../l10n.ts'
+import ActionGlobalMixin from '../../mixins/actionGlobal.js'
+import { createElementId } from '../../utils/createElementId.ts'
 import NcDateTimePickerNative from '../NcDateTimePickerNative/index.ts'
 import NcPasswordField from '../NcPasswordField/index.ts'
 import NcTextField from '../NcTextField/index.ts'
-import ActionGlobalMixin from '../../mixins/actionGlobal.js'
-import { createElementId } from '../../utils/createElementId.ts'
-import { t } from '../../l10n.ts'
 
 export default {
 	name: 'NcActionInput',
@@ -272,16 +284,18 @@ export default {
 		id: {
 			type: String,
 			default: () => 'action-' + createElementId(),
-			validator: id => id.trim() !== '',
+			validator: (id) => id.trim() !== '',
 		},
+
 		/**
 		 * id attribute of the text input element
 		 */
 		inputId: {
 			type: String,
 			default: () => 'action-input-' + createElementId(),
-			validator: id => id.trim() !== '',
+			validator: (id) => id.trim() !== '',
 		},
+
 		/**
 		 * Icon to show with the action, can be either a CSS class or an URL
 		 */
@@ -289,6 +303,7 @@ export default {
 			type: String,
 			default: '',
 		},
+
 		/**
 		 * type attribute of the input field
 		 */
@@ -296,12 +311,25 @@ export default {
 			type: String,
 			default: 'text',
 			validator(type) {
-				return ['date', 'datetime-local', 'month', 'multiselect',
-					'number', 'password', 'search', 'tel',
-					'text', 'time', 'url', 'week', 'color',
-					'email'].indexOf(type) > -1
+				return [
+					'date',
+					'datetime-local',
+					'month',
+					'multiselect',
+					'number',
+					'password',
+					'search',
+					'tel',
+					'text',
+					'time',
+					'url',
+					'week',
+					'color',
+					'email',
+				].includes(type)
 			},
 		},
+
 		/**
 		 * id attribute for the native date time picker
 		 */
@@ -309,6 +337,7 @@ export default {
 			type: String,
 			default: 'date-time-picker_id',
 		},
+
 		/**
 		 * Flag to use a native date time picker
 		 */
@@ -316,6 +345,7 @@ export default {
 			type: Boolean,
 			default: false,
 		},
+
 		/**
 		 * The visible input label for accessibility purposes.
 		 */
@@ -323,6 +353,7 @@ export default {
 			type: String,
 			default: null,
 		},
+
 		/**
 		 * If you want to show the label just above the
 		 * input field, pass in `true` to this prop.
@@ -331,6 +362,7 @@ export default {
 			type: Boolean,
 			default: true,
 		},
+
 		/**
 		 * value attribute of the input field
 		 */
@@ -338,6 +370,7 @@ export default {
 			type: [String, Date, Number, Array],
 			default: '',
 		},
+
 		/**
 		 * disabled state of the input field
 		 */
@@ -345,6 +378,7 @@ export default {
 			type: Boolean,
 			default: false,
 		},
+
 		/**
 		 * aria-label attribute of the input field
 		 */
@@ -352,6 +386,7 @@ export default {
 			type: String,
 			default: '',
 		},
+
 		/**
 		 * Attribute forwarded to the underlying NcPasswordField and NcTextField
 		 */
@@ -359,6 +394,7 @@ export default {
 			type: Boolean,
 			default: true,
 		},
+
 		/**
 		 * Trailing button label forwarded to the underlying NcTextField
 		 */
@@ -366,6 +402,7 @@ export default {
 			type: String,
 			default: t('Submit'),
 		},
+
 		/**
 		 * CSS class to apply to the root element.
 		 */
@@ -384,7 +421,7 @@ export default {
 		isIconUrl() {
 			try {
 				return new URL(this.icon)
-			} catch (error) {
+			} catch {
 				return false
 			}
 		},
@@ -395,12 +432,12 @@ export default {
 
 		nativeDatePickerType() {
 			switch (this.type) {
-			case 'date':
-			case 'month':
-			case 'time':
-			case 'week':
-			case 'datetime-local':
-				return this.type
+				case 'date':
+				case 'month':
+				case 'time':
+				case 'week':
+				case 'datetime-local':
+					return this.type
 			}
 			return false
 		},
@@ -408,17 +445,18 @@ export default {
 		datePickerType() {
 			if (!this.isNativePicker) {
 				switch (this.type) {
-				case 'date':
-				case 'month':
-				case 'time':
-					return this.type
+					case 'date':
+					case 'month':
+					case 'time':
+						return this.type
 
-				case 'datetime-local':
-					return 'datetime'
+					case 'datetime-local':
+						return 'datetime'
 				}
 			}
 			return false
 		},
+
 		/**
 		 * determines if the action is focusable
 		 *
@@ -436,6 +474,7 @@ export default {
 				this.$refs.datetimepicker.$refs.datepicker.closePopup()
 			}
 		},
+
 		onSubmit(event) {
 			event.preventDefault()
 			event.stopPropagation()
@@ -451,6 +490,7 @@ export default {
 				return false
 			}
 		},
+
 		onUpdateModelValue(event) {
 			/**
 			 * Emitted on update of the model value

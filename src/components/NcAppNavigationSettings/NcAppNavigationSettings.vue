@@ -5,13 +5,13 @@
 
 <script setup lang="ts">
 import type { Slot } from 'vue'
+
 import { onClickOutside } from '@vueuse/core'
 import { computed, ref, useTemplateRef } from 'vue'
-import { createElementId } from '../../utils/createElementId.js'
-import { t } from '../../l10n.ts'
-
 import IconCog from 'vue-material-design-icons/CogOutline.vue'
 import NcButton from '../NcButton/NcButton.vue'
+import { t } from '../../l10n.ts'
+import { createElementId } from '../../utils/createElementId.js'
 
 const {
 	excludeClickOutsideSelectors = [],
@@ -25,6 +25,7 @@ const {
 
 	/**
 	 * Text of the button
+	 *
 	 * @default 'Settings'
 	 */
 	name?: string
@@ -47,15 +48,17 @@ const open = ref(false)
 const container = useTemplateRef('wrapperElement')
 const ignore = computed(() => Array.isArray(excludeClickOutsideSelectors)
 	? excludeClickOutsideSelectors
-	: excludeClickOutsideSelectors.split(' '),
-)
-onClickOutside(container, () => { open.value = false }, { ignore })
+	: excludeClickOutsideSelectors.split(' '))
+onClickOutside(container, () => {
+	open.value = false
+}, { ignore })
 </script>
 
 <template>
 	<div ref="wrapperElement" :class="$style.container">
 		<div :class="$style.header">
-			<NcButton :aria-controls="contentId"
+			<NcButton
+				:aria-controls="contentId"
 				:aria-expanded="open ? 'true' : 'false'"
 				:class="$style.button"
 				alignment="start"
@@ -68,11 +71,13 @@ onClickOutside(container, () => { open.value = false }, { ignore })
 				{{ name }}
 			</NcButton>
 		</div>
-		<Transition :enter-active-class="$style.animationActive"
+		<Transition
+			:enter-active-class="$style.animationActive"
 			:leave-active-class="$style.animationActive"
 			:enter-from-class="$style.animationStop"
 			:leave-to-class="$style.animationStop">
-			<div v-show="open"
+			<div
+				v-show="open"
 				:id="contentId"
 				:class="$style.content">
 				<slot />

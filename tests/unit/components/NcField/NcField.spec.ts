@@ -4,12 +4,11 @@
  */
 
 import { mount } from '@vue/test-utils'
-import { describe, expect, it, vi } from 'vitest'
+import { beforeEach, describe, expect, it, vi } from 'vitest'
 import NcInputField from '../../../../src/components/NcInputField/index.ts'
 import NcPasswordField from '../../../../src/components/NcPasswordField/index.ts'
 import NcTextField from '../../../../src/components/NcTextField/index.ts'
 import * as legacy from '../../../../src/utils/legacy.ts'
-import { beforeEach } from 'node:test'
 
 // shared behavior between all components
 describe.each`
@@ -134,7 +133,7 @@ ${'NcTextField'}     | ${NcTextField}
 		expect(wrapper.find('input').classes('some-class')).toBe(true)
 	})
 
-	it('should have the disabled attribute', async() => {
+	it('should have the disabled attribute', async () => {
 		const wrapper = mount(component, {
 			props: {
 				modelValue: '',
@@ -144,7 +143,7 @@ ${'NcTextField'}     | ${NcTextField}
 		expect(wrapper.find('input').attributes('disabled')).toBe(undefined)
 
 		await wrapper.setProps({
-			disabled: true
+			disabled: true,
 		})
 		expect(wrapper.find('input').attributes('disabled')).toBe('')
 	})

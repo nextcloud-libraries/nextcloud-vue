@@ -7,7 +7,7 @@ import { expect, test } from '@playwright/experimental-ct-vue'
 import NcDialog from '../../../src/components/NcDialog/NcDialog.vue'
 
 test('Dialog is correctly labelled', async ({ mount, page }) => {
-	const component = await mount(NcDialog, {
+	await mount(NcDialog, {
 		props: {
 			open: true,
 			name: 'My dialog',

@@ -4,13 +4,16 @@
 -->
 
 <template>
-	<NcModal v-if="show"
+	<NcModal
+		v-if="show"
 		:size="modalSize"
 		class="reference-picker-modal"
 		@close="onCancel">
-		<div ref="modal_content"
+		<div
+			ref="modal_content"
 			class="reference-picker-modal--content">
-			<NcButton v-if="showBackButton"
+			<NcButton
+				v-if="showBackButton"
 				:aria-label="backButtonTitle"
 				:title="backButtonTitle"
 				class="back-button"
@@ -19,7 +22,8 @@
 					<ArrowLeftIcon />
 				</template>
 			</NcButton>
-			<NcButton class="close-button"
+			<NcButton
+				class="close-button"
 				:aria-label="closeButtonLabel"
 				:title="closeButtonTitle"
 				variant="tertiary"
@@ -31,7 +35,8 @@
 			<h2 v-if="showModalName">
 				{{ modalName }}
 			</h2>
-			<NcReferencePicker ref="referencePicker"
+			<NcReferencePicker
+				ref="referencePicker"
 				:initial-provider="initialProvider"
 				:focus-on-create="focusOnCreate"
 				@provider-selected="onProviderSelect"
@@ -42,16 +47,14 @@
 </template>
 
 <script>
-import NcReferencePicker from './NcReferencePicker.vue'
-import { getCustomPickerElementSize, isCustomPickerElementRegistered } from '../../../functions/reference/customPickerElements.ts'
-import NcButton from '../../NcButton/index.ts'
-import NcModal from '../../NcModal/index.js'
-import { t } from '../../../l10n.ts'
-
 import { emit } from '@nextcloud/event-bus'
-
 import ArrowLeftIcon from 'vue-material-design-icons/ArrowLeft.vue'
 import CloseIcon from 'vue-material-design-icons/Close.vue'
+import NcReferencePicker from './NcReferencePicker.vue'
+import { getCustomPickerElementSize, isCustomPickerElementRegistered } from '../../../functions/reference/customPickerElements.ts'
+import { t } from '../../../l10n.ts'
+import NcButton from '../../NcButton/index.ts'
+import NcModal from '../../NcModal/index.js'
 
 export default {
 	name: 'NcReferencePickerModal',
@@ -62,6 +65,7 @@ export default {
 		ArrowLeftIcon,
 		CloseIcon,
 	},
+
 	props: {
 		/**
 		 * Provider to select on creation
@@ -71,6 +75,7 @@ export default {
 			type: Object,
 			default: () => null,
 		},
+
 		/**
 		 * Focus on the input item on create
 		 */
@@ -78,6 +83,7 @@ export default {
 			type: Boolean,
 			default: true,
 		},
+
 		/**
 		 * If true, add the modal content to the Viewer trap elements via the event-bus
 		 */
@@ -86,10 +92,12 @@ export default {
 			default: false,
 		},
 	},
+
 	emits: [
 		'cancel',
 		'submit',
 	],
+
 	data() {
 		return {
 			show: true,
@@ -99,42 +107,51 @@ export default {
 			closeButtonLabel: t('Close Smart Picker'),
 		}
 	},
+
 	computed: {
 		isProviderSelected() {
 			return this.selectedProvider !== null
 		},
+
 		showBackButton() {
 			return this.initialProvider === null && this.isProviderSelected
 		},
+
 		modalSize() {
 			return this.isProviderSelected && isCustomPickerElementRegistered(this.selectedProvider.id)
 				? (getCustomPickerElementSize(this.selectedProvider.id) ?? 'large')
 				: 'normal'
 		},
+
 		showModalName() {
 			return !this.isProviderSelected || !isCustomPickerElementRegistered(this.selectedProvider.id)
 		},
+
 		modalName() {
 			return this.isProviderSelected
 				? this.selectedProvider.title
 				: t('Smart Picker')
 		},
 	},
+
 	mounted() {
 		if (this.isInsideViewer) {
 			const elem = this.$refs.modal_content
 			emit('viewer:trapElements:changed', elem)
 		}
 	},
+
 	methods: {
 		onCancel() {
 			this.show = false
 			this.$emit('cancel')
 		},
+
 		onSubmit(value) {
 			this.show = false
 			this.$emit('submit', value)
 		},
+
 		onProviderSelect(provider) {
 			this.selectedProvider = provider
 			// provider was deselected and we started with an inital one: just close the modal
@@ -142,6 +159,7 @@ export default {
 				this.onCancel()
 			}
 		},
+
 		onBackClicked() {
 			this.$refs.referencePicker.deselectProvider()
 		},

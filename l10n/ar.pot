@@ -241,7 +241,7 @@ msgid "Load more \"{options}\""
 msgstr "تحميل المزيد من \"{options}\" "
 
 #. TRANSLATORS: The button is in a loading state
-msgid "Loading …"
+msgid "Loading …"
 msgstr "التحميل جارٍ ..."
 
 #. TRANSLATORS: A color name for RGB(45, 115, 190)
@@ -266,7 +266,7 @@ msgstr "لاقط الشهر"
 msgid "Month picker overlay"
 msgstr "تراكب لاقط الشهر"
 
-msgid "More items …"
+msgid "More items …"
 msgstr "عناصر أخرى ..."
 
 msgid "More options"
@@ -527,7 +527,7 @@ msgstr "أ"
 msgid "Whiskey"
 msgstr "نبيذي"
 
-msgid "Write a message …"
+msgid "Write a message …"
 msgstr "أكتب رسالة ..."
 
 msgid "Year picker"

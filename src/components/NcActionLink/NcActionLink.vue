@@ -61,7 +61,8 @@ export default {
 
 <template>
 	<li class="action" :role="isInSemanticMenu && 'presentation'">
-		<a :download="download"
+		<a
+			:download="download"
 			:href="href"
 			:aria-label="ariaLabel"
 			:target="target"
@@ -73,14 +74,16 @@ export default {
 
 			<!-- @slot Manually provide icon -->
 			<slot name="icon">
-				<span :class="[isIconUrl ? 'action-link__icon--url' : icon]"
-					:style="{ backgroundImage: isIconUrl ? `url(${icon})` : null }"
+				<span
 					aria-hidden="true"
-					class="action-link__icon" />
+					class="action-link__icon"
+					:class="[isIconUrl ? 'action-link__icon--url' : icon]"
+					:style="{ backgroundImage: isIconUrl ? `url(${icon})` : null }" />
 			</slot>
 
 			<!-- long text with name -->
-			<span v-if="name"
+			<span
+				v-if="name"
 				class="action-link__longtext-wrapper">
 				<strong class="action-link__name">
 					{{ name }}
@@ -94,7 +97,8 @@ export default {
 			<!-- long text only -->
 			<!-- white space is shown on longtext, so we can't
 			put {{ text }} on a new line for code readability -->
-			<span v-else-if="isLongText"
+			<span
+				v-else-if="isLongText"
 				class="action-link__longtext"
 				v-text="text" />
 
@@ -129,17 +133,17 @@ export default {
 		 */
 		href: {
 			type: String,
-			default: '#',
 			required: true,
-			validator: value => {
+			validator: (value) => {
 				// href is either an anchor or a valid url starting with a scheme or a relative path
 				try {
 					return new URL(value)
-				} catch (error) {
+				} catch {
 					return value.startsWith('#') || value.startsWith('/')
 				}
 			},
 		},
+
 		/**
 		 * download the link instead of opening
 		 */
@@ -147,16 +151,18 @@ export default {
 			type: String,
 			default: null,
 		},
+
 		/**
 		 * target to open the link
 		 */
 		target: {
 			type: String,
 			default: '_self',
-			validator: value => {
+			validator: (value) => {
 				return value && (!value.startsWith('_') || ['_blank', '_self', '_parent', '_top'].indexOf(value) > -1)
 			},
 		},
+
 		/**
 		 * Declares a native tooltip when not null
 		 */

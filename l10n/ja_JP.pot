@@ -203,7 +203,7 @@ msgstr "中間の肌のトーン"
 msgid "Message limit of {count} characters reached"
 msgstr "{count} 文字のメッセージ上限に達しています"
 
-msgid "More items …"
+msgid "More items …"
 msgstr "他のアイテム"
 
 msgid "More options"
@@ -401,5 +401,5 @@ msgstr "チームを表示"
 msgid "Whiskey"
 msgstr "ウイスキー"
 
-msgid "Write a message …"
+msgid "Write a message …"
 msgstr "メッセージを書く ..."

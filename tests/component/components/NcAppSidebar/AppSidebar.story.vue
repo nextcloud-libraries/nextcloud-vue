@@ -8,7 +8,8 @@
 		<NcAppContent>
 			App content
 		</NcAppContent>
-		<NcAppSidebar :compact="compact"
+		<NcAppSidebar
+			:compact="compact"
 			name="Very long title that will certainly overflow the sidebar width"
 			:subname="subname ? 'Very long subtitle what will certainly overflow the sidebar width' : ''"
 			:name-editable="nameEditable">
@@ -32,12 +33,11 @@
 </template>
 
 <script setup lang="ts">
+import IconDelete from 'vue-material-design-icons/Delete.vue'
+import NcActionButton from '../../../../src/components/NcActionButton/NcActionButton.vue'
 import NcAppContent from '../../../../src/components/NcAppContent/NcAppContent.vue'
 import NcAppSidebar from '../../../../src/components/NcAppSidebar/NcAppSidebar.vue'
-import NcActionButton from '../../../../src/components/NcActionButton/NcActionButton.vue'
 import NcContent from '../../../../src/components/NcContent/NcContent.vue'
-
-import IconDelete from 'vue-material-design-icons/Delete.vue'
 
 defineProps<{
 	compact: boolean

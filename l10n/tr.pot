@@ -242,7 +242,7 @@ msgid "Load more \"{options}\""
 msgstr "Diğer \"{options}\""
 
 #. TRANSLATORS: The button is in a loading state
-msgid "Loading …"
+msgid "Loading …"
 msgstr "Yükleniyor…"
 
 #. TRANSLATORS: A color name for RGB(45, 115, 190)
@@ -269,7 +269,7 @@ msgstr "Ay seçici"
 msgid "Month picker overlay"
 msgstr "Ay seçici kaplaması"
 
-msgid "More items …"
+msgid "More items …"
 msgstr "Diğer ögeler…"
 
 msgid "More options"
@@ -533,7 +533,7 @@ msgstr "W"
 msgid "Whiskey"
 msgstr "Viski"
 
-msgid "Write a message …"
+msgid "Write a message …"
 msgstr "Bir ileti yazın…"
 
 msgid "Year picker"

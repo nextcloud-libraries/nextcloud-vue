@@ -4,9 +4,9 @@
  */
 
 import { mount } from '@vue/test-utils'
+import Tribute from 'tributejs/dist/tribute.esm.js'
 import { describe, expect, it, vi } from 'vitest'
 import NcRichContenteditable from '../../../../src/components/NcRichContenteditable/NcRichContenteditable.vue'
-import Tribute from 'tributejs/dist/tribute.esm.js'
 
 // FIXME: find a way to use Tribute in JSDOM or test with e2e
 vi.mock('tributejs/dist/tribute.esm.js')
@@ -15,9 +15,8 @@ Tribute.mockImplementation(() => ({
 	detach: vi.fn(),
 }))
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-const mountNcRichContenteditable = ({ props, attrs }: any = {}) => {
-	let currentValue = props?.modelVvalue
+function mountNcRichContenteditable({ props, attrs }: any = {}) {
+	let currentValue = props?.modelVvalue ?? ''
 
 	const wrapper = mount(NcRichContenteditable, {
 		props: {

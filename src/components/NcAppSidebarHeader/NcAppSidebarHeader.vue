@@ -11,24 +11,25 @@ defineProps<{
 	/**
 	 * The name used in NcAppSidebar header.
 	 */
-	name: string,
+	name: string
 
 	/**
 	 * Title to display for the name.
 	 */
-	title?: string,
+	title?: string
 
 	/**
 	 * Linkify the name.
 	 */
-	linkify?: boolean,
+	linkify?: boolean
 }>()
 
 const headerRef = inject('NcAppSidebar:header:ref')
 </script>
 
 <template>
-	<h2 ref="headerRef"
+	<h2
+		ref="headerRef"
 		v-linkify="{ text: name, linkify }"
 		tabindex="-1"
 		:title>

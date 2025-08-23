@@ -3,13 +3,14 @@
  * SPDX-License-Identifier: AGPL-3.0-or-later
  */
 
-import { URL_PATTERN_AUTOLINK } from './helpers.js'
-
 import type { Router } from 'vue-router'
+
 import { getBaseUrl, getRootUrl } from '@nextcloud/router'
 import { u } from 'unist-builder'
-import { visit, SKIP } from 'unist-util-visit'
+import { SKIP, visit } from 'unist-util-visit'
 import { defineComponent, h } from 'vue'
+import logger from '../../utils/logger.ts'
+import { URL_PATTERN_AUTOLINK } from './helpers.js'
 
 const NcLink = defineComponent({
 	name: 'NcLink',
@@ -29,7 +30,14 @@ const NcLink = defineComponent({
 	},
 })
 
-export const remarkAutolink = function({ autolink, useMarkdown, useExtendedMarkdown }) {
+/**
+ *
+ * @param root0
+ * @param root0.autolink
+ * @param root0.useMarkdown
+ * @param root0.useExtendedMarkdown
+ */
+export function remarkAutolink({ autolink, useMarkdown, useExtendedMarkdown }) {
 	return function(tree) {
 		// remark-gfm has its own autolink parser which can not be disabled
 		// and thus a local one is not needed
@@ -62,10 +70,14 @@ export const remarkAutolink = function({ autolink, useMarkdown, useExtendedMarkd
 	}
 }
 
-export const parseUrl = (text: string) => {
+/**
+ *
+ * @param text
+ */
+export function parseUrl(text: string) {
 	let match = URL_PATTERN_AUTOLINK.exec(text)
 	// eslint-disable-next-line @typescript-eslint/no-explicit-any
-	const list: (string|Record<string, any>)[] = []
+	const list: (string | Record<string, any>)[] = []
 	let start = 0
 	while (match !== null) {
 		let href = match[2]!
@@ -93,19 +105,19 @@ export const parseUrl = (text: string) => {
 	if (text === joinedText) {
 		return list
 	}
-	console.error('Failed to reassemble the chunked text: ' + text)
+	logger.error('[NcRichText] Failed to reassemble the chunked text: ' + text)
 	return text
 }
 
 /**
  * Try to get path for router link from an absolute or relative URL.
  *
- * @param {Router} router - VueRouter instance of the router link
- * @param {string} url - absolute URL to parse
- * @return {string|null} a path that can be used in the router link or null if this URL doesn't match this router config
+ * @param router - VueRouter instance of the router link
+ * @param url - absolute URL to parse
+ * @return a path that can be used in the router link or null if this URL doesn't match this router config
  * @example http://cloud.ltd/nextcloud/index.php/apps/files/favorites?fileid=2#fragment => /files/favorites?fileid=2#fragment
  */
-export const getRoute = (router: Router, url: string): string | null => {
+export function getRoute(router: Router, url: string): string | null {
 	/**
 	 * http://cloud.ltd /nextcloud /index.php /apps/files /favorites?fileid=2#fragment
 	 * |_____origin____|___________router-base____________|                           |

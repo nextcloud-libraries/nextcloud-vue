@@ -211,17 +211,21 @@ export default {
 </docs>
 
 <script setup lang="ts">
+import type { Slot } from 'vue'
 import type { ComponentProps, VueClassType } from '../../utils/VueTypes.ts'
 
 import { useElementSize } from '@vueuse/core'
-import { computed, ref, useTemplateRef, type Slot } from 'vue'
-
-import NcModal from '../NcModal/index.js'
-import NcDialogButton from '../NcDialogButton/index.ts'
-
+import { computed, ref, useTemplateRef } from 'vue'
 import { createElementId } from '../../utils/createElementId.ts'
+import NcDialogButton from '../NcDialogButton/index.ts'
+import NcModal from '../NcModal/index.js'
 
 type NcDialogButtonProps = ComponentProps<typeof NcDialogButton>
+
+/**
+ * Whether the dialog should be shown
+ */
+const open = defineModel<boolean>('open', { default: true })
 
 const props = withDefaults(defineProps<{
 	/** Name of the dialog (the heading) */
@@ -241,7 +245,7 @@ const props = withDefaults(defineProps<{
 	/**
 	 * Size of the underlying NcModal
 	 */
-	size?: 'small'|'normal'|'large'|'full'
+	size?: 'small' | 'normal' | 'large' | 'full'
 
 	/**
 	 * Buttons to display
@@ -300,6 +304,7 @@ const props = withDefaults(defineProps<{
 
 	/**
 	 * Optionally pass additional classes which will be set on the navigation for custom styling
+	 *
 	 * @example
 	 * ```html
 	 * <DialogBase :navigation-classes="['mydialog-navigation']"><!-- --></DialogBase>
@@ -324,11 +329,6 @@ const props = withDefaults(defineProps<{
 	navigationClasses: '',
 	size: 'small',
 })
-
-/**
- * Whether the dialog should be shown
- */
-const open = defineModel<boolean>('open', { default: true })
 
 const emit = defineEmits<{
 	/**
@@ -400,7 +400,7 @@ const navigationAriaLabelledbyAttr = computed(() => {
 	return props.navigationAriaLabelledby || navigationId
 })
 
-const dialogElement = useTemplateRef<HTMLDivElement|HTMLFormElement>('dialog-key')
+const dialogElement = useTemplateRef<HTMLDivElement | HTMLFormElement>('dialog-key')
 /**
  * The HTML element to use for the dialog wrapper - either form or plain div
  */
@@ -409,8 +409,12 @@ const dialogTagName = computed(() => props.isForm && !hasNavigation.value ? 'for
  * Listener to assign to the dialog element
  * This only sets the `@submit` listener if the dialog element is a form
  */
-const dialogListeners = computed(() => dialogTagName.value === 'form'
-	? {
+const dialogListeners = computed(() => {
+	if (dialogTagName.value !== 'form') {
+		return {}
+	}
+
+	return {
 		/**
 		 * @param event - Form submit event
 		 */
@@ -427,8 +431,7 @@ const dialogListeners = computed(() => dialogTagName.value === 'form'
 			emit('reset', event)
 		},
 	}
-	: {},
-)
+})
 
 /**
  * If the underlying modal is shown
@@ -438,6 +441,7 @@ const showModal = ref(true)
 // Because NcModal does not emit `close` when show prop is changed
 /**
  * Handle clicking a dialog button -> should close
+ *
  * @param button - The button that was clicked
  * @param result - Result of the callback function
  */
@@ -455,6 +459,7 @@ function handleButtonClose(button: NcDialogButtonProps, result: unknown) {
 
 /**
  * Handle closing the dialog, optional out transition did not run yet
+ *
  * @param result - The result of the callback
  */
 function handleClosing(result?: unknown): void {
@@ -465,7 +470,7 @@ function handleClosing(result?: unknown): void {
 /**
  * Handle dialog closed (out transition finished)
  */
-const handleClosed = () => {
+function handleClosed() {
 	showModal.value = true
 	open.value = false
 }
@@ -489,7 +494,8 @@ const modalProps = computed(() => ({
 </script>
 
 <template>
-	<NcModal v-if="open"
+	<NcModal
+		v-if="open"
 		class="dialog__modal"
 		:enable-slideshow="false"
 		disable-swipe
@@ -498,14 +504,16 @@ const modalProps = computed(() => ({
 		@update:show="handleClosing()">
 		<!-- The dialog name / header -->
 		<h2 :id="navigationId" class="dialog__name" v-text="name" />
-		<component :is="dialogTagName"
+		<component
+			:is="dialogTagName"
 			ref="dialog-key"
 			class="dialog"
 			:class="dialogClasses"
 			v-on="dialogListeners">
-			<div ref="wrapper-key" :class="['dialog__wrapper', { 'dialog__wrapper--collapsed': isNavigationCollapsed }]">
+			<div ref="wrapper-key" class="dialog__wrapper" :class="[{ 'dialog__wrapper--collapsed': isNavigationCollapsed }]">
 				<!-- When the navigation is collapsed (too small dialog) it is displayed above the main content, otherwise on the inline start -->
-				<nav v-if="hasNavigation"
+				<nav
+					v-if="hasNavigation"
 					class="dialog__navigation"
 					:class="navigationClasses"
 					:aria-label="navigationAriaLabelAttr"
@@ -524,7 +532,8 @@ const modalProps = computed(() => ({
 			<!-- The dialog actions aka the buttons -->
 			<div class="dialog__actions">
 				<slot name="actions">
-					<NcDialogButton v-for="(button, idx) in buttons"
+					<NcDialogButton
+						v-for="(button, idx) in buttons"
 						:key="idx"
 						v-bind="button"
 						@click="(_, result) => handleButtonClose(button, result)" />

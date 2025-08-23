@@ -5,8 +5,9 @@
 
 /**
  * Check whether the dark theme is used on a specific element
+ *
  * @param el - Element to check for dark theme, which is used for `data-theme-*` checking (default is `document.body`)
- * @return {boolean} - Whether the dark theme is enabled via Nextcloud theme
+ * @return Whether the dark theme is enabled via Nextcloud theme
  */
 export function checkIfDarkTheme(el: HTMLElement = document.body): boolean {
 	// Nextcloud uses --background-invert-if-dark for dark theme filters in CSS

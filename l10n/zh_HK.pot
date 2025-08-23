@@ -240,8 +240,8 @@ msgid "Load more \"{options}\""
 msgstr "載入更多 \"{options}\""
 
 #. TRANSLATORS: The button is in a loading state
-msgid "Loading …"
-msgstr "加載中 …"
+msgid "Loading …"
+msgstr "加載中 …"
 
 #. TRANSLATORS: A color name for RGB(45, 115, 190)
 msgid "Mariner"
@@ -266,8 +266,8 @@ msgstr "月挑選器"
 msgid "Month picker overlay"
 msgstr "月挑選器覆蓋層"
 
-msgid "More items …"
-msgstr "更多項目 …"
+msgid "More items …"
+msgstr "更多項目 …"
 
 msgid "More options"
 msgstr "更多選項"

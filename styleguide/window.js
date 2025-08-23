@@ -2,7 +2,7 @@
  * SPDX-FileCopyrightText: 2025 Nextcloud GmbH and Nextcloud contributors
  * SPDX-License-Identifier: AGPL-3.0-or-later
  */
- 
+
 // Global variables
 window._oc_webroot = ''
 
@@ -24,7 +24,7 @@ window.OC = {
 		return true
 	},
 	config: {
-		// added by webpack
+		// eslint-disable-next-line no-undef -- added by webpack
 		version: NEXTCLOUD_VERSION,
 	},
 	Util: {
@@ -77,3 +77,36 @@ window.OC = {
 	webroot: '',
 }
 window.OCA = {}
+
+/**
+ * From server util.js
+ *
+ * @param {string} t The string to chunkify
+ * @return {Array}
+ */
+function chunkify(t) {
+	// Adapted from http://my.opera.com/GreyWyvern/blog/show.dml/1671288
+	const tz = []
+	let x = 0
+	let y = -1
+	let n = 0
+	let c
+
+	while (x < t.length) {
+		c = t.charAt(x) // only include the dot in strings
+
+		const m = !n && (c === '.' || (c >= '0' && c <= '9'))
+
+		if (m !== n) {
+		// next chunk
+			y++
+			tz[y] = ''
+			n = m
+		}
+
+		tz[y] += c
+		x++
+	}
+
+	return tz
+}

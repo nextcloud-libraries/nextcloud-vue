@@ -5,7 +5,8 @@
 
 <template>
 	<div class="story-wrapper">
-		<NcPasswordField :as-text
+		<NcPasswordField
+			:as-text
 			label="Password"
 			model-value="password"
 			:visible />
@@ -16,8 +17,8 @@
 import NcPasswordField from '../../../../src/components/NcPasswordField/NcPasswordField.vue'
 
 withDefaults(defineProps<{
-	asText?: boolean
-	visible?: boolean
+	asText?: boolean | undefined
+	visible?: boolean | undefined
 }>(), {
 	asText: undefined,
 	visible: undefined,

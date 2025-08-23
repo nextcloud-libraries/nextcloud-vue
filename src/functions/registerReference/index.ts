@@ -4,17 +4,17 @@
  */
 
 export {
-	registerWidget,
-	renderWidget,
 	destroyWidget,
 	isWidgetRegistered,
+	registerWidget,
+	renderWidget,
 } from '../reference/widgets.ts'
 
 export {
+	destroyCustomPickerElement,
+	getCustomPickerElementSize,
+	isCustomPickerElementRegistered,
 	NcCustomPickerRenderResult,
 	registerCustomPickerElement,
 	renderCustomPickerElement,
-	destroyCustomPickerElement,
-	isCustomPickerElementRegistered,
-	getCustomPickerElementSize,
 } from '../reference/customPickerElements.js'

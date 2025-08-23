@@ -5,8 +5,13 @@
 
 import axios from '@nextcloud/axios'
 import { generateRemoteUrl } from '@nextcloud/router'
+import logger from '../../utils/logger.ts'
 
-const xmlToJson = (xml) => {
+/**
+ *
+ * @param xml
+ */
+function xmlToJson(xml) {
 	let obj = {}
 
 	if (xml.nodeType === 1) {
@@ -40,17 +45,25 @@ const xmlToJson = (xml) => {
 	return obj
 }
 
-const parseXml = (xml) => {
+/**
+ *
+ * @param xml
+ */
+function parseXml(xml) {
 	let dom = null
 	try {
 		dom = (new DOMParser()).parseFromString(xml, 'text/xml')
-	} catch (e) {
-		console.error('Failed to parse xml document', e)
+	} catch (error) {
+		logger.error('[NcSelectTags] Failed to parse xml document', { error })
 	}
 	return dom
 }
 
-const xmlToTagList = (xml) => {
+/**
+ *
+ * @param xml
+ */
+function xmlToTagList(xml) {
 	const json = xmlToJson(parseXml(xml))
 	const list = json['d:multistatus']['d:response']
 	const result = []
@@ -71,7 +84,10 @@ const xmlToTagList = (xml) => {
 	return result
 }
 
-const searchTags = async function() {
+/**
+ *
+ */
+async function searchTags() {
 	if (window.NextcloudVueDocs) {
 		return Promise.resolve(xmlToTagList(window.NextcloudVueDocs.tags))
 	}

@@ -22,14 +22,14 @@ declare global {
 		// eslint-disable-next-line @typescript-eslint/no-explicit-any
 		OCP: any
 		_nc_vue_element_id?: number
-		_nc_contacts_menu_hooks: { [id: string]: ContactsMenuAction },
+		_nc_contacts_menu_hooks: { [id: string]: ContactsMenuAction }
 	}
 }
 
 declare module '@nextcloud/event-bus' {
-	 export interface NextcloudEvents {
+	export interface NextcloudEvents {
 		'toggle-navigation': { open: boolean }
-	 }
+	}
 }
 
 export {}

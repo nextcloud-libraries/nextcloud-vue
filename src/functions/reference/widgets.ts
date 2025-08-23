@@ -6,21 +6,21 @@
 import logger from '../../utils/logger.ts'
 
 export interface ReferenceWidgetRenderProperties {
-	richObjectType: string;
-	richObject: object;
-	accessible: boolean;
-	interactive: boolean;
+	richObjectType: string
+	richObject: object
+	accessible: boolean
+	interactive: boolean
 }
 
-type ReferenceWidgetRenderCallback = (el: HTMLElement, properties: ReferenceWidgetRenderProperties) => void;
-type ReferenceWidgetDestroyCallback = (el: HTMLElement) => void;
+type ReferenceWidgetRenderCallback = (el: HTMLElement, properties: ReferenceWidgetRenderProperties) => void
+type ReferenceWidgetDestroyCallback = (el: HTMLElement) => void
 
 export interface ReferenceWidgetProps {
-	id: string;
-	hasInteractiveView: boolean;
-	fullWidth: boolean;
-	callback: ReferenceWidgetRenderCallback;
-	onDestroy: ReferenceWidgetDestroyCallback;
+	id: string
+	hasInteractiveView: boolean
+	fullWidth: boolean
+	callback: ReferenceWidgetRenderCallback
+	onDestroy: ReferenceWidgetDestroyCallback
 }
 
 window._vue_richtext_widgets ??= {}
@@ -74,7 +74,7 @@ export function renderWidget(el: HTMLElement, options: ReferenceWidgetRenderProp
 	}
 
 	if (!window._vue_richtext_widgets[richObjectType]) {
-		console.error('Widget for rich object type ' + richObjectType + ' not registered')
+		logger.error('Widget for rich object type ' + richObjectType + ' not registered')
 		return
 	}
 
@@ -101,6 +101,7 @@ export function destroyWidget(richObjectType: string, el: HTMLElement) {
 
 /**
  * Check if a widget with the give id is registered.
+ *
  * @param id - Id of the widget
  */
 export function isWidgetRegistered(id: string): boolean {

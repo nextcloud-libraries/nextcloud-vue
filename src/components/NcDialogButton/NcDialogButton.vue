@@ -8,7 +8,8 @@ Dialog button component used by NcDialog in the actions slot to display the butt
 </docs>
 
 <template>
-	<NcButton :aria-label="label"
+	<NcButton
+		:aria-label="label"
 		:disabled
 		:type
 		:variant
@@ -18,7 +19,7 @@ Dialog button component used by NcDialog in the actions slot to display the butt
 			<!-- @slot Allow to set a custom icon for the button -->
 			<slot name="icon">
 				<!-- The loading state is an information that must be accessible -->
-				<NcLoadingIcon v-if="isLoading" :name="t('Loading …') /* TRANSLATORS: The button is in a loading state*/" />
+				<NcLoadingIcon v-if="isLoading" :name="t('Loading …') /* TRANSLATORS: The button is in a loading state*/" />
 				<NcIconSvgWrapper v-else-if="icon !== undefined" :svg="icon" />
 			</slot>
 		</template>
@@ -27,10 +28,10 @@ Dialog button component used by NcDialog in the actions slot to display the butt
 
 <script setup lang="ts">
 import type { ButtonType, ButtonVariant } from '../NcButton/index.ts'
+
 import { ref } from 'vue'
 import { t } from '../../l10n.ts'
-
-import NcButton from '../NcButton/index'
+import NcButton from '../NcButton/index.ts'
 import NcIconSvgWrapper from '../NcIconSvgWrapper/index.ts'
 import NcLoadingIcon from '../NcLoadingIcon/index.ts'
 
@@ -42,7 +43,7 @@ const props = withDefaults(defineProps<{
 	 *
 	 * @default '() => {}'
 	 */
-	callback?: () => unknown|false
+	callback?: () => unknown | false
 
 	/**
 	 * If the button should be shown as disabled.
@@ -89,13 +90,14 @@ const emit = defineEmits<{
 	/**
 	 * The click event (`MouseEvent`) and the value returned by the callback
 	 */
-	'click': [event: MouseEvent, payload: unknown]
+	click: [event: MouseEvent, payload: unknown]
 }>()
 
 const isLoading = ref(false)
 
 /**
  * Handle clicking the button
+ *
  * @param e The click event
  */
 async function handleClick(e: MouseEvent) {
