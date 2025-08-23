@@ -1,12 +1,12 @@
 # 
 # Translators:
 # Joas Schilling, 2025
-# Stephan Paternotte <stephan@paternottes.net>, 2025
 # Paul de Wit, 2025
+# Stephan Paternotte <stephan@paternottes.net>, 2025
 # 
 msgid ""
 msgstr ""
-"Last-Translator: Paul de Wit, 2025\n"
+"Last-Translator: Stephan Paternotte <stephan@paternottes.net>, 2025\n"
 "Language-Team: Dutch (https://app.transifex.com/nextcloud/teams/64236/nl/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Language: nl\n"
@@ -245,7 +245,7 @@ msgstr "Meer \"{options}\" laden"
 
 #. TRANSLATORS: The button is in a loading state
 msgid "Loading …"
-msgstr "Laden…"
+msgstr "Laden …"
 
 #. TRANSLATORS: A color name for RGB(45, 115, 190)
 msgid "Mariner"
@@ -272,7 +272,7 @@ msgid "Month picker overlay"
 msgstr "Maandkiezer-overlay"
 
 msgid "More items …"
-msgstr "Meer items…"
+msgstr "Meer items …"
 
 msgid "More options"
 msgstr "Meer opties"
@@ -536,7 +536,7 @@ msgid "Whiskey"
 msgstr "Whiskey"
 
 msgid "Write a message …"
-msgstr "Schrijf een bericht…"
+msgstr "Schrijf een bericht …"
 
 msgid "Year picker"
 msgstr "Jaarkiezer"
