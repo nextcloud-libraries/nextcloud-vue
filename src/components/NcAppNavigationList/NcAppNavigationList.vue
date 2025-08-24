@@ -35,7 +35,7 @@ Usage with NcAppNavigationCaption as a heading.
 	</ul>
 </template>
 
-<script>
+<script lang="ts">
 export default {
 	name: 'NcAppNavigationList',
 }
