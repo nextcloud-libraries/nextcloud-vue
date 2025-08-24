@@ -8,8 +8,7 @@ import { generateRemoteUrl } from '@nextcloud/router'
 import logger from '../../utils/logger.ts'
 
 /**
- *
- * @param xml
+ * @param {Document} xml - The xml document
  */
 function xmlToJson(xml) {
 	let obj = {}
@@ -46,8 +45,8 @@ function xmlToJson(xml) {
 }
 
 /**
- *
- * @param xml
+ * @param {string} xml - The XML string to be parsed into a XML document
+ * @return {Document}
  */
 function parseXml(xml) {
 	let dom = null
@@ -60,8 +59,7 @@ function parseXml(xml) {
 }
 
 /**
- *
- * @param xml
+ * @param {string} xml - The XML result to be parsed
  */
 function xmlToTagList(xml) {
 	const json = xmlToJson(parseXml(xml))
@@ -85,7 +83,7 @@ function xmlToTagList(xml) {
 }
 
 /**
- *
+ * Get tags from backend
  */
 async function searchTags() {
 	if (window.NextcloudVueDocs) {
