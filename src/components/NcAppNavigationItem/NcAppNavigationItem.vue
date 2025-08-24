@@ -418,7 +418,8 @@ Just set the `pinned` prop.
 						<slot name="actions" />
 					</NcActions>
 				</div>
-				<NcAppNavigationIconCollapsible v-if="allowCollapse && !!$slots.default"
+				<NcAppNavigationIconCollapsible
+					v-if="allowCollapse && !!$slots.default"
 					:active="(isActive && to) || active"
 					:open="opened"
 					@click.prevent.stop="toggleCollapse" />
