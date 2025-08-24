@@ -78,6 +78,9 @@ msgstr ""
 msgid "Choose"
 msgstr ""
 
+msgid "Clear"
+msgstr ""
+
 msgid "Clear search"
 msgstr ""
 
