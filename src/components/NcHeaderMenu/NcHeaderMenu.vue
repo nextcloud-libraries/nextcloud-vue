@@ -69,6 +69,8 @@ import { getTrapStack } from '../../utils/focusTrap.js'
 import NcButton from '../NcButton/index.ts'
 
 const {
+	ariaLabel = undefined,
+	description = undefined,
 	excludeClickOutsideSelectors = [],
 	open = false,
 	isNav = false,
@@ -252,9 +254,10 @@ function clearFocusTrap() {
 		<NcButton
 			:id="isNav ? triggerId : null"
 			ref="trigger-button-key"
-			class="header-menu__trigger"
 			:aria-controls="`header-menu-${id}`"
 			:aria-expanded="isOpened.toString()"
+			:aria-label
+			class="header-menu__trigger"
 			size="large"
 			variant="tertiary-no-background"
 			@click.prevent="toggleMenu">
