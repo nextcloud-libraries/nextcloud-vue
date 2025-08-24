@@ -510,7 +510,7 @@ const props = withDefaults(defineProps<{
 	 *
 	 * Note: Pressed state is not supported for links.
 	 */
-	pressed?: boolean
+	pressed?: boolean | undefined
 
 	/**
 	 * Specify the button size.
