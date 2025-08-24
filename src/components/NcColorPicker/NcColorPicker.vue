@@ -100,6 +100,46 @@ export default {
 </style>
 ```
 
+* Allowing to clear the selected color
+
+```vue
+<template>
+	<div class="container1">
+		<NcColorPicker clearable v-model="color">
+			<NcButton>Click Me</NcButton>
+		</NcColorPicker>
+		<div :style="{'background-color': color}" class="color-preview" :class="{'color-preview--none': !color}" />
+	</div>
+</template>
+<script>
+export default {
+	data() {
+		return {
+			color: '#0082c9',
+			open: false
+		}
+	}
+}
+</script>
+<style scoped>
+.container1 {
+	display: flex;
+	gap: 20px;
+}
+
+.color-preview {
+	width: 100px;
+	height: 34px;
+	border: 1px solid black;
+	border-radius: 6px;
+}
+
+.color-preview--none {
+	background: repeating-conic-gradient(#808080 0 25%, #0000 0 50%) 50% / 20px 20px;
+}
+</style>
+```
+
 * Using advanced fields including HEX, RGB, and HSL:
 
 ```vue
@@ -153,7 +193,10 @@ export default {
 				class="color-picker"
 				aria-modal="true"
 				:aria-label="t('Color picker')"
-				:class="{ 'color-picker--advanced-fields': advanced && advancedFields }">
+				:class="{
+					'color-picker--advanced-fields': advanced && advancedFields,
+					'color-picker--clearable': clearable,
+				}">
 				<Transition name="slide" mode="out-in">
 					<div v-if="!advanced" class="color-picker__simple">
 						<label
@@ -163,7 +206,7 @@ export default {
 							:class="{ 'color-picker__simple-color-circle--active': color === currentColor }"
 							:style="{
 								backgroundColor: color,
-								color: contrastColor,
+								color: getContrastColor(color),
 							}">
 							<NcIconSvgWrapper v-if="color === currentColor" :path="mdiCheck" />
 							<input
@@ -172,12 +215,23 @@ export default {
 								:aria-label="name"
 								:name="`color-picker-${uid}`"
 								:checked="color === currentColor"
-								@click="pickColor(color)">
+								@click="toggleColor(color)">
+						</label>
+						<label v-if="clearable" class="color-picker__clear" :title="t('No color')">
+							<NcIconSvgWrapper
+								:size="currentColor ? 28 : 34 /* size is adusted so that inner mdi icon aligns with color circles */"
+								:path="mdiCloseCircleOutline" />
+							<input
+								type="radio"
+								class="hidden-visually"
+								:aria-label="t('No color')"
+								:name="`color-picker-${id}`"
+								:checked="!currentColor"
+								@click="currentColor = undefined">
 						</label>
 					</div>
 					<Chrome
 						v-else
-						v-model="currentColor"
 						class="color-picker__advanced"
 						:disable-alpha="true"
 						:disable-fields="!advancedFields"
@@ -495,7 +549,15 @@ export default {
 	border-radius: 3px;
 
 	&--advanced-fields {
-		width: 264px;
+		min-width: 264px;
+	}
+
+	&__clear {
+		color: var(--color-main-text);
+
+		&:hover:not(:has(:checked)) {
+			color: var(--color-text-maxcontrast);
+		}
 	}
 
 	&__simple {
@@ -539,8 +601,9 @@ export default {
 	&__navigation {
 		display: flex;
 		flex-direction: row;
+		gap: var(--default-grid-baseline);
 		justify-content: space-between;
-		margin-top: 10px;
+		margin-top: calc(2 * var(--default-grid-baseline));
 	}
 }
 
