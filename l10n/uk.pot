@@ -34,7 +34,7 @@ msgid "Activities"
 msgstr "Діяльність"
 
 msgid "Add to a project"
-msgstr "Додати др проєкту"
+msgstr "Додати до проєкту"
 
 msgid "Animals & Nature"
 msgstr "Тварини та природа"
