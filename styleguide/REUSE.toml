@@ -1,0 +1,36 @@
+# SPDX-FileCopyrightText: 2024 Nextcloud GmbH and Nextcloud contributors
+# SPDX-License-Identifier: AGPL-3.0-or-later
+version = 1
+SPDX-PackageName = "Nextcloud Vue components library"
+SPDX-PackageSupplier = "Nextcloud GmbH <https://nextcloud.com/impressum/>"
+SPDX-PackageDownloadLocation = "https://github.com/nextcloud-libraries/nextcloud-vue"
+
+[[annotations]]
+path = ["assets/apps.css", "assets/dark.css", "assets/icons.css", "assets/server.css"]
+precedence = "aggregate"
+SPDX-FileCopyrightText = "Nextcloud GmbH and Nextcloud contributors"
+SPDX-License-Identifier = "AGPL-3.0-or-later"
+
+[[annotations]]
+path = ["assets/img/favicon**.**", "assets/img/logo/logo**.**", "assets/img/categories/dashboard.svg"]
+precedence = "aggregate"
+SPDX-FileCopyrightText = "2016-2024 Nextcloud GmbH"
+SPDX-License-Identifier = "LicenseRef-NextcloudTrademarks"
+
+[[annotations]]
+path = ["assets/close.svg", "assets/img/rss.svg", "assets/img/breadcrumb.svg", "assets/img/actions/add.svg", "assets/img/actions/address.svg", "assets/img/actions/arrow-left.svg", "assets/img/actions/arrow-right.svg", "assets/img/actions/audio-off.svg", "assets/img/actions/audio.svg", "assets/img/actions/caret-white.svg", "assets/img/actions/caret.svg", "assets/img/actions/checkbox-mark-dark.svg", "assets/img/actions/checkbox-mark-white.svg", "assets/img/actions/checkbox-mark.svg", "assets/img/actions/checkbox-mixed-dark.svg", "assets/img/actions/checkbox-mixed-white.svg", "assets/img/actions/checkbox-mixed.svg", "assets/img/actions/checkmark-white.svg", "assets/img/actions/checkmark.png", "assets/img/actions/checkmark.svg", "assets/img/actions/clippy.svg", "assets/img/actions/close.svg", "assets/img/actions/comment.png", "assets/img/actions/comment.svg", "assets/img/actions/confirm-fade.svg", "assets/img/actions/confirm-white.svg", "assets/img/actions/confirm.svg", "assets/img/actions/delete.svg", "assets/img/actions/details.svg", "assets/img/actions/disabled-user.svg", "assets/img/actions/disabled-users.svg", "assets/img/actions/download.svg", "assets/img/actions/edit.svg", "assets/img/actions/error-white.svg", "assets/img/actions/error.svg", "assets/img/actions/external.svg", "assets/img/actions/filter.svg", "assets/img/actions/fullscreen.svg", "assets/img/actions/group.svg", "assets/img/actions/history.png", "assets/img/actions/history.svg", "assets/img/actions/info-white.svg", "assets/img/actions/info.svg", "assets/img/actions/logout.svg", "assets/img/actions/mail.svg", "assets/img/actions/menu-sidebar.svg", "assets/img/actions/menu.svg", "assets/img/actions/more-white.svg", "assets/img/actions/more.svg", "assets/img/actions/password-white.svg", "assets/img/actions/password.png", "assets/img/actions/password.svg", "assets/img/actions/pause.svg", "assets/img/actions/play-add.svg", "assets/img/actions/play-next.svg", "assets/img/actions/play-previous.svg", "assets/img/actions/play.svg", "assets/img/actions/projects.svg", "assets/img/actions/public-white.svg", "assets/img/actions/public.svg", "assets/img/actions/quota.svg", "assets/img/actions/rename.svg", "assets/img/actions/screen-off.svg", "assets/img/actions/screen.svg", "assets/img/actions/search.svg", "assets/img/actions/settings-dark.svg", "assets/img/actions/settings.svg", "assets/img/actions/share.png", "assets/img/actions/share.svg", "assets/img/actions/shared.svg", "assets/img/actions/sound-off.svg", "assets/img/actions/sound.svg", "assets/img/actions/star-dark.svg", "assets/img/actions/star.png", "assets/img/actions/star.svg", "assets/img/actions/starred.png", "assets/img/actions/starred.svg", "assets/img/actions/tag.png", "assets/img/actions/tag.svg", "assets/img/actions/timezone.svg", "assets/img/actions/toggle-background.svg", "assets/img/actions/toggle-filelist.svg", "assets/img/actions/toggle-pictures.svg", "assets/img/actions/toggle.svg", "assets/img/actions/triangle-e.svg", "assets/img/actions/triangle-n.svg", "assets/img/actions/triangle-s.svg", "assets/img/actions/upload.svg", "assets/img/actions/user.svg", "assets/img/actions/verified.svg", "assets/img/actions/verify.svg", "assets/img/actions/verifying.svg", "assets/img/actions/video-off.svg", "assets/img/actions/video-switch.svg", "assets/img/actions/video.svg", "assets/img/actions/view-close.svg", "assets/img/actions/view-download.svg", "assets/img/actions/view-next.svg", "assets/img/actions/view-pause.svg", "assets/img/actions/view-play.svg", "assets/img/actions/view-previous.svg", "assets/img/categories/auth.svg", "assets/img/categories/bundles.svg", "assets/img/categories/customization.svg", "assets/img/categories/files.svg", "assets/img/categories/games.svg", "assets/img/categories/integration.svg", "assets/img/categories/monitoring.svg", "assets/img/categories/multimedia.svg", "assets/img/categories/office.svg", "assets/img/categories/organization.svg", "assets/img/categories/social.svg", "assets/img/categories/workflow.svg", "assets/img/filetypes/application-pdf.svg", "assets/img/filetypes/application.svg", "assets/img/filetypes/audio.svg", "assets/img/filetypes/file.svg", "assets/img/filetypes/folder-drag-accept.svg", "assets/img/filetypes/folder-encrypted.svg", "assets/img/filetypes/folder-external.svg", "assets/img/filetypes/folder-public.svg", "assets/img/filetypes/folder-shared.svg", "assets/img/filetypes/folder-starred.svg", "assets/img/filetypes/folder.svg", "assets/img/filetypes/font.svg", "assets/img/filetypes/image.svg", "assets/img/filetypes/link.svg", "assets/img/filetypes/location.svg", "assets/img/filetypes/mindmap.svg", "assets/img/filetypes/package-x-generic.svg", "assets/img/filetypes/text-calendar.svg", "assets/img/filetypes/text-code.svg", "assets/img/filetypes/text-vcard.svg", "assets/img/filetypes/text.svg", "assets/img/filetypes/video.svg", "assets/img/filetypes/x-office-document.svg", "assets/img/filetypes/x-office-drawing.svg", "assets/img/filetypes/x-office-form-template.svg", "assets/img/filetypes/x-office-form.svg", "assets/img/filetypes/x-office-presentation.svg", "assets/img/filetypes/x-office-spreadsheet.svg", "assets/img/places/calendar-dark.png", "assets/img/places/calendar.png", "assets/img/places/calendar.svg", "assets/img/places/contacts-dark.png", "assets/img/places/contacts.svg", "assets/img/places/default-app-icon.svg", "assets/img/places/files.svg", "assets/img/places/home.svg", "assets/img/places/link.svg", "assets/img/places/music.svg", "assets/img/places/picture.svg"]
+precedence = "aggregate"
+SPDX-FileCopyrightText = "2018-2024 Google Inc."
+SPDX-License-Identifier = "Apache-2.0"
+
+[[annotations]]
+path = "assets/img/loading**"
+precedence = "aggregate"
+SPDX-FileCopyrightText = "2017-2024 Nextcloud GmbH and Nextcloud contributors"
+SPDX-License-Identifier = "AGPL-3.0-or-later"
+
+[[annotations]]
+path = ["assets/img/background/jenna-kim-the-globe.webp", "assets/img/background/jo-myoung-hee-fluid.webp", "assets/img/background/jo-myoung-hee-fluid-dark.webp"]
+precedence = "aggregate"
+SPDX-FileCopyrightText = "Nextcloud GmbH"
+SPDX-License-Identifier = "CC-BY-SA-4.0"
