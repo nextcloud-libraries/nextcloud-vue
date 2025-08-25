@@ -15,7 +15,7 @@ This component is made to be used in the Nextcloud top header.
 				<Magnify />
 			</template>
 			<div>
-				<NcTextField label="Search for files, comments, contacts…"
+				<NcTextField label="Search for files, comments, contacts …"
 					style="padding-inline: 8px;"
 					type="search"
 					v-model="query" />
