@@ -141,7 +141,7 @@
     "@vue/tsconfig": "^0.8.1",
     "babel-loader-exclude-node-modules-except": "^1.2.1",
     "core-js": "^3.45.1",
-    "eslint": "^9.33.0",
+    "eslint": "^9.34.0",
     "file-loader": "^6.2.0",
     "gettext-extractor": "^4.0.1",
     "gettext-parser": "^8.0.0",
