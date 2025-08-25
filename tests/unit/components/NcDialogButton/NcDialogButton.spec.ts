@@ -107,7 +107,7 @@ describe('NcDialogButton', () => {
 		// no event because it is still resolving
 		expect(wrapper.emitted('click')).toBeUndefined()
 		// see there is the loading indicator
-		expect(button.find('[aria-label="Loading …"]').exists()).toBe(true)
+		expect(button.find('[aria-label="Loading …"]').exists()).toBe(true)
 		// resolve the callbacl
 		resolve()
 		await nextTick()

@@ -192,7 +192,7 @@ msgid "Load more \"{options}\""
 msgstr ""
 
 #. TRANSLATORS: The button is in a loading state
-msgid "Loading …"
+msgid "Loading …"
 msgstr ""
 
 #. TRANSLATORS: A color name for RGB(45, 115, 190)
@@ -213,7 +213,7 @@ msgid_plural "Message limit of %n characters reached"
 msgstr[0] ""
 msgstr[1] ""
 
-msgid "More items …"
+msgid "More items …"
 msgstr ""
 
 msgid "More options"
@@ -329,6 +329,9 @@ msgstr ""
 msgid "Search"
 msgstr ""
 
+msgid "Search …"
+msgstr ""
+
 msgid "Search emoji"
 msgstr ""
 
@@ -336,9 +339,6 @@ msgid "Search for time zone"
 msgstr ""
 
 msgid "Search results"
-msgstr ""
-
-msgid "Search…"
 msgstr ""
 
 #. FOR TRANSLATORS: If possible in your language an even shorter version of 'a few seconds ago'
@@ -425,5 +425,5 @@ msgstr ""
 msgid "Whiskey"
 msgstr ""
 
-msgid "Write a message …"
+msgid "Write a message …"
 msgstr ""

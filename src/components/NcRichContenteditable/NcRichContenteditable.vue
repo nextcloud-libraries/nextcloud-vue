@@ -353,7 +353,7 @@ export default {
 
 		placeholder: {
 			type: String,
-			default: t('Write a message …'),
+			default: t('Write a message …'),
 		},
 
 		autoComplete: {
