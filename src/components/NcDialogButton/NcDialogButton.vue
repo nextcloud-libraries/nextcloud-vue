@@ -19,7 +19,7 @@ Dialog button component used by NcDialog in the actions slot to display the butt
 			<!-- @slot Allow to set a custom icon for the button -->
 			<slot name="icon">
 				<!-- The loading state is an information that must be accessible -->
-				<NcLoadingIcon v-if="isLoading" :name="t('Loading …') /* TRANSLATORS: The button is in a loading state*/" />
+				<NcLoadingIcon v-if="isLoading" :name="t('Loading …') /* TRANSLATORS: The button is in a loading state*/" />
 				<NcIconSvgWrapper v-else-if="icon !== undefined" :svg="icon" />
 			</slot>
 		</template>

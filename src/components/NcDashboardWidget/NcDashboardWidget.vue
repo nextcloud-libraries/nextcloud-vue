@@ -254,7 +254,7 @@ export default {
 		 */
 		showMoreLabel: {
 			type: String,
-			default: t('More items …'),
+			default: t('More items …'),
 		},
 		/**
 		 * A boolean to put the widget in a loading state.

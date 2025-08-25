@@ -172,7 +172,7 @@ defineProps({
 	 */
 	label: {
 		type: String,
-		default: t('Search…'),
+		default: t('Search …'),
 	},
 
 	/**
