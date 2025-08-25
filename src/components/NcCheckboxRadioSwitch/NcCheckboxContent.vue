@@ -17,7 +17,8 @@
 		<span :class="{
 				'checkbox-content__icon': true,
 				'checkbox-content__icon--checked': isChecked,
-				[iconClass]: true
+				'checkbox-content__icon--hasDescription': hasDescription,
+				[iconClass]: true,
 			}"
 			:aria-hidden="true"
 			inert>
@@ -35,10 +36,16 @@
 			</slot>
 		</span>
 
-		<span v-if="$slots.default" :class="['checkbox-content__text', textClass]">
-			<!-- @slot The checkbox/radio label -->
-			<slot />
-		</span>
+		<div class="checkbox-content__wrapper">
+			<span v-if="$slots.default" class="checkbox-content__text" :class="[textClass]">
+				<!-- @slot The checkbox/radio label -->
+				<slot />
+			</span>
+			<em v-if="hasDescription" class="checkbox-content__description">
+				{{ description }}
+				<slot name="description" />
+			</em>
+		</div>
 	</span>
 </template>
 
@@ -140,11 +147,23 @@ export default {
 			type: Number,
 			default: 24,
 		},
+
+		/**
+		 * Description
+		 */
+		description: {
+			type: String,
+			default: null,
+		},
 	},
 
 	computed: {
 		isButtonType() {
 			return this.type === TYPE_BUTTON
+		},
+
+		hasDescription() {
+			return !this.isButtonType && (this.$slots.description || this.description)
 		},
 
 		/**
@@ -196,8 +215,11 @@ export default {
 	// but restrict to content so plain checkboxes / radio switches do not expand
 	max-width: fit-content;
 
-	&__text {
+	&__wrapper {
 		flex: 1 0;
+	}
+
+	&__text {
 
 		&:empty {
 			// hide text if empty to ensure checkbox outline is a circle instead of oval
@@ -211,10 +233,22 @@ export default {
 		margin-block: calc((var(--default-clickable-area) - 2 * var(--default-grid-baseline) - var(--icon-height)) / 2) auto;
 	}
 
+	&-checkbox:not(&--button-variant) &__icon--hasDescription,
+	&-radio:not(&--button-variant) &__icon--hasDescription,
+	&-switch:not(&--button-variant) &__icon--hasDescription {
+		display: flex;
+		align-items: center;
+		margin-block-end: 0;
+	}
+
 	&__icon > * {
 		width: var(--icon-size);
 		height: var(--icon-height);
 		color: var(--color-primary-element);
+	}
+
+	&__description {
+		display: block;
 	}
 
 	&--button-variant {
