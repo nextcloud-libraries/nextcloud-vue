@@ -21,7 +21,7 @@ similar to the NcHeaderMenu but to be used when only a trigger button is needed,
 		<NcDialog name="Search"
 			size="normal"
 			v-model:open="showDialog">
-			<NcTextField label="Search for files, comments, contacts…"
+			<NcTextField label="Search for files, comments, contacts …"
 				type="search"
 				v-model="query" />
 			<NcEmptyContent name="Search"
