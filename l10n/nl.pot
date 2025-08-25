@@ -405,6 +405,9 @@ msgstr "Wijzigingen opslaan"
 msgid "Search"
 msgstr "Zoeken"
 
+msgid "Search …"
+msgstr "Zoeken …"
+
 msgid "Search emoji"
 msgstr "Emoji zoeken"
 
@@ -413,9 +416,6 @@ msgstr "Tijdzone zoeken"
 
 msgid "Search results"
 msgstr "Zoekresultaten"
-
-msgid "Search…"
-msgstr "Zoeken…"
 
 #. FOR TRANSLATORS: If possible in your language an even shorter version of 'a
 #. few seconds ago'
