@@ -244,7 +244,7 @@ msgstr "Luchtaigh tuilleadh \"{options}\""
 
 #. TRANSLATORS: The button is in a loading state
 msgid "Loading …"
-msgstr "Á lódáil…"
+msgstr "Ag lódáil …"
 
 #. TRANSLATORS: A color name for RGB(45, 115, 190)
 msgid "Mariner"
@@ -274,7 +274,7 @@ msgid "Month picker overlay"
 msgstr "Forleagan roghnóir míosa"
 
 msgid "More items …"
-msgstr "Tuilleadh earraí…"
+msgstr "Tuilleadh míreanna …"
 
 msgid "More options"
 msgstr "Tuilleadh roghanna"
@@ -407,6 +407,9 @@ msgstr "Sabháil na hathruithe"
 msgid "Search"
 msgstr "Cuardach"
 
+msgid "Search …"
+msgstr "Cuardaigh …"
+
 msgid "Search emoji"
 msgstr "Cuardaigh emoji"
 
@@ -415,9 +418,6 @@ msgstr "Cuardaigh crios ama"
 
 msgid "Search results"
 msgstr "Torthaí cuardaigh"
-
-msgid "Search…"
-msgstr "Cuardaigh…"
 
 #. FOR TRANSLATORS: If possible in your language an even shorter version of 'a
 #. few seconds ago'
@@ -538,7 +538,7 @@ msgid "Whiskey"
 msgstr "Fuisce"
 
 msgid "Write a message …"
-msgstr "Scríobh teachtaireacht…"
+msgstr "Scríobh teachtaireacht …"
 
 msgid "Year picker"
 msgstr "Roghnóir bliana"
