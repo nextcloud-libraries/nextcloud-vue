@@ -19,6 +19,7 @@
 			class="checkbox-content__icon"
 			:class="{
 				'checkbox-content__icon--checked': isChecked,
+				'checkbox-content__icon--has-description': !isButtonType && $slots.description,
 				[iconClass]: true,
 			}"
 			:aria-hidden="true"
@@ -39,9 +40,18 @@
 			</slot>
 		</span>
 
-		<span v-if="$slots.default" class="checkbox-content__text" :class="[textClass]">
-			<!-- @slot The checkbox/radio label -->
-			<slot />
+		<span class="checkbox-content__wrapper">
+			<span
+				v-if="$slots.default"
+				:id="labelId"
+				class="checkbox-content__text"
+				:class="textClass">
+				<!-- @slot The checkbox/radio label -->
+				<slot />
+			</span>
+			<span v-if="!isButtonType && $slots.description" :id="descriptionId" class="checkbox-content__description">
+				<slot name="description" />
+			</span>
 		</span>
 	</span>
 </template>
@@ -143,6 +153,22 @@ export default {
 			type: Number,
 			default: 24,
 		},
+
+		/**
+		 * Label id attribute
+		 */
+		labelId: {
+			type: String,
+			required: true,
+		},
+
+		/**
+		 * Description id attribute
+		 */
+		descriptionId: {
+			type: String,
+			required: true,
+		},
 	},
 
 	computed: {
@@ -199,8 +225,11 @@ export default {
 	// but restrict to content so plain checkboxes / radio switches do not expand
 	max-width: fit-content;
 
-	&__text {
+	&__wrapper {
 		flex: 1 0;
+	}
+
+	&__text {
 
 		&:empty {
 			// hide text if empty to ensure checkbox outline is a circle instead of oval
@@ -214,10 +243,24 @@ export default {
 		margin-block: calc((var(--default-clickable-area) - 2 * var(--default-grid-baseline) - var(--icon-height)) / 2) auto;
 	}
 
+	&-checkbox:not(&--button-variant) &__icon--has-description,
+	&-radio:not(&--button-variant) &__icon--has-description,
+	&-switch:not(&--button-variant) &__icon--has-description {
+		display: flex;
+		align-items: center;
+		margin-block-end: 0;
+		align-self: start;
+	}
+
 	&__icon > * {
 		width: var(--icon-size);
 		height: var(--icon-height);
 		color: var(--color-primary-element);
+	}
+
+	&__description {
+		display: block;
+		color: var(--color-text-maxcontrast);
 	}
 
 	&--button-variant {
