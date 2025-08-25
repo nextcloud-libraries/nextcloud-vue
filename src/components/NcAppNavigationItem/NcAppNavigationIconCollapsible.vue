@@ -46,7 +46,7 @@ export default {
 		 */
 		open: {
 			type: Boolean,
-			default: true,
+			required: true,
 		},
 
 		/**
