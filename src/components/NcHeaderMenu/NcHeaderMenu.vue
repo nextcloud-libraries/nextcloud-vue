@@ -107,10 +107,12 @@ export default {
 <script>
 import { vOnClickOutside as ClickOutside } from '@vueuse/components'
 import { createFocusTrap } from 'focus-trap'
+import { ref } from 'vue'
 
 import GenRandomId from '../../utils/GenRandomId.js'
 import { clickOutsideOptions } from '../../mixins/index.js'
 import { getTrapStack } from '../../utils/focusTrap.ts'
+import { useTrapStackControl } from '../../composables/useTrapStackControl.ts'
 
 import NcButton from '../NcButton/index.js'
 
@@ -184,10 +186,23 @@ export default {
 		'cancel',
 	],
 
+	setup(props) {
+		const opened = ref(props.open)
+
+		// When component has its own custom focus management
+		// The global focus trap stack should be paused
+		useTrapStackControl(opened, {
+			disabled: () => !props.isNav,
+		})
+
+		return {
+			opened,
+		}
+	},
+
 	data() {
 		return {
 			focusTrap: null,
-			opened: this.open,
 			shortcutsDisabled: window.OCP?.Accessibility?.disableKeyboardShortcuts?.(),
 			triggerId: GenRandomId(),
 			descriptionId: GenRandomId(),
