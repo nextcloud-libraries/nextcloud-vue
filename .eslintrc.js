@@ -34,4 +34,13 @@ module.exports = {
 			},
 		],
 	},
+	overrides: [
+		{
+			files: ['*.vue'],
+			rules: {
+				'no-irregular-whitespace': 'off',
+				'vue/no-irregular-whitespace': 'error',
+			},
+		},
+	],
 }
