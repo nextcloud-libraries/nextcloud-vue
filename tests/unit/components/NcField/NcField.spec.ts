@@ -8,7 +8,6 @@ import { beforeEach, describe, expect, it, vi } from 'vitest'
 import NcInputField from '../../../../src/components/NcInputField/index.ts'
 import NcPasswordField from '../../../../src/components/NcPasswordField/index.ts'
 import NcTextField from '../../../../src/components/NcTextField/index.ts'
-import * as legacy from '../../../../src/utils/legacy.ts'
 
 // shared behavior between all components
 describe.each`
@@ -45,20 +44,6 @@ ${'NcTextField'}     | ${NcTextField}
 		})
 
 		expect(wrapper.find('input').attributes('placeholder')).toBe('The placeholder')
-	})
-
-	it('should have the placeholder set to the label on Nextcloud 31', async () => {
-		vi.spyOn(legacy, 'isLegacy', 'get').mockImplementationOnce(() => true)
-
-		const wrapper = mount(component, {
-			props: {
-				modelValue: '',
-				label: 'The label',
-				placeholder: '',
-			},
-		})
-
-		expect(wrapper.find('input').attributes('placeholder')).toBe('The label')
 	})
 
 	it('should NOT have the placeholder set to the label on Nextcloud 32', async () => {
