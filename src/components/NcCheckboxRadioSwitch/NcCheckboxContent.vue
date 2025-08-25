@@ -19,6 +19,7 @@
 			class="checkbox-content__icon"
 			:class="{
 				'checkbox-content__icon--checked': isChecked,
+				'checkbox-content__icon--hasDescription': !isButtonType && ($slots['description'] || description),
 				[iconClass]: true,
 			}"
 			:aria-hidden="true"
@@ -39,10 +40,21 @@
 			</slot>
 		</span>
 
-		<span v-if="$slots.default" class="checkbox-content__text" :class="[textClass]">
-			<!-- @slot The checkbox/radio label -->
-			<slot />
-		</span>
+		<div class="checkbox-content__wrapper">
+			<span
+				v-if="$slots.default"
+				class="checkbox-content__text"
+				:class="textClass"
+				:aria-describedby="descriptionId">
+				<!-- @slot The checkbox/radio label -->
+				<slot />
+			</span>
+			<em v-if="!isButtonType && ($slots['description'] || description)" :id="descriptionId" class="checkbox-content__description">
+				<slot name="description">
+				  {{ description }}
+				</slot>
+			</em>
+		</div>
 	</span>
 </template>
 
@@ -54,6 +66,7 @@ import RadioboxBlank from 'vue-material-design-icons/RadioboxBlank.vue'
 import RadioboxMarked from 'vue-material-design-icons/RadioboxMarked.vue'
 import ToggleSwitch from 'vue-material-design-icons/ToggleSwitch.vue'
 import ToggleSwitchOff from 'vue-material-design-icons/ToggleSwitchOff.vue'
+import { createElementId } from '../../utils/createElementId.ts'
 import NcLoadingIcon from '../NcLoadingIcon/index.ts'
 
 export const TYPE_CHECKBOX = 'checkbox'
@@ -143,6 +156,20 @@ export default {
 			type: Number,
 			default: 24,
 		},
+
+		/**
+		 * Description
+		 */
+		description: {
+			type: String,
+			default: null,
+		},
+	},
+
+	setup() {
+		return {
+			descriptionId: createElementId(),
+		}
 	},
 
 	computed: {
@@ -199,8 +226,11 @@ export default {
 	// but restrict to content so plain checkboxes / radio switches do not expand
 	max-width: fit-content;
 
-	&__text {
+	&__wrapper {
 		flex: 1 0;
+	}
+
+	&__text {
 
 		&:empty {
 			// hide text if empty to ensure checkbox outline is a circle instead of oval
@@ -214,10 +244,22 @@ export default {
 		margin-block: calc((var(--default-clickable-area) - 2 * var(--default-grid-baseline) - var(--icon-height)) / 2) auto;
 	}
 
+	&-checkbox:not(&--button-variant) &__icon--hasDescription,
+	&-radio:not(&--button-variant) &__icon--hasDescription,
+	&-switch:not(&--button-variant) &__icon--hasDescription {
+		display: flex;
+		align-items: center;
+		margin-block-end: 0;
+	}
+
 	&__icon > * {
 		width: var(--icon-size);
 		height: var(--icon-height);
 		color: var(--color-primary-element);
+	}
+
+	&__description {
+		display: block;
 	}
 
 	&--button-variant {
