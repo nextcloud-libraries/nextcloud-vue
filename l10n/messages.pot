@@ -390,6 +390,9 @@ msgstr ""
 msgid "Search"
 msgstr ""
 
+msgid "Search …"
+msgstr ""
+
 msgid "Search emoji"
 msgstr ""
 
@@ -397,9 +400,6 @@ msgid "Search for timezone"
 msgstr ""
 
 msgid "Search results"
-msgstr ""
-
-msgid "Search…"
 msgstr ""
 
 #. FOR TRANSLATORS: If possible in your language an even shorter version of 'a few seconds ago'
