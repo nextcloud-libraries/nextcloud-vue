@@ -73,6 +73,9 @@ export default defineConfig({
 					},
 					config: {
 						plugins: [vueDocsPlugin],
+						define: {
+							NEXTCLOUD_VERSION: '"32.0.0"',
+						},
 						css: {
 							devSourcemap: true,
 							preprocessorOptions: {
