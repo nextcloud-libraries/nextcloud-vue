@@ -4,12 +4,12 @@
 # Catherine Bühnsack, 2025
 # Mark Ziegler <mark.ziegler@rakekniven.de>, 2025
 # Martin Wilichowski, 2025
-# Mario Siegmann <mario_siegmann@web.de>, 2025
 # Ferdinand Thiessen, 2025
+# Mario Siegmann <mario_siegmann@web.de>, 2025
 # 
 msgid ""
 msgstr ""
-"Last-Translator: Ferdinand Thiessen, 2025\n"
+"Last-Translator: Mario Siegmann <mario_siegmann@web.de>, 2025\n"
 "Language-Team: German (Germany) (https://app.transifex.com/nextcloud/teams/64236/de_DE/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Language: de_DE\n"
@@ -409,6 +409,9 @@ msgstr "Änderungen speichern"
 msgid "Search"
 msgstr "Suche"
 
+msgid "Search …"
+msgstr "Suche …"
+
 msgid "Search emoji"
 msgstr "Emoji suchen"
 
@@ -417,9 +420,6 @@ msgstr "Nach Zeitzone suchen"
 
 msgid "Search results"
 msgstr "Suchergebnisse"
-
-msgid "Search…"
-msgstr "Suche…"
 
 #. FOR TRANSLATORS: If possible in your language an even shorter version of 'a
 #. few seconds ago'
