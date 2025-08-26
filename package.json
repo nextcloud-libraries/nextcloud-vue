@@ -87,7 +87,7 @@
     "@nextcloud/logger": "^3.0.2",
     "@nextcloud/router": "^3.0.1",
     "@nextcloud/sharing": "^0.2.5",
-    "@nextcloud/timezones": "^0.2.0",
+    "@nextcloud/timezones": "^1.0.0",
     "@vuepic/vue-datepicker": "^11.0.2",
     "@vueuse/components": "^13.7.0",
     "@vueuse/core": "^13.6.0",
