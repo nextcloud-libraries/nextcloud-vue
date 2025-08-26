@@ -54,6 +54,7 @@ const cssLoaderOptions = {
 		namedExport: false,
 		// Same as in Vite
 		localIdentName: '_[local]_[hash:base64:5]',
+		exportLocalsConvention: 'asIs',
 	},
 }
 
