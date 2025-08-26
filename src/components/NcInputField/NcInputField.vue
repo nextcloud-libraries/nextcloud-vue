@@ -220,17 +220,16 @@ function handleInput(event: Event) {
 <template>
 	<div
 		class="input-field"
-		:class="[
-			{
-				'input-field--disabled': disabled,
-				'input-field--error': error,
-				'input-field--label-outside': labelOutside || !isValidLabel,
-				'input-field--leading-icon': !!$slots.icon,
-				'input-field--trailing-icon': hasTrailingIcon,
-				'input-field--pill': pill,
-				'input-field--success': success,
-			}, $props.class,
-		]">
+		:class="[{
+			'input-field--disabled': disabled,
+			'input-field--error': error,
+			'input-field--label-outside': labelOutside || !isValidLabel,
+			'input-field--leading-icon': !!$slots.icon,
+			'input-field--trailing-icon': hasTrailingIcon,
+			'input-field--pill': pill,
+			'input-field--success': success,
+			'input-field--legacy': isLegacy,
+		}, $props.class]">
 		<div class="input-field__main-wrapper">
 			<input
 				v-bind="$attrs"
@@ -293,7 +292,10 @@ function handleInput(event: Event) {
 <style lang="scss" scoped>
 
 .input-field {
+	--input-border-color: var(--color-border-maxcontrast);
 	--input-border-radius: var(--border-radius-element);
+	// Used e.g. if border width differs between focused and unfocused we need to compensate to prevent jumping
+	--input-border-width-offset: calc(var(--border-width-input-focused, 2px) - var(--border-width-input, 2px));
 	// The padding before the input can start (leading button or border)
 	--input-padding-start: var(--border-radius-element);
 	// The padding where the input has to end (trailing button or border)
@@ -327,16 +329,23 @@ function handleInput(event: Event) {
 
 	&__main-wrapper {
 		height: var(--default-clickable-area);
+		padding: var(--border-width-input, 2px);
 		position: relative;
+
+		&:not(:has([disabled])):has(input:focus),
+		&:not(:has([disabled])):has(input:active) {
+			padding: 0;
+		}
 	}
 
 	&__input {
-		// If border width differes between focused and unfocused we need to compensate to prevent jumping
-		--input-border-width-offset: calc(var(--border-width-input-focused, 2px) - var(--border-width-input, 2px));
 		background-color: var(--color-main-background);
 		color: var(--color-main-text);
-		border: var(--border-width-input, 2px) solid var(--color-border-maxcontrast);
+		border: none;
 		border-radius: var(--input-border-radius);
+		box-shadow:
+			0 -1px var(--input-border-color),
+			0 0 0 1px color-mix(in srgb, var(--input-border-color), 65% transparent);
 
 		cursor: pointer;
 		-webkit-appearance: textfield !important;
@@ -346,11 +355,11 @@ function handleInput(event: Event) {
 		font-size: var(--default-font-size);
 		text-overflow: ellipsis;
 
-		height: calc(var(--default-clickable-area) - 2 * var(--input-border-width-offset)) !important;
+		height: 100% !important;
+		min-height: unset;
 		width: 100%;
-
-		padding-inline: calc(var(--input-padding-start) + var(--input-border-width-offset)) calc(var(--input-padding-end) + var(--input-border-width-offset));
 		padding-block: var(--input-border-width-offset);
+		padding-inline: calc(var(--input-padding-start) + var(--input-border-width-offset)) calc(var(--input-padding-end) + var(--input-border-width-offset));
 
 		&::placeholder {
 			color: var(--color-text-maxcontrast);
@@ -370,14 +379,17 @@ function handleInput(event: Event) {
 			display: none;
 		}
 
+		&:hover:not([disabled]) {
+			box-shadow: 0 0 0 1px var(--input-border-color);;
+		}
+
 		&:active:not([disabled]),
-		&:hover:not([disabled]),
 		&:focus:not([disabled]) {
-			border-color: var(--color-main-text);
-			border-width: var(--border-width-input-focused, 2px);
-			box-shadow: 0 0 0 2px var(--color-main-background) !important;
+			--input-border-color: var(--color-main-text);
 			// Reset padding offset when focused
 			--input-border-width-offset: 0px;
+			border: var(--border-width-input-focused, 2px) solid var(--input-border-color);
+			box-shadow: 0 0 0 2px var(--color-main-background) !important;
 		}
 
 		&:focus + .input-field__label,
@@ -496,7 +508,7 @@ function handleInput(event: Event) {
 
 	&--error .input-field__input,
 	&__input:user-invalid {
-		border-color: var(--color-border-error, var(--color-error)) !important; //Override hover border color
+		--input-border-color: var(--color-border-error, var(--color-error)) !important; //Override hover border color
 		&:focus-visible {
 			box-shadow: rgb(248, 250, 252) 0px 0px 0px 2px, var(--color-primary-element) 0px 0px 0px 4px, rgba(0, 0, 0, 0.05) 0px 1px 2px 0px
 		}
@@ -504,13 +516,31 @@ function handleInput(event: Event) {
 
 	&--success {
 		.input-field__input {
-			border-color: var(--color-border-success, var(--color-success)) !important; //Override hover border color
+			--input-border-color: var(--color-border-success, var(--color-success)) !important; //Override hover border color
 			&:focus-visible {
 				box-shadow: rgb(248, 250, 252) 0px 0px 0px 2px, var(--color-primary-element) 0px 0px 0px 4px, rgba(0, 0, 0, 0.05) 0px 1px 2px 0px
 			}
 		}
 		.input-field__helper-text-message__icon {
 			color: var(--color-border-success, var(--color-success));
+		}
+	}
+
+	&--legacy {
+		.input-field__input {
+			box-shadow: 0 0 0 1px var(--input-border-color) inset;
+		}
+
+		.input-field__main-wrapper:hover:not(:has([disabled])) {
+			padding: 0;
+
+			.input-field__input {
+				--input-border-color: var(--color-main-text);
+				// Reset padding offset when focused
+				--input-border-width-offset: 0px;
+				border: var(--border-width-input-focused, 2px) solid var(--input-border-color);
+				box-shadow: 0 0 0 2px var(--color-main-background) !important;
+			}
 		}
 	}
 }

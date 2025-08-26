@@ -992,6 +992,7 @@ function onClick(event: MouseEvent) {
 		--button-inner-size: var(--button-size);
 		// no border
 		border: none;
+		padding-block: 0;
 	}
 	&--legacy#{&}--error,
 	&--legacy#{&}--success,

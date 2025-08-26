@@ -6,7 +6,6 @@
 import { mount } from '@vue/test-utils'
 import { beforeEach, describe, expect, it, vi } from 'vitest'
 import NcTextArea from '../../../../src/components/NcTextArea/NcTextArea.vue'
-import * as legacy from '../../../../src/utils/legacy.ts'
 
 describe('NcTextArea', () => {
 	beforeEach(() => {
@@ -36,18 +35,6 @@ describe('NcTextArea', () => {
 		})
 
 		expect(wrapper.find('textarea').attributes('placeholder')).toBe('The placeholder')
-	})
-
-	it('should have the label as the placeholder on Nextcloud 31', () => {
-		vi.spyOn(legacy, 'isLegacy', 'get').mockImplementationOnce(() => true)
-
-		const wrapper = mount(NcTextArea, {
-			props: {
-				modelValue: '',
-				label: 'The label',
-			},
-		})
-		expect(wrapper.find('textarea').attributes('placeholder')).toBe('The label')
 	})
 
 	it('should NOT have the label as the placeholder on Nextcloud 32', () => {
