@@ -64,6 +64,7 @@ import { onClickOutside } from '@vueuse/core'
 import { createFocusTrap } from 'focus-trap'
 import { computed, nextTick, ref, useTemplateRef, watch } from 'vue'
 import { useHotKey } from '../../composables/index.js'
+import { useTrapStackControl } from '../../composables/useTrapStackControl.ts'
 import { createElementId } from '../../utils/createElementId.ts'
 import { getTrapStack } from '../../utils/focusTrap.js'
 import NcButton from '../NcButton/index.ts'
@@ -153,6 +154,12 @@ onClickOutside(headerMenu, () => setMenuState(false), { ignore })
 
 // Pressing escape should close the menu
 useHotKey('Escape', () => setMenuState(false), { prevent: true })
+
+// When component has its own custom focus management
+// The global focus trap stack should be paused
+useTrapStackControl(isOpened, {
+	disabled: () => !isNav,
+})
 
 // Watch the open prop to adjust the internal opened state
 watch(() => open, (state: boolean) => setMenuState(state))
