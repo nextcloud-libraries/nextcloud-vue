@@ -6,12 +6,14 @@
 <script setup lang="ts">
 import type { Slot } from 'vue'
 
+import { mdiCog, mdiCogOutline } from '@mdi/js'
 import { onClickOutside } from '@vueuse/core'
 import { computed, ref, useTemplateRef } from 'vue'
-import IconCog from 'vue-material-design-icons/CogOutline.vue'
 import NcButton from '../NcButton/NcButton.vue'
+import NcIconSvgWrapper from '../NcIconSvgWrapper/NcIconSvgWrapper.vue'
 import { t } from '../../l10n.ts'
 import { createElementId } from '../../utils/createElementId.js'
+import { isLegacy } from '../../utils/legacy.ts'
 
 const {
 	excludeClickOutsideSelectors = [],
@@ -66,7 +68,7 @@ onClickOutside(container, () => {
 				wide
 				@click="open = !open">
 				<template #icon>
-					<IconCog :size="20" />
+					<NcIconSvgWrapper :path="isLegacy ? mdiCog : mdiCogOutline" />
 				</template>
 				{{ name }}
 			</NcButton>
@@ -99,8 +101,7 @@ onClickOutside(container, () => {
 
 /* Overwrite the padding to match NcAppNavigationItem */
 .button {
-	padding-left: 0 !important;
-	padding-inline-end: calc((var(--default-clickable-area) - 16px) / 2) !important;
+	padding-inline: 0 calc((var(--default-clickable-area) - 16px) / 2) !important;
 
 	:global(.button-vue__text) {
 		font-weight: normal;
