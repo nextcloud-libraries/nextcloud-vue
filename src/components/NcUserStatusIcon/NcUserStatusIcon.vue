@@ -151,10 +151,10 @@ const activeSvg = computed(() => status.value && matchSvg[status.value])
 <style lang="scss" scoped>
 .user-status-icon {
 	// Custom colors for the svg icons, to not rely on server variables
-	--color-icon-online: #2D7B41;
-	--color-icon-busy: #DB0606;
-	--color-icon-away: #C88800;
-	--color-icon-offline: #6B6B6B;
+	--user-status-color-online: #2D7B41;
+	--user-status-color-busy: #DB0606;
+	--user-status-color-away: #C88800;
+	--user-status-color-offline: #6B6B6B;
 	display: flex;
 	justify-content: center;
 	align-items: center;
