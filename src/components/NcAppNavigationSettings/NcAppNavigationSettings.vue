@@ -3,6 +3,12 @@
   - SPDX-License-Identifier: AGPL-3.0-or-later
 -->
 
+<docs>
+⚠️ This component is deprecated and will be removed in v9.
+
+Use `<NcAppNavigationSettingsButton>` with `<NcAppSettingsButton>` instead.
+</docs>
+
 <template>
 	<div id="app-settings"
 		v-click-outside="clickOutsideConfig"
@@ -26,6 +32,10 @@
 </template>
 
 <script>
+/**
+ * @deprecated This component is deprecated and will be removed in v9. Use NcAppNavigationSettingsButton + NcAppSettingsButton instead.
+ */
+
 import { t } from '../../l10n.js'
 import { clickOutsideOptions } from '../../mixins/index.js'
 
@@ -74,6 +84,8 @@ export default {
 }
 </script>
 <style lang="scss" scoped>
+$app-navigation-settings-margin: 3px;
+
 #app-settings {
 	margin-top: auto;
 	padding: $app-navigation-settings-margin;

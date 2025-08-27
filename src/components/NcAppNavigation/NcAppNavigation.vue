@@ -12,13 +12,13 @@
 				<NcAppNavigationSearch v-model="searchValue">
 					<template #actions>
 						<NcActions>
-							<NcActionButton close-after-click @click="showModal = true">
+							<NcActionButton close-after-click @click="isSettingsDialogOpen = true">
 								<template #icon>
 									<IconCog :size="20" />
 								</template>
 								App settings (close after click)
 							</NcActionButton>
-							<NcActionButton @click="showModal = true">
+							<NcActionButton @click="isSettingsDialogOpen = true">
 								<template #icon>
 									<IconCog :size="20" />
 								</template>
@@ -36,20 +36,12 @@
 				</NcAppNavigationItem>
 			</template>
 			<template #footer>
-				<div class="navigation__footer">
-					<NcButton wide @click="showModal = true">
-						<template #icon>
-							<IconCog />
-						</template>
-						App settings
-					</NcButton>
-					<NcModal v-if="showModal" name="Modal for focus-trap check" @close="showModal = false">
-						<div class="modal-content">
-							<h4>Focus-trap should be locked inside the modal</h4>
-							<NcTextField :value.sync="modalValue" label="Focus me" />
-						</div>
-					</NcModal>
-				</div>
+				<NcAppNavigationSettingsButton name="Example settings" @click="isSettingsDialogOpen = true" />
+				<NcAppSettingsDialog :open.sync="isSettingsDialogOpen" name="Example settings">
+					<NcAppSettingsSection id="section-1" name="Section 1">
+						<NcTextField label="Setting field" :value.sync="modelValue" />
+					</NcAppSettingsSection>
+				</NcAppSettingsDialog>
 			</template>
 		</NcAppNavigation>
 	</div>
@@ -71,10 +63,10 @@
 		},
 		data() {
 			return {
-				items: Array.from({ length: 5 }, (v, i) => `Item ${i+1}`),
+				items: Array.from({ length: 10 }, (v, i) => `Item ${i + 1}`),
 				searchValue: '',
-				modalValue: '',
-				showModal: false,
+				modelValue: '',
+				isSettingsDialogOpen: false,
 			}
 		},
 	}
@@ -84,7 +76,7 @@
 	/* Mock NcContent */
 	.styleguide-nc-content {
 		position: relative;
-		height: 300px;
+		height: 290px;
 		background-color: var(--color-background-plain);
 		overflow: hidden;
 	}
@@ -95,11 +87,6 @@
 		align-items: center;
 		gap: 4px;
 		padding: 4px;
-	}
-
-	.modal-content {
-		height: 120px;
-		padding: 10px;
 	}
 </style>
 ```
@@ -160,7 +147,7 @@ emit('toggle-navigation', {
 				<slot name="list" />
 			</NcAppNavigationList>
 
-			<!-- @slot Footer for e.g. NcAppNavigationSettings -->
+			<!-- @slot Footer for e.g. NcAppNavigationSettingsButton and NcAppSettingsDialog -->
 			<slot name="footer" />
 		</nav>
 		<NcAppNavigationToggle :open="open" @update:open="toggleNavigation" />
