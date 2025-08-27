@@ -12,29 +12,56 @@ This component displays a user status icon.
 
 ```vue
 <template>
-	<div class="grid">
-		<NcUserStatusIcon status="online" />
-		<span>Online</span>
-		<NcUserStatusIcon status="away" />
-		<span>Away</span>
-		<NcUserStatusIcon status="busy" />
-		<span>Busy</span>
-		<NcUserStatusIcon status="dnd" />
-		<span>Do not disturb</span>
-		<NcUserStatusIcon status="invisible" />
-		<span>Invisible</span>
-		<NcUserStatusIcon status="offline" />
-		<span>Offline</span>
+	<div class="flex">
+		<div class="grid">
+			<NcUserStatusIcon status="online" />
+			<span>Online</span>
+			<NcUserStatusIcon status="away" />
+			<span>Away</span>
+			<NcUserStatusIcon status="busy" />
+			<span>Busy</span>
+			<NcUserStatusIcon status="dnd" />
+			<span>Do not disturb</span>
+			<NcUserStatusIcon status="invisible" />
+			<span>Invisible</span>
+			<NcUserStatusIcon status="offline" />
+			<span>Offline</span>
+		</div>
+
+		<NcThemeProvider dark>
+			<div class="grid">
+				<NcUserStatusIcon status="online" />
+				<span>Online</span>
+				<NcUserStatusIcon status="away" />
+				<span>Away</span>
+				<NcUserStatusIcon status="busy" />
+				<span>Busy</span>
+				<NcUserStatusIcon status="dnd" />
+				<span>Do not disturb</span>
+				<NcUserStatusIcon status="invisible" />
+				<span>Invisible</span>
+				<NcUserStatusIcon status="offline" />
+				<span>Offline</span>
+			</div>
+		</NcThemeProvider>
 	</div>
 </template>
 
 <style>
+.flex {
+	display: flex;
+	gap: 4px;
+}
+
 .grid {
 	display: grid;
 	grid-template-columns: 20px 1fr;
 	gap: 8px;
 	align-items: center;
+	padding: 4px;
 	width: fit-content;
+	background-color: var(--color-main-background);
+	color: var(--color-main-text);
 }
 </style>
 ```
@@ -175,7 +202,6 @@ export default {
 	--color-icon-busy: #DB0606;
 	--color-icon-away: #C88800;
 	--color-icon-offline: #6B6B6B;
-
 	display: flex;
 	justify-content: center;
 	align-items: center;
