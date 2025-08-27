@@ -3,9 +3,9 @@
  * SPDX-License-Identifier: AGPL-3.0-or-later
  */
 import { onKeyStroke } from '@vueuse/core'
+import { isMac } from '../../utils/platform.ts'
 
 const disableKeyboardShortcuts = window.OCP?.Accessibility?.disableKeyboardShortcuts?.()
-const isMac = /mac|ipad|iphone|darwin/i.test(navigator.userAgent)
 const derivedKeysRegex = /^[a-zA-Z0-9]$/
 const nonAsciiPrintableRegex = /^[^\x20-\x7F]$/
 
