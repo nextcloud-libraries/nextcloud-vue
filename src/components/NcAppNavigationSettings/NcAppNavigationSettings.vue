@@ -29,7 +29,7 @@
 import { t } from '../../l10n.js'
 import { clickOutsideOptions } from '../../mixins/index.js'
 
-import Cog from 'vue-material-design-icons/Cog.vue'
+import Cog from 'vue-material-design-icons/CogOutline.vue'
 
 import { vOnClickOutside as ClickOutside } from '@vueuse/components'
 
