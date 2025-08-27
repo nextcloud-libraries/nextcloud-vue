@@ -403,6 +403,9 @@ msgstr "Değişiklikleri kaydet"
 msgid "Search"
 msgstr "Ara"
 
+msgid "Search …"
+msgstr "Ara…"
+
 msgid "Search emoji"
 msgstr "Emoji ara"
 
@@ -411,9 +414,6 @@ msgstr "Saat dilimi ara"
 
 msgid "Search results"
 msgstr "Arama sonuçları"
-
-msgid "Search…"
-msgstr "Ara…"
 
 #. FOR TRANSLATORS: If possible in your language an even shorter version of 'a
 #. few seconds ago'
