@@ -208,6 +208,9 @@ msgstr ""
 msgid "Keyboard navigation help"
 msgstr ""
 
+msgid "Keyboard shortcuts"
+msgstr ""
+
 msgid "Light skin tone"
 msgstr ""
 
