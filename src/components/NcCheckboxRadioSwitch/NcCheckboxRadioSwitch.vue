@@ -313,7 +313,6 @@ export default {
 			:button-variant="buttonVariant"
 			:is-checked="isChecked"
 			:loading="loading"
-			:description="description"
 			:label-id="labelId"
 			:description-id="descriptionId"
 			:icon-size
