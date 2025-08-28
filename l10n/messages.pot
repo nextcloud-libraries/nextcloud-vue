@@ -27,6 +27,10 @@ msgstr ""
 msgid "Add to a project"
 msgstr ""
 
+#. TRANSLATORS: Alt key on keyboard (Windows/Linux)
+msgid "Alt"
+msgstr ""
+
 msgid "Animals & Nature"
 msgstr ""
 
@@ -117,6 +121,10 @@ msgstr ""
 msgid "Connect items to a project to make them easier to find"
 msgstr ""
 
+#. TRANSLATORS: Ctrl key on keyboard (Windows/Linux)
+msgid "Ctrl"
+msgstr ""
+
 msgid "Custom"
 msgstr ""
 
@@ -138,6 +146,10 @@ msgstr ""
 msgid "Decrement seconds"
 msgstr ""
 
+#. TRANSLATORS: Delete key on keyboard
+msgid "Delete"
+msgstr ""
+
 #. TRANSLATORS: A color name for RGB(136, 85, 168)
 msgid "Deluge"
 msgstr ""
@@ -157,10 +169,18 @@ msgstr ""
 msgid "Enable interactive view"
 msgstr ""
 
+#. TRANSLATORS: Enter key on keyboard
+msgid "Enter"
+msgstr ""
+
 msgid "Enter link"
 msgstr ""
 
 msgid "Error getting related resources. Please contact your system administrator if you have any questions."
+msgstr ""
+
+#. TRANSLATORS: Escape key on keyboard
+msgid "Escape"
 msgstr ""
 
 msgid "External documentation"
@@ -446,6 +466,10 @@ msgstr ""
 msgid "Settings navigation"
 msgstr ""
 
+#. TRANSLATORS: Shift key on keyboard
+msgid "Shift"
+msgstr ""
+
 msgid "Show details"
 msgstr ""
 
@@ -467,6 +491,10 @@ msgstr ""
 msgid "Smileys & Emotion"
 msgstr ""
 
+#. TRANSLATORS: Space key on keyboard
+msgid "Space"
+msgstr ""
+
 msgid "Start slideshow"
 msgstr ""
 
@@ -480,6 +508,10 @@ msgid "Switch AM/PM mode"
 msgstr ""
 
 msgid "Symbols"
+msgstr ""
+
+#. TRANSLATORS: Tab key on keyboard
+msgid "Tab"
 msgstr ""
 
 msgid "Time picker"
