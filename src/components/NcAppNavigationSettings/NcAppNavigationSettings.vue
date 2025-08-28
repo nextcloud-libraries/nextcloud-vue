@@ -13,7 +13,7 @@
 				:aria-expanded="open ? 'true' : 'false'"
 				aria-controls="app-settings__content"
 				@click="toggleMenu">
-				<Cog class="settings-button__icon" :size="20" />
+				<NcIconSvgWrapper class="settings-button__icon" :path="isLegacy32 ? mdiCog : mdiCogOutline" />
 				<span class="settings-button__label">{{ name }}</span>
 			</button>
 		</div>
@@ -26,19 +26,19 @@
 </template>
 
 <script>
-import { t } from '../../l10n.js'
-import { clickOutsideOptions } from '../../mixins/index.js'
-
-import Cog from 'vue-material-design-icons/Cog.vue'
-
+import { mdiCog, mdiCogOutline } from '@mdi/js'
 import { vOnClickOutside as ClickOutside } from '@vueuse/components'
+import NcIconSvgWrapper from '../NcIconSvgWrapper/NcIconSvgWrapper.vue'
+import { clickOutsideOptions } from '../../mixins/index.js'
+import { isLegacy32 } from '../../utils/legacy.ts'
+import { t } from '../../l10n.js'
 
 export default {
 	directives: {
 		ClickOutside,
 	},
 	components: {
-		Cog,
+		NcIconSvgWrapper,
 	},
 	mixins: [
 		clickOutsideOptions,
@@ -49,6 +49,13 @@ export default {
 			required: false,
 			default: t('Settings'),
 		},
+	},
+	setup() {
+		return {
+			isLegacy32,
+			mdiCog,
+			mdiCogOutline,
+		}
 	},
 	data() {
 		return {
@@ -105,11 +112,6 @@ export default {
 				background-color: var(--color-background-hover);
 			}
 
-			&__icon {
-				width: var(--default-clickable-area);
-				height: var(--default-clickable-area);
-				min-width: var(--default-clickable-area);
-			}
 			&__label {
 				overflow: hidden;
 				max-width: 100%;
