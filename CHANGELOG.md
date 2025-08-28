@@ -7,8 +7,8 @@
 
 All notable changes to this project will be documented in this file.
 
-## [v9.0.0](https://github.com/nextcloud-libraries/nextcloud-vue/tree/v9.0.0-rc.6) (unreleased)
-[Full Changelog](https://github.com/nextcloud-libraries/nextcloud-vue/compare/v8.29.1...v9.0.0-rc.6)
+## [v9.0.0](https://github.com/nextcloud-libraries/nextcloud-vue/tree/v9.0.0-rc.7) (unreleased)
+[Full Changelog](https://github.com/nextcloud-libraries/nextcloud-vue/compare/v8.29.2...v9.0.0-rc.7)
 
 ### 💥 Breaking Changes
 * The package now uses Vue 3 instead of Vue 2.7
@@ -195,6 +195,8 @@ The `richEditing` mixin can be replaced by just using the `NcRichText` component
 * feat(NcColorPicker): add proper open-state handling [#7212](https://github.com/nextcloud-libraries/nextcloud-vue/pull/7212) ([susnux](https://github.com/susnux))
 * feat(NcAppNavigationItem): add `active` as slot property to the "icon"-slot [#7273](https://github.com/nextcloud-libraries/nextcloud-vue/pull/7273) ([susnux](https://github.com/susnux))
 * feat(NcButton): add border with a bottom shadow [#7282](https://github.com/nextcloud-libraries/nextcloud-vue/pull/7282) ([susnux](https://github.com/susnux))
+* feat: add new border design for NcInputField and NcTextArea [\#7351](https://github.com/nextcloud-libraries/nextcloud-vue/pull/7351) \([susnux](https://github.com/susnux)\)
+* feat(NcCheckboxRadioSwitch): Add support for a description field [\#7378](https://github.com/nextcloud-libraries/nextcloud-vue/pull/7378) \([CarlSchwan](https://github.com/CarlSchwan)\)
 
 ### 🐛 Fixed bugs
 * feat(NcAppSidebar): add `info` slot [#6666](https://github.com/nextcloud-libraries/nextcloud-vue/pull/6666) ([Antreesy](https://github.com/Antreesy))
@@ -289,6 +291,17 @@ The `richEditing` mixin can be replaced by just using the `NcRichText` component
 * fix: auto-resolve focus trap stack, if was changed outside of controller [#7277](https://github.com/nextcloud-libraries/nextcloud-vue/pull/7277) ([Antreesy](https://github.com/Antreesy))
 * fix: adjust color variable to work with Nextcloud 32+ [#7311](https://github.com/nextcloud-libraries/nextcloud-vue/pull/7311) ([susnux](https://github.com/susnux))
 * fix(utils): legacy version detection [#7313](https://github.com/nextcloud-libraries/nextcloud-vue/pull/7313) ([skjnldsv](https://github.com/skjnldsv))
+* fix(NcEmojiPicker): scope styles [\#7334](https://github.com/nextcloud-libraries/nextcloud-vue/pull/7334) \([ShGKme](https://github.com/ShGKme)\)
+* fix(NcPopover): scope styles to avoid leak [\#7330](https://github.com/nextcloud-libraries/nextcloud-vue/pull/7330) \([ShGKme](https://github.com/ShGKme)\)
+* fix(NcReferencePickerModal): scope styles [\#7333](https://github.com/nextcloud-libraries/nextcloud-vue/pull/7333) \([ShGKme](https://github.com/ShGKme)\)
+* fix(NcActionButtonGroup): scope styles [\#7332](https://github.com/nextcloud-libraries/nextcloud-vue/pull/7332) \([ShGKme](https://github.com/ShGKme)\)
+* fix(NcAppNavigationItem): icon-collapse has wrong color [\#7329](https://github.com/nextcloud-libraries/nextcloud-vue/pull/7329) \([GretaD](https://github.com/GretaD)\)
+* fix(NcAppNavigation): warn if neither `ariaLabel` nor `ariaLabelledby` is set [\#7350](https://github.com/nextcloud-libraries/nextcloud-vue/pull/7350) \([susnux](https://github.com/susnux)\)
+* fix: revert breaking changes and keep Nextcloud 31 support [\#7353](https://github.com/nextcloud-libraries/nextcloud-vue/pull/7353) \([susnux](https://github.com/susnux)\)
+* fix(NcAppNavigationSearch): add space before ellipsis [\#7372](https://github.com/nextcloud-libraries/nextcloud-vue/pull/7372) \([ShGKme](https://github.com/ShGKme)\)
+* fix(NcHeaderMenu): pause trap stack on opening [\#7370](https://github.com/nextcloud-libraries/nextcloud-vue/pull/7370) \([Antreesy](https://github.com/Antreesy)\)
+* fix(NcAppNavigationSettings): bring filled icon back for Nextcloud 31 [\#7397](https://github.com/nextcloud-libraries/nextcloud-vue/pull/7397) \([susnux](https://github.com/susnux)\)
+* fix(NcHeaderMenu): apply `ariaLabel` prop and add proper default values [\#7367](https://github.com/nextcloud-libraries/nextcloud-vue/pull/7367) \([susnux](https://github.com/susnux)\)
 
 ### Changed
 * refactor: replace boolean properties with `default: true` with `default: false` [#6653](https://github.com/nextcloud-libraries/nextcloud-vue/pull/6653) ([susnux](https://github.com/susnux))
@@ -428,6 +441,37 @@ The `richEditing` mixin can be replaced by just using the `NcRichText` component
 * feat: change cog icon into the outline version [#7299](https://github.com/nextcloud-libraries/nextcloud-vue/pull/7299) ([GretaD](https://github.com/GretaD))
 * refactor(NcButton, NcNoteCard): use status text color for icons and text [#7300](https://github.com/nextcloud-libraries/nextcloud-vue/pull/7300) ([susnux](https://github.com/susnux))
 * fix(utils): legacy check syntax adjust [#7314](https://github.com/nextcloud-libraries/nextcloud-vue/pull/7314) ([skjnldsv](https://github.com/skjnldsv))
+* docs: fix CSS Modules support in Styleguidist [\#7331](https://github.com/nextcloud-libraries/nextcloud-vue/pull/7331) \([ShGKme](https://github.com/ShGKme)\)
+* refactor: use properly types injection keys instead of plain names [\#7349](https://github.com/nextcloud-libraries/nextcloud-vue/pull/7349) \([susnux](https://github.com/susnux)\)
+* chore: add missing docblock comments [\#7365](https://github.com/nextcloud-libraries/nextcloud-vue/pull/7365) \([susnux](https://github.com/susnux)\)
+* refactor(NcButton): use proper prop type for `pressed` to allow `undefined` [\#7368](https://github.com/nextcloud-libraries/nextcloud-vue/pull/7368) \([susnux](https://github.com/susnux)\)
+* refactor(NcAppNavigationList): migrate to Typescript [\#7364](https://github.com/nextcloud-libraries/nextcloud-vue/pull/7364) \([susnux](https://github.com/susnux)\)
+* chore(NcAppNavigationItem): fix linting warnings [\#7366](https://github.com/nextcloud-libraries/nextcloud-vue/pull/7366) \([susnux](https://github.com/susnux)\)
+* chore(docs): fix css modules export names in styleguidist [\#7385](https://github.com/nextcloud-libraries/nextcloud-vue/pull/7385) \([ShGKme](https://github.com/ShGKme)\)
+* fix(NcUserStatusIcon): adjust icon colors [\#7392](https://github.com/nextcloud-libraries/nextcloud-vue/pull/7392) \([Antreesy](https://github.com/Antreesy)\)
+* fix(NcUserStatusIcon): adjust scoped names for style variables [\#7396](https://github.com/nextcloud-libraries/nextcloud-vue/pull/7396) \([Antreesy](https://github.com/Antreesy)\)
+
+## [v8.29.2](https://github.com/nextcloud-libraries/nextcloud-vue/tree/v8.29.2) (2025-08-28)
+### 🐛 Fixed bugs
+* fix(NcUserStatusIcon): legacy 32 check [#7320](https://github.com/nextcloud-libraries/nextcloud-vue/pull/7320) ([skjnldsv](https://github.com/skjnldsv))
+* fix(NcDateTimePicker): lost styles in docs [#7344](https://github.com/nextcloud-libraries/nextcloud-vue/pull/7344) ([ShGKme](https://github.com/ShGKme))
+* fix(NcPopover): scope styles to avoid leak [#7341](https://github.com/nextcloud-libraries/nextcloud-vue/pull/7341)
+* fix(NcReferencePickerModal): scope styles [#7347](https://github.com/nextcloud-libraries/nextcloud-vue/pull/7347)
+* fix(NcEmojiPicker): scope styles [#7343](https://github.com/nextcloud-libraries/nextcloud-vue/pull/7343)
+* fix(NcActionButtonGroup): scope styles [#7348](https://github.com/nextcloud-libraries/nextcloud-vue/pull/7348)
+* fix(NcAppNavigationItem): icon-collapse has wrong colour [#7346](https://github.com/nextcloud-libraries/nextcloud-vue/pull/7346) ([GretaD](https://github.com/GretaD))
+* fix(NcNoteCard): adjust colors to work with Nextcloud 32+ [#7361](https://github.com/nextcloud-libraries/nextcloud-vue/pull/7361) ([susnux](https://github.com/susnux))
+* fix(l10n): add non-breaking space before ellipsis [#7373](https://github.com/nextcloud-libraries/nextcloud-vue/pull/7373)
+* fix(NcHeaderMenu): pause trap stack on opening [#7384](https://github.com/nextcloud-libraries/nextcloud-vue/pull/7384) ([Antreesy](https://github.com/Antreesy))
+* add new border design for NcInputField and NcTextArea [#7383](https://github.com/nextcloud-libraries/nextcloud-vue/pull/7383)
+* fix: change icon cog into outline version on 32+ [#7394](https://github.com/nextcloud-libraries/nextcloud-vue/pull/7394) \([GretaD](https://github.com/GretaD)\)
+
+### Other Changes
+* docs: fix CSS Modules support in Styleguidist [#7342](https://github.com/nextcloud-libraries/nextcloud-vue/pull/7342)
+* chore(docs): fix css modules export names in styleguidist [#7387](https://github.com/nextcloud-libraries/nextcloud-vue/pull/7387)
+* fix(NcUserStatusIcon): adjust icon colors [#7393](https://github.com/nextcloud-libraries/nextcloud-vue/pull/7393)
+* fix(NcUserStatusIcon): adjust scoped names for style variables [#7400](https://github.com/nextcloud-libraries/nextcloud-vue/pull/7400)
+
 
 ## [v8.29.1](https://github.com/nextcloud-libraries/nextcloud-vue/tree/v8.29.1) (2025-08-19)
 ### 🐛 Fixed bugs
