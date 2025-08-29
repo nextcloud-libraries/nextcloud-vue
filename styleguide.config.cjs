@@ -192,6 +192,7 @@ module.exports = async () => {
 					'src/components/NcAppNavigation*/*.vue',
 					'src/components/NcAppSettings*/*.vue',
 					'src/components/NcAppSidebar*/*.vue',
+					'src/components/NcAssistant*/*.vue',
 					'src/components/NcBreadcrumb*/*.vue',
 					'src/components/NcCheckboxRadioSwitch/NcCheckboxContent.vue',
 					'src/components/NcCollectionList/!(NcCollectionList).vue',
@@ -257,6 +258,12 @@ module.exports = async () => {
 							// Put Actions component first
 							'src/components/NcActions/*.vue',
 							'src/components/NcAction[A-Z]*/*.vue',
+						],
+					},
+					{
+						name: 'Nextcloud Assistant',
+						components: [
+							'src/components/NcAssistant*/*.vue',
 						],
 					},
 					{
