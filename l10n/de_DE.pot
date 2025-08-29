@@ -40,6 +40,10 @@ msgstr "Aktivitäten"
 msgid "Add to a project"
 msgstr "Einem Projekt hinzufügen"
 
+#. TRANSLATORS: Alt key on keyboard (Windows/Linux)
+msgid "Alt"
+msgstr "Alt"
+
 msgid "Animals & Nature"
 msgstr "Tiere & Natur"
 
@@ -132,6 +136,10 @@ msgstr "Änderungen bestätigen"
 msgid "Connect items to a project to make them easier to find"
 msgstr "Verbinden Sie Elemente mit einem Projekt, um sie leichter zu finden"
 
+#. TRANSLATORS: Ctrl key on keyboard (Windows/Linux)
+msgid "Ctrl"
+msgstr "Strg"
+
 msgid "Custom"
 msgstr "Benutzerdefiniert"
 
@@ -153,6 +161,10 @@ msgstr "Minuten verringern"
 msgid "Decrement seconds"
 msgstr "Sekunden verringern"
 
+#. TRANSLATORS: Delete key on keyboard
+msgid "Delete"
+msgstr "Entf"
+
 #. TRANSLATORS: A color name for RGB(136, 85, 168)
 msgid "Deluge"
 msgstr "Sintflut"
@@ -172,6 +184,10 @@ msgstr "Emoji-Auswahl"
 msgid "Enable interactive view"
 msgstr "Die interaktive Ansicht aktivieren"
 
+#. TRANSLATORS: Enter key on keyboard
+msgid "Enter"
+msgstr "Eingabe"
+
 msgid "Enter link"
 msgstr "Link eingeben"
 
@@ -181,6 +197,10 @@ msgid ""
 msgstr ""
 "Fehler beim Abrufen verwandter Ressourcen. Bei Fragen wenden Sie sich bitte "
 "an Ihre Systemadministration."
+
+#. TRANSLATORS: Escape key on keyboard
+msgid "Escape"
+msgstr "Esc"
 
 msgid "External documentation"
 msgstr "Externe Dokumentation"
@@ -466,6 +486,10 @@ msgstr "Einstellungen"
 msgid "Settings navigation"
 msgstr "Einstellungen für die Navigation"
 
+#. TRANSLATORS: Shift key on keyboard
+msgid "Shift"
+msgstr "Umschalt"
+
 msgid "Show details"
 msgstr "Details anzeigen"
 
@@ -487,6 +511,10 @@ msgstr "Smart Picker"
 msgid "Smileys & Emotion"
 msgstr "Smileys & Emotionen"
 
+#. TRANSLATORS: Space key on keyboard
+msgid "Space"
+msgstr "Leertaste"
+
 msgid "Start slideshow"
 msgstr "Diashow starten"
 
@@ -501,6 +529,10 @@ msgstr "Zwischen AM/PM-Modus wechseln"
 
 msgid "Symbols"
 msgstr "Symbole"
+
+#. TRANSLATORS: Tab key on keyboard
+msgid "Tab"
+msgstr "Tab"
 
 msgid "Time picker"
 msgstr "Zeitauswahl"
