@@ -37,6 +37,10 @@ msgstr "Activiteiten"
 msgid "Add to a project"
 msgstr "Toevoegen aan een project"
 
+#. TRANSLATORS: Alt key on keyboard (Windows/Linux)
+msgid "Alt"
+msgstr "Alt"
+
 msgid "Animals & Nature"
 msgstr "Dieren & Natuur"
 
@@ -128,6 +132,10 @@ msgstr "Wijzigingen bevestigen"
 msgid "Connect items to a project to make them easier to find"
 msgstr "Items aan een project koppelen om ze eenvoudiger te vinden"
 
+#. TRANSLATORS: Ctrl key on keyboard (Windows/Linux)
+msgid "Ctrl"
+msgstr "Ctrl"
+
 msgid "Custom"
 msgstr "Aangepast"
 
@@ -149,6 +157,10 @@ msgstr "Minuten verminderen"
 msgid "Decrement seconds"
 msgstr "Seconden verminderen"
 
+#. TRANSLATORS: Delete key on keyboard
+msgid "Delete"
+msgstr "Delete"
+
 #. TRANSLATORS: A color name for RGB(136, 85, 168)
 msgid "Deluge"
 msgstr "Overlopen"
@@ -168,6 +180,10 @@ msgstr "Emoji-kiezer"
 msgid "Enable interactive view"
 msgstr "Interactieve weergave inschakelen"
 
+#. TRANSLATORS: Enter key on keyboard
+msgid "Enter"
+msgstr "Enter"
+
 msgid "Enter link"
 msgstr "Link invoeren"
 
@@ -177,6 +193,10 @@ msgid ""
 msgstr ""
 "Fout bij het ophalen van gerelateerde bronnen. Neem contact op met uw "
 "systeembeheerder als u vragen heeft."
+
+#. TRANSLATORS: Escape key on keyboard
+msgid "Escape"
+msgstr "Escape"
 
 msgid "External documentation"
 msgstr "Externe documentatie"
@@ -462,6 +482,10 @@ msgstr "Instellingen"
 msgid "Settings navigation"
 msgstr "Instellingen navigatie"
 
+#. TRANSLATORS: Shift key on keyboard
+msgid "Shift"
+msgstr "Shift"
+
 msgid "Show details"
 msgstr "Details weergeven"
 
@@ -483,6 +507,10 @@ msgstr "Slimme Kiezer"
 msgid "Smileys & Emotion"
 msgstr "Smileys & Emotie"
 
+#. TRANSLATORS: Space key on keyboard
+msgid "Space"
+msgstr "Space"
+
 msgid "Start slideshow"
 msgstr "Diavoorstelling starten"
 
@@ -497,6 +525,10 @@ msgstr "AM/PM-modus wisselen"
 
 msgid "Symbols"
 msgstr "Symbolen"
+
+#. TRANSLATORS: Tab key on keyboard
+msgid "Tab"
+msgstr "Tab"
 
 msgid "Time picker"
 msgstr "Tijdkiezer"

@@ -36,6 +36,10 @@ msgstr "Etkinlikler"
 msgid "Add to a project"
 msgstr "Bir projeye ekle"
 
+#. TRANSLATORS: Alt key on keyboard (Windows/Linux)
+msgid "Alt"
+msgstr "Alt"
+
 msgid "Animals & Nature"
 msgstr "Hayvanlar ve doğa"
 
@@ -126,6 +130,10 @@ msgstr "Değişiklikleri onayla"
 msgid "Connect items to a project to make them easier to find"
 msgstr "Ögeleri daha kolay bulmak için bir proje ile ilişkilendirin"
 
+#. TRANSLATORS: Ctrl key on keyboard (Windows/Linux)
+msgid "Ctrl"
+msgstr "Ctrl"
+
 msgid "Custom"
 msgstr "Özel"
 
@@ -147,6 +155,10 @@ msgstr "Azalma dakikası"
 msgid "Decrement seconds"
 msgstr "Azalma saniyesi"
 
+#. TRANSLATORS: Delete key on keyboard
+msgid "Delete"
+msgstr "Delete"
+
 #. TRANSLATORS: A color name for RGB(136, 85, 168)
 msgid "Deluge"
 msgstr "Sel"
@@ -166,6 +178,10 @@ msgstr "Emoji seçici"
 msgid "Enable interactive view"
 msgstr "Etkileşimli görünümü aç"
 
+#. TRANSLATORS: Enter key on keyboard
+msgid "Enter"
+msgstr "Enter"
+
 msgid "Enter link"
 msgstr "Bağlantıyı yazın"
 
@@ -175,6 +191,10 @@ msgid ""
 msgstr ""
 "İlgili kaynaklara ulaşılırken sorun çıktı. Herhangi bir sorunuz varsa lütfen"
 " sistem yöneticiniz ile görüşün "
+
+#. TRANSLATORS: Escape key on keyboard
+msgid "Escape"
+msgstr "Escape"
 
 msgid "External documentation"
 msgstr "Dış belgeler"
@@ -460,6 +480,10 @@ msgstr "Ayarlar"
 msgid "Settings navigation"
 msgstr "Gezinme ayarları"
 
+#. TRANSLATORS: Shift key on keyboard
+msgid "Shift"
+msgstr "Shift"
+
 msgid "Show details"
 msgstr "Ayrıntıları görüntüle"
 
@@ -481,6 +505,10 @@ msgstr "Akıllı seçim"
 msgid "Smileys & Emotion"
 msgstr "İfadeler ve duygular"
 
+#. TRANSLATORS: Space key on keyboard
+msgid "Space"
+msgstr "Space"
+
 msgid "Start slideshow"
 msgstr "Slayt sunumunu başlat"
 
@@ -495,6 +523,10 @@ msgstr "ÖÖ/ÖS kipine geç"
 
 msgid "Symbols"
 msgstr "Simgeler"
+
+#. TRANSLATORS: Tab key on keyboard
+msgid "Tab"
+msgstr "Tab"
 
 msgid "Time picker"
 msgstr "Saat seçici"
