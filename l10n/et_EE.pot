@@ -36,6 +36,10 @@ msgstr "Tegevused"
 msgid "Add to a project"
 msgstr "Lisa projekti"
 
+#. TRANSLATORS: Alt key on keyboard (Windows/Linux)
+msgid "Alt"
+msgstr "Alt"
+
 msgid "Animals & Nature"
 msgstr "Loomad ja loodus"
 
@@ -126,6 +130,10 @@ msgstr "Kinnitage muudatused"
 msgid "Connect items to a project to make them easier to find"
 msgstr "Selleks, et objekte oleks lihtsam leida, seo nad projektiga"
 
+#. TRANSLATORS: Ctrl key on keyboard (Windows/Linux)
+msgid "Ctrl"
+msgstr "Ctrl"
+
 msgid "Custom"
 msgstr "Kohanda"
 
@@ -147,6 +155,10 @@ msgstr "Vähenda minuteid"
 msgid "Decrement seconds"
 msgstr "Vähenda sekundeid"
 
+#. TRANSLATORS: Delete key on keyboard
+msgid "Delete"
+msgstr "Kustutusklahv"
+
 #. TRANSLATORS: A color name for RGB(136, 85, 168)
 msgid "Deluge"
 msgstr "Tulvavee lilla"
@@ -166,6 +178,10 @@ msgstr "Emojide valija"
 msgid "Enable interactive view"
 msgstr "Lülita interaktiivne vaade sisse"
 
+#. TRANSLATORS: Enter key on keyboard
+msgid "Enter"
+msgstr "Sisestusklahv"
+
 msgid "Enter link"
 msgstr "Sisesta link"
 
@@ -175,6 +191,10 @@ msgid ""
 msgstr ""
 "Viga seotud ressursside saamisel. Küsimuste korral võtke ühendust oma "
 "süsteemiadministraatoriga."
+
+#. TRANSLATORS: Escape key on keyboard
+msgid "Escape"
+msgstr "Esc-klahv"
 
 msgid "External documentation"
 msgstr "Dokumentatsioon välises allikas"
@@ -460,6 +480,10 @@ msgstr "Seadistused"
 msgid "Settings navigation"
 msgstr "Seadistuste navigatsioon"
 
+#. TRANSLATORS: Shift key on keyboard
+msgid "Shift"
+msgstr "Shift"
+
 msgid "Show details"
 msgstr "Näita üksikasju"
 
@@ -481,6 +505,10 @@ msgstr "Nutikas valija"
 msgid "Smileys & Emotion"
 msgstr "Smailid ja emotsioonid"
 
+#. TRANSLATORS: Space key on keyboard
+msgid "Space"
+msgstr "Tühikuklahv"
+
 msgid "Start slideshow"
 msgstr "Alusta slaidiesitust"
 
@@ -495,6 +523,10 @@ msgstr "Vaheta AM/PM kuvamist"
 
 msgid "Symbols"
 msgstr "Sümbolid"
+
+#. TRANSLATORS: Tab key on keyboard
+msgid "Tab"
+msgstr "Tabulaator"
 
 msgid "Time picker"
 msgstr "Ajavalija"
