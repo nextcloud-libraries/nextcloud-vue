@@ -198,7 +198,7 @@ msgstr ""
 
 #. TRANSLATORS: Escape key on keyboard
 msgid "Escape"
-msgstr "Escape"
+msgstr "Esc"
 
 msgid "External documentation"
 msgstr "Externe Dokumentation"
