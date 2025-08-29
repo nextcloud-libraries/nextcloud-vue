@@ -161,7 +161,7 @@ msgstr "Sekunden verringern"
 
 #. TRANSLATORS: Delete key on keyboard
 msgid "Delete"
-msgstr "Delete"
+msgstr "Entf"
 
 #. TRANSLATORS: A color name for RGB(136, 85, 168)
 msgid "Deluge"
