@@ -36,6 +36,10 @@ msgstr "Gníomhaíochtaí"
 msgid "Add to a project"
 msgstr "Cuir le tionscadal"
 
+#. TRANSLATORS: Alt key on keyboard (Windows/Linux)
+msgid "Alt"
+msgstr "Alt"
+
 msgid "Animals & Nature"
 msgstr "Ainmhithe & Dúlra"
 
@@ -127,6 +131,10 @@ msgid "Connect items to a project to make them easier to find"
 msgstr ""
 "Ceangail míreanna le tionscadal chun iad a dhéanamh níos éasca iad a aimsiú"
 
+#. TRANSLATORS: Ctrl key on keyboard (Windows/Linux)
+msgid "Ctrl"
+msgstr "Ctrl"
+
 msgid "Custom"
 msgstr "Saincheaptha"
 
@@ -148,6 +156,10 @@ msgstr "Laghdaigh nóiméid "
 msgid "Decrement seconds"
 msgstr "Laghdaigh soicind"
 
+#. TRANSLATORS: Delete key on keyboard
+msgid "Delete"
+msgstr "Scrios"
+
 #. TRANSLATORS: A color name for RGB(136, 85, 168)
 msgid "Deluge"
 msgstr "Díle"
@@ -167,6 +179,10 @@ msgstr "Roghnóir Emoji"
 msgid "Enable interactive view"
 msgstr "Cumasaigh amharc idirghníomhach"
 
+#. TRANSLATORS: Enter key on keyboard
+msgid "Enter"
+msgstr "Iontráil"
+
 msgid "Enter link"
 msgstr "Cuir isteach nasc"
 
@@ -176,6 +192,10 @@ msgid ""
 msgstr ""
 "Earráid agus acmhainní gaolmhara á bhfáil. Déan teagmháil le riarthóir do "
 "chórais má tá aon cheist agat."
+
+#. TRANSLATORS: Escape key on keyboard
+msgid "Escape"
+msgstr "Éalú"
 
 msgid "External documentation"
 msgstr "Doiciméadú seachtrach"
@@ -464,6 +484,10 @@ msgstr "Socruithe"
 msgid "Settings navigation"
 msgstr "Nascleanúint socruithe"
 
+#. TRANSLATORS: Shift key on keyboard
+msgid "Shift"
+msgstr "Shift"
+
 msgid "Show details"
 msgstr "Taispeáin sonraí"
 
@@ -485,6 +509,10 @@ msgstr "Roghnóir Cliste"
 msgid "Smileys & Emotion"
 msgstr "Smileys & Mothúchán"
 
+#. TRANSLATORS: Space key on keyboard
+msgid "Space"
+msgstr "Spás"
+
 msgid "Start slideshow"
 msgstr "Tosaigh taispeántas sleamhnán"
 
@@ -499,6 +527,10 @@ msgstr "Athraigh mód AM/PM"
 
 msgid "Symbols"
 msgstr "Siombailí"
+
+#. TRANSLATORS: Tab key on keyboard
+msgid "Tab"
+msgstr "Táb"
 
 msgid "Time picker"
 msgstr "Roghnóir ama"
