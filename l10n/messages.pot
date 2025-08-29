@@ -27,6 +27,10 @@ msgstr ""
 msgid "Add to a project"
 msgstr ""
 
+#. TRANSLATORS: Alt key on keyboard (Windows/Linux)
+msgid "Alt"
+msgstr ""
+
 msgid "Animals & Nature"
 msgstr ""
 
@@ -105,6 +109,10 @@ msgstr ""
 msgid "Connect items to a project to make them easier to find"
 msgstr ""
 
+#. TRANSLATORS: Ctrl key on keyboard (Windows/Linux)
+msgid "Ctrl"
+msgstr ""
+
 msgid "Custom"
 msgstr ""
 
@@ -128,6 +136,10 @@ msgid "Emoji picker"
 msgstr ""
 
 msgid "Enable interactive view"
+msgstr ""
+
+#. TRANSLATORS: Enter key on keyboard
+msgid "Enter"
 msgstr ""
 
 msgid "Enter link"
@@ -367,6 +379,10 @@ msgstr ""
 msgid "Settings navigation"
 msgstr ""
 
+#. TRANSLATORS: Shift key on keyboard
+msgid "Shift"
+msgstr ""
+
 msgid "Show details"
 msgstr ""
 
@@ -386,6 +402,10 @@ msgid "Smart Picker"
 msgstr ""
 
 msgid "Smileys & Emotion"
+msgstr ""
+
+#. TRANSLATORS: Space key on keyboard
+msgid "Space"
 msgstr ""
 
 msgid "Start slideshow"
