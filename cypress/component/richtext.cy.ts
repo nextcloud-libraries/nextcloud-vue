@@ -394,7 +394,6 @@ describe('NcRichText', () => {
 		})
 
 		describe('links', () => {
-
 			const testLink = (key: string, { text, href = text, name = text }) => {
 				it(key, () => {
 					mount(NcRichText, {
@@ -423,7 +422,6 @@ describe('NcRichText', () => {
 				cy.get('body').should('contain', name)
 				cy.get('a').should('not.exist')
 			})
-
 		})
 
 		describe('multiline code', () => {

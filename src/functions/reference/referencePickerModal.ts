@@ -18,7 +18,7 @@ export async function getLinkWithPicker(providerId?: string, isInsideViewer?: bo
 	const modalElement = document.createElement('div')
 	modalElement.id = modalId
 	document.body.append(modalElement)
-	
+
 	const { promise, reject, resolve } = Promise.withResolvers<string>()
 	const initialProvider = (providerId && getProvider(providerId)) || null
 	const View = Vue.extend(NcReferencePickerModal)

@@ -36,7 +36,7 @@ window._vue_richtext_reference_provider_timestamps ??= loadState('core', 'refere
  * @param providerId - The provider ID
  * @return The provider object
  */
-export function getProvider(providerId: string): ReferenceProvider|undefined {
+export function getProvider(providerId: string): ReferenceProvider | undefined {
 	if (providerId === anyLinkProviderId) {
 		return anyLinkProvider
 	}

@@ -155,7 +155,7 @@ export function useFormatTime(
  * @deprecated use `useFormatRelativeTime` or `useFormatTime` instead.
  */
 export function useFormatDateTime(
-	timestamp: MaybeRefOrGetter<Date|number> = Date.now(),
+	timestamp: MaybeRefOrGetter<Date | number> = Date.now(),
 	opts: MaybeRefOrGetter<LegacyFormatDateTimeOptions> = {},
 ) {
 	const formattedFullTime = useFormatTime(timestamp, opts)

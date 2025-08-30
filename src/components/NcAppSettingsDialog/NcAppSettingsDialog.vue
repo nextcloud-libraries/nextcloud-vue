@@ -290,7 +290,6 @@ export default {
 			this.scroller.addEventListener('scroll', this.handleScroll)
 			this.addedScrollListener = true
 		}
-
 	},
 
 	methods: {

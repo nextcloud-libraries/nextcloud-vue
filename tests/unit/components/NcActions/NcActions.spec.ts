@@ -12,7 +12,6 @@ import NcActions from '../../../../src/components/NcActions/NcActions.vue'
 import TestCompositionApi from './TestCompositionApi.vue'
 
 describe('NcActions.vue', () => {
-
 	describe('semantic menu type', () => {
 		const MyWrapper = defineComponent({
 			template: '<Fragment><NcActionInput /></Fragment>',

@@ -98,7 +98,6 @@ const overrides = defineConfig({
 
 // We need a callback config so we can access the vite build mode
 export default defineConfig((env) => {
-
 	const createConfig = createLibConfig(entryPoints, {
 		// Add our overrides to the config
 		config: overrides,

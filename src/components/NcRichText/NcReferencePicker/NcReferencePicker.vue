@@ -122,7 +122,6 @@ export default {
 				})
 			}
 		}
-
 	},
 	methods: {
 		onEscapePressed() {

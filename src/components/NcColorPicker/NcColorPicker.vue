@@ -442,7 +442,6 @@ export default {
 			 * Emits a hexadecimal string e.g. '#ffffff'
 			 */
 			this.$emit('input', color)
-
 		},
 
 		/**

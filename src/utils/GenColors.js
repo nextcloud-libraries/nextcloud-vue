@@ -6,7 +6,6 @@
 import { t } from '../l10n.js'
 
 export class Color {
-
 	/**
 	 * @param {number} r The red value
 	 * @param {number} g The green value
@@ -26,7 +25,6 @@ export class Color {
 		const toHex = (num) => `00${num.toString(16)}`.slice(-2)
 		return `#${toHex(this.r)}${toHex(this.g)}${toHex(this.b)}`
 	}
-
 }
 
 /**

@@ -15,7 +15,7 @@ export const n = (...args) => gettext.ngettext(...args)
 export const t = (...args) => gettext.gettext(...args)
 
 /**
- * @param {{ l: string, t: Record<string, { v: string[], p?: string }> }[]} chunks 
+ * @param {{ l: string, t: Record<string, { v: string[], p?: string }> }[]} chunks
  */
 export function register(...chunks) {
 	for (const chunk of chunks) {

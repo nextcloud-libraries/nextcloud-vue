@@ -14,7 +14,7 @@ import { resizeWindowWidth } from '../../testing-utils.ts'
 const MockSection = defineComponent({
 	props: { id: { type: String, default: 'test_id' } },
 	setup(props) {
-		const register = inject<(id: string, name: string)=> void>('registerSection')
+		const register = inject<(id: string, name: string) => void>('registerSection')
 		onMounted(() => register?.(props.id, 'test_name'))
 		return (h) => h('li', ['empty'])
 	},

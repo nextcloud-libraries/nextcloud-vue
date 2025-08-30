@@ -7,21 +7,21 @@ import { logger } from '../../utils/logger.ts'
 
 // Taken from \OC\Contacts\ContactsMenu\Entry::jsonSerialize
 export interface ContactsMenuEntry {
-	id: number|string|null,
+	id: number | string | null,
 	fullName: string,
-	avatar: string|null,
-	topAction: object|null,
+	avatar: string | null,
+	topAction: object | null,
 	actions: object[],
 	lastMessage: '',
 	emailAddresses: string[],
-	profileTitle: string|null,
-	profileUrl: string|null,
-	status: string|null,
-	statusMessage: null|string,
-	statusMessageTimestamp: null|number,
-	statusIcon: null|string,
+	profileTitle: string | null,
+	profileUrl: string | null,
+	status: string | null,
+	statusMessage: null | string,
+	statusMessageTimestamp: null | number,
+	statusIcon: null | string,
 	isUser: boolean,
-	uid: null|string,
+	uid: null | string,
 }
 
 export interface ContactsMenuAction {

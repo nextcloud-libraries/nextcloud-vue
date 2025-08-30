@@ -68,7 +68,6 @@ export default {
 	 * @return {object} The created VNode
 	 */
 	render() {
-		 
 		/** @slot Directly rendered content */
 		return this.vnodes || this.$slots?.default || this.$scopedSlots?.default?.()
 	},

@@ -24,7 +24,7 @@ module.exports = async () => {
 			rules: base.module.rules.filter(
 				rule => rule.use !== 'eslint-loader',
 			),
-		}, 
+		},
 	}
 
 	return {

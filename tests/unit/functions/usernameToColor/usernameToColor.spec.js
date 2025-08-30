@@ -43,5 +43,4 @@ describe('usernameToColor', () => {
 			expect(rgbToHex(usernameToColor(key))).toMatchSnapshot()
 		})
 	})
-
 })
