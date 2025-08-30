@@ -83,7 +83,6 @@ export default defineConfig([
 
 			// Non auto-fixable
 			camelcase: 'off',
-			eqeqeq: 'off',
 			'import-extensions/extensions': 'off',
 			'jsdoc/require-param-description': 'off',
 			'jsdoc/require-param-type': 'off',
