@@ -5,7 +5,7 @@
 
 import { visit, SKIP } from 'unist-util-visit'
 
-export const remarkUnescape = function() {
+export function remarkUnescape() {
 	return function(tree) {
 		visit(tree, (node) => ['text', 'code', 'inlineCode'].includes(node.type),
 			(node, index, parent) => {

@@ -15,7 +15,7 @@ Tribute.mockImplementation(() => ({
 }))
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
-const mountNcRichContenteditable = ({ propsData, listeners, attrs }: any = {}) => {
+function mountNcRichContenteditable({ propsData, listeners, attrs }: any = {}) {
 	let currentValue = propsData?.value
 
 	const wrapper = mount(NcRichContenteditable, {

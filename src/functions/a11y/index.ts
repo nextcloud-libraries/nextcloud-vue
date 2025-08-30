@@ -10,7 +10,7 @@
  *
  * @return {boolean}
  */
-export const isA11yActivation = (event: Event) => {
+export function isA11yActivation(event: Event) {
 	if (event.type === 'click') {
 		return true
 	}

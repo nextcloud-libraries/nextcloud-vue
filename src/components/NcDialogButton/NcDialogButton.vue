@@ -121,7 +121,7 @@ const isLoading = ref(false)
  * Handle clicking the button
  * @param {MouseEvent} e The click event
  */
-const handleClick = async (e) => {
+async function handleClick(e) {
 	// Do not re-emit while loading
 	if (isLoading.value) {
 		return

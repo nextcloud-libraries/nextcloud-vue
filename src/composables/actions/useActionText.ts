@@ -21,7 +21,7 @@ function slotText(slot: VNode): string {
 	return extractText(slot.children)
 }
 
-export const useActionText = () => {
+export function useActionText() {
 	const slots = useSlots()
 	const text = ref('')
 	const isLongText = computed(() => text.value && text.value.trim().length > 20)

@@ -12,7 +12,7 @@ import Vue from 'vue'
  * @param {string[]} allowed the allowed components name
  * @param {object} vm the vue component instance
  */
-const ValidateSlot = (slots, allowed, vm) => {
+function ValidateSlot(slots, allowed, vm) {
 	if (slots === undefined) {
 		return
 	}

@@ -7,7 +7,7 @@ import Linkify from '../../utils/Linkify.js'
 
 // Use function shorthand for same behavior on bind and update
 // https://vuejs.org/v2/guide/custom-directive.html#Function-Shorthand
-export const directive = function(el, binding) {
+export function directive(el, binding) {
 	if (binding.value?.linkify === true) {
 		el.innerHTML = Linkify(binding.value.text)
 	}

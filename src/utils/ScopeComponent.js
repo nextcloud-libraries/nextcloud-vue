@@ -3,7 +3,7 @@
  * SPDX-License-Identifier: AGPL-3.0-or-later
  */
 
-const ScopeComponent = (Component) => {
+function ScopeComponent(Component) {
 	// Init mounted vue if none
 	if (!Component.mounted) {
 		Component.mounted = []

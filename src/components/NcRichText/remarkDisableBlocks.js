@@ -13,10 +13,11 @@ import clone from 'clone'
 
 const noop = () => false
 
-const throwing = (msg) =>
-	() => {
+function throwing(msg) {
+  return () => {
 		throw new Error(msg)
 	}
+}
 
 /**
  *

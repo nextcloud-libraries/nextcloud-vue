@@ -10,7 +10,7 @@
  * @param {string} search The text to search for
  * @return {Array} The array of ranges to highlight
  */
-const FindRanges = (text, search) => {
+function FindRanges(text, search) {
 	const ranges = []
 	let currentIndex = 0
 	let index = text.toLowerCase().indexOf(search.toLowerCase(), currentIndex)

@@ -8,7 +8,7 @@ import { parseUrl } from './autolink.js'
 import { visit } from 'unist-util-visit'
 import { u } from 'unist-builder'
 
-export const remarkPlaceholder = function() {
+export function remarkPlaceholder() {
 	return function(ast) {
 		visit(ast, (node) => node.type === 'text', visitor)
 
@@ -36,7 +36,7 @@ export const remarkPlaceholder = function() {
 	}
 }
 
-export const prepareTextNode = ({ h, context }, text) => {
+export function prepareTextNode({ h, context }, text) {
 	if (context.autolink) {
 		text = parseUrl(text)
 	}

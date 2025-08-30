@@ -42,7 +42,6 @@ export default defineConfig([
 		files: ['**/*.{js,ts,vue,mjs,mts}'],
 		rules: {
 			// Auto-fixable
-			'antfu/top-level-function': 'off',
 			curly: 'off',
 			'jsdoc/check-tag-names': 'off',
 			'jsdoc/no-types': 'off',

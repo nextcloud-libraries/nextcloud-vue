@@ -205,7 +205,7 @@ const canClose = computed(() => !props.noClose)
 const hasActions = () => Boolean(slots.actions?.())
 const hasIcon = () => Boolean(props.iconPath || props.iconSvg || !!slots.icon?.())
 
-const onClose = () => {
+function onClose() {
 	/**
 	 * Emitted when the close button is clicked
 	 */

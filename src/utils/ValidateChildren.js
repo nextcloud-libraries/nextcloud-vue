@@ -11,7 +11,7 @@ import Vue from 'vue'
  * @param {object} vm the vue component instance
  * @param {string[]} allowed the allowed components name
  */
-const ValidateChildren = (vm, allowed) => {
+function ValidateChildren(vm, allowed) {
 	vm.$children.forEach((child, index) => {
 		const isChildren = allowed.indexOf(child.$options.name) !== 1
 		const isWrappedChildren = child.$children.length === 1

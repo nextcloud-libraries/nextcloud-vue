@@ -29,7 +29,7 @@ const NcLink = {
 	},
 }
 
-export const remarkAutolink = function({ autolink, useMarkdown, useExtendedMarkdown }) {
+export function remarkAutolink({ autolink, useMarkdown, useExtendedMarkdown }) {
 	return function(tree) {
 		// remark-gfm has its own autolink parser which can not be disabled
 		// and thus a local one is not needed
@@ -55,7 +55,7 @@ export const remarkAutolink = function({ autolink, useMarkdown, useExtendedMarkd
 	}
 }
 
-export const parseUrl = (text) => {
+export function parseUrl(text) {
 	let match = URL_PATTERN_AUTOLINK.exec(text)
 	const list = []
 	let start = 0
@@ -97,7 +97,7 @@ export const parseUrl = (text) => {
  * @return {string|null} a path that can be used in the router link or null if this URL doesn't match this router config
  * @example http://cloud.ltd/nextcloud/index.php/apps/files/favorites?fileid=2#fragment => /files/favorites?fileid=2#fragment
  */
-export const getRoute = (router, url) => {
+export function getRoute(router, url) {
 	/**
 	 * http://cloud.ltd /nextcloud /index.php /apps/files /favorites?fileid=2#fragment
 	 * |_____origin____|___________router-base____________|                           |
