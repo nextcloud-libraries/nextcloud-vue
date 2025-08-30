@@ -1,0 +1,38 @@
+/*
+ * SPDX-FileCopyrightText: 2025 Nextcloud GmbH and Nextcloud contributors
+ * SPDX-License-Identifier: CC0-1.0
+ */
+
+import { recommendedVue2Library } from '@nextcloud/eslint-config'
+import { defineConfig } from 'eslint/config'
+
+export default defineConfig([
+	{
+		name: '@nextcloud/vue/linterOptions',
+		linterOptions: {
+			reportUnusedDisableDirectives: 'error',
+			reportUnusedInlineConfigs: 'error',
+		},
+	},
+
+	...recommendedVue2Library,
+
+	{
+		name: '@nextcloud/vue/override',
+		files: ['**/*.vue'],
+		rules: {
+			// we are that library - we provide the deprecations...
+			'@nextcloud/vue/no-deprecated-props': 'off',
+		},
+	},
+
+	// Disable required property documentation for test components
+	{
+		name: '@nextcloud/vue/test-override',
+		files: ['tests/**/*.vue', 'cypress/**/*.vue'],
+		rules: {
+			'vue/require-prop-comment': 'off',
+			'vue/no-boolean-default': 'off',
+		},
+	},
+])
