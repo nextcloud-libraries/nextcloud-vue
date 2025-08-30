@@ -42,7 +42,6 @@ export default defineConfig([
 		files: ['**/*.{js,ts,vue,mjs,mts}'],
 		rules: {
 			// Auto-fixable
-			curly: 'off',
 			'jsdoc/check-tag-names': 'off',
 			'jsdoc/no-types': 'off',
 			'jsdoc/require-jsdoc': 'off',

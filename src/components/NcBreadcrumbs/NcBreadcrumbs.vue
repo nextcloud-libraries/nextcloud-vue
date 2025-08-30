@@ -295,9 +295,9 @@ export default {
 		 * @return {boolean} Wether the arrays are equal
 		 */
 		arraysEqual(a, b) {
-			if (a.length !== b.length) return false
-			if (a === b) return true
-			if (a === null || b === null) return false
+			if (a.length !== b.length) { return false }
+			if (a === b) { return true }
+			if (a === null || b === null) { return false }
 
 			for (let i = 0; i < a.length; ++i) {
 				if (a[i] !== b[i]) {
@@ -323,7 +323,7 @@ export default {
 		 * @return {number} The width
 		 */
 		getWidth(el, isLast) {
-			if (!el?.classList) return 0
+			if (!el?.classList) { return 0 }
 			const hide = el.classList.contains(`${crumbClass}--hidden`)
 			el.style.minWidth = 'auto'
 			// For the last crumb, we calculate with a max-width of 210px,
