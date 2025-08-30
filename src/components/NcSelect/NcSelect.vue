@@ -875,7 +875,7 @@ export default {
 
 				const addClass = {
 					name: 'addClass',
-					fn(_middlewareArgs) {
+					fn(/* middlewareArgs */) {
 						dropdownMenu.classList.add('vs__dropdown-menu--floating')
 						return {}
 					},
@@ -962,7 +962,7 @@ export default {
 			]
 			const initialPropsToForward = Object.fromEntries(
 				Object.entries(this.$props)
-					.filter(([key, _value]) => vueSelectKeys.includes(key)),
+					.filter(([key]) => vueSelectKeys.includes(key)),
 			)
 			const propsToForward = {
 				...initialPropsToForward,

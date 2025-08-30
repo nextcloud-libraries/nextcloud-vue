@@ -178,7 +178,7 @@ export default {
 	watch: {
 		user: {
 			immediate: true,
-			async handler(user, _oldUser) {
+			async handler(user) {
 				if (!user || !getCapabilities()?.user_status?.enabled) {
 					this.fetchedUserStatus = null
 					return
@@ -186,7 +186,7 @@ export default {
 				try {
 					const { data } = await axios.get(generateOcsUrl('/apps/user_status/api/v1/statuses/{user}', { user }))
 					this.fetchedUserStatus = data.ocs?.data?.status
-				} catch (error) {
+				} catch {
 					this.fetchedUserStatus = null
 				}
 			},

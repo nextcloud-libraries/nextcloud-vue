@@ -211,7 +211,7 @@ export default {
 				this.abortController.abort()
 			}
 		},
-		onSearchInput(query, loading) {
+		onSearchInput(query) {
 			this.searchQuery = query
 			delay(() => {
 				this.updateSearch()

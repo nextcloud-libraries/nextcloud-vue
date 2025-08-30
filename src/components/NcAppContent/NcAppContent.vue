@@ -319,7 +319,7 @@ export default {
 				// In that case either you provide paneConfigKey or else it fallback
 				// to a global storage key
 				return `pane-list-size-${appName}`
-			} catch (e) {
+			} catch {
 				logger.info('[NcAppContent]: falling back to global nextcloud pane config')
 				return 'pane-list-size-nextcloud'
 			}

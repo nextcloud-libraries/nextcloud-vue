@@ -193,7 +193,7 @@ export default {
 	},
 
 	methods: {
-		toggleInput(event) {
+		toggleInput() {
 			// by clicking we also trigger the change event
 			this.$refs.label.click()
 		},

@@ -428,7 +428,7 @@ export default {
 		isIconUrl() {
 			try {
 				return new URL(this.icon)
-			} catch (error) {
+			} catch {
 				return false
 			}
 		},

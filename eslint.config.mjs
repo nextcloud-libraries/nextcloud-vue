@@ -95,7 +95,6 @@ export default defineConfig([
 			'@stylistic/max-statements-per-line': 'off',
 			'@typescript-eslint/no-this-alias': 'off',
 			'@typescript-eslint/no-unused-expressions': 'off',
-			'@typescript-eslint/no-unused-vars': 'off',
 			'@typescript-eslint/no-use-before-define': 'off',
 			'vue/no-boolean-default': 'off',
 			'vue/no-required-prop-with-default': 'off',

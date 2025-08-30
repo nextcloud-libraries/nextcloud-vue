@@ -101,7 +101,7 @@ export default {
 				this.selectedProvider = null
 			}
 		},
-		onSearch(query, loading) {
+		onSearch(query) {
 			this.query = query
 		},
 	},

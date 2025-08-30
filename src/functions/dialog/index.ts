@@ -2,7 +2,7 @@
  * SPDX-FileCopyrightText: 2024 Nextcloud GmbH and Nextcloud contributors
  * SPDX-License-Identifier: AGPL-3.0-or-later
  */
-import type { AsyncComponent, Component } from 'vue'
+import type { Component } from 'vue'
 
 import Vue, { toRaw } from 'vue'
 

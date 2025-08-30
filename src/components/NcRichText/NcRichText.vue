@@ -404,7 +404,7 @@ export default {
 	methods: {
 		renderPlaintext(h) {
 			const context = this
-			const placeholders = this.text.split(/(\{[a-z\-_.0-9]+\})/ig).map(function(entry, index, list) {
+			const placeholders = this.text.split(/(\{[a-z\-_.0-9]+\})/ig).map(function(entry) {
 				const matches = entry.match(/^\{([a-z\-_.0-9]+)\}$/i)
 				// just return plain string nodes as text
 				if (!matches) {

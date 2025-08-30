@@ -155,9 +155,9 @@ export default {
 			default: undefined,
 			validator: (url) => {
 				try {
-					url = new URL(url, url?.startsWith?.('/') ? window.location.href : undefined)
+					new URL(url, url?.startsWith?.('/') ? window.location.href : undefined)
 					return true
-				} catch (error) {
+				} catch {
 					return false
 				}
 			},
@@ -231,7 +231,7 @@ export default {
 			try {
 				const url = new URL(this.avatarImage)
 				return !!url
-			} catch (error) {
+			} catch {
 				return false
 			}
 		},

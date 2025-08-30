@@ -170,7 +170,7 @@ export default {
 	},
 
 	methods: {
-		checkInput(event) {
+		checkInput() {
 			// by clicking we also trigger the change event
 			this.$refs.label.click()
 		},

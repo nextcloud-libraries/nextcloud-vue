@@ -442,7 +442,7 @@ export default {
 				try {
 					const date = new Date(new Date(value).setFullYear(year))
 					this.$refs.datepicker.selectDate(date)
-				} catch (error) {
+				} catch {
 					console.error('Invalid value', value, year)
 				}
 			}
@@ -454,7 +454,7 @@ export default {
 				try {
 					const date = new Date(new Date(value).setMonth(month))
 					this.$refs.datepicker.selectDate(date)
-				} catch (error) {
+				} catch {
 					console.error('Invalid value', value, month)
 				}
 			}

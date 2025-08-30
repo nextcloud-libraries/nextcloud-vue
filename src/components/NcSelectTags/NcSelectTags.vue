@@ -331,6 +331,7 @@ export default {
 		},
 
 		propsToForward() {
+			/* eslint-disable @typescript-eslint/no-unused-vars */
 			const {
 				// Props handled by this component
 				fetchTags,
@@ -339,6 +340,7 @@ export default {
 				// Props to forward
 				...propsToForward
 			} = this.$props
+			/* eslint-enable @typescript-eslint/no-unused-vars */
 
 			return propsToForward
 		},
