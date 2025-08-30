@@ -625,20 +625,35 @@ export default {
 		},
 		menu() {
 			const actions = this.contactsMenuActions.map((item) => {
+				if (item.hyperlink === '#') {
+					// Not a real link
+					return {
+						ncActionComponent: NcActionText,
+						ncActionComponentProps: {
+							icon: item.icon,
+						},
+						text: item.title,
+					}
+				}
+
 				const route = getRoute(this.$router, item.hyperlink)
-				return {
-					ncActionComponent: route ? NcActionRouter : NcActionLink,
-					ncActionComponentProps: route
-						? {
+				return route
+					? {
+						ncActionComponent: NcActionRouter,
+						ncActionComponentProps: {
 							to: route,
 							icon: item.icon,
-						}
-						: {
+						},
+						text: item.title,
+					}
+					: {
+						ncActionComponent: NcActionLink,
+						ncActionComponentProps: {
 							href: item.hyperlink,
 							icon: item.icon,
 						},
-					text: item.title,
-				}
+						text: item.title,
+					}
 			})
 
 			for (const action of getEnabledContactsMenuActions(this.contactsMenuData)) {
