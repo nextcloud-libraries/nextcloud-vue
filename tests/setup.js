@@ -36,7 +36,7 @@ if (typeof globalThis.structuredClone === 'undefined') {
 		return Object.fromEntries(
 			Object
 				.entries(obj)
-				.map(([key, value]) => [key, globalThis.structuredClone(value)])
+				.map(([key, value]) => [key, globalThis.structuredClone(value)]),
 		)
 	}
 }

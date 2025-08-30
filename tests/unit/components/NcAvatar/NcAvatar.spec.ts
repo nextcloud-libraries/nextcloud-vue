@@ -175,7 +175,7 @@ describe('NcAvatar.vue', () => {
 				},
 				slots: {
 					icon: '<span class="slot-scoped-icon"></span>',
-				}
+				},
 			})
 
 			expect(wrapper.find('img').exists()).toBeFalsy()

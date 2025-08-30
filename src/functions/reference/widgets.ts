@@ -6,21 +6,21 @@
 import { logger } from '../../utils/logger.ts'
 
 export interface ReferenceWidgetRenderProperties {
-	richObjectType: string;
-	richObject: object;
-	accessible: boolean;
-	interactive: boolean;
+	richObjectType: string
+	richObject: object
+	accessible: boolean
+	interactive: boolean
 }
 
-type ReferenceWidgetRenderCallback = (el: HTMLElement, properties: ReferenceWidgetRenderProperties) => void;
-type ReferenceWidgetDestroyCallback = (el: HTMLElement) => void;
+type ReferenceWidgetRenderCallback = (el: HTMLElement, properties: ReferenceWidgetRenderProperties) => void
+type ReferenceWidgetDestroyCallback = (el: HTMLElement) => void
 
 export interface ReferenceWidgetProps {
-	id: string;
-	hasInteractiveView: boolean;
-	fullWidth: boolean;
-	callback: ReferenceWidgetRenderCallback;
-	onDestroy: ReferenceWidgetDestroyCallback;
+	id: string
+	hasInteractiveView: boolean
+	fullWidth: boolean
+	callback: ReferenceWidgetRenderCallback
+	onDestroy: ReferenceWidgetDestroyCallback
 }
 
 window._vue_richtext_widgets ??= {}

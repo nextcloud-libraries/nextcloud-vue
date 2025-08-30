@@ -17,8 +17,8 @@ describe('NcAppSettingsDialog', () => {
 			},
 			slots: {
 				default: defineComponent({
-					render: (h) => h(NcAppSettingsSection, { props: { name: 'First section', id: 'first' } })
-				})
+					render: (h) => h(NcAppSettingsSection, { props: { name: 'First section', id: 'first' } }),
+				}),
 			},
 		})
 
@@ -34,8 +34,8 @@ describe('NcAppSettingsDialog', () => {
 			},
 			slots: {
 				default: defineComponent({
-					render: (h) => h(NcAppSettingsSection, { props: { name: 'First section', id: 'first' } }, ['The section content'])
-				})
+					render: (h) => h(NcAppSettingsSection, { props: { name: 'First section', id: 'first' } }, ['The section content']),
+				}),
 			},
 		})
 

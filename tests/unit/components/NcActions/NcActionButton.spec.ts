@@ -10,7 +10,7 @@ describe('NcActionButton', () => {
 	it('supports icon classes', () => {
 		const wrapper = mount(NcActionButton, {
 			propsData: {
-				icon: 'icon-add'
+				icon: 'icon-add',
 			},
 			slots: {
 				default: 'text',
@@ -22,7 +22,7 @@ describe('NcActionButton', () => {
 	it('supports icon URL', () => {
 		const wrapper = mount(NcActionButton, {
 			propsData: {
-				icon: 'http://example.com/icon.png'
+				icon: 'http://example.com/icon.png',
 			},
 			slots: {
 				default: 'text',

@@ -37,8 +37,8 @@ export function register(...chunks) {
 						msgid: id,
 						msgid_plural: value.p,
 						msgstr: value.v,
-					}
-				])
+					},
+				]),
 			)
 
 			gettext.addTranslations({

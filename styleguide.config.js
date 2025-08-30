@@ -49,7 +49,7 @@ module.exports = async () => {
 			plugins: [
 				new webpack.DefinePlugin({
 					NEXTCLOUD_VERSION: JSON.stringify(`${!process.env.NEXTCLOUD_LEGACY ? '32' : '31'}.0.0`),
-				})
+				}),
 			],
 			// https://webpack.js.org/configuration/dev-server/#devserverproxy
 			devServer: {
