@@ -10,7 +10,8 @@ const webpackConfig = require('./webpack.config.js')
 
 module.exports = async () => {
 	const base = await webpackConfig()
-	const newConfig = Object.assign({}, base, {
+	const newConfig = {
+		...base,
 		// Necessary, because vue-styleguidist runs an old version of webpack-dev-server
 		devServer: {
 			historyApiFallback: true,
@@ -23,8 +24,8 @@ module.exports = async () => {
 			rules: base.module.rules.filter(
 				rule => rule.use !== 'eslint-loader',
 			),
-		},
-	})
+		}, 
+	}
 
 	return {
 		require: [
