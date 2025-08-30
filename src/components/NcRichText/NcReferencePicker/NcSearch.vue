@@ -248,8 +248,8 @@ export default {
 
 			const searchPromises = searchProviderId === null
 				? [...this.searchProviderIds].map((pid) => {
-					return this.searchOneProvider(pid)
-				})
+						return this.searchOneProvider(pid)
+					})
 				: [this.searchOneProvider(searchProviderId, this.resultsBySearchProvider[searchProviderId]?.cursor ?? null)]
 			// fake one to have a request error
 			// searchPromises.push(this.searchOneProvider('nopid'))

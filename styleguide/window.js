@@ -93,19 +93,19 @@ function chunkify(t) {
 	let c
 
 	while (x < t.length) {
-	  c = t.charAt(x) // only include the dot in strings
+		c = t.charAt(x) // only include the dot in strings
 
-	  const m = !n && (c === '.' || (c >= '0' && c <= '9'))
+		const m = !n && (c === '.' || (c >= '0' && c <= '9'))
 
-	  if (m !== n) {
+		if (m !== n) {
 		// next chunk
 			y++
 			tz[y] = ''
 			n = m
-	  }
+		}
 
-	  tz[y] += c
-	  x++
+		tz[y] += c
+		x++
 	}
 
 	return tz

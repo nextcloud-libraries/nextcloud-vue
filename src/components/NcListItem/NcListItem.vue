@@ -651,10 +651,10 @@ export default {
 		 * If different from 0 this component will display the
 		 * NcCounterBubble component
 		 */
-		 counterNumber: {
-			 type: [Number, String],
-			 default: 0,
-		 },
+		counterNumber: {
+			type: [Number, String],
+			default: 0,
+		},
 
 		/**
 		 * Outlined or highlighted state of the counter

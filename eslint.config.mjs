@@ -50,7 +50,6 @@ export default defineConfig([
 			'@stylistic/array-element-newline': 'off',
 			'@stylistic/function-call-argument-newline': 'off',
 			'@stylistic/implicit-arrow-linebreak': 'off',
-			'@stylistic/indent': 'off',
 			'vue/block-spacing': 'off',
 			'vue/comma-dangle': 'off',
 			'vue/first-attribute-linebreak': 'off',

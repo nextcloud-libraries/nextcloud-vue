@@ -238,7 +238,7 @@ export default {
 		/**
 		 * Call the resize function after a delay
 		 */
-		 async delayedResize() {
+		async delayedResize() {
 			await this.$nextTick()
 			this.handleWindowResize()
 		},

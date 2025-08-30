@@ -354,7 +354,7 @@ export default {
 		/**
 		 * Do not show the user status on the avatar.
 		 */
-		 hideStatus: {
+		hideStatus: {
 			type: Boolean,
 			default: false,
 		},
@@ -417,7 +417,7 @@ export default {
 		/**
 		 * Do not automatically generate a placeholder avatars if there is no real avatar is available.
 		 */
-		 noPlaceholder: {
+		noPlaceholder: {
 			type: Boolean,
 			default: false,
 		},
@@ -628,13 +628,13 @@ export default {
 					ncActionComponent: route ? NcActionRouter : NcActionLink,
 					ncActionComponentProps: route
 						? {
-							to: route,
-							icon: item.icon,
-						}
+								to: route,
+								icon: item.icon,
+							}
 						: {
-							href: item.hyperlink,
-							icon: item.icon,
-						},
+								href: item.hyperlink,
+								icon: item.icon,
+							},
 					text: item.title,
 				}
 			})

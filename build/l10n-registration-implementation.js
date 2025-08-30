@@ -31,14 +31,14 @@ export function register(...chunks) {
 
 			const decompressed = Object.fromEntries(
 				Object.entries(translations)
-				.map(([id, value]) => [
-					id,
-					{
-						msgid: id,
-						msgid_plural: value.p,
-						msgstr: value.v,
-					},
-				]),
+					.map(([id, value]) => [
+						id,
+						{
+							msgid: id,
+							msgid_plural: value.p,
+							msgstr: value.v,
+						},
+					]),
 			)
 
 			gettext.addTranslations({

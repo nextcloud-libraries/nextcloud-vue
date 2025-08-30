@@ -1466,7 +1466,7 @@ export default {
 			 *
 			 * This event is emitted after `update:open` was emitted and the closing transition finished.
 			 */
-			 this.$emit('closed')
+			this.$emit('closed')
 		},
 
 		/**
@@ -1875,10 +1875,10 @@ export default {
 				this.defaultIcon
 					? h('span', { class: ['icon', this.defaultIcon] })
 					: h(IconDotsHorizontal, {
-						props: {
-							size: 20,
-						},
-					})
+							props: {
+								size: 20,
+							},
+						})
 			)
 			return h('NcPopover',
 				{
@@ -2003,17 +2003,17 @@ export default {
 					// render the rest within the popover menu
 					menuActions.length > 0
 						? h('div',
-							{
-								class: [
-									'action-item',
-									{
-										'action-item--open': this.opened,
-									},
-								],
-							},
-							[
-								renderActionsPopover(menuActions),
-							])
+								{
+									class: [
+										'action-item',
+										{
+											'action-item--open': this.opened,
+										},
+									],
+								},
+								[
+									renderActionsPopover(menuActions),
+								])
 						: null,
 				])
 		}

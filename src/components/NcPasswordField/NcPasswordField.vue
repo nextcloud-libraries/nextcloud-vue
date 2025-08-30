@@ -174,7 +174,7 @@ export default {
 		/**
 		 * Controls whether to display the trailing button.
 		 */
-		 showTrailingButton: {
+		showTrailingButton: {
 			type: Boolean,
 			default: true,
 		},

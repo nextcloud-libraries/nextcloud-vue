@@ -91,7 +91,7 @@ export default {
 		/**
 		 * value of the select group input
 		 */
-		 modelValue: {
+		modelValue: {
 			type: String,
 			default: '',
 		},

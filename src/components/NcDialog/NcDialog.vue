@@ -517,22 +517,22 @@ export default defineComponent({
 				/**
 				 * @param {SubmitEvent} event Form submit event
 				 */
-				submit(event) {
-					event.preventDefault()
-					/** Forwarded HTMLFormElement submit event (only if `is-form` is set) */
-					emit('submit', event)
-				},
-				/**
-				 * @param {Event} event Form submit event
-				 */
-				reset(event) {
-					event.preventDefault()
+					submit(event) {
+						event.preventDefault()
+						/** Forwarded HTMLFormElement submit event (only if `is-form` is set) */
+						emit('submit', event)
+					},
 					/**
-					 * Forwarded HTMLFormElement reset event (only if `is-form` is set).
+					 * @param {Event} event Form submit event
 					 */
-					emit('reset', event)
-				},
-			}
+					reset(event) {
+						event.preventDefault()
+						/**
+						 * Forwarded HTMLFormElement reset event (only if `is-form` is set).
+						 */
+						emit('reset', event)
+					},
+				}
 			: {},
 		)
 

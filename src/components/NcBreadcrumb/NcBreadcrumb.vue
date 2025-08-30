@@ -184,9 +184,9 @@ export default {
 			return this.to
 				? { to: this.to, exact: this.exact, ...this.$attrs }
 				: (this.href
-					? { href: this.href, ...this.$attrs }
-					: this.$attrs
-				)
+						? { href: this.href, ...this.$attrs }
+						: this.$attrs
+					)
 		},
 	},
 	methods: {

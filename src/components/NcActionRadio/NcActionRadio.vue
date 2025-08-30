@@ -184,7 +184,7 @@ export default {
 		 *
 		 * @return {'true'|'false'|undefined} aria-checked value if needed
 		 */
-		 ariaChecked() {
+		ariaChecked() {
 			if (this.isInSemanticMenu) {
 				return this.model ? 'true' : 'false'
 			}

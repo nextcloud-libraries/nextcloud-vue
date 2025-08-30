@@ -143,16 +143,16 @@ export default {
 		},
 		icon() {
 			switch (this.type) {
-			case 'error':
-				return AlertDecagram
-			case 'success':
-				return CheckboxMarkedCircle
-			case 'info':
-				return Information
-			case 'warning':
-				return Alert
-			default:
-				return Alert
+				case 'error':
+					return AlertDecagram
+				case 'success':
+					return CheckboxMarkedCircle
+				case 'info':
+					return Information
+				case 'warning':
+					return Alert
+				default:
+					return Alert
 			}
 		},
 	},

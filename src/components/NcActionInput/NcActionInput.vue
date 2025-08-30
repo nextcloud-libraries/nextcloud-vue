@@ -439,12 +439,12 @@ export default {
 
 		nativeDatePickerType() {
 			switch (this.type) {
-			case 'date':
-			case 'month':
-			case 'time':
-			case 'week':
-			case 'datetime-local':
-				return this.type
+				case 'date':
+				case 'month':
+				case 'time':
+				case 'week':
+				case 'datetime-local':
+					return this.type
 			}
 			return false
 		},
@@ -452,13 +452,13 @@ export default {
 		datePickerType() {
 			if (!this.isNativePicker) {
 				switch (this.type) {
-				case 'date':
-				case 'month':
-				case 'time':
-					return this.type
+					case 'date':
+					case 'month':
+					case 'time':
+						return this.type
 
-				case 'datetime-local':
-					return 'datetime'
+					case 'datetime-local':
+						return 'datetime'
 				}
 			}
 			return false

@@ -14,7 +14,7 @@ import clone from 'clone'
 const noop = () => false
 
 function throwing(msg) {
-  return () => {
+	return () => {
 		throw new Error(msg)
 	}
 }

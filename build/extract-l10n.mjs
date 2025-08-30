@@ -41,10 +41,10 @@ export const context = extractor.getMessages().map((msg) => {
 	if (usage in localContext) {
 		localContext[usage].push(id)
 		return localContext
-	 } else {
+	} else {
 		localContext[usage] = [id]
-	 }
-	 return localContext
+	}
+	return localContext
 })
 
 extractor.savePotFile('./l10n/messages.pot')

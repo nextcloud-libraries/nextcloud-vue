@@ -182,9 +182,9 @@ export function useHotKey(
 
 	const stopKeyUp = options.push
 		? onKeyStroke(keyFilter, eventHandler(callback, options), {
-			eventName: 'keyup',
-			passive: !options.prevent,
-		})
+				eventName: 'keyup',
+				passive: !options.prevent,
+			})
 		: () => {}
 
 	return () => {

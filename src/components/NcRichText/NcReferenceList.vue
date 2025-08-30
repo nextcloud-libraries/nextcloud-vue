@@ -132,16 +132,16 @@ export default {
 
 			return isPublic
 				? axios.post(generateOcsUrl('references/extractPublic'), {
-					text: this.text,
-					resolve: true,
-					limit: this.limit,
-					sharingToken: getSharingToken(),
-				})
+						text: this.text,
+						resolve: true,
+						limit: this.limit,
+						sharingToken: getSharingToken(),
+					})
 				: axios.post(generateOcsUrl('references/extract'), {
-					text: this.text,
-					resolve: true,
-					limit: this.limit,
-				})
+						text: this.text,
+						resolve: true,
+						limit: this.limit,
+					})
 		},
 	},
 }

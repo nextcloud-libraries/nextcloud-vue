@@ -591,7 +591,7 @@ export default {
 		 * @default 'secondary'
 		 * @since 8.24.0
 		 */
-		 variant: {
+		variant: {
 			type: String,
 			validator(value) {
 				return ['primary', 'secondary', 'tertiary', 'tertiary-no-background', 'tertiary-on-primary', 'error', 'warning', 'success'].includes(value)
@@ -753,13 +753,13 @@ export default {
 				h('span', { class: 'button-vue__wrapper' }, [
 					hasIcon
 						? h('span', {
-							class: 'button-vue__icon',
-							attrs: {
-								'aria-hidden': 'true',
+								class: 'button-vue__icon',
+								attrs: {
+									'aria-hidden': 'true',
+								},
 							},
-						},
-						[this.$slots.icon],
-						)
+							[this.$slots.icon],
+							)
 						: null,
 					hasText ? h('span', { class: 'button-vue__text' }, [this.$slots.default]) : null,
 				]),

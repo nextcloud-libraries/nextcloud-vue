@@ -428,15 +428,15 @@ export default {
 				h('div', {}, placeholders.flat()),
 				this.referenceLimit > 0
 					? h('div', { class: 'rich-text--reference-widget' }, [
-						h(NcReferenceList, {
-							props: {
-								text: this.text,
-								referenceData: this.references,
-								interactive: this.referenceInteractive,
-								interactiveOptIn: this.referenceInteractiveOptIn,
-							},
-						}),
-					])
+							h(NcReferenceList, {
+								props: {
+									text: this.text,
+									referenceData: this.references,
+									interactive: this.referenceInteractive,
+									interactiveOptIn: this.referenceInteractiveOptIn,
+								},
+							}),
+						])
 					: null,
 			])
 		},
@@ -563,15 +563,15 @@ export default {
 				renderedMarkdown,
 				this.referenceLimit > 0
 					? h('div', { class: 'rich-text--reference-widget' }, [
-						h(NcReferenceList, {
-							props: {
-								text: this.text,
-								referenceData: this.references,
-								interactive: this.referenceInteractive,
-								interactiveOptIn: this.referenceInteractiveOptIn,
-							},
-						}),
-					])
+							h(NcReferenceList, {
+								props: {
+									text: this.text,
+									referenceData: this.references,
+									interactive: this.referenceInteractive,
+									interactiveOptIn: this.referenceInteractiveOptIn,
+								},
+							}),
+						])
 					: null,
 			])
 		},

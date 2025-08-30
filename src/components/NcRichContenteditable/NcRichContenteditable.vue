@@ -530,7 +530,7 @@ export default {
 		/**
 		 * Compute debounce function for the autocomplete function
 		 */
-		 debouncedAutoComplete() {
+		debouncedAutoComplete() {
 			return debounce(async (search, callback) => {
 				this.autoComplete(search, callback)
 			}, 100)
