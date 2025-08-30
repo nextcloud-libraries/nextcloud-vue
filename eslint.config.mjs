@@ -47,7 +47,6 @@ export default defineConfig([
 			'jsdoc/require-jsdoc': 'off',
 			'jsdoc/tag-lines': 'off',
 			'@nextcloud-l10n/non-breaking-space': 'off',
-			'prefer-object-has-own': 'off',
 			'prefer-object-spread': 'off',
 			'@stylistic/array-element-newline': 'off',
 			'@stylistic/arrow-parens': 'off',
