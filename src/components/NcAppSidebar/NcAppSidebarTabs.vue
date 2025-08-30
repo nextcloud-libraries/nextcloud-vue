@@ -54,8 +54,8 @@
 </template>
 
 <script>
-import NcVNodes from '../NcVNodes/index.js'
 import NcCheckboxRadioSwitch from '../NcCheckboxRadioSwitch/index.js'
+import NcVNodes from '../NcVNodes/index.js'
 
 export default {
 	name: 'NcAppSidebarTabs',

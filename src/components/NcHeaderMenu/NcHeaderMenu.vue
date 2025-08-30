@@ -108,12 +108,10 @@ export default {
 import { vOnClickOutside as ClickOutside } from '@vueuse/components'
 import { createFocusTrap } from 'focus-trap'
 import { ref } from 'vue'
-
-import GenRandomId from '../../utils/GenRandomId.js'
+import { useTrapStackControl } from '../../composables/useTrapStackControl.ts'
 import { clickOutsideOptions } from '../../mixins/index.js'
 import { getTrapStack } from '../../utils/focusTrap.ts'
-import { useTrapStackControl } from '../../composables/useTrapStackControl.ts'
-
+import GenRandomId from '../../utils/GenRandomId.js'
 import NcButton from '../NcButton/index.js'
 
 export default {

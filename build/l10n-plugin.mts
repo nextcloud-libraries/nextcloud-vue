@@ -3,10 +3,11 @@
  * SPDX-License-Identifier: AGPL-3.0-or-later
  */
 
-import { Plugin } from 'vite'
-import { loadTranslations } from './translations.mts'
+import type { Plugin } from 'vite'
+
 import { readFileSync } from 'fs'
 import { dirname, join, resolve } from 'path'
+import { loadTranslations } from './translations.mts'
 
 /**
  * This is a plugin to split all translations into chunks of users meaning components that use that translation

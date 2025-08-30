@@ -61,11 +61,10 @@ Renders a button element when given no redirection props, otherwise, renders <a/
 </template>
 
 <script>
-import NcActions from '../NcActions/index.js'
-import GenRandomId from '../../utils/GenRandomId.js'
-import NcButton from '../NcButton/NcButton.vue'
-
 import ChevronRight from 'vue-material-design-icons/ChevronRight.vue'
+import NcButton from '../NcButton/NcButton.vue'
+import GenRandomId from '../../utils/GenRandomId.js'
+import NcActions from '../NcActions/index.js'
 
 export default {
 	name: 'NcBreadcrumb',

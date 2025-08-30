@@ -140,12 +140,11 @@ export default {
 </template>
 
 <script>
+import { useModelMigration } from '../../composables/useModelMigration.ts'
+import { t } from '../../l10n.js'
 import NcEllipsisedOption from '../NcEllipsisedOption/index.js'
 import NcSelect from '../NcSelect/index.js'
-
 import { searchTags } from './api.js'
-import { t } from '../../l10n.js'
-import { useModelMigration } from '../../composables/useModelMigration.ts'
 
 export default {
 	name: 'NcSelectTags',

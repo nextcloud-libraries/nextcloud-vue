@@ -3,14 +3,12 @@
  * SPDX-License-Identifier: AGPL-3.0-or-later
  */
 
-import { isCustomPickerElementRegistered } from './customPickerElements.ts'
-
-import { t } from '../../l10n.js'
-
 import axios from '@nextcloud/axios'
 import { loadState } from '@nextcloud/initial-state'
 import { generateOcsUrl, imagePath } from '@nextcloud/router'
+import { t } from '../../l10n.js'
 import { logger } from '../../utils/logger.ts'
+import { isCustomPickerElementRegistered } from './customPickerElements.ts'
 
 export interface ReferenceProvider {
 	id: string

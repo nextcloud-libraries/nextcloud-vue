@@ -4,9 +4,9 @@
  */
 
 import { mount } from 'cypress/vue2'
+import { defineComponent } from 'vue'
 import NcAppSettingsDialog from '../../src/components/NcAppSettingsDialog/NcAppSettingsDialog.vue'
 import NcAppSettingsSection from '../../src/components/NcAppSettingsSection/NcAppSettingsSection.vue'
-import { defineComponent } from 'vue'
 
 describe('NcAppSettingsDialog', () => {
 	it('Dialog is correctly labelled', () => {

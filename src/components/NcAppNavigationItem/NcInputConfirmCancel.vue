@@ -42,10 +42,9 @@
 	</div>
 </template>
 <script>
-import { t } from '../../l10n.js'
-
 import ArrowRight from 'vue-material-design-icons/ArrowRight.vue'
 import Close from 'vue-material-design-icons/Close.vue'
+import { t } from '../../l10n.js'
 import NcButton from '../NcButton/index.js'
 
 export default {

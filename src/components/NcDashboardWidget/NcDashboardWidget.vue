@@ -213,13 +213,11 @@ export default {
 </template>
 
 <script>
+import Check from 'vue-material-design-icons/Check.vue'
+import { t } from '../../l10n.js'
 import NcAvatar from '../NcAvatar/index.js'
 import NcDashboardWidgetItem from '../NcDashboardWidgetItem/index.js'
 import NcEmptyContent from '../NcEmptyContent/index.js'
-
-import Check from 'vue-material-design-icons/Check.vue'
-
-import { t } from '../../l10n.js'
 
 export default {
 	name: 'NcDashboardWidget',

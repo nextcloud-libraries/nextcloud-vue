@@ -5,9 +5,9 @@
 
 import { createAppConfig } from '@nextcloud/vite-config'
 import { defineConfig } from 'cypress'
+import { configureVisualRegression } from 'cypress-visual-regression'
 import { resolve } from 'path'
 import { fileURLToPath } from 'url'
-import { configureVisualRegression } from 'cypress-visual-regression'
 
 const __dirname = fileURLToPath(new URL('.', import.meta.url))
 const SCOPE_VERSION = Date.now().toString()

@@ -160,28 +160,24 @@ export default {
 </template>
 
 <script>
-import { t } from '../../l10n.js'
-import GenRandomId from '../../utils/GenRandomId.js'
-import { useModelMigration } from '../../composables/useModelMigration.ts'
-
-import NcTimezonePicker from '../NcTimezonePicker/index.js'
-import NcPopover from '../NcPopover/index.js'
-
-import CalendarBlank from 'vue-material-design-icons/CalendarBlank.vue'
-import Web from 'vue-material-design-icons/Web.vue'
-
-import './index.scss'
-
 import {
-	getFirstDay,
 	getDayNames,
-	getDayNamesShort,
 	getDayNamesMin,
+	getDayNamesShort,
+	getFirstDay,
 	getMonthNames,
 	getMonthNamesShort,
 } from '@nextcloud/l10n'
-
 import DatePicker from 'vue2-datepicker'
+import CalendarBlank from 'vue-material-design-icons/CalendarBlank.vue'
+import Web from 'vue-material-design-icons/Web.vue'
+import { useModelMigration } from '../../composables/useModelMigration.ts'
+import { t } from '../../l10n.js'
+import GenRandomId from '../../utils/GenRandomId.js'
+import NcPopover from '../NcPopover/index.js'
+import NcTimezonePicker from '../NcTimezonePicker/index.js'
+
+import './index.scss'
 
 const formatMap = {
 	date: 'YYYY-MM-DD',

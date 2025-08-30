@@ -120,20 +120,17 @@ export default {
 </docs>
 
 <script>
-import NcActions from '../NcActions/index.js'
-import NcActionButton from '../NcActionButton/index.js'
-import NcActionRouter from '../NcActionRouter/index.js'
-import NcActionLink from '../NcActionLink/index.js'
-import NcBreadcrumb from '../NcBreadcrumb/index.js'
-import ValidateSlot from '../../utils/ValidateSlot.js'
-
 import { subscribe, unsubscribe } from '@nextcloud/event-bus'
-
-import IconFolder from 'vue-material-design-icons/Folder.vue'
-
 import debounce from 'debounce'
 import Vue from 'vue'
 import { Fragment } from 'vue-frag'
+import IconFolder from 'vue-material-design-icons/Folder.vue'
+import ValidateSlot from '../../utils/ValidateSlot.js'
+import NcActionButton from '../NcActionButton/index.js'
+import NcActionLink from '../NcActionLink/index.js'
+import NcActionRouter from '../NcActionRouter/index.js'
+import NcActions from '../NcActions/index.js'
+import NcBreadcrumb from '../NcBreadcrumb/index.js'
 
 const crumbClass = 'vue-crumb'
 

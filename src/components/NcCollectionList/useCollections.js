@@ -5,11 +5,11 @@
 
 import { ref, set } from 'vue'
 import {
-	renameCollectionService,
-	getCollectionsByResourceService,
-	createCollectionService,
 	addResourceService,
+	createCollectionService,
+	getCollectionsByResourceService,
 	removeResourceService,
+	renameCollectionService,
 } from './service.ts'
 
 /**

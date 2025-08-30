@@ -13,13 +13,12 @@
 	</div>
 </template>
 <script>
+import { getCurrentUser } from '@nextcloud/auth'
+import axios from '@nextcloud/axios'
+import { generateOcsUrl } from '@nextcloud/router'
+import { getSharingToken } from '@nextcloud/sharing/public'
 import NcReferenceWidget from './NcReferenceWidget.vue'
 import { URL_PATTERN } from './helpers.js'
-
-import axios from '@nextcloud/axios'
-import { getSharingToken } from '@nextcloud/sharing/public'
-import { getCurrentUser } from '@nextcloud/auth'
-import { generateOcsUrl } from '@nextcloud/router'
 
 export default {
 	name: 'NcReferenceList',

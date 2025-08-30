@@ -50,9 +50,9 @@ export default {
 </template>
 
 <script>
+import { useModelMigration } from '../../composables/useModelMigration.ts'
 import { t } from '../../l10n.js'
 import GenRandomId from '../../utils/GenRandomId.js'
-import { useModelMigration } from '../../composables/useModelMigration.ts'
 
 export default {
 	name: 'NcSettingsInputText',

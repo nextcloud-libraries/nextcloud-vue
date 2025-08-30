@@ -69,14 +69,12 @@ occ config:system:set --value true 'projects.enabled'
 <script>
 import debounce from 'debounce'
 import { ref } from 'vue'
+import NcCollectionListItem from './NcCollectionListItem.vue'
 import { t } from '../../l10n.js'
-
 import NcAvatar from '../NcAvatar/index.js'
 import NcSelect from '../NcSelect/index.js'
-import NcCollectionListItem from './NcCollectionListItem.vue'
-
-import { useCollections } from './useCollections.js'
 import { searchService } from './service.ts'
+import { useCollections } from './useCollections.js'
 
 const METHOD_CREATE_COLLECTION = 0
 const METHOD_ADD_TO_COLLECTION = 1

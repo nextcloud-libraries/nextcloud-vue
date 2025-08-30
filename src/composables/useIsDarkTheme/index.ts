@@ -6,8 +6,8 @@
 import type { MaybeRefOrGetter } from '@vueuse/core'
 import type { DeepReadonly, Ref } from 'vue'
 
-import { createSharedComposable, toValue, usePreferredDark, useMutationObserver } from '@vueuse/core'
-import { computed, inject, ref, readonly, watch } from 'vue'
+import { createSharedComposable, toValue, useMutationObserver, usePreferredDark } from '@vueuse/core'
+import { computed, inject, readonly, ref, watch } from 'vue'
 import { checkIfDarkTheme } from '../../functions/isDarkTheme/index.ts'
 import { INJECTION_KEY_THEME } from './constants.ts'
 

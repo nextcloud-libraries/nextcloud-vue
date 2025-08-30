@@ -3,9 +3,9 @@
  * SPDX-License-Identifier: AGPL-3.0-or-later
  */
 
-import { describe, it, expect } from '@jest/globals'
-import { mount } from '@vue/test-utils'
+import { describe, expect, it } from '@jest/globals'
 import { emit } from '@nextcloud/event-bus'
+import { mount } from '@vue/test-utils'
 import { nextTick } from 'vue'
 import NcAppNavigation from '../../../../src/components/NcAppNavigation/NcAppNavigation.vue'
 import { resizeWindowWidth } from '../../testing-utils.ts'

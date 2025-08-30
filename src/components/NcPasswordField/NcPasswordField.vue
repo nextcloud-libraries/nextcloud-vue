@@ -112,19 +112,17 @@ export default {
 </template>
 
 <script>
-import { generateOcsUrl } from '@nextcloud/router'
-import { loadState } from '@nextcloud/initial-state'
 import axios from '@nextcloud/axios'
+import { loadState } from '@nextcloud/initial-state'
+import { generateOcsUrl } from '@nextcloud/router'
 import { useVModel } from '@vueuse/core'
 import debounce from 'debounce'
-
 import IconEye from 'vue-material-design-icons/Eye.vue'
 import IconEyeOff from 'vue-material-design-icons/EyeOff.vue'
 import NcInputField from '../NcInputField/NcInputField.vue'
-
 import { useModelMigration } from '../../composables/useModelMigration.ts'
-import { logger } from '../../utils/logger.ts'
 import { t } from '../../l10n.js'
+import { logger } from '../../utils/logger.ts'
 
 /**
  * @typedef PasswordPolicy

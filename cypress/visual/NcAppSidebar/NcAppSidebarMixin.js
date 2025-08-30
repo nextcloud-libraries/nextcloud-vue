@@ -4,21 +4,18 @@
  */
 
 import sanitize from 'sanitize-filename'
-
-import NcAppSidebar from '../../../src/components/NcAppSidebar/NcAppSidebar.vue'
 import NcActionButton from '../../../src/components/NcActionButton/NcActionButton.vue'
+import NcAppSidebar from '../../../src/components/NcAppSidebar/NcAppSidebar.vue'
 
 // Server CSS styles
 import '../../../styleguide/assets/icons.css'
 import '../../../styleguide/assets/additional.css'
-
 /**
  * We need this custom style because we run the AppSidebar component without a Content component,
  * which applies this rule:
  * https://github.com/nextcloud/nextcloud-vue/blob/master/src/components/Content/Content.vue#L88-L90
  */
 import './style.css'
-
 // Import font so CI has the same
 import '@fontsource/roboto'
 

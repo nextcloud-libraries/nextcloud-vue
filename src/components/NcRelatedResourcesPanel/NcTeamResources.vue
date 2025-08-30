@@ -67,15 +67,14 @@
 
 <script>
 import axios from '@nextcloud/axios'
-import { generateOcsUrl } from '@nextcloud/router'
 import { getCapabilities } from '@nextcloud/capabilities'
+import { generateOcsUrl } from '@nextcloud/router'
 import AccountGroup from 'vue-material-design-icons/AccountGroup.vue'
 import ChevronDown from 'vue-material-design-icons/ChevronDown.vue'
 import ChevronUp from 'vue-material-design-icons/ChevronUp.vue'
 import OpenInNew from 'vue-material-design-icons/OpenInNew.vue'
 import NcButton from '../NcButton/NcButton.vue'
 import NcIconSvgWrapper from '../NcIconSvgWrapper/NcIconSvgWrapper.vue'
-
 import { t } from '../../l10n.js'
 
 const teamResourceProviders = getCapabilities()?.circles?.teamResourceProviders ?? []

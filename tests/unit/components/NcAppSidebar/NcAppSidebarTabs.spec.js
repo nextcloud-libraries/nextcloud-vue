@@ -4,11 +4,10 @@
  */
 
 import { mount } from '@vue/test-utils'
-
 import Vue from 'vue'
+import NcActionButton from '../../../../src/components/NcActionButton/NcActionButton.vue'
 import NcAppSidebarTabs from '../../../../src/components/NcAppSidebar/NcAppSidebarTabs.vue'
 import NcAppSidebarTab from '../../../../src/components/NcAppSidebarTab/NcAppSidebarTab.vue'
-import NcActionButton from '../../../../src/components/NcActionButton/NcActionButton.vue'
 
 let onWarning
 let consoleDebug

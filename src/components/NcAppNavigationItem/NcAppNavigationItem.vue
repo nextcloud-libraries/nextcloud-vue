@@ -405,18 +405,17 @@ Just set the `pinned` prop.
 </template>
 
 <script>
-import NcActions from '../NcActions/index.js'
-import NcActionButton from '../NcActionButton/index.js'
-import NcLoadingIcon from '../NcLoadingIcon/index.js'
-import NcVNodes from '../NcVNodes/index.js'
-import NcAppNavigationIconCollapsible from './NcAppNavigationIconCollapsible.vue'
-import { useIsMobile } from '../../composables/useIsMobile/index.js'
-import NcInputConfirmCancel from './NcInputConfirmCancel.vue'
-import { t } from '../../l10n.js'
-import GenRandomId from '../../utils/GenRandomId.js'
-
 import Pencil from 'vue-material-design-icons/Pencil.vue'
 import Undo from 'vue-material-design-icons/Undo.vue'
+import NcAppNavigationIconCollapsible from './NcAppNavigationIconCollapsible.vue'
+import NcInputConfirmCancel from './NcInputConfirmCancel.vue'
+import { useIsMobile } from '../../composables/useIsMobile/index.js'
+import { t } from '../../l10n.js'
+import GenRandomId from '../../utils/GenRandomId.js'
+import NcActionButton from '../NcActionButton/index.js'
+import NcActions from '../NcActions/index.js'
+import NcLoadingIcon from '../NcLoadingIcon/index.js'
+import NcVNodes from '../NcVNodes/index.js'
 
 export default {
 	name: 'NcAppNavigationItem',

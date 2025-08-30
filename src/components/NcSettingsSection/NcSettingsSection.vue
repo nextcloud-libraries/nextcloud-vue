@@ -64,9 +64,8 @@ This component is to be used in the settings section of nextcloud.
 
 <script>
 import { loadState } from '@nextcloud/initial-state'
-import { t } from '../../l10n.js'
-
 import HelpCircle from 'vue-material-design-icons/HelpCircle.vue'
+import { t } from '../../l10n.js'
 
 // Overwrite this on Nextcloud 30+ to always limit the width
 const [major] = loadState('core', 'config', { version: '30.0' }).version.split('.', 2) ?? []

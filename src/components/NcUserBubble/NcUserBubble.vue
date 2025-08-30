@@ -105,11 +105,11 @@ export default {
 </template>
 
 <script>
+import Vue from 'vue'
+import { RouterLink } from 'vue-router'
 import NcUserBubbleDiv from './NcUserBubbleDiv.vue'
 import NcAvatar from '../NcAvatar/index.js'
 import NcPopover from '../NcPopover/index.js'
-import Vue from 'vue'
-import { RouterLink } from 'vue-router'
 
 export default {
 	name: 'NcUserBubble',

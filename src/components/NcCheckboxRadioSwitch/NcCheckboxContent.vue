@@ -52,13 +52,12 @@
 
 <script>
 import CheckboxBlankOutline from 'vue-material-design-icons/CheckboxBlankOutline.vue'
-import MinusBox from 'vue-material-design-icons/MinusBox.vue'
 import CheckboxMarked from 'vue-material-design-icons/CheckboxMarked.vue'
-import RadioboxMarked from 'vue-material-design-icons/RadioboxMarked.vue'
+import MinusBox from 'vue-material-design-icons/MinusBox.vue'
 import RadioboxBlank from 'vue-material-design-icons/RadioboxBlank.vue'
-import ToggleSwitchOff from 'vue-material-design-icons/ToggleSwitchOff.vue'
+import RadioboxMarked from 'vue-material-design-icons/RadioboxMarked.vue'
 import ToggleSwitch from 'vue-material-design-icons/ToggleSwitch.vue'
-
+import ToggleSwitchOff from 'vue-material-design-icons/ToggleSwitchOff.vue'
 import NcLoadingIcon from '../NcLoadingIcon/index.js'
 
 export const TYPE_CHECKBOX = 'checkbox'

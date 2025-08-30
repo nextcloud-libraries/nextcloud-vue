@@ -166,11 +166,10 @@ export default {
 
 <script setup>
 import { ref, watch } from 'vue'
-import { t } from '../../l10n.js'
-import createElementId from '../../utils/GenRandomId.js'
-
 import NcListItemIcon from '../NcListItemIcon/NcListItemIcon.vue'
 import NcSelect from '../NcSelect/NcSelect.vue'
+import { t } from '../../l10n.js'
+import createElementId from '../../utils/GenRandomId.js'
 
 const props = defineProps({
 	/**

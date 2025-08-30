@@ -87,9 +87,9 @@ available in four versions:
 </template>
 
 <script>
-import CheckboxMarkedCircle from 'vue-material-design-icons/CheckboxMarkedCircle.vue'
-import AlertDecagram from 'vue-material-design-icons/AlertDecagram.vue'
 import Alert from 'vue-material-design-icons/Alert.vue'
+import AlertDecagram from 'vue-material-design-icons/AlertDecagram.vue'
+import CheckboxMarkedCircle from 'vue-material-design-icons/CheckboxMarkedCircle.vue'
 import Information from 'vue-material-design-icons/Information.vue'
 import { isLegacy32 } from '../../utils/legacy.ts'
 

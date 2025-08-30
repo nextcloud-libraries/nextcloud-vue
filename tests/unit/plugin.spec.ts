@@ -5,7 +5,6 @@
 
 import { describe, expect, it } from '@jest/globals'
 import { createLocalVue, mount } from '@vue/test-utils'
-
 import { NextcloudVuePlugin } from '../../src/plugin'
 
 describe('Nextcloud Vue Plugin', () => {

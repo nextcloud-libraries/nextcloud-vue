@@ -68,7 +68,7 @@ export default {
 	 * @return {object} The created VNode
 	 */
 	render() {
-		// eslint-disable-next-line jsdoc/check-tag-names
+		 
 		/** @slot Directly rendered content */
 		return this.vnodes || this.$slots?.default || this.$scopedSlots?.default?.()
 	},

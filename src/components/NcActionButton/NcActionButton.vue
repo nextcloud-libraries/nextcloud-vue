@@ -380,8 +380,8 @@ export default {
 
 <script>
 import { mdiCheck, mdiChevronRight } from '@mdi/js'
-import ActionTextMixin from '../../mixins/actionText.js'
 import NcIconSvgWrapper from '../NcIconSvgWrapper/NcIconSvgWrapper.vue'
+import ActionTextMixin from '../../mixins/actionText.js'
 
 /**
  * Button component to be used in Actions

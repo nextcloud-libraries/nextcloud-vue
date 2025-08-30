@@ -5,7 +5,6 @@
 
 import { getBuilder } from '@nextcloud/browser-storage'
 import { EmojiIndex, frequently } from 'emoji-mart-vue-fast'
-
 import data from 'emoji-mart-vue-fast/data/all.json'
 
 const storage = getBuilder('nextcloud-vue').persist(true).build()

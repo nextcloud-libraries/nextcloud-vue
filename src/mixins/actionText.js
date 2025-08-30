@@ -3,8 +3,8 @@
  * SPDX-License-Identifier: AGPL-3.0-or-later
  */
 
-import actionGlobal from './actionGlobal.js'
 import GetParent from '../utils/GetParent.js'
+import actionGlobal from './actionGlobal.js'
 
 export default {
 	mixins: [actionGlobal],

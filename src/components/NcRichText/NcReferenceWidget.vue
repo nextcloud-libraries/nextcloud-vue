@@ -37,12 +37,10 @@
 import { useElementSize, useIntersectionObserver } from '@vueuse/core'
 import { nextTick, ref } from 'vue'
 import { RouterLink } from 'vue-router'
-
-import { t } from '../../l10n.js'
-import { getRoute } from './autolink.js'
-import { renderWidget, isWidgetRegistered, destroyWidget, hasInteractiveView, hasFullWidth } from './../../functions/reference/widgets.ts'
-
 import NcButton from '../../components/NcButton/index.js'
+import { t } from '../../l10n.js'
+import { destroyWidget, hasFullWidth, hasInteractiveView, isWidgetRegistered, renderWidget } from './../../functions/reference/widgets.ts'
+import { getRoute } from './autolink.js'
 
 const IDLE_TIMEOUT = 3 * 60 * 1000 // 3 minutes outside of viewport before widget is removed from the DOM
 

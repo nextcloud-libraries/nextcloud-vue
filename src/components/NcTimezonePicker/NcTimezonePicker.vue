@@ -38,15 +38,15 @@ export default {
 </template>
 
 <script>
+import { useModelMigration } from '../../composables/useModelMigration.ts'
+import { t } from '../../l10n.js'
+import GenRandomId from '../../utils/GenRandomId.js'
+import NcSelect from '../NcSelect/index.js'
 import {
 	getReadableTimezoneName,
 	getSortedTimezoneList,
 } from './timezone.js'
 import getTimezoneManager from './timezoneDataProviderService.js'
-import GenRandomId from '../../utils/GenRandomId.js'
-import NcSelect from '../NcSelect/index.js'
-import { t } from '../../l10n.js'
-import { useModelMigration } from '../../composables/useModelMigration.ts'
 
 export default {
 	name: 'NcTimezonePicker',

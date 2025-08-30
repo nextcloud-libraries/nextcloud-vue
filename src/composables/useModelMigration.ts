@@ -3,7 +3,7 @@
  * SPDX-License-Identifier: AGPL-3.0-or-later
  */
 
-import Vue, { getCurrentInstance, computed } from 'vue'
+import Vue, { computed, getCurrentInstance } from 'vue'
 
 /**
  * Create model proxy to new v9 model (modelValue + update:modelValue) with a fallback to old model

@@ -168,16 +168,14 @@ emit('toggle-navigation', {
 </template>
 
 <script>
-import { createFocusTrap } from 'focus-trap'
 import { emit, subscribe, unsubscribe } from '@nextcloud/event-bus'
+import { createFocusTrap } from 'focus-trap'
 import { tabbable } from 'tabbable'
 import Vue from 'vue'
-
-import { getTrapStack } from '../../utils/focusTrap.ts'
-import { logger } from '../../utils/logger.ts'
 import { useHotKey } from '../../composables/useHotKey/index.ts'
 import { useIsMobile } from '../../composables/useIsMobile/index.js'
-
+import { getTrapStack } from '../../utils/focusTrap.ts'
+import { logger } from '../../utils/logger.ts'
 import NcAppNavigationList from '../NcAppNavigationList/index.js'
 import NcAppNavigationToggle from '../NcAppNavigationToggle/index.js'
 

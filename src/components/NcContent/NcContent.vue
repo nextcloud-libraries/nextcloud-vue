@@ -89,15 +89,13 @@ It also will set the skip content buttons needed for accessibility.
 </template>
 
 <script>
-import { emit } from '@nextcloud/event-bus'
 // TODO: This is built-in for vue3 just drop the import
 import { Portal as Teleport } from '@linusborg/vue-simple-portal'
-import { useIsMobile } from '../../composables/useIsMobile/index.js'
-import { t } from '../../l10n.js'
-
+import { emit } from '@nextcloud/event-bus'
 import NcButton from '../NcButton/NcButton.vue'
 import NcIconSvgWrapper from '../NcIconSvgWrapper/NcIconSvgWrapper.vue'
-
+import { useIsMobile } from '../../composables/useIsMobile/index.js'
+import { t } from '../../l10n.js'
 import contentSvg from './content-selected.svg?raw'
 import navigationSvg from './navigation-selected.svg?raw'
 

@@ -21,10 +21,9 @@
 </template>
 
 <script>
-import NcButton from '../NcButton/index.js'
-
-import { getRoute } from '../NcRichText/autolink.js'
 import { t } from '../../l10n.js'
+import NcButton from '../NcButton/index.js'
+import { getRoute } from '../NcRichText/autolink.js'
 
 export default {
 	name: 'NcResource',

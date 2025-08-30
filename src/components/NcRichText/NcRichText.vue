@@ -302,23 +302,22 @@ See [NcRichContenteditable](#/Components/NcRichContenteditable) documentation fo
 </docs>
 
 <script>
-import { ref } from 'vue'
-import NcReferenceList from './NcReferenceList.vue'
-import NcCheckboxRadioSwitch from '../NcCheckboxRadioSwitch/NcCheckboxRadioSwitch.vue'
-import { getRoute, remarkAutolink } from './autolink.js'
-import { remarkPlaceholder, prepareTextNode } from './placeholder.js'
-import { remarkUnescape } from './remarkUnescape.js'
-import GenRandomId from '../../utils/GenRandomId.js'
-
-import { unified } from 'unified'
-import remarkParse from 'remark-parse'
-import remarkGfm from 'remark-gfm'
-import breaks from 'remark-breaks'
-import remarkUnlinkProtocols from 'remark-unlink-protocols'
-import remark2rehype from 'remark-rehype'
-import rehype2react from 'rehype-react'
 import rehypeExternalLinks from 'rehype-external-links'
+import rehype2react from 'rehype-react'
+import breaks from 'remark-breaks'
+import remarkGfm from 'remark-gfm'
+import remarkParse from 'remark-parse'
+import remark2rehype from 'remark-rehype'
+import remarkUnlinkProtocols from 'remark-unlink-protocols'
+import { unified } from 'unified'
+import { ref } from 'vue'
 import { RouterLink } from 'vue-router'
+import NcCheckboxRadioSwitch from '../NcCheckboxRadioSwitch/NcCheckboxRadioSwitch.vue'
+import NcReferenceList from './NcReferenceList.vue'
+import GenRandomId from '../../utils/GenRandomId.js'
+import { getRoute, remarkAutolink } from './autolink.js'
+import { prepareTextNode, remarkPlaceholder } from './placeholder.js'
+import { remarkUnescape } from './remarkUnescape.js'
 
 /**
  * Protocols allowed in links.

@@ -23,11 +23,10 @@
 </template>
 
 <script>
-import NcButton from '../NcButton/index.js'
-import { t } from '../../l10n.js'
-
 import ChevronDown from 'vue-material-design-icons/ChevronDown.vue'
 import ChevronUp from 'vue-material-design-icons/ChevronUp.vue'
+import { t } from '../../l10n.js'
+import NcButton from '../NcButton/index.js'
 
 export default {
 	name: 'NcAppNavigationIconCollapsible',

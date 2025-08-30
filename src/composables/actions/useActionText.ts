@@ -4,6 +4,7 @@
  */
 
 import type { VNode, VNodeChildren } from 'vue'
+
 import { computed, onBeforeMount, ref, useSlots } from 'vue'
 
 function slotText(slot: VNode): string {

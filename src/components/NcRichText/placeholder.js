@@ -3,10 +3,9 @@
  * SPDX-License-Identifier: AGPL-3.0-or-later
  */
 
-import { parseUrl } from './autolink.js'
-
-import { visit } from 'unist-util-visit'
 import { u } from 'unist-builder'
+import { visit } from 'unist-util-visit'
+import { parseUrl } from './autolink.js'
 
 export function remarkPlaceholder() {
 	return function(ast) {

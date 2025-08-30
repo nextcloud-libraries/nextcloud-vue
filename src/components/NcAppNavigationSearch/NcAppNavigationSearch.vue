@@ -153,11 +153,10 @@ export default {
 
 <script setup>
 import { useFocusWithin } from '@vueuse/core'
-import { ref, nextTick, useSlots, watch } from 'vue'
-import { t } from '../../l10n.js'
-
+import { nextTick, ref, useSlots, watch } from 'vue'
 import IconClose from 'vue-material-design-icons/Close.vue'
 import NcInputField from '../NcInputField/NcInputField.vue'
+import { t } from '../../l10n.js'
 
 defineProps({
 	/**

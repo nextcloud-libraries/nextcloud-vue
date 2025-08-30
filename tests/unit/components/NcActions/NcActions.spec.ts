@@ -4,13 +4,12 @@
  */
 
 import { mount } from '@vue/test-utils'
+import { defineComponent } from 'vue'
 import { Fragment } from 'vue-frag'
-
-import NcActions from '../../../../src/components/NcActions/NcActions.vue'
 import NcActionButton from '../../../../src/components/NcActionButton/NcActionButton.vue'
 import NcActionInput from '../../../../src/components/NcActionInput/NcActionInput.vue'
+import NcActions from '../../../../src/components/NcActions/NcActions.vue'
 import TestCompositionApi from './TestCompositionApi.vue'
-import { defineComponent } from 'vue'
 
 describe('NcActions.vue', () => {
 

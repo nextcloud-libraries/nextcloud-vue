@@ -158,13 +158,12 @@ export default {
 </template>
 
 <script>
-import NcDialog from '../NcDialog/index.js'
-import NcVNodes from '../NcVNodes/index.js'
-import { useIsMobile } from '../../composables/useIsMobile/index.js'
-import { t } from '../../l10n.js'
-
 import debounce from 'debounce'
 import Vue from 'vue'
+import { useIsMobile } from '../../composables/useIsMobile/index.js'
+import { t } from '../../l10n.js'
+import NcDialog from '../NcDialog/index.js'
+import NcVNodes from '../NcVNodes/index.js'
 
 export default {
 

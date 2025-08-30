@@ -146,10 +146,10 @@ export default {
 
 <script>
 import { mdiArrowRight, mdiClose, mdiUndo } from '@mdi/js'
-import NcIconSvgWrapper from '../NcIconSvgWrapper/index.js'
 import NcInputField from '../NcInputField/NcInputField.vue'
-import { t } from '../../l10n.js'
 import { useModelMigration } from '../../composables/useModelMigration.ts'
+import { t } from '../../l10n.js'
+import NcIconSvgWrapper from '../NcIconSvgWrapper/index.js'
 
 const NcInputFieldProps = new Set(Object.keys(NcInputField.props))
 

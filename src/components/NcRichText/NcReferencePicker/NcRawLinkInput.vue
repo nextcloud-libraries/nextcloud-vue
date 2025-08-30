@@ -33,17 +33,15 @@
 </template>
 
 <script>
+import axios from '@nextcloud/axios'
+import { generateOcsUrl } from '@nextcloud/router'
+import LinkVariantIcon from 'vue-material-design-icons/LinkVariant.vue'
 import NcReferenceWidget from '../NcReferenceWidget.vue'
-import { isUrl, delay } from './utils.js'
+import { t } from '../../../l10n.js'
 import NcEmptyContent from '../../NcEmptyContent/index.js'
 import NcLoadingIcon from '../../NcLoadingIcon/index.js'
 import NcTextField from '../../NcTextField/index.js'
-import { t } from '../../../l10n.js'
-
-import axios from '@nextcloud/axios'
-import { generateOcsUrl } from '@nextcloud/router'
-
-import LinkVariantIcon from 'vue-material-design-icons/LinkVariant.vue'
+import { delay, isUrl } from './utils.js'
 
 export default {
 	name: 'NcRawLinkInput',

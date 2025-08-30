@@ -51,9 +51,8 @@ export default {
 <script>
 import axios from '@nextcloud/axios'
 import { generateOcsUrl } from '@nextcloud/router'
-import NcTeamResources from './NcTeamResources.vue'
 import NcResource from './NcResource.vue'
-
+import NcTeamResources from './NcTeamResources.vue'
 import { t } from '../../l10n.js'
 
 export default {

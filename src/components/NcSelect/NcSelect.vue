@@ -393,7 +393,6 @@ export default {
 </template>
 
 <script>
-import { VueSelect } from '@nextcloud/vue-select'
 import {
 	autoUpdate,
 	computePosition,
@@ -402,18 +401,16 @@ import {
 	offset,
 	shift,
 } from '@floating-ui/dom'
+import { VueSelect } from '@nextcloud/vue-select'
 import Vue from 'vue'
-import { t } from '../../l10n.js'
-
 import ChevronDown from 'vue-material-design-icons/ChevronDown.vue'
 import Close from 'vue-material-design-icons/Close.vue'
-
+import { useModelMigration } from '../../composables/useModelMigration.ts'
+import { t } from '../../l10n.js'
+import GenRandomId from '../../utils/GenRandomId.js'
 import NcEllipsisedOption from '../NcEllipsisedOption/index.js'
 import NcListItemIcon from '../NcListItemIcon/index.js'
 import NcLoadingIcon from '../NcLoadingIcon/index.js'
-
-import GenRandomId from '../../utils/GenRandomId.js'
-import { useModelMigration } from '../../composables/useModelMigration.ts'
 
 import '@nextcloud/vue-select/dist/vue-select.css'
 

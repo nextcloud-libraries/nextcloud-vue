@@ -285,17 +285,16 @@ export default {
 </template>
 
 <script>
-import { n, t } from '../../l10n.js'
-import NcAutoCompleteResult from './NcAutoCompleteResult.vue'
-import richEditor from '../../mixins/richEditor/index.js'
-import { emojiSearch, emojiAddRecent } from '../../functions/emoji/index.ts'
-import { searchProvider, getLinkWithPicker } from '../NcRichText/index.js'
-
-import Tribute from 'tributejs/dist/tribute.esm.js'
 import debounce from 'debounce'
 import stringLength from 'string-length'
-import GenRandomId from '../../utils/GenRandomId.js'
+import Tribute from 'tributejs/dist/tribute.esm.js'
+import NcAutoCompleteResult from './NcAutoCompleteResult.vue'
 import { useModelMigration } from '../../composables/useModelMigration.ts'
+import { emojiAddRecent, emojiSearch } from '../../functions/emoji/index.ts'
+import { n, t } from '../../l10n.js'
+import richEditor from '../../mixins/richEditor/index.js'
+import GenRandomId from '../../utils/GenRandomId.js'
+import { getLinkWithPicker, searchProvider } from '../NcRichText/index.js'
 
 /**
  * Populate the list of text smiles we want to offer via Tribute.

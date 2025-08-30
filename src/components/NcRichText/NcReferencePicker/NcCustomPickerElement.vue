@@ -9,9 +9,9 @@
 
 <script>
 import {
-	renderCustomPickerElement,
-	isCustomPickerElementRegistered,
 	destroyCustomPickerElement,
+	isCustomPickerElementRegistered,
+	renderCustomPickerElement,
 } from '../../../functions/reference/customPickerElements.ts'
 
 export default {

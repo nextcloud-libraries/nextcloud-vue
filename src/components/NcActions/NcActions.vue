@@ -949,16 +949,14 @@ export default {
 </docs>
 
 <script>
+import { useElementBounding, useWindowSize } from '@vueuse/core'
+import Vue, { computed, ref, toRef } from 'vue'
+import IconDotsHorizontal from 'vue-material-design-icons/DotsHorizontal.vue'
+import { useTrapStackControl } from '../../composables/useTrapStackControl.ts'
+import { t } from '../../l10n.js'
+import GenRandomId from '../../utils/GenRandomId.js'
 import NcButton from '../NcButton/index.js'
 import NcPopover from '../NcPopover/index.js'
-import GenRandomId from '../../utils/GenRandomId.js'
-
-import { t } from '../../l10n.js'
-import { useTrapStackControl } from '../../composables/useTrapStackControl.ts'
-import { useElementBounding, useWindowSize } from '@vueuse/core'
-import Vue, { ref, computed, toRef } from 'vue'
-
-import IconDotsHorizontal from 'vue-material-design-icons/DotsHorizontal.vue'
 
 const focusableSelector = '.focusable'
 

@@ -52,14 +52,13 @@ section * {
 </template>
 
 <script>
+import axios from '@nextcloud/axios'
+import { generateOcsUrl } from '@nextcloud/router'
+import debounce from 'debounce'
 import NcSelect from '../../components/NcSelect/index.js'
+import { useModelMigration } from '../../composables/useModelMigration.ts'
 import { t } from '../../l10n.js'
 import GenRandomId from '../../utils/GenRandomId.js'
-import { useModelMigration } from '../../composables/useModelMigration.ts'
-
-import axios from '@nextcloud/axios'
-import debounce from 'debounce'
-import { generateOcsUrl } from '@nextcloud/router'
 
 export default {
 	name: 'NcSettingsSelectGroup',

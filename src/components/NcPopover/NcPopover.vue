@@ -165,12 +165,12 @@ See: https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Attributes/
 </template>
 
 <script>
-import Vue from 'vue'
-import { options, Dropdown } from 'floating-vue'
+import { Dropdown, options } from 'floating-vue'
 import { createFocusTrap } from 'focus-trap'
 import { tabbable } from 'tabbable'
-import { getTrapStack } from '../../utils/focusTrap.ts'
+import Vue from 'vue'
 import NcPopoverTriggerProvider from './NcPopoverTriggerProvider.vue'
+import { getTrapStack } from '../../utils/focusTrap.ts'
 
 const THEME = 'nc-popover-8'
 

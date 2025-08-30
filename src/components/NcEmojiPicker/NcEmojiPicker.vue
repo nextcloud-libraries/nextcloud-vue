@@ -195,17 +195,16 @@ This component allows the user to pick an emoji.
 </template>
 
 <script>
-import { Picker, Emoji, EmojiIndex } from 'emoji-mart-vue-fast'
-import { isFocusable } from 'tabbable'
-import { t } from '../../l10n.js'
-import { getCurrentSkinTone, setCurrentSkinTone } from '../../functions/emoji/emoji.ts'
-import { useTrapStackControl } from '../../composables/useTrapStackControl.ts'
-import { Color } from '../../utils/GenColors.js'
-
+import { Emoji, EmojiIndex, Picker } from 'emoji-mart-vue-fast'
 import data from 'emoji-mart-vue-fast/data/all.json'
+import { isFocusable } from 'tabbable'
 import IconCircle from 'vue-material-design-icons/Circle.vue'
-import NcButton from '../NcButton/index.js'
 import NcColorPicker from '../NcColorPicker/NcColorPicker.vue'
+import { useTrapStackControl } from '../../composables/useTrapStackControl.ts'
+import { getCurrentSkinTone, setCurrentSkinTone } from '../../functions/emoji/emoji.ts'
+import { t } from '../../l10n.js'
+import { Color } from '../../utils/GenColors.js'
+import NcButton from '../NcButton/index.js'
 import NcPopover from '../NcPopover/index.js'
 import NcTextField from '../NcTextField/index.js'
 

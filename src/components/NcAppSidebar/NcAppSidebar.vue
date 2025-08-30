@@ -708,28 +708,25 @@ export default {
 <script>
 // TODO: This is built-in for vue3 just drop the import
 import { Portal as Teleport } from '@linusborg/vue-simple-portal'
-
-import NcAppSidebarTabs from './NcAppSidebarTabs.vue'
-import NcActions from '../NcActions/index.js'
-import NcAppSidebarHeader from '../NcAppSidebarHeader/index.ts'
-import NcButton from '../NcButton/index.js'
-import NcEmptyContent from '../NcEmptyContent/index.js'
-import NcLoadingIcon from '../NcLoadingIcon/index.js'
-import Focus from '../../directives/Focus/index.ts'
-import { useIsSmallMobile } from '../../composables/useIsMobile/index.js'
-import GenRandomId from '../../utils/GenRandomId.js'
-import { getTrapStack } from '../../utils/focusTrap.ts'
-import { t } from '../../l10n.js'
-
+import { vOnClickOutside as ClickOutside } from '@vueuse/components'
+import { createFocusTrap } from 'focus-trap'
+import Vue, { provide, ref } from 'vue'
 import ArrowRight from 'vue-material-design-icons/ArrowRight.vue'
 import Close from 'vue-material-design-icons/Close.vue'
 import IconDockRight from 'vue-material-design-icons/DockRight.vue'
 import Star from 'vue-material-design-icons/Star.vue'
 import StarOutline from 'vue-material-design-icons/StarOutline.vue'
-
-import { vOnClickOutside as ClickOutside } from '@vueuse/components'
-import { createFocusTrap } from 'focus-trap'
-import Vue, { provide, ref } from 'vue'
+import NcAppSidebarTabs from './NcAppSidebarTabs.vue'
+import { useIsSmallMobile } from '../../composables/useIsMobile/index.js'
+import Focus from '../../directives/Focus/index.ts'
+import { t } from '../../l10n.js'
+import { getTrapStack } from '../../utils/focusTrap.ts'
+import GenRandomId from '../../utils/GenRandomId.js'
+import NcActions from '../NcActions/index.js'
+import NcAppSidebarHeader from '../NcAppSidebarHeader/index.ts'
+import NcButton from '../NcButton/index.js'
+import NcEmptyContent from '../NcEmptyContent/index.js'
+import NcLoadingIcon from '../NcLoadingIcon/index.js'
 
 export default {
 	name: 'NcAppSidebar',

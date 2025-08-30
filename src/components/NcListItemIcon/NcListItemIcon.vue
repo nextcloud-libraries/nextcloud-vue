@@ -150,11 +150,10 @@ It might be used for list rendering or within the multiselect for example
 </template>
 
 <script>
+import { userStatus } from '../../mixins/index.js'
 import NcAvatar from '../NcAvatar/index.js'
 import NcHighlight from '../NcHighlight/index.js'
 import NcIconSvgWrapper from '../NcIconSvgWrapper/index.js'
-
-import { userStatus } from '../../mixins/index.js'
 
 // global margin, ^2 ratio
 const margin = 8

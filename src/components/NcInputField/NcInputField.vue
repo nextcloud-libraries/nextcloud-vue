@@ -98,13 +98,12 @@ For a list of all available props and attributes, please check the [HTMLInputEle
 </template>
 
 <script>
-import NcButton from '../NcButton/index.js'
-import GenRandomId from '../../utils/GenRandomId.js'
-
 import AlertCircle from 'vue-material-design-icons/AlertCircleOutline.vue'
 import Check from 'vue-material-design-icons/Check.vue'
 import { useModelMigration } from '../../composables/useModelMigration.ts'
+import GenRandomId from '../../utils/GenRandomId.js'
 import { isLegacy32 } from '../../utils/legacy.ts'
+import NcButton from '../NcButton/index.js'
 
 export default {
 	name: 'NcInputField',

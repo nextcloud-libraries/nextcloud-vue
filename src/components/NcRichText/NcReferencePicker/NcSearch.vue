@@ -68,18 +68,15 @@
 </template>
 
 <script>
-import NcSearchResult from './NcSearchResult.vue'
-import { isUrl, delay } from './utils.js'
-import NcEmptyContent from '../../NcEmptyContent/index.js'
-import NcSelect from '../../NcSelect/index.js'
-
-import { t } from '../../../l10n.js'
-
 import axios from '@nextcloud/axios'
 import { generateOcsUrl } from '@nextcloud/router'
-
 import DotsHorizontalIcon from 'vue-material-design-icons/DotsHorizontal.vue'
 import LinkVariantIcon from 'vue-material-design-icons/LinkVariant.vue'
+import NcSearchResult from './NcSearchResult.vue'
+import { t } from '../../../l10n.js'
+import NcEmptyContent from '../../NcEmptyContent/index.js'
+import NcSelect from '../../NcSelect/index.js'
+import { delay, isUrl } from './utils.js'
 
 const LIMIT = 5
 

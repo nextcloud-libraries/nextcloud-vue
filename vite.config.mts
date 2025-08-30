@@ -4,14 +4,13 @@
  */
 
 import type { Plugin } from 'vite'
+
 import { createLibConfig } from '@nextcloud/vite-config'
 import { globSync } from 'glob'
-import { join, resolve } from 'node:path'
-import { defineConfig } from 'vite'
-
 import md5 from 'md5'
+import { join, resolve } from 'node:path'
 import * as url from 'url'
-
+import { defineConfig } from 'vite'
 import l10nPlugin from './build/l10n-plugin.mts'
 
 // `__dirname` not available on ES modules by default

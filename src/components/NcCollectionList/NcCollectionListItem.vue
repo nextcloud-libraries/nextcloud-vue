@@ -67,11 +67,10 @@
 
 <script>
 import { t } from '../../l10n.js'
-import { getRoute } from '../NcRichText/autolink.js'
-
-import NcActions from '../NcActions/index.js'
 import NcActionButton from '../NcActionButton/index.js'
+import NcActions from '../NcActions/index.js'
 import NcAvatar from '../NcAvatar/index.js'
+import { getRoute } from '../NcRichText/autolink.js'
 
 export default {
 	name: 'NcCollectionListItem',

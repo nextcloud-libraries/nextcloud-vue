@@ -22,11 +22,10 @@
 </template>
 
 <script>
-import NcButton from '../NcButton/index.js'
-import { t } from '../../l10n.js'
-
 import MenuIcon from 'vue-material-design-icons/Menu.vue'
 import MenuOpenIcon from 'vue-material-design-icons/MenuOpen.vue'
+import { t } from '../../l10n.js'
+import NcButton from '../NcButton/index.js'
 
 const disableKeyboardShortcuts = window.OCP?.Accessibility?.disableKeyboardShortcuts?.()
 

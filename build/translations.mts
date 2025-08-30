@@ -3,9 +3,9 @@
  * SPDX-License-Identifier: AGPL-3.0-or-later
  */
 
-import { join, basename } from 'path'
 import { readdir, readFile } from 'fs/promises'
 import { po as poParser } from 'gettext-parser'
+import { basename, join } from 'path'
 
 export async function loadTranslations(baseDir: string) {
 	const files = await readdir(baseDir)

@@ -209,13 +209,13 @@ export default {
 import { mdiArrowLeft, mdiCheck, mdiDotsHorizontal } from '@mdi/js'
 import { useVModel } from '@vueuse/core'
 import { Chrome } from 'vue-color'
+import { useModelMigration } from '../../composables/useModelMigration.ts'
+import { t } from '../../l10n.js'
+import { defaultPalette } from '../../utils/GenColors.js'
+import GenRandomId from '../../utils/GenRandomId.js'
 import NcButton from '../NcButton/index.js'
 import NcIconSvgWrapper from '../NcIconSvgWrapper/index.js'
 import NcPopover from '../NcPopover/index.js'
-import { useModelMigration } from '../../composables/useModelMigration.ts'
-import { defaultPalette } from '../../utils/GenColors.js'
-import GenRandomId from '../../utils/GenRandomId.js'
-import { t } from '../../l10n.js'
 
 const HEX_REGEX = /^#([a-f0-9]{3}|[a-f0-9]{6})$/i
 

@@ -56,9 +56,9 @@ This component is meant to be used inside a DashboardWidget component.
 </template>
 
 <script>
-import NcAvatar from '../NcAvatar/index.js'
-import NcActions from '../NcActions/index.js'
 import NcActionButton from '../NcActionButton/index.js'
+import NcActions from '../NcActions/index.js'
+import NcAvatar from '../NcAvatar/index.js'
 
 export default {
 	name: 'NcDashboardWidgetItem',

@@ -7,10 +7,10 @@ export {
 	type ReferenceWidgetProps,
 	type ReferenceWidgetRenderProperties,
 
+	hasInteractiveView,
+	isWidgetRegistered,
 	registerWidget,
 	renderWidget,
-	isWidgetRegistered,
-	hasInteractiveView,
 } from './widgets.ts'
 
 export { getLinkWithPicker } from './referencePickerModal.ts'
@@ -18,17 +18,18 @@ export { getLinkWithPicker } from './referencePickerModal.ts'
 export {
 	type ReferenceProvider,
 
+	anyLinkProviderId,
 	getProvider,
 	getProviders,
-	sortProviders,
 	searchProvider,
-	anyLinkProviderId,
+	sortProviders,
 } from './providerHelper.ts'
 
 export {
 	type CustomPickerElement,
-	registerCustomPickerElement,
-	renderCustomPickerElement,
+
 	isCustomPickerElementRegistered,
 	NcCustomPickerRenderResult,
+	registerCustomPickerElement,
+	renderCustomPickerElement,
 } from './customPickerElements.ts'

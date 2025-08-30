@@ -113,11 +113,10 @@ export default {
 <script setup>
 import { mdiClose } from '@mdi/js'
 import { computed, useSlots } from 'vue'
-import { t } from '../../l10n.js'
-
-import NcActions from '../NcActions/NcActions.vue'
 import NcActionButton from '../NcActionButton/NcActionButton.vue'
+import NcActions from '../NcActions/NcActions.vue'
 import NcIconSvgWrapper from '../NcIconSvgWrapper/NcIconSvgWrapper.vue'
+import { t } from '../../l10n.js'
 
 const props = defineProps({
 	/**

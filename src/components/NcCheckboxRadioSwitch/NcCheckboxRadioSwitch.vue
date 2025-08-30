@@ -333,10 +333,10 @@ export default {
 </template>
 
 <script>
-import { n, t } from '../../l10n.js'
-import GenRandomId from '../../utils/GenRandomId.js'
 import NcCheckboxContent, { TYPE_BUTTON, TYPE_CHECKBOX, TYPE_RADIO, TYPE_SWITCH } from './NcCheckboxContent.vue'
 import { useModelMigration } from '../../composables/useModelMigration.ts'
+import { n, t } from '../../l10n.js'
+import GenRandomId from '../../utils/GenRandomId.js'
 
 export default {
 	name: 'NcCheckboxRadioSwitch',

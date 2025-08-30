@@ -43,16 +43,14 @@
 </template>
 
 <script>
-import NcReferencePicker from './NcReferencePicker.vue'
-import { getCustomPickerElementSize, isCustomPickerElementRegistered } from '../../../functions/reference/customPickerElements.ts'
-import NcButton from '../../NcButton/index.js'
-import NcModal from '../../NcModal/index.js'
-import { t } from '../../../l10n.js'
-
 import { emit } from '@nextcloud/event-bus'
-
 import ArrowLeftIcon from 'vue-material-design-icons/ArrowLeft.vue'
 import CloseIcon from 'vue-material-design-icons/Close.vue'
+import NcReferencePicker from './NcReferencePicker.vue'
+import { t } from '../../../l10n.js'
+import NcButton from '../../NcButton/index.js'
+import NcModal from '../../NcModal/index.js'
+import { getCustomPickerElementSize, isCustomPickerElementRegistered } from './../../../functions/reference/customPickerElements.ts'
 
 export default {
 	name: 'NcReferencePickerModal',

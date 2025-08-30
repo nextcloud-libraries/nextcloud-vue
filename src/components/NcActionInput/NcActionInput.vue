@@ -249,13 +249,13 @@ For the `NcSelect` component, all events will be passed through. Please see the 
 
 <script>
 import { defineAsyncComponent } from 'vue'
+import { useModelMigration } from '../../composables/useModelMigration.ts'
+import { t } from '../../l10n.js'
+import ActionGlobalMixin from '../../mixins/actionGlobal.js'
+import GenRandomId from '../../utils/GenRandomId.js'
 import NcDateTimePickerNative from '../NcDateTimePickerNative/index.js'
 import NcPasswordField from '../NcPasswordField/index.js'
 import NcTextField from '../NcTextField/index.js'
-import ActionGlobalMixin from '../../mixins/actionGlobal.js'
-import GenRandomId from '../../utils/GenRandomId.js'
-import { t } from '../../l10n.js'
-import { useModelMigration } from '../../composables/useModelMigration.ts'
 
 export default {
 	name: 'NcActionInput',

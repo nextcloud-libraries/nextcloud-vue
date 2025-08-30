@@ -33,7 +33,6 @@
 <script>
 import { useIsDarkTheme } from '../../composables/useIsDarkTheme/index.ts'
 import { getAvatarUrl } from '../../utils/getAvatarUrl.ts'
-
 import NcUserStatusIcon from '../NcUserStatusIcon/index.js'
 
 export default {

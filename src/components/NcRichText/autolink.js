@@ -3,11 +3,10 @@
  * SPDX-License-Identifier: AGPL-3.0-or-later
  */
 
-import { URL_PATTERN_AUTOLINK } from './helpers.js'
-
-import { visit, SKIP } from 'unist-util-visit'
-import { u } from 'unist-builder'
 import { getBaseUrl, getRootUrl } from '@nextcloud/router'
+import { u } from 'unist-builder'
+import { SKIP, visit } from 'unist-util-visit'
+import { URL_PATTERN_AUTOLINK } from './helpers.js'
 
 const NcLink = {
 	name: 'NcLink',

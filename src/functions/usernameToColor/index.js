@@ -3,9 +3,8 @@
  * SPDX-License-Identifier: AGPL-3.0-or-later
  */
 
-import { GenColors } from '../../utils/GenColors.js'
-
 import md5 from 'md5'
+import { GenColors } from '../../utils/GenColors.js'
 
 /**
  * Generate a color from a username

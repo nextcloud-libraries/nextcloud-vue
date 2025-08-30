@@ -259,11 +259,9 @@ export default {
 <script>
 import { useElementSize } from '@vueuse/core'
 import { computed, defineComponent, ref } from 'vue'
-
-import NcModal from '../NcModal/index.js'
-import NcDialogButton from '../NcDialogButton/index.js'
-
 import GenRandomId from '../../utils/GenRandomId.js'
+import NcDialogButton from '../NcDialogButton/index.js'
+import NcModal from '../NcModal/index.js'
 
 export default defineComponent({
 	name: 'NcDialog',

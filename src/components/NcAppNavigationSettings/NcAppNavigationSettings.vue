@@ -29,9 +29,9 @@
 import { mdiCog, mdiCogOutline } from '@mdi/js'
 import { vOnClickOutside as ClickOutside } from '@vueuse/components'
 import NcIconSvgWrapper from '../NcIconSvgWrapper/NcIconSvgWrapper.vue'
+import { t } from '../../l10n.js'
 import { clickOutsideOptions } from '../../mixins/index.js'
 import { isLegacy32 } from '../../utils/legacy.ts'
-import { t } from '../../l10n.js'
 
 export default {
 	directives: {

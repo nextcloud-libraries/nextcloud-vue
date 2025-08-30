@@ -80,8 +80,8 @@ export default {
 	</span>
 </template>
 <script>
-import NcHighlight from '../NcHighlight/index.js'
 import FindRanges from '../../utils/FindRanges.js'
+import NcHighlight from '../NcHighlight/index.js'
 
 export default {
 	name: 'NcEllipsisedOption',

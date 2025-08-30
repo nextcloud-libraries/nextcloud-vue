@@ -3,9 +3,10 @@
  * SPDX-License-Identifier: AGPL-3.0-or-later
  */
 
+import type { Component } from 'vue'
+
 import { mount } from 'cypress/vue2'
 import NcModal from '../../src/components/NcModal/NcModal.vue'
-import type { Component } from 'vue'
 
 describe('NcModal', () => {
 	it('Modal is labelled correctly if name is set', () => {

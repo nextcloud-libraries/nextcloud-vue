@@ -42,14 +42,13 @@
 </template>
 
 <script>
+import LinkVariantIcon from 'vue-material-design-icons/LinkVariant.vue'
 import { searchProvider } from '../../../functions/reference/providerHelper.ts'
-import { isUrl } from './utils.js'
+import { t } from '../../../l10n.js'
 import NcEmptyContent from '../../NcEmptyContent/index.js'
 import NcHighlight from '../../NcHighlight/index.js'
 import NcSelect from '../../NcSelect/index.js'
-import { t } from '../../../l10n.js'
-
-import LinkVariantIcon from 'vue-material-design-icons/LinkVariant.vue'
+import { isUrl } from './utils.js'
 
 export default {
 	name: 'NcProviderList',

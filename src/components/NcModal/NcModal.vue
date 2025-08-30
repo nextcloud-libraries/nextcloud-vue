@@ -334,23 +334,20 @@ export default {
 </template>
 
 <script>
-import { useSwipe } from '@vueuse/core'
 import { mdiChevronLeft, mdiChevronRight } from '@mdi/js'
+import { useSwipe } from '@vueuse/core'
 import { createFocusTrap } from 'focus-trap'
 import Vue from 'vue'
-
-import GenRandomId from '../../utils/GenRandomId.js'
-import { getTrapStack } from '../../utils/focusTrap.ts'
-import { t } from '../../l10n.js'
-
-import NcActions from '../NcActions/index.js'
-import NcButton from '../NcButton/index.js'
-import NcIconSvgWrapper from '../NcIconSvgWrapper/index.js'
-import Timer from '../../utils/Timer.js'
-
 import Close from 'vue-material-design-icons/Close.vue'
 import Pause from 'vue-material-design-icons/Pause.vue'
 import Play from 'vue-material-design-icons/Play.vue'
+import { t } from '../../l10n.js'
+import { getTrapStack } from '../../utils/focusTrap.ts'
+import GenRandomId from '../../utils/GenRandomId.js'
+import Timer from '../../utils/Timer.js'
+import NcActions from '../NcActions/index.js'
+import NcButton from '../NcButton/index.js'
+import NcIconSvgWrapper from '../NcIconSvgWrapper/index.js'
 
 export default {
 	name: 'NcModal',

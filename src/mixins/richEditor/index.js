@@ -3,11 +3,10 @@
  * SPDX-License-Identifier: AGPL-3.0-or-later
  */
 
-import NcMentionBubble from '../../components/NcRichContenteditable/NcMentionBubble.vue'
-
 import escapeHtml from 'escape-html'
 import stripTags from 'striptags'
 import Vue from 'vue'
+import NcMentionBubble from '../../components/NcRichContenteditable/NcMentionBubble.vue'
 
 // Referenced from public function getMentions(): https://github.com/nextcloud/server/blob/master/lib/private/Comments/Comment.php
 // Beginning or whitespace. Uses positive lookahead (to work on MobileSafari <16.4)

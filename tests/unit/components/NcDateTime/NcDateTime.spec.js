@@ -3,11 +3,10 @@
  * SPDX-License-Identifier: AGPL-3.0-or-later
  */
 
+import * as nextcloudl10n from '@nextcloud/l10n'
 import { mount } from '@vue/test-utils'
 import { nextTick } from 'vue'
 import NcDateTime from '../../../../src/components/NcDateTime/NcDateTime.vue'
-
-import * as nextcloudl10n from '@nextcloud/l10n'
 
 jest.mock('@nextcloud/l10n', () => ({
 	...jest.requireActual('@nextcloud/l10n'),

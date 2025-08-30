@@ -176,8 +176,8 @@ export default {
 </template>
 
 <script>
-import Vue from 'vue'
 import DOMPurify from 'dompurify'
+import Vue from 'vue'
 
 export default {
 	name: 'NcIconSvgWrapper',
