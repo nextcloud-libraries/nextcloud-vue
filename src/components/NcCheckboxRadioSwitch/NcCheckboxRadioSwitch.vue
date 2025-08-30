@@ -23,6 +23,10 @@ Note: All attributes on the element are passed to the inner input element - exce
 		<NcCheckboxRadioSwitch v-model="sharingEnabled">
 			Enable sharing. This can contain a long multiline text, that will be wrapped in a second row. It is generally not advised to have such long text inside of an element
 		</NcCheckboxRadioSwitch>
+
+		<NcCheckboxRadioSwitch v-model="sharingEnabled" description="The description">
+			Enable sharing with description
+		</NcCheckboxRadioSwitch>
 		<br>
 		sharingEnabled: {{ sharingEnabled }}
 	</div>
@@ -237,6 +241,16 @@ export default {
 		<NcCheckboxRadioSwitch v-model="sharingEnabled" type="switch">
 			Enable sharing. This can contain a long multiline text, that will be wrapped in a second row. It is generally not advised to have such long text inside of an element
 		</NcCheckboxRadioSwitch>
+		<NcCheckboxRadioSwitch v-model="sharingEnabled" type="switch" description="Instead you can use a description as a prop which can also be a long multiline text, that will be wrapped in a second row.">
+			Enable sharing.
+		</NcCheckboxRadioSwitch>
+
+		<NcCheckboxRadioSwitch v-model="sharingEnabled" type="switch">
+			Enable sharing.
+			<template #description>
+				Or you can use a description as slot which can also be a <strong>long multiline text</strong>, that will be wrapped in a second row.
+			</template>
+		</NcCheckboxRadioSwitch>
 		<br>
 		sharingEnabled: {{ sharingEnabled }}
 	</div>
@@ -275,7 +289,8 @@ export default {
 		v-on="isButtonType ? listeners : null">
 		<input v-if="!isButtonType"
 			:id="id"
-			:aria-labelledby="!isButtonType && !ariaLabel ? `${id}-label` : null"
+			:aria-labelledby="!isButtonType && !ariaLabel ? labelId : null"
+			:aria-describedby="!isButtonType && (description || $slots.description) ? descriptionId : nonDataAttrs['aria-describedby']"
 			:aria-label="ariaLabel || undefined"
 			class="checkbox-radio-switch__input"
 			:disabled="disabled"
@@ -296,11 +311,19 @@ export default {
 			:button-variant="buttonVariant"
 			:is-checked="isChecked"
 			:loading="loading"
+			:label-id="labelId"
+			:description-id="descriptionId"
 			:size="size"
 			@click.native="onToggle">
 			<template #icon>
 				<!-- @slot The checkbox/radio icon, you can use it for adding an icon to the button variant -->
 				<slot name="icon" />
+			</template>
+			<template v-if="$slots.description || description" #description>
+				<!-- @slot The checkbox/radio/switch description, you can use it for adding a more complex description element as opposed to the description prop -->
+				<slot name="description">
+					{{ description }}
+				</slot>
 			</template>
 
 			<!-- @slot The checkbox/radio label -->
@@ -473,6 +496,16 @@ export default {
 			type: String,
 			default: null,
 		},
+
+		/**
+		 * Description
+		 *
+		 * This is unsupported when using button has type
+		 */
+		description: {
+			type: String,
+			default: null,
+		},
 	},
 
 	emits: [
@@ -490,6 +523,8 @@ export default {
 		const model = useModelMigration('checked', 'update:checked')
 		return {
 			model,
+			labelId: GenRandomId(),
+			descriptionId: GenRandomId(),
 		}
 	},
 
