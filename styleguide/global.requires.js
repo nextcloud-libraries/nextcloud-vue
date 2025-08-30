@@ -2,7 +2,6 @@
  * SPDX-FileCopyrightText: 2019 Nextcloud GmbH and Nextcloud contributors
  * SPDX-License-Identifier: AGPL-3.0-or-later
  */
-/* eslint-disable-next-line */
 import 'core-js/stable'
 import Vue from 'vue'
 import { isA11yActivation } from '../src/functions/a11y/index.ts'

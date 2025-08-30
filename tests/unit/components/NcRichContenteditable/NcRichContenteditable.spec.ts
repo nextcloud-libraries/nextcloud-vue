@@ -14,7 +14,6 @@ Tribute.mockImplementation(() => ({
 	detach: jest.fn(),
 }))
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
 function mountNcRichContenteditable({ propsData, listeners, attrs }: any = {}) {
 	let currentValue = propsData?.value
 

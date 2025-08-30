@@ -43,7 +43,6 @@ describe('NcAppSettingsDialog: Sections registration', () => {
 	})
 
 	it('can register a new section', async () => {
-		// eslint-disable-next-line @typescript-eslint/no-explicit-any
 		const wrapper = mount<Vue & { registerSection: any }>(NcAppSettingsDialog, {
 			propsData: {
 				open: true,
@@ -58,7 +57,6 @@ describe('NcAppSettingsDialog: Sections registration', () => {
 	})
 
 	it('warn on register a already registered section name', async () => {
-		// eslint-disable-next-line @typescript-eslint/no-explicit-any
 		const wrapper = mount<Vue & { registerSection: any }>(NcAppSettingsDialog, {
 			propsData: {
 				open: true,
@@ -83,7 +81,6 @@ describe('NcAppSettingsDialog: Sections registration', () => {
 	})
 
 	it('error on register a already registered section ID', async () => {
-		// eslint-disable-next-line @typescript-eslint/no-explicit-any
 		const wrapper = mount<Vue & { registerSection: any }>(NcAppSettingsDialog, {
 			propsData: {
 				open: true,
@@ -103,7 +100,6 @@ describe('NcAppSettingsDialog: Sections registration', () => {
 	})
 
 	it('can unregister a section', async () => {
-		// eslint-disable-next-line @typescript-eslint/no-explicit-any
 		const wrapper = mount<Vue & { registerSection: any, unregisterSection: any }>(NcAppSettingsDialog, {
 			propsData: {
 				open: true,

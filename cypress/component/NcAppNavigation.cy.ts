@@ -45,7 +45,6 @@ describe('NcAppNavigation hotkeys', () => {
 			cy.document().then((doc) => {
 				const activeElement = doc.activeElement
 				const navigation = doc.querySelector('nav')
-				// eslint-disable-next-line no-unused-expressions
 				expect(navigation?.contains(activeElement)).to.be.true
 			})
 		})

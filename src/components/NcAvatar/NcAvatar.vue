@@ -812,7 +812,6 @@ export default {
 				isGuest: this.isGuest,
 			})
 
-			// eslint-disable-next-line camelcase
 			if (user === getCurrentUser()?.uid && typeof oc_userconfig !== 'undefined') {
 				avatarUrl += '?v=' + oc_userconfig.avatar.version
 			}

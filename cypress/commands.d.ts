@@ -8,7 +8,6 @@ import type { mount } from '@cypress/vue2'
 // Augment the Cypress namespace to include type definitions for
 // your custom commands
 declare global {
-	// eslint-disable-next-line @typescript-eslint/no-namespace
 	namespace Cypress {
 		interface Chainable {
 			mount: typeof mount
