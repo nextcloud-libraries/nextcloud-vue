@@ -503,9 +503,7 @@ export default {
 		}
 
 		// Add the root icon to the first breadcrumb
-		// eslint-disable-next-line import/no-named-as-default-member
 		Vue.set(breadcrumbs[0].componentOptions.propsData, 'icon', this.rootIcon)
-		// eslint-disable-next-line import/no-named-as-default-member
 		Vue.set(breadcrumbs[0].componentOptions.propsData, 'ref', 'breadcrumbs')
 
 		/**
@@ -516,7 +514,6 @@ export default {
 		const breadcrumbsRefs = {}
 		// Add the breadcrumbs to the array of the created VNodes, check if hiding them is necessary.
 		breadcrumbs.forEach((crumb, index) => {
-			// eslint-disable-next-line import/no-named-as-default-member
 			Vue.set(crumb, 'ref', `crumb-${index}`)
 			breadcrumbsRefs[index] = crumb
 		})

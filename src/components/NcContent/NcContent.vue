@@ -98,10 +98,8 @@ import { t } from '../../l10n.js'
 import NcButton from '../NcButton/NcButton.vue'
 import NcIconSvgWrapper from '../NcIconSvgWrapper/NcIconSvgWrapper.vue'
 
-/* eslint-disable import/no-unresolved */
 import contentSvg from './content-selected.svg?raw'
 import navigationSvg from './navigation-selected.svg?raw'
-/* eslint-enable import/no-unresolved */
 
 export default {
 	name: 'NcContent',
