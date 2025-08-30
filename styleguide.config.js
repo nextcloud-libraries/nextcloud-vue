@@ -31,7 +31,7 @@ module.exports = async () => {
 			path.join(__dirname, 'styleguide/window.js'),
 			path.join(__dirname, 'styleguide/global.requires.js'),
 			path.join(__dirname, 'styleguide/assets/icons.css'),
-			!!process.env.NEXTCLOUD_LEGACY
+			process.env.NEXTCLOUD_LEGACY
 				? path.join(__dirname, 'styleguide/assets/legacy.css')
 				: path.join(__dirname, 'styleguide/assets/additional.css'),
 			path.join(__dirname, 'styleguide/assets/styleguide.css'),
