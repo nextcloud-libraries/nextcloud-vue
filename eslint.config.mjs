@@ -82,7 +82,6 @@ export default defineConfig([
 			'vue/space-infix-ops': 'off',
 
 			// Non auto-fixable
-			camelcase: 'off',
 			'import-extensions/extensions': 'off',
 			'jsdoc/require-param-description': 'off',
 			'jsdoc/require-param-type': 'off',

@@ -812,8 +812,8 @@ export default {
 				isGuest: this.isGuest,
 			})
 
-			if (user === getCurrentUser()?.uid && typeof oc_userconfig !== 'undefined') {
-				avatarUrl += '?v=' + oc_userconfig.avatar.version
+			if (user === getCurrentUser()?.uid && typeof window.oc_userconfig !== 'undefined') {
+				avatarUrl += '?v=' + window.oc_userconfig.avatar.version
 			}
 
 			return avatarUrl
