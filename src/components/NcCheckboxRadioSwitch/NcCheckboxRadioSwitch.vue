@@ -360,7 +360,7 @@ export default {
 		id: {
 			type: String,
 			default: () => 'checkbox-radio-switch-' + GenRandomId(),
-			validator: id => id.trim() !== '',
+			validator: (id) => id.trim() !== '',
 		},
 
 		/**
@@ -400,7 +400,7 @@ export default {
 		type: {
 			type: String,
 			default: 'checkbox',
-			validator: type => [
+			validator: (type) => [
 				TYPE_CHECKBOX,
 				TYPE_RADIO,
 				TYPE_SWITCH,
@@ -425,7 +425,7 @@ export default {
 		buttonVariantGrouped: {
 			type: String,
 			default: 'no',
-			validator: v => ['no', 'vertical', 'horizontal'].includes(v),
+			validator: (v) => ['no', 'vertical', 'horizontal'].includes(v),
 		},
 
 		/**
@@ -679,8 +679,8 @@ export default {
 
 			// Dispatch the checked values as an array if multiple, or single value otherwise
 			const values = this.getInputsSet()
-				.filter(input => input.checked)
-				.map(input => input.value)
+				.filter((input) => input.checked)
+				.map((input) => input.value)
 
 			if (values.includes(this.value)) {
 				this.model = values.filter((v) => v !== this.value)

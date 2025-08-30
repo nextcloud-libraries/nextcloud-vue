@@ -134,7 +134,7 @@ export default {
 			 * in the future, other options can be introduced to better display the different areas
 			 */
 			let timezonesGrouped = []
-			Object.values(timezoneList).forEach(group => {
+			Object.values(timezoneList).forEach((group) => {
 				// Add an entry as group label
 				// timezonesGrouped.push({
 				// label: group.continent,
@@ -183,7 +183,7 @@ export default {
 
 			// For the continent labels, we have to check if one region matches every search term.
 			if (option.timezoneId.startsWith('tz-group__')) {
-				return option.regions.some(region => {
+				return option.regions.some((region) => {
 					return this.matchTimezoneId(region.timezoneId, terms)
 				})
 			}
@@ -193,7 +193,7 @@ export default {
 		},
 
 		matchTimezoneId(timezoneId, terms) {
-			return terms.every(term => timezoneId.toLowerCase().includes(term.toLowerCase()))
+			return terms.every((term) => timezoneId.toLowerCase().includes(term.toLowerCase()))
 		},
 	},
 }

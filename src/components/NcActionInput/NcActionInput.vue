@@ -284,7 +284,7 @@ export default {
 		id: {
 			type: String,
 			default: () => 'action-' + GenRandomId(),
-			validator: id => id.trim() !== '',
+			validator: (id) => id.trim() !== '',
 		},
 		/**
 		 * id attribute of the text input element
@@ -292,7 +292,7 @@ export default {
 		inputId: {
 			type: String,
 			default: () => 'action-input-' + GenRandomId(),
-			validator: id => id.trim() !== '',
+			validator: (id) => id.trim() !== '',
 		},
 		/**
 		 * Icon to show with the action, can be either a CSS class or an URL

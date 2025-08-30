@@ -41,7 +41,7 @@ export function getProvider(providerId: string): ReferenceProvider | undefined {
 		return anyLinkProvider
 	}
 
-	return getProviders().find(p => p.id === providerId)
+	return getProviders().find((p) => p.id === providerId)
 }
 
 /**

@@ -13,7 +13,7 @@
 function GetChildren(context, name) {
 	const children = []
 	if (context.$children) {
-		context.$children.forEach(child => {
+		context.$children.forEach((child) => {
 			if (child.$options && child.$options.name === name) {
 				children.push(child)
 			}

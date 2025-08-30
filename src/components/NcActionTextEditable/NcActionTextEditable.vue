@@ -117,7 +117,7 @@ export default {
 		id: {
 			type: String,
 			default: () => 'action-' + GenRandomId(),
-			validator: id => id.trim() !== '',
+			validator: (id) => id.trim() !== '',
 		},
 		/**
 		 * disabled state of the text area

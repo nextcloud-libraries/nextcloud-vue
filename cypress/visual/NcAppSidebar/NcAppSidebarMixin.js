@@ -43,11 +43,11 @@ export default function(compact) {
 			components,
 		}
 
-		subnames.forEach(subname => {
-			nameEditable.forEach(editable => {
-				starred.forEach(star => {
-					header.forEach(head => {
-						secondary.forEach(second => {
+		subnames.forEach((subname) => {
+			nameEditable.forEach((editable) => {
+				starred.forEach((star) => {
+					header.forEach((head) => {
+						secondary.forEach((second) => {
 							// TODO remove when https://github.com/mjhea0/cypress-visual-regression/pull/56
 							const fileName = sanitize(`NcAppSidebar.vue
 									-subname_${subname ? 'true' : 'null'}

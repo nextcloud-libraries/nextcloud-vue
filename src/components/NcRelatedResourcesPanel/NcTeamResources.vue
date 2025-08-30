@@ -117,7 +117,7 @@ export default {
 		},
 		teamProviders() {
 			return (teamId) => {
-				const team = this.teamResources.find(t => t.teamId === teamId)
+				const team = this.teamResources.find((t) => t.teamId === teamId)
 				return team.resources?.reduce((acc, resource) => {
 					if (resource.provider.id === this.providerId && resource.id === String(this.itemId)) {
 						return acc

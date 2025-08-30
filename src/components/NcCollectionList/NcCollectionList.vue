@@ -133,9 +133,9 @@ export default {
 		const search = debounce(function(query, loading) {
 			if (query !== '') {
 				loading(true)
-				searchService(query).then(collections => {
+				searchService(query).then((collections) => {
 					searchCollections.value = collections
-				}).catch(e => {
+				}).catch((e) => {
 					console.error('Failed to search for collections', e)
 				}).finally(() => {
 					loading(false)
@@ -170,8 +170,8 @@ export default {
 
 	computed: {
 		collections() {
-			return this.storedCollections.filter(collection => collection.resources
-				.some(resource => resource && resource.id === String(this.id) && resource.type === this.type),
+			return this.storedCollections.filter((collection) => collection.resources
+				.some((resource) => resource && resource.id === String(this.id) && resource.type === this.type),
 			)
 		},
 
@@ -183,7 +183,7 @@ export default {
 
 		options() {
 			const options = []
-			window.OCP.Collaboration.getTypes().sort().forEach(type => {
+			window.OCP.Collaboration.getTypes().sort().forEach((type) => {
 				options.push({
 					method: METHOD_CREATE_COLLECTION,
 					type,
@@ -193,7 +193,7 @@ export default {
 				})
 			})
 			for (const index in this.searchCollections) {
-				if (!this.collections.find(collection => collection.id === this.searchCollections[index].id)) {
+				if (!this.collections.find((collection) => collection.id === this.searchCollections[index].id)) {
 					options.push({
 						method: METHOD_ADD_TO_COLLECTION,
 						title: this.searchCollections[index].name,
@@ -231,7 +231,7 @@ export default {
 
 		select(selectedOption) {
 			if (selectedOption.method === METHOD_CREATE_COLLECTION) {
-				selectedOption.action().then(resourceId => {
+				selectedOption.action().then((resourceId) => {
 					this.createCollection({
 						baseResourceType: this.type,
 						baseResourceId: this.id,

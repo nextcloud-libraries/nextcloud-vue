@@ -72,7 +72,7 @@ export function spawnDialog(
 				},
 				on: {
 					close: (...rest: unknown[]) => {
-						onClose(...rest.map(v => toRaw(v)))
+						onClose(...rest.map((v) => toRaw(v)))
 						vm.$destroy()
 						element.remove()
 					},

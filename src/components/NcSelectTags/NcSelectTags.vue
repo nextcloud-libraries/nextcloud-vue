@@ -322,10 +322,10 @@ export default {
 			}
 			if (this.multiple) {
 				return this.model
-					.filter(tag => tag !== '')
-					.map(id => this.tags.find(tag2 => tag2.id === id))
+					.filter((tag) => tag !== '')
+					.map((id) => this.tags.find((tag2) => tag2.id === id))
 			} else {
-				return this.tags.find(tag => tag.id === this.model)
+				return this.tags.find((tag) => tag.id === this.model)
 			}
 		},
 
@@ -372,7 +372,7 @@ export default {
 				 *
 				 * @type {number|number[]}
 				 */
-				this.model = value.map(element => element.id)
+				this.model = value.map((element) => element.id)
 			} else {
 				if (value === null) {
 					this.model = null

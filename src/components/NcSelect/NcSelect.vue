@@ -527,7 +527,7 @@ export default {
 			type: Object,
 			default: () => ({
 				Deselect: {
-					render: createElement => createElement(Close, {
+					render: (createElement) => createElement(Close, {
 						props: {
 							size: 20,
 							fillColor: 'var(--vs-controls-color)',
@@ -955,7 +955,7 @@ export default {
 		propsToForward() {
 			const vueSelectKeys = [
 				...Object.keys(VueSelect.props),
-				...VueSelect.mixins.flatMap(mixin => Object.keys(mixin.props ?? {})),
+				...VueSelect.mixins.flatMap((mixin) => Object.keys(mixin.props ?? {})),
 			]
 			const initialPropsToForward = Object.fromEntries(
 				Object.entries(this.$props)

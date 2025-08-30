@@ -110,7 +110,7 @@ export default {
 		id: {
 			type: String,
 			default: () => 'settings-input-text-' + GenRandomId(),
-			validator: id => id.trim() !== '',
+			validator: (id) => id.trim() !== '',
 		},
 	},
 

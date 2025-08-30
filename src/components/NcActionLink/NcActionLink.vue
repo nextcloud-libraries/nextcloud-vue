@@ -130,7 +130,7 @@ export default {
 			type: String,
 			default: '#',
 			required: true,
-			validator: value => {
+			validator: (value) => {
 				// href is either an anchor or a valid url starting with a scheme or a relative path
 				try {
 					return new URL(value)
@@ -152,7 +152,7 @@ export default {
 		target: {
 			type: String,
 			default: '_self',
-			validator: value => {
+			validator: (value) => {
 				return value && (!value.startsWith('_') || ['_blank', '_self', '_parent', '_top'].indexOf(value) > -1)
 			},
 		},

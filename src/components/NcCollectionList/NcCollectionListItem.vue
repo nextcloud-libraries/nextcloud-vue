@@ -113,7 +113,7 @@ export default {
 
 		resources() {
 			// invalid resources come from server as empty array ([]) and not an object
-			return this.collection.resources?.filter(resource => !Array.isArray(resource)) ?? []
+			return this.collection.resources?.filter((resource) => !Array.isArray(resource)) ?? []
 		},
 
 		getComponent() {

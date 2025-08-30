@@ -168,7 +168,7 @@ export function useHotKey(
 		} else if (typeof keysOrFilter === 'string') {
 			return validateKeyEvent(event, keysOrFilter)
 		} else if (Array.isArray(keysOrFilter)) {
-			return keysOrFilter.some(key => validateKeyEvent(event, key))
+			return keysOrFilter.some((key) => validateKeyEvent(event, key))
 		} else {
 			return true
 		}

@@ -103,7 +103,7 @@ export default {
 		type: {
 			type: String,
 			default: 'warning',
-			validator: type => ['success', 'info', 'warning', 'error'].includes(type),
+			validator: (type) => ['success', 'info', 'warning', 'error'].includes(type),
 		},
 		/**
 		 * Enforce the `alert` role on the note card.

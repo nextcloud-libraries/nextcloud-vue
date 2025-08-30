@@ -72,7 +72,7 @@ describe('NcRichText', () => {
 
 				mount(NcRichText, {
 					propsData: {
-						text: testCases.map(i => i.input).join('\n'),
+						text: testCases.map((i) => i.input).join('\n'),
 						useMarkdown: true,
 					},
 				})
@@ -585,7 +585,7 @@ describe('NcRichText', () => {
 
 				mount(NcRichText, {
 					propsData: {
-						text: testCases.map(i => i.input).join('\n'),
+						text: testCases.map((i) => i.input).join('\n'),
 						useMarkdown: true,
 					},
 				})
@@ -606,7 +606,7 @@ describe('NcRichText', () => {
 
 				mount(NcRichText, {
 					propsData: {
-						text: testCases.map(i => i.input).join('\n'),
+						text: testCases.map((i) => i.input).join('\n'),
 						useMarkdown: true,
 					},
 				})
@@ -627,7 +627,7 @@ describe('NcRichText', () => {
 
 				mount(NcRichText, {
 					propsData: {
-						text: testCases.map(i => i.input).join('\n'),
+						text: testCases.map((i) => i.input).join('\n'),
 						useMarkdown: true,
 					},
 				})
@@ -649,7 +649,7 @@ describe('NcRichText', () => {
 
 				mount(NcRichText, {
 					propsData: {
-						text: testCases.map(i => i.input).join('\n'),
+						text: testCases.map((i) => i.input).join('\n'),
 						useExtendedMarkdown: true,
 					},
 				})
@@ -660,7 +660,7 @@ describe('NcRichText', () => {
 					// Vue 2.7 renders three non-breaking spaces here for some reason
 					expect(item).contain(testCases[index].output)
 				})
-				cy.get('input:checked').should('have.length', testCases.filter(test => test.checked).length)
+				cy.get('input:checked').should('have.length', testCases.filter((test) => test.checked).length)
 			})
 		})
 

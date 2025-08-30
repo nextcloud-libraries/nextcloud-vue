@@ -11,8 +11,8 @@ export async function loadTranslations(baseDir: string) {
 	const files = await readdir(baseDir)
 
 	const promises = files
-		.filter(name => name !== 'messages.pot' && name.endsWith('.pot'))
-		.map(file => join(baseDir, file))
+		.filter((name) => name !== 'messages.pot' && name.endsWith('.pot'))
+		.map((file) => join(baseDir, file))
 		.map(parseFile)
 
 	const parsedTranslations = await Promise.all(promises)

@@ -479,14 +479,14 @@ export default {
 		// Get the breadcrumbs
 		const breadcrumbs = []
 		// We have to iterate over all slot elements
-		this.$slots.default.forEach(vnode => {
+		this.$slots.default.forEach((vnode) => {
 			if (this.isBreadcrumb(vnode)) {
 				breadcrumbs.push(vnode)
 				return
 			}
 			// If we encounter a Fragment, we have to check its children too
 			if (vnode?.type === Fragment) {
-				vnode?.children?.forEach?.(child => {
+				vnode?.children?.forEach?.((child) => {
 					if (this.isBreadcrumb(child)) {
 						breadcrumbs.push(child)
 					}
@@ -559,7 +559,7 @@ export default {
 					},
 				},
 			// Add all hidden breadcrumbs as ActionRouter or ActionLink
-			}, this.hiddenIndices.filter(index => index <= breadcrumbs.length - 1).map(index => {
+			}, this.hiddenIndices.filter((index) => index <= breadcrumbs.length - 1).map((index) => {
 				const crumb = breadcrumbs[index]
 				// Get the parameters from the breadcrumb component props
 				const to = crumb.componentOptions.propsData.to

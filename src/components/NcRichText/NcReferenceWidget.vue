@@ -122,7 +122,7 @@ export default {
 		numberOfLines() {
 			// no description for width < 450, one line until 550 and so on
 			const lineCountOffsets = [450, 550, 650, Infinity]
-			return lineCountOffsets.findIndex(max => this.width < max)
+			return lineCountOffsets.findIndex((max) => this.width < max)
 		},
 		compactLink() {
 			const link = this.reference.openGraphObject.link

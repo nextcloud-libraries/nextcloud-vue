@@ -441,7 +441,7 @@ export default {
 		size: {
 			type: String,
 			default: 'normal',
-			validator: size => {
+			validator: (size) => {
 				return ['small', 'normal', 'large', 'full'].includes(size)
 			},
 		},

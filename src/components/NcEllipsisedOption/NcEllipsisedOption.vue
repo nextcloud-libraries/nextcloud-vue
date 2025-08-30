@@ -152,7 +152,7 @@ export default {
 		 * @return {Array} The array with the ranges to highlight
 		 */
 		highlight2() {
-			return this.highlight1.map(range => {
+			return this.highlight1.map((range) => {
 				return {
 					start: range.start - this.split,
 					end: range.end - this.split,

@@ -95,7 +95,7 @@ export default {
 		id: {
 			type: String,
 			default: () => 'action-' + GenRandomId(),
-			validator: id => id.trim() !== '',
+			validator: (id) => id.trim() !== '',
 		},
 
 		/**
@@ -191,7 +191,7 @@ export default {
 		 * @return {object[]}
 		 */
 		groupsArray() {
-			return Object.values(this.groups).filter(g => !this.model.includes(g.id))
+			return Object.values(this.groups).filter((g) => !this.model.includes(g.id))
 		},
 	},
 	watch: {
@@ -201,7 +201,7 @@ export default {
 		value: {
 			handler() {
 				const loadedGroupIds = Object.keys(this.groups)
-				const missing = this.filteredValue.filter(group => !loadedGroupIds.includes(group))
+				const missing = this.filteredValue.filter((group) => !loadedGroupIds.includes(group))
 				missing.forEach((groupId) => {
 					this.loadGroup(groupId)
 				})
@@ -219,7 +219,7 @@ export default {
 
 		let savedGroups = window.sessionStorage.getItem(storageName)
 		if (savedGroups) {
-			savedGroups = Object.fromEntries(JSON.parse(savedGroups).map(group => [group.id, group]))
+			savedGroups = Object.fromEntries(JSON.parse(savedGroups).map((group) => [group.id, group]))
 			this.groups = { ...this.groups, ...savedGroups }
 		} else {
 			await this.loadGroup('')

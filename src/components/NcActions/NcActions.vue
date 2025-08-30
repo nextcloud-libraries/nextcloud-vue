@@ -1720,7 +1720,7 @@ export default {
 		 * This also ensure that we don't get 'text' elements, which would
 		 * become problematic later on.
 		 */
-		const actions = (this.$slots.default || []).filter(action => this.getActionName(action))
+		const actions = (this.$slots.default || []).filter((action) => this.getActionName(action))
 
 		// Check that we have at least one action
 		if (actions.length === 0) {
@@ -1746,7 +1746,7 @@ export default {
 		/**
 		 * @type {import('vue').VNode[]}
 		 */
-		const menuActions = actions.filter(action => !inlineActions.includes(action))
+		const menuActions = actions.filter((action) => !inlineActions.includes(action))
 
 		/**
 		 * Determine what kind of menu we have.
@@ -1759,9 +1759,9 @@ export default {
 			const menuItemsActions = ['NcActionButton', 'NcActionButtonGroup', 'NcActionCheckbox', 'NcActionRadio']
 			const linkActions = ['NcActionLink', 'NcActionRouter']
 
-			const hasTextInputAction = menuActions.some(action => textInputActions.includes(this.getActionName(action)))
-			const hasMenuItemAction = menuActions.some(action => menuItemsActions.includes(this.getActionName(action)))
-			const hasLinkAction = menuActions.some(action => linkActions.includes(this.getActionName(action)))
+			const hasTextInputAction = menuActions.some((action) => textInputActions.includes(this.getActionName(action)))
+			const hasMenuItemAction = menuActions.some((action) => menuItemsActions.includes(this.getActionName(action)))
+			const hasLinkAction = menuActions.some((action) => linkActions.includes(this.getActionName(action)))
 
 			if (hasTextInputAction) {
 				this.actionsMenuSemanticType = 'dialog'

@@ -36,7 +36,7 @@ function mockRequests(error) {
 	// Mock requesting groups
 	const requestGroups = request.responseURL.match(/cloud\/groups\/details\?search=([^&]*)&limit=\d+$/)
 	if (requestGroups) {
-		data = { groups: USER_GROUPS.filter(e => !requestGroups[1] || e.displayname.startsWith(requestGroups[1]) || e.id.startsWith(requestGroups[1])) }
+		data = { groups: USER_GROUPS.filter((e) => !requestGroups[1] || e.displayname.startsWith(requestGroups[1]) || e.id.startsWith(requestGroups[1])) }
 	}
 
 	if (data) {
@@ -45,7 +45,7 @@ function mockRequests(error) {
 	return Promise.reject(error)
 }
 
-axios.interceptors.response.use((r) => r, e => mockRequests(e))
+axios.interceptors.response.use((r) => r, (e) => mockRequests(e))
 
 // app name fallback
 window.appName = 'nextcloud-vue'

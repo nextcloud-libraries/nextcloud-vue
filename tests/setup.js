@@ -29,7 +29,7 @@ if (typeof globalThis.structuredClone === 'undefined') {
 		}
 
 		const copy = {}
-		Object.keys(obj).forEach(key => {
+		Object.keys(obj).forEach((key) => {
 			copy[key] = globalThis.structuredClone(obj[key])
 		})
 

@@ -149,7 +149,7 @@ export default {
 		},
 		formattedSearchResults() {
 			const results = []
-			this.searchProviderIds.forEach(pid => {
+			this.searchProviderIds.forEach((pid) => {
 				if (this.resultsBySearchProvider[pid].entries.length > 0) {
 					// don't show group name entry if there is only one search provider and one result
 					if (this.searchProviderIds.length > 1 || this.resultsBySearchProvider[pid].entries.length > 1) {
@@ -191,7 +191,7 @@ export default {
 		t,
 		resetResults() {
 			const resultsBySearchProvider = {}
-			this.searchProviderIds.forEach(pid => {
+			this.searchProviderIds.forEach((pid) => {
 				resultsBySearchProvider[pid] = {
 					entries: [],
 				}
@@ -247,7 +247,7 @@ export default {
 			this.searching = true
 
 			const searchPromises = searchProviderId === null
-				? [...this.searchProviderIds].map(pid => {
+				? [...this.searchProviderIds].map((pid) => {
 					return this.searchOneProvider(pid)
 				})
 				: [this.searchOneProvider(searchProviderId, this.resultsBySearchProvider[searchProviderId]?.cursor ?? null)]
@@ -256,7 +256,7 @@ export default {
 
 			return Promise.allSettled(searchPromises)
 				.then((promises) => {
-					const isOneCanceled = !!promises.find(p => {
+					const isOneCanceled = !!promises.find((p) => {
 						return p.status === 'rejected' && (p.reason.name === 'CanceledError' || p.reason.code === 'ERR_CANCELED')
 					})
 					// nothing was canceled: not searching

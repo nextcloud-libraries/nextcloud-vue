@@ -162,7 +162,7 @@ const instanceName = getCapabilities().theming?.name ?? 'Nextcloud'
 const activeApp = loadState('core', 'active-app', appName)
 const localizedAppNameState = loadState('core', 'apps', {})
 const localizedAppName = (Array.isArray(localizedAppNameState)
-	? localizedAppNameState.find(app => app.id === activeApp)?.name
+	? localizedAppNameState.find((app) => app.id === activeApp)?.name
 	: localizedAppNameState[activeApp]?.name
 ) ?? appName
 

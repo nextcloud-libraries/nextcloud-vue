@@ -100,7 +100,7 @@ export default {
 		type: {
 			type: String,
 			default: 'checkbox',
-			validator: type => [
+			validator: (type) => [
 				TYPE_CHECKBOX,
 				TYPE_RADIO,
 				TYPE_SWITCH,

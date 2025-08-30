@@ -201,7 +201,7 @@ export default {
 			return h('span', {}, this.text)
 		}
 
-		return h('span', {}, this.chunks.map(chunk => {
+		return h('span', {}, this.chunks.map((chunk) => {
 			return chunk.highlight ? h('strong', {}, chunk.text) : chunk.text
 		}))
 	},

@@ -463,7 +463,7 @@ export default {
 		id: {
 			type: String,
 			default: () => 'app-navigation-item-' + GenRandomId(),
-			validator: id => id.trim() !== '',
+			validator: (id) => id.trim() !== '',
 		},
 
 		/**

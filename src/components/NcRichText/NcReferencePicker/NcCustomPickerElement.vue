@@ -53,7 +53,7 @@ export default {
 
 			const renderFunctionResult = renderCustomPickerElement(this.$refs.domElement, { providerId: this.provider.id, accessible: false })
 			// this works whether renderCustomPickerElement returns a promise or a value
-			Promise.resolve(renderFunctionResult).then(result => {
+			Promise.resolve(renderFunctionResult).then((result) => {
 				this.renderResult = result
 				if (this.renderResult.object?._isVue && this.renderResult.object?.$on) {
 					this.renderResult.object.$on('submit', this.onSubmit)

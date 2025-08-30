@@ -48,7 +48,6 @@ export default defineConfig([
 			'jsdoc/tag-lines': 'off',
 			'@nextcloud-l10n/non-breaking-space': 'off',
 			'@stylistic/array-element-newline': 'off',
-			'@stylistic/arrow-parens': 'off',
 			'@stylistic/function-call-argument-newline': 'off',
 			'@stylistic/implicit-arrow-linebreak': 'off',
 			'@stylistic/indent': 'off',

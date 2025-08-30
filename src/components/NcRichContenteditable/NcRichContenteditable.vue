@@ -589,14 +589,14 @@ export default {
 			tributesCollection.push({
 				fillAttr: 'id',
 				// Search against id and label (display name) (fallback to title for v8.0.0..8.6.1 compatibility)
-				lookup: result => `${result.id} ${result.label ?? result.title}`,
+				lookup: (result) => `${result.id} ${result.label ?? result.title}`,
 				requireLeadingSpace: true,
 				// Popup mention autocompletion templates
-				menuItemTemplate: item => renderMenuItem(this.renderComponentHtml(item.original, NcAutoCompleteResult)),
+				menuItemTemplate: (item) => renderMenuItem(this.renderComponentHtml(item.original, NcAutoCompleteResult)),
 				// Hide if no results
 				noMatchTemplate: () => '<span class="hidden"></span>',
 				// Inner display of mentions
-				selectTemplate: item => this.genSelectTemplate(item?.original?.id),
+				selectTemplate: (item) => this.genSelectTemplate(item?.original?.id),
 				// Autocompletion results
 				values: this.debouncedAutoComplete,
 				// Class added to the menu container
@@ -614,7 +614,7 @@ export default {
 					lookup: (result, query) => query,
 					requireLeadingSpace: true,
 					// Popup mention autocompletion templates
-					menuItemTemplate: item => {
+					menuItemTemplate: (item) => {
 						if (textSmiles.includes(item.original)) {
 							// Display the raw text string for :), :-D, … for non emoji results,
 							// instead of trying to show an image and their name.
@@ -663,7 +663,7 @@ export default {
 					lookup: (result, query) => query,
 					requireLeadingSpace: true,
 					// Popup mention autocompletion templates
-					menuItemTemplate: item => renderMenuItem(`<img class="${this.$style['tribute-item__icon']}" src="${item.original.icon_url}"> <span class="${this.$style['tribute-item__title']}">${item.original.title}</span>`),
+					menuItemTemplate: (item) => renderMenuItem(`<img class="${this.$style['tribute-item__icon']}" src="${item.original.icon_url}"> <span class="${this.$style['tribute-item__title']}">${item.original.title}</span>`),
 					// Hide if no results
 					noMatchTemplate: () => t('No link provider found'),
 					selectTemplate: this.getLink,
@@ -691,7 +691,7 @@ export default {
 			// there is no way to get a tribute result asynchronously
 			// so we immediately insert a node and replace it when the result comes
 			getLinkWithPicker(item.original.id)
-				.then(result => {
+				.then((result) => {
 					// replace dummy temp element by a text node which contains the picker result
 					const tmpElem = document.getElementById('tmp-smart-picker-result-node')
 					const eventData = {
@@ -765,7 +765,7 @@ export default {
 
 			// If we have a file or if we don't have any text, ignore
 			if (clipboardData.files.length !== 0
-				|| !Object.values(clipboardData.items).find(item => item?.type.startsWith('text'))) {
+				|| !Object.values(clipboardData.items).find((item) => item?.type.startsWith('text'))) {
 				return
 			}
 
@@ -979,7 +979,7 @@ export default {
 		 */
 		showTribute(trigger) {
 			this.focus()
-			const index = this.tribute.collection.findIndex(collection => collection.trigger === trigger)
+			const index = this.tribute.collection.findIndex((collection) => collection.trigger === trigger)
 			this.tribute.showMenuForCollection(this.$refs.contenteditable, index)
 			this.updateValue(this.$refs.contenteditable.innerHTML)
 			document.addEventListener('click', this.hideTribute, true)

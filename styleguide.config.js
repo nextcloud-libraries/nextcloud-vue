@@ -22,7 +22,7 @@ module.exports = async () => {
 		module: {
 			// Ignore eslint
 			rules: base.module.rules.filter(
-				rule => rule.use !== 'eslint-loader',
+				(rule) => rule.use !== 'eslint-loader',
 			),
 		},
 	}

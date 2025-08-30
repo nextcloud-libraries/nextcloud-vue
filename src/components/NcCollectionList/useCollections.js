@@ -29,11 +29,11 @@ export function useCollections() {
 	}
 
 	const removeCollection = (collectionId) => {
-		set(storedCollections, 'value', storedCollections.value.filter(item => item.id !== collectionId))
+		set(storedCollections, 'value', storedCollections.value.filter((item) => item.id !== collectionId))
 	}
 
 	const updateCollection = (collection) => {
-		const index = storedCollections.value.findIndex(item => item.id === collection.id)
+		const index = storedCollections.value.findIndex((item) => item.id === collection.id)
 		if (index !== -1) {
 			set(storedCollections.value, index, collection)
 		} else {

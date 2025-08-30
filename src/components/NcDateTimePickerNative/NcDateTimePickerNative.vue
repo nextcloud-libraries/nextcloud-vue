@@ -147,7 +147,7 @@ export default {
 		id: {
 			type: String,
 			default: () => 'date-time-picker-' + GenRandomId(),
-			validator: id => id.trim() !== '',
+			validator: (id) => id.trim() !== '',
 		},
 		/**
 		 * type attribute of the input field
