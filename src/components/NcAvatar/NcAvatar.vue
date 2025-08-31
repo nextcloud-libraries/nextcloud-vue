@@ -379,6 +379,7 @@ export default {
 		 */
 		showUserStatus: {
 			type: Boolean,
+			// eslint-disable-next-line vue/no-boolean-default
 			default: true,
 		},
 
@@ -397,6 +398,7 @@ export default {
 		 */
 		showUserStatusCompact: {
 			type: Boolean,
+			// eslint-disable-next-line vue/no-boolean-default
 			default: true,
 		},
 
@@ -452,6 +454,7 @@ export default {
 		 */
 		allowPlaceholder: {
 			type: Boolean,
+			// eslint-disable-next-line vue/no-boolean-default
 			default: true,
 		},
 

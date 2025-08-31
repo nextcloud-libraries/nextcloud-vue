@@ -95,6 +95,7 @@ export default {
 		 */
 		checked: {
 			type: Boolean,
+			// eslint-disable-next-line vue/no-boolean-default
 			default: undefined,
 		},
 

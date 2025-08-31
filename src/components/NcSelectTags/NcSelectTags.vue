@@ -174,6 +174,7 @@ export default {
 		 */
 		fetchTags: {
 			type: Boolean,
+			// eslint-disable-next-line vue/no-boolean-default
 			default: true,
 		},
 
@@ -217,6 +218,7 @@ export default {
 		 */
 		multiple: {
 			type: Boolean,
+			// eslint-disable-next-line vue/no-boolean-default
 			default: true,
 		},
 

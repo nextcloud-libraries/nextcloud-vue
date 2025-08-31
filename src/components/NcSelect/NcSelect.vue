@@ -489,6 +489,7 @@ export default {
 		 */
 		appendToBody: {
 			type: Boolean,
+			// eslint-disable-next-line vue/no-boolean-default
 			default: true,
 		},
 
@@ -514,6 +515,7 @@ export default {
 		 */
 		closeOnSelect: {
 			type: Boolean,
+			// eslint-disable-next-line vue/no-boolean-default
 			default: true,
 		},
 
@@ -642,6 +644,7 @@ export default {
 		 */
 		keyboardFocusBorder: {
 			type: Boolean,
+			// eslint-disable-next-line vue/no-boolean-default
 			default: true,
 		},
 
@@ -770,6 +773,7 @@ export default {
 		 */
 		resetFocusOnOptionsChange: {
 			type: Boolean,
+			// eslint-disable-next-line vue/no-boolean-default
 			default: true,
 		},
 

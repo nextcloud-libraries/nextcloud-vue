@@ -86,7 +86,6 @@ export default defineConfig([
 		name: '@nextcloud/vue/disabled-during-migration',
 		files: ['**/*.{js,ts,vue,mjs,mts}'],
 		rules: {
-			'vue/no-boolean-default': 'off',
 			'vue/no-unused-properties': 'off',
 			'vue/no-unused-refs': 'off',
 			'vue/require-prop-comment': 'off',

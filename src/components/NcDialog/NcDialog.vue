@@ -318,6 +318,7 @@ export default defineComponent({
 		 */
 		open: {
 			type: Boolean,
+			// eslint-disable-next-line vue/no-boolean-default
 			default: true,
 		},
 
@@ -364,6 +365,7 @@ export default defineComponent({
 		 */
 		canClose: {
 			type: Boolean,
+			// eslint-disable-next-line vue/no-boolean-default
 			default: true,
 		},
 

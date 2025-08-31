@@ -106,6 +106,7 @@ export default {
 		 */
 		limitWidth: {
 			type: Boolean,
+			// eslint-disable-next-line vue/no-boolean-default
 			default: true,
 		},
 	},

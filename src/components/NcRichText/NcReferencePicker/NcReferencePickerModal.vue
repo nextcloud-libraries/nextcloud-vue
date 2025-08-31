@@ -82,6 +82,7 @@ export default {
 		 */
 		focusOnCreate: {
 			type: Boolean,
+			// eslint-disable-next-line vue/no-boolean-default
 			default: true,
 		},
 

@@ -362,6 +362,7 @@ export default {
 
 		referenceInteractive: {
 			type: Boolean,
+			// eslint-disable-next-line vue/no-boolean-default
 			default: true,
 		},
 
@@ -396,6 +397,7 @@ export default {
 
 		autolink: {
 			type: Boolean,
+			// eslint-disable-next-line vue/no-boolean-default
 			default: true,
 		},
 	},

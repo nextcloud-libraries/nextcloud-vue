@@ -386,6 +386,7 @@ export default {
 		 */
 		contenteditable: {
 			type: Boolean,
+			// eslint-disable-next-line vue/no-boolean-default
 			default: true,
 		},
 
@@ -410,6 +411,7 @@ export default {
 		 */
 		emojiAutocomplete: {
 			type: Boolean,
+			// eslint-disable-next-line vue/no-boolean-default
 			default: true,
 		},
 
@@ -418,6 +420,7 @@ export default {
 		 */
 		linkAutocomplete: {
 			type: Boolean,
+			// eslint-disable-next-line vue/no-boolean-default
 			default: true,
 		},
 	},
