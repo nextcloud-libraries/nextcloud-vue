@@ -7,6 +7,9 @@ import { u } from 'unist-builder'
 import { visit } from 'unist-util-visit'
 import { parseUrl } from './autolink.js'
 
+/**
+ * Remark plugin for handling placeholders
+ */
 export function remarkPlaceholder() {
 	return function(ast) {
 		visit(ast, (node) => node.type === 'text', visitor)
@@ -35,6 +38,15 @@ export function remarkPlaceholder() {
 	}
 }
 
+/**
+ * Prepare text node for rendering with autolink
+ *
+ * @param {object} root0 - Rendering context
+ * @param {Function} root0.h - Vue's createElement (h) function
+ * @param {object} root0.context - Rendering context
+ * @param {string | Array} text - The text or text array to process
+ * @return {string | Array} Processed text or components array
+ */
 export function prepareTextNode({ h, context }, text) {
 	if (context.autolink) {
 		text = parseUrl(text)

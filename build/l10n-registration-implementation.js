@@ -15,7 +15,10 @@ export const n = (...args) => gettext.ngettext(...args)
 export const t = (...args) => gettext.gettext(...args)
 
 /**
- * @param {{ l: string, t: Record<string, { v: string[], p?: string }> }[]} chunks
+ * This is called by the l10n plugin for the chunk(s) of translations used by a used component.
+ * So that only those chunks used by the imported components are loaded.
+ *
+ * @param {{ l: string, t: Record<string, { v: string[], p?: string }> }[]} chunks - The translation chunk to be registered
  */
 export function register(...chunks) {
 	for (const chunk of chunks) {

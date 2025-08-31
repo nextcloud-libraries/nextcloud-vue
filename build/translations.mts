@@ -7,6 +7,9 @@ import { readdir, readFile } from 'fs/promises'
 import { po as poParser } from 'gettext-parser'
 import { basename, join } from 'path'
 
+/**
+ * @param baseDir - Base directory to look for translations
+ */
 export async function loadTranslations(baseDir: string) {
 	const files = await readdir(baseDir)
 

@@ -7,6 +7,11 @@ import type { VNode, VNodeChildren } from 'vue'
 
 import { computed, onBeforeMount, ref, useSlots } from 'vue'
 
+/**
+ * Extract text from a slot's vnode
+ *
+ * @param slot - Slot's content VNode
+ */
 function slotText(slot: VNode): string {
 	const extractText = (child?: VNodeChildren): string => {
 		if (typeof child === 'string') {
@@ -22,18 +27,19 @@ function slotText(slot: VNode): string {
 	return extractText(slot.children)
 }
 
+/**
+ * Extract text from the default slot of a NcAction* component
+ */
 export function useActionText() {
 	const slots = useSlots()
 	const text = ref('')
 	const isLongText = computed(() => text.value && text.value.trim().length > 20)
 
-	function getText() {
-		return (slots.default?.() ?? [])
+	onBeforeMount(() => {
+		text.value = (slots.default?.() ?? [])
 			.map(slotText)
 			.join('')
-	}
-
-	onBeforeMount(() => { text.value = getText() })
+	})
 
 	return {
 		/**

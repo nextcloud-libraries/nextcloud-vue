@@ -28,6 +28,14 @@ const NcLink = {
 	},
 }
 
+/**
+ * Remark plugin for autolink parsing
+ *
+ * @param {object} root0 - Options
+ * @param {boolean} root0.autolink - Whether to enable autolink parsing
+ * @param {boolean} root0.useMarkdown - Whether markdown is being used
+ * @param {boolean} root0.useExtendedMarkdown - Whether extended markdown is being used
+ */
 export function remarkAutolink({ autolink, useMarkdown, useExtendedMarkdown }) {
 	return function(tree) {
 		// remark-gfm has its own autolink parser which can not be disabled
@@ -54,6 +62,12 @@ export function remarkAutolink({ autolink, useMarkdown, useExtendedMarkdown }) {
 	}
 }
 
+/**
+ * Parse URLs in text and create link components
+ *
+ * @param {string} text - Text to parse
+ * @return {Array<string | { component: typeof NcLink, props: { href: string } }>} Array of text parts - plain text and description of the link component to use
+ */
 export function parseUrl(text) {
 	let match = URL_PATTERN_AUTOLINK.exec(text)
 	const list = []

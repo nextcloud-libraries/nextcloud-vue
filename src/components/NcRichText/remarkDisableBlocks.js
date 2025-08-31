@@ -13,6 +13,9 @@ import clone from 'clone'
 
 const noop = () => false
 
+/**
+ * @param {string} msg - Error message
+ */
 function throwing(msg) {
 	return () => {
 		throw new Error(msg)

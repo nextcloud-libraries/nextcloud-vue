@@ -7,6 +7,11 @@ import { t } from '../l10n.js'
 
 type Status = 'online' | 'away' | 'busy' | 'dnd' | 'invisible' | 'offline'
 
+/**
+ * Get the translated label for a given user status
+ *
+ * @param status - The user status
+ */
 export function getUserStatusText(status: Status): string {
 	switch (status) {
 		case 'away': return t('away') // TRANSLATORS: User status if the user is currently away from keyboard

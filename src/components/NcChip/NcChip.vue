@@ -102,7 +102,7 @@ export default {
 			<NcActionButton
 				v-if="canClose"
 				close-after-click
-				@click="onClose">
+				@click="emit('close')">
 				<template #icon>
 					<NcIconSvgWrapper :path="mdiClose" :size="20" />
 				</template>
@@ -210,13 +210,6 @@ const realVariant = computed(() => props.type !== 'secondary' ? props.type : pro
 const canClose = computed(() => !props.noClose)
 const hasActions = () => Boolean(slots.actions?.())
 const hasIcon = () => Boolean(props.iconPath || props.iconSvg || !!slots.icon?.())
-
-function onClose() {
-	/**
-	 * Emitted when the close button is clicked
-	 */
-	emit('close')
-}
 </script>
 
 <style scoped lang="scss">
