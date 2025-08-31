@@ -46,7 +46,6 @@ export default defineConfig([
 			'jsdoc/no-types': 'off',
 			'jsdoc/require-jsdoc': 'off',
 			'jsdoc/tag-lines': 'off',
-			'@nextcloud-l10n/non-breaking-space': 'off',
 			'vue/block-spacing': 'off',
 			'vue/comma-dangle': 'off',
 			'vue/first-attribute-linebreak': 'off',

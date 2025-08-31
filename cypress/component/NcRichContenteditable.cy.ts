@@ -14,7 +14,7 @@ it('Placeholder is set', () => {
 
 	cy.get('[role="textbox"]')
 		.should('be.visible')
-		.and('have.attr', 'aria-placeholder', 'Write a message …')
+		.and('have.attr', 'aria-placeholder', 'Write a message …')
 })
 
 // does not work as Cypress is using webpack which does not have the l10n plugin
@@ -32,5 +32,5 @@ it.skip('Placeholder is correctly translated', () => {
 
 	cy.get('[role="textbox"]')
 		.should('be.visible')
-		.and('have.attr', 'aria-placeholder', 'Nachricht schreiben …')
+		.and('have.attr', 'aria-placeholder', 'Nachricht schreiben …')
 })
