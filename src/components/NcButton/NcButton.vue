@@ -690,8 +690,7 @@ export default {
 			console.warn('You need to fill either the text or the ariaLabel props in the button component.', {
 				text: this.$slots.default?.[0]?.text,
 				ariaLabel: this.ariaLabel,
-			},
-			this)
+			}, this)
 		}
 
 		const isLink = (this.to || this.href)
@@ -757,8 +756,7 @@ export default {
 								attrs: {
 									'aria-hidden': 'true',
 								},
-							},
-							[this.$slots.icon],
+							}, [this.$slots.icon],
 							)
 						: null,
 					hasText ? h('span', { class: 'button-vue__text' }, [this.$slots.default]) : null,

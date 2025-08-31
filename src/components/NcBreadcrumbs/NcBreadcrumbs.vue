@@ -607,8 +607,7 @@ export default {
 						dragenter: ($event) => this.dragEnter($event, disabled),
 						dragleave: ($event) => this.dragLeave($event, disabled),
 					},
-				},
-				[folderIcon, name],
+				}, [folderIcon, name],
 				)
 			})),
 			)

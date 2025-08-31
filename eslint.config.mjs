@@ -48,7 +48,6 @@ export default defineConfig([
 			'jsdoc/tag-lines': 'off',
 			'@nextcloud-l10n/non-breaking-space': 'off',
 			'@stylistic/array-element-newline': 'off',
-			'@stylistic/function-call-argument-newline': 'off',
 			'vue/block-spacing': 'off',
 			'vue/comma-dangle': 'off',
 			'vue/first-attribute-linebreak': 'off',
