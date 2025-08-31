@@ -9,4 +9,4 @@ import '../../styleguide/assets/additional.css'
 // Global state
 import '../../styleguide/window.js'
 // cypress commands
-import './commands'
+import './commands.ts'

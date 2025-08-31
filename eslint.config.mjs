@@ -78,7 +78,6 @@ export default defineConfig([
 			'vue/space-infix-ops': 'off',
 
 			// Non auto-fixable
-			'import-extensions/extensions': 'off',
 			'jsdoc/require-param-description': 'off',
 			'jsdoc/require-param-type': 'off',
 			'no-console': 'off',

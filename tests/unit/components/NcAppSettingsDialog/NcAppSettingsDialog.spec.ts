@@ -6,7 +6,7 @@
 import { mount } from '@vue/test-utils'
 import { defineComponent, inject, nextTick, onMounted } from 'vue'
 import NcAppSettingsDialog from '../../../../src/components/NcAppSettingsDialog/NcAppSettingsDialog.vue'
-import { resizeWindowWidth } from '../../testing-utils'
+import { resizeWindowWidth } from '../../testing-utils.ts'
 
 /**
  * Mocked AppSettingsSection that just registers it self
