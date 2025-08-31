@@ -88,6 +88,7 @@ export default {
 	},
 }
 </script>
+
 <style lang="scss" scoped>
 #app-settings {
 	margin-top: auto;

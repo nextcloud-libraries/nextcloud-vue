@@ -252,6 +252,7 @@ export default {
 	},
 }
 </script>
+
 <style lang="scss" scoped>
 .app-sidebar-tabs {
 	display: flex;

@@ -59,6 +59,7 @@ export default {
 ```
 
 </docs>
+
 <template>
 	<component :is="isPopoverComponent"
 		trigger="hover focus"

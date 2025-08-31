@@ -33,6 +33,7 @@
 		</NcButton>
 	</div>
 </template>
+
 <script>
 import { useElementSize, useIntersectionObserver } from '@vueuse/core'
 import { nextTick, ref } from 'vue'
@@ -237,6 +238,7 @@ export default {
 	},
 }
 </script>
+
 <style lang="scss" scoped>
 
 @mixin widget {

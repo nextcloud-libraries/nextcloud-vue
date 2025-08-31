@@ -79,6 +79,7 @@ export default {
 			:highlight="highlight2" />
 	</span>
 </template>
+
 <script>
 import FindRanges from '../../utils/FindRanges.js'
 import NcHighlight from '../NcHighlight/index.js'
@@ -168,6 +169,7 @@ export default {
 	},
 }
 </script>
+
 <style lang="scss" scoped>
 .name-parts {
 	display: flex;

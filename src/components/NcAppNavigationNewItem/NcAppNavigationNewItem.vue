@@ -46,6 +46,7 @@
 	</script>
 ```
 </docs>
+
 <template>
 	<li :class="{
 			'app-navigation-entry--newItemActive': newItemActive,

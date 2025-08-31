@@ -10,6 +10,7 @@
 <NcInputConfirmCancel @confirm="alert('confirm')" @cancel="alert('cancel')" />
 ```
 </docs>
+
 <template>
 	<div class="app-navigation-input-confirm">
 		<form @submit.prevent="confirm"
@@ -41,6 +42,7 @@
 		</form>
 	</div>
 </template>
+
 <script>
 import ArrowRight from 'vue-material-design-icons/ArrowRight.vue'
 import Close from 'vue-material-design-icons/Close.vue'

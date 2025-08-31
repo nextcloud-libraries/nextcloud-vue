@@ -187,6 +187,7 @@ export default {
 ```
 
 </docs>
+
 <template>
 	<span v-click-outside="closeMenu"
 		:title="tooltip"

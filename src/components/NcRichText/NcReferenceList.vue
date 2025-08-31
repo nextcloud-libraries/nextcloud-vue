@@ -12,6 +12,7 @@
 			:interactive-opt-in="interactiveOptIn" />
 	</div>
 </template>
+
 <script>
 import { getCurrentUser } from '@nextcloud/auth'
 import axios from '@nextcloud/axios'
@@ -163,6 +164,7 @@ export default {
 	},
 }
 </script>
+
 <style lang="scss" scoped>
 .widgets--list {
 	width: 100%;

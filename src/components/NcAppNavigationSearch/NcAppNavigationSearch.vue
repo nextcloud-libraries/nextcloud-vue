@@ -119,6 +119,7 @@ export default {
 </style>
 ```
 </docs>
+
 <template>
 	<div class="app-navigation-search"
 		:class="{
