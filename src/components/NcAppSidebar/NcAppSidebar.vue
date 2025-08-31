@@ -780,10 +780,12 @@ export default {
 			default: '',
 		},
 
+		/**
+		 * Note: in @nextcloud/vue v9 this prop is required
+		 */
 		name: {
 			type: String,
 			default: '',
-			required: true,
 		},
 
 		/**
