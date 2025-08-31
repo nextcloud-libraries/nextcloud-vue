@@ -107,7 +107,8 @@ export default {
 </docs>
 
 <template>
-	<DatePicker ref="datepicker"
+	<DatePicker
+		ref="datepicker"
 		:append-to-body="appendToBody"
 		:clearable="clearable"
 		:format="internalFormat"
@@ -126,12 +127,14 @@ export default {
 		@select-month="handleSelectMonth"
 		@input="model = $event">
 		<template #icon-calendar>
-			<NcPopover v-if="showTimezoneSelect"
+			<NcPopover
+				v-if="showTimezoneSelect"
 				popup-role="dialog"
 				:shown.sync="showTimezonePopover"
 				popover-base-class="timezone-select__popper">
 				<template #trigger="{ attrs }">
-					<button class="datetime-picker-inline-icon"
+					<button
+						class="datetime-picker-inline-icon"
 						:class="{ 'datetime-picker-inline-icon--highlighted': highlightTimezone }"
 						v-bind="attrs"
 						@mousedown.stop.prevent="() => {}">
@@ -139,14 +142,16 @@ export default {
 					</button>
 				</template>
 
-				<div role="dialog"
+				<div
+					role="dialog"
 					:aria-labelledby="timezoneDialogHeaderId">
 					<div class="timezone-popover-wrapper__label">
 						<strong :id="timezoneDialogHeaderId">
 							{{ t('Please select a time zone:') }}
 						</strong>
 					</div>
-					<NcTimezonePicker v-model="tzVal"
+					<NcTimezonePicker
+						v-model="tzVal"
 						class="timezone-popover-wrapper__timezone-select"
 						@input="$emit('update:timezone-id', arguments[0])" />
 				</div>

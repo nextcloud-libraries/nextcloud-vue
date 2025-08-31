@@ -109,12 +109,14 @@ It might be used for list rendering or within the multiselect for example
 </docs>
 
 <template>
-	<span :id="id"
+	<span
+		:id="id"
 		class="option"
 		:class="{ 'option--compact': avatarSize < defaultSize }"
 		:style="cssVars"
 		v-on="$listeners">
-		<NcAvatar v-bind="$attrs"
+		<NcAvatar
+			v-bind="$attrs"
 			:disable-menu="true"
 			:disable-tooltip="true"
 			:display-name="displayName || name"
@@ -122,10 +124,12 @@ It might be used for list rendering or within the multiselect for example
 			:size="avatarSize"
 			class="option__avatar" />
 		<div class="option__details">
-			<NcHighlight class="option__lineone"
+			<NcHighlight
+				class="option__lineone"
 				:text="name"
 				:search="searchParts[0]" />
-			<NcHighlight v-if="isValidSubname && isSizeBigEnough"
+			<NcHighlight
+				v-if="isValidSubname && isSizeBigEnough"
 				class="option__linetwo"
 				:text="subname"
 				:search="searchParts[1]" />
@@ -137,11 +141,13 @@ It might be used for list rendering or within the multiselect for example
 
 		<!-- @slot use this slot to add a custom icon or actions -->
 		<slot>
-			<NcIconSvgWrapper v-if="hasIconSvg"
+			<NcIconSvgWrapper
+				v-if="hasIconSvg"
 				class="option__icon"
 				:svg="iconSvg"
 				:name="iconName" />
-			<span v-else-if="hasIcon"
+			<span
+				v-else-if="hasIcon"
 				class="icon option__icon"
 				:class="icon"
 				:aria-label="iconName" />

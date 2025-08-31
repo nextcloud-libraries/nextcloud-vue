@@ -7,7 +7,8 @@
 		<h5 class="team-resources__header">
 			{{ t('Related team resources') }}
 		</h5>
-		<details v-for="team in teamResources"
+		<details
+			v-for="team in teamResources"
 			:key="team.teamId"
 			name="Team resources"
 			class="related-team"
@@ -18,7 +19,8 @@
 					<AccountGroup :size="20" />
 					{{ team.displayName }}
 				</h5>
-				<NcButton :aria-label="t('View team')"
+				<NcButton
+					:aria-label="t('View team')"
 					:href="team.link"
 					:title="t('View team')"
 					variant="tertiary">
@@ -27,14 +29,17 @@
 					</template>
 				</NcButton>
 
-				<ChevronUp v-if="open(team.teamId)"
+				<ChevronUp
+					v-if="open(team.teamId)"
 					:size="20" />
-				<ChevronDown v-else
+				<ChevronDown
+					v-else
 					:size="20" />
 			</summary>
 
 			<div>
-				<div v-for="provider in teamProviders(team.teamId)"
+				<div
+					v-for="provider in teamProviders(team.teamId)"
 					:key="provider.id"
 					class="related-team-provider">
 					<h6 v-if="provider.resources.length > 0">
@@ -46,7 +51,8 @@
 								<span v-if="resource.iconEmoji" class="resource__icon">
 									{{ resource.iconEmoji }}
 								</span>
-								<NcIconSvgWrapper v-else-if="resource.iconSvg"
+								<NcIconSvgWrapper
+									v-else-if="resource.iconSvg"
 									class="resource__icon"
 									:svg="resource.iconSvg"
 									:size="20" />

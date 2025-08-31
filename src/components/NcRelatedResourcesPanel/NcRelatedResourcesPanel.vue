@@ -29,7 +29,8 @@ export default {
 
 <template>
 	<div>
-		<NcTeamResources :provider-id="providerId"
+		<NcTeamResources
+			:provider-id="providerId"
 			:item-id="itemId" />
 
 		<div v-if="appEnabled && isVisible" class="related-resources">
@@ -38,7 +39,8 @@ export default {
 				<p>{{ subline }}</p>
 			</div>
 
-			<NcResource v-for="resource in resources"
+			<NcResource
+				v-for="resource in resources"
 				:key="resource.itemId"
 				class="related-resources__entry"
 				:icon="resource.icon"

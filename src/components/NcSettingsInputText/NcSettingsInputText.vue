@@ -27,18 +27,21 @@ export default {
 </docs>
 
 <template>
-	<form ref="form"
+	<form
+		ref="form"
 		:disabled="disabled"
 		@submit.prevent.stop="onSubmit">
 		<div class="input-wrapper">
 			<label :for="id" class="action-input__label">{{ label }}</label>
-			<input :id="id"
+			<input
+				:id="id"
 				type="text"
 				:value="model"
 				:disabled="disabled"
 				@input="onInput"
 				@change="onChange">
-			<input :id="idSubmit"
+			<input
+				:id="idSubmit"
 				:value="submitTranslated"
 				type="submit"
 				class="action-input__submit">

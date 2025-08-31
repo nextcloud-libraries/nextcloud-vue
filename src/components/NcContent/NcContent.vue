@@ -62,7 +62,8 @@ It also will set the skip content buttons needed for accessibility.
 					{{ t('Keyboard navigation help') }}
 				</div>
 				<div class="vue-skip-actions__buttons">
-					<NcButton v-show="hasAppNavigation"
+					<NcButton
+						v-show="hasAppNavigation"
 						href="#app-navigation-vue"
 						variant="tertiary"
 						@click.prevent="openAppNavigation"
@@ -70,14 +71,16 @@ It also will set the skip content buttons needed for accessibility.
 						@mouseover="currentFocus = 'navigation'">
 						{{ t('Skip to app navigation') }}
 					</NcButton>
-					<NcButton href="#app-content-vue"
+					<NcButton
+						href="#app-content-vue"
 						variant="tertiary"
 						@focusin="currentFocus = 'content'"
 						@mouseover="currentFocus = 'content'">
 						{{ t('Skip to main content') }}
 					</NcButton>
 				</div>
-				<NcIconSvgWrapper v-show="!isMobile"
+				<NcIconSvgWrapper
+					v-show="!isMobile"
 					class="vue-skip-actions__image"
 					:svg="currentImage"
 					size="auto" />

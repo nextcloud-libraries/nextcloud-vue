@@ -211,7 +211,8 @@ export default {
 </docs>
 
 <template>
-	<NcModal v-if="open"
+	<NcModal
+		v-if="open"
 		class="dialog__modal"
 		:enable-slideshow="false"
 		:enable-swipe="false"
@@ -220,14 +221,16 @@ export default {
 		@update:show="handleClosing()">
 		<!-- The dialog name / header -->
 		<h2 :id="navigationId" class="dialog__name" v-text="name" />
-		<component :is="dialogTagName"
+		<component
+			:is="dialogTagName"
 			ref="dialogElement"
 			class="dialog"
 			:class="dialogClasses"
 			v-on="dialogListeners">
 			<div ref="wrapper" class="dialog__wrapper" :class="{ 'dialog__wrapper--collapsed': isNavigationCollapsed }">
 				<!-- When the navigation is collapsed (too small dialog) it is displayed above the main content, otherwise on the inline start -->
-				<nav v-if="hasNavigation"
+				<nav
+					v-if="hasNavigation"
 					class="dialog__navigation"
 					:class="navigationClasses"
 					:aria-label="navigationAriaLabelAttr"
@@ -246,7 +249,8 @@ export default {
 			<!-- The dialog actions aka the buttons -->
 			<div class="dialog__actions">
 				<slot name="actions">
-					<NcDialogButton v-for="(button, idx) in buttons"
+					<NcDialogButton
+						v-for="(button, idx) in buttons"
 						:key="idx"
 						v-bind="button"
 						@click="(_, result) => handleButtonClose(button, result)" />

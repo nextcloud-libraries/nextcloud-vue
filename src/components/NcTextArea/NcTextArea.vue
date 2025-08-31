@@ -88,13 +88,15 @@ It extends and styles an HTMLTextAreaElement.
 </docs>
 
 <template>
-	<div class="textarea"
+	<div
+		class="textarea"
 		:class="{
 			'textarea--disabled': disabled,
 			'textarea--legacy': isLegacy32,
 		}">
 		<div class="textarea__main-wrapper">
-			<textarea v-bind="$attrs"
+			<textarea
+				v-bind="$attrs"
 				:id="computedId"
 				ref="input"
 				class="textarea__input"
@@ -114,13 +116,15 @@ It extends and styles an HTMLTextAreaElement.
 				v-on="$listeners"
 				@input="handleInput" />
 			<!-- Label -->
-			<label v-if="!labelOutside && isValidLabel"
+			<label
+				v-if="!labelOutside && isValidLabel"
 				class="textarea__label"
 				:for="computedId">
 				{{ label }}
 			</label>
 		</div>
-		<p v-if="helperText.length > 0"
+		<p
+			v-if="helperText.length > 0"
 			:id="`${inputName}-helper-text`"
 			class="textarea__helper-text-message"
 			:class="{

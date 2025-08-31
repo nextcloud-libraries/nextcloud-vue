@@ -44,7 +44,8 @@ This component is to be used in the settings section of nextcloud.
 	<div class="settings-section" :class="{ 'settings-section--limit-width': forceLimitWidth }">
 		<h2 class="settings-section__name">
 			{{ name }}
-			<a v-if="hasDocUrl"
+			<a
+				v-if="hasDocUrl"
 				:href="docUrl"
 				class="settings-section__info"
 				:title="docNameTranslated"
@@ -54,7 +55,8 @@ This component is to be used in the settings section of nextcloud.
 				<HelpCircle :size="20" />
 			</a>
 		</h2>
-		<p v-if="hasDescription"
+		<p
+			v-if="hasDescription"
 			class="settings-section__desc">
 			{{ description }}
 		</p>

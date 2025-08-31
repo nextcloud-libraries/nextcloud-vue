@@ -5,7 +5,8 @@
 
 <template>
 	<li class="resource">
-		<NcButton class="resource__button"
+		<NcButton
+			class="resource__button"
 			:aria-label="labelTranslated"
 			:to="route"
 			:href="route ? null : url"

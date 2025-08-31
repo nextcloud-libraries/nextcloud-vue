@@ -136,10 +136,12 @@ emit('toggle-navigation', {
 </docs>
 
 <template>
-	<div ref="appNavigationContainer"
+	<div
+		ref="appNavigationContainer"
 		class="app-navigation"
 		:class="{ 'app-navigation--close': !open }">
-		<nav id="app-navigation-vue"
+		<nav
+			id="app-navigation-vue"
 			:aria-hidden="open ? 'false' : 'true'"
 			:aria-label="ariaLabel || undefined"
 			:aria-labelledby="ariaLabelledby || undefined"

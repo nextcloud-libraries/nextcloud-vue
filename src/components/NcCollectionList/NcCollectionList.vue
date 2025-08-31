@@ -23,7 +23,8 @@ occ config:system:set --value true 'projects.enabled'
 				<span class="icon-projects" />
 			</div>
 			<div id="collection-select-container">
-				<NcSelect ref="select"
+				<NcSelect
+					ref="select"
 					v-model="value"
 					:aria-label-combobox="t('Add to a project')"
 					:options="options"
@@ -57,7 +58,8 @@ occ config:system:set --value true 'projects.enabled'
 				{{ error }}
 			</li>
 		</transition>
-		<NcCollectionListItem v-for="collection in collections"
+		<NcCollectionListItem
+			v-for="collection in collections"
 			:key="collection.id"
 			:collection="collection"
 			:error="collectionsError[collection.id]"

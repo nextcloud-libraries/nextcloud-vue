@@ -99,7 +99,8 @@ export default {
 
 		<template v-if="hasList">
 			<!-- Mobile view does not allow resizeable panes -->
-			<div v-if="isMobile || layout === 'no-split'"
+			<div
+				v-if="isMobile || layout === 'no-split'"
 				class="app-content-wrapper app-content-wrapper--no-split"
 				:class="{
 					'app-content-wrapper--show-details': showDetails,
@@ -114,7 +115,8 @@ export default {
 				<slot v-if="showDetails" />
 			</div>
 			<div v-else-if="layout === 'vertical-split' || layout === 'horizontal-split'" class="app-content-wrapper">
-				<Splitpanes :horizontal="layout === 'horizontal-split'"
+				<Splitpanes
+					:horizontal="layout === 'horizontal-split'"
 					class="default-theme"
 					:class="{
 						'splitpanes--horizontal': layout === 'horizontal-split',
@@ -122,7 +124,8 @@ export default {
 					}"
 					:rtl="isRtl"
 					@resized="handlePaneResize">
-					<Pane class="splitpanes__pane-list"
+					<Pane
+						class="splitpanes__pane-list"
 						:size="listPaneSize || paneDefaults.list.size"
 						:min-size="paneDefaults.list.min"
 						:max-size="paneDefaults.list.max">
@@ -130,7 +133,8 @@ export default {
 						<slot name="list" />
 					</Pane>
 
-					<Pane class="splitpanes__pane-details"
+					<Pane
+						class="splitpanes__pane-details"
 						:size="detailsPaneSize"
 						:min-size="paneDefaults.details.min"
 						:max-size="paneDefaults.details.max">

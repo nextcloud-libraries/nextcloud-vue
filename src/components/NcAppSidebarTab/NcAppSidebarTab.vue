@@ -7,7 +7,8 @@
 	https://www.w3.org/TR/wai-aria-practices/examples/tabs/tabs-1/tabs.html -->
 
 <template>
-	<section :id="`tab-${id}`"
+	<section
+		:id="`tab-${id}`"
 		:class="{ 'app-sidebar__tab--active': isActive }"
 		:aria-hidden="!isActive"
 		:aria-label="isTablistShown() ? undefined : name"

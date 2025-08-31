@@ -8,7 +8,8 @@ Dialog button component used by NcDialog in the actions slot to display the butt
 </docs>
 
 <template>
-	<NcButton :aria-label="label"
+	<NcButton
+		:aria-label="label"
 		:disabled="disabled"
 		:type="type"
 		:native-type="nativeType"

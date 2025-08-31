@@ -123,15 +123,18 @@ export default {
 </docs>
 
 <template>
-	<NcDialog v-if="open"
+	<NcDialog
+		v-if="open"
 		:navigation-aria-label="settingsNavigationAriaLabel"
 		v-bind="dialogProperties"
 		@update:open="handleCloseModal">
 		<template v-if="hasNavigation" #navigation="{ isCollapsed }">
-			<ul v-if="!isCollapsed"
+			<ul
+				v-if="!isCollapsed"
 				class="navigation-list">
 				<li v-for="section in sections" :key="section.id">
-					<a :aria-current="`${section.id === selectedSection}`"
+					<a
+						:aria-current="`${section.id === selectedSection}`"
 						class="navigation-list__link"
 						:class="{
 							'navigation-list__link--active': section.id === selectedSection,

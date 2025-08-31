@@ -5,12 +5,14 @@
 
 <template>
 	<div ref="widgetRoot" :class="{ 'toggle-interactive': hasInteractiveView && !isInteractive }">
-		<div v-if="reference && hasCustomWidget"
+		<div
+			v-if="reference && hasCustomWidget"
 			ref="customWidget"
 			class="widget-custom"
 			:class="{ 'full-width': hasFullWidth }" />
 
-		<component :is="referenceWidgetLinkComponent"
+		<component
+			:is="referenceWidgetLinkComponent"
 			v-else-if="!noAccess && reference && reference.openGraphObject && !hasCustomWidget"
 			v-bind="referenceWidgetLinkProps"
 			rel="noopener noreferrer"

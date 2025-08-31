@@ -88,12 +88,14 @@ All available types are: 'date', 'datetime-local', 'month', 'time' and 'week', p
 
 <template>
 	<div class="native-datetime-picker">
-		<label class="native-datetime-picker--label"
+		<label
+			class="native-datetime-picker--label"
 			:class="{ 'hidden-visually': hideLabel }"
 			:for="id">
 			{{ label }}
 		</label>
-		<input :id="id"
+		<input
+			:id="id"
 			class="native-datetime-picker--input"
 			:class="inputClass"
 			:type="type"

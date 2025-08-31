@@ -37,7 +37,8 @@ export default {
 <template>
 	<li class="action" :class="{ 'action--disabled': disabled }" :role="isInSemanticMenu && 'presentation'">
 		<span class="action-checkbox" :role="isInSemanticMenu && 'menuitemcheckbox'" :aria-checked="ariaChecked">
-			<input :id="id"
+			<input
+				:id="id"
 				ref="checkbox"
 				:disabled="disabled"
 				:checked="model"

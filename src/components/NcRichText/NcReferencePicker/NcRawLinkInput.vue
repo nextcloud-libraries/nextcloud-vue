@@ -6,7 +6,8 @@
 <template>
 	<div class="raw-link">
 		<div class="input-wrapper">
-			<NcTextField ref="url-input"
+			<NcTextField
+				ref="url-input"
 				:value.sync="inputValue"
 				:show-trailing-button="inputValue !== ''"
 				:label="inputPlaceholder"
@@ -17,13 +18,16 @@
 				<LinkVariantIcon v-else :size="16" />
 			</NcTextField>
 		</div>
-		<NcReferenceWidget v-if="reference !== null"
+		<NcReferenceWidget
+			v-if="reference !== null"
 			class="reference-widget"
 			:reference="reference" />
-		<NcEmptyContent v-else
+		<NcEmptyContent
+			v-else
 			class="raw-link--empty-content">
 			<template #icon>
-				<img v-if="provider.icon_url"
+				<img
+					v-if="provider.icon_url"
 					class="provider-icon"
 					:src="provider.icon_url">
 				<LinkVariantIcon v-else />

@@ -46,7 +46,8 @@ So that only one of each name set can be selected at the same time.
 <template>
 	<li class="action" :class="{ 'action--disabled': disabled }" :role="isInSemanticMenu && 'presentation'">
 		<span class="action-radio" role="menuitemradio" :aria-checked="ariaChecked">
-			<input :id="id"
+			<input
+				:id="id"
 				v-model="model"
 				:disabled="disabled"
 				:name="name"

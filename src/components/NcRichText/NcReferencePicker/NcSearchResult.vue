@@ -5,10 +5,12 @@
 
 <template>
 	<div class="result">
-		<div v-if="entry.icon"
+		<div
+			v-if="entry.icon"
 			:class="{ [entry.icon]: true, rounded: entry.rounded }"
 			class="result--icon-class" />
-		<img v-else
+		<img
+			v-else
 			class="result--image"
 			:class="{ rounded: entry.rounded }"
 			:src="entry.thumbnailUrl">

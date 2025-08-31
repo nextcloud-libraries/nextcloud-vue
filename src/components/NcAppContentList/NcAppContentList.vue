@@ -4,7 +4,8 @@
 -->
 
 <template>
-	<div class="app-content-list"
+	<div
+		class="app-content-list"
 		:class="{ selection, showdetails: showDetails }">
 		<slot />
 	</div>

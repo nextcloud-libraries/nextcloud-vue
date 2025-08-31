@@ -240,7 +240,8 @@ export default {
 
 <template>
 	<div class="rich-contenteditable">
-		<div :id="id"
+		<div
+			:id="id"
 			ref="contenteditable"
 			:class="{
 				'rich-contenteditable__input--empty': isEmptyValue,
@@ -276,7 +277,8 @@ export default {
 			@keydown.down.exact.stop="onTributeArrowKeyDown"
 			@tribute-active-true="onTributeActive(true)"
 			@tribute-active-false="onTributeActive(false)" />
-		<div v-if="label"
+		<div
+			v-if="label"
 			:id="labelId"
 			class="rich-contenteditable__label">
 			{{ label }}

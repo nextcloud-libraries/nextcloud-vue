@@ -64,7 +64,8 @@ export default {
 <template>
 	<!-- We need a wrapper for server styles to apply -->
 	<div :id="id" class="header-menu">
-		<NcButton class="header-menu__trigger"
+		<NcButton
+			class="header-menu__trigger"
 			:aria-label="ariaLabel"
 			:aria-describedby="descriptionId"
 			size="large"
@@ -77,7 +78,8 @@ export default {
 			</template>
 		</NcButton>
 
-		<span v-if="description"
+		<span
+			v-if="description"
 			:id="descriptionId"
 			class="header-menu__description hidden-visually">
 			{{ description }}

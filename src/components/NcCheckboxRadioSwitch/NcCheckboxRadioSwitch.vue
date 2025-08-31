@@ -269,7 +269,8 @@ export default {
 </docs>
 
 <template>
-	<component :is="computedWrapperElement"
+	<component
+		:is="computedWrapperElement"
 		:id="wrapperId"
 		:aria-label="isButtonType && ariaLabel ? ariaLabel : undefined"
 		:class="{
@@ -287,7 +288,8 @@ export default {
 		:type="isButtonType ? 'button' : null"
 		v-bind="isButtonType ? $attrs : dataAttrs"
 		v-on="isButtonType ? listeners : null">
-		<input v-if="!isButtonType"
+		<input
+			v-if="!isButtonType"
 			:id="id"
 			:aria-labelledby="!isButtonType && !ariaLabel ? labelId : null"
 			:aria-describedby="!isButtonType && (description || $slots.description) ? descriptionId : nonDataAttrs['aria-describedby']"
@@ -302,7 +304,8 @@ export default {
 			:name="name"
 			v-bind="nonDataAttrs"
 			v-on="listeners">
-		<NcCheckboxContent :id="!isButtonType ? `${id}-label` : undefined"
+		<NcCheckboxContent
+			:id="!isButtonType ? `${id}-label` : undefined"
 			class="checkbox-radio-switch__content"
 			icon-class="checkbox-radio-switch__icon"
 			text-class="checkbox-radio-switch__text"

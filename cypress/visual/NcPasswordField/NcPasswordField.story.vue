@@ -5,7 +5,8 @@
 
 <template>
 	<div class="story-wrapper">
-		<NcPasswordField :as-text="asText"
+		<NcPasswordField
+			:as-text="asText"
 			label="Password"
 			model-value="password"
 			:visible="visible" />

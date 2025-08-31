@@ -61,14 +61,16 @@ export default {
 </docs>
 
 <template>
-	<component :is="isPopoverComponent"
+	<component
+		:is="isPopoverComponent"
 		trigger="hover focus"
 		:shown="open"
 		class="user-bubble__wrapper"
 		@update:open="onOpenChange">
 		<!-- Main userbubble structure -->
 		<template #trigger="{ attrs }">
-			<component :is="isLinkComponent"
+			<component
+				:is="isLinkComponent"
 				class="user-bubble__content"
 				:style="styles.content"
 				:to="to"
@@ -77,7 +79,8 @@ export default {
 				v-bind="attrs"
 				@click="onClick">
 				<!-- NcAvatar -->
-				<NcAvatar :url="isCustomAvatar && isAvatarUrl ? avatarImage : undefined"
+				<NcAvatar
+					:url="isCustomAvatar && isAvatarUrl ? avatarImage : undefined"
 					:icon-class="isCustomAvatar && !isAvatarUrl ? avatarImage : undefined"
 					:user="user"
 					:display-name="displayName"

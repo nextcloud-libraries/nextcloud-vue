@@ -13,7 +13,8 @@ This component is meant to be used inside a DashboardWidget component.
 
 <template>
 	<div @mouseover="hovered = true" @mouseleave="hovered = false">
-		<component :is="targetUrl ? 'a' : 'div'"
+		<component
+			:is="targetUrl ? 'a' : 'div'"
 			:href="targetUrl || undefined"
 			:target="targetUrl ? '_blank' : undefined"
 			class="item-list__entry"
@@ -21,14 +22,16 @@ This component is meant to be used inside a DashboardWidget component.
 			@click="onLinkClick">
 			<!-- @slot Slot for passing a user avatar. -->
 			<slot name="avatar" :avatar-url="avatarUrl" :avatar-username="avatarUsername">
-				<NcAvatar class="item-avatar"
+				<NcAvatar
+					class="item-avatar"
 					:size="44"
 					:url="avatarUrl"
 					:user="avatarUsername"
 					:is-no-user="avatarIsNoUser"
 					:show-user-status="!gotOverlayIcon" />
 			</slot>
-			<img v-if="overlayIconUrl"
+			<img
+				v-if="overlayIconUrl"
 				class="item-icon"
 				alt=""
 				:src="overlayIconUrl">
@@ -43,7 +46,8 @@ This component is meant to be used inside a DashboardWidget component.
 			<NcActions v-if="gotMenu" :force-menu="forceMenu">
 				<!-- @slot This slot can be used to provide actions for each dashboard widget item. -->
 				<slot name="actions">
-					<NcActionButton v-for="(m, menuItemId) in itemMenu"
+					<NcActionButton
+						v-for="(m, menuItemId) in itemMenu"
 						:key="menuItemId"
 						:icon="m.icon"
 						:close-after-click="true"

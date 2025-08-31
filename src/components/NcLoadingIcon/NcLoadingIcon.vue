@@ -20,10 +20,12 @@
 </docs>
 
 <template>
-	<span :aria-label="name"
+	<span
+		:aria-label="name"
 		role="img"
 		class="material-design-icon loading-icon">
-		<svg :width="size"
+		<svg
+			:width="size"
 			:height="size"
 			viewBox="0 0 24 24">
 			<path :fill="colors[0]" d="M12,4V2A10,10 0 1,0 22,12H20A8,8 0 1,1 12,4Z" />

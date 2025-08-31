@@ -46,7 +46,6 @@ export default defineConfig([
 			'jsdoc/no-types': 'off',
 			'jsdoc/require-jsdoc': 'off',
 			'jsdoc/tag-lines': 'off',
-			'vue/first-attribute-linebreak': 'off',
 			'vue/no-useless-v-bind': 'off',
 
 			// Non auto-fixable

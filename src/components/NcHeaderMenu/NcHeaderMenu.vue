@@ -57,7 +57,8 @@ export default {
 </docs>
 
 <template>
-	<component :is="wrapperTag"
+	<component
+		:is="wrapperTag"
 		:id="id"
 		ref="headerMenu"
 		v-click-outside="clickOutsideConfig"
@@ -66,7 +67,8 @@ export default {
 		class="header-menu"
 		v-on="listeners">
 		<!-- Trigger -->
-		<NcButton :id="isNav ? triggerId : null"
+		<NcButton
+			:id="isNav ? triggerId : null"
 			ref="trigger"
 			class="header-menu__trigger"
 			:aria-controls="`header-menu-${id}`"
@@ -83,7 +85,8 @@ export default {
 			</template>
 		</NcButton>
 
-		<span v-if="description"
+		<span
+			v-if="description"
 			:id="descriptionId"
 			class="header-menu__description hidden-visually">
 			{{ description }}
@@ -93,7 +96,8 @@ export default {
 		<div v-show="opened" class="header-menu__carret" />
 
 		<!-- Menu opened content -->
-		<div v-show="opened"
+		<div
+			v-show="opened"
 			:id="`header-menu-${id}`"
 			class="header-menu__wrapper">
 			<div ref="content" class="header-menu__content">

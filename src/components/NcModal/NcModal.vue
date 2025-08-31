@@ -191,11 +191,13 @@ export default {
 </docs>
 
 <template>
-	<transition name="fade"
+	<transition
+		name="fade"
 		appear
 		@after-enter="useFocusTrap"
 		@before-leave="clearFocusTrap">
-		<div v-show="showModal"
+		<div
+			v-show="showModal"
 			ref="mask"
 			class="modal-mask"
 			:class="{
@@ -209,27 +211,32 @@ export default {
 			tabindex="-1">
 			<!-- Header -->
 			<transition name="fade-visibility" appear>
-				<div class="modal-header"
+				<div
+					class="modal-header"
 					:data-theme-light="lightBackdrop"
 					:data-theme-dark="!lightBackdrop">
-					<h2 v-if="modalName"
+					<h2
+						v-if="modalName"
 						:id="'modal-name-' + randId"
 						class="modal-header__name">
 						{{ modalName }}
 					</h2>
 					<div class="icons-menu">
 						<!-- Play-pause toggle -->
-						<button v-if="hasNext && enableSlideshow"
+						<button
+							v-if="hasNext && enableSlideshow"
 							:class="{ 'play-pause-icons--paused': slideshowPaused }"
 							class="play-pause-icons"
 							:title="playPauseName"
 							type="button"
 							@click="togglePlayPause">
 							<!-- Play/pause icons -->
-							<Play v-if="!playing"
+							<Play
+								v-if="!playing"
 								:size="20"
 								class="play-pause-icons__play" />
-							<Pause v-else
+							<Pause
+								v-else
 								:size="20"
 								class="play-pause-icons__pause" />
 							<span class="hidden-visually">
@@ -237,11 +244,13 @@ export default {
 							</span>
 
 							<!-- Progress circle, css animated -->
-							<svg v-if="playing"
+							<svg
+								v-if="playing"
 								class="progress-ring"
 								height="50"
 								width="50">
-								<circle class="progress-ring__circle"
+								<circle
+									class="progress-ring__circle"
 									stroke="white"
 									stroke-width="2"
 									fill="transparent"
@@ -258,7 +267,8 @@ export default {
 						</NcActions>
 
 						<!-- Close modal -->
-						<NcButton v-if="!noClose && canClose && !closeButtonContained"
+						<NcButton
+							v-if="!noClose && canClose && !closeButtonContained"
 							:aria-label="closeButtonAriaLabel"
 							class="header-close"
 							variant="tertiary"
@@ -273,7 +283,8 @@ export default {
 
 			<!-- Content wrapper -->
 			<transition :name="modalTransitionName" appear>
-				<div v-show="showModal"
+				<div
+					v-show="showModal"
 					:class="[
 						`modal-wrapper--${size}`,
 						{ 'modal-wrapper--spread-navigation': spreadNavigation },
@@ -282,13 +293,15 @@ export default {
 					@mousedown.self="handleClickModalWrapper">
 					<!-- Navigation button -->
 					<transition name="fade-visibility" appear>
-						<NcButton v-show="hasPrevious"
+						<NcButton
+							v-show="hasPrevious"
 							:aria-label="prevButtonAriaLabel"
 							class="prev"
 							variant="tertiary-no-background"
 							@click="previous">
 							<template #icon>
-								<NcIconSvgWrapper directional
+								<NcIconSvgWrapper
+									directional
 									:path="mdiChevronLeft"
 									:size="40" />
 							</template>
@@ -302,7 +315,8 @@ export default {
 							<slot />
 						</div>
 						<!-- Close modal -->
-						<NcButton v-if="!noClose && canClose && closeButtonContained"
+						<NcButton
+							v-if="!noClose && canClose && closeButtonContained"
 							:aria-label="closeButtonAriaLabel"
 							class="modal-container__close"
 							variant="tertiary"
@@ -315,13 +329,15 @@ export default {
 
 					<!-- Navigation button -->
 					<transition name="fade-visibility" appear>
-						<NcButton v-show="hasNext"
+						<NcButton
+							v-show="hasNext"
 							:aria-label="nextButtonAriaLabel"
 							class="next"
 							variant="tertiary-no-background"
 							@click="next">
 							<template #icon>
-								<NcIconSvgWrapper directional
+								<NcIconSvgWrapper
+									directional
 									:path="mdiChevronRight"
 									:size="40" />
 							</template>

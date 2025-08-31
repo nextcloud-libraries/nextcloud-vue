@@ -4,13 +4,15 @@
 -->
 
 <template>
-	<span class="mention-bubble"
+	<span
+		class="mention-bubble"
 		:class="{ 'mention-bubble--primary': primary }"
 		contenteditable="false">
 		<span class="mention-bubble__wrapper">
 			<span class="mention-bubble__content">
 				<!-- Avatar or icon -->
-				<span :class="[icon, `mention-bubble__icon--${avatarUrl ? 'with-avatar' : ''}`]"
+				<span
+					:class="[icon, `mention-bubble__icon--${avatarUrl ? 'with-avatar' : ''}`]"
 					:style="avatarUrl ? { backgroundImage: `url(${avatarUrl})` } : null"
 					class="mention-bubble__icon" />
 

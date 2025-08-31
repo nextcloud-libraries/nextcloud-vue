@@ -24,7 +24,8 @@ export default {
 </docs>
 
 <template>
-	<NcSelect :aria-label-combobox="t('Search for time zone')"
+	<NcSelect
+		:aria-label-combobox="t('Search for time zone')"
 		:clearable="false"
 		:filter-by="filterBy"
 		:multiple="false"

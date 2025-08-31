@@ -35,7 +35,8 @@ const headerRef = inject('NcAppSidebar:header:ref')
 </script>
 
 <template>
-	<h2 ref="headerRef"
+	<h2
+		ref="headerRef"
 		v-linkify="{ text: name, linkify }"
 		tabindex="-1"
 		:title="title">

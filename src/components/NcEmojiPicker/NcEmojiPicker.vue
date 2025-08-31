@@ -107,7 +107,8 @@ This component allows the user to pick an emoji.
 </docs>
 
 <template>
-	<NcPopover ref="popover"
+	<NcPopover
+		ref="popover"
 		:shown.sync="open"
 		:container="container"
 		popup-role="dialog"
@@ -120,7 +121,8 @@ This component allows the user to pick an emoji.
 			<slot v-bind="slotProps" />
 		</template>
 		<div class="nc-emoji-picker-container">
-			<Picker ref="picker"
+			<Picker
+				ref="picker"
 				color="var(--color-primary-element)"
 				:data="emojiIndex"
 				:emoji="previewFallbackEmoji"
@@ -141,7 +143,8 @@ This component allows the user to pick an emoji.
 				@select="select">
 				<template #searchTemplate="{ onSearch }">
 					<div class="search__wrapper">
-						<NcTextField ref="search"
+						<NcTextField
+							ref="search"
 							class="search"
 							:value.sync="search"
 							:label="t('Search')"
@@ -157,7 +160,8 @@ This component allows the user to pick an emoji.
 							@keydown.enter="$refs.picker.onEnter"
 							@trailing-button-click="clearSearch(); onSearch('');"
 							@update:value="onSearch(search)" />
-						<NcColorPicker palette-only
+						<NcColorPicker
+							palette-only
 							:container="container"
 							:palette="skinTonePalette"
 							:value="currentColor.color"
@@ -176,13 +180,15 @@ This component allows the user to pick an emoji.
 							{{ t('Selected') }}
 						</h3>
 					</div>
-					<Emoji class="emoji-selected"
+					<Emoji
+						class="emoji-selected"
 						:data="emojiIndex"
 						:emoji="selectedEmoji"
 						:native="true"
 						:size="32"
 						@click="unselect" />
-					<Emoji class="emoji-delete"
+					<Emoji
+						class="emoji-delete"
 						:data="emojiIndex"
 						emoji=":x:"
 						:native="true"

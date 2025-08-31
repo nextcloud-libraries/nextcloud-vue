@@ -159,7 +159,8 @@ export default {
 </docs>
 
 <template>
-	<span :aria-hidden="name ? undefined : 'true'"
+	<span
+		:aria-hidden="name ? undefined : 'true'"
 		:aria-label="name || undefined"
 		class="icon-vue"
 		:class="{

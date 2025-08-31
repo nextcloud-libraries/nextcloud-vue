@@ -61,7 +61,8 @@ export default {
 
 <template>
 	<li class="action" :role="isInSemanticMenu && 'presentation'">
-		<a :download="download"
+		<a
+			:download="download"
 			:href="href"
 			:aria-label="ariaLabel"
 			:target="target"
@@ -73,14 +74,16 @@ export default {
 
 			<!-- @slot Manually provide icon -->
 			<slot name="icon">
-				<span :class="[isIconUrl ? 'action-link__icon--url' : icon]"
+				<span
+					:class="[isIconUrl ? 'action-link__icon--url' : icon]"
 					:style="{ backgroundImage: isIconUrl ? `url(${icon})` : null }"
 					aria-hidden="true"
 					class="action-link__icon" />
 			</slot>
 
 			<!-- long text with name -->
-			<span v-if="name"
+			<span
+				v-if="name"
 				class="action-link__longtext-wrapper">
 				<strong class="action-link__name">
 					{{ name }}
@@ -94,7 +97,8 @@ export default {
 			<!-- long text only -->
 			<!-- white space is shown on longtext, so we can't
 			put {{ text }} on a new line for code readability -->
-			<span v-else-if="isLongText"
+			<span
+				v-else-if="isLongText"
 				class="action-link__longtext"
 				v-text="text" />
 

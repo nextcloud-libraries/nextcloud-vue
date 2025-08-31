@@ -5,7 +5,8 @@
 
 <template>
 	<div class="app-navigation-toggle-wrapper">
-		<NcButton class="app-navigation-toggle"
+		<NcButton
+			class="app-navigation-toggle"
 			aria-controls="app-navigation-vue"
 			:aria-expanded="open ? 'true' : 'false'"
 			:aria-keyshortcuts="disableKeyboardShortcuts ? '' : 'n'"

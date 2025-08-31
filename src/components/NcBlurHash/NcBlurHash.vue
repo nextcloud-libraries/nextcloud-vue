@@ -235,12 +235,14 @@ function drawBlurHash() {
 </script>
 
 <template>
-	<Transition :css="src ? undefined : false"
+	<Transition
+		:css="src ? undefined : false"
 		:enter-active-class="$style.fadeTransition"
 		:leave-active-class="$style.fadeTransition"
 		:enter-class="$style.fadeTransitionActive"
 		:leave-to-class="$style.fadeTransitionActive">
-		<canvas v-if="!imageLoaded"
+		<canvas
+			v-if="!imageLoaded"
 			ref="canvas"
 			:aria-hidden="alt ? null : 'true'"
 			:aria-label="alt" />

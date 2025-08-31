@@ -4,14 +4,17 @@
 -->
 
 <template>
-	<NcModal v-if="show"
+	<NcModal
+		v-if="show"
 		:size="modalSize"
 		:can-close="true"
 		class="reference-picker-modal"
 		@close="onCancel">
-		<div ref="modal_content"
+		<div
+			ref="modal_content"
 			class="reference-picker-modal--content">
-			<NcButton v-if="showBackButton"
+			<NcButton
+				v-if="showBackButton"
 				:aria-label="backButtonTitle"
 				:title="backButtonTitle"
 				class="back-button"
@@ -20,7 +23,8 @@
 					<ArrowLeftIcon />
 				</template>
 			</NcButton>
-			<NcButton class="close-button"
+			<NcButton
+				class="close-button"
 				:aria-label="closeButtonLabel"
 				:title="closeButtonTitle"
 				variant="tertiary"
@@ -32,7 +36,8 @@
 			<h2 v-if="showModalName">
 				{{ modalName }}
 			</h2>
-			<NcReferencePicker ref="referencePicker"
+			<NcReferencePicker
+				ref="referencePicker"
 				:initial-provider="initialProvider"
 				:focus-on-create="focusOnCreate"
 				@provider-selected="onProviderSelect"

@@ -13,16 +13,19 @@
 
 <template>
 	<div class="app-navigation-input-confirm">
-		<form @submit.prevent="confirm"
+		<form
+			@submit.prevent="confirm"
 			@keydown.esc.exact.stop.prevent="cancel"
 			@click.stop.prevent>
-			<input ref="input"
+			<input
+				ref="input"
 				v-model="valueModel"
 				type="text"
 				class="app-navigation-input-confirm__input"
 				:placeholder="placeholder">
 
-			<NcButton :aria-label="labelConfirm"
+			<NcButton
+				:aria-label="labelConfirm"
 				type="submit"
 				variant="primary"
 				@click.stop.prevent="confirm">
@@ -31,7 +34,8 @@
 				</template>
 			</NcButton>
 
-			<NcButton :aria-label="labelCancel"
+			<NcButton
+				:aria-label="labelCancel"
 				type="reset"
 				:variant="primary ? 'primary' : 'tertiary'"
 				@click.stop.prevent="cancel">

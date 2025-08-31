@@ -5,7 +5,8 @@
 
 <template>
 	<div class="smart-picker-search" :class="{ 'with-empty-content': showEmptyContent }">
-		<NcSelect ref="search-select"
+		<NcSelect
+			ref="search-select"
 			v-model="selectedResult"
 			class="smart-picker-search--select"
 			input-id="search-select-input"
@@ -30,12 +31,14 @@
 						{{ t('Raw link {options}', { options: option.resourceUrl }) }}
 					</span>
 				</div>
-				<NcSearchResult v-else-if="option.resourceUrl"
+				<NcSearchResult
+					v-else-if="option.resourceUrl"
 					class="search-result"
 					:entry="option"
 					:query="searchQuery" />
 				<span v-else-if="option.isCustomGroupTitle" class="custom-option group-name">
-					<img v-if="provider.icon_url"
+					<img
+						v-if="provider.icon_url"
 						class="provider-icon group-name-icon"
 						:src="provider.icon_url">
 					<span class="option-text">
@@ -54,10 +57,12 @@
 				{{ noOptionsText }}
 			</template>
 		</NcSelect>
-		<NcEmptyContent v-if="showEmptyContent"
+		<NcEmptyContent
+			v-if="showEmptyContent"
 			class="smart-picker-search--empty-content">
 			<template #icon>
-				<img v-if="provider.icon_url"
+				<img
+					v-if="provider.icon_url"
 					class="provider-icon"
 					:alt="providerIconAlt"
 					:src="provider.icon_url">

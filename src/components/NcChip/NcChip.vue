@@ -70,7 +70,8 @@ export default {
 </docs>
 
 <template>
-	<div class="nc-chip"
+	<div
+		class="nc-chip"
 		:class="{
 			[`nc-chip--${realVariant}`]: true,
 			'nc-chip--no-actions': noClose && !hasActions(),
@@ -80,7 +81,8 @@ export default {
 			<!-- @slot The icon slot can be used to set the chip icon. Make sure that the icon is not exceeding a height of `24px`. For round icons a exact size of `24px` is recommended. -->
 			<slot name="icon">
 				<!-- The default icon wrapper uses a size of 18px to ensure the icon is not clipped by the round chip style -->
-				<NcIconSvgWrapper v-if="iconPath || iconSvg"
+				<NcIconSvgWrapper
+					v-if="iconPath || iconSvg"
 					inline
 					:path="iconPath"
 					:svg="iconPath ? undefined : iconSvg"
@@ -91,12 +93,14 @@ export default {
 			<!-- @slot The default slot can be used to set the text that is shown -->
 			<slot>{{ text }}</slot>
 		</span>
-		<NcActions v-if="canClose || hasActions()"
+		<NcActions
+			v-if="canClose || hasActions()"
 			class="nc-chip__actions"
 			:container="actionsContainer"
 			:force-menu="!canClose"
 			variant="tertiary-no-background">
-			<NcActionButton v-if="canClose"
+			<NcActionButton
+				v-if="canClose"
 				close-after-click
 				@click="onClose">
 				<template #icon>

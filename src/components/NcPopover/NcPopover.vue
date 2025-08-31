@@ -140,7 +140,8 @@ See: https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Attributes/
 </docs>
 
 <template>
-	<Dropdown ref="popover"
+	<Dropdown
+		ref="popover"
 		:distance="10"
 		:arrow-padding="10"
 		v-bind="$attrs"

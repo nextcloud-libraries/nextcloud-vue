@@ -124,7 +124,8 @@ For the `NcSelect` component, all events will be passed through. Please see the 
 
 <template>
 	<li class="action" :class="{ 'action--disabled': disabled }">
-		<span :class="{
+		<span
+			:class="{
 				'action-input-picker--disabled': disabled,
 				'action-input--visible-label': labelOutside && label,
 			}"
@@ -133,7 +134,8 @@ For the `NcSelect` component, all events will be passed through. Please see the 
 			<span class="action-input__icon-wrapper">
 				<!-- @slot Manually provide icon -->
 				<slot name="icon">
-					<span :class="[isIconUrl ? 'action-input__icon--url' : icon]"
+					<span
+						:class="[isIconUrl ? 'action-input__icon--url' : icon]"
 						:style="{ backgroundImage: isIconUrl ? `url(${icon})` : null }"
 						aria-hidden="true"
 						class="action-input__icon" />
@@ -141,12 +143,14 @@ For the `NcSelect` component, all events will be passed through. Please see the 
 			</span>
 
 			<!-- form and input -->
-			<form ref="form"
+			<form
+				ref="form"
 				class="action-input__form"
 				:disabled="disabled"
 				@submit.prevent="onSubmit">
 				<div class="action-input__container">
-					<label v-if="label && labelOutside"
+					<label
+						v-if="label && labelOutside"
 						class="action-input__text-label"
 						:class="{ 'action-input__text-label--hidden': !labelOutside }"
 						:for="inputId">
@@ -154,7 +158,8 @@ For the `NcSelect` component, all events will be passed through. Please see the 
 					</label>
 					<div class="action-input__input-container">
 
-						<NcDateTimePicker v-if="datePickerType"
+						<NcDateTimePicker
+							v-if="datePickerType"
 							ref="datetimepicker"
 							:value="model"
 							style="z-index: 99999999999;"
@@ -167,7 +172,8 @@ For the `NcSelect` component, all events will be passed through. Please see the 
 							@input="onInput"
 							@change="onChange" />
 
-						<NcDateTimePickerNative v-else-if="isNativePicker"
+						<NcDateTimePickerNative
+							v-else-if="isNativePicker"
 							:id="idNativeDateTimePicker"
 							:value="model"
 							:type="nativeDatePickerType"
@@ -177,7 +183,8 @@ For the `NcSelect` component, all events will be passed through. Please see the 
 							@update:model-value="model = $event"
 							@change="$emit('change', $event)" />
 
-						<NcSelect v-else-if="isMultiselectType"
+						<NcSelect
+							v-else-if="isMultiselectType"
 							:value="model"
 							:placeholder="text"
 							:disabled="disabled"
@@ -187,7 +194,8 @@ For the `NcSelect` component, all events will be passed through. Please see the 
 							v-bind="$attrs"
 							v-on="$listeners" />
 
-						<NcPasswordField v-else-if="type === 'password'"
+						<NcPasswordField
+							v-else-if="type === 'password'"
 							:id="inputId"
 							:value="model"
 							:label="label"
@@ -202,28 +210,32 @@ For the `NcSelect` component, all events will be passed through. Please see the 
 							@change="onChange" />
 
 						<div v-else-if="type === 'color'" class="action-input__container">
-							<label v-if="label && type === 'color'"
+							<label
+								v-if="label && type === 'color'"
 								class="action-input__text-label"
 								:class="{ 'action-input__text-label--hidden': !labelOutside }"
 								:for="inputId">
 								{{ label }}
 							</label>
 							<div class="action-input__input-container">
-								<NcColorPicker id="inputId"
+								<NcColorPicker
+									id="inputId"
 									:value="model"
 									class="colorpicker__trigger"
 									v-bind="$attrs"
 									v-on="$listeners"
 									@update:model-value="onInput"
 									@submit="$refs.form.requestSubmit()">
-									<button :style="{ 'background-color': model }"
+									<button
+										:style="{ 'background-color': model }"
 										class="colorpicker__preview"
 										:class="{ focusable: isFocusable }" />
 								</NcColorPicker>
 							</div>
 						</div>
 
-						<NcTextField v-else
+						<NcTextField
+							v-else
 							:id="inputId"
 							:value="model"
 							:label="label"

@@ -4,11 +4,13 @@
 -->
 
 <template>
-	<div id="app-settings"
+	<div
+		id="app-settings"
 		v-click-outside="clickOutsideConfig"
 		:class="{ open }">
 		<div id="app-settings__header">
-			<button class="settings-button"
+			<button
+				class="settings-button"
 				type="button"
 				:aria-expanded="open ? 'true' : 'false'"
 				aria-controls="app-settings__content"

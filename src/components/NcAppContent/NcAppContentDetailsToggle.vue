@@ -4,7 +4,8 @@
 -->
 
 <template>
-	<NcButton :aria-label="title"
+	<NcButton
+		:aria-label="title"
 		class="app-details-toggle"
 		:class="{ 'app-details-toggle--mobile': isMobile }"
 		:title="title"

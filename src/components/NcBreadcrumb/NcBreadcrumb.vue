@@ -13,7 +13,8 @@ Renders a button element when given no redirection props, otherwise, renders <a/
 </docs>
 
 <template>
-	<li ref="crumb"
+	<li
+		ref="crumb"
 		class="vue-crumb"
 		:class="{ 'vue-crumb--hovered': hovering }"
 		:[crumbId]="''"
@@ -23,7 +24,8 @@ Renders a button element when given no redirection props, otherwise, renders <a/
 		@dragover.prevent="() => {}"
 		@dragenter="dragEnter"
 		@dragleave="dragLeave">
-		<NcButton v-if="(name || icon || $slots.icon) && !$slots.default"
+		<NcButton
+			v-if="(name || icon || $slots.icon) && !$slots.default"
 			:aria-label="icon ? name : undefined"
 			:title="title"
 			variant="tertiary"
@@ -39,7 +41,8 @@ Renders a button element when given no redirection props, otherwise, renders <a/
 				{{ name }}
 			</template>
 		</NcButton>
-		<NcActions v-if="$slots.default"
+		<NcActions
+			v-if="$slots.default"
 			ref="actions"
 			:force-menu="forceMenu"
 			:open="open"

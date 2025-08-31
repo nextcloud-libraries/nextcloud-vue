@@ -125,7 +125,8 @@ export default {
 </docs>
 
 <template>
-	<NcInputField v-bind="propsAndAttrsToForward"
+	<NcInputField
+		v-bind="propsAndAttrsToForward"
 		ref="inputField"
 		v-on="$listeners">
 		<template v-if="!!$scopedSlots.icon || !!$slots.default || !!$scopedSlots.default" #icon>

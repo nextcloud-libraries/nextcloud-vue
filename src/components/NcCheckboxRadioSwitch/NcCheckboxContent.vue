@@ -4,7 +4,8 @@
 -->
 
 <template>
-	<span class="checkbox-content"
+	<span
+		class="checkbox-content"
 		:class="{
 			['checkbox-content-' + type]: true,
 			'checkbox-content--button-variant': buttonVariant,
@@ -14,7 +15,8 @@
 			label can't be used here because of shift+click firefox bug
 			https://bugzilla.mozilla.org/show_bug.cgi?id=559506
 		-->
-		<span class="checkbox-content__icon"
+		<span
+			class="checkbox-content__icon"
 			:class="{
 				'checkbox-content__icon--checked': isChecked,
 				[iconClass]: true,
@@ -25,11 +27,13 @@
 					@binding {bool} checked The input checked state
 					@binding {bool} loading The loading state
 			-->
-			<slot name="icon"
+			<slot
+				name="icon"
 				:checked="isChecked"
 				:loading="loading">
 				<NcLoadingIcon v-if="loading" />
-				<component :is="checkboxRadioIconElement"
+				<component
+					:is="checkboxRadioIconElement"
 					v-else-if="!buttonVariant"
 					:size="size" />
 			</slot>

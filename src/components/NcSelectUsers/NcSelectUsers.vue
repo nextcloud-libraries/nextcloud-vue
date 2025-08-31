@@ -371,20 +371,23 @@ export default {
 </script>
 
 <template>
-	<NcSelect class="nc-select-users"
+	<NcSelect
+		class="nc-select-users"
 		v-bind="$props"
 		:filter-by="localFilterBy"
 		label="displayName"
 		@search="search = $event"
 		@update:model-value="$emit('update:modelValue', $event)">
 		<template #option="option">
-			<NcListItemIcon v-bind="option"
+			<NcListItemIcon
+				v-bind="option"
 				:avatar-size="32"
 				:name="option.displayName"
 				:search="search" />
 		</template>
 		<template #selected-option="selectedOption">
-			<NcListItemIcon v-bind="selectedOption"
+			<NcListItemIcon
+				v-bind="selectedOption"
 				:avatar-size="avatarSize"
 				:name="selectedOption.displayName"
 				no-margin

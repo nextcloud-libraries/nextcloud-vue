@@ -84,7 +84,8 @@ export default {
 </docs>
 
 <template>
-	<NcInputField v-bind="propsAndAttrsToForward"
+	<NcInputField
+		v-bind="propsAndAttrsToForward"
 		ref="inputField"
 		:type="visibility || asText ? 'text' : 'password'"
 		:trailing-button-label="trailingButtonLabelPassword"

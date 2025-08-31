@@ -68,7 +68,8 @@ This component displays a user status icon.
 </docs>
 
 <template>
-	<span v-if="activeStatus"
+	<span
+		v-if="activeStatus"
 		class="user-status-icon"
 		:class="{
 			'user-status-icon--invisible': ['invisible', 'offline'].includes(status),

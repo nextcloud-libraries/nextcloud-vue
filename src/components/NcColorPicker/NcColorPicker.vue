@@ -137,7 +137,8 @@ export default {
 </docs>
 
 <template>
-	<NcPopover :shown.sync="modelOpen"
+	<NcPopover
+		:shown.sync="modelOpen"
 		:container="container"
 		popup-role="dialog"
 		v-bind="$attrs"
@@ -147,14 +148,16 @@ export default {
 			<slot v-bind="slotProps" />
 		</template>
 		<template #default="slotProps">
-			<div role="dialog"
+			<div
+				role="dialog"
 				class="color-picker"
 				aria-modal="true"
 				:aria-label="t('Color picker')"
 				:class="{ 'color-picker--advanced-fields': advanced && advancedFields }">
 				<Transition name="slide" mode="out-in">
 					<div v-if="!advanced" class="color-picker__simple">
-						<label v-for="({ color, name }, index) in normalizedPalette"
+						<label
+							v-for="({ color, name }, index) in normalizedPalette"
 							:key="index"
 							class="color-picker__simple-color-circle"
 							:class="{ 'color-picker__simple-color-circle--active': color === currentColor }"
@@ -163,7 +166,8 @@ export default {
 								color: contrastColor,
 							}">
 							<NcIconSvgWrapper v-if="color === currentColor" :path="mdiCheck" />
-							<input type="radio"
+							<input
+								type="radio"
 								class="hidden-visually"
 								:aria-label="name"
 								:name="`color-picker-${uid}`"
@@ -171,7 +175,8 @@ export default {
 								@click="pickColor(color)">
 						</label>
 					</div>
-					<Chrome v-else
+					<Chrome
+						v-else
 						v-model="currentColor"
 						class="color-picker__advanced"
 						:disable-alpha="true"
@@ -179,7 +184,8 @@ export default {
 						@input="pickColor" />
 				</Transition>
 				<div v-if="!paletteOnly" class="color-picker__navigation">
-					<NcButton v-if="advanced"
+					<NcButton
+						v-if="advanced"
 						:aria-label="ariaBack"
 						variant="tertiary"
 						@click="handleBack">
@@ -187,7 +193,8 @@ export default {
 							<NcIconSvgWrapper directional :path="mdiArrowLeft" />
 						</template>
 					</NcButton>
-					<NcButton v-else
+					<NcButton
+						v-else
 						:aria-label="ariaMore"
 						variant="tertiary"
 						@click="handleMoreSettings">
@@ -195,7 +202,8 @@ export default {
 							<NcIconSvgWrapper :path="mdiDotsHorizontal" />
 						</template>
 					</NcButton>
-					<NcButton variant="primary"
+					<NcButton
+						variant="primary"
 						@click="handleConfirm(slotProps.hide)">
 						{{ t('Choose') }}
 					</NcButton>

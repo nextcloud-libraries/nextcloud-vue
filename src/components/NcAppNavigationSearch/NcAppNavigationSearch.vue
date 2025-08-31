@@ -121,11 +121,13 @@ export default {
 </docs>
 
 <template>
-	<div class="app-navigation-search"
+	<div
+		class="app-navigation-search"
 		:class="{
 			'app-navigation-search--has-actions': hasActions(),
 		}">
-		<NcInputField ref="inputElement"
+		<NcInputField
+			ref="inputElement"
 			:aria-label="label"
 			class="app-navigation-search__input"
 			label-outside
@@ -140,7 +142,8 @@ export default {
 				<IconClose :size="20" />
 			</template>
 		</NcInputField>
-		<div v-if="hasActions()"
+		<div
+			v-if="hasActions()"
 			ref="actionsContainer"
 			class="app-navigation-search__actions"
 			:class="{

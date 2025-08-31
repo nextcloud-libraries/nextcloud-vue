@@ -28,7 +28,8 @@
 
 <template>
 	<div class="app-navigation-new">
-		<NcButton :id="buttonId"
+		<NcButton
+			:id="buttonId"
 			:disabled="disabled"
 			:variant="type !== 'primary' ? type : variant"
 			@click="$emit('click')">

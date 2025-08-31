@@ -33,7 +33,8 @@ section * {
 <template>
 	<div>
 		<label v-if="label" :for="id" class="hidden-visually">{{ label }}</label>
-		<NcSelect :value="inputValue"
+		<NcSelect
+			:value="inputValue"
 			:options="groupsArray"
 			:placeholder="placeholder || label"
 			:filter-by="filterGroups"

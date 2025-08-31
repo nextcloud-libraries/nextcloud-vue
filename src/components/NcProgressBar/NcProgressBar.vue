@@ -44,15 +44,18 @@ This is a simple progress bar component.
 </docs>
 
 <template>
-	<span v-if="type === 'circular'"
+	<span
+		v-if="type === 'circular'"
 		role="progressbar"
 		:aria-valuenow="value"
 		:style="{ '--progress-bar-height': height + 'px' }"
 		:class="{ 'progress-bar--error': error }"
 		class="progress-bar progress-bar--circular">
-		<svg :height="height"
+		<svg
+			:height="height"
 			:width="height">
-			<circle stroke="currentColor"
+			<circle
+				stroke="currentColor"
 				fill="transparent"
 				:stroke-dasharray="`${progress * circumference} ${(1 - progress) * circumference}`"
 				:stroke-dashoffset="0.25 * circumference"
@@ -60,7 +63,8 @@ This is a simple progress bar component.
 				:r="radiusNormalized"
 				:cx="radius"
 				:cy="radius" />
-			<circle stroke="var(--color-background-darker)"
+			<circle
+				stroke="var(--color-background-darker)"
 				fill="transparent"
 				:stroke-dasharray="`${(1 - progress) * circumference} ${progress * circumference}`"
 				:stroke-dashoffset="(0.25 - progress) * circumference"
@@ -70,7 +74,8 @@ This is a simple progress bar component.
 				:cy="radius" />
 		</svg>
 	</span>
-	<progress v-else
+	<progress
+		v-else
 		class="progress-bar progress-bar--linear vue"
 		:class="{ 'progress-bar--error': error }"
 		:style="{ '--progress-bar-height': height + 'px' }"

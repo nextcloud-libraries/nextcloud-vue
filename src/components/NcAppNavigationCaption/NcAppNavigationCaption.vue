@@ -149,20 +149,24 @@
 </docs>
 
 <template>
-	<component :is="wrapperTag"
+	<component
+		:is="wrapperTag"
 		class="app-navigation-caption"
 		:class="{ 'app-navigation-caption--heading': isHeading }">
 		<!-- Name of the caption -->
-		<component :is="captionTag"
+		<component
+			:is="captionTag"
 			:id="headingId"
 			class="app-navigation-caption__name">
 			{{ name }}
 		</component>
 
 		<!-- Actions -->
-		<div v-if="hasActions"
+		<div
+			v-if="hasActions"
 			class="app-navigation-caption__actions">
-			<NcActions v-bind="$attrs"
+			<NcActions
+				v-bind="$attrs"
 				v-on="$listeners">
 				<!-- @slot Slot for the actions menu -->
 				<slot name="actions" />

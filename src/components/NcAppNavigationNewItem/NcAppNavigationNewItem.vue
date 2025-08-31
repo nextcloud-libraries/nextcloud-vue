@@ -48,13 +48,15 @@
 </docs>
 
 <template>
-	<li :class="{
+	<li
+		:class="{
 			'app-navigation-entry--newItemActive': newItemActive,
 		}"
 		class="app-navigation-entry">
 		<!-- New Item -->
 		<button class="app-navigation-entry-button" @click="handleNewItem">
-			<span :class="{ [icon]: !loading }"
+			<span
+				:class="{ [icon]: !loading }"
 				class="app-navigation-entry-icon">
 				<NcLoadingIcon v-if="loading" />
 				<slot v-else name="icon" />
@@ -66,7 +68,8 @@
 
 			<!-- new Item input -->
 			<span v-if="newItemActive" class="newItemContainer">
-				<NcInputConfirmCancel ref="newItemInput"
+				<NcInputConfirmCancel
+					ref="newItemInput"
 					v-model="newItemValue"
 					:placeholder="editPlaceholder !== '' ? editPlaceholder : name"
 					@cancel="cancelNewItem"

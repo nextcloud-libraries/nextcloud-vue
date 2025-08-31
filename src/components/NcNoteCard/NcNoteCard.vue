@@ -58,7 +58,8 @@ available in four versions:
 </docs>
 
 <template>
-	<div class="notecard"
+	<div
+		class="notecard"
 		:class="{
 			[`notecard--${type}`]: type,
 			'notecard--legacy': isLegacy32,
@@ -66,7 +67,8 @@ available in four versions:
 		:role="shouldShowAlert ? 'alert' : 'note'">
 		<!-- @slot Manually provide icon -->
 		<slot name="icon">
-			<component :is="icon"
+			<component
+				:is="icon"
 				class="notecard__icon"
 				:class="{ 'notecard__icon--heading': heading }"
 				fill-color="var(--note-theme)"

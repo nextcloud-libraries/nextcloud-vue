@@ -113,7 +113,8 @@ export default {
 </docs>
 
 <template>
-	<NcSelect v-bind="propsToForward"
+	<NcSelect
+		v-bind="propsToForward"
 		:options="availableOptions"
 		:close-on-select="!multiple"
 		:value="passthru ? model : localValue"
@@ -125,11 +126,13 @@ export default {
 			'update:model-value': passthru ? $listeners['update:model-value'] : noop,
 		}">
 		<template #option="option">
-			<NcEllipsisedOption :name="getOptionLabel(option)"
+			<NcEllipsisedOption
+				:name="getOptionLabel(option)"
 				:search="search" />
 		</template>
 		<template #selected-option="selectedOption">
-			<NcEllipsisedOption :name="getOptionLabel(selectedOption)"
+			<NcEllipsisedOption
+				:name="getOptionLabel(selectedOption)"
 				:search="search" />
 		</template>
 		<template v-for="(_, name) in $scopedSlots" #[name]="data">

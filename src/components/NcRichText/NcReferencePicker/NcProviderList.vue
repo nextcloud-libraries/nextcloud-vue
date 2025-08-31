@@ -5,7 +5,8 @@
 
 <template>
 	<div class="provider-list">
-		<NcSelect ref="provider-select"
+		<NcSelect
+			ref="provider-select"
 			v-model="selectedProvider"
 			class="provider-list--select"
 			input-id="provider-select-input"
@@ -24,10 +25,12 @@
 					<span>{{ option.title }}</span>
 				</div>
 				<div v-else class="provider">
-					<img class="provider-icon"
+					<img
+						class="provider-icon"
 						:src="option.icon_url"
 						:alt="providerIconAlt">
-					<NcHighlight class="option-text"
+					<NcHighlight
+						class="option-text"
 						:search="query"
 						:text="option.title" />
 				</div>

@@ -68,11 +68,13 @@ export default {
 
 <template>
 	<span dir="auto" class="name-parts" :title="name">
-		<NcHighlight class="name-parts__first"
+		<NcHighlight
+			class="name-parts__first"
 			:text="part1"
 			:search="search"
 			:highlight="highlight1" />
-		<NcHighlight v-if="part2"
+		<NcHighlight
+			v-if="part2"
 			class="name-parts__last"
 			:text="part2"
 			:search="search"

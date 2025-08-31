@@ -90,7 +90,8 @@ h4 {
 </docs>
 
 <template>
-	<span class="nc-datetime"
+	<span
+		class="nc-datetime"
 		:data-timestamp="timestamp"
 		:title="title"
 		v-text="formattedTime" />

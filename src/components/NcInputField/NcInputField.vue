@@ -17,7 +17,8 @@ For a list of all available props and attributes, please check the [HTMLInputEle
 </docs>
 
 <template>
-	<div class="input-field"
+	<div
+		class="input-field"
 		:class="{
 			'input-field--disabled': disabled,
 			'input-field--error': error,
@@ -29,7 +30,8 @@ For a list of all available props and attributes, please check the [HTMLInputEle
 			'input-field--legacy': isLegacy32,
 		}">
 		<div class="input-field__main-wrapper">
-			<input v-bind="$attrs"
+			<input
+				v-bind="$attrs"
 				:id="computedId"
 				ref="input"
 				class="input-field__input"
@@ -47,7 +49,8 @@ For a list of all available props and attributes, please check the [HTMLInputEle
 				v-on="$listeners"
 				@input="handleInput">
 			<!-- Label -->
-			<label v-if="!labelOutside && isValidLabel"
+			<label
+				v-if="!labelOutside && isValidLabel"
 				class="input-field__label"
 				:for="computedId">
 				{{ label }}
@@ -63,7 +66,8 @@ For a list of all available props and attributes, please check the [HTMLInputEle
 			</div>
 
 			<!-- trailing button -->
-			<NcButton v-if="showTrailingButton"
+			<NcButton
+				v-if="showTrailingButton"
 				class="input-field__trailing-button"
 				:aria-label="trailingButtonLabel"
 				:disabled="disabled"
@@ -77,13 +81,15 @@ For a list of all available props and attributes, please check the [HTMLInputEle
 			</NcButton>
 
 			<!-- Success and error icons -->
-			<div v-else-if="success || error"
+			<div
+				v-else-if="success || error"
 				class="input-field__icon input-field__icon--trailing">
 				<Check v-if="success" :size="20" style="color: var(--color-success-text);" />
 				<AlertCircle v-else-if="error" :size="20" style="color: var(--color-error-text);" />
 			</div>
 		</div>
-		<p v-if="helperText.length > 0"
+		<p
+			v-if="helperText.length > 0"
 			:id="`${inputName}-helper-text`"
 			class="input-field__helper-text-message"
 			:class="{

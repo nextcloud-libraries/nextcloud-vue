@@ -189,7 +189,8 @@ export default {
 </docs>
 
 <template>
-	<span v-click-outside="closeMenu"
+	<span
+		v-click-outside="closeMenu"
 		:title="tooltip"
 		:class="{
 			'avatardiv--unknown': userDoesNotExist,
@@ -202,7 +203,8 @@ export default {
 		<slot name="icon">
 			<!-- Avatar icon or image -->
 			<span v-if="iconClass" :class="iconClass" class="avatar-class-icon" />
-			<img v-else-if="isAvatarLoaded && !userDoesNotExist"
+			<img
+				v-else-if="isAvatarLoaded && !userDoesNotExist"
 				:src="avatarUrlLoaded"
 				:srcset="avatarSrcSetLoaded"
 				alt="">
@@ -210,7 +212,8 @@ export default {
 
 		<!-- Contact menu -->
 		<!-- We show a button if the menu is not loaded yet. -->
-		<NcButton v-if="hasMenu && menu.length === 0"
+		<NcButton
+			v-if="hasMenu && menu.length === 0"
 			:aria-label="avatarAriaLabel"
 			class="action-item action-item__menutoggle"
 			variant="tertiary-no-background"
@@ -220,7 +223,8 @@ export default {
 				<IconDotsHorizontal v-else :size="20" />
 			</template>
 		</NcButton>
-		<NcActions v-else-if="hasMenu"
+		<NcActions
+			v-else-if="hasMenu"
 			:aria-label="avatarAriaLabel"
 			:container="menuContainer"
 			force-menu
@@ -228,7 +232,8 @@ export default {
 			:open.sync="contactsMenuOpenState"
 			variant="tertiary-no-background"
 			@click="toggleMenu">
-			<component :is="item.ncActionComponent"
+			<component
+				:is="item.ncActionComponent"
 				v-for="(item, key) in menu"
 				:key="key"
 				v-bind="item.ncActionComponentProps"
@@ -247,13 +252,15 @@ export default {
 		<span v-if="showUserStatusIconOnAvatar" class="avatardiv__user-status avatardiv__user-status--icon">
 			{{ userStatus.icon }}
 		</span>
-		<NcUserStatusIcon v-else-if="canDisplayUserStatus"
+		<NcUserStatusIcon
+			v-else-if="canDisplayUserStatus"
 			class="avatardiv__user-status"
 			:status="userStatus.status"
 			:aria-hidden="String(hasMenu)" />
 
 		<!-- Show the letter if no avatar nor icon class -->
-		<span v-if="showInitials"
+		<span
+			v-if="showInitials"
 			:style="initialsWrapperStyle"
 			class="avatardiv__initials-wrapper">
 			<span :style="initialsStyle" class="avatardiv__initials">

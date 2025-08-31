@@ -322,7 +322,8 @@ export default {
 </docs>
 
 <template>
-	<VueSelect class="select"
+	<VueSelect
+		class="select"
 		:class="{
 			'select--no-wrap': noWrap,
 			'user-select': userSelect,
@@ -331,13 +332,15 @@ export default {
 		v-on="listenersToForward"
 		@search="searchString => search = searchString">
 		<template v-if="!labelOutside && inputLabel" #header>
-			<label :for="inputId"
+			<label
+				:for="inputId"
 				class="select__label">
 				{{ inputLabel }}
 			</label>
 		</template>
 		<template #search="{ attributes, events }">
-			<input class="vs__search"
+			<input
+				class="vs__search"
 				:class="inputClass"
 				v-bind="attributes"
 				:required="inputRequired"
@@ -345,7 +348,8 @@ export default {
 				v-on="events">
 		</template>
 		<template #open-indicator="{ attributes }">
-			<ChevronDown v-bind="attributes"
+			<ChevronDown
+				v-bind="attributes"
 				fill-color="var(--vs-controls-color)"
 				:style="{
 					cursor: !disabled ? 'pointer' : null,
@@ -356,12 +360,14 @@ export default {
 		<template #option="option">
 			<!-- @slot Customize how a option is rendered. -->
 			<slot name="option" v-bind="option">
-				<NcListItemIcon v-if="userSelect"
+				<NcListItemIcon
+					v-if="userSelect"
 					v-bind="option"
 					:avatar-size="32"
 					:name="option[localLabel]"
 					:search="search" />
-				<NcEllipsisedOption v-else
+				<NcEllipsisedOption
+					v-else
 					:name="String(option[localLabel])"
 					:search="search" />
 			</slot>
@@ -369,13 +375,15 @@ export default {
 		<template #selected-option="selectedOption">
 			<!-- @slot Customize how a selected option is rendered -->
 			<slot name="selected-option" :v-bind="selectedOption">
-				<NcListItemIcon v-if="userSelect"
+				<NcListItemIcon
+					v-if="userSelect"
 					v-bind="selectedOption"
 					:avatar-size="avatarSize"
 					:name="selectedOption[localLabel]"
 					no-margin
 					:search="search" />
-				<NcEllipsisedOption v-else
+				<NcEllipsisedOption
+					v-else
 					:name="String(selectedOption[localLabel])"
 					:search="search" />
 			</slot>
