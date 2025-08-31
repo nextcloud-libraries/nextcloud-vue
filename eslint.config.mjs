@@ -48,7 +48,6 @@ export default defineConfig([
 			'vue/no-boolean-default': 'off',
 			'vue/no-unused-properties': 'off',
 			'vue/no-unused-refs': 'off',
-			'vue/require-default-prop': 'off',
 			'vue/require-prop-comment': 'off',
 		},
 	},

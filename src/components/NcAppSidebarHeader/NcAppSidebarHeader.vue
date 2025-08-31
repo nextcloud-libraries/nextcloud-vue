@@ -21,6 +21,7 @@ defineProps({
 	 */
 	title: {
 		type: String,
+		default: undefined,
 	},
 
 	/**
