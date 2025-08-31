@@ -42,6 +42,7 @@ import { generateOcsUrl } from '@nextcloud/router'
 import LinkVariantIcon from 'vue-material-design-icons/LinkVariant.vue'
 import NcReferenceWidget from '../NcReferenceWidget.vue'
 import { t } from '../../../l10n.js'
+import { logger } from '../../../utils/logger.ts'
 import NcEmptyContent from '../../NcEmptyContent/index.js'
 import NcLoadingIcon from '../../NcLoadingIcon/index.js'
 import NcTextField from '../../NcTextField/index.js'
@@ -126,7 +127,7 @@ export default {
 					this.reference = response.data.ocs.data.references[this.inputValue]
 				})
 				.catch((error) => {
-					console.error(error)
+					logger.error(error)
 				})
 				.then(() => {
 					this.loading = false

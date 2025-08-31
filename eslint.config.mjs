@@ -86,7 +86,6 @@ export default defineConfig([
 		name: '@nextcloud/vue/disabled-during-migration',
 		files: ['**/*.{js,ts,vue,mjs,mts}'],
 		rules: {
-			'no-console': 'off',
 			'@stylistic/function-paren-newline': 'off',
 			'@typescript-eslint/no-unused-expressions': 'off',
 			'vue/no-boolean-default': 'off',

@@ -422,6 +422,7 @@ td.row-size {
 
 <script>
 import { isLegacy32 } from '../../utils/legacy.ts'
+import { logger } from '../../utils/logger.ts'
 
 export default {
 	name: 'NcButton',
@@ -691,7 +692,7 @@ export default {
 		 * Always fill either the text prop or the ariaLabel one.
 		 */
 		if (!hasText && !this.ariaLabel) {
-			console.warn('You need to fill either the text or the ariaLabel props in the button component.', {
+			logger.warn('You need to fill either the text or the ariaLabel props in the button component.', {
 				text: this.$slots.default?.[0]?.text,
 				ariaLabel: this.ariaLabel,
 			}, this)

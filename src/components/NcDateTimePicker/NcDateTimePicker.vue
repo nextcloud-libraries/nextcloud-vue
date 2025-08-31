@@ -179,6 +179,7 @@ import Web from 'vue-material-design-icons/Web.vue'
 import { useModelMigration } from '../../composables/useModelMigration.ts'
 import { t } from '../../l10n.js'
 import GenRandomId from '../../utils/GenRandomId.js'
+import { logger } from '../../utils/logger.ts'
 import NcPopover from '../NcPopover/index.js'
 import NcTimezonePicker from '../NcTimezonePicker/index.js'
 
@@ -448,7 +449,7 @@ export default {
 					const date = new Date(new Date(value).setFullYear(year))
 					this.$refs.datepicker.selectDate(date)
 				} catch {
-					console.error('Invalid value', value, year)
+					logger.error('Invalid value', value, year)
 				}
 			}
 		},
@@ -460,7 +461,7 @@ export default {
 					const date = new Date(new Date(value).setMonth(month))
 					this.$refs.datepicker.selectDate(date)
 				} catch {
-					console.error('Invalid value', value, month)
+					logger.error('Invalid value', value, month)
 				}
 			}
 		},

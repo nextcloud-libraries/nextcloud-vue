@@ -145,6 +145,7 @@ export default {
 <script>
 import { useModelMigration } from '../../composables/useModelMigration.ts'
 import { t } from '../../l10n.js'
+import { logger } from '../../utils/logger.ts'
 import NcEllipsisedOption from '../NcEllipsisedOption/index.js'
 import NcSelect from '../NcSelect/index.js'
 import { searchTags } from './api.js'
@@ -364,7 +365,7 @@ export default {
 			const result = await searchTags()
 			this.availableTags = result
 		} catch (error) {
-			console.error('Loading systemtags failed', error)
+			logger.error('Loading systemtags failed', error)
 		}
 	},
 

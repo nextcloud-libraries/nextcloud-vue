@@ -5,6 +5,8 @@
 import { readFile, writeFile } from 'node:fs/promises'
 import { join } from 'node:path'
 
+/* eslint-disable no-console */
+
 console.info('🔎 checking format of CHANGELOG.md')
 
 const file = join(import.meta.dirname, '..', 'CHANGELOG.md')

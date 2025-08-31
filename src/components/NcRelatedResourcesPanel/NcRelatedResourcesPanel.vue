@@ -56,6 +56,7 @@ import { generateOcsUrl } from '@nextcloud/router'
 import NcResource from './NcResource.vue'
 import NcTeamResources from './NcTeamResources.vue'
 import { t } from '../../l10n.js'
+import { logger } from '../../utils/logger.ts'
 
 export default {
 	name: 'NcRelatedResourcesPanel',
@@ -245,7 +246,7 @@ export default {
 				this.resources = response.data.ocs?.data
 			} catch (e) {
 				this.error = e
-				console.error(e)
+				logger.error(e)
 			} finally {
 				this.loading = false
 			}

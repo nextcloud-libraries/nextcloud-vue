@@ -73,6 +73,7 @@ import debounce from 'debounce'
 import { ref } from 'vue'
 import NcCollectionListItem from './NcCollectionListItem.vue'
 import { t } from '../../l10n.js'
+import { logger } from '../../utils/logger.ts'
 import NcAvatar from '../NcAvatar/index.js'
 import NcSelect from '../NcSelect/index.js'
 import { searchService } from './service.ts'
@@ -141,7 +142,7 @@ export default {
 				searchService(query).then((collections) => {
 					searchCollections.value = collections
 				}).catch((e) => {
-					console.error('Failed to search for collections', e)
+					logger.error('Failed to search for collections', e)
 				}).finally(() => {
 					loading(false)
 				})
@@ -247,7 +248,7 @@ export default {
 						this.setError(t('Failed to create a project'), e)
 					})
 				}).catch((e) => {
-					console.error('No resource selected', e)
+					logger.error('No resource selected', e)
 				})
 			}
 
@@ -268,7 +269,7 @@ export default {
 		},
 
 		setError(error, e) {
-			console.error(error, e)
+			logger.error(error, e)
 			this.error = error
 			setTimeout(() => {
 				this.error = null
@@ -278,7 +279,7 @@ export default {
 		renameCollectionFromItem({ collectionId, name }) {
 			this.renameCollection({ collectionId, name })
 				.catch((e) => {
-					console.error(t('Failed to rename the project'), e)
+					logger.error(t('Failed to rename the project'), e)
 					this.collectionsError[collectionId] = t('Failed to rename the project')
 					setTimeout(() => {
 						this.collectionsError[collectionId] = null

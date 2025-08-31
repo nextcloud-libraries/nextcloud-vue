@@ -5,6 +5,7 @@
 
 import axios from '@nextcloud/axios'
 import { generateRemoteUrl } from '@nextcloud/router'
+import { logger } from '../../utils/logger.ts'
 
 /**
  * @param {Document} xml - The xml document
@@ -52,7 +53,7 @@ function parseXml(xml) {
 	try {
 		dom = (new DOMParser()).parseFromString(xml, 'text/xml')
 	} catch (e) {
-		console.error('Failed to parse xml document', e)
+		logger.error('Failed to parse xml document', e)
 	}
 	return dom
 }

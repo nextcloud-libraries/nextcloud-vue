@@ -20,6 +20,7 @@ import axios from '@nextcloud/axios'
 import { generateOcsUrl } from '@nextcloud/router'
 import { getSharingToken } from '@nextcloud/sharing/public'
 import NcReferenceWidget from './NcReferenceWidget.vue'
+import { logger } from '../../utils/logger.ts'
 import { URL_PATTERN } from './helpers.js'
 
 export default {
@@ -134,7 +135,7 @@ export default {
 				this.loading = false
 				this.$emit('loaded')
 			}).catch((error) => {
-				console.error('Failed to extract references', error)
+				logger.error('Failed to extract references', error)
 				this.loading = false
 				this.$emit('loaded')
 			})

@@ -109,6 +109,7 @@ import Check from 'vue-material-design-icons/Check.vue'
 import { useModelMigration } from '../../composables/useModelMigration.ts'
 import GenRandomId from '../../utils/GenRandomId.js'
 import { isLegacy32 } from '../../utils/legacy.ts'
+import { logger } from '../../utils/logger.ts'
 import NcButton from '../NcButton/index.js'
 
 export default {
@@ -321,7 +322,7 @@ export default {
 		isValidLabel() {
 			const isValidLabel = this.label || this.labelOutside
 			if (!isValidLabel) {
-				console.warn('You need to add a label to the NcInputField component. Either use the prop label or use an external one, as per the example in the documentation.')
+				logger.warn('You need to add a label to the NcInputField component. Either use the prop label or use an external one, as per the example in the documentation.')
 			}
 			return isValidLabel
 		},

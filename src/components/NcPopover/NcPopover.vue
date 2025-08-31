@@ -172,6 +172,7 @@ import { tabbable } from 'tabbable'
 import Vue from 'vue'
 import NcPopoverTriggerProvider from './NcPopoverTriggerProvider.vue'
 import { getTrapStack } from '../../utils/focusTrap.ts'
+import { logger } from '../../utils/logger.ts'
 
 const THEME = 'nc-popover-8'
 
@@ -390,7 +391,7 @@ export default {
 				this.$focusTrap?.deactivate(options)
 				this.$focusTrap = null
 			} catch (err) {
-				console.warn(err)
+				logger.warn(err)
 			}
 		},
 
