@@ -18,7 +18,7 @@ Renders a button element when given no redirection props, otherwise, renders <a/
 		:class="{'vue-crumb--hovered': hovering}"
 		:[crumbId]="''"
 		draggable="false"
-		@dragstart.prevent="() => {/** Prevent the breadcrumb from being draggable. */}"
+		@dragstart.prevent="() => { /** Prevent the breadcrumb from being draggable. */ }"
 		@drop.prevent="dropped"
 		@dragover.prevent="() => {}"
 		@dragenter="dragEnter"

@@ -187,7 +187,7 @@ For the `NcSelect` component, all events will be passed through. Please see the 
 							v-bind="$attrs"
 							v-on="$listeners" />
 
-						<NcPasswordField v-else-if="type==='password'"
+						<NcPasswordField v-else-if="type === 'password'"
 							:id="inputId"
 							:value="model"
 							:label="label"

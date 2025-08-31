@@ -55,7 +55,7 @@ This is a simple progress bar component.
 			<circle stroke="currentColor"
 				fill="transparent"
 				:stroke-dasharray="`${progress * circumference} ${(1 - progress) * circumference}`"
-				:stroke-dashoffset="0.25*circumference"
+				:stroke-dashoffset="0.25 * circumference"
 				:stroke-width="stroke"
 				:r="radiusNormalized"
 				:cx="radius"
