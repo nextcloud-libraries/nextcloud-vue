@@ -144,6 +144,7 @@ export default {
 		NcBreadcrumb,
 		IconFolder,
 	},
+
 	props: {
 		/**
 		 * Set a css icon-class for the icon of the root breadcrumb to be used.
@@ -161,6 +162,7 @@ export default {
 			default: null,
 		},
 	},
+
 	emits: ['dropped'],
 	data() {
 		return {
@@ -183,17 +185,21 @@ export default {
 				// Is the menu open or not
 				open: false,
 			},
+
 			breadcrumbsRefs: {},
 		}
 	},
+
 	beforeMount() {
 		// Filter all invalid items, only Breadcrumb components are allowed
 		ValidateSlot(this.$slots.default, ['NcBreadcrumb'], this)
 	},
+
 	beforeUpdate() {
 		// Also check before every update
 		ValidateSlot(this.$slots.default, ['NcBreadcrumb'], this)
 	},
+
 	created() {
 		/**
 		 * Add a listener so the component reacts on resize
@@ -203,9 +209,11 @@ export default {
 		}, 100))
 		subscribe('navigation-toggled', this.delayedResize)
 	},
+
 	mounted() {
 		this.handleWindowResize()
 	},
+
 	updated() {
 		/**
 		 * Check the size on update
@@ -218,10 +226,12 @@ export default {
 			this.hideCrumbs()
 		})
 	},
+
 	beforeDestroy() {
 		window.removeEventListener('resize', this.handleWindowResize)
 		unsubscribe('navigation-toggled', this.delayedResize)
 	},
+
 	methods: {
 		/**
 		 * Close the actions menu
@@ -235,6 +245,7 @@ export default {
 			}
 			this.menuBreadcrumbProps.open = false
 		},
+
 		/**
 		 * Call the resize function after a delay
 		 */
@@ -242,6 +253,7 @@ export default {
 			await this.$nextTick()
 			this.handleWindowResize()
 		},
+
 		/**
 		 * Check the width of the breadcrumb and hide breadcrumbs
 		 * if we overflow otherwise.
@@ -283,6 +295,7 @@ export default {
 				this.hiddenIndices = hiddenIndices
 			}
 		},
+
 		/**
 		 * Checks if two arrays are equal.
 		 * Only works for primitive arrays, but that's enough here.
@@ -303,6 +316,7 @@ export default {
 			}
 			return true
 		},
+
 		/**
 		 * Calculates the total width of all breadcrumbs
 		 *
@@ -312,6 +326,7 @@ export default {
 		getTotalWidth(breadcrumbs) {
 			return breadcrumbs.reduce((width, crumb, index) => width + this.getWidth(crumb?.elm, index === (breadcrumbs.length - 1)), 0)
 		},
+
 		/**
 		 * Calculates the width of the provided element
 		 *
@@ -337,6 +352,7 @@ export default {
 			el.style.maxWidth = ''
 			return w
 		},
+
 		/**
 		 * Prevents the default of a provided event
 		 *
@@ -349,6 +365,7 @@ export default {
 			}
 			return false
 		},
+
 		/**
 		 * Handles the drag start.
 		 * Prevents a breadcrumb from being draggable.
@@ -359,6 +376,7 @@ export default {
 		dragStart(e) {
 			return this.preventDefault(e)
 		},
+
 		/**
 		 * Handles when something is dropped on the breadcrumb.
 		 *
@@ -388,6 +406,7 @@ export default {
 			crumbs.forEach((f) => { f.classList.remove(`${crumbClass}--hovered`) })
 			return this.preventDefault(e)
 		},
+
 		/**
 		 * Handles the drag over event
 		 *
@@ -397,6 +416,7 @@ export default {
 		dragOver(e) {
 			return this.preventDefault(e)
 		},
+
 		/**
 		 * Handles the drag enter event
 		 *
@@ -420,6 +440,7 @@ export default {
 				}
 			}
 		},
+
 		/**
 		 * Handles the drag leave event
 		 *
@@ -448,6 +469,7 @@ export default {
 				}
 			}
 		},
+
 		/**
 		 * Check for each crumb if we have to hide it and
 		 * add it to the array of all crumbs.
@@ -469,6 +491,7 @@ export default {
 			return (vnode?.componentOptions?.tag || vnode?.tag || '').includes('NcBreadcrumb')
 		},
 	},
+
 	/**
 	 * The render function to display the component
 	 *

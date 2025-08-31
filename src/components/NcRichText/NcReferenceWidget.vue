@@ -49,15 +49,18 @@ export default {
 	components: {
 		NcButton,
 	},
+
 	props: {
 		reference: {
 			type: Object,
 			required: true,
 		},
+
 		interactive: {
 			type: Boolean,
 			default: true,
 		},
+
 		interactiveOptIn: {
 			type: Boolean,
 			default: false,
@@ -95,18 +98,23 @@ export default {
 		isInteractive() {
 			return (!this.interactiveOptIn && this.interactive) || this.showInteractive
 		},
+
 		hasFullWidth() {
 			return hasFullWidth(this.reference.richObjectType)
 		},
+
 		hasCustomWidget() {
 			return isWidgetRegistered(this.reference.richObjectType)
 		},
+
 		hasInteractiveView() {
 			return isWidgetRegistered(this.reference.richObjectType) && hasInteractiveView(this.reference.richObjectType)
 		},
+
 		noAccess() {
 			return this.reference && !this.reference.accessible
 		},
+
 		descriptionStyle() {
 			if (this.numberOfLines === 0) {
 				return {
@@ -119,11 +127,13 @@ export default {
 				webkitLineClamp: lineClamp,
 			}
 		},
+
 		numberOfLines() {
 			// no description for width < 450, one line until 550 and so on
 			const lineCountOffsets = [450, 550, 650, Infinity]
 			return lineCountOffsets.findIndex((max) => this.width < max)
 		},
+
 		compactLink() {
 			const link = this.reference.openGraphObject.link
 			if (!link) {
@@ -138,18 +148,22 @@ export default {
 			}
 			return link
 		},
+
 		route() {
 			return getRoute(this.$router, this.reference.openGraphObject.link)
 		},
+
 		referenceWidgetLinkComponent() {
 			return this.route ? RouterLink : 'a'
 		},
+
 		referenceWidgetLinkProps() {
 			return this.route
 				? { to: this.route }
 				: { href: this.reference.openGraphObject.link, target: '_blank' }
 		},
 	},
+
 	watch: {
 		isVisible: {
 			handler(val) {
@@ -172,12 +186,15 @@ export default {
 					this.renderWidget()
 				}
 			},
+
 			immediate: true,
 		},
 	},
+
 	beforeDestroy() {
 		this.destroyWidget()
 	},
+
 	methods: {
 		t,
 
@@ -185,6 +202,7 @@ export default {
 			this.showInteractive = true
 			this.renderWidget()
 		},
+
 		renderWidget() {
 			if (!this.$refs.customWidget) {
 				return
@@ -209,6 +227,7 @@ export default {
 				this.rendered = true
 			})
 		},
+
 		destroyWidget() {
 			if (this.rendered) {
 				destroyWidget(this.reference.richObjectType, this.$el)

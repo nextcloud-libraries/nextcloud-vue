@@ -21,6 +21,7 @@ export default defineComponent({
 			type: Boolean,
 			required: true,
 		},
+
 		popupRole: {
 			type: String,
 			default: undefined,

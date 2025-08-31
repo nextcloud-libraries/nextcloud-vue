@@ -248,6 +248,7 @@ export default {
 			type: String,
 			default: null,
 		},
+
 		/**
 		 * See the [Avatar](#Avatar) isNoUser prop
 		 * Enable/disable the UserStatus fetching

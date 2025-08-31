@@ -34,27 +34,32 @@ export default {
 			},
 		},
 	},
+
 	computed: {
 		// generate an id for each settingssection based on the name without whitespaces
 		htmlId() {
 			return 'settings-section_' + this.id
 		},
 	},
+
 	// Reactive changes for section navigation
 	watch: {
 		id(newId, oldId) {
 			this.unregisterSection(oldId)
 			this.registerSection(newId, this.name, this.$slots?.icon)
 		},
+
 		name(newName) {
 			this.unregisterSection(this.id)
 			this.registerSection(this.id, newName, this.$slots?.icon)
 		},
 	},
+
 	mounted() {
 		// register section for navigation
 		this.registerSection(this.id, this.name, this.$slots?.icon)
 	},
+
 	beforeDestroy() {
 		this.unregisterSection(this.id)
 	},

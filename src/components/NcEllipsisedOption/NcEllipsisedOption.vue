@@ -98,6 +98,7 @@ export default {
 			type: String,
 			default: '',
 		},
+
 		/**
 		 * The search value to highlight in the text
 		 */
@@ -111,6 +112,7 @@ export default {
 		needsTruncate() {
 			return this.name && this.name.length >= 10
 		},
+
 		/**
 		 * Index at which to split the name if it is longer than 10 characters.
 		 *
@@ -120,18 +122,21 @@ export default {
 			// leave maximum 10 letters
 			return this.name.length - Math.min(Math.floor(this.name.length / 2), 10)
 		},
+
 		part1() {
 			if (this.needsTruncate) {
 				return this.name.slice(0, this.split)
 			}
 			return this.name
 		},
+
 		part2() {
 			if (this.needsTruncate) {
 				return this.name.slice(this.split)
 			}
 			return ''
 		},
+
 		/**
 		 * The ranges to highlight. Since we split the string for ellipsising,
 		 * the Highlight component cannot figure this out itself and needs the ranges provided.
@@ -144,6 +149,7 @@ export default {
 			}
 			return FindRanges(this.name, this.search)
 		},
+
 		/**
 		 * We shift the ranges for the second part by the position of the split.
 		 * Ranges out of the string length are discarded by the Highlight component,

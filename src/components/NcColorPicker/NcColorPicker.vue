@@ -368,6 +368,7 @@ export default {
 		uid() {
 			return GenRandomId()
 		},
+
 		contrastColor() {
 			const black = '#000000'
 			const white = '#FFFFFF'
@@ -397,6 +398,7 @@ export default {
 
 			this.advanced = false
 		},
+
 		handleClose() {
 			/**
 			 * Emitted after picker close.
@@ -420,6 +422,7 @@ export default {
 		handleBack() {
 			this.advanced = false
 		},
+
 		handleMoreSettings() {
 			this.advanced = true
 		},

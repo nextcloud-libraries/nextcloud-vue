@@ -40,6 +40,7 @@ export default {
 	mounted() {
 		document.getElementById('content').classList.add('nc-guest-content')
 	},
+
 	destroyed() {
 		document.getElementById('content').classList.remove('nc-guest-content')
 	},

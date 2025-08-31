@@ -35,6 +35,7 @@ export default {
 			type: String,
 			default: '',
 		},
+
 		/**
 		 * The string to match and highlight
 		 */
@@ -42,6 +43,7 @@ export default {
 			type: String,
 			default: '',
 		},
+
 		/**
 		 * The ranges to highlight, takes precedence over the search prop.
 		 */
@@ -50,6 +52,7 @@ export default {
 			default: () => [],
 		},
 	},
+
 	computed: {
 		/**
 		 * The indice ranges which should be highlighted.
@@ -130,6 +133,7 @@ export default {
 
 			return ranges
 		},
+
 		/**
 		 * Calculate the different chunks to show based on the ranges to highlight.
 		 *
@@ -190,6 +194,7 @@ export default {
 			return chunks
 		},
 	},
+
 	/**
 	 * The render function to display the component
 	 *

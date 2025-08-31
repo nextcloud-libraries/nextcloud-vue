@@ -84,6 +84,7 @@ export default {
 			type: String,
 			default: '',
 		},
+
 		/**
 		 * Force the tab navigation to display even if there is only one tab
 		 */

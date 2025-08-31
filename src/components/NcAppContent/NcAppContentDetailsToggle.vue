@@ -33,6 +33,7 @@ export default {
 		ArrowLeft,
 		NcButton,
 	},
+
 	setup() {
 		return {
 			isRtl,
@@ -45,6 +46,7 @@ export default {
 			return t('Go back to the list')
 		},
 	},
+
 	watch: {
 		isMobile: {
 			immediate: true,

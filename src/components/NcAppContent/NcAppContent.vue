@@ -180,6 +180,7 @@ export default {
 		Pane,
 		Splitpanes,
 	},
+
 	props: {
 		/**
 		 * Allows to disable the control by swipe of the app navigation open state

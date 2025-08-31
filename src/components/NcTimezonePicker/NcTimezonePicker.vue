@@ -53,10 +53,12 @@ export default {
 	components: {
 		NcSelect,
 	},
+
 	model: {
 		prop: 'modelValue',
 		event: 'update:modelValue',
 	},
+
 	props: {
 		/**
 		 * An array of additional timezones to include with the standard database. Useful if there is a custom timezone, e.g. read from user data
@@ -65,6 +67,7 @@ export default {
 			type: Array,
 			default: () => [],
 		},
+
 		/**
 		 * Removed in v9 - use `modelValue` (`v-model`) instead
 		 * @deprecated
@@ -73,6 +76,7 @@ export default {
 			type: String,
 			default: undefined,
 		},
+
 		/**
 		 * The selected timezone. Use v-model for two-way binding. The default timezone is floating, which means a time independent of timezone. See https://icalendar.org/CalDAV-Access-RFC-4791/7-3-date-and-floating-time.html for details.
 		 */
@@ -80,6 +84,7 @@ export default {
 			type: String,
 			default: 'floating',
 		},
+
 		/**
 		 * ID of the inner vue-select element, can be used for labels like: `vs-${uid}__combobox`
 		 */
@@ -88,6 +93,7 @@ export default {
 			default: () => `tz-${GenRandomId(5)}`,
 		},
 	},
+
 	emits: [
 		/**
 		 * Removed in v9 - use `update:modelValue` (`v-model`) instead
@@ -101,16 +107,19 @@ export default {
 		/** Same as update:modelValue for Vue 2 compatibility */
 		'update:model-value',
 	],
+
 	setup() {
 		const model = useModelMigration('value', 'input')
 		return {
 			model,
 		}
 	},
+
 	computed: {
 		placeholder() {
 			return t('Type to search time zone')
 		},
+
 		selectedTimezone() {
 			for (const additionalTimezone of this.additionalTimezones) {
 				if (additionalTimezone.timezoneId === this.model) {
@@ -123,6 +132,7 @@ export default {
 				timezoneId: this.model,
 			}
 		},
+
 		options() {
 			const timezoneManager = getTimezoneManager()
 			const timezoneList = getSortedTimezoneList(timezoneManager.listAllTimezones(), this.additionalTimezones)
@@ -146,6 +156,7 @@ export default {
 			return timezonesGrouped
 		},
 	},
+
 	methods: {
 		t,
 

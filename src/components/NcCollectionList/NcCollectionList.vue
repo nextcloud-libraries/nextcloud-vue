@@ -96,6 +96,7 @@ export default {
 			type: String,
 			default: null,
 		},
+
 		/**
 		 * Unique id of the resource
 		 */
@@ -103,6 +104,7 @@ export default {
 			type: String,
 			default: null,
 		},
+
 		/**
 		 * Name of the resource
 		 */
@@ -110,6 +112,7 @@ export default {
 			type: String,
 			default: '',
 		},
+
 		/**
 		 * Whether the component is active (to start fetch resources)
 		 */

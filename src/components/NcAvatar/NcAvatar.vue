@@ -318,6 +318,7 @@ export default {
 	directives: {
 		ClickOutside,
 	},
+
 	components: {
 		IconDotsHorizontal,
 		NcActions,
@@ -326,6 +327,7 @@ export default {
 		NcLoadingIcon,
 		NcUserStatusIcon,
 	},
+
 	mixins: [userStatus],
 	props: {
 		/**
@@ -336,6 +338,7 @@ export default {
 			type: String,
 			default: undefined,
 		},
+
 		/**
 		 * Set a css icon-class for an icon to be used instead of the avatar.
 		 */
@@ -343,6 +346,7 @@ export default {
 			type: String,
 			default: undefined,
 		},
+
 		/**
 		 * Set the user id to fetch the avatar
 		 * either the url, user or displayName property must be defined
@@ -351,6 +355,7 @@ export default {
 			type: String,
 			default: undefined,
 		},
+
 		/**
 		 * Do not show the user status on the avatar.
 		 */
@@ -358,6 +363,7 @@ export default {
 			type: Boolean,
 			default: false,
 		},
+
 		/**
 		 * Whether or not to display the user-status.
 		 * @deprecated - Use `hideStatus` instead. Will be removed with v9.
@@ -366,6 +372,7 @@ export default {
 			type: Boolean,
 			default: true,
 		},
+
 		/**
 		 * Show the verbose user status (e.g. "online" / "away") instead of just the status icon.
 		 */
@@ -373,6 +380,7 @@ export default {
 			type: Boolean,
 			default: false,
 		},
+
 		/**
 		 * Whether or not to the status-icon should be used instead of online/away
 		 * @deprecated - Use `verboseStatus` instead. Will be removed with v9.
@@ -381,6 +389,7 @@ export default {
 			type: Boolean,
 			default: true,
 		},
+
 		/**
 		 * When the user status was preloaded via another source it can be handed in with this property to save the request.
 		 * If this property is not set the status will be fetched automatically.
@@ -390,6 +399,7 @@ export default {
 			type: Object,
 			default: undefined,
 		},
+
 		/**
 		 * Is the user a guest user (then we have to user a different endpoint)
 		 */
@@ -397,6 +407,7 @@ export default {
 			type: Boolean,
 			default: false,
 		},
+
 		/**
 		 * Set a display name that will be rendered as a tooltip
 		 * either the url, user or displayName property must be defined
@@ -407,6 +418,7 @@ export default {
 			type: String,
 			default: undefined,
 		},
+
 		/**
 		 * Set a size in px for the rendered avatar
 		 */
@@ -414,6 +426,7 @@ export default {
 			type: Number,
 			default: 32,
 		},
+
 		/**
 		 * Do not automatically generate a placeholder avatars if there is no real avatar is available.
 		 */
@@ -421,6 +434,7 @@ export default {
 			type: Boolean,
 			default: false,
 		},
+
 		/**
 		 * Placeholder avatars will be automatically generated when this is set to true.
 		 * @deprecated - Use `noPlaceholder` instead. Will be removed in v9.
@@ -429,6 +443,7 @@ export default {
 			type: Boolean,
 			default: true,
 		},
+
 		/**
 		 * Disable the tooltip
 		 */
@@ -436,6 +451,7 @@ export default {
 			type: Boolean,
 			default: false,
 		},
+
 		/**
 		 * Disable the menu
 		 */
@@ -443,6 +459,7 @@ export default {
 			type: Boolean,
 			default: false,
 		},
+
 		/**
 		 * Declares a custom tooltip when not null
 		 * Fallback will be the displayName
@@ -494,6 +511,7 @@ export default {
 			contactsMenuOpenState: false,
 		}
 	},
+
 	computed: {
 		avatarAriaLabel() {
 			// aria-label is only allowed on interactive elements
@@ -505,12 +523,14 @@ export default {
 			}
 			return t('Avatar of {displayName}', { displayName: this.displayName ?? this.user })
 		},
+
 		canDisplayUserStatus() {
 			return !this.hideStatus
 				&& this.showUserStatus
 				&& this.hasStatus
 				&& ['online', 'away', 'busy', 'dnd'].includes(this.userStatus.status)
 		},
+
 		showUserStatusIconOnAvatar() {
 			return !this.hideStatus
 				&& this.showUserStatus
@@ -520,6 +540,7 @@ export default {
 				&& this.userStatus.status !== 'dnd'
 				&& this.userStatus.icon
 		},
+
 		/**
 		 * The user identifier, either the display name if set or the user property
 		 * If both properties are not set an empty string is returned
@@ -533,15 +554,19 @@ export default {
 			}
 			return ''
 		},
+
 		isUserDefined() {
 			return typeof this.user !== 'undefined'
 		},
+
 		isDisplayNameDefined() {
 			return typeof this.displayName !== 'undefined'
 		},
+
 		isUrlDefined() {
 			return typeof this.url !== 'undefined'
 		},
+
 		hasMenu() {
 			if (this.disableMenu) {
 				return false
@@ -566,18 +591,21 @@ export default {
 				fontSize: Math.round(this.size * 0.45) + 'px',
 			}
 		},
+
 		initialsWrapperStyle() {
 			const { r, g, b } = usernameToColor(this.userIdentifier)
 			return {
 				backgroundColor: `rgba(${r}, ${g}, ${b}, 0.1)`,
 			}
 		},
+
 		initialsStyle() {
 			const { r, g, b } = usernameToColor(this.userIdentifier)
 			return {
 				color: `rgb(${r}, ${g}, ${b})`,
 			}
 		},
+
 		tooltip() {
 			if (this.disableTooltip) {
 				return false
@@ -621,6 +649,7 @@ export default {
 			}
 			return initials.toLocaleUpperCase()
 		},
+
 		menu() {
 			const actions = this.contactsMenuActions.map((item) => {
 				const route = getRoute(this.$router, item.hyperlink)
@@ -690,6 +719,7 @@ export default {
 			this.userDoesNotExist = false
 			this.loadAvatarUrl()
 		},
+
 		user() {
 			this.userDoesNotExist = false
 			this.isMenuLoaded = false
@@ -746,9 +776,11 @@ export default {
 			}
 			this.contactsMenuOpenState = !this.contactsMenuOpenState
 		},
+
 		closeMenu() {
 			this.contactsMenuOpenState = false
 		},
+
 		async fetchContactsMenu() {
 			this.contactsMenuLoading = true
 			try {

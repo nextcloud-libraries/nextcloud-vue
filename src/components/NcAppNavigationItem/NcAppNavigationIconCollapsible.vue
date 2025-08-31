@@ -42,6 +42,7 @@ export default {
 			type: Boolean,
 			default: true,
 		},
+
 		active: {
 			type: Boolean,
 			required: true,

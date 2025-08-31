@@ -139,6 +139,7 @@ export default {
 				}
 			},
 		},
+
 		/**
 		 * download the link instead of opening
 		 */
@@ -146,6 +147,7 @@ export default {
 			type: String,
 			default: null,
 		},
+
 		/**
 		 * target to open the link
 		 */
@@ -156,6 +158,7 @@ export default {
 				return value && (!value.startsWith('_') || ['_blank', '_self', '_parent', '_top'].indexOf(value) > -1)
 			},
 		},
+
 		/**
 		 * Declares a native tooltip when not null
 		 */
@@ -163,6 +166,7 @@ export default {
 			type: String,
 			default: null,
 		},
+
 		/**
 		 * @deprecated To be removed in @nextcloud/vue 9. Migration guide: remove ariaHidden prop from NcAction* components.
 		 * @todo Add a check in @nextcloud/vue 9 that this prop is not provided,

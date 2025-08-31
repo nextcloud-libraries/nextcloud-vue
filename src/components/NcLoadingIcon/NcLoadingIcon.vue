@@ -45,6 +45,7 @@ export default {
 			type: Number,
 			default: 20,
 		},
+
 		/**
 		 * The appearance of the loading icon.
 		 * 'auto' adjusts to the Nextcloud color scheme,
@@ -55,8 +56,10 @@ export default {
 			validator(value) {
 				return ['auto', 'light', 'dark'].includes(value)
 			},
+
 			default: 'auto',
 		},
+
 		/**
 		 * Specify what is loading.
 		 */
@@ -65,6 +68,7 @@ export default {
 			default: '',
 		},
 	},
+
 	computed: {
 		colors() {
 			const colors = ['#777', '#CCC']

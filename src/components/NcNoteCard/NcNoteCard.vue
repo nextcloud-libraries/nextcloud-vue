@@ -105,6 +105,7 @@ export default {
 			default: 'warning',
 			validator: (type) => ['success', 'info', 'warning', 'error'].includes(type),
 		},
+
 		/**
 		 * Enforce the `alert` role on the note card.
 		 *
@@ -115,6 +116,7 @@ export default {
 			type: Boolean,
 			default: false,
 		},
+
 		/**
 		 * Optional text to show as a heading of the note card
 		 */
@@ -122,6 +124,7 @@ export default {
 			type: String,
 			default: '',
 		},
+
 		/**
 		 * The message text of the note card
 		 */
@@ -141,6 +144,7 @@ export default {
 		shouldShowAlert() {
 			return this.showAlert || this.type === 'error'
 		},
+
 		icon() {
 			switch (this.type) {
 				case 'error':

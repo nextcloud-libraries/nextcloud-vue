@@ -124,6 +124,7 @@ export default {
 			default: false,
 		},
 	},
+
 	emits: [
 		/**
 		 * Removed in v9 - use `update:modelValue` (`v-model`) instead
@@ -136,12 +137,14 @@ export default {
 		'update:model-value',
 		'error',
 	],
+
 	setup() {
 		const model = useModelMigration('value', 'input')
 		return {
 			model,
 		}
 	},
+
 	data() {
 		return {
 			/** Temporary store to cache groups */
@@ -150,6 +153,7 @@ export default {
 			errorMessage: '',
 		}
 	},
+
 	computed: {
 		/**
 		 * If the error message should be shown
@@ -194,6 +198,7 @@ export default {
 			return Object.values(this.groups).filter((g) => !this.model.includes(g.id))
 		},
 	},
+
 	watch: {
 		/**
 		 * If the value is changed, check that all groups are loaded so we show the correct display name
@@ -206,10 +211,12 @@ export default {
 					this.loadGroup(groupId)
 				})
 			},
+
 			// Run the watch handler also when the component is initially mounted
 			immediate: true,
 		},
 	},
+
 	/**
 	 * Load groups matching the empty query to reduce API calls
 	 */
@@ -226,6 +233,7 @@ export default {
 			window.sessionStorage.setItem(storageName, JSON.stringify(Object.values(this.groups)))
 		}
 	},
+
 	methods: {
 		t,
 

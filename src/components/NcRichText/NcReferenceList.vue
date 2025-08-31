@@ -25,42 +25,51 @@ export default {
 	components: {
 		NcReferenceWidget,
 	},
+
 	props: {
 		text: {
 			type: String,
 			default: '',
 		},
+
 		referenceData: {
 			type: Array,
 			default: null,
 		},
+
 		limit: {
 			type: Number,
 			default: 1,
 		},
+
 		displayFallback: {
 			type: Boolean,
 			default: false,
 		},
+
 		interactive: {
 			type: Boolean,
 			default: true,
 		},
+
 		interactiveOptIn: {
 			type: Boolean,
 			default: false,
 		},
 	},
+
 	data() {
 		return {
 			references: null,
 			loading: true,
 		}
 	},
+
 	computed: {
 		isVisible() {
 			return this.loading || this.displayedReferences.length !== 0
 		},
+
 		values() {
 			if (this.referenceData) {
 				return this.referenceData
@@ -72,12 +81,15 @@ export default {
 
 			return this.references ? Object.values(this.references) : []
 		},
+
 		firstReference() {
 			return this.values[0] ?? null
 		},
+
 		displayedReferences() {
 			return this.values.slice(0, this.limit)
 		},
+
 		fallbackReference() {
 			return {
 				accessible: true,
@@ -86,16 +98,20 @@ export default {
 					link: this.text,
 					name: this.text,
 				},
+
 				richObjectType: 'open-graph',
 			}
 		},
 	},
+
 	watch: {
 		text: 'fetch',
 	},
+
 	mounted() {
 		this.fetch()
 	},
+
 	methods: {
 		fetch() {
 			this.loading = true
@@ -121,6 +137,7 @@ export default {
 				this.$emit('loaded')
 			})
 		},
+
 		resolve() {
 			const match = (new RegExp(URL_PATTERN).exec(this.text.trim()))
 			const isPublic = getCurrentUser() === null

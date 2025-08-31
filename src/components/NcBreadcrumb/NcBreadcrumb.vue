@@ -73,6 +73,7 @@ export default {
 		ChevronRight,
 		NcButton,
 	},
+
 	inheritAttrs: false,
 	props: {
 		/**
@@ -82,6 +83,7 @@ export default {
 			type: String,
 			required: true,
 		},
+
 		/**
 		 * The title attribute of the element.
 		 */
@@ -158,10 +160,12 @@ export default {
 			default: false,
 		},
 	},
+
 	emits: [
 		'update:open',
 		'dropped',
 	],
+
 	data() {
 		return {
 			/**
@@ -175,6 +179,7 @@ export default {
 			crumbId: `crumb-id-${GenRandomId()}`,
 		}
 	},
+
 	computed: {
 		/**
 		 * The attributes to pass to `router-link` or `a`
@@ -189,6 +194,7 @@ export default {
 					)
 		},
 	},
+
 	methods: {
 		/**
 		 * Function to handle changing the open state of the Actions menu
@@ -204,6 +210,7 @@ export default {
 			 */
 			this.$emit('update:open', open)
 		},
+
 		/**
 		 * Function to handle a drop on the breadcrumb.
 		 * $emit the event and the path, remove the hovering state.
@@ -229,6 +236,7 @@ export default {
 			this.hovering = false
 			return false
 		},
+
 		/**
 		 * Add the hovering state on drag enter
 		 */
@@ -241,6 +249,7 @@ export default {
 			}
 			this.hovering = true
 		},
+
 		/**
 		 * Remove the hovering state on drag leave
 		 *

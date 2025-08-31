@@ -62,6 +62,7 @@ export default {
 			default: null,
 		},
 	},
+
 	/**
 	 * The render function to display the component
 	 *

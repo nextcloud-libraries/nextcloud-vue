@@ -154,11 +154,13 @@ export default {
 			return this.id + '-submit'
 		},
 	},
+
 	methods: {
 		onInput(event) {
 			this.$emit('input', event)
 			this.model = event.target.value
 		},
+
 		onSubmit(event) {
 			if (!this.disabled) {
 				/**
@@ -169,6 +171,7 @@ export default {
 				this.$emit('submit', event)
 			}
 		},
+
 		onChange(event) {
 			/**
 			 * Emitted on change of the input field

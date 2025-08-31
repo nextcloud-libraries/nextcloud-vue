@@ -73,6 +73,7 @@ export default {
 			default: '',
 			required: true,
 		},
+
 		/**
 		 * router-link exact prop [https://router.vuejs.org/api/#exact](https://router.vuejs.org/api/#exact)
 		 */

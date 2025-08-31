@@ -369,6 +369,7 @@ export default {
 			type: String,
 			default: '',
 		},
+
 		/**
 		 * Declare if a previous slide is available
 		 */
@@ -376,6 +377,7 @@ export default {
 			type: Boolean,
 			default: false,
 		},
+
 		/**
 		 * Declare if a next slide is available
 		 */
@@ -383,6 +385,7 @@ export default {
 			type: Boolean,
 			default: false,
 		},
+
 		/**
 		 * Declare if hiding the modal should be animated
 		 */
@@ -390,6 +393,7 @@ export default {
 			type: Boolean,
 			default: false,
 		},
+
 		/**
 		 * Declare if the slideshow functionality should be enabled
 		 */
@@ -397,6 +401,7 @@ export default {
 			type: Boolean,
 			default: false,
 		},
+
 		/**
 		 * Declare the slide interval
 		 */
@@ -404,6 +409,7 @@ export default {
 			type: Number,
 			default: 5000,
 		},
+
 		/**
 		 * Allow to pause an ongoing slideshow
 		 */
@@ -420,6 +426,7 @@ export default {
 			type: Boolean,
 			default: true,
 		},
+
 		/**
 		 * Disable swipe between slides
 		 */
@@ -432,6 +439,7 @@ export default {
 			type: Boolean,
 			default: false,
 		},
+
 		/**
 		 * Defines the modal size.
 		 * Default is 'normal'.
@@ -612,9 +620,11 @@ export default {
 		showModal() {
 			return (this.show === undefined) ? this.internalShow : this.show
 		},
+
 		modalTransitionName() {
 			return `modal-${this.outTransition ? 'out' : 'in'}`
 		},
+
 		playPauseName() {
 			return this.playing ? t('Pause slideshow') : t('Start slideshow')
 		},
@@ -622,9 +632,11 @@ export default {
 		closeButtonAriaLabel() {
 			return t('Close')
 		},
+
 		prevButtonAriaLabel() {
 			return t('Previous')
 		},
+
 		nextButtonAriaLabel() {
 			return t('Next')
 		},
@@ -645,6 +657,7 @@ export default {
 				}
 			}
 		},
+
 		additionalTrapElements(elements) {
 			if (this.focusTrap) {
 				const contentContainer = this.$refs.mask
@@ -656,10 +669,12 @@ export default {
 	beforeMount() {
 		window.addEventListener('keydown', this.handleKeydown)
 	},
+
 	beforeDestroy() {
 		window.removeEventListener('keydown', this.handleKeydown)
 		this.mc.stop()
 	},
+
 	mounted() {
 		if (!this.name && !this.labelId) {
 			Vue.util.warn('[NcModal] You need either set the name or set a `labelId` for accessibility.')
@@ -681,6 +696,7 @@ export default {
 			}
 		}
 	},
+
 	destroyed() {
 		this.clearFocusTrap()
 		this.$el.remove()
@@ -702,6 +718,7 @@ export default {
 				this.$emit('previous', event)
 			}
 		},
+
 		next(event) {
 			// do not send the event if nothing is available
 			if (this.hasNext) {
@@ -714,6 +731,7 @@ export default {
 				this.$emit('next', event)
 			}
 		},
+
 		close(data) {
 			// do not fire event if forbidden
 			if (!this.noClose && this.canClose) {
@@ -836,6 +854,7 @@ export default {
 				this.slideshowTimeout.clear()
 			}
 		},
+
 		/**
 		 * Add focus trap for accessibility.
 		 */
@@ -864,6 +883,7 @@ export default {
 			this.focusTrap = createFocusTrap([contentContainer, ...this.additionalTrapElements], options)
 			this.focusTrap.activate()
 		},
+
 		clearFocusTrap() {
 			if (!this.focusTrap) {
 				return

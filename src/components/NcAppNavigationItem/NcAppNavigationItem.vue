@@ -511,6 +511,7 @@ export default {
 			type: Boolean,
 			default: false,
 		},
+
 		/**
 		 * Gives the possibility to collapse the children elements into the
 		 * parent element (true) or expands the children elements (false).
@@ -703,6 +704,7 @@ export default {
 			this.$emit('update:menuOpen', state)
 			this.menuOpenLocalValue = state
 		},
+
 		// toggle the collapsible state
 		toggleCollapse() {
 			this.opened = !this.opened
@@ -739,9 +741,11 @@ export default {
 				this.$refs.editingInput.focusInput()
 			})
 		},
+
 		cancelEditing() {
 			this.editingActive = false
 		},
+
 		handleEditingDone() {
 			this.$emit('update:name', this.editingValue)
 			this.editingValue = ''

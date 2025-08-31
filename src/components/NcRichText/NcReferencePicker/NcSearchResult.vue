@@ -31,6 +31,7 @@ export default {
 	components: {
 		NcHighlight,
 	},
+
 	props: {
 		/**
 		 * Unified search result entry
@@ -39,6 +40,7 @@ export default {
 			type: Object,
 			required: true,
 		},
+
 		/**
 		 * The query that led to getting this result
 		 * Used to highlight the entry text

@@ -259,6 +259,7 @@ export default {
 				...Object.fromEntries(
 					Object.entries(this.$props).filter(([key]) => NcInputFieldProps.has(key)),
 				),
+
 				// Adjust aria-label for predefined trailing buttons
 				trailingButtonLabel: this.trailingButtonLabel || predefinedLabels[this.trailingButtonIcon],
 			}

@@ -37,12 +37,15 @@ export default {
 	directives: {
 		ClickOutside,
 	},
+
 	components: {
 		NcIconSvgWrapper,
 	},
+
 	mixins: [
 		clickOutsideOptions,
 	],
+
 	props: {
 		name: {
 			type: String,
@@ -50,6 +53,7 @@ export default {
 			default: t('Settings'),
 		},
 	},
+
 	setup() {
 		return {
 			isLegacy32,
@@ -57,11 +61,13 @@ export default {
 			mdiCogOutline,
 		}
 	},
+
 	data() {
 		return {
 			open: false,
 		}
 	},
+
 	computed: {
 		clickOutsideConfig() {
 			return [
@@ -70,10 +76,12 @@ export default {
 			]
 		},
 	},
+
 	methods: {
 		toggleMenu() {
 			this.open = !this.open
 		},
+
 		closeMenu() {
 			this.open = false
 		},

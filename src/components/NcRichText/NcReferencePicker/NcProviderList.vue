@@ -58,10 +58,12 @@ export default {
 		NcEmptyContent,
 		LinkVariantIcon,
 	},
+
 	emits: [
 		'select-provider',
 		'submit',
 	],
+
 	data() {
 		return {
 			selectedProvider: null,
@@ -70,6 +72,7 @@ export default {
 			providerIconAlt: t('Provider icon'),
 		}
 	},
+
 	computed: {
 		options() {
 			const result = []
@@ -84,12 +87,14 @@ export default {
 			return result
 		},
 	},
+
 	methods: {
 		focus() {
 			setTimeout(() => {
 				this.$refs['provider-select']?.$el?.querySelector('#provider-select-input')?.focus()
 			}, 300)
 		},
+
 		onProviderSelected(p) {
 			if (p !== null) {
 				if (p.isLink) {
@@ -100,6 +105,7 @@ export default {
 				this.selectedProvider = null
 			}
 		},
+
 		onSearch(query) {
 			this.query = query
 		},

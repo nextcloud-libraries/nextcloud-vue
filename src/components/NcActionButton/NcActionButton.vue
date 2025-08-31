@@ -392,6 +392,7 @@ export default {
 	components: {
 		NcIconSvgWrapper,
 	},
+
 	mixins: [ActionTextMixin],
 
 	inject: {
@@ -473,6 +474,7 @@ export default {
 			default: '',
 		},
 	},
+
 	setup() {
 		return {
 			mdiCheck,

@@ -61,6 +61,7 @@ export default {
 		ArrowLeftIcon,
 		CloseIcon,
 	},
+
 	props: {
 		/**
 		 * Provider to select on creation
@@ -70,6 +71,7 @@ export default {
 			type: Object,
 			default: () => null,
 		},
+
 		/**
 		 * Focus on the input item on create
 		 */
@@ -77,6 +79,7 @@ export default {
 			type: Boolean,
 			default: true,
 		},
+
 		/**
 		 * If true, add the modal content to the Viewer trap elements via the event-bus
 		 */
@@ -85,10 +88,12 @@ export default {
 			default: false,
 		},
 	},
+
 	emits: [
 		'cancel',
 		'submit',
 	],
+
 	data() {
 		return {
 			show: true,
@@ -98,42 +103,51 @@ export default {
 			closeButtonLabel: t('Close Smart Picker'),
 		}
 	},
+
 	computed: {
 		isProviderSelected() {
 			return this.selectedProvider !== null
 		},
+
 		showBackButton() {
 			return this.initialProvider === null && this.isProviderSelected
 		},
+
 		modalSize() {
 			return this.isProviderSelected && isCustomPickerElementRegistered(this.selectedProvider.id)
 				? (getCustomPickerElementSize(this.selectedProvider.id) ?? 'large')
 				: 'normal'
 		},
+
 		showModalName() {
 			return !this.isProviderSelected || !isCustomPickerElementRegistered(this.selectedProvider.id)
 		},
+
 		modalName() {
 			return this.isProviderSelected
 				? this.selectedProvider.title
 				: t('Smart Picker')
 		},
 	},
+
 	mounted() {
 		if (this.isInsideViewer) {
 			const elem = this.$refs.modal_content
 			emit('viewer:trapElements:changed', elem)
 		}
 	},
+
 	methods: {
 		onCancel() {
 			this.show = false
 			this.$emit('cancel')
 		},
+
 		onSubmit(value) {
 			this.show = false
 			this.$emit('submit', value)
 		},
+
 		onProviderSelect(provider) {
 			this.selectedProvider = provider
 			// provider was deselected and we started with an inital one: just close the modal
@@ -141,6 +155,7 @@ export default {
 				this.onCancel()
 			}
 		},
+
 		onBackClicked() {
 			this.$refs.referencePicker.deselectProvider()
 		},

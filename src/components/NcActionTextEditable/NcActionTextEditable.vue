@@ -119,6 +119,7 @@ export default {
 			default: () => 'action-' + GenRandomId(),
 			validator: (id) => id.trim() !== '',
 		},
+
 		/**
 		 * disabled state of the text area
 		 */
@@ -126,6 +127,7 @@ export default {
 			type: Boolean,
 			default: false,
 		},
+
 		/**
 		 * Removed in v9 - use `modelValue` (`v-model`) instead
 		 * @deprecated
@@ -134,6 +136,7 @@ export default {
 			type: String,
 			default: undefined,
 		},
+
 		/**
 		 * value attribute of the input field
 		 */
@@ -195,6 +198,7 @@ export default {
 
 			this.model = event.target.value
 		},
+
 		onSubmit(event) {
 			event.preventDefault()
 			event.stopPropagation()

@@ -96,6 +96,7 @@ export default {
 			type: String,
 			default: null,
 		},
+
 		itemId: {
 			type: [String, Number],
 			default: null,
@@ -115,6 +116,7 @@ export default {
 		isVisible() {
 			return !this.loading && this.teamResources?.length > 0
 		},
+
 		teamProviders() {
 			return (teamId) => {
 				const team = this.teamResources.find((t) => t.teamId === teamId)
@@ -137,6 +139,7 @@ export default {
 				}, {})
 			}
 		},
+
 		open() {
 			return (teamId) => {
 				return this.teamOpen.indexOf(teamId) !== -1
@@ -148,6 +151,7 @@ export default {
 		providerId() {
 			this.fetchTeamResources()
 		},
+
 		itemId() {
 			this.fetchTeamResources()
 		},
@@ -175,6 +179,7 @@ export default {
 				this.loading = false
 			}
 		},
+
 		toggleOpen(teamId, open) {
 			if (open) {
 				this.teamOpen.push(teamId)

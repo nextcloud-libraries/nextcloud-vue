@@ -36,6 +36,7 @@ export default {
 			type: String,
 			required: true,
 		},
+
 		/**
 		 * @deprecated Use `label` instead
 		 */
@@ -44,23 +45,28 @@ export default {
 			required: false,
 			default: null,
 		},
+
 		label: {
 			type: String,
 			required: false,
 			default: null,
 		},
+
 		icon: {
 			type: String,
 			required: true,
 		},
+
 		iconUrl: {
 			type: [String, null],
 			default: null,
 		},
+
 		source: {
 			type: String,
 			required: true,
 		},
+
 		primary: {
 			type: Boolean,
 			default: false,
@@ -85,11 +91,13 @@ export default {
 				? getAvatarUrl(this.id, { isDarkTheme: this.isDarkTheme })
 				: null
 		},
+
 		mentionText() {
 			return !this.id.includes(' ') && !this.id.includes('/')
 				? `@${this.id}`
 				: `@"${this.id}"`
 		},
+
 		// Fallback to title for compatibility
 		labelWithFallback() {
 			return this.label || this.title

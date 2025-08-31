@@ -18,6 +18,7 @@ export default {
 			type: Boolean,
 			default: false,
 		},
+
 		showDetails: {
 			type: Boolean,
 			default: false,

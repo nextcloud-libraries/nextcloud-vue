@@ -1083,6 +1083,7 @@ export default {
 			validator(value) {
 				return ['primary', 'secondary', 'tertiary', 'tertiary-no-background', 'tertiary-on-primary', 'error', 'warning', 'success'].includes(value)
 			},
+
 			default: null,
 		},
 
@@ -1172,6 +1173,7 @@ export default {
 			validator(value) {
 				return ['primary', 'secondary', 'tertiary', 'tertiary-no-background', 'tertiary-on-primary', 'error', 'warning', 'success'].includes(value)
 			},
+
 			default: null,
 		},
 	},
@@ -1278,6 +1280,7 @@ export default {
 					triggerA11yAttr: {
 						'aria-controls': this.opened ? this.randomId : null,
 					},
+
 					popoverContainerA11yAttrs: {},
 					popoverUlA11yAttrs: {
 						'aria-labelledby': this.triggerRandomId,
@@ -1285,6 +1288,7 @@ export default {
 						role: 'menu',
 					},
 				},
+
 				expanded: {
 					popupRole: undefined,
 					withArrowNavigation: false,
@@ -1294,6 +1298,7 @@ export default {
 					popoverContainerA11yAttrs: {},
 					popoverUlA11yAttrs: {},
 				},
+
 				dialog: {
 					popupRole: 'dialog',
 					withArrowNavigation: false,
@@ -1302,6 +1307,7 @@ export default {
 					triggerA11yAttr: {
 						'aria-controls': this.opened ? this.randomId : null,
 					},
+
 					popoverContainerA11yAttrs: {
 						id: this.randomId,
 						role: 'dialog',
@@ -1309,8 +1315,10 @@ export default {
 						'aria-labelledby': this.triggerRandomId,
 						'aria-modal': 'true',
 					},
+
 					popoverUlA11yAttrs: {},
 				},
+
 				tooltip: {
 					popupRole: undefined,
 					withArrowNavigation: false,
@@ -1320,6 +1328,7 @@ export default {
 					popoverContainerA11yAttrs: {},
 					popoverUlA11yAttrs: {},
 				},
+
 				// Due to Vue limitations, we sometimes cannot determine the true type
 				// As a fallback use both arrow navigation and focus trap
 				unknown: {
@@ -1424,6 +1433,7 @@ export default {
 			 */
 			this.$emit('open')
 		},
+
 		async closeMenu(returnFocus = true) {
 			if (!this.opened) {
 				return
@@ -1523,12 +1533,14 @@ export default {
 		getCurrentActiveMenuItemElement() {
 			return this.$refs.menu.querySelector('li.active')
 		},
+
 		/**
 		 * @return {NodeList<HTMLElement>}
 		 */
 		getFocusableMenuItemElements() {
 			return this.$refs.menu.querySelectorAll(focusableSelector)
 		},
+
 		/**
 		 * Dispatches the keydown listener to different handlers
 		 *
@@ -1618,6 +1630,7 @@ export default {
 				currentActiveElement.classList.remove('active')
 			}
 		},
+
 		focusAction() {
 			// TODO: have a global disabled state for non input elements
 			const focusElement = this.getFocusableMenuItemElements()[this.focusIndex]
@@ -1630,6 +1643,7 @@ export default {
 				}
 			}
 		},
+
 		focusPreviousAction(event) {
 			if (this.opened) {
 				if (this.focusIndex === 0) {
@@ -1641,6 +1655,7 @@ export default {
 				this.focusAction()
 			}
 		},
+
 		focusNextAction(event) {
 			if (this.opened) {
 				const indexLength = this.getFocusableMenuItemElements().length - 1
@@ -1653,6 +1668,7 @@ export default {
 				this.focusAction()
 			}
 		},
+
 		focusFirstAction(event) {
 			if (this.opened) {
 				this.preventIfEvent(event)
@@ -1666,6 +1682,7 @@ export default {
 				this.focusAction()
 			}
 		},
+
 		focusLastAction(event) {
 			if (this.opened) {
 				this.preventIfEvent(event)
@@ -1673,15 +1690,18 @@ export default {
 				this.focusAction()
 			}
 		},
+
 		preventIfEvent(event) {
 			if (event) {
 				event.preventDefault()
 				event.stopPropagation()
 			}
 		},
+
 		onFocus(event) {
 			this.$emit('focus', event)
 		},
+
 		onBlur(event) {
 			this.$emit('blur', event)
 
@@ -1695,6 +1715,7 @@ export default {
 				}
 			}
 		},
+
 		onClick(event) {
 			/**
 			 * Event emitted when the menu toggle button is clicked.

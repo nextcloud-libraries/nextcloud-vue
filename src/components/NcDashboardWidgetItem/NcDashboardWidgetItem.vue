@@ -76,6 +76,7 @@ export default {
 			type: [String, Number],
 			default: undefined,
 		},
+
 		/**
 		 * The item element is a link to this URL (optional)
 		 */
@@ -83,6 +84,7 @@ export default {
 			type: String,
 			default: undefined,
 		},
+
 		/**
 		 * Where to get the avatar image. (optional) Used if avatarUsername is not defined.
 		 */
@@ -90,6 +92,7 @@ export default {
 			type: String,
 			default: undefined,
 		},
+
 		/**
 		 * Name to provide to the Avatar. (optional) Used if avatarUrl is not defined.
 		 */
@@ -97,6 +100,7 @@ export default {
 			type: String,
 			default: undefined,
 		},
+
 		/**
 		 * Is the avatarUsername not a user's name? (optional, false by default)
 		 */
@@ -104,6 +108,7 @@ export default {
 			type: Boolean,
 			default: false,
 		},
+
 		/**
 		 * Small icon to display on the bottom-right corner of the avatar (optional)
 		 */
@@ -111,6 +116,7 @@ export default {
 			type: String,
 			default: undefined,
 		},
+
 		/**
 		 * Item main text (mandatory)
 		 */
@@ -118,6 +124,7 @@ export default {
 			type: String,
 			required: true,
 		},
+
 		/**
 		 * Item subline text (optional)
 		 */
@@ -125,6 +132,7 @@ export default {
 			type: String,
 			default: '',
 		},
+
 		/**
 		 * An object containing context menu entries that will be displayed for each items (optional)
 		 */
@@ -160,9 +168,11 @@ export default {
 				subText: this.subText,
 			}
 		},
+
 		gotMenu() {
 			return Object.keys(this.itemMenu).length !== 0 || !!this.$slots.actions
 		},
+
 		gotOverlayIcon() {
 			return this.overlayIconUrl && this.overlayIconUrl !== ''
 		},

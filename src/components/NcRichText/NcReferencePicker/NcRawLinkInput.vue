@@ -52,6 +52,7 @@ export default {
 		NcReferenceWidget,
 		NcTextField,
 	},
+
 	props: {
 		/**
 		 * The reference provider
@@ -61,9 +62,11 @@ export default {
 			required: true,
 		},
 	},
+
 	emits: [
 		'submit',
 	],
+
 	data() {
 		return {
 			inputValue: '',
@@ -73,25 +76,30 @@ export default {
 			inputPlaceholder: t('Enter link'),
 		}
 	},
+
 	computed: {
 		isLinkValid() {
 			return isUrl(this.inputValue)
 		},
 	},
+
 	methods: {
 		focus() {
 			this.$refs['url-input'].$el.getElementsByTagName('input')[0]?.focus()
 		},
+
 		onSubmit(e) {
 			const value = e.target.value
 			if (this.isLinkValid) {
 				this.$emit('submit', value)
 			}
 		},
+
 		onClear() {
 			this.inputValue = ''
 			this.reference = null
 		},
+
 		onInput() {
 			this.reference = null
 			if (this.abortController) {
@@ -103,6 +111,7 @@ export default {
 				}, 500)()
 			}
 		},
+
 		updateReference() {
 			this.loading = true
 			this.abortController = new AbortController()

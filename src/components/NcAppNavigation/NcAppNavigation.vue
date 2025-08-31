@@ -231,6 +231,7 @@ export default {
 			this.open = !this.isMobile
 			this.toggleFocusTrap()
 		},
+
 		open() {
 			this.toggleFocusTrap()
 		},
@@ -258,6 +259,7 @@ export default {
 			stop: true,
 		})
 	},
+
 	unmounted() {
 		this.setHasAppNavigation(false)
 		unsubscribe('toggle-navigation', this.toggleNavigationByEventBus)

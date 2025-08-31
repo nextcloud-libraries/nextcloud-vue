@@ -71,6 +71,7 @@ export default {
 			type: String,
 			default: null,
 		},
+
 		/**
 		 * The item id which uniquely identities the e.g. Calendar event, Deck board, file, Talk room, etc.
 		 */
@@ -78,6 +79,7 @@ export default {
 			type: [String, Number],
 			default: null,
 		},
+
 		/**
 		 * Limits to specific resource type. i.e. any provider id implemented with `\OCA\RelatedResources\IRelatedResourceProvider::getProviderId()`
 		 */
@@ -85,6 +87,7 @@ export default {
 			type: String,
 			default: '',
 		},
+
 		/**
 		 * Set the maximum number of resources to load
 		 */
@@ -92,6 +95,7 @@ export default {
 			type: Number,
 			default: 0,
 		},
+
 		/**
 		 * Only used by the files sidebar
 		 *
@@ -101,6 +105,7 @@ export default {
 			type: Object,
 			default: null,
 		},
+
 		/**
 		 * Make the header name dynamic
 		 */
@@ -108,10 +113,12 @@ export default {
 			type: String,
 			default: t('Related resources'),
 		},
+
 		description: {
 			type: String,
 			default: t('Anything shared with the same group of people will show up here'),
 		},
+
 		/**
 		 * If this element is used on a primary element set to true for primary styling.
 		 */
@@ -142,6 +149,7 @@ export default {
 			}
 			return this.error ?? this.resources.length > 0
 		},
+
 		subline() {
 			if (this.error) {
 				return t('Error getting related resources. Please contact your system administrator if you have any questions.')
@@ -188,12 +196,15 @@ export default {
 		providerId() {
 			this.fetchRelatedResources()
 		},
+
 		itemId() {
 			this.fetchRelatedResources()
 		},
+
 		fileInfo() {
 			this.fetchRelatedResources()
 		},
+
 		error(error) {
 			/**
 			 * Emitted when the error value changes
@@ -202,6 +213,7 @@ export default {
 			 */
 			this.$emit('has-error', Boolean(error))
 		},
+
 		resources(resources) {
 			/**
 			 * Emitted when the resources value changes

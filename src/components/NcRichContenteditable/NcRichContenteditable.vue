@@ -716,6 +716,7 @@ export default {
 				})
 			return '<span id="tmp-smart-picker-result-node"></span>'
 		},
+
 		setCursorAfter(element) {
 			const range = document.createRange()
 			range.setEndAfter(element)
@@ -724,6 +725,7 @@ export default {
 			selection.removeAllRanges()
 			selection.addRange(range)
 		},
+
 		moveCursorToEnd() {
 			if (!document.createRange) {
 				return
@@ -735,6 +737,7 @@ export default {
 			selection.removeAllRanges()
 			selection.addRange(range)
 		},
+
 		/**
 		 * Re-emit the input event to the parent
 		 *

@@ -242,6 +242,7 @@ export default {
 	mounted() {
 		document.addEventListener('keydown', this.onKeyDown)
 	},
+
 	beforeDestroy() {
 		document.removeEventListener('keydown', this.onKeyDown)
 	},
@@ -336,6 +337,7 @@ export default {
 			})
 			this.focusTrap.activate()
 		},
+
 		clearFocusTrap() {
 			this.focusTrap?.deactivate()
 			this.focusTrap = null

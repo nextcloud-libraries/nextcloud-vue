@@ -63,6 +63,7 @@ export default {
 				: t('Open navigation {shortcut}', { shortcut: disableKeyboardShortcuts ? '' : '[n]' }).trim()
 		},
 	},
+
 	methods: {
 		/**
 		 * Once the toggle has been clicked, emits the toggle status

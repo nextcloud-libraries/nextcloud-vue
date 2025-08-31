@@ -189,6 +189,7 @@ export default {
 			type: Boolean,
 			required: true,
 		},
+
 		/**
 		 * Shows the navigation on desktop if true
 		 */

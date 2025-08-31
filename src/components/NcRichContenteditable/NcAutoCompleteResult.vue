@@ -51,31 +51,38 @@ export default {
 			required: false,
 			default: null,
 		},
+
 		label: {
 			type: String,
 			required: false,
 			default: null,
 		},
+
 		subline: {
 			type: String,
 			default: null,
 		},
+
 		id: {
 			type: String,
 			default: null,
 		},
+
 		icon: {
 			type: String,
 			required: true,
 		},
+
 		iconUrl: {
 			type: String,
 			default: null,
 		},
+
 		source: {
 			type: String,
 			required: true,
 		},
+
 		status: {
 			type: [Object, Array],
 			default: () => ({}),
@@ -99,6 +106,7 @@ export default {
 				? getAvatarUrl(this.id, { isDarkTheme: this.isDarkTheme })
 				: null
 		},
+
 		// For backwards compatibility
 		labelWithFallback() {
 			return this.label || this.title

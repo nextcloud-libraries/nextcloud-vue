@@ -95,6 +95,7 @@ export default {
 					&& value <= 100
 			},
 		},
+
 		/**
 		 * Determines the height of the progressbar.
 		 * Possible values:
@@ -110,6 +111,7 @@ export default {
 				return ['small', 'medium'].includes(value) || typeof value === 'number'
 			},
 		},
+
 		/**
 		 * Applies an error color to the progressbar if true.
 		 */
@@ -117,6 +119,7 @@ export default {
 			type: Boolean,
 			default: false,
 		},
+
 		/**
 		 * ProgressBar type
 		 */
@@ -127,16 +130,19 @@ export default {
 				return ['linear', 'circular'].includes(value)
 			},
 		},
+
 		color: {
 			type: String,
 			default: null,
 		},
 	},
+
 	data() {
 		return {
 			stroke: 4,
 		}
 	},
+
 	computed: {
 		height() {
 			if (this.type === 'circular') {
@@ -152,15 +158,19 @@ export default {
 			}
 			return this.size
 		},
+
 		progress() {
 			return this.value / 100
 		},
+
 		radius() {
 			return this.height / 2
 		},
+
 		radiusNormalized() {
 			return this.radius - 3 * this.stroke
 		},
+
 		circumference() {
 			return this.radiusNormalized * 2 * Math.PI
 		},

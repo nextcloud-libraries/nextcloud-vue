@@ -197,6 +197,7 @@ export default {
 			// by clicking we also trigger the change event
 			this.$refs.label.click()
 		},
+
 		onChange(event) {
 			/**
 			 * Emitted when the radio state is changed

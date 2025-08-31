@@ -174,6 +174,7 @@ export default {
 			// by clicking we also trigger the change event
 			this.$refs.label.click()
 		},
+
 		onChange(event) {
 			this.model = this.$refs.checkbox.checked
 

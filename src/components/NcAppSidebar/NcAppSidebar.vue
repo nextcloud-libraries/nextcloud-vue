@@ -763,6 +763,7 @@ export default {
 			type: String,
 			default: '',
 		},
+
 		name: {
 			type: String,
 			default: '',
@@ -776,14 +777,17 @@ export default {
 			type: Boolean,
 			default: false,
 		},
+
 		namePlaceholder: {
 			type: String,
 			default: '',
 		},
+
 		subname: {
 			type: String,
 			default: '',
 		},
+
 		/**
 		 * Title to display for the subname.
 		 */
@@ -809,6 +813,7 @@ export default {
 			type: Boolean,
 			default: null,
 		},
+
 		/**
 		 * Show loading spinner instead of the star icon
 		 */
@@ -816,6 +821,7 @@ export default {
 			type: Boolean,
 			default: false,
 		},
+
 		/**
 		 * Show loading spinner instead of tabs
 		 */
@@ -849,6 +855,7 @@ export default {
 			type: Boolean,
 			default: false,
 		},
+
 		/**
 		 * Force the tab navigation to display even if there is only one tab
 		 */
@@ -856,6 +863,7 @@ export default {
 			type: Boolean,
 			default: false,
 		},
+
 		/**
 		 * Linkify the name
 		 */
@@ -863,6 +871,7 @@ export default {
 			type: Boolean,
 			default: false,
 		},
+
 		/**
 		 * Title to display for the name.
 		 * Can be set to the same text in case it's too long.
@@ -953,9 +962,11 @@ export default {
 		canStar() {
 			return this.isStarred !== null
 		},
+
 		hasFigure() {
 			return this.$slots.header || this.background
 		},
+
 		hasFigureClickListener() {
 			return this.$listeners['figure-click']
 		},
@@ -1058,6 +1069,7 @@ export default {
 			 */
 			this.$emit('opening', element)
 		},
+
 		onAfterEnter(element) {
 			// Focus sidebar on open only if it was opened by a user interaction
 			if (this.elementToReturnFocus) {
@@ -1073,6 +1085,7 @@ export default {
 			 */
 			this.$emit('opened', element)
 		},
+
 		onBeforeLeave(element) {
 			/**
 			 * The sidebar is closing and the transition is in progress
@@ -1082,6 +1095,7 @@ export default {
 			 */
 			this.$emit('closing', element)
 		},
+
 		onAfterLeave(element) {
 			/**
 			 * The sidebar is closed and the transition is complete
@@ -1230,6 +1244,7 @@ export default {
 			 */
 			this.$emit('submit-name', event)
 		},
+
 		onDismissEditing() {
 			// Disable editing
 			this.$emit('update:nameEditable', false)
@@ -1240,6 +1255,7 @@ export default {
 			 */
 			this.$emit('dismiss-editing')
 		},
+
 		onUpdateActive(activeTab) {
 			/**
 			 * The active tab changed

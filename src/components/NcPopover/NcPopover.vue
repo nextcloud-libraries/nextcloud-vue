@@ -437,6 +437,7 @@ export default {
 			await this.useFocusTrap()
 			this.addEscapeStopPropagation()
 		},
+
 		afterHide() {
 			this.getPopoverContentElement().addEventListener('transitionend', () => {
 				/**

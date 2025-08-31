@@ -47,17 +47,20 @@ export default {
 	components: {
 		NcButton,
 	},
+
 	props: {
 		buttonId: {
 			type: String,
 			required: false,
 			default: '',
 		},
+
 		disabled: {
 			type: Boolean,
 			required: false,
 			default: false,
 		},
+
 		text: {
 			type: String,
 			required: true,

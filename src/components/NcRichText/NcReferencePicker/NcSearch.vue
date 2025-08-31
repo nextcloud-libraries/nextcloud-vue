@@ -89,6 +89,7 @@ export default {
 		NcSelect,
 		NcSearchResult,
 	},
+
 	props: {
 		/**
 		 * The selected reference provider
@@ -97,18 +98,22 @@ export default {
 			type: Object,
 			required: true,
 		},
+
 		showEmptyContent: {
 			type: Boolean,
 			default: true,
 		},
+
 		searchPlaceholder: {
 			type: String,
 			default: null,
 		},
 	},
+
 	emits: [
 		'submit',
 	],
+
 	data() {
 		return {
 			searchQuery: '',
@@ -121,13 +126,16 @@ export default {
 			providerIconAlt: t('Provider icon'),
 		}
 	},
+
 	computed: {
 		mySearchPlaceholder() {
 			return this.searchPlaceholder || t('Search')
 		},
+
 		searchProviderIds() {
 			return this.provider.search_providers_ids
 		},
+
 		options() {
 			if (this.searchQuery === '') {
 				return []
@@ -140,6 +148,7 @@ export default {
 			options.push(...this.formattedSearchResults)
 			return options
 		},
+
 		rawLinkEntry() {
 			return {
 				id: 'rawLinkEntry',
@@ -147,6 +156,7 @@ export default {
 				isRawLink: true,
 			}
 		},
+
 		formattedSearchResults() {
 			const results = []
 			this.searchProviderIds.forEach((pid) => {
@@ -181,12 +191,15 @@ export default {
 			return results
 		},
 	},
+
 	mounted() {
 		this.resetResults()
 	},
+
 	beforeDestroy() {
 		this.cancelSearchRequests()
 	},
+
 	methods: {
 		t,
 		resetResults() {
@@ -198,22 +211,26 @@ export default {
 			})
 			this.resultsBySearchProvider = resultsBySearchProvider
 		},
+
 		focus() {
 			setTimeout(() => {
 				this.$refs['search-select']?.$el?.querySelector('#search-select-input')?.focus()
 			}, 300)
 		},
+
 		cancelSearchRequests() {
 			if (this.abortController) {
 				this.abortController.abort()
 			}
 		},
+
 		onSearchInput(query) {
 			this.searchQuery = query
 			delay(() => {
 				this.updateSearch()
 			}, 500)()
 		},
+
 		onSelectResultSelected(item) {
 			if (item !== null) {
 				if (item.resourceUrl) {
@@ -227,11 +244,13 @@ export default {
 				}
 			}
 		},
+
 		searchMoreOf(searchProviderId) {
 			this.searchingMoreOf = searchProviderId
 			this.cancelSearchRequests()
 			return this.searchProviders(searchProviderId)
 		},
+
 		updateSearch() {
 			this.cancelSearchRequests()
 			this.resetResults()
@@ -242,6 +261,7 @@ export default {
 
 			return this.searchProviders()
 		},
+
 		searchProviders(searchProviderId = null) {
 			this.abortController = new AbortController()
 			this.searching = true
@@ -266,6 +286,7 @@ export default {
 					}
 				})
 		},
+
 		searchOneProvider(providerId, cursor = null) {
 			const url = cursor === null
 				? generateOcsUrl('search/providers/{providerId}/search?term={term}&limit={limit}', { providerId, term: this.searchQuery, limit: LIMIT })

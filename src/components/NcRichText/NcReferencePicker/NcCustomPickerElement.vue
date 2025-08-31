@@ -25,26 +25,31 @@ export default {
 			required: true,
 		},
 	},
+
 	emits: [
 		'cancel',
 		'submit',
 	],
+
 	data() {
 		return {
 			isRegistered: isCustomPickerElementRegistered(this.provider.id),
 			renderResult: null,
 		}
 	},
+
 	mounted() {
 		if (this.isRegistered) {
 			this.renderElement()
 		}
 	},
+
 	beforeDestroy() {
 		if (this.isRegistered) {
 			destroyCustomPickerElement(this.provider.id, this.$el, this.renderResult)
 		}
 	},
+
 	methods: {
 		renderElement() {
 			if (this.$refs.domElement) {
@@ -65,9 +70,11 @@ export default {
 				this.renderResult.element.addEventListener('cancel', this.onCancel)
 			})
 		},
+
 		onSubmit(value) {
 			this.$emit('submit', value)
 		},
+
 		onCancel() {
 			this.$emit('cancel')
 		},

@@ -230,11 +230,13 @@ export default {
 		wrapperTag() {
 			return this.isHeading ? 'div' : 'li'
 		},
+
 		captionTag() {
 			// Limit to at least h2 as h1 is considered invalid and reserved
 			const headingLevel = Math.max(2, this.headingLevel)
 			return this.isHeading ? `h${headingLevel}` : 'span'
 		},
+
 		// Check if the actions slot is populated
 		hasActions() {
 			return !!this.$slots.actions

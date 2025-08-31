@@ -102,9 +102,11 @@ export default {
 		confirm() {
 			this.$emit('confirm')
 		},
+
 		cancel() {
 			this.$emit('cancel')
 		},
+
 		focusInput() {
 			this.$refs.input.focus()
 		},

@@ -261,6 +261,7 @@ export default {
 			type: String,
 			default: 'native',
 		},
+
 		/**
 		 * Show preview section when hovering emoji
 		 */
@@ -268,6 +269,7 @@ export default {
 			type: Boolean,
 			default: false,
 		},
+
 		/**
 		 * Allow unselecting the selected emoji
 		 */
@@ -275,6 +277,7 @@ export default {
 			type: Boolean,
 			default: false,
 		},
+
 		/**
 		 * Selected emoji to allow unselecting
 		 */
@@ -282,6 +285,7 @@ export default {
 			type: String,
 			default: '',
 		},
+
 		/**
 		 * The fallback emoji in the preview section
 		 */
@@ -289,6 +293,7 @@ export default {
 			type: String,
 			default: 'grinning',
 		},
+
 		/**
 		 * The fallback text in the preview section
 		 */
@@ -296,6 +301,7 @@ export default {
 			type: String,
 			default: t('Pick an emoji'),
 		},
+
 		/**
 		 * Whether to close the emoji picker after picking one
 		 */
@@ -312,6 +318,7 @@ export default {
 			default: 'body',
 		},
 	},
+
 	emits: [
 		'select',
 		'select-data',

@@ -149,6 +149,7 @@ export default {
 			default: () => 'date-time-picker-' + GenRandomId(),
 			validator: (id) => id.trim() !== '',
 		},
+
 		/**
 		 * type attribute of the input field
 		 * default type: String
@@ -159,6 +160,7 @@ export default {
 			default: 'date',
 			validate: (name) => inputDateTypes.includes(name),
 		},
+
 		/**
 		 * text inside the label element
 		 * default type: String
@@ -167,6 +169,7 @@ export default {
 			type: String,
 			default: 'Please choose a date',
 		},
+
 		/**
 		 * min attribute of the input field
 		 * default type: null
@@ -175,6 +178,7 @@ export default {
 			type: [Date, Boolean],
 			default: null,
 		},
+
 		/**
 		 * max attribute of the input field
 		 * default type: null
@@ -183,6 +187,7 @@ export default {
 			type: [Date, Boolean],
 			default: null,
 		},
+
 		/**
 		 * Flag to hide the label
 		 * default type: String
@@ -192,6 +197,7 @@ export default {
 			type: Boolean,
 			default: false,
 		},
+
 		/**
 		 * Class to add to the input field.
 		 * Necessary to use NcDateTimePickerNative in the NcActionInput component.
@@ -229,18 +235,21 @@ export default {
 		formattedValue() {
 			return this.formatValue(this.model)
 		},
+
 		formattedMin() {
 			if (this.min) {
 				return this.formatValue(this.min)
 			}
 			return false
 		},
+
 		formattedMax() {
 			if (this.max) {
 				return this.formatValue(this.max)
 			}
 			return false
 		},
+
 		listeners() {
 			return {
 				...this.$listeners,
@@ -304,6 +313,7 @@ export default {
 				return { yyyy, MM, dd, hh, mm }
 			}
 		},
+
 		/**
 		 * Returns preformatted value for the input field
 		 *

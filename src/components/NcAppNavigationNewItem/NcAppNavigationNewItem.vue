@@ -95,6 +95,7 @@ export default {
 			type: String,
 			required: true,
 		},
+
 		/**
 		 * Refers to the icon on the left, this prop accepts a class
 		 * like 'icon-category-enabled'.
@@ -112,6 +113,7 @@ export default {
 			type: Boolean,
 			default: false,
 		},
+
 		/**
 		 * Only for 'editable' items, sets label for the edit action button.
 		 */
@@ -119,6 +121,7 @@ export default {
 			type: String,
 			default: '',
 		},
+
 		/**
 		 * Sets the placeholder text for the editing form.
 		 */
@@ -146,9 +149,11 @@ export default {
 				})
 			}
 		},
+
 		cancelNewItem() {
 			this.newItemActive = false
 		},
+
 		handleNewItemDone() {
 			this.$emit('new-item', this.newItemValue)
 			this.newItemValue = ''

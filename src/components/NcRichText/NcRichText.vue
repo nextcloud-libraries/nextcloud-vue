@@ -341,54 +341,65 @@ export default {
 	components: {
 		NcReferenceList,
 	},
+
 	props: {
 		text: {
 			type: String,
 			default: '',
 		},
+
 		arguments: {
 			type: Object,
 			default: () => {
 				return {}
 			},
 		},
+
 		referenceLimit: {
 			type: Number,
 			default: 0,
 		},
+
 		referenceInteractive: {
 			type: Boolean,
 			default: true,
 		},
+
 		referenceInteractiveOptIn: {
 			type: Boolean,
 			default: false,
 		},
+
 		/** Provide data upfront to avoid extra http request */
 		references: {
 			type: Array,
 			default: null,
 		},
+
 		/** Provide basic Markdown syntax */
 		useMarkdown: {
 			type: Boolean,
 			default: false,
 		},
+
 		/** Provide GitHub Flavored Markdown syntax */
 		useExtendedMarkdown: {
 			type: Boolean,
 			default: false,
 		},
+
 		/** Provide event from rendered markdown inputs */
 		interactive: {
 			type: Boolean,
 			default: false,
 		},
+
 		autolink: {
 			type: Boolean,
 			default: true,
 		},
 	},
+
 	emits: [
 		'interact-todo',
 		'interact:todo',
@@ -440,6 +451,7 @@ export default {
 					: null,
 			])
 		},
+
 		renderMarkdown(h) {
 			const renderedMarkdown = unified()
 				.use(remarkParse)
@@ -576,6 +588,7 @@ export default {
 			])
 		},
 	},
+
 	render(h) {
 		return this.useMarkdown || this.useExtendedMarkdown
 			? this.renderMarkdown(h)

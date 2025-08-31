@@ -106,30 +106,35 @@ export default {
 		NcIconSvgWrapper,
 		Teleport,
 	},
+
 	provide() {
 		return {
 			'NcContent:setHasAppNavigation': this.setAppNavigation,
 			'NcContent:selector': '#content-vue',
 		}
 	},
+
 	props: {
 		appName: {
 			type: String,
 			required: true,
 		},
 	},
+
 	setup() {
 		const isMobile = useIsMobile()
 		return {
 			isMobile,
 		}
 	},
+
 	data() {
 		return {
 			hasAppNavigation: false,
 			currentFocus: '', // unknown
 		}
 	},
+
 	computed: {
 		currentImage() {
 			if (this.currentFocus === 'navigation') {
@@ -138,6 +143,7 @@ export default {
 			return contentSvg
 		},
 	},
+
 	beforeMount() {
 		const container = document.getElementById('skip-actions')
 		if (container) {
@@ -147,6 +153,7 @@ export default {
 			container.classList.add('vue-skip-actions')
 		}
 	},
+
 	methods: {
 		t,
 		openAppNavigation() {
@@ -157,6 +164,7 @@ export default {
 				document.getElementById('app-navigation-vue').focus()
 			})
 		},
+
 		setAppNavigation(value) {
 			this.hasAppNavigation = value
 			// If app navigation is available and no focus was set yet, set it to navigation as it is the first button

@@ -482,6 +482,7 @@ export default {
 				return ['primary', 'secondary', 'tertiary', 'tertiary-no-background', 'tertiary-on-primary', 'error', 'warning', 'success'].includes(value)
 					|| ['submit', 'reset', 'button'].includes(value)
 			},
+
 			default: 'secondary',
 		},
 
@@ -497,6 +498,7 @@ export default {
 			validator(value) {
 				return ['submit', 'reset', 'button'].indexOf(value) !== -1
 			},
+
 			default: 'button',
 		},
 
@@ -562,6 +564,7 @@ export default {
 			type: Boolean,
 			default: false,
 		},
+
 		/**
 		 * @deprecated To be removed in @nextcloud/vue 9. Migration guide: remove ariaHidden prop from NcAction* components.
 		 * @todo Add a check in @nextcloud/vue 9 that this prop is not provided,
@@ -596,6 +599,7 @@ export default {
 			validator(value) {
 				return ['primary', 'secondary', 'tertiary', 'tertiary-no-background', 'tertiary-on-primary', 'error', 'warning', 'success'].includes(value)
 			},
+
 			default: 'secondary',
 		},
 	},

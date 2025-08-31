@@ -83,14 +83,17 @@ export default {
 			type: String,
 			required: true,
 		},
+
 		description: {
 			type: String,
 			default: '',
 		},
+
 		docUrl: {
 			type: String,
 			default: '',
 		},
+
 		/**
 		 * Limit the width of the setting's content
 		 *
@@ -120,6 +123,7 @@ export default {
 		hasDescription() {
 			return this.description.length > 0
 		},
+
 		hasDocUrl() {
 			return this.docUrl.length > 0
 		},

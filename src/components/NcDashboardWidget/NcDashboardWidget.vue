@@ -237,6 +237,7 @@ export default {
 			type: Array,
 			default: () => { return [] },
 		},
+
 		/**
 		 * If this is set, a "show more" text is displayed on the widget's bottom.
 		 * It's a link pointing to this URL.
@@ -245,6 +246,7 @@ export default {
 			type: String,
 			default: '',
 		},
+
 		/**
 		 * The text of show more button.
 		 *
@@ -254,6 +256,7 @@ export default {
 			type: String,
 			default: t('More items …'),
 		},
+
 		/**
 		 * A boolean to put the widget in a loading state.
 		 */
@@ -261,6 +264,7 @@ export default {
 			type: Boolean,
 			default: false,
 		},
+
 		/**
 		 * An object containing context menu entries that will be displayed for each item.
 		 */
@@ -268,6 +272,7 @@ export default {
 			type: Object,
 			default: () => { return {} },
 		},
+
 		/**
 		 * Whether both the items and the empty content message are shown.
 		 * Usefull for e.g. showing "No mentions" and a list of elements.
@@ -276,6 +281,7 @@ export default {
 			type: Boolean,
 			default: false,
 		},
+
 		/**
 		 * The text to show in the empty content area.
 		 */
@@ -283,6 +289,7 @@ export default {
 			type: String,
 			default: '',
 		},
+
 		/**
 		 * The text to show in the half empty content area.
 		 */
@@ -303,6 +310,7 @@ export default {
 			}
 			return h
 		},
+
 		displayedItems() {
 			const nbItems = (this.showMoreUrl && this.items.length >= this.maxItemNumber)
 				? this.maxItemNumber - 1

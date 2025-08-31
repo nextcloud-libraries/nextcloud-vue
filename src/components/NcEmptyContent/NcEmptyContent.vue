@@ -174,6 +174,7 @@ export default {
 		hasName() {
 			return this.name !== ''
 		},
+
 		/**
 		 * Check if a description is given as either property or slot
 		 */

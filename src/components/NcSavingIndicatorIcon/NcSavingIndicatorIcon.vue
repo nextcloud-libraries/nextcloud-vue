@@ -81,6 +81,7 @@ export default defineComponent({
 			type: Number,
 			default: 20,
 		},
+
 		/**
 		 * Specify what is saved.
 		 */
@@ -88,6 +89,7 @@ export default defineComponent({
 			type: String,
 			default: '',
 		},
+
 		/**
 		 * Set to true when saving is in progress.
 		 */
@@ -96,6 +98,7 @@ export default defineComponent({
 			default: false,
 			required: false,
 		},
+
 		/**
 		 * Set to true if an error occured while saving.
 		 */
@@ -105,6 +108,7 @@ export default defineComponent({
 			required: false,
 		},
 	},
+
 	emits: ['click'],
 	computed: {
 		indicatorColor() {

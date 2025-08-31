@@ -286,6 +286,7 @@ export default {
 			default: () => 'action-' + GenRandomId(),
 			validator: (id) => id.trim() !== '',
 		},
+
 		/**
 		 * id attribute of the text input element
 		 */
@@ -294,6 +295,7 @@ export default {
 			default: () => 'action-input-' + GenRandomId(),
 			validator: (id) => id.trim() !== '',
 		},
+
 		/**
 		 * Icon to show with the action, can be either a CSS class or an URL
 		 */
@@ -301,6 +303,7 @@ export default {
 			type: String,
 			default: '',
 		},
+
 		/**
 		 * type attribute of the input field
 		 */
@@ -326,6 +329,7 @@ export default {
 				].indexOf(type) > -1
 			},
 		},
+
 		/**
 		 * id attribute for the native date time picker
 		 */
@@ -333,6 +337,7 @@ export default {
 			type: String,
 			default: 'date-time-picker_id',
 		},
+
 		/**
 		 * Flag to use a native date time picker
 		 */
@@ -340,6 +345,7 @@ export default {
 			type: Boolean,
 			default: false,
 		},
+
 		/**
 		 * The visible input label for accessibility purposes.
 		 */
@@ -347,6 +353,7 @@ export default {
 			type: String,
 			default: null,
 		},
+
 		/**
 		 * If you want to show the label just above the
 		 * input field, pass in `true` to this prop.
@@ -355,6 +362,7 @@ export default {
 			type: Boolean,
 			default: true,
 		},
+
 		/**
 		 * Removed in v9 - use `update:modelValue` (`v-model`) instead
 		 * @deprecated
@@ -363,6 +371,7 @@ export default {
 			type: [String, Date, Number, Array],
 			default: undefined,
 		},
+
 		/**
 		 * value attribute of the input field
 		 */
@@ -370,6 +379,7 @@ export default {
 			type: [String, Date, Number, Array],
 			default: '',
 		},
+
 		/**
 		 * disabled state of the input field
 		 */
@@ -377,6 +387,7 @@ export default {
 			type: Boolean,
 			default: false,
 		},
+
 		/**
 		 * aria-label attribute of the input field
 		 */
@@ -384,6 +395,7 @@ export default {
 			type: String,
 			default: '',
 		},
+
 		/**
 		 * @deprecated To be removed in @nextcloud/vue 9. Migration guide: remove ariaHidden prop from NcAction* components.
 		 * @todo Add a check in @nextcloud/vue 9 that this prop is not provided,
@@ -393,6 +405,7 @@ export default {
 			type: Boolean,
 			default: null,
 		},
+
 		/**
 		 * Attribute forwarded to the underlying NcPasswordField and NcTextField
 		 */
@@ -400,6 +413,7 @@ export default {
 			type: Boolean,
 			default: true,
 		},
+
 		/**
 		 * Trailing button label forwarded to the underlying NcTextField
 		 */
@@ -475,6 +489,7 @@ export default {
 			}
 			return false
 		},
+
 		/**
 		 * determines if the action is focusable
 		 *
@@ -492,6 +507,7 @@ export default {
 				this.$refs.datetimepicker.$refs.datepicker.closePopup()
 			}
 		},
+
 		onInput(event) {
 			/**
 			 * Emitted on input events of the text field
@@ -502,6 +518,7 @@ export default {
 
 			this.model = event.target ? event.target.value : event
 		},
+
 		onSubmit(event) {
 			event.preventDefault()
 			event.stopPropagation()
@@ -517,6 +534,7 @@ export default {
 				return false
 			}
 		},
+
 		onChange(event) {
 			/**
 			 * Emitted on change of the input field

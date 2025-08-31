@@ -55,6 +55,7 @@ export default {
 		NcRawLinkInput,
 		NcSearch,
 	},
+
 	props: {
 		/**
 		 * Provider to select on creation
@@ -64,6 +65,7 @@ export default {
 			type: Object,
 			default: () => null,
 		},
+
 		/**
 		 * Optional width in pixels
 		 * Default: 100%
@@ -72,6 +74,7 @@ export default {
 			type: Number,
 			default: null,
 		},
+
 		/**
 		 * Focus on the provider list select input on creation
 		 * Default: true
@@ -81,6 +84,7 @@ export default {
 			default: true,
 		},
 	},
+
 	emits: [
 		'cancel',
 		'cancel-raw-link',
@@ -88,12 +92,14 @@ export default {
 		'provider-selected',
 		'submit',
 	],
+
 	data() {
 		return {
 			MODES,
 			selectedProvider: this.initialProvider,
 		}
 	},
+
 	computed: {
 		mode() {
 			return this.selectedProvider === null
@@ -104,12 +110,14 @@ export default {
 						? MODES.searchInput
 						: MODES.standardLinkInput
 		},
+
 		pickerWrapperStyle() {
 			return {
 				width: this.width ? this.width + 'px' : undefined,
 			}
 		},
 	},
+
 	mounted() {
 		if (this.focusOnCreate) {
 			if (this.initialProvider) {
@@ -123,6 +131,7 @@ export default {
 			}
 		}
 	},
+
 	methods: {
 		onEscapePressed() {
 			if (this.selectedProvider !== null) {
@@ -131,6 +140,7 @@ export default {
 				this.cancelProviderSelection()
 			}
 		},
+
 		onProviderSelected(provider) {
 			this.selectedProvider = provider
 			this.$emit('provider-selected', provider)
@@ -138,20 +148,25 @@ export default {
 				this.$refs['url-input']?.focus()
 			})
 		},
+
 		cancelCustomElement() {
 			this.deselectProvider()
 		},
+
 		cancelSearch() {
 			this.$emit('cancel-search', this.selectedProvider?.title)
 			this.deselectProvider()
 		},
+
 		cancelRawLinkInput() {
 			this.$emit('cancel-raw-link', this.selectedProvider?.title)
 			this.deselectProvider()
 		},
+
 		cancelProviderSelection() {
 			this.$emit('cancel')
 		},
+
 		submitLink(link) {
 			if (this.selectedProvider !== null) {
 				touchProvider(this.selectedProvider.id)
@@ -159,6 +174,7 @@ export default {
 			this.$emit('submit', link)
 			this.deselectProvider()
 		},
+
 		deselectProvider() {
 			this.selectedProvider = null
 			this.$emit('provider-selected', null)

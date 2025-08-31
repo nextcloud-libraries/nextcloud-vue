@@ -284,9 +284,11 @@ export default {
 		computedError() {
 			return this.error || this.isValid === false
 		},
+
 		computedSuccess() {
 			return this.success || this.isValid === true
 		},
+
 		computedHelperText() {
 			if (this.helperText.length > 0) {
 				return this.helperText
