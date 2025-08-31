@@ -87,7 +87,6 @@ export default defineConfig([
 		files: ['**/*.{js,ts,vue,mjs,mts}'],
 		rules: {
 			'@stylistic/function-paren-newline': 'off',
-			'@typescript-eslint/no-unused-expressions': 'off',
 			'vue/no-boolean-default': 'off',
 			'vue/no-unused-properties': 'off',
 			'vue/no-unused-refs': 'off',
