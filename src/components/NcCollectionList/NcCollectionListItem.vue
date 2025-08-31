@@ -10,7 +10,7 @@
 			class="collection-item-name"
 			title=""
 			@click="showDetails">{{ collection.name }}</span>
-		<form v-else :class="{'should-shake': error }" @submit.prevent="renameCollection">
+		<form v-else :class="{ 'should-shake': error }" @submit.prevent="renameCollection">
 			<input v-model="newName"
 				type="text"
 				autocomplete="off"

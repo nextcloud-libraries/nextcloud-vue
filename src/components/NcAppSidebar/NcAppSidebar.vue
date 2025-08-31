@@ -576,11 +576,11 @@ export default {
 						<!-- sidebar header illustration/figure -->
 						<div v-if="hasFigure"
 							:class="{
-								'app-sidebar-header__figure--with-action': hasFigureClickListener
+								'app-sidebar-header__figure--with-action': hasFigureClickListener,
 							}"
 							class="app-sidebar-header__figure"
 							:style="{
-								backgroundImage: `url(${background})`
+								backgroundImage: `url(${background})`,
 							}"
 							tabindex="0"
 							@click="onFigureClick"

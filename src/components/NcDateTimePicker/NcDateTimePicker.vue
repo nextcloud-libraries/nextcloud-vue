@@ -132,7 +132,7 @@ export default {
 				popover-base-class="timezone-select__popper">
 				<template #trigger="{ attrs }">
 					<button class="datetime-picker-inline-icon"
-						:class="{'datetime-picker-inline-icon--highlighted': highlightTimezone}"
+						:class="{ 'datetime-picker-inline-icon--highlighted': highlightTimezone }"
 						v-bind="attrs"
 						@mousedown.stop.prevent="() => {}">
 						<Web :size="20" />

@@ -41,7 +41,7 @@ This component is to be used in the settings section of nextcloud.
 </docs>
 
 <template>
-	<div class="settings-section" :class="{'settings-section--limit-width': forceLimitWidth}">
+	<div class="settings-section" :class="{ 'settings-section--limit-width': forceLimitWidth }">
 		<h2 class="settings-section__name">
 			{{ name }}
 			<a v-if="hasDocUrl"

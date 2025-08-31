@@ -5,7 +5,7 @@
 
 <template>
 	<div class="app-content-list"
-		:class="{selection, showdetails: showDetails}">
+		:class="{ selection, showdetails: showDetails }">
 		<slot />
 	</div>
 </template>

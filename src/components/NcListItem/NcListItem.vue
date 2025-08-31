@@ -440,7 +440,7 @@ The `actions-icon` slot can be used to pass icon to the inner NcActions componen
 		:to="to"
 		:exact="to ? exact : null">
 		<li class="list-item__wrapper"
-			:class="{ 'list-item__wrapper--active' : active ?? isActive }">
+			:class="{ 'list-item__wrapper--active': active ?? isActive }">
 			<div ref="list-item"
 				class="list-item"
 				:class="{
@@ -472,7 +472,7 @@ The `actions-icon` slot can be used to pass icon to the inner NcActions componen
 							</div>
 							<div v-if="hasSubname"
 								class="list-item-content__subname"
-								:class="{'list-item-content__subname--bold': bold}">
+								:class="{ 'list-item-content__subname--bold': bold }">
 								<!-- @slot Slot for the second line of the component -->
 								<slot name="subname" />
 							</div>

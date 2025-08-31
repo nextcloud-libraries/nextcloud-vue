@@ -148,7 +148,7 @@ For the `NcSelect` component, all events will be passed through. Please see the 
 				<div class="action-input__container">
 					<label v-if="label && labelOutside"
 						class="action-input__text-label"
-						:class="{ 'action-input__text-label--hidden': !labelOutside}"
+						:class="{ 'action-input__text-label--hidden': !labelOutside }"
 						:for="inputId">
 						{{ label }}
 					</label>
@@ -204,7 +204,7 @@ For the `NcSelect` component, all events will be passed through. Please see the 
 						<div v-else-if="type === 'color'" class="action-input__container">
 							<label v-if="label && type === 'color'"
 								class="action-input__text-label"
-								:class="{ 'action-input__text-label--hidden': !labelOutside}"
+								:class="{ 'action-input__text-label--hidden': !labelOutside }"
 								:for="inputId">
 								{{ label }}
 							</label>
@@ -216,7 +216,7 @@ For the `NcSelect` component, all events will be passed through. Please see the 
 									v-on="$listeners"
 									@update:model-value="onInput"
 									@submit="$refs.form.requestSubmit()">
-									<button :style="{'background-color': model}"
+									<button :style="{ 'background-color': model }"
 										class="colorpicker__preview"
 										:class="{ focusable: isFocusable }" />
 								</NcColorPicker>

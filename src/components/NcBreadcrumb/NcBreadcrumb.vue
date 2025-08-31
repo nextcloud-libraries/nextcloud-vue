@@ -15,7 +15,7 @@ Renders a button element when given no redirection props, otherwise, renders <a/
 <template>
 	<li ref="crumb"
 		class="vue-crumb"
-		:class="{'vue-crumb--hovered': hovering}"
+		:class="{ 'vue-crumb--hovered': hovering }"
 		:[crumbId]="''"
 		draggable="false"
 		@dragstart.prevent="() => { /** Prevent the breadcrumb from being draggable. */ }"

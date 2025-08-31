@@ -17,7 +17,7 @@
 		<span :class="{
 				'checkbox-content__icon': true,
 				'checkbox-content__icon--checked': isChecked,
-				[iconClass]: true
+				[iconClass]: true,
 			}"
 			:aria-hidden="true"
 			inert>

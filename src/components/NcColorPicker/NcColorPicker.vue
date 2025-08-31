@@ -157,7 +157,7 @@ export default {
 						<label v-for="({ color, name }, index) in normalizedPalette"
 							:key="index"
 							class="color-picker__simple-color-circle"
-							:class="{ 'color-picker__simple-color-circle--active' : color === currentColor }"
+							:class="{ 'color-picker__simple-color-circle--active': color === currentColor }"
 							:style="{
 								backgroundColor: color,
 								color: contrastColor,

@@ -46,16 +46,11 @@ export default defineConfig([
 			'jsdoc/no-types': 'off',
 			'jsdoc/require-jsdoc': 'off',
 			'jsdoc/tag-lines': 'off',
-			'vue/comma-dangle': 'off',
 			'vue/first-attribute-linebreak': 'off',
-			'vue/key-spacing': 'off',
 			'vue/new-line-between-multi-line-property': 'off',
 			'vue/no-useless-v-bind': 'off',
-			'vue/object-curly-newline': 'off',
-			'vue/object-curly-spacing': 'off',
 			'vue/padding-line-between-blocks': 'off',
 			'vue/prefer-separate-static-class': 'off',
-			'vue/quote-props': 'off',
 
 			// Non auto-fixable
 			'jsdoc/require-param-description': 'off',

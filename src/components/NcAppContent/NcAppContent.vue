@@ -104,7 +104,8 @@ export default {
 				:class="{
 					'app-content-wrapper--show-details': showDetails,
 					'app-content-wrapper--show-list': !showDetails,
-					'app-content-wrapper--mobile': isMobile,}">
+					'app-content-wrapper--mobile': isMobile,
+				}">
 				<NcAppContentDetailsToggle v-if="showDetails" @click.native.stop.prevent="hideDetails" />
 
 				<div v-show="!showDetails">
@@ -115,8 +116,9 @@ export default {
 			<div v-else-if="layout === 'vertical-split' || layout === 'horizontal-split'" class="app-content-wrapper">
 				<Splitpanes :horizontal="layout === 'horizontal-split'"
 					class="default-theme"
-					:class="{ 'splitpanes--horizontal': layout === 'horizontal-split',
-						'splitpanes--vertical': layout === 'vertical-split'
+					:class="{
+						'splitpanes--horizontal': layout === 'horizontal-split',
+						'splitpanes--vertical': layout === 'vertical-split',
 					}"
 					:rtl="isRtl"
 					@resized="handlePaneResize">

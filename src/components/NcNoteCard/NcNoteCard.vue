@@ -68,7 +68,7 @@ available in four versions:
 		<slot name="icon">
 			<component :is="icon"
 				class="notecard__icon"
-				:class="{'notecard__icon--heading': heading}"
+				:class="{ 'notecard__icon--heading': heading }"
 				fill-color="var(--note-theme)"
 				:size="20" />
 		</slot>

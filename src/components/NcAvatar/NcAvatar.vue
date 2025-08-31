@@ -193,7 +193,7 @@ export default {
 		:class="{
 			'avatardiv--unknown': userDoesNotExist,
 			'avatardiv--with-menu': hasMenu,
-			'avatardiv--with-menu-loading': contactsMenuLoading
+			'avatardiv--with-menu-loading': contactsMenuLoading,
 		}"
 		:style="avatarStyle"
 		class="avatardiv popovermenu-wrapper">

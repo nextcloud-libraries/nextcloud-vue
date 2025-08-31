@@ -5,7 +5,7 @@
 
 <template>
 	<span class="mention-bubble"
-		:class="{'mention-bubble--primary': primary}"
+		:class="{ 'mention-bubble--primary': primary }"
 		contenteditable="false">
 		<span class="mention-bubble__wrapper">
 			<span class="mention-bubble__content">

@@ -4,7 +4,7 @@
 -->
 
 <template>
-	<div v-if="isVisible" class="widgets--list" :class="{'icon-loading': loading }">
+	<div v-if="isVisible" class="widgets--list" :class="{ 'icon-loading': loading }">
 		<NcReferenceWidget v-for="reference in displayedReferences"
 			:key="reference?.openGraphObject?.id"
 			:reference="reference"

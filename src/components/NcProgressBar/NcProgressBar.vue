@@ -73,7 +73,7 @@ This is a simple progress bar component.
 	<progress v-else
 		class="progress-bar progress-bar--linear vue"
 		:class="{ 'progress-bar--error': error }"
-		:style="{'--progress-bar-height': height + 'px' }"
+		:style="{ '--progress-bar-height': height + 'px' }"
 		:value="value"
 		max="100" />
 </template>

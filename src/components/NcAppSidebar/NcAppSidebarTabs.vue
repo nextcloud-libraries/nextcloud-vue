@@ -45,7 +45,7 @@
 		</div>
 
 		<!-- tabs content -->
-		<div :class="{'app-sidebar-tabs__content--multiple': hasMultipleTabs}"
+		<div :class="{ 'app-sidebar-tabs__content--multiple': hasMultipleTabs }"
 			class="app-sidebar-tabs__content">
 			<!-- @slot Tabs content - NcAppSidebarTab components or any content if there is no tabs -->
 			<slot />

@@ -4,7 +4,7 @@
 -->
 
 <template>
-	<div ref="widgetRoot" :class="{'toggle-interactive': hasInteractiveView && !isInteractive }">
+	<div ref="widgetRoot" :class="{ 'toggle-interactive': hasInteractiveView && !isInteractive }">
 		<div v-if="reference && hasCustomWidget"
 			ref="customWidget"
 			class="widget-custom"

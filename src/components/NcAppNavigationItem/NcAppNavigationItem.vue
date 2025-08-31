@@ -298,7 +298,7 @@ Just set the `pinned` prop.
 			<div :class="{
 					'app-navigation-entry--editing': editingActive,
 					'app-navigation-entry--deleted': undo,
-					'active': (isActive && to) || active,
+					active: (isActive && to) || active,
 				}"
 				class="app-navigation-entry">
 				<!-- Icon and name -->
@@ -346,7 +346,7 @@ Just set the `pinned` prop.
 				<!-- Counter and Actions -->
 				<div v-if="hasUtils && !editingActive"
 					class="app-navigation-entry__utils"
-					:class="{'app-navigation-entry__utils--display-actions': forceDisplayActions || menuOpenLocalValue || menuOpen }">
+					:class="{ 'app-navigation-entry__utils--display-actions': forceDisplayActions || menuOpenLocalValue || menuOpen }">
 					<div v-if="$scopedSlots.counter"
 						class="app-navigation-entry__counter-wrapper">
 						<!-- @slot Slot for the `NcCounterBubble` -->
