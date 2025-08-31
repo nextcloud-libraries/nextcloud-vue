@@ -315,9 +315,7 @@ export default {
 				// Proxy all the HTML attributes
 				...this.$attrs,
 				// Proxy original NcInputField's props
-				...Object.fromEntries(
-					Object.entries(this.$props).filter(([key]) => NcInputFieldProps.has(key)),
-				),
+				...Object.fromEntries(Object.entries(this.$props).filter(([key]) => NcInputFieldProps.has(key))),
 			}
 		},
 	},

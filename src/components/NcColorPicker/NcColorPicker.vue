@@ -298,8 +298,7 @@ export default {
 			type: Array,
 			default: () => [...defaultPalette],
 			validator: (palette) => palette.every((item) => (typeof item === 'string' && HEX_REGEX.test(item))
-				|| (typeof item === 'object' && item.color && HEX_REGEX.test(item.color)),
-			),
+				|| (typeof item === 'object' && item.color && HEX_REGEX.test(item.color))),
 		},
 
 		/**

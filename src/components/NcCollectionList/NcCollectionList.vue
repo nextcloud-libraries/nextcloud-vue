@@ -177,8 +177,7 @@ export default {
 	computed: {
 		collections() {
 			return this.storedCollections.filter((collection) => collection.resources
-				.some((resource) => resource && resource.id === String(this.id) && resource.type === this.type),
-			)
+				.some((resource) => resource && resource.id === String(this.id) && resource.type === this.type))
 		},
 
 		placeholder() {

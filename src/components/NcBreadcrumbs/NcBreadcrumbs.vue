@@ -642,10 +642,8 @@ export default {
 						dragenter: ($event) => this.dragEnter($event, disabled),
 						dragleave: ($event) => this.dragLeave($event, disabled),
 					},
-				}, [folderIcon, name],
-				)
-			})),
-			)
+				}, [folderIcon, name])
+			})))
 
 			// The second half of the breadcrumbs
 			const crumbs2 = breadcrumbs.slice(Math.round(breadcrumbs.length / 2))

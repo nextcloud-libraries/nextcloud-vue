@@ -702,7 +702,8 @@ export default {
 
 		const hasPressed = !isLink && typeof this.pressed === 'boolean'
 
-		const renderButton = ({ href, navigate, isActive, isExactActive } = {}) => h(isLink ? 'a' : 'button',
+		const renderButton = ({ href, navigate, isActive, isExactActive } = {}) => h(
+			isLink ? 'a' : 'button',
 			{
 				class: [
 					'button-vue',
@@ -761,8 +762,7 @@ export default {
 								attrs: {
 									'aria-hidden': 'true',
 								},
-							}, [this.$slots.icon],
-							)
+							}, [this.$slots.icon])
 						: null,
 					hasText ? h('span', { class: 'button-vue__text' }, [this.$slots.default]) : null,
 				]),

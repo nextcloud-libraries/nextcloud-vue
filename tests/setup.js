@@ -33,10 +33,8 @@ if (typeof globalThis.structuredClone === 'undefined') {
 			copy[key] = globalThis.structuredClone(obj[key])
 		})
 
-		return Object.fromEntries(
-			Object
-				.entries(obj)
-				.map(([key, value]) => [key, globalThis.structuredClone(value)]),
-		)
+		return Object.fromEntries(Object
+			.entries(obj)
+			.map(([key, value]) => [key, globalThis.structuredClone(value)]))
 	}
 }

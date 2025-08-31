@@ -121,10 +121,8 @@ describe('NcAppNavigation.vue', () => {
 			const wrapper = mount(NcAppNavigation)
 			const navigation = findNavigation(wrapper)
 
-			expect(
-				navigation.attributes('role') === 'navigation'
-				|| navigation.element.tagName === 'NAV',
-			).toBeTruthy()
+			expect(navigation.attributes('role') === 'navigation'
+				|| navigation.element.tagName === 'NAV').toBeTruthy()
 		})
 
 		it('has toggle button, connected by aria-controls', () => {

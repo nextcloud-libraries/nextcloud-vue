@@ -969,10 +969,8 @@ export default {
 				...Object.keys(VueSelect.props),
 				...VueSelect.mixins.flatMap((mixin) => Object.keys(mixin.props ?? {})),
 			]
-			const initialPropsToForward = Object.fromEntries(
-				Object.entries(this.$props)
-					.filter(([key]) => vueSelectKeys.includes(key)),
-			)
+			const initialPropsToForward = Object.fromEntries(Object.entries(this.$props)
+				.filter(([key]) => vueSelectKeys.includes(key)))
 			const propsToForward = {
 				...initialPropsToForward,
 				// Custom overrides of vue-select props

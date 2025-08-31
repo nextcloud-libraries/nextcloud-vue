@@ -1187,9 +1187,7 @@ export default {
 			this.$emit('update:nameEditable', true)
 			// Focus the name input
 			if (this.nameEditable) {
-				this.$nextTick(
-					() => this.$refs.nameInput.focus(),
-				)
+				this.$nextTick(() => this.$refs.nameInput.focus())
 			}
 		},
 
@@ -1229,10 +1227,8 @@ export default {
 		checkToggleButtonContainerAvailability() {
 			// Toggle button must be rendered, but there is no element to teleport it to
 			if (this.open === false && !this.noToggle && !this.ncContentSelector) {
-				logger.warn(
-					'[NcAppSidebar] It looks like you want to use NcAppSidebar with the built-in toggle button. '
-					+ 'This feature is only available when NcAppSidebar is used in NcContent.',
-				)
+				logger.warn('[NcAppSidebar] It looks like you want to use NcAppSidebar with the built-in toggle button. '
+					+ 'This feature is only available when NcAppSidebar is used in NcContent.')
 			}
 		},
 

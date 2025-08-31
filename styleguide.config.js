@@ -21,9 +21,7 @@ module.exports = async () => {
 		externals: {},
 		module: {
 			// Ignore eslint
-			rules: base.module.rules.filter(
-				(rule) => rule.use !== 'eslint-loader',
-			),
+			rules: base.module.rules.filter((rule) => rule.use !== 'eslint-loader'),
 		},
 	}
 

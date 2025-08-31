@@ -178,17 +178,15 @@ export default {
 		 * value property converted to an array of group objects used as input for the NcSelect
 		 */
 		inputValue() {
-			return this.filteredValue.map(
-				(id) => {
-					if (typeof this.groups[id] === 'undefined') {
-						return {
-							id,
-							displayname: id,
-						}
+			return this.filteredValue.map((id) => {
+				if (typeof this.groups[id] === 'undefined') {
+					return {
+						id,
+						displayname: id,
 					}
-					return this.groups[id]
-				},
-			)
+				}
+				return this.groups[id]
+			})
 		},
 
 		/**

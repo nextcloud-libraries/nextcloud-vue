@@ -1845,7 +1845,8 @@ export default {
 			delete propsToForward.modelValue
 			delete propsToForward.type
 
-			return h('NcButton',
+			return h(
+				'NcButton',
 				{
 					class: [
 						'action-item action-item--single',
@@ -1905,7 +1906,8 @@ export default {
 							},
 						})
 			)
-			return h('NcPopover',
+			return h(
+				'NcPopover',
 				{
 					ref: 'popover',
 					props: {
@@ -2015,7 +2017,8 @@ export default {
 		 * If we some inline actions to render, render them, then the menu
 		 */
 		if (inlineActions.length > 0 && this.inline > 0) {
-			return h('div',
+			return h(
+				'div',
 				{
 					class: [
 						'action-items',
@@ -2027,7 +2030,8 @@ export default {
 					...inlineActions.map(renderInlineAction),
 					// render the rest within the popover menu
 					menuActions.length > 0
-						? h('div',
+						? h(
+								'div',
 								{
 									class: [
 										'action-item',
@@ -2038,15 +2042,18 @@ export default {
 								},
 								[
 									renderActionsPopover(menuActions),
-								])
+								],
+							)
 						: null,
-				])
+				],
+			)
 		}
 
 		/**
 		 * Otherwise, we render the actions in a popover
 		 */
-		return h('div',
+		return h(
+			'div',
 			{
 				class: [
 					'action-item action-item--default-popover',

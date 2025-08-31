@@ -566,8 +566,7 @@ export default {
 					// escape special symbol "<" to not treat text as HTML
 					.replace(/<[^>]+>/g, (match) => match.replace(/</g, '&lt;'))
 					// unescape special symbol ">" to parse blockquotes
-					.replace(/&gt;/gmi, '>'),
-				)
+					.replace(/&gt;/gmi, '>'))
 				.result
 
 			return h('div', { class: 'rich-text--wrapper rich-text--wrapper-markdown' }, [

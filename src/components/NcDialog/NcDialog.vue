@@ -293,9 +293,7 @@ export default defineComponent({
 			type: Array,
 			validator: (arr) => {
 				return (
-					Array.isArray(arr) && arr.every(
-						(element) => typeof element === 'string' || element instanceof HTMLElement,
-					)
+					Array.isArray(arr) && arr.every((element) => typeof element === 'string' || element instanceof HTMLElement)
 				)
 			},
 
@@ -548,8 +546,7 @@ export default defineComponent({
 						emit('reset', event)
 					},
 				}
-			: {},
-		)
+			: {})
 
 		/**
 		 * If the underlying modal is shown

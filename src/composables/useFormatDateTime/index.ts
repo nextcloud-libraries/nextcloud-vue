@@ -173,8 +173,7 @@ export function useFormatDateTime(
 
 	const formattedTime = computed(() => toValue(opts).relativeTime !== false
 		? relativeTime.value
-		: formattedFullTime.value,
-	)
+		: formattedFullTime.value)
 
 	return {
 		formattedTime,
