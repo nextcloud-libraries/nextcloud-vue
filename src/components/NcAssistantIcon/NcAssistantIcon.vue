@@ -20,33 +20,36 @@
 ```
 </docs>
 
-<script setup lang="ts">
+<script setup>
 import { mdiCreation } from '@mdi/js'
 import { computed } from 'vue'
 
-const props = withDefaults(defineProps<{
+const props = defineProps({
 	/**
 	 * Set if the icon should be used as inline content e.g. within text.
 	 * By default the icon is made a block element for use inside `icon`-slots.
 	 */
-	inline?: boolean
+	inline: {
+		type: Boolean,
+		default: false,
+	},
 
 	/**
 	 * Size of the icon.
 	 * Defaults to the proper size to be used in buttons and other interactive elements
 	 * like all `Nc*` components with an icon slot.
 	 */
-	size?: number
-}>(), {
-	size: 20,
+	size: {
+		type: Number,
+		default: 20,
+	},
 })
 
 const sizePx = computed(() => `${props.size}px`)
 </script>
 
 <template>
-	<span
-		aria-hidden="true"
+	<span aria-hidden="true"
 		:class="[$style.assistantIcon, inline && $style.assistantIcon_inline]"
 		role="img">
 		<svg :class="$style.assistantIcon__svg" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">

@@ -20,13 +20,13 @@
 		<p>Primary</p>
 		<NcAssistantButton
 			aria-label="Generate content"
-			:disabled
-			:text>
+			:disabled="disabled"
+			:text="text">
 		</NcAssistantButton>
 		<NcAssistantButton
 			aria-label="Generate content"
-			:disabled
-			:text
+			:disabled="disabled"
+			:text="text"
 			variant="primary">
 		</NcAssistantButton>
 	</div>
@@ -93,17 +93,20 @@ button {
 ```
 </docs>
 
-<script setup lang="ts">
+<script setup>
 import { mdiCreation } from '@mdi/js'
 import NcAssistantIcon from '../NcAssistantIcon/NcAssistantIcon.vue'
 import NcButton from '../NcButton/NcButton.vue'
 import NcIconSvgWrapper from '../NcIconSvgWrapper/NcIconSvgWrapper.vue'
 
-withDefaults(defineProps<{
+defineProps({
 	/**
 	 * Toggles the disabled state of the button on and off.
 	 */
-	disabled?: boolean
+	disabled: {
+		type: Boolean,
+		default: false,
+	},
 
 	/**
 	 * The readable text of the button.
@@ -111,45 +114,45 @@ withDefaults(defineProps<{
 	 *
 	 * If neither this is set nor the `default` slot is used, you will have to set at least `aria-label` or `aria-labelledby`.
 	 */
-	text?: string
+	text: {
+		type: String,
+		default: '',
+	},
 
 	/**
 	 * The button variant.
 	 * In most cases the `secondary` style should be used.
 	 */
-	variant?: 'primary' | 'secondary'
-}>(), {
-	text: '',
-	variant: 'secondary',
+	variant: {
+		type: String,
+		default: 'secondary',
+	},
 })
 
-defineEmits<{
+defineEmits([
 	/**
 	 * The mouse click event when the button is triggered.
 	 */
-	click: [MouseEvent]
-}>()
+	'click',
+])
 </script>
 
 <template>
-	<div
-		:class="[{
-			[$style.assistantButton_disabled!]: disabled,
-			[$style.assistantButton_primary!]: variant === 'primary',
-		}, $style.assistantButton]">
-		<NcButton
-			:class="$style.assistantButton__button"
-			:disabled
+	<div :class="[{
+		[$style.assistantButton_disabled]: disabled,
+		[$style.assistantButton_primary]: variant === 'primary',
+	}, $style.assistantButton]">
+		<NcButton :class="$style.assistantButton__button"
+			:disabled="disabled"
 			variant="tertiary"
 			@click="$emit('click', $event)">
 			<template #icon>
-				<NcIconSvgWrapper
-					v-if="variant === 'primary'"
+				<NcIconSvgWrapper v-if="variant === 'primary'"
 					:class="$style.assistantButton__icon"
 					:path="mdiCreation" />
 				<NcAssistantIcon v-else />
 			</template>
-			<template v-if="text || $slots.default" #default>
+			<template v-if="text || $scopedSlots.default" #default>
 				<div :class="$style.assistantButton__text">
 					<slot>{{ text }}</slot>
 				</div>

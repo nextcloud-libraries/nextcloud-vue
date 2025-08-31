@@ -43,30 +43,23 @@
 ```
 </docs>
 
-<script setup lang="ts">
-import type { Slot } from 'vue'
-import type { VueClassType } from '../../utils/VueTypes.ts'
+<script setup>
 
-withDefaults(defineProps<{
+defineProps({
 	/**
 	 * Classes to assign to the content container
 	 */
-	contentClasses?: VueClassType
-}>(), {
-	contentClasses: '',
+	contentClasses: {
+		type: [String, Array, Object],
+		default: '',
+	},
 })
-
-defineSlots<{
-	/**
-	 * The content to be shown.
-	 */
-	default?: Slot
-}>()
 </script>
 
 <template>
 	<div :class="$style.assistantContent">
 		<div :class="[$style.assistantContent__inner, contentClasses]">
+			<!-- @slot The content to be shown. -->
 			<slot />
 		</div>
 	</div>
