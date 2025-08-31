@@ -245,7 +245,7 @@ export default {
 		 */
 		setReturnFocus: {
 			default: undefined,
-			type: [HTMLElement, SVGElement, String, Boolean, Function],
+			type: [Boolean, HTMLElement, SVGElement, String, Function],
 		},
 
 		/**

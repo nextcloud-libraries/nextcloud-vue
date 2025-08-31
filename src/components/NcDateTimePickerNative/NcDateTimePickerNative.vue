@@ -178,7 +178,7 @@ export default {
 		 * default type: null
 		 */
 		min: {
-			type: [Date, Boolean],
+			type: [Boolean, Date],
 			default: null,
 		},
 
@@ -187,7 +187,7 @@ export default {
 		 * default type: null
 		 */
 		max: {
-			type: [Date, Boolean],
+			type: [Boolean, Date],
 			default: null,
 		},
 
