@@ -67,7 +67,11 @@ function mixPalette(steps, color1, color2) {
  * Like GenColor(4) but with labels
  */
 export const defaultPalette = [
-	new Color(182, 70, 157, t('Purple')),
+	/* eslint-disable @stylistic/function-call-argument-newline -- Allow to put translators comments */
+	new Color(
+		182, 70, 157,
+		t('Purple'),
+	),
 	new Color(
 		191, 103, 139,
 		t('Rosy brown'), // TRANSLATORS: A color name for RGB(191, 103, 139)
@@ -112,6 +116,7 @@ export const defaultPalette = [
 		136, 85, 168,
 		t('Deluge'), // TRANSLATORS: A color name for RGB(136, 85, 168)
 	),
+	/* eslint-enable @stylistic/function-call-argument-newline */
 ]
 
 /**
