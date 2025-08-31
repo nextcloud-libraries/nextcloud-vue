@@ -11,20 +11,20 @@ import NcReferenceWidget from './NcReferenceWidget.vue'
 import NcReferencePicker from './NcReferencePicker/NcReferencePicker.vue'
 import NcReferencePickerModal from './NcReferencePicker/NcReferencePickerModal.vue'
 import NcSearch from './NcReferencePicker/NcSearch.vue'
-import { getLinkWithPicker } from './../../functions/reference/referencePickerModal.js'
+import { getLinkWithPicker } from '../../functions/reference/referencePickerModal.ts'
 import {
 	getProvider,
 	getProviders,
 	sortProviders,
 	searchProvider,
 	anyLinkProviderId,
-} from '../../functions/reference/providerHelper.js'
+} from '../../functions/reference/providerHelper.ts'
 import {
 	registerCustomPickerElement,
 	renderCustomPickerElement,
 	isCustomPickerElementRegistered,
 	NcCustomPickerRenderResult,
-} from '../../functions/reference/customPickerElements.js'
+} from '../../functions/reference/customPickerElements.ts'
 
 export default NcRichText
 
