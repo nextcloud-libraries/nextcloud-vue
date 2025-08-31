@@ -36,13 +36,57 @@ export default defineConfig([
 		},
 	},
 
+	{
+		name: '@nextcloud/vue/build-time-globals',
+		files: ['**/*.{js,ts,vue,mjs,mts}'],
+		languageOptions: {
+			globals: {
+				SCOPE_VERSION: 'readonly',
+				NEXTCLOUD_VERSION: 'readonly',
+			},
+		},
+	},
+
+	{
+		name: '@nextcloud/vue/tests-jest',
+		files: ['tests/**/*.{js,ts}', '**/*.spec.{js,ts}', '**/*.test.{js,ts}'],
+		languageOptions: {
+			globals: {
+				describe: 'readonly',
+				it: 'readonly',
+				test: 'readonly',
+				expect: 'readonly',
+				beforeEach: 'readonly',
+				afterEach: 'readonly',
+				beforeAll: 'readonly',
+				afterAll: 'readonly',
+				jest: 'readonly',
+			},
+		},
+	},
+
+	{
+		name: '@nextcloud/vue/tests-cypres',
+		files: ['cypress/**/*.{js,ts}'],
+		languageOptions: {
+			globals: {
+				describe: 'readonly',
+				it: 'readonly',
+				expect: 'readonly',
+				beforeEach: 'readonly',
+				afterEach: 'readonly',
+				cy: 'readonly',
+				Cypress: 'readonly',
+			},
+		},
+	},
+
 	// Temporarily disable rules during migration
 	{
 		name: '@nextcloud/vue/disabled-during-migration',
 		files: ['**/*.{js,ts,vue,mjs,mts}'],
 		rules: {
 			'no-console': 'off',
-			'no-undef': 'off',
 			'@stylistic/function-paren-newline': 'off',
 			'@typescript-eslint/no-unused-expressions': 'off',
 			'vue/no-boolean-default': 'off',
