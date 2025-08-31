@@ -46,7 +46,6 @@ export default defineConfig([
 			'@stylistic/function-paren-newline': 'off',
 			'@typescript-eslint/no-unused-expressions': 'off',
 			'vue/no-boolean-default': 'off',
-			'vue/no-required-prop-with-default': 'off',
 			'vue/no-unused-properties': 'off',
 			'vue/no-unused-refs': 'off',
 			'vue/prefer-prop-type-boolean-first': 'off',
