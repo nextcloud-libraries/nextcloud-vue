@@ -776,6 +776,9 @@ export default {
 	},
 
 	props: {
+		/**
+		 * The active tab
+		 */
 		active: {
 			type: String,
 			default: '',
@@ -797,11 +800,17 @@ export default {
 			default: false,
 		},
 
+		/**
+		 * Placeholder in the edit field if the name is editable.
+		 */
 		namePlaceholder: {
 			type: String,
 			default: '',
 		},
 
+		/**
+		 * Secondary name of the sidebar (subline)
+		 */
 		subname: {
 			type: String,
 			default: '',

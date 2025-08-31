@@ -181,8 +181,9 @@ export default {
 			default: true,
 		},
 
-		// Removed NcInputField props, defined only by this component
-
+		/**
+		 * Removed NcInputField props, defined only by this component
+		 */
 		trailingButtonLabel: undefined,
 
 		// Custom props

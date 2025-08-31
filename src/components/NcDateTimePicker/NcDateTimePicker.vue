@@ -213,11 +213,17 @@ export default {
 	},
 
 	props: {
+		/**
+		 * Allow to clear the input.
+		 */
 		clearable: {
 			type: Boolean,
 			default: false,
 		},
 
+		/**
+		 * Default increment step for minutes in the time picker.
+		 */
 		minuteStep: {
 			type: Number,
 			default: 10,
@@ -249,6 +255,10 @@ export default {
 			default: null,
 		},
 
+		/**
+		 * The locale to use for formatting the shown dates.
+		 * By default the users current Nextcloud locale is used.
+		 */
 		lang: {
 			type: Object,
 			default: null,
@@ -282,26 +292,44 @@ export default {
 			default: 'UTC',
 		},
 
+		/**
+		 * Include a timezone picker within the menu.
+		 * Please note that the dates are still bound to the locale timezone
+		 * and any conversion needs to be done by the app itself.
+		 */
 		showTimezoneSelect: {
 			type: Boolean,
 			default: false,
 		},
 
+		/**
+		 * If set to true the timezone select icon will be highlighted.
+		 */
 		highlightTimezone: {
 			type: Boolean,
 			default: false,
 		},
 
+		/**
+		 * If set to true the menu will be placed on the `<body>`
+		 * instead of default placement on the picker.
+		 */
 		appendToBody: {
 			type: Boolean,
 			default: false,
 		},
 
+		/**
+		 * Show the ISO week numbers within the calendar.
+		 */
 		showWeekNumber: {
 			type: Boolean,
 			default: false,
 		},
 
+		/**
+		 * Optional custom placeholder for the input box.
+		 */
 		placeholder: {
 			type: String,
 			default: null,

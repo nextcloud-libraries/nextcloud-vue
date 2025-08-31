@@ -216,6 +216,9 @@ export default {
 			validator: (value) => ['menu', 'listbox', 'tree', 'grid', 'dialog', 'true'].includes(value),
 		},
 
+		/**
+		 * Class to be applied to the popover base
+		 */
 		popoverBaseClass: {
 			type: String,
 			default: '',

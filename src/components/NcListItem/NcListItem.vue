@@ -603,6 +603,9 @@ export default {
 			default: '#',
 		},
 
+		/**
+		 * The HTML target attribute used for the link
+		 */
 		target: {
 			type: String,
 			default: '',

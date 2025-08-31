@@ -32,6 +32,9 @@ export default {
 	inject: ['registerTab', 'unregisterTab', 'getActiveTab', 'isTablistShown'],
 
 	props: {
+		/**
+		 * Unique id of the sidebar tab
+		 */
 		id: {
 			type: String,
 			required: true,

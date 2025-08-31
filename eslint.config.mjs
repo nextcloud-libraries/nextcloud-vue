@@ -88,7 +88,6 @@ export default defineConfig([
 		rules: {
 			'vue/no-unused-properties': 'off',
 			'vue/no-unused-refs': 'off',
-			'vue/require-prop-comment': 'off',
 		},
 	},
 ])

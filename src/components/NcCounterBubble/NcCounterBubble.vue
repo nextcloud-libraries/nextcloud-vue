@@ -188,6 +188,9 @@ export default {
 	name: 'NcCounterBubble',
 
 	props: {
+		/**
+		 * Visual appearence of the counter bubble
+		 */
 		type: {
 			type: String,
 			default: '',

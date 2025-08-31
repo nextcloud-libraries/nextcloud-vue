@@ -41,12 +41,18 @@ export default {
 	},
 
 	props: {
+		/**
+		 * Is the list currently open (or collapsed)
+		 */
 		open: {
 			type: Boolean,
 			// eslint-disable-next-line vue/no-boolean-default
 			default: true,
 		},
 
+		/**
+		 * Is the navigation item currently active.
+		 */
 		active: {
 			type: Boolean,
 			required: true,

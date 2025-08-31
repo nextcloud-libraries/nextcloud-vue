@@ -50,18 +50,27 @@ export default {
 	},
 
 	props: {
+		/**
+		 * Id of the button
+		 */
 		buttonId: {
 			type: String,
 			required: false,
 			default: '',
 		},
 
+		/**
+		 * Disabled state of the button
+		 */
 		disabled: {
 			type: Boolean,
 			required: false,
 			default: false,
 		},
 
+		/**
+		 * Main text of the button
+		 */
 		text: {
 			type: String,
 			required: true,

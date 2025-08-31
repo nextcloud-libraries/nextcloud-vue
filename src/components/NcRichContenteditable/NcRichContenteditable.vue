@@ -349,21 +349,33 @@ export default {
 			default: undefined,
 		},
 
+		/**
+		 * The text content
+		 */
 		modelValue: {
 			type: String,
 			default: '',
 		},
 
+		/**
+		 * Placeholder to be shown if empty
+		 */
 		placeholder: {
 			type: String,
 			default: t('Write a message …'),
 		},
 
+		/**
+		 * Auto complete function
+		 */
 		autoComplete: {
 			type: Function,
 			default: () => [],
 		},
 
+		/**
+		 * The containing element for the menu popover
+		 */
 		menuContainer: {
 			type: Element,
 			default: () => document.body,

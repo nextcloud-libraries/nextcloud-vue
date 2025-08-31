@@ -118,6 +118,10 @@ export default {
 	},
 
 	props: {
+		/**
+		 * The application name to use.
+		 * This is used to scope all content (content, sidebar, navigation) to the application.
+		 */
 		appName: {
 			type: String,
 			required: true,

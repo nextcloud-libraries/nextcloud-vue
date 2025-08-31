@@ -137,6 +137,9 @@ export default {
 			},
 		},
 
+		/**
+		 * The color of the progress bar
+		 */
 		color: {
 			type: String,
 			default: null,

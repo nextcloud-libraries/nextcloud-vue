@@ -49,6 +49,11 @@ export default {
 	],
 
 	props: {
+		/**
+		 * Text of the button
+		 *
+		 * @default 'Settings'
+		 */
 		name: {
 			type: String,
 			required: false,

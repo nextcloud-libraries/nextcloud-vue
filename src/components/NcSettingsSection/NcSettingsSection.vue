@@ -81,16 +81,26 @@ export default {
 	},
 
 	props: {
+		/**
+		 * The name of the settings section.
+		 * This is used for the headline and needs to be set.
+		 */
 		name: {
 			type: String,
 			required: true,
 		},
 
+		/**
+		 * Further informational description of the section.
+		 */
 		description: {
 			type: String,
 			default: '',
 		},
 
+		/**
+		 * The URL for the documentation about this section
+		 */
 		docUrl: {
 			type: String,
 			default: '',
