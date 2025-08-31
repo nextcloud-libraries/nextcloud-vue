@@ -17,7 +17,7 @@ Renders a button element when given no redirection props, otherwise, renders <a/
 		ref="crumb"
 		class="vue-crumb"
 		:class="{ 'vue-crumb--hovered': hovering }"
-		:[crumbId]="''"
+		:data-crumb-id="crumbId"
 		draggable="false"
 		@dragstart.prevent="() => { /** Prevent the breadcrumb from being draggable. */ }"
 		@drop.prevent="dropped"
@@ -49,7 +49,7 @@ Renders a button element when given no redirection props, otherwise, renders <a/
 			:menu-name="name"
 			:title="title"
 			:force-name="true"
-			:container="`.vue-crumb[${crumbId}]`"
+			:container="actionsContainer"
 			variant="tertiary"
 			@update:open="onOpenChange">
 			<template #icon>
@@ -66,7 +66,7 @@ Renders a button element when given no redirection props, otherwise, renders <a/
 <script>
 import ChevronRight from 'vue-material-design-icons/ChevronRight.vue'
 import NcButton from '../NcButton/NcButton.vue'
-import GenRandomId from '../../utils/GenRandomId.js'
+import { createElementId } from '../../utils/createElementId.ts'
 import NcActions from '../NcActions/index.js'
 
 export default {
@@ -169,17 +169,20 @@ export default {
 		'dropped',
 	],
 
+	setup() {
+		const crumbId = createElementId()
+		return {
+			actionsContainer: `.vue-crumb[data-crumb-id="${crumbId}"]`,
+			crumbId,
+		}
+	},
+
 	data() {
 		return {
 			/**
 			 * Variable to track if we hover over the breadcrumb
 			 */
 			hovering: false,
-			/**
-			 * The unique id of the breadcrumb. Necessary to append the
-			 * Actions menu to the correct crumb.
-			 */
-			crumbId: `crumb-id-${GenRandomId()}`,
 		}
 	},
 
