@@ -290,8 +290,7 @@ export default defineComponent({
 			validator: (arr) => {
 				return (
 					Array.isArray(arr) && arr.every(
-						(element) =>
-							typeof element === 'string' || element instanceof HTMLElement,
+						(element) => typeof element === 'string' || element instanceof HTMLElement,
 					)
 				)
 			},

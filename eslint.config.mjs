@@ -49,7 +49,6 @@ export default defineConfig([
 			'@nextcloud-l10n/non-breaking-space': 'off',
 			'@stylistic/array-element-newline': 'off',
 			'@stylistic/function-call-argument-newline': 'off',
-			'@stylistic/implicit-arrow-linebreak': 'off',
 			'vue/block-spacing': 'off',
 			'vue/comma-dangle': 'off',
 			'vue/first-attribute-linebreak': 'off',

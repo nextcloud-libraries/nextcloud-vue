@@ -65,11 +65,10 @@ describe('NcModal', () => {
 			slots: {
 				// Create two div as children, first is 100vh = overflows the content, second just gets some data attribute so we can scroll into view
 				default: {
-					render: (h) =>
-						h('div', [
-							h('div', { style: 'height: 100vh;' }),
-							h('div', { attrs: { 'data-cy': 'bottom' } }),
-						]),
+					render: (h) => h('div', [
+						h('div', { style: 'height: 100vh;' }),
+						h('div', { attrs: { 'data-cy': 'bottom' } }),
+					]),
 				} as Component,
 			},
 		})
