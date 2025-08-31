@@ -36,7 +36,7 @@ describe('NcRichText', () => {
 					useMarkdown: true,
 				},
 			})
-			cy.get('code').should('have.text', '<span>text</span> <span>text</span>' + '\n')
+			cy.get('code').should('have.text', '<span>text</span> <span>text</span>\n')
 		})
 		it('renders with Flavored Markdown, escaping XML', () => {
 			mount(NcRichText, {
@@ -54,7 +54,7 @@ describe('NcRichText', () => {
 					useExtendedMarkdown: true,
 				},
 			})
-			cy.get('code').should('have.text', '<span>text</span> <span>text</span>' + '\n')
+			cy.get('code').should('have.text', '<span>text</span> <span>text</span>\n')
 		})
 	})
 

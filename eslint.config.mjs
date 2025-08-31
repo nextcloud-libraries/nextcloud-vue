@@ -45,7 +45,6 @@ export default defineConfig([
 			'no-undef': 'off',
 			'no-unused-vars': 'off',
 			'no-use-before-define': 'off',
-			'no-useless-concat': 'off',
 			'no-useless-escape': 'off',
 			'@stylistic/function-paren-newline': 'off',
 			'@stylistic/max-statements-per-line': 'off',
