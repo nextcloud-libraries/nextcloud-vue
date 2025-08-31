@@ -579,7 +579,7 @@ export default defineComponent({
 		 *
 		 * @param {unknown} result the result of the callback
 		 */
-		const handleClosing = (result) => {
+		function handleClosing(result) {
 			showModal.value = false
 			/**
 			 * Emitted when the dialog is closing, so the out transition did not finish yet.
@@ -592,7 +592,7 @@ export default defineComponent({
 		/**
 		 * Handle dialog closed (out transition finished)
 		 */
-		const handleClosed = () => {
+		function handleClosed() {
 			showModal.value = true
 			/**
 			 * Emitted then the dialog is fully closed and the out transition run
