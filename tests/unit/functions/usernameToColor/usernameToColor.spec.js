@@ -12,7 +12,17 @@ describe('usernameToColor', () => {
 	'use strict'
 
 	const usernames = [
-		'', ',', '.', 'admin', 'foo', 'bar', 'asd', 'wasd', 'a user', 'another user', 'admin@cloud.example.com',
+		'',
+		',',
+		'.',
+		'admin',
+		'foo',
+		'bar',
+		'asd',
+		'wasd',
+		'a user',
+		'another user',
+		'admin@cloud.example.com',
 		'Lorelai Taylor',
 		'Lillian Wall',
 		'Haseeb Stephens',
@@ -35,7 +45,9 @@ describe('usernameToColor', () => {
 		'🙈',
 		'مرحبا بالعالم',
 		'123e4567-e89b-12d3-a456-426614174000',
-		'Meeting', 'TestCircle', 'Private Circle',
+		'Meeting',
+		'TestCircle',
+		'Private Circle',
 	]
 
 	usernames.forEach((key) => {
