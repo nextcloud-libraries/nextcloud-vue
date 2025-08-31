@@ -26,7 +26,7 @@ export function delay(callback, ms) {
 export function isUrl(str) {
 	try {
 		return Boolean(new URL(str))
-	} catch (error) {
+	} catch {
 		return false
 	}
 }

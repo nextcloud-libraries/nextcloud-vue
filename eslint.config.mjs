@@ -43,7 +43,6 @@ export default defineConfig([
 		rules: {
 			'no-console': 'off',
 			'no-undef': 'off',
-			'no-unused-vars': 'off',
 			'@stylistic/function-paren-newline': 'off',
 			'@stylistic/max-statements-per-line': 'off',
 			'@typescript-eslint/no-this-alias': 'off',

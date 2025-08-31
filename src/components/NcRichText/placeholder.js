@@ -22,7 +22,7 @@ export function remarkPlaceholder() {
 		 */
 		function visitor(node, index, parent) {
 			const placeholders = node.value.split(/(\{[a-z\-_.0-9]+\})/ig)
-				.map((entry, index, list) => {
+				.map((entry) => {
 					const matches = entry.match(/^\{([a-z\-_.0-9]+)\}$/i)
 					if (!matches) {
 						return u('text', entry)
