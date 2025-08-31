@@ -41,15 +41,6 @@ export default defineConfig([
 		name: '@nextcloud/vue/disabled-during-migration',
 		files: ['**/*.{js,ts,vue,mjs,mts}'],
 		rules: {
-			// Auto-fixable
-			'jsdoc/check-tag-names': 'off',
-			'jsdoc/no-types': 'off',
-			'jsdoc/require-jsdoc': 'off',
-			'jsdoc/tag-lines': 'off',
-
-			// Non auto-fixable
-			'jsdoc/require-param-description': 'off',
-			'jsdoc/require-param-type': 'off',
 			'no-console': 'off',
 			'no-undef': 'off',
 			'no-unused-vars': 'off',
