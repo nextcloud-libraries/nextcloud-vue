@@ -16,7 +16,8 @@ This component is meant to be used inside a DashboardWidget component.
 		<component :is="targetUrl ? 'a' : 'div'"
 			:href="targetUrl || undefined"
 			:target="targetUrl ? '_blank' : undefined"
-			:class="{ 'item-list__entry': true, 'item-list__entry--has-actions-menu': gotMenu }"
+			class="item-list__entry"
+			:class="{ 'item-list__entry--has-actions-menu': gotMenu }"
 			@click="onLinkClick">
 			<!-- @slot Slot for passing a user avatar. -->
 			<slot name="avatar" :avatar-url="avatarUrl" :avatar-username="avatarUsername">

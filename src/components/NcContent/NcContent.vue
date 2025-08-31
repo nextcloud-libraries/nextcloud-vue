@@ -54,7 +54,7 @@ It also will set the skip content buttons needed for accessibility.
 </docs>
 
 <template>
-	<div id="content-vue" :class="['content', `app-${appName.toLowerCase()}`]">
+	<div id="content-vue" class="content" :class="[`app-${appName.toLowerCase()}`]">
 		<!-- TODO: with vue3 the `selector` attribute needs to be changed to `to="#skip-actions"` -->
 		<Teleport selector="#skip-actions">
 			<div class="vue-skip-actions__container">

@@ -132,8 +132,8 @@ export default {
 				class="navigation-list">
 				<li v-for="section in sections" :key="section.id">
 					<a :aria-current="`${section.id === selectedSection}`"
+						class="navigation-list__link"
 						:class="{
-							'navigation-list__link': true,
 							'navigation-list__link--active': section.id === selectedSection,
 							'navigation-list__link--icon': hasNavigationIcons,
 						}"

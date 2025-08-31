@@ -14,8 +14,8 @@
 			label can't be used here because of shift+click firefox bug
 			https://bugzilla.mozilla.org/show_bug.cgi?id=559506
 		-->
-		<span :class="{
-				'checkbox-content__icon': true,
+		<span class="checkbox-content__icon"
+			:class="{
 				'checkbox-content__icon--checked': isChecked,
 				[iconClass]: true,
 			}"

@@ -325,7 +325,8 @@ export default {
 <template>
 	<li class="action" :class="{ 'action--disabled': disabled }" :role="isInSemanticMenu && 'presentation'">
 		<button :aria-label="ariaLabel"
-			:class="['action-button button-vue', {
+			class="action-button button-vue"
+			:class="[{
 				'action-button--active': isChecked,
 				focusable: isFocusable,
 			}]"

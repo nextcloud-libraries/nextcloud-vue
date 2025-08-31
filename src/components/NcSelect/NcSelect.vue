@@ -337,7 +337,8 @@ export default {
 			</label>
 		</template>
 		<template #search="{ attributes, events }">
-			<input :class="['vs__search', inputClass]"
+			<input class="vs__search"
+				:class="[inputClass]"
 				v-bind="attributes"
 				:required="inputRequired"
 				dir="auto"

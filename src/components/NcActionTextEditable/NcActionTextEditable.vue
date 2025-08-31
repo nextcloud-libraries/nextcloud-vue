@@ -76,7 +76,8 @@ export default {
 					:disabled="disabled"
 					:value="model"
 					v-bind="$attrs"
-					:class="['action-text-editable__textarea', { focusable: isFocusable }]"
+					class="action-text-editable__textarea"
+					:class="[{ focusable: isFocusable }]"
 					@input="onInput" />
 
 				<!-- allow the custom font to inject a ::before

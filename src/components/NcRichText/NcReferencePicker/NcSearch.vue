@@ -42,7 +42,7 @@
 						<strong>{{ option.name }}</strong>
 					</span>
 				</span>
-				<span v-else-if="option.isMore" :class="{ 'custom-option': true }">
+				<span v-else-if="option.isMore" class="custom-option">
 					<span v-if="option.isLoading" class="option-simple-icon icon-loading-small" />
 					<DotsHorizontalIcon v-else class="option-simple-icon" :size="20" />
 					<span class="option-text">

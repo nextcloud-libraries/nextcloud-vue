@@ -225,7 +225,7 @@ export default {
 			class="dialog"
 			:class="dialogClasses"
 			v-on="dialogListeners">
-			<div ref="wrapper" :class="['dialog__wrapper', { 'dialog__wrapper--collapsed': isNavigationCollapsed }]">
+			<div ref="wrapper" class="dialog__wrapper" :class="[{ 'dialog__wrapper--collapsed': isNavigationCollapsed }]">
 				<!-- When the navigation is collapsed (too small dialog) it is displayed above the main content, otherwise on the inline start -->
 				<nav v-if="hasNavigation"
 					class="dialog__navigation"

@@ -48,7 +48,6 @@ export default defineConfig([
 			'jsdoc/tag-lines': 'off',
 			'vue/first-attribute-linebreak': 'off',
 			'vue/no-useless-v-bind': 'off',
-			'vue/prefer-separate-static-class': 'off',
 
 			// Non auto-fixable
 			'jsdoc/require-param-description': 'off',
