@@ -80,6 +80,7 @@ const props = defineProps({
 
 	/**
 	 * See `nativeType` of `NcButton`.
+	 *
 	 * @deprecated use `type` instead - will removed with v9
 	 */
 	nativeType: {
@@ -119,6 +120,7 @@ const isLoading = ref(false)
 
 /**
  * Handle clicking the button
+ *
  * @param {MouseEvent} e The click event
  */
 async function handleClick(e) {

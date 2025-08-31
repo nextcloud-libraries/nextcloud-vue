@@ -80,6 +80,7 @@ export default {
 
 		/**
 		 * The color variant to use.
+		 *
 		 * @default 'primary'
 		 */
 		variant: {

@@ -243,6 +243,7 @@ export default {
 			scroller: null,
 			/**
 			 * Currently registered settings sections
+			 *
 			 * @type {{ id: string, name: string, icon?: import('vue').VNode[] }[]}
 			 */
 			sections: [],
@@ -299,6 +300,7 @@ export default {
 	methods: {
 		/**
 		 * Called when a new section is registered
+		 *
 		 * @param {string} id The section ID
 		 * @param {string} name The section name
 		 * @param {import('vue').VNode[]|undefined} icon Optional icon component
@@ -327,6 +329,7 @@ export default {
 
 		/**
 		 * Called when a section is unregistered to remove it from dialog
+		 *
 		 * @param {string} id The section ID
 		 */
 		unregisterSection(id) {

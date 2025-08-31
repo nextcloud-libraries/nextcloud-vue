@@ -1141,6 +1141,7 @@ export default {
 			this.$emit('close', e)
 			/**
 			 * Current open state emitted after the transitions are finished
+			 *
 			 * @type {boolean}
 			 */
 			this.$emit('update:open', false)
@@ -1191,6 +1192,7 @@ export default {
 
 		/**
 		 * Focus the sidebar
+		 *
 		 * @public
 		 */
 		focus() {
@@ -1208,6 +1210,7 @@ export default {
 
 		/**
 		 * Focus the active tab
+		 *
 		 * @public
 		 */
 		focusActiveTabContent() {

@@ -10,6 +10,7 @@ import { generateOcsUrl } from '@nextcloud/router'
 
 /**
  * Extracts the OCS data from a response
+ *
  * @param response OCS response
  */
 function extractOcsData(response: AxiosResponse<OCSResponse>) {
@@ -18,6 +19,7 @@ function extractOcsData(response: AxiosResponse<OCSResponse>) {
 
 /**
  * Lists all collections
+ *
  * @param collectionId Collection ID
  */
 export function listCollectionService(collectionId: number) {
@@ -26,6 +28,7 @@ export function listCollectionService(collectionId: number) {
 
 /**
  * Renames a collection
+ *
  * @param collectionId Collection ID
  * @param collectionName New collection name
  */
@@ -35,6 +38,7 @@ export function renameCollectionService(collectionId: number, collectionName: st
 
 /**
  * Lists all collections for a resource
+ *
  * @param resourceType Resource type
  * @param resourceId Resource ID
  */
@@ -44,6 +48,7 @@ export function getCollectionsByResourceService(resourceType: string, resourceId
 
 /**
  * Creates a collection
+ *
  * @param resourceType Resource type
  * @param resourceId Resource ID
  * @param name Collection name
@@ -54,6 +59,7 @@ export function createCollectionService(resourceType: string, resourceId: string
 
 /**
  * Adds a resource to a collection
+ *
  * @param collectionId Collection ID
  * @param resourceType Resource type
  * @param resourceId Resource ID
@@ -64,6 +70,7 @@ export function addResourceService(collectionId: number, resourceType: string, r
 
 /**
  * Removes a resource from a collection
+ *
  * @param collectionId Collection ID
  * @param resourceType Resource type
  * @param resourceId Resource ID
@@ -74,6 +81,7 @@ export function removeResourceService(collectionId: number, resourceType: string
 
 /**
  * Searches for collections
+ *
  * @param query Search query
  */
 export function searchService(query: string) {

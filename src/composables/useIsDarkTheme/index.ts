@@ -15,8 +15,9 @@ import { INJECTION_KEY_THEME } from './constants.ts'
  * Check whether the dark theme is enabled on a specific element.
  * If you need to check an entire page, use `useIsDarkTheme` instead for better performance.
  * Reacts on element attributes change and system theme change.
+ *
  * @param el - The element to check for the dark theme enabled on (default is `document.body`)
- * @return {DeepReadonly<Ref<boolean>>} - computed boolean whether the dark theme is enabled
+ * @return - computed boolean whether the dark theme is enabled
  */
 export function useIsDarkThemeElement(el?: MaybeRefOrGetter<HTMLElement>): DeepReadonly<Ref<boolean>> {
 	const element = computed(() => toValue(el) ?? document.body)

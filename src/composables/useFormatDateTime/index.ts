@@ -17,6 +17,7 @@ interface FormatRelativeTimeOptions extends Partial<Omit<FormatDateOptions, 'ign
 
 	/**
 	 * If set to false the relative time will not be updated anymore.
+	 *
 	 * @default true - Meaning the relative time will be updated if needed
 	 */
 	update?: boolean
@@ -25,6 +26,7 @@ interface FormatRelativeTimeOptions extends Partial<Omit<FormatDateOptions, 'ign
 interface FormatTimeOptions {
 	/**
 	 * Locale to use for formatting.
+	 *
 	 * @default current locale
 	 */
 	locale?: string
@@ -146,11 +148,11 @@ export function useFormatTime(
 /**
  * Composable for formatting time stamps using current users locale and language
  *
- * @param {import('vue').MaybeRefOrGetter<Date | number>} timestamp Current timestamp
- * @param {object} opts Optional options
- * @param {Intl.DateTimeFormatOptions} opts.format The format used for displaying, or if relative time is used the format used for the title (optional)
- * @param {boolean} opts.ignoreSeconds Ignore seconds when displaying the relative time and just show `a few seconds ago`
- * @param {false | 'long' | 'short' | 'narrow'} opts.relativeTime Wether to display the timestamp as time from now (optional)
+ * @param timestamp Current timestamp
+ * @param opts Optional options
+ * @param opts.format The format used for displaying, or if relative time is used the format used for the title (optional)
+ * @param opts.ignoreSeconds Ignore seconds when displaying the relative time and just show `a few seconds ago`
+ * @param opts.relativeTime Wether to display the timestamp as time from now (optional)
  *
  * @deprecated use `useFormatRelativeTime` or `useFormatTime` instead.
  */

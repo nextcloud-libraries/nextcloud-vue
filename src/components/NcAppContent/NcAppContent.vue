@@ -188,6 +188,7 @@ export default {
 	props: {
 		/**
 		 * Allows to disable the control by swipe of the app navigation open state
+		 *
 		 * @deprecated will be removed with the next version - use `disableSwipe` instead
 		 */
 		allowSwipeNavigation: {

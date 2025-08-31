@@ -229,6 +229,7 @@ export default {
 		/**
 		 * Size of the icon to show. Only use if not using within an icon slot.
 		 * Defaults to 20px which is the Nextcloud icon size for all icon slots.
+		 *
 		 * @default 20
 		 */
 		size: {

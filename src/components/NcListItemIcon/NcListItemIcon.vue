@@ -309,6 +309,7 @@ export default {
 
 		/**
 		 * Seperates the search property into two parts, the first one is the search part on the name, the second on the subname.
+		 *
 		 * @return {[string, string]}
 		 */
 		searchParts() {

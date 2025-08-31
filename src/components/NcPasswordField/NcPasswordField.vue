@@ -243,6 +243,7 @@ export default {
 		'invalid',
 		/**
 		 * Removed in v9 - use `update:modelValue` (`v-model`) instead
+		 *
 		 * @deprecated
 		 */
 		'update:value',
@@ -257,6 +258,7 @@ export default {
 		'update:model-value',
 		/**
 		 * Updated visibility of the password
+		 *
 		 * @property {boolean} visible the new visibility state
 		 */
 		'update:visible',

@@ -355,6 +355,7 @@ export default {
 			currentColor: skinTonePalette[currentSkinTone - 1],
 			/**
 			 * The current active skin tone
+			 *
 			 * @type {1|2|3|4|5|6}
 			 */
 			currentSkinTone,
@@ -385,6 +386,7 @@ export default {
 
 		/**
 		 * Update the current skin tone by the result of the color picker
+		 *
 		 * @param {string} color Color set
 		 */
 		onChangeSkinTone(color) {
@@ -431,6 +433,7 @@ export default {
 		/**
 		 * Manually handle Tab navigation skipping emoji buttons.
 		 * Navigation over emojis is handled by Arrow keys.
+		 *
 		 * @param {KeyboardEvent} event - Keyboard event
 		 */
 		handleTabNavigationSkippingEmojis(event) {
@@ -447,6 +450,7 @@ export default {
 
 		/**
 		 * Handle arrow navigation via <Picker>'s handlers with scroll bug fix
+		 *
 		 * @param {'onArrowLeft' | 'onArrowRight' | 'onArrowDown' | 'onArrowUp'} originalHandlerName - Picker's arrow keydown handler name
 		 * @param {KeyboardEvent} event - Keyboard event
 		 */

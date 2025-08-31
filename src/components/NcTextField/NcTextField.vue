@@ -184,6 +184,7 @@ export default {
 		/**
 		 * The `aria-label` to set on the trailing button
 		 * If no explicit value is set it will default to the one matching the `trailingButtonIcon`:
+		 *
 		 * @default 'Clear text'|'Save changes'|'Undo changes'
 		 */
 		trailingButtonLabel: {
@@ -217,6 +218,7 @@ export default {
 	emits: [
 		/**
 		 * Removed in v9 - use `update:modelValue` (`v-model`) instead
+		 *
 		 * @deprecated
 		 */
 		'update:value',

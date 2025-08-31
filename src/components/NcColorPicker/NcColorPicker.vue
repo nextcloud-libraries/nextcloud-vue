@@ -245,6 +245,7 @@ export default {
 	props: {
 		/**
 		 * Removed in v9 - use `modelValue` (`v-model`) instead
+		 *
 		 * @deprecated
 		 */
 		value: {
@@ -395,6 +396,7 @@ export default {
 
 		/**
 		 * Submit a picked colour and close picker
+		 *
 		 * @param {Function} hideCallback callback to close popover
 		 */
 		handleConfirm(hideCallback) {

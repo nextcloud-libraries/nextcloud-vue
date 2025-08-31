@@ -100,6 +100,7 @@ export default {
 
 		/**
 		 * Removed in v9 - use `modelValue` (`v-model`) instead
+		 *
 		 * @deprecated
 		 */
 		checked: {
@@ -146,11 +147,13 @@ export default {
 	emits: [
 		/**
 		 * Removed in v9 - use `update:modelValue` (`v-model`) instead
+		 *
 		 * @deprecated
 		 */
 		'update:checked',
 		/**
 		 * The radio state is changed
+		 *
 		 * @type {boolean}
 		 */
 		'update:modelValue',

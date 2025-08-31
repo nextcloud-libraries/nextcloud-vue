@@ -473,6 +473,7 @@ export default {
 		/**
 		 * Allows to customize the `aria-label` for the deselect-option button
 		 * The default is "Deselect " + optionLabel
+		 *
 		 * @type {(optionLabel: string) => string}
 		 */
 		ariaLabelDeselectOption: {
@@ -788,6 +789,7 @@ export default {
 
 		/**
 		 * Removed in v9 - use `modelValue` (`v-model`) instead
+		 *
 		 * @deprecated
 		 */
 		value: {
@@ -835,6 +837,7 @@ export default {
 		' ',
 		/**
 		 * Removed in v9 - use `update:modelValue` (`v-model`) instead
+		 *
 		 * @deprecated
 		 */
 		'input',

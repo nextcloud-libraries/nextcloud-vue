@@ -9,6 +9,7 @@ import Vue, { toRaw } from 'vue'
 type SpawnDialogOptions = {
 	/**
 	 * Container to mount the dialog to
+	 *
 	 * @default document.body
 	 */
 	container?: Element | string

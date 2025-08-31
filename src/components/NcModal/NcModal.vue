@@ -436,6 +436,7 @@ export default {
 
 		/**
 		 * Enable swipe between slides
+		 *
 		 * @deprecated Will be removed in next version - use `disableSwipe` instead
 		 */
 		enableSwipe: {
@@ -472,6 +473,7 @@ export default {
 
 		/**
 		 * Do not show the close button for the dialog.
+		 *
 		 * @default false
 		 */
 		noClose: {
@@ -481,6 +483,7 @@ export default {
 
 		/**
 		 * Set to false to no show a close button on the dialog
+		 *
 		 * @deprecated - Use `noClose` instead. Will be removed in v9.
 		 * @default true
 		 */

@@ -35,7 +35,7 @@ export interface ContactsMenuAction {
 /**
  * Register a contacts and avatar menu action that will invoke the given callback on click.
  *
- * @param {ContactsMenuAction} action The action to register
+ * @param action The action to register
  */
 export function registerContactsMenuAction(action: ContactsMenuAction): void {
 	window._nc_contacts_menu_hooks ??= {}
@@ -53,7 +53,7 @@ export function registerContactsMenuAction(action: ContactsMenuAction): void {
 /**
  * Get all registered and enabled contacts menu actions for the given menu entry.
  *
- * @param {ContactsMenuEntry} entry The contacts menu entry object as returned by the backend
+ * @param entry The contacts menu entry object as returned by the backend
  */
 export function getEnabledContactsMenuActions(entry: ContactsMenuEntry): ContactsMenuAction[] {
 	if (!window._nc_contacts_menu_hooks) {

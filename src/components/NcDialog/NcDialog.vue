@@ -304,6 +304,7 @@ export default defineComponent({
 
 		/**
 		 * The element where to mount the dialog, if `null` is passed the dialog is mounted in place
+		 *
 		 * @default 'body'
 		 */
 		container: {
@@ -314,6 +315,7 @@ export default defineComponent({
 
 		/**
 		 * Whether the dialog should be shown
+		 *
 		 * @default true
 		 */
 		open: {
@@ -323,6 +325,7 @@ export default defineComponent({
 
 		/**
 		 * Size of the underlying NcModal
+		 *
 		 * @default 'small'
 		 * @type {'small'|'normal'|'large'|'full'}
 		 */
@@ -335,6 +338,7 @@ export default defineComponent({
 
 		/**
 		 * Buttons to display
+		 *
 		 * @default []
 		 */
 		buttons: {
@@ -346,6 +350,7 @@ export default defineComponent({
 
 		/**
 		 * Do not show the close button for the dialog.
+		 *
 		 * @default false
 		 */
 		noClose: {
@@ -355,6 +360,7 @@ export default defineComponent({
 
 		/**
 		 * Set to false to no show a close button on the dialog
+		 *
 		 * @deprecated - Use `noClose` instead. Will be removed in v9.
 		 * @default true
 		 */
@@ -384,6 +390,7 @@ export default defineComponent({
 
 		/**
 		 * Declare if hiding the modal should be animated
+		 *
 		 * @default false
 		 */
 		outTransition: {
@@ -393,6 +400,7 @@ export default defineComponent({
 
 		/**
 		 * Optionally pass additional classes which will be set on the navigation for custom styling
+		 *
 		 * @default ''
 		 * @example
 		 * ```html
@@ -437,6 +445,7 @@ export default defineComponent({
 
 		/**
 		 * Optionally pass additional classes which will be set on the content wrapper for custom styling
+		 *
 		 * @default ''
 		 */
 		contentClasses: {
@@ -448,6 +457,7 @@ export default defineComponent({
 		/**
 		 * Optionally pass additional classes which will be set on the dialog itself
 		 * (the default `class` attribute will be set on the modal wrapper)
+		 *
 		 * @default ''
 		 */
 		dialogClasses: {
@@ -462,6 +472,7 @@ export default defineComponent({
 	setup(props, { emit, slots }) {
 		/**
 		 * The dialog wrapper element
+		 *
 		 * @type {import('vue').Ref<HTMLDivElement>}
 		 */
 		const wrapper = ref()
@@ -548,6 +559,7 @@ export default defineComponent({
 		// Because NcModal does not emit `close` when show prop is changed
 		/**
 		 * Handle clicking a dialog button -> should close
+		 *
 		 * @param {MouseEvent} button The button that was clicked
 		 * @param {unknown} result Result of the callback function
 		 */
@@ -564,12 +576,14 @@ export default defineComponent({
 
 		/**
 		 * Handle closing the dialog, optional out transition did not run yet
+		 *
 		 * @param {unknown} result the result of the callback
 		 */
 		const handleClosing = (result) => {
 			showModal.value = false
 			/**
 			 * Emitted when the dialog is closing, so the out transition did not finish yet.
+			 *
 			 * @param result The result of the button callback (`undefined` if closing because of clicking the 'close'-button)
 			 */
 			emit('closing', result)

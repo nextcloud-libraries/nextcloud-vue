@@ -196,6 +196,7 @@ export default {
 	props: {
 		/**
 		 * Show or hide the popper
+		 *
 		 * @see https://floating-vue.starpad.dev/api/#shown
 		 */
 		shown: {
@@ -205,6 +206,7 @@ export default {
 
 		/**
 		 * Popup role
+		 *
 		 * @see https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Attributes/aria-haspopup#values
 		 */
 		popupRole: {
@@ -312,6 +314,7 @@ export default {
 
 		/**
 		 * Remove incorrect aria-describedby attribute from the trigger.
+		 *
 		 * @see https://github.com/Akryum/floating-vue/blob/8d4f7125aae0e3ea00ba4093d6d2001ab15058f1/packages/floating-vue/src/components/Popper.ts#L734
 		 */
 		removeFloatingVueAriaDescribedBy() {

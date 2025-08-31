@@ -153,6 +153,7 @@ export default {
 	props: {
 		/**
 		 * A header message about an empty content shown
+		 *
 		 * @example 'No comments'
 		 */
 		name: {
@@ -162,6 +163,7 @@ export default {
 
 		/**
 		 * Desription of the empty content
+		 *
 		 * @example 'No comments yet, start the conversation!'
 		 */
 		description: {

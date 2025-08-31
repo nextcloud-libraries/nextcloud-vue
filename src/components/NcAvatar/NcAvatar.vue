@@ -374,6 +374,7 @@ export default {
 
 		/**
 		 * Whether or not to display the user-status.
+		 *
 		 * @deprecated - Use `hideStatus` instead. Will be removed with v9.
 		 */
 		showUserStatus: {
@@ -391,6 +392,7 @@ export default {
 
 		/**
 		 * Whether or not to the status-icon should be used instead of online/away
+		 *
 		 * @deprecated - Use `verboseStatus` instead. Will be removed with v9.
 		 */
 		showUserStatusCompact: {
@@ -445,6 +447,7 @@ export default {
 
 		/**
 		 * Placeholder avatars will be automatically generated when this is set to true.
+		 *
 		 * @deprecated - Use `noPlaceholder` instead. Will be removed in v9.
 		 */
 		allowPlaceholder: {
@@ -641,6 +644,7 @@ export default {
 				 * \p{L}: Letters of all languages
 				 * \p{N}: Numbers of all languages
 				 * \s: White space for breaking the string
+				 *
 				 * @type {string}
 				 */
 				const filteredChars = user.match(/[\p{L}\p{N}\s]/gu)
@@ -773,6 +777,7 @@ export default {
 
 		/**
 		 * Toggle the popover menu on click or enter
+		 *
 		 * @param {KeyboardEvent|MouseEvent} event the UI event
 		 */
 		async toggleMenu(event) {

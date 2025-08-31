@@ -256,6 +256,7 @@ export default {
 
 		/**
 		 * Get the humanized count from `count` prop
+		 *
 		 * @return {{ humanized: string, original: string} | undefined}
 		 */
 		getHumanizedCount() {

@@ -31,7 +31,7 @@ export enum EmojiSkinTone {
  *
  * @param query Emoji search filter string; if no string or empty string is given, the list of frequently used emojis is returned
  * @param maxResults Maximum of returned emojis
- * @return {object[]} list of found emojis in the same format as the emoji-mart-vue-fast's EmojiIndex
+ * @return list of found emojis in the same format as the emoji-mart-vue-fast's EmojiIndex
  */
 export function emojiSearch(query: string, maxResults: number = 10): object[] {
 	// If this is the first call of function - initialize EmojiIndex
@@ -67,7 +67,7 @@ export function emojiAddRecent(emojiData: { id: string }): void {
 /**
  * Get the current skin tone index used for emojis
  *
- * @return {EmojiSkinTone} The skin tone
+ * @return The skin tone
  */
 export function getCurrentSkinTone(): EmojiSkinTone {
 	const skinTone = Number.parseInt(storage.getItem('NcEmojiPicker::currentSkinTone') ?? '1')

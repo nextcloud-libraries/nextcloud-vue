@@ -101,6 +101,7 @@ export function destroyWidget(richObjectType: string, el: HTMLElement) {
 
 /**
  * Check if a widget with the give id is registered.
+ *
  * @param id - Id of the widget
  */
 export function isWidgetRegistered(id: string): boolean {

@@ -62,6 +62,7 @@ export default {
 	computed: {
 		/**
 		 * Check if icon prop is an URL
+		 *
 		 * @return {boolean} Whether the icon prop is an URL
 		 */
 		isIconUrl() {

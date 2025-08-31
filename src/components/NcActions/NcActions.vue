@@ -985,6 +985,7 @@ export default {
 			 * - Popover with plain text or text inputs (has no specific role)
 			 * Depending on the usage (used items), the menu and its items should have different roles for a11y.
 			 * Provide the role for NcAction* components in the NcActions content.
+			 *
 			 * @type {import('vue').ComputedRef<boolean>}
 			 */
 			'NcActions:isSemanticMenu': computed(() => this.actionsMenuSemanticType === 'menu'),
@@ -1076,6 +1077,7 @@ export default {
 		 *
 		 * Accepted values: primary, secondary, tertiary, tertiary-no-background, tertiary-on-primary, error, warning, success. If left empty,
 		 * the default button style will be applied.
+		 *
 		 * @deprecated use `variant` instead - will be removed with v9
 		 */
 		type: {
@@ -1403,6 +1405,7 @@ export default {
 
 		/**
 		 * Check whether a icon prop value is an URL or not
+		 *
 		 * @param {string} url The icon prop value
 		 */
 		isIconUrl(url) {
@@ -1457,6 +1460,7 @@ export default {
 
 			/**
 			 * Event emitted when the popover menu is *being* closed.
+			 *
 			 * @deprecated use `update:open` instead. This is always emitted the same time as `('update:open', false)`
 			 */
 			this.$emit('close')

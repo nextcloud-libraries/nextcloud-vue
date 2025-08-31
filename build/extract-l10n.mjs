@@ -30,6 +30,7 @@ extractor.createHtmlParser([
 
 /**
  * remove references to avoid conflicts but save them for code splitting
+ *
  * @type {Record<string,string[]>}
  */
 export const context = extractor.getMessages().map((msg) => {

@@ -101,6 +101,7 @@ export default {
 		 *
 		 * Setting this to false allows unrestricted (width) settings content.
 		 * Note that the name and description have always a width limit.
+		 *
 		 * @deprecated Will be removed with next version and will not be used on Nextcloud 30+ (always forced to true)
 		 */
 		limitWidth: {

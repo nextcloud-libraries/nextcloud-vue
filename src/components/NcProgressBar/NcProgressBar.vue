@@ -107,6 +107,7 @@ export default {
 		 * - 'small' (default)
 		 * - 'medium'
 		 * - Number
+		 *
 		 * @type {'small'|'medium'|number}
 		 */
 		size: {

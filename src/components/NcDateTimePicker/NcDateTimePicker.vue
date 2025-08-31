@@ -255,6 +255,7 @@ export default {
 
 		/**
 		 * Removed in v9 - use `modelValue` (`v-model`) instead
+		 *
 		 * @deprecated
 		 */
 		// eslint-disable-next-line
@@ -317,6 +318,7 @@ export default {
 	emits: [
 		/**
 		 * Removed in v9 - use `update:modelValue` (`v-model`) instead
+		 *
 		 * @deprecated
 		 */
 		'update:value',
@@ -412,6 +414,7 @@ export default {
 		internalFormatter() {
 			/**
 			 * Get the ISO week number of the date
+			 *
 			 * @param {Date} date The date to format
 			 */
 			const getWeek = (date) => {

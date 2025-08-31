@@ -125,6 +125,7 @@ import { t } from '../../l10n.js'
 const props = defineProps({
 	/**
 	 * aria label to set on the close button
+	 *
 	 * @default 'Close'
 	 */
 	ariaLabelClose: {
@@ -152,6 +153,7 @@ const props = defineProps({
 	 * Set the chips design variant-
 	 *
 	 * This sets the background style of the chip, similar to NcButton's `variant`.
+	 *
 	 * @deprecated will be removed with v9 - use `variant` instead.
 	 */
 	type: {
@@ -189,6 +191,7 @@ const props = defineProps({
 	 * Set the chips design variant-
 	 *
 	 * This sets the background style of the chip, similar to NcButton's `variant`.
+	 *
 	 * @since 8.24.0
 	 */
 	variant: {

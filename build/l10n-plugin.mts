@@ -64,6 +64,7 @@ export default (dir: string) => {
 
 		/**
 		 * Hook into module resolver and fake all '../[...]/l10n.js' imports to inject our splitted translations
+		 *
 		 * @param source The file which is imported
 		 * @param importer The file that imported the file
 		 */
@@ -85,6 +86,7 @@ export default (dir: string) => {
 
 		/**
 		 * This function injects the translation chunks by returning a module that exports one translation object per component
+		 *
 		 * @param id The name of the module that should be loaded
 		 */
 		load(id) {

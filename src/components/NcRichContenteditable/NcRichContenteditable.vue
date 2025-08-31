@@ -340,6 +340,7 @@ export default {
 
 		/**
 		 * Removed in v9 - use `modelValue` (`v-model`) instead
+		 *
 		 * @deprecated
 		 */
 		value: {
@@ -425,6 +426,7 @@ export default {
 		'paste',
 		/**
 		 * Removed in v9 - use `update:modelValue` (`v-model`) instead
+		 *
 		 * @deprecated
 		 */
 		'update:value',
@@ -861,6 +863,7 @@ export default {
 
 		/**
 		 * Get HTML element with Tribute.js container
+		 *
 		 * @return {HTMLElement}
 		 */
 		getTributeContainer() {
@@ -869,6 +872,7 @@ export default {
 
 		/**
 		 * Get the currently selected item element id in Tribute.js container
+		 *
 		 * @return {HTMLElement}
 		 */
 		getTributeSelectedItem() {
@@ -879,6 +883,7 @@ export default {
 
 		/**
 		 * Handle Tribute activation
+		 *
 		 * @param {boolean} isActive - is active
 		 */
 		onTributeActive(isActive) {
@@ -978,6 +983,7 @@ export default {
 
 		/**
 		 * Show tribute menu programmatically.
+		 *
 		 * @param {string} trigger - trigger character, can be '/', '@', or ':'
 		 *
 		 * @public
