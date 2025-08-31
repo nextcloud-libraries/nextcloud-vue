@@ -5,7 +5,7 @@
 
 <script setup>
 import { inject } from 'vue'
-import vLinkify from '../../directives/Linkify/index.js'
+import vLinkify from '../../directives/Linkify/index.ts'
 
 defineProps({
 	/**

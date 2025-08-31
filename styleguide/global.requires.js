@@ -11,7 +11,7 @@ import { spawnDialog } from '../src/functions/dialog/index.ts'
 import { emojiAddRecent, emojiSearch, EmojiSkinTone, getCurrentSkinTone, setCurrentSkinTone } from '../src/functions/emoji/index.ts'
 import usernameToColor from '../src/functions/usernameToColor/index.js'
 import Focus from './../src/directives/Focus/index.ts'
-import Linkify from './../src/directives/Linkify/index.js'
+import Linkify from './../src/directives/Linkify/index.ts'
 import Tooltip from './../src/directives/Tooltip/index.js'
 
 import 'core-js/stable'
