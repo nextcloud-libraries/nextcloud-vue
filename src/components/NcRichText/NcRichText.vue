@@ -413,16 +413,15 @@ export default {
 
 	methods: {
 		renderPlaintext(h) {
-			const context = this
-			const placeholders = this.text.split(/(\{[a-z\-_.0-9]+\})/ig).map(function(entry) {
+			const placeholders = this.text.split(/(\{[a-z\-_.0-9]+\})/ig).map((entry) => {
 				const matches = entry.match(/^\{([a-z\-_.0-9]+)\}$/i)
 				// just return plain string nodes as text
 				if (!matches) {
-					return prepareTextNode({ h, context }, entry)
+					return prepareTextNode({ h, context: this }, entry)
 				}
 				// return component instance if argument is an object
 				const argumentId = matches[1]
-				const argument = context.arguments[argumentId]
+				const argument = this.arguments[argumentId]
 				if (typeof argument === 'object') {
 					const { component, props } = argument
 					return h(component, {

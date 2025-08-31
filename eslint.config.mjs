@@ -45,7 +45,6 @@ export default defineConfig([
 			'no-undef': 'off',
 			'@stylistic/function-paren-newline': 'off',
 			'@stylistic/max-statements-per-line': 'off',
-			'@typescript-eslint/no-this-alias': 'off',
 			'@typescript-eslint/no-unused-expressions': 'off',
 			'vue/no-boolean-default': 'off',
 			'vue/no-required-prop-with-default': 'off',
