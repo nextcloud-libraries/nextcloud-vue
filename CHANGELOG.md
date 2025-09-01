@@ -5,10 +5,10 @@
 
 # Changelog
 
-## [v8.30.0](https://github.com/nextcloud-libraries/nextcloud-vue/tree/v8.29.2) (2025-09-01)
+## [v8.30.0](https://github.com/nextcloud-libraries/nextcloud-vue/tree/v8.30.0) (2025-09-01)
 ### 🚀 Enhancements
 * feat(NcPopover): auto return focus to trigger button on close [#5155](https://github.com/nextcloud-libraries/nextcloud-vue/pull/5155) ([ShGKme](https://github.com/ShGKme))
-* feat(NcAssistant*): provide components to for consistant integrations design [#7413](https://github.com/nextcloud-libraries/nextcloud-vue/pull/7413)
+* feat(NcAssistant*): provide components for consistent integrations design [#7413](https://github.com/nextcloud-libraries/nextcloud-vue/pull/7413)
 * feat(NcCheckboxRadioSwitch): Add support for a description field [#7395](https://github.com/nextcloud-libraries/nextcloud-vue/pull/7395)
 ### Other Changes
 * refactor: migrate reference widget related function to Typescript [#7417](https://github.com/nextcloud-libraries/nextcloud-vue/pull/7417)
