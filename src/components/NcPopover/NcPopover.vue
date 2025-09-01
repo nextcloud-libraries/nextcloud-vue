@@ -140,7 +140,8 @@ See: https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Attributes/
 </docs>
 
 <template>
-	<Dropdown ref="popover"
+	<Dropdown
+		ref="popover"
 		:distance="10"
 		:arrow-padding="10"
 		v-bind="$attrs"
@@ -165,12 +166,13 @@ See: https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Attributes/
 </template>
 
 <script>
-import Vue from 'vue'
-import { options, Dropdown } from 'floating-vue'
+import { Dropdown, options } from 'floating-vue'
 import { createFocusTrap } from 'focus-trap'
 import { tabbable } from 'tabbable'
-import { getTrapStack } from '../../utils/focusTrap.ts'
+import Vue from 'vue'
 import NcPopoverTriggerProvider from './NcPopoverTriggerProvider.vue'
+import { getTrapStack } from '../../utils/focusTrap.ts'
+import { logger } from '../../utils/logger.ts'
 
 const THEME = 'nc-popover-8'
 
@@ -195,6 +197,7 @@ export default {
 	props: {
 		/**
 		 * Show or hide the popper
+		 *
 		 * @see https://floating-vue.starpad.dev/api/#shown
 		 */
 		shown: {
@@ -204,6 +207,7 @@ export default {
 
 		/**
 		 * Popup role
+		 *
 		 * @see https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Attributes/aria-haspopup#values
 		 */
 		popupRole: {
@@ -212,6 +216,9 @@ export default {
 			validator: (value) => ['menu', 'listbox', 'tree', 'grid', 'dialog', 'true'].includes(value),
 		},
 
+		/**
+		 * Class to be applied to the popover base
+		 */
 		popoverBaseClass: {
 			type: String,
 			default: '',
@@ -224,6 +231,7 @@ export default {
 		 */
 		focusTrap: {
 			type: Boolean,
+			// eslint-disable-next-line vue/no-boolean-default
 			default: true,
 		},
 
@@ -242,7 +250,7 @@ export default {
 		 */
 		setReturnFocus: {
 			default: undefined,
-			type: [HTMLElement, SVGElement, String, Boolean, Function],
+			type: [Boolean, HTMLElement, SVGElement, String, Function],
 		},
 
 		/**
@@ -311,6 +319,7 @@ export default {
 
 		/**
 		 * Remove incorrect aria-describedby attribute from the trigger.
+		 *
 		 * @see https://github.com/Akryum/floating-vue/blob/8d4f7125aae0e3ea00ba4093d6d2001ab15058f1/packages/floating-vue/src/components/Popper.ts#L734
 		 */
 		removeFloatingVueAriaDescribedBy() {
@@ -386,7 +395,7 @@ export default {
 				this.$focusTrap?.deactivate(options)
 				this.$focusTrap = null
 			} catch (err) {
-				console.warn(err)
+				logger.warn(err)
 			}
 		},
 
@@ -437,6 +446,7 @@ export default {
 			await this.useFocusTrap()
 			this.addEscapeStopPropagation()
 		},
+
 		afterHide() {
 			this.getPopoverContentElement().addEventListener('transitionend', () => {
 				/**

@@ -3,8 +3,8 @@
  * SPDX-License-Identifier: AGPL-3.0-or-later
  */
 
-import actionGlobal from './actionGlobal.js'
 import GetParent from '../utils/GetParent.js'
+import actionGlobal from './actionGlobal.js'
 
 export default {
 	mixins: [actionGlobal],
@@ -62,12 +62,13 @@ export default {
 	computed: {
 		/**
 		 * Check if icon prop is an URL
+		 *
 		 * @return {boolean} Whether the icon prop is an URL
 		 */
 		isIconUrl() {
 			try {
 				return !!(new URL(this.icon, this.icon.startsWith('/') ? window.location.origin : undefined))
-			} catch (error) {
+			} catch {
 				return false
 			}
 		},

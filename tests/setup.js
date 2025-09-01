@@ -4,6 +4,7 @@
  */
 
 import OC from './OC.js'
+
 // TODO: Remove when we support Node 22
 import 'core-js/actual/promise/with-resolvers.js'
 
@@ -28,14 +29,12 @@ if (typeof globalThis.structuredClone === 'undefined') {
 		}
 
 		const copy = {}
-		Object.keys(obj).forEach(key => {
+		Object.keys(obj).forEach((key) => {
 			copy[key] = globalThis.structuredClone(obj[key])
 		})
 
-		return Object.fromEntries(
-			Object
-				.entries(obj)
-				.map(([key, value]) => [key, globalThis.structuredClone(value)])
-		)
+		return Object.fromEntries(Object
+			.entries(obj)
+			.map(([key, value]) => [key, globalThis.structuredClone(value)]))
 	}
 }

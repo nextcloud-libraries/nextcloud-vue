@@ -3,16 +3,19 @@
  * SPDX-License-Identifier: AGPL-3.0-or-later
  */
 
-import { join, basename } from 'path'
 import { readdir, readFile } from 'fs/promises'
 import { po as poParser } from 'gettext-parser'
+import { basename, join } from 'path'
 
+/**
+ * @param baseDir - Base directory to look for translations
+ */
 export async function loadTranslations(baseDir: string) {
 	const files = await readdir(baseDir)
 
 	const promises = files
-		.filter(name => name !== 'messages.pot' && name.endsWith('.pot'))
-		.map(file => join(baseDir, file))
+		.filter((name) => name !== 'messages.pot' && name.endsWith('.pot'))
+		.map((file) => join(baseDir, file))
 		.map(parseFile)
 
 	const parsedTranslations = await Promise.all(promises)

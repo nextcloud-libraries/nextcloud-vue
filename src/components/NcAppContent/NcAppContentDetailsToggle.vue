@@ -4,7 +4,8 @@
 -->
 
 <template>
-	<NcButton :aria-label="title"
+	<NcButton
+		:aria-label="title"
 		class="app-details-toggle"
 		:class="{ 'app-details-toggle--mobile': isMobile }"
 		:title="title"
@@ -18,12 +19,11 @@
 
 <script>
 import { emit } from '@nextcloud/event-bus'
-import { useIsMobile } from '../../composables/useIsMobile/index.js'
-import { isRtl } from '../../utils/rtl.ts'
-import { t } from '../../l10n.js'
-
-import ArrowRight from 'vue-material-design-icons/ArrowRight.vue'
 import ArrowLeft from 'vue-material-design-icons/ArrowLeft.vue'
+import ArrowRight from 'vue-material-design-icons/ArrowRight.vue'
+import { useIsMobile } from '../../composables/useIsMobile/index.js'
+import { t } from '../../l10n.js'
+import { isRtl } from '../../utils/rtl.ts'
 import NcButton from '../NcButton/index.js'
 
 export default {
@@ -34,6 +34,7 @@ export default {
 		ArrowLeft,
 		NcButton,
 	},
+
 	setup() {
 		return {
 			isRtl,
@@ -46,6 +47,7 @@ export default {
 			return t('Go back to the list')
 		},
 	},
+
 	watch: {
 		isMobile: {
 			immediate: true,

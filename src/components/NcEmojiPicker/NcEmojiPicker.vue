@@ -107,7 +107,8 @@ This component allows the user to pick an emoji.
 </docs>
 
 <template>
-	<NcPopover ref="popover"
+	<NcPopover
+		ref="popover"
 		:shown.sync="open"
 		:container="container"
 		popup-role="dialog"
@@ -120,7 +121,8 @@ This component allows the user to pick an emoji.
 			<slot v-bind="slotProps" />
 		</template>
 		<div class="nc-emoji-picker-container">
-			<Picker ref="picker"
+			<Picker
+				ref="picker"
 				color="var(--color-primary-element)"
 				:data="emojiIndex"
 				:emoji="previewFallbackEmoji"
@@ -141,7 +143,8 @@ This component allows the user to pick an emoji.
 				@select="select">
 				<template #searchTemplate="{ onSearch }">
 					<div class="search__wrapper">
-						<NcTextField ref="search"
+						<NcTextField
+							ref="search"
 							class="search"
 							:value.sync="search"
 							:label="t('Search')"
@@ -157,7 +160,8 @@ This component allows the user to pick an emoji.
 							@keydown.enter="$refs.picker.onEnter"
 							@trailing-button-click="clearSearch(); onSearch('');"
 							@update:value="onSearch(search)" />
-						<NcColorPicker palette-only
+						<NcColorPicker
+							palette-only
 							:container="container"
 							:palette="skinTonePalette"
 							:value="currentColor.color"
@@ -176,13 +180,15 @@ This component allows the user to pick an emoji.
 							{{ t('Selected') }}
 						</h3>
 					</div>
-					<Emoji class="emoji-selected"
+					<Emoji
+						class="emoji-selected"
 						:data="emojiIndex"
 						:emoji="selectedEmoji"
 						:native="true"
 						:size="32"
 						@click="unselect" />
-					<Emoji class="emoji-delete"
+					<Emoji
+						class="emoji-delete"
 						:data="emojiIndex"
 						emoji=":x:"
 						:native="true"
@@ -195,17 +201,16 @@ This component allows the user to pick an emoji.
 </template>
 
 <script>
-import { Picker, Emoji, EmojiIndex } from 'emoji-mart-vue-fast'
-import { isFocusable } from 'tabbable'
-import { t } from '../../l10n.js'
-import { getCurrentSkinTone, setCurrentSkinTone } from '../../functions/emoji/emoji.ts'
-import { useTrapStackControl } from '../../composables/useTrapStackControl.ts'
-import { Color } from '../../utils/GenColors.js'
-
+import { Emoji, EmojiIndex, Picker } from 'emoji-mart-vue-fast'
 import data from 'emoji-mart-vue-fast/data/all.json'
+import { isFocusable } from 'tabbable'
 import IconCircle from 'vue-material-design-icons/Circle.vue'
-import NcButton from '../NcButton/index.js'
 import NcColorPicker from '../NcColorPicker/NcColorPicker.vue'
+import { useTrapStackControl } from '../../composables/useTrapStackControl.ts'
+import { getCurrentSkinTone, setCurrentSkinTone } from '../../functions/emoji/emoji.ts'
+import { t } from '../../l10n.js'
+import { Color } from '../../utils/GenColors.js'
+import NcButton from '../NcButton/index.js'
 import NcPopover from '../NcPopover/index.js'
 import NcTextField from '../NcTextField/index.js'
 
@@ -262,6 +267,7 @@ export default {
 			type: String,
 			default: 'native',
 		},
+
 		/**
 		 * Show preview section when hovering emoji
 		 */
@@ -269,6 +275,7 @@ export default {
 			type: Boolean,
 			default: false,
 		},
+
 		/**
 		 * Allow unselecting the selected emoji
 		 */
@@ -276,6 +283,7 @@ export default {
 			type: Boolean,
 			default: false,
 		},
+
 		/**
 		 * Selected emoji to allow unselecting
 		 */
@@ -283,6 +291,7 @@ export default {
 			type: String,
 			default: '',
 		},
+
 		/**
 		 * The fallback emoji in the preview section
 		 */
@@ -290,6 +299,7 @@ export default {
 			type: String,
 			default: 'grinning',
 		},
+
 		/**
 		 * The fallback text in the preview section
 		 */
@@ -297,11 +307,13 @@ export default {
 			type: String,
 			default: t('Pick an emoji'),
 		},
+
 		/**
 		 * Whether to close the emoji picker after picking one
 		 */
 		closeOnSelect: {
 			type: Boolean,
+			// eslint-disable-next-line vue/no-boolean-default
 			default: true,
 		},
 
@@ -309,10 +321,11 @@ export default {
 		 * Selector for the popover container
 		 */
 		container: {
-			type: [String, Object, Element, Boolean],
+			type: [Boolean, String, Object, Element],
 			default: 'body',
 		},
 	},
+
 	emits: [
 		'select',
 		'select-data',
@@ -343,6 +356,7 @@ export default {
 			currentColor: skinTonePalette[currentSkinTone - 1],
 			/**
 			 * The current active skin tone
+			 *
 			 * @type {1|2|3|4|5|6}
 			 */
 			currentSkinTone,
@@ -373,6 +387,7 @@ export default {
 
 		/**
 		 * Update the current skin tone by the result of the color picker
+		 *
 		 * @param {string} color Color set
 		 */
 		onChangeSkinTone(color) {
@@ -419,6 +434,7 @@ export default {
 		/**
 		 * Manually handle Tab navigation skipping emoji buttons.
 		 * Navigation over emojis is handled by Arrow keys.
+		 *
 		 * @param {KeyboardEvent} event - Keyboard event
 		 */
 		handleTabNavigationSkippingEmojis(event) {
@@ -435,6 +451,7 @@ export default {
 
 		/**
 		 * Handle arrow navigation via <Picker>'s handlers with scroll bug fix
+		 *
 		 * @param {'onArrowLeft' | 'onArrowRight' | 'onArrowDown' | 'onArrowUp'} originalHandlerName - Picker's arrow keydown handler name
 		 * @param {KeyboardEvent} event - Keyboard event
 		 */

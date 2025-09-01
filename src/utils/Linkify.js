@@ -11,7 +11,7 @@ import linkifyStr from 'linkify-string'
  * @param {string} text The text to linkify
  * @return {string} The linkified string
  */
-const Linkify = (text) => {
+function Linkify(text) {
 	return linkifyStr(text, {
 		defaultProtocol: 'https',
 		target: '_blank',

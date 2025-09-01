@@ -10,7 +10,8 @@ const webpackConfig = require('./webpack.config.js')
 
 module.exports = async () => {
 	const base = await webpackConfig()
-	const newConfig = Object.assign({}, base, {
+	const newConfig = {
+		...base,
 		// Necessary, because vue-styleguidist runs an old version of webpack-dev-server
 		devServer: {
 			historyApiFallback: true,
@@ -20,18 +21,16 @@ module.exports = async () => {
 		externals: {},
 		module: {
 			// Ignore eslint
-			rules: base.module.rules.filter(
-				rule => rule.use !== 'eslint-loader',
-			),
+			rules: base.module.rules.filter((rule) => rule.use !== 'eslint-loader'),
 		},
-	})
+	}
 
 	return {
 		require: [
 			path.join(__dirname, 'styleguide/window.js'),
 			path.join(__dirname, 'styleguide/global.requires.js'),
 			path.join(__dirname, 'styleguide/assets/icons.css'),
-			!!process.env.NEXTCLOUD_LEGACY
+			process.env.NEXTCLOUD_LEGACY
 				? path.join(__dirname, 'styleguide/assets/legacy.css')
 				: path.join(__dirname, 'styleguide/assets/additional.css'),
 			path.join(__dirname, 'styleguide/assets/styleguide.css'),
@@ -48,7 +47,7 @@ module.exports = async () => {
 			plugins: [
 				new webpack.DefinePlugin({
 					NEXTCLOUD_VERSION: JSON.stringify(`${!process.env.NEXTCLOUD_LEGACY ? '32' : '31'}.0.0`),
-				})
+				}),
 			],
 			// https://webpack.js.org/configuration/dev-server/#devserverproxy
 			devServer: {

@@ -4,13 +4,15 @@
 -->
 
 <template>
-	<span class="mention-bubble"
-		:class="{'mention-bubble--primary': primary}"
+	<span
+		class="mention-bubble"
+		:class="{ 'mention-bubble--primary': primary }"
 		contenteditable="false">
 		<span class="mention-bubble__wrapper">
 			<span class="mention-bubble__content">
 				<!-- Avatar or icon -->
-				<span :class="[icon, `mention-bubble__icon--${avatarUrl ? 'with-avatar' : ''}`]"
+				<span
+					:class="[icon, `mention-bubble__icon--${avatarUrl ? 'with-avatar' : ''}`]"
 					:style="avatarUrl ? { backgroundImage: `url(${avatarUrl})` } : null"
 					class="mention-bubble__icon" />
 
@@ -31,11 +33,13 @@ import { getAvatarUrl } from '../../utils/getAvatarUrl.ts'
 export default {
 	name: 'NcMentionBubble',
 
+	/* eslint vue/require-prop-comment: warn -- TODO: Add a proper doc block about what this props do */
 	props: {
 		id: {
 			type: String,
 			required: true,
 		},
+
 		/**
 		 * @deprecated Use `label` instead
 		 */
@@ -44,23 +48,28 @@ export default {
 			required: false,
 			default: null,
 		},
+
 		label: {
 			type: String,
 			required: false,
 			default: null,
 		},
+
 		icon: {
 			type: String,
 			required: true,
 		},
+
 		iconUrl: {
 			type: [String, null],
 			default: null,
 		},
+
 		source: {
 			type: String,
 			required: true,
 		},
+
 		primary: {
 			type: Boolean,
 			default: false,
@@ -85,11 +94,13 @@ export default {
 				? getAvatarUrl(this.id, { isDarkTheme: this.isDarkTheme })
 				: null
 		},
+
 		mentionText() {
 			return !this.id.includes(' ') && !this.id.includes('/')
 				? `@${this.id}`
 				: `@"${this.id}"`
 		},
+
 		// Fallback to title for compatibility
 		labelWithFallback() {
 			return this.label || this.title

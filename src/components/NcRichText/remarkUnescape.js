@@ -3,17 +3,19 @@
  * SPDX-License-Identifier: AGPL-3.0-or-later
  */
 
-import { visit, SKIP } from 'unist-util-visit'
+import { SKIP, visit } from 'unist-util-visit'
 
-export const remarkUnescape = function() {
+/**
+ *
+ */
+export function remarkUnescape() {
 	return function(tree) {
-		visit(tree, (node) => ['text', 'code', 'inlineCode'].includes(node.type),
-			(node, index, parent) => {
-				parent.children.splice(index, 1, {
-					...node,
-					value: node.value.replace(/&lt;/gmi, '<').replace(/&gt;/gmi, '>'),
-				})
-				return [SKIP, index + 1]
+		visit(tree, (node) => ['text', 'code', 'inlineCode'].includes(node.type), (node, index, parent) => {
+			parent.children.splice(index, 1, {
+				...node,
+				value: node.value.replace(/&lt;/gmi, '<').replace(/&gt;/gmi, '>'),
 			})
+			return [SKIP, index + 1]
+		})
 	}
 }

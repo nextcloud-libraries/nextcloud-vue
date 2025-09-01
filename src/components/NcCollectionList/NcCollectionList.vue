@@ -23,7 +23,8 @@ occ config:system:set --value true 'projects.enabled'
 				<span class="icon-projects" />
 			</div>
 			<div id="collection-select-container">
-				<NcSelect ref="select"
+				<NcSelect
+					ref="select"
 					v-model="value"
 					:aria-label-combobox="t('Add to a project')"
 					:options="options"
@@ -57,7 +58,8 @@ occ config:system:set --value true 'projects.enabled'
 				{{ error }}
 			</li>
 		</transition>
-		<NcCollectionListItem v-for="collection in collections"
+		<NcCollectionListItem
+			v-for="collection in collections"
 			:key="collection.id"
 			:collection="collection"
 			:error="collectionsError[collection.id]"
@@ -69,14 +71,13 @@ occ config:system:set --value true 'projects.enabled'
 <script>
 import debounce from 'debounce'
 import { ref } from 'vue'
+import NcCollectionListItem from './NcCollectionListItem.vue'
 import { t } from '../../l10n.js'
-
+import { logger } from '../../utils/logger.ts'
 import NcAvatar from '../NcAvatar/index.js'
 import NcSelect from '../NcSelect/index.js'
-import NcCollectionListItem from './NcCollectionListItem.vue'
-
-import { useCollections } from './useCollections.js'
 import { searchService } from './service.ts'
+import { useCollections } from './useCollections.js'
 
 const METHOD_CREATE_COLLECTION = 0
 const METHOD_ADD_TO_COLLECTION = 1
@@ -98,6 +99,7 @@ export default {
 			type: String,
 			default: null,
 		},
+
 		/**
 		 * Unique id of the resource
 		 */
@@ -105,6 +107,7 @@ export default {
 			type: String,
 			default: null,
 		},
+
 		/**
 		 * Name of the resource
 		 */
@@ -112,11 +115,13 @@ export default {
 			type: String,
 			default: '',
 		},
+
 		/**
 		 * Whether the component is active (to start fetch resources)
 		 */
 		isActive: {
 			type: Boolean,
+			// eslint-disable-next-line vue/no-boolean-default
 			default: true,
 		},
 	},
@@ -135,10 +140,10 @@ export default {
 		const search = debounce(function(query, loading) {
 			if (query !== '') {
 				loading(true)
-				searchService(query).then(collections => {
+				searchService(query).then((collections) => {
 					searchCollections.value = collections
-				}).catch(e => {
-					console.error('Failed to search for collections', e)
+				}).catch((e) => {
+					logger.error('Failed to search for collections', e)
 				}).finally(() => {
 					loading(false)
 				})
@@ -172,9 +177,8 @@ export default {
 
 	computed: {
 		collections() {
-			return this.storedCollections.filter(collection => collection.resources
-				.some(resource => resource && resource.id === String(this.id) && resource.type === this.type),
-			)
+			return this.storedCollections.filter((collection) => collection.resources
+				.some((resource) => resource && resource.id === String(this.id) && resource.type === this.type))
 		},
 
 		placeholder() {
@@ -185,7 +189,7 @@ export default {
 
 		options() {
 			const options = []
-			window.OCP.Collaboration.getTypes().sort().forEach(type => {
+			window.OCP.Collaboration.getTypes().sort().forEach((type) => {
 				options.push({
 					method: METHOD_CREATE_COLLECTION,
 					type,
@@ -195,7 +199,7 @@ export default {
 				})
 			})
 			for (const index in this.searchCollections) {
-				if (!this.collections.find(collection => collection.id === this.searchCollections[index].id)) {
+				if (!this.collections.find((collection) => collection.id === this.searchCollections[index].id)) {
 					options.push({
 						method: METHOD_ADD_TO_COLLECTION,
 						title: this.searchCollections[index].name,
@@ -233,7 +237,7 @@ export default {
 
 		select(selectedOption) {
 			if (selectedOption.method === METHOD_CREATE_COLLECTION) {
-				selectedOption.action().then(resourceId => {
+				selectedOption.action().then((resourceId) => {
 					this.createCollection({
 						baseResourceType: this.type,
 						baseResourceId: this.id,
@@ -244,7 +248,7 @@ export default {
 						this.setError(t('Failed to create a project'), e)
 					})
 				}).catch((e) => {
-					console.error('No resource selected', e)
+					logger.error('No resource selected', e)
 				})
 			}
 
@@ -265,7 +269,7 @@ export default {
 		},
 
 		setError(error, e) {
-			console.error(error, e)
+			logger.error(error, e)
 			this.error = error
 			setTimeout(() => {
 				this.error = null
@@ -275,7 +279,7 @@ export default {
 		renameCollectionFromItem({ collectionId, name }) {
 			this.renameCollection({ collectionId, name })
 				.catch((e) => {
-					console.error(t('Failed to rename the project'), e)
+					logger.error(t('Failed to rename the project'), e)
 					this.collectionsError[collectionId] = t('Failed to rename the project')
 					setTimeout(() => {
 						this.collectionsError[collectionId] = null

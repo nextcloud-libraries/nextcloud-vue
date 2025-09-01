@@ -159,7 +159,8 @@ export default {
 </docs>
 
 <template>
-	<span :aria-hidden="name ? undefined : 'true'"
+	<span
+		:aria-hidden="name ? undefined : 'true'"
 		:aria-label="name || undefined"
 		class="icon-vue"
 		:class="{
@@ -176,8 +177,8 @@ export default {
 </template>
 
 <script>
-import Vue from 'vue'
 import DOMPurify from 'dompurify'
+import Vue from 'vue'
 
 export default {
 	name: 'NcIconSvgWrapper',
@@ -228,6 +229,7 @@ export default {
 		/**
 		 * Size of the icon to show. Only use if not using within an icon slot.
 		 * Defaults to 20px which is the Nextcloud icon size for all icon slots.
+		 *
 		 * @default 20
 		 */
 		size: {

@@ -84,7 +84,8 @@ export default {
 </docs>
 
 <template>
-	<NcInputField v-bind="propsAndAttrsToForward"
+	<NcInputField
+		v-bind="propsAndAttrsToForward"
 		ref="inputField"
 		:type="visibility || asText ? 'text' : 'password'"
 		:trailing-button-label="trailingButtonLabelPassword"
@@ -112,19 +113,17 @@ export default {
 </template>
 
 <script>
-import { generateOcsUrl } from '@nextcloud/router'
-import { loadState } from '@nextcloud/initial-state'
 import axios from '@nextcloud/axios'
+import { loadState } from '@nextcloud/initial-state'
+import { generateOcsUrl } from '@nextcloud/router'
 import { useVModel } from '@vueuse/core'
 import debounce from 'debounce'
-
 import IconEye from 'vue-material-design-icons/Eye.vue'
 import IconEyeOff from 'vue-material-design-icons/EyeOff.vue'
 import NcInputField from '../NcInputField/NcInputField.vue'
-
 import { useModelMigration } from '../../composables/useModelMigration.ts'
-import { logger } from '../../utils/logger.ts'
 import { t } from '../../l10n.js'
+import { logger } from '../../utils/logger.ts'
 
 /**
  * @typedef PasswordPolicy
@@ -176,13 +175,15 @@ export default {
 		/**
 		 * Controls whether to display the trailing button.
 		 */
-		 showTrailingButton: {
+		showTrailingButton: {
 			type: Boolean,
+			// eslint-disable-next-line vue/no-boolean-default
 			default: true,
 		},
 
-		// Removed NcInputField props, defined only by this component
-
+		/**
+		 * Removed NcInputField props, defined only by this component
+		 */
 		trailingButtonLabel: undefined,
 
 		// Custom props
@@ -244,6 +245,7 @@ export default {
 		'invalid',
 		/**
 		 * Removed in v9 - use `update:modelValue` (`v-model`) instead
+		 *
 		 * @deprecated
 		 */
 		'update:value',
@@ -258,6 +260,7 @@ export default {
 		'update:model-value',
 		/**
 		 * Updated visibility of the password
+		 *
 		 * @property {boolean} visible the new visibility state
 		 */
 		'update:visible',
@@ -286,9 +289,11 @@ export default {
 		computedError() {
 			return this.error || this.isValid === false
 		},
+
 		computedSuccess() {
 			return this.success || this.isValid === true
 		},
+
 		computedHelperText() {
 			if (this.helperText.length > 0) {
 				return this.helperText
@@ -312,9 +317,7 @@ export default {
 				// Proxy all the HTML attributes
 				...this.$attrs,
 				// Proxy original NcInputField's props
-				...Object.fromEntries(
-					Object.entries(this.$props).filter(([key]) => NcInputFieldProps.has(key)),
-				),
+				...Object.fromEntries(Object.entries(this.$props).filter(([key]) => NcInputFieldProps.has(key))),
 			}
 		},
 	},

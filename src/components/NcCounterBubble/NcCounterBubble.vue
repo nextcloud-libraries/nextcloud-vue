@@ -188,6 +188,9 @@ export default {
 	name: 'NcCounterBubble',
 
 	props: {
+		/**
+		 * Visual appearence of the counter bubble
+		 */
 		type: {
 			type: String,
 			default: '',
@@ -256,6 +259,7 @@ export default {
 
 		/**
 		 * Get the humanized count from `count` prop
+		 *
 		 * @return {{ humanized: string, original: string} | undefined}
 		 */
 		getHumanizedCount() {

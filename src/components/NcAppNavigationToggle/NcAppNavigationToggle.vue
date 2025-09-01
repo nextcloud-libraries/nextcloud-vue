@@ -5,7 +5,8 @@
 
 <template>
 	<div class="app-navigation-toggle-wrapper">
-		<NcButton class="app-navigation-toggle"
+		<NcButton
+			class="app-navigation-toggle"
 			aria-controls="app-navigation-vue"
 			:aria-expanded="open ? 'true' : 'false'"
 			:aria-keyshortcuts="disableKeyboardShortcuts ? '' : 'n'"
@@ -22,11 +23,10 @@
 </template>
 
 <script>
-import NcButton from '../NcButton/index.js'
-import { t } from '../../l10n.js'
-
 import MenuIcon from 'vue-material-design-icons/Menu.vue'
 import MenuOpenIcon from 'vue-material-design-icons/MenuOpen.vue'
+import { t } from '../../l10n.js'
+import NcButton from '../NcButton/index.js'
 
 const disableKeyboardShortcuts = window.OCP?.Accessibility?.disableKeyboardShortcuts?.()
 
@@ -64,6 +64,7 @@ export default {
 				: t('Open navigation {shortcut}', { shortcut: disableKeyboardShortcuts ? '' : '[n]' }).trim()
 		},
 	},
+
 	methods: {
 		/**
 		 * Once the toggle has been clicked, emits the toggle status

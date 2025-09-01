@@ -5,11 +5,11 @@
 
 import { ref, set } from 'vue'
 import {
-	renameCollectionService,
-	getCollectionsByResourceService,
-	createCollectionService,
 	addResourceService,
+	createCollectionService,
+	getCollectionsByResourceService,
 	removeResourceService,
+	renameCollectionService,
 } from './service.ts'
 
 /**
@@ -29,11 +29,11 @@ export function useCollections() {
 	}
 
 	const removeCollection = (collectionId) => {
-		set(storedCollections, 'value', storedCollections.value.filter(item => item.id !== collectionId))
+		set(storedCollections, 'value', storedCollections.value.filter((item) => item.id !== collectionId))
 	}
 
 	const updateCollection = (collection) => {
-		const index = storedCollections.value.findIndex(item => item.id === collection.id)
+		const index = storedCollections.value.findIndex((item) => item.id === collection.id)
 		if (index !== -1) {
 			set(storedCollections.value, index, collection)
 		} else {
@@ -65,7 +65,10 @@ export function useCollections() {
 		updateCollection(collection)
 	}
 
-	const addResourceToCollection = async ({ collectionId, resourceType, resourceId }) => {
+	/**
+	 * @param {*} options - Options
+	 */
+	async function addResourceToCollection({ collectionId, resourceType, resourceId }) {
 		const collection = await addResourceService(collectionId, resourceType, String(resourceId))
 
 		updateCollection(collection)

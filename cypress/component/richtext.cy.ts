@@ -36,7 +36,7 @@ describe('NcRichText', () => {
 					useMarkdown: true,
 				},
 			})
-			cy.get('code').should('have.text', '<span>text</span> <span>text</span>' + '\n')
+			cy.get('code').should('have.text', '<span>text</span> <span>text</span>\n')
 		})
 		it('renders with Flavored Markdown, escaping XML', () => {
 			mount(NcRichText, {
@@ -54,7 +54,7 @@ describe('NcRichText', () => {
 					useExtendedMarkdown: true,
 				},
 			})
-			cy.get('code').should('have.text', '<span>text</span> <span>text</span>' + '\n')
+			cy.get('code').should('have.text', '<span>text</span> <span>text</span>\n')
 		})
 	})
 
@@ -72,7 +72,7 @@ describe('NcRichText', () => {
 
 				mount(NcRichText, {
 					propsData: {
-						text: testCases.map(i => i.input).join('\n'),
+						text: testCases.map((i) => i.input).join('\n'),
 						useMarkdown: true,
 					},
 				})
@@ -394,7 +394,6 @@ describe('NcRichText', () => {
 		})
 
 		describe('links', () => {
-
 			const testLink = (key: string, { text, href = text, name = text }) => {
 				it(key, () => {
 					mount(NcRichText, {
@@ -423,7 +422,6 @@ describe('NcRichText', () => {
 				cy.get('body').should('contain', name)
 				cy.get('a').should('not.exist')
 			})
-
 		})
 
 		describe('multiline code', () => {
@@ -587,7 +585,7 @@ describe('NcRichText', () => {
 
 				mount(NcRichText, {
 					propsData: {
-						text: testCases.map(i => i.input).join('\n'),
+						text: testCases.map((i) => i.input).join('\n'),
 						useMarkdown: true,
 					},
 				})
@@ -608,7 +606,7 @@ describe('NcRichText', () => {
 
 				mount(NcRichText, {
 					propsData: {
-						text: testCases.map(i => i.input).join('\n'),
+						text: testCases.map((i) => i.input).join('\n'),
 						useMarkdown: true,
 					},
 				})
@@ -629,7 +627,7 @@ describe('NcRichText', () => {
 
 				mount(NcRichText, {
 					propsData: {
-						text: testCases.map(i => i.input).join('\n'),
+						text: testCases.map((i) => i.input).join('\n'),
 						useMarkdown: true,
 					},
 				})
@@ -651,7 +649,7 @@ describe('NcRichText', () => {
 
 				mount(NcRichText, {
 					propsData: {
-						text: testCases.map(i => i.input).join('\n'),
+						text: testCases.map((i) => i.input).join('\n'),
 						useExtendedMarkdown: true,
 					},
 				})
@@ -662,7 +660,7 @@ describe('NcRichText', () => {
 					// Vue 2.7 renders three non-breaking spaces here for some reason
 					expect(item).contain(testCases[index].output)
 				})
-				cy.get('input:checked').should('have.length', testCases.filter(test => test.checked).length)
+				cy.get('input:checked').should('have.length', testCases.filter((test) => test.checked).length)
 			})
 		})
 

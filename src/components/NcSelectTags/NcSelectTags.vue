@@ -113,7 +113,8 @@ export default {
 </docs>
 
 <template>
-	<NcSelect v-bind="propsToForward"
+	<NcSelect
+		v-bind="propsToForward"
 		:options="availableOptions"
 		:close-on-select="!multiple"
 		:value="passthru ? model : localValue"
@@ -125,11 +126,13 @@ export default {
 			'update:model-value': passthru ? $listeners['update:model-value'] : noop,
 		}">
 		<template #option="option">
-			<NcEllipsisedOption :name="getOptionLabel(option)"
+			<NcEllipsisedOption
+				:name="getOptionLabel(option)"
 				:search="search" />
 		</template>
 		<template #selected-option="selectedOption">
-			<NcEllipsisedOption :name="getOptionLabel(selectedOption)"
+			<NcEllipsisedOption
+				:name="getOptionLabel(selectedOption)"
 				:search="search" />
 		</template>
 		<template v-for="(_, name) in $scopedSlots" #[name]="data">
@@ -140,12 +143,12 @@ export default {
 </template>
 
 <script>
+import { useModelMigration } from '../../composables/useModelMigration.ts'
+import { t } from '../../l10n.js'
+import { logger } from '../../utils/logger.ts'
 import NcEllipsisedOption from '../NcEllipsisedOption/index.js'
 import NcSelect from '../NcSelect/index.js'
-
 import { searchTags } from './api.js'
-import { t } from '../../l10n.js'
-import { useModelMigration } from '../../composables/useModelMigration.ts'
 
 export default {
 	name: 'NcSelectTags',
@@ -171,6 +174,7 @@ export default {
 		 */
 		fetchTags: {
 			type: Boolean,
+			// eslint-disable-next-line vue/no-boolean-default
 			default: true,
 		},
 
@@ -214,6 +218,7 @@ export default {
 		 */
 		multiple: {
 			type: Boolean,
+			// eslint-disable-next-line vue/no-boolean-default
 			default: true,
 		},
 
@@ -248,6 +253,7 @@ export default {
 
 		/**
 		 * Removed in v9 - use `modelValue` (`v-model`) instead
+		 *
 		 * @deprecated
 		 */
 		value: {
@@ -323,14 +329,15 @@ export default {
 			}
 			if (this.multiple) {
 				return this.model
-					.filter(tag => tag !== '')
-					.map(id => this.tags.find(tag2 => tag2.id === id))
+					.filter((tag) => tag !== '')
+					.map((id) => this.tags.find((tag2) => tag2.id === id))
 			} else {
-				return this.tags.find(tag => tag.id === this.model)
+				return this.tags.find((tag) => tag.id === this.model)
 			}
 		},
 
 		propsToForward() {
+			/* eslint-disable @typescript-eslint/no-unused-vars */
 			const {
 				// Props handled by this component
 				fetchTags,
@@ -339,6 +346,7 @@ export default {
 				// Props to forward
 				...propsToForward
 			} = this.$props
+			/* eslint-enable @typescript-eslint/no-unused-vars */
 
 			return propsToForward
 		},
@@ -359,7 +367,7 @@ export default {
 			const result = await searchTags()
 			this.availableTags = result
 		} catch (error) {
-			console.error('Loading systemtags failed', error)
+			logger.error('Loading systemtags failed', error)
 		}
 	},
 
@@ -371,7 +379,7 @@ export default {
 				 *
 				 * @type {number|number[]}
 				 */
-				this.model = value.map(element => element.id)
+				this.model = value.map((element) => element.id)
 			} else {
 				if (value === null) {
 					this.model = null

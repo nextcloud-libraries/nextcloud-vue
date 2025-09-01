@@ -119,12 +119,15 @@ export default {
 </style>
 ```
 </docs>
+
 <template>
-	<div class="app-navigation-search"
+	<div
+		class="app-navigation-search"
 		:class="{
 			'app-navigation-search--has-actions': hasActions(),
 		}">
-		<NcInputField ref="inputElement"
+		<NcInputField
+			ref="inputElement"
 			:aria-label="label"
 			class="app-navigation-search__input"
 			label-outside
@@ -139,7 +142,8 @@ export default {
 				<IconClose :size="20" />
 			</template>
 		</NcInputField>
-		<div v-if="hasActions()"
+		<div
+			v-if="hasActions()"
 			ref="actionsContainer"
 			class="app-navigation-search__actions"
 			:class="{
@@ -153,11 +157,10 @@ export default {
 
 <script setup>
 import { useFocusWithin } from '@vueuse/core'
-import { ref, nextTick, useSlots, watch } from 'vue'
-import { t } from '../../l10n.js'
-
+import { nextTick, ref, useSlots, watch } from 'vue'
 import IconClose from 'vue-material-design-icons/Close.vue'
 import NcInputField from '../NcInputField/NcInputField.vue'
+import { t } from '../../l10n.js'
 
 defineProps({
 	/**

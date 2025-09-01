@@ -2,13 +2,14 @@
  * SPDX-FileCopyrightText: 2024 Nextcloud GmbH and Nextcloud contributors
  * SPDX-License-Identifier: AGPL-3.0-or-later
  */
-import type { AsyncComponent, Component } from 'vue'
+import type { Component } from 'vue'
 
 import Vue, { toRaw } from 'vue'
 
 type SpawnDialogOptions = {
 	/**
 	 * Container to mount the dialog to
+	 *
 	 * @default document.body
 	 */
 	container?: Element | string
@@ -62,22 +63,21 @@ export function spawnDialog(
 	const vm = new Vue({
 		el: element,
 		name: 'VueDialogHelper',
-		render: (h) =>
-			h(dialog, {
-				props: {
-					// If dialog has no `container` prop passing a falsy value does nothing
-					// Otherwise it is expected that `null` disables teleport and mounts dialog in place like NcDialog/NcModal
-					container: null,
-					...props,
+		render: (h) => h(dialog, {
+			props: {
+				// If dialog has no `container` prop passing a falsy value does nothing
+				// Otherwise it is expected that `null` disables teleport and mounts dialog in place like NcDialog/NcModal
+				container: null,
+				...props,
+			},
+			on: {
+				close: (...rest: unknown[]) => {
+					onClose(...rest.map((v) => toRaw(v)))
+					vm.$destroy()
+					element.remove()
 				},
-				on: {
-					close: (...rest: unknown[]) => {
-						onClose(...rest.map(v => toRaw(v)))
-						vm.$destroy()
-						element.remove()
-					},
-				},
-			}),
+			},
+		}),
 	})
 	return vm
 }

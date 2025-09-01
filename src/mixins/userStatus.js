@@ -7,6 +7,7 @@ import { getCurrentUser } from '@nextcloud/auth'
 import axios from '@nextcloud/axios'
 import { getCapabilities } from '@nextcloud/capabilities'
 import { generateOcsUrl } from '@nextcloud/router'
+import { logger } from '../utils/logger.ts'
 
 export default {
 	data() {
@@ -32,7 +33,7 @@ export default {
 				return
 			}
 			const capabilities = getCapabilities()
-			if (!Object.prototype.hasOwnProperty.call(capabilities, 'user_status') || !capabilities.user_status.enabled) {
+			if (!Object.hasOwn(capabilities, 'user_status') || !capabilities.user_status.enabled) {
 				return
 			}
 
@@ -57,7 +58,7 @@ export default {
 					// User just has no status set, so don't log it
 					return
 				}
-				console.error(e)
+				logger.error(e)
 			}
 		},
 	},

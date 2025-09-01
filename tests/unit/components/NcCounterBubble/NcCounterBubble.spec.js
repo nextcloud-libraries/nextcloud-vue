@@ -3,7 +3,7 @@
  * SPDX-License-Identifier: AGPL-3.0-or-later
  */
 
-import { describe, it, expect } from '@jest/globals'
+import { describe, expect, it } from '@jest/globals'
 import { mount } from '@vue/test-utils'
 import NcCounterBubble from '../../../../src/components/NcCounterBubble/NcCounterBubble.vue'
 

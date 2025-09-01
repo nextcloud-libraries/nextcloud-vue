@@ -137,7 +137,8 @@ export default {
 </docs>
 
 <template>
-	<NcPopover :shown.sync="modelOpen"
+	<NcPopover
+		:shown.sync="modelOpen"
 		:container="container"
 		popup-role="dialog"
 		v-bind="$attrs"
@@ -147,23 +148,26 @@ export default {
 			<slot v-bind="slotProps" />
 		</template>
 		<template #default="slotProps">
-			<div role="dialog"
+			<div
+				role="dialog"
 				class="color-picker"
 				aria-modal="true"
 				:aria-label="t('Color picker')"
 				:class="{ 'color-picker--advanced-fields': advanced && advancedFields }">
 				<Transition name="slide" mode="out-in">
 					<div v-if="!advanced" class="color-picker__simple">
-						<label v-for="({ color, name }, index) in normalizedPalette"
+						<label
+							v-for="({ color, name }, index) in normalizedPalette"
 							:key="index"
 							class="color-picker__simple-color-circle"
-							:class="{ 'color-picker__simple-color-circle--active' : color === currentColor }"
+							:class="{ 'color-picker__simple-color-circle--active': color === currentColor }"
 							:style="{
 								backgroundColor: color,
 								color: contrastColor,
 							}">
 							<NcIconSvgWrapper v-if="color === currentColor" :path="mdiCheck" />
-							<input type="radio"
+							<input
+								type="radio"
 								class="hidden-visually"
 								:aria-label="name"
 								:name="`color-picker-${uid}`"
@@ -171,7 +175,8 @@ export default {
 								@click="pickColor(color)">
 						</label>
 					</div>
-					<Chrome v-else
+					<Chrome
+						v-else
 						v-model="currentColor"
 						class="color-picker__advanced"
 						:disable-alpha="true"
@@ -179,7 +184,8 @@ export default {
 						@input="pickColor" />
 				</Transition>
 				<div v-if="!paletteOnly" class="color-picker__navigation">
-					<NcButton v-if="advanced"
+					<NcButton
+						v-if="advanced"
 						:aria-label="ariaBack"
 						variant="tertiary"
 						@click="handleBack">
@@ -187,7 +193,8 @@ export default {
 							<NcIconSvgWrapper directional :path="mdiArrowLeft" />
 						</template>
 					</NcButton>
-					<NcButton v-else
+					<NcButton
+						v-else
 						:aria-label="ariaMore"
 						variant="tertiary"
 						@click="handleMoreSettings">
@@ -195,7 +202,8 @@ export default {
 							<NcIconSvgWrapper :path="mdiDotsHorizontal" />
 						</template>
 					</NcButton>
-					<NcButton variant="primary"
+					<NcButton
+						variant="primary"
 						@click="handleConfirm(slotProps.hide)">
 						{{ t('Choose') }}
 					</NcButton>
@@ -209,13 +217,13 @@ export default {
 import { mdiArrowLeft, mdiCheck, mdiDotsHorizontal } from '@mdi/js'
 import { useVModel } from '@vueuse/core'
 import { Chrome } from 'vue-color'
+import { useModelMigration } from '../../composables/useModelMigration.ts'
+import { t } from '../../l10n.js'
+import { defaultPalette } from '../../utils/GenColors.js'
+import GenRandomId from '../../utils/GenRandomId.js'
 import NcButton from '../NcButton/index.js'
 import NcIconSvgWrapper from '../NcIconSvgWrapper/index.js'
 import NcPopover from '../NcPopover/index.js'
-import { useModelMigration } from '../../composables/useModelMigration.ts'
-import { defaultPalette } from '../../utils/GenColors.js'
-import GenRandomId from '../../utils/GenRandomId.js'
-import { t } from '../../l10n.js'
 
 const HEX_REGEX = /^#([a-f0-9]{3}|[a-f0-9]{6})$/i
 
@@ -237,6 +245,7 @@ export default {
 	props: {
 		/**
 		 * Removed in v9 - use `modelValue` (`v-model`) instead
+		 *
 		 * @deprecated
 		 */
 		value: {
@@ -264,7 +273,7 @@ export default {
 		 * Selector for the popover container
 		 */
 		container: {
-			type: [String, Object, Element, Boolean],
+			type: [Boolean, String, Object, Element],
 			default: 'body',
 		},
 
@@ -288,10 +297,8 @@ export default {
 		palette: {
 			type: Array,
 			default: () => [...defaultPalette],
-			validator: (palette) => palette.every(item =>
-				(typeof item === 'string' && HEX_REGEX.test(item))
-				|| (typeof item === 'object' && item.color && HEX_REGEX.test(item.color)),
-			),
+			validator: (palette) => palette.every((item) => (typeof item === 'string' && HEX_REGEX.test(item))
+				|| (typeof item === 'object' && item.color && HEX_REGEX.test(item.color))),
 		},
 
 		/**
@@ -369,6 +376,7 @@ export default {
 		uid() {
 			return GenRandomId()
 		},
+
 		contrastColor() {
 			const black = '#000000'
 			const white = '#FFFFFF'
@@ -387,6 +395,7 @@ export default {
 
 		/**
 		 * Submit a picked colour and close picker
+		 *
 		 * @param {Function} hideCallback callback to close popover
 		 */
 		handleConfirm(hideCallback) {
@@ -398,6 +407,7 @@ export default {
 
 			this.advanced = false
 		},
+
 		handleClose() {
 			/**
 			 * Emitted after picker close.
@@ -421,6 +431,7 @@ export default {
 		handleBack() {
 			this.advanced = false
 		},
+
 		handleMoreSettings() {
 			this.advanced = true
 		},
@@ -442,7 +453,6 @@ export default {
 			 * Emits a hexadecimal string e.g. '#ffffff'
 			 */
 			this.$emit('input', color)
-
 		},
 
 		/**

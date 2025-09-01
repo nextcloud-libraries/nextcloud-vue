@@ -3,11 +3,11 @@
  * SPDX-License-Identifier: AGPL-3.0-or-later
  */
 
-import { jest, describe, it, beforeAll } from '@jest/globals'
-import { getRoute } from '../../../../src/components/NcRichText/autolink.js'
+import { beforeAll, describe, it, jest } from '@jest/globals'
+import { getBaseUrl, getRootUrl } from '@nextcloud/router'
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import { getBaseUrl, getRootUrl } from '@nextcloud/router'
+import { getRoute } from '../../../../src/components/NcRichText/autolink.js'
 
 jest.mock('@nextcloud/router')
 

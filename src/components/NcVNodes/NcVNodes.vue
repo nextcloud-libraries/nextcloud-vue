@@ -62,13 +62,13 @@ export default {
 			default: null,
 		},
 	},
+
 	/**
 	 * The render function to display the component
 	 *
-	 * @param {Function} h The function to create VNodes
 	 * @return {object} The created VNode
 	 */
-	render(h) {
+	render() {
 		// eslint-disable-next-line jsdoc/check-tag-names
 		/** @slot Directly rendered content */
 		return this.vnodes || this.$slots?.default || this.$scopedSlots?.default?.()

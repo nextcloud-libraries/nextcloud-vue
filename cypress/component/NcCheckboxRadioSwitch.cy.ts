@@ -19,11 +19,13 @@ describe('NcCheckboxRadioSwitch', () => {
 			}, ['My checkbox']),
 		}).then(({ wrapper }) => {
 			// Class and style belong the wrapper
+			// eslint-disable-next-line @typescript-eslint/no-unused-expressions
 			expect(wrapper.classes('my-class')).to.be.true
 			// expect(wrapper.attributes('style')).to.equal('background: red;')
 			// Custom data attributes too
 			expect(wrapper.attributes('data-my-attribute')).to.equal('yes')
 			// real HTML attributes are passed to the real checkbox
+			// eslint-disable-next-line @typescript-eslint/no-unused-expressions
 			expect(wrapper.attributes('aria-describedby')).to.be.undefined
 		})
 

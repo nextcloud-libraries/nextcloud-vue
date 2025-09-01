@@ -6,7 +6,6 @@
 import { mount } from 'cypress/vue2'
 import Vue, { defineComponent } from 'vue'
 import VueRouter from 'vue-router'
-
 import NcAppNavigationItem from '../../src/components/NcAppNavigationItem/NcAppNavigationItem.vue'
 
 describe('NcAppNavigationItem', () => {

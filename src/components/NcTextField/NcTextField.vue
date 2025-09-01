@@ -125,7 +125,8 @@ export default {
 </docs>
 
 <template>
-	<NcInputField v-bind="propsAndAttrsToForward"
+	<NcInputField
+		v-bind="propsAndAttrsToForward"
 		ref="inputField"
 		v-on="$listeners">
 		<template v-if="!!$scopedSlots.icon || !!$slots.default || !!$scopedSlots.default" #icon>
@@ -146,10 +147,10 @@ export default {
 
 <script>
 import { mdiArrowRight, mdiClose, mdiUndo } from '@mdi/js'
-import NcIconSvgWrapper from '../NcIconSvgWrapper/index.js'
 import NcInputField from '../NcInputField/NcInputField.vue'
-import { t } from '../../l10n.js'
 import { useModelMigration } from '../../composables/useModelMigration.ts'
+import { t } from '../../l10n.js'
+import NcIconSvgWrapper from '../NcIconSvgWrapper/index.js'
 
 const NcInputFieldProps = new Set(Object.keys(NcInputField.props))
 
@@ -183,6 +184,7 @@ export default {
 		/**
 		 * The `aria-label` to set on the trailing button
 		 * If no explicit value is set it will default to the one matching the `trailingButtonIcon`:
+		 *
 		 * @default 'Clear text'|'Save changes'|'Undo changes'
 		 */
 		trailingButtonLabel: {
@@ -216,6 +218,7 @@ export default {
 	emits: [
 		/**
 		 * Removed in v9 - use `update:modelValue` (`v-model`) instead
+		 *
 		 * @deprecated
 		 */
 		'update:value',
@@ -256,9 +259,8 @@ export default {
 				// Proxy all the HTML attributes
 				...this.$attrs,
 				// Proxy original NcInputField's props
-				...Object.fromEntries(
-					Object.entries(this.$props).filter(([key]) => NcInputFieldProps.has(key)),
-				),
+				...Object.fromEntries(Object.entries(this.$props).filter(([key]) => NcInputFieldProps.has(key))),
+
 				// Adjust aria-label for predefined trailing buttons
 				trailingButtonLabel: this.trailingButtonLabel || predefinedLabels[this.trailingButtonIcon],
 			}

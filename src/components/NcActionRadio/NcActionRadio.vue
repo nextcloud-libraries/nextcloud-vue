@@ -46,7 +46,8 @@ So that only one of each name set can be selected at the same time.
 <template>
 	<li class="action" :class="{ 'action--disabled': disabled }" :role="isInSemanticMenu && 'presentation'">
 		<span class="action-radio" role="menuitemradio" :aria-checked="ariaChecked">
-			<input :id="id"
+			<input
+				:id="id"
 				v-model="model"
 				:disabled="disabled"
 				:name="name"
@@ -94,15 +95,17 @@ export default {
 		id: {
 			type: String,
 			default: () => 'action-' + GenRandomId(),
-			validator: id => id.trim() !== '',
+			validator: (id) => id.trim() !== '',
 		},
 
 		/**
 		 * Removed in v9 - use `modelValue` (`v-model`) instead
+		 *
 		 * @deprecated
 		 */
 		checked: {
 			type: Boolean,
+			// eslint-disable-next-line vue/no-boolean-default
 			default: undefined,
 		},
 
@@ -145,11 +148,13 @@ export default {
 	emits: [
 		/**
 		 * Removed in v9 - use `update:modelValue` (`v-model`) instead
+		 *
 		 * @deprecated
 		 */
 		'update:checked',
 		/**
 		 * The radio state is changed
+		 *
 		 * @type {boolean}
 		 */
 		'update:modelValue',
@@ -184,7 +189,7 @@ export default {
 		 *
 		 * @return {'true'|'false'|undefined} aria-checked value if needed
 		 */
-		 ariaChecked() {
+		ariaChecked() {
 			if (this.isInSemanticMenu) {
 				return this.model ? 'true' : 'false'
 			}
@@ -193,10 +198,11 @@ export default {
 	},
 
 	methods: {
-		toggleInput(event) {
+		toggleInput() {
 			// by clicking we also trigger the change event
 			this.$refs.label.click()
 		},
+
 		onChange(event) {
 			/**
 			 * Emitted when the radio state is changed

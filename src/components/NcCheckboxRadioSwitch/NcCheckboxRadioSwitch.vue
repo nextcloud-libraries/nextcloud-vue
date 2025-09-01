@@ -269,7 +269,8 @@ export default {
 </docs>
 
 <template>
-	<component :is="computedWrapperElement"
+	<component
+		:is="computedWrapperElement"
 		:id="wrapperId"
 		:aria-label="isButtonType && ariaLabel ? ariaLabel : undefined"
 		:class="{
@@ -287,7 +288,8 @@ export default {
 		:type="isButtonType ? 'button' : null"
 		v-bind="isButtonType ? $attrs : dataAttrs"
 		v-on="isButtonType ? listeners : null">
-		<input v-if="!isButtonType"
+		<input
+			v-if="!isButtonType"
 			:id="id"
 			:aria-labelledby="!isButtonType && !ariaLabel ? labelId : null"
 			:aria-describedby="!isButtonType && (description || $slots.description) ? descriptionId : nonDataAttrs['aria-describedby']"
@@ -302,7 +304,8 @@ export default {
 			:name="name"
 			v-bind="nonDataAttrs"
 			v-on="listeners">
-		<NcCheckboxContent :id="!isButtonType ? `${id}-label` : undefined"
+		<NcCheckboxContent
+			:id="!isButtonType ? `${id}-label` : undefined"
 			class="checkbox-radio-switch__content"
 			icon-class="checkbox-radio-switch__icon"
 			text-class="checkbox-radio-switch__text"
@@ -333,10 +336,10 @@ export default {
 </template>
 
 <script>
-import { n, t } from '../../l10n.js'
-import GenRandomId from '../../utils/GenRandomId.js'
 import NcCheckboxContent, { TYPE_BUTTON, TYPE_CHECKBOX, TYPE_RADIO, TYPE_SWITCH } from './NcCheckboxContent.vue'
 import { useModelMigration } from '../../composables/useModelMigration.ts'
+import { n, t } from '../../l10n.js'
+import GenRandomId from '../../utils/GenRandomId.js'
 
 export default {
 	name: 'NcCheckboxRadioSwitch',
@@ -360,7 +363,7 @@ export default {
 		id: {
 			type: String,
 			default: () => 'checkbox-radio-switch-' + GenRandomId(),
-			validator: id => id.trim() !== '',
+			validator: (id) => id.trim() !== '',
 		},
 
 		/**
@@ -400,7 +403,7 @@ export default {
 		type: {
 			type: String,
 			default: 'checkbox',
-			validator: type => [
+			validator: (type) => [
 				TYPE_CHECKBOX,
 				TYPE_RADIO,
 				TYPE_SWITCH,
@@ -425,11 +428,12 @@ export default {
 		buttonVariantGrouped: {
 			type: String,
 			default: 'no',
-			validator: v => ['no', 'vertical', 'horizontal'].includes(v),
+			validator: (v) => ['no', 'vertical', 'horizontal'].includes(v),
 		},
 
 		/**
 		 * Removed in v9 - use `modelValue` (`v-model`) instead
+		 *
 		 * @deprecated
 		 */
 		checked: {
@@ -511,6 +515,7 @@ export default {
 	emits: [
 		/**
 		 * Removed in v9 - use `update:modelValue` (`v-model`) instead
+		 *
 		 * @deprecated
 		 */
 		'update:checked',
@@ -679,8 +684,8 @@ export default {
 
 			// Dispatch the checked values as an array if multiple, or single value otherwise
 			const values = this.getInputsSet()
-				.filter(input => input.checked)
-				.map(input => input.value)
+				.filter((input) => input.checked)
+				.map((input) => input.value)
 
 			if (values.includes(this.value)) {
 				this.model = values.filter((v) => v !== this.value)

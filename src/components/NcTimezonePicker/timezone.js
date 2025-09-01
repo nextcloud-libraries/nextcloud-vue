@@ -52,7 +52,7 @@ export function getSortedTimezoneList(timezoneList = [], additionalTimezones = [
 	}
 
 	for (const continent in sortedByContinent) {
-		if (!Object.prototype.hasOwnProperty.call(sortedByContinent, continent)) {
+		if (!Object.hasOwn(sortedByContinent, continent)) {
 			continue
 		}
 

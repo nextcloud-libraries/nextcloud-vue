@@ -322,7 +322,8 @@ export default {
 </docs>
 
 <template>
-	<VueSelect class="select"
+	<VueSelect
+		class="select"
 		:class="{
 			'select--no-wrap': noWrap,
 			'user-select': userSelect,
@@ -331,20 +332,24 @@ export default {
 		v-on="listenersToForward"
 		@search="searchString => search = searchString">
 		<template v-if="!labelOutside && inputLabel" #header>
-			<label :for="inputId"
+			<label
+				:for="inputId"
 				class="select__label">
 				{{ inputLabel }}
 			</label>
 		</template>
 		<template #search="{ attributes, events }">
-			<input :class="['vs__search', inputClass]"
+			<input
+				class="vs__search"
+				:class="inputClass"
 				v-bind="attributes"
 				:required="inputRequired"
 				dir="auto"
 				v-on="events">
 		</template>
 		<template #open-indicator="{ attributes }">
-			<ChevronDown v-bind="attributes"
+			<ChevronDown
+				v-bind="attributes"
 				fill-color="var(--vs-controls-color)"
 				:style="{
 					cursor: !disabled ? 'pointer' : null,
@@ -355,12 +360,14 @@ export default {
 		<template #option="option">
 			<!-- @slot Customize how a option is rendered. -->
 			<slot name="option" v-bind="option">
-				<NcListItemIcon v-if="userSelect"
+				<NcListItemIcon
+					v-if="userSelect"
 					v-bind="option"
 					:avatar-size="32"
 					:name="option[localLabel]"
 					:search="search" />
-				<NcEllipsisedOption v-else
+				<NcEllipsisedOption
+					v-else
 					:name="String(option[localLabel])"
 					:search="search" />
 			</slot>
@@ -368,13 +375,15 @@ export default {
 		<template #selected-option="selectedOption">
 			<!-- @slot Customize how a selected option is rendered -->
 			<slot name="selected-option" :v-bind="selectedOption">
-				<NcListItemIcon v-if="userSelect"
+				<NcListItemIcon
+					v-if="userSelect"
 					v-bind="selectedOption"
 					:avatar-size="avatarSize"
 					:name="selectedOption[localLabel]"
 					no-margin
 					:search="search" />
-				<NcEllipsisedOption v-else
+				<NcEllipsisedOption
+					v-else
 					:name="String(selectedOption[localLabel])"
 					:search="search" />
 			</slot>
@@ -393,7 +402,6 @@ export default {
 </template>
 
 <script>
-import { VueSelect } from '@nextcloud/vue-select'
 import {
 	autoUpdate,
 	computePosition,
@@ -402,18 +410,16 @@ import {
 	offset,
 	shift,
 } from '@floating-ui/dom'
+import { VueSelect } from '@nextcloud/vue-select'
 import Vue from 'vue'
-import { t } from '../../l10n.js'
-
 import ChevronDown from 'vue-material-design-icons/ChevronDown.vue'
 import Close from 'vue-material-design-icons/Close.vue'
-
+import { useModelMigration } from '../../composables/useModelMigration.ts'
+import { t } from '../../l10n.js'
+import GenRandomId from '../../utils/GenRandomId.js'
 import NcEllipsisedOption from '../NcEllipsisedOption/index.js'
 import NcListItemIcon from '../NcListItemIcon/index.js'
 import NcLoadingIcon from '../NcLoadingIcon/index.js'
-
-import GenRandomId from '../../utils/GenRandomId.js'
-import { useModelMigration } from '../../composables/useModelMigration.ts'
 
 import '@nextcloud/vue-select/dist/vue-select.css'
 
@@ -467,6 +473,7 @@ export default {
 		/**
 		 * Allows to customize the `aria-label` for the deselect-option button
 		 * The default is "Deselect " + optionLabel
+		 *
 		 * @type {(optionLabel: string) => string}
 		 */
 		ariaLabelDeselectOption: {
@@ -482,6 +489,7 @@ export default {
 		 */
 		appendToBody: {
 			type: Boolean,
+			// eslint-disable-next-line vue/no-boolean-default
 			default: true,
 		},
 
@@ -507,6 +515,7 @@ export default {
 		 */
 		closeOnSelect: {
 			type: Boolean,
+			// eslint-disable-next-line vue/no-boolean-default
 			default: true,
 		},
 
@@ -530,7 +539,7 @@ export default {
 			type: Object,
 			default: () => ({
 				Deselect: {
-					render: createElement => createElement(Close, {
+					render: (createElement) => createElement(Close, {
 						props: {
 							size: 20,
 							fillColor: 'var(--vs-controls-color)',
@@ -635,6 +644,7 @@ export default {
 		 */
 		keyboardFocusBorder: {
 			type: Boolean,
+			// eslint-disable-next-line vue/no-boolean-default
 			default: true,
 		},
 
@@ -763,6 +773,7 @@ export default {
 		 */
 		resetFocusOnOptionsChange: {
 			type: Boolean,
+			// eslint-disable-next-line vue/no-boolean-default
 			default: true,
 		},
 
@@ -782,6 +793,7 @@ export default {
 
 		/**
 		 * Removed in v9 - use `modelValue` (`v-model`) instead
+		 *
 		 * @deprecated
 		 */
 		value: {
@@ -829,6 +841,7 @@ export default {
 		' ',
 		/**
 		 * Removed in v9 - use `update:modelValue` (`v-model`) instead
+		 *
 		 * @deprecated
 		 */
 		'input',
@@ -875,7 +888,7 @@ export default {
 
 				const addClass = {
 					name: 'addClass',
-					fn(_middlewareArgs) {
+					fn(/* middlewareArgs */) {
 						dropdownMenu.classList.add('vs__dropdown-menu--floating')
 						return {}
 					},
@@ -958,12 +971,10 @@ export default {
 		propsToForward() {
 			const vueSelectKeys = [
 				...Object.keys(VueSelect.props),
-				...VueSelect.mixins.flatMap(mixin => Object.keys(mixin.props ?? {})),
+				...VueSelect.mixins.flatMap((mixin) => Object.keys(mixin.props ?? {})),
 			]
-			const initialPropsToForward = Object.fromEntries(
-				Object.entries(this.$props)
-					.filter(([key, _value]) => vueSelectKeys.includes(key)),
-			)
+			const initialPropsToForward = Object.fromEntries(Object.entries(this.$props)
+				.filter(([key]) => vueSelectKeys.includes(key)))
 			const propsToForward = {
 				...initialPropsToForward,
 				// Custom overrides of vue-select props

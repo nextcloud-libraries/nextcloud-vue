@@ -88,12 +88,14 @@ All available types are: 'date', 'datetime-local', 'month', 'time' and 'week', p
 
 <template>
 	<div class="native-datetime-picker">
-		<label class="native-datetime-picker--label"
+		<label
+			class="native-datetime-picker--label"
 			:class="{ 'hidden-visually': hideLabel }"
 			:for="id">
 			{{ label }}
 		</label>
-		<input :id="id"
+		<input
+			:id="id"
 			class="native-datetime-picker--input"
 			:class="inputClass"
 			:type="type"
@@ -123,6 +125,7 @@ export default {
 	props: {
 		/**
 		 * Removed in v9 - use `modelValue` (`v-model`) instead
+		 *
 		 * @deprecated
 		 */
 		value: {
@@ -147,8 +150,9 @@ export default {
 		id: {
 			type: String,
 			default: () => 'date-time-picker-' + GenRandomId(),
-			validator: id => id.trim() !== '',
+			validator: (id) => id.trim() !== '',
 		},
+
 		/**
 		 * type attribute of the input field
 		 * default type: String
@@ -159,6 +163,7 @@ export default {
 			default: 'date',
 			validate: (name) => inputDateTypes.includes(name),
 		},
+
 		/**
 		 * text inside the label element
 		 * default type: String
@@ -167,22 +172,25 @@ export default {
 			type: String,
 			default: 'Please choose a date',
 		},
+
 		/**
 		 * min attribute of the input field
 		 * default type: null
 		 */
 		min: {
-			type: [Date, Boolean],
+			type: [Boolean, Date],
 			default: null,
 		},
+
 		/**
 		 * max attribute of the input field
 		 * default type: null
 		 */
 		max: {
-			type: [Date, Boolean],
+			type: [Boolean, Date],
 			default: null,
 		},
+
 		/**
 		 * Flag to hide the label
 		 * default type: String
@@ -192,6 +200,7 @@ export default {
 			type: Boolean,
 			default: false,
 		},
+
 		/**
 		 * Class to add to the input field.
 		 * Necessary to use NcDateTimePickerNative in the NcActionInput component.
@@ -205,6 +214,7 @@ export default {
 	emits: [
 		/**
 		 * Removed in v9 - use `update:modelValue` (`v-model`) instead
+		 *
 		 * @deprecated
 		 */
 		'input',
@@ -229,18 +239,21 @@ export default {
 		formattedValue() {
 			return this.formatValue(this.model)
 		},
+
 		formattedMin() {
 			if (this.min) {
 				return this.formatValue(this.min)
 			}
 			return false
 		},
+
 		formattedMax() {
 			if (this.max) {
 				return this.formatValue(this.max)
 			}
 			return false
 		},
+
 		listeners() {
 			return {
 				...this.$listeners,
@@ -304,6 +317,7 @@ export default {
 				return { yyyy, MM, dd, hh, mm }
 			}
 		},
+
 		/**
 		 * Returns preformatted value for the input field
 		 *

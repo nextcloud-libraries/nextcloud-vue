@@ -3,7 +3,7 @@
  * SPDX-License-Identifier: AGPL-3.0-or-later
  */
 
-import { GettextExtractor, JsExtractors, HtmlExtractors } from 'gettext-extractor'
+import { GettextExtractor, HtmlExtractors, JsExtractors } from 'gettext-extractor'
 
 const extractor = new GettextExtractor()
 
@@ -30,6 +30,7 @@ extractor.createHtmlParser([
 
 /**
  * remove references to avoid conflicts but save them for code splitting
+ *
  * @type {Record<string,string[]>}
  */
 export const context = extractor.getMessages().map((msg) => {
@@ -41,10 +42,10 @@ export const context = extractor.getMessages().map((msg) => {
 	if (usage in localContext) {
 		localContext[usage].push(id)
 		return localContext
-	 } else {
+	} else {
 		localContext[usage] = [id]
-	 }
-	 return localContext
+	}
+	return localContext
 })
 
 extractor.savePotFile('./l10n/messages.pot')

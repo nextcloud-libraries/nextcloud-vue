@@ -13,17 +13,19 @@ Renders a button element when given no redirection props, otherwise, renders <a/
 </docs>
 
 <template>
-	<li ref="crumb"
+	<li
+		ref="crumb"
 		class="vue-crumb"
-		:class="{'vue-crumb--hovered': hovering}"
-		:[crumbId]="''"
+		:class="{ 'vue-crumb--hovered': hovering }"
+		:data-crumb-id="crumbId"
 		draggable="false"
-		@dragstart.prevent="() => {/** Prevent the breadcrumb from being draggable. */}"
+		@dragstart.prevent="() => { /** Prevent the breadcrumb from being draggable. */ }"
 		@drop.prevent="dropped"
 		@dragover.prevent="() => {}"
 		@dragenter="dragEnter"
 		@dragleave="dragLeave">
-		<NcButton v-if="(name || icon || $slots.icon) && !$slots.default"
+		<NcButton
+			v-if="(name || icon || $slots.icon) && !$slots.default"
 			:aria-label="icon ? name : undefined"
 			:title="title"
 			variant="tertiary"
@@ -39,14 +41,15 @@ Renders a button element when given no redirection props, otherwise, renders <a/
 				{{ name }}
 			</template>
 		</NcButton>
-		<NcActions v-if="$slots.default"
+		<NcActions
+			v-if="$slots.default"
 			ref="actions"
 			:force-menu="forceMenu"
 			:open="open"
 			:menu-name="name"
 			:title="title"
 			:force-name="true"
-			:container="`.vue-crumb[${crumbId}]`"
+			:container="actionsContainer"
 			variant="tertiary"
 			@update:open="onOpenChange">
 			<template #icon>
@@ -61,11 +64,10 @@ Renders a button element when given no redirection props, otherwise, renders <a/
 </template>
 
 <script>
-import NcActions from '../NcActions/index.js'
-import GenRandomId from '../../utils/GenRandomId.js'
-import NcButton from '../NcButton/NcButton.vue'
-
 import ChevronRight from 'vue-material-design-icons/ChevronRight.vue'
+import NcButton from '../NcButton/NcButton.vue'
+import { createElementId } from '../../utils/createElementId.ts'
+import NcActions from '../NcActions/index.js'
 
 export default {
 	name: 'NcBreadcrumb',
@@ -74,6 +76,7 @@ export default {
 		ChevronRight,
 		NcButton,
 	},
+
 	inheritAttrs: false,
 	props: {
 		/**
@@ -83,6 +86,7 @@ export default {
 			type: String,
 			required: true,
 		},
+
 		/**
 		 * The title attribute of the element.
 		 */
@@ -159,23 +163,29 @@ export default {
 			default: false,
 		},
 	},
+
 	emits: [
 		'update:open',
 		'dropped',
 	],
+
+	setup() {
+		const crumbId = createElementId()
+		return {
+			actionsContainer: `.vue-crumb[data-crumb-id="${crumbId}"]`,
+			crumbId,
+		}
+	},
+
 	data() {
 		return {
 			/**
 			 * Variable to track if we hover over the breadcrumb
 			 */
 			hovering: false,
-			/**
-			 * The unique id of the breadcrumb. Necessary to append the
-			 * Actions menu to the correct crumb.
-			 */
-			crumbId: `crumb-id-${GenRandomId()}`,
 		}
 	},
+
 	computed: {
 		/**
 		 * The attributes to pass to `router-link` or `a`
@@ -185,11 +195,12 @@ export default {
 			return this.to
 				? { to: this.to, exact: this.exact, ...this.$attrs }
 				: (this.href
-					? { href: this.href, ...this.$attrs }
-					: this.$attrs
-				)
+						? { href: this.href, ...this.$attrs }
+						: this.$attrs
+					)
 		},
 	},
+
 	methods: {
 		/**
 		 * Function to handle changing the open state of the Actions menu
@@ -205,6 +216,7 @@ export default {
 			 */
 			this.$emit('update:open', open)
 		},
+
 		/**
 		 * Function to handle a drop on the breadcrumb.
 		 * $emit the event and the path, remove the hovering state.
@@ -230,12 +242,11 @@ export default {
 			this.hovering = false
 			return false
 		},
+
 		/**
 		 * Add the hovering state on drag enter
-		 *
-		 * @param {object} e The drag enter event
 		 */
-		dragEnter(e) {
+		dragEnter() {
 			/**
 			 * Don't do anything if dropping is disabled.
 			 */
@@ -244,6 +255,7 @@ export default {
 			}
 			this.hovering = true
 		},
+
 		/**
 		 * Remove the hovering state on drag leave
 		 *

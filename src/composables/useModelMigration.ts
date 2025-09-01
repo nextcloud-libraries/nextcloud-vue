@@ -3,14 +3,15 @@
  * SPDX-License-Identifier: AGPL-3.0-or-later
  */
 
-import Vue, { getCurrentInstance, computed } from 'vue'
+import Vue, { computed, getCurrentInstance } from 'vue'
 
 /**
  * Create model proxy to new v9 model (modelValue + update:modelValue) with a fallback to old model
- * @param {string} oldModelName - Name of model prop in nextcloud-vue v8
- * @param {string} oldModelEvent - Event name of model event in nextcloud-vue v8
- * @param {boolean} required - If the prop is required
- * @return {import('vue').WritableComputedRef} - model proxy
+ *
+ * @param oldModelName - Name of model prop in nextcloud-vue v8
+ * @param oldModelEvent - Event name of model event in nextcloud-vue v8
+ * @param required - If the prop is required
+ * @return - model proxy
  */
 export function useModelMigration(oldModelName, oldModelEvent, required = false) {
 	const vm = getCurrentInstance()!.proxy

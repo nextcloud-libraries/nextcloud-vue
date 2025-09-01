@@ -44,23 +44,27 @@ This is a simple progress bar component.
 </docs>
 
 <template>
-	<span v-if="type === 'circular'"
+	<span
+		v-if="type === 'circular'"
 		role="progressbar"
 		:aria-valuenow="value"
 		:style="{ '--progress-bar-height': height + 'px' }"
 		:class="{ 'progress-bar--error': error }"
 		class="progress-bar progress-bar--circular">
-		<svg :height="height"
+		<svg
+			:height="height"
 			:width="height">
-			<circle stroke="currentColor"
+			<circle
+				stroke="currentColor"
 				fill="transparent"
 				:stroke-dasharray="`${progress * circumference} ${(1 - progress) * circumference}`"
-				:stroke-dashoffset="0.25*circumference"
+				:stroke-dashoffset="0.25 * circumference"
 				:stroke-width="stroke"
 				:r="radiusNormalized"
 				:cx="radius"
 				:cy="radius" />
-			<circle stroke="var(--color-background-darker)"
+			<circle
+				stroke="var(--color-background-darker)"
 				fill="transparent"
 				:stroke-dasharray="`${(1 - progress) * circumference} ${progress * circumference}`"
 				:stroke-dashoffset="(0.25 - progress) * circumference"
@@ -70,10 +74,11 @@ This is a simple progress bar component.
 				:cy="radius" />
 		</svg>
 	</span>
-	<progress v-else
+	<progress
+		v-else
 		class="progress-bar progress-bar--linear vue"
 		:class="{ 'progress-bar--error': error }"
-		:style="{'--progress-bar-height': height + 'px' }"
+		:style="{ '--progress-bar-height': height + 'px' }"
 		:value="value"
 		max="100" />
 </template>
@@ -95,12 +100,14 @@ export default {
 					&& value <= 100
 			},
 		},
+
 		/**
 		 * Determines the height of the progressbar.
 		 * Possible values:
 		 * - 'small' (default)
 		 * - 'medium'
 		 * - Number
+		 *
 		 * @type {'small'|'medium'|number}
 		 */
 		size: {
@@ -110,6 +117,7 @@ export default {
 				return ['small', 'medium'].includes(value) || typeof value === 'number'
 			},
 		},
+
 		/**
 		 * Applies an error color to the progressbar if true.
 		 */
@@ -117,6 +125,7 @@ export default {
 			type: Boolean,
 			default: false,
 		},
+
 		/**
 		 * ProgressBar type
 		 */
@@ -127,16 +136,22 @@ export default {
 				return ['linear', 'circular'].includes(value)
 			},
 		},
+
+		/**
+		 * The color of the progress bar
+		 */
 		color: {
 			type: String,
 			default: null,
 		},
 	},
+
 	data() {
 		return {
 			stroke: 4,
 		}
 	},
+
 	computed: {
 		height() {
 			if (this.type === 'circular') {
@@ -152,15 +167,19 @@ export default {
 			}
 			return this.size
 		},
+
 		progress() {
 			return this.value / 100
 		},
+
 		radius() {
 			return this.height / 2
 		},
+
 		radiusNormalized() {
 			return this.radius - 3 * this.stroke
 		},
+
 		circumference() {
 			return this.radiusNormalized * 2 * Math.PI
 		},

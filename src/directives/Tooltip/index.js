@@ -3,7 +3,8 @@
  * SPDX-License-Identifier: AGPL-3.0-or-later
  */
 
-import { VTooltip, options } from 'floating-vue'
+import { options, VTooltip } from 'floating-vue'
+
 import './index.scss'
 
 options.themes.tooltip.html = false

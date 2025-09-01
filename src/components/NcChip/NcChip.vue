@@ -70,7 +70,8 @@ export default {
 </docs>
 
 <template>
-	<div class="nc-chip"
+	<div
+		class="nc-chip"
 		:class="{
 			[`nc-chip--${realVariant}`]: true,
 			'nc-chip--no-actions': noClose && !hasActions(),
@@ -80,7 +81,8 @@ export default {
 			<!-- @slot The icon slot can be used to set the chip icon. Make sure that the icon is not exceeding a height of `24px`. For round icons a exact size of `24px` is recommended. -->
 			<slot name="icon">
 				<!-- The default icon wrapper uses a size of 18px to ensure the icon is not clipped by the round chip style -->
-				<NcIconSvgWrapper v-if="iconPath || iconSvg"
+				<NcIconSvgWrapper
+					v-if="iconPath || iconSvg"
 					inline
 					:path="iconPath"
 					:svg="iconPath ? undefined : iconSvg"
@@ -91,14 +93,16 @@ export default {
 			<!-- @slot The default slot can be used to set the text that is shown -->
 			<slot>{{ text }}</slot>
 		</span>
-		<NcActions v-if="canClose || hasActions()"
+		<NcActions
+			v-if="canClose || hasActions()"
 			class="nc-chip__actions"
 			:container="actionsContainer"
 			:force-menu="!canClose"
 			variant="tertiary-no-background">
-			<NcActionButton v-if="canClose"
+			<NcActionButton
+				v-if="canClose"
 				close-after-click
-				@click="onClose">
+				@click="emit('close')">
 				<template #icon>
 					<NcIconSvgWrapper :path="mdiClose" :size="20" />
 				</template>
@@ -113,15 +117,15 @@ export default {
 <script setup>
 import { mdiClose } from '@mdi/js'
 import { computed, useSlots } from 'vue'
-import { t } from '../../l10n.js'
-
-import NcActions from '../NcActions/NcActions.vue'
 import NcActionButton from '../NcActionButton/NcActionButton.vue'
+import NcActions from '../NcActions/NcActions.vue'
 import NcIconSvgWrapper from '../NcIconSvgWrapper/NcIconSvgWrapper.vue'
+import { t } from '../../l10n.js'
 
 const props = defineProps({
 	/**
 	 * aria label to set on the close button
+	 *
 	 * @default 'Close'
 	 */
 	ariaLabelClose: {
@@ -149,6 +153,7 @@ const props = defineProps({
 	 * Set the chips design variant-
 	 *
 	 * This sets the background style of the chip, similar to NcButton's `variant`.
+	 *
 	 * @deprecated will be removed with v9 - use `variant` instead.
 	 */
 	type: {
@@ -186,6 +191,7 @@ const props = defineProps({
 	 * Set the chips design variant-
 	 *
 	 * This sets the background style of the chip, similar to NcButton's `variant`.
+	 *
 	 * @since 8.24.0
 	 */
 	variant: {
@@ -204,13 +210,6 @@ const realVariant = computed(() => props.type !== 'secondary' ? props.type : pro
 const canClose = computed(() => !props.noClose)
 const hasActions = () => Boolean(slots.actions?.())
 const hasIcon = () => Boolean(props.iconPath || props.iconSvg || !!slots.icon?.())
-
-const onClose = () => {
-	/**
-	 * Emitted when the close button is clicked
-	 */
-	emit('close')
-}
 </script>
 
 <style scoped lang="scss">

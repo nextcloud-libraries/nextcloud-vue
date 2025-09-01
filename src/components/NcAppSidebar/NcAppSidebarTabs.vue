@@ -9,7 +9,8 @@
 	<div class="app-sidebar-tabs">
 		<!-- tabs navigation -->
 		<!-- 33 and 34 code is for page up and page down -->
-		<div v-if="hasMultipleTabs || showForSingleTab"
+		<div
+			v-if="hasMultipleTabs || showForSingleTab"
 			role="tablist"
 			class="app-sidebar-tabs__nav"
 			@keydown.left.exact.prevent.stop="focusPreviousTab"
@@ -19,7 +20,8 @@
 			@keydown.end.exact.prevent.stop="focusLastTab"
 			@keydown.page-up.exact.prevent.stop="focusFirstTab"
 			@keydown.page-down.exact.prevent.stop="focusLastTab">
-			<NcCheckboxRadioSwitch v-for="tab in tabs"
+			<NcCheckboxRadioSwitch
+				v-for="tab in tabs"
 				:key="tab.id"
 				:aria-controls="`tab-${tab.id}`"
 				:aria-selected="String(activeTab === tab.id)"
@@ -45,7 +47,8 @@
 		</div>
 
 		<!-- tabs content -->
-		<div :class="{'app-sidebar-tabs__content--multiple': hasMultipleTabs}"
+		<div
+			:class="{ 'app-sidebar-tabs__content--multiple': hasMultipleTabs }"
 			class="app-sidebar-tabs__content">
 			<!-- @slot Tabs content - NcAppSidebarTab components or any content if there is no tabs -->
 			<slot />
@@ -54,8 +57,8 @@
 </template>
 
 <script>
-import NcVNodes from '../NcVNodes/index.js'
 import NcCheckboxRadioSwitch from '../NcCheckboxRadioSwitch/index.js'
+import NcVNodes from '../NcVNodes/index.js'
 
 export default {
 	name: 'NcAppSidebarTabs',
@@ -84,6 +87,7 @@ export default {
 			type: String,
 			default: '',
 		},
+
 		/**
 		 * Force the tab navigation to display even if there is only one tab
 		 */
@@ -211,7 +215,7 @@ export default {
 		 */
 		updateActive() {
 			this.activeTab = this.active
-			&& this.tabs.some(tab => tab.id === this.active)
+				&& this.tabs.some((tab) => tab.id === this.active)
 				? this.active
 				: this.tabs.length > 0
 					? this.tabs[0].id
@@ -251,6 +255,7 @@ export default {
 	},
 }
 </script>
+
 <style lang="scss" scoped>
 .app-sidebar-tabs {
 	display: flex;

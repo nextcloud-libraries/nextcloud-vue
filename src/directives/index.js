@@ -4,5 +4,5 @@
  */
 
 export { default as Focus } from './Focus/index.ts'
-export { default as Linkify } from './Linkify/index.js'
+export { default as Linkify } from './Linkify/index.ts'
 export { default as Tooltip } from './Tooltip/index.js'

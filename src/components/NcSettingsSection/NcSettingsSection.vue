@@ -41,10 +41,11 @@ This component is to be used in the settings section of nextcloud.
 </docs>
 
 <template>
-	<div class="settings-section" :class="{'settings-section--limit-width': forceLimitWidth}">
+	<div class="settings-section" :class="{ 'settings-section--limit-width': forceLimitWidth }">
 		<h2 class="settings-section__name">
 			{{ name }}
-			<a v-if="hasDocUrl"
+			<a
+				v-if="hasDocUrl"
 				:href="docUrl"
 				class="settings-section__info"
 				:title="docNameTranslated"
@@ -54,7 +55,8 @@ This component is to be used in the settings section of nextcloud.
 				<HelpCircle :size="20" />
 			</a>
 		</h2>
-		<p v-if="hasDescription"
+		<p
+			v-if="hasDescription"
 			class="settings-section__desc">
 			{{ description }}
 		</p>
@@ -64,9 +66,8 @@ This component is to be used in the settings section of nextcloud.
 
 <script>
 import { loadState } from '@nextcloud/initial-state'
-import { t } from '../../l10n.js'
-
 import HelpCircle from 'vue-material-design-icons/HelpCircle.vue'
+import { t } from '../../l10n.js'
 
 // Overwrite this on Nextcloud 30+ to always limit the width
 const [major] = loadState('core', 'config', { version: '30.0' }).version.split('.', 2) ?? []
@@ -80,27 +81,42 @@ export default {
 	},
 
 	props: {
+		/**
+		 * The name of the settings section.
+		 * This is used for the headline and needs to be set.
+		 */
 		name: {
 			type: String,
 			required: true,
 		},
+
+		/**
+		 * Further informational description of the section.
+		 */
 		description: {
 			type: String,
 			default: '',
 		},
+
+		/**
+		 * The URL for the documentation about this section
+		 */
 		docUrl: {
 			type: String,
 			default: '',
 		},
+
 		/**
 		 * Limit the width of the setting's content
 		 *
 		 * Setting this to false allows unrestricted (width) settings content.
 		 * Note that the name and description have always a width limit.
+		 *
 		 * @deprecated Will be removed with next version and will not be used on Nextcloud 30+ (always forced to true)
 		 */
 		limitWidth: {
 			type: Boolean,
+			// eslint-disable-next-line vue/no-boolean-default
 			default: true,
 		},
 	},
@@ -121,6 +137,7 @@ export default {
 		hasDescription() {
 			return this.description.length > 0
 		},
+
 		hasDocUrl() {
 			return this.docUrl.length > 0
 		},

@@ -949,16 +949,14 @@ export default {
 </docs>
 
 <script>
+import { useElementBounding, useWindowSize } from '@vueuse/core'
+import Vue, { computed, ref, toRef } from 'vue'
+import IconDotsHorizontal from 'vue-material-design-icons/DotsHorizontal.vue'
+import { useTrapStackControl } from '../../composables/useTrapStackControl.ts'
+import { t } from '../../l10n.js'
+import GenRandomId from '../../utils/GenRandomId.js'
 import NcButton from '../NcButton/index.js'
 import NcPopover from '../NcPopover/index.js'
-import GenRandomId from '../../utils/GenRandomId.js'
-
-import { t } from '../../l10n.js'
-import { useTrapStackControl } from '../../composables/useTrapStackControl.ts'
-import { useElementBounding, useWindowSize } from '@vueuse/core'
-import Vue, { ref, computed, toRef } from 'vue'
-
-import IconDotsHorizontal from 'vue-material-design-icons/DotsHorizontal.vue'
 
 const focusableSelector = '.focusable'
 
@@ -987,6 +985,7 @@ export default {
 			 * - Popover with plain text or text inputs (has no specific role)
 			 * Depending on the usage (used items), the menu and its items should have different roles for a11y.
 			 * Provide the role for NcAction* components in the NcActions content.
+			 *
 			 * @type {import('vue').ComputedRef<boolean>}
 			 */
 			'NcActions:isSemanticMenu': computed(() => this.actionsMenuSemanticType === 'menu'),
@@ -1078,6 +1077,7 @@ export default {
 		 *
 		 * Accepted values: primary, secondary, tertiary, tertiary-no-background, tertiary-on-primary, error, warning, success. If left empty,
 		 * the default button style will be applied.
+		 *
 		 * @deprecated use `variant` instead - will be removed with v9
 		 */
 		type: {
@@ -1085,6 +1085,7 @@ export default {
 			validator(value) {
 				return ['primary', 'secondary', 'tertiary', 'tertiary-no-background', 'tertiary-on-primary', 'error', 'warning', 'success'].includes(value)
 			},
+
 			default: null,
 		},
 
@@ -1117,6 +1118,7 @@ export default {
 		 */
 		ariaHidden: {
 			type: Boolean,
+			// eslint-disable-next-line vue/no-boolean-default
 			default: null,
 		},
 
@@ -1140,7 +1142,7 @@ export default {
 		 * Selector for the actions' popover container
 		 */
 		container: {
-			type: [String, Object, Element, Boolean],
+			type: [Boolean, String, Object, Element],
 			default: 'body',
 		},
 
@@ -1174,6 +1176,7 @@ export default {
 			validator(value) {
 				return ['primary', 'secondary', 'tertiary', 'tertiary-no-background', 'tertiary-on-primary', 'error', 'warning', 'success'].includes(value)
 			},
+
 			default: null,
 		},
 	},
@@ -1280,6 +1283,7 @@ export default {
 					triggerA11yAttr: {
 						'aria-controls': this.opened ? this.randomId : null,
 					},
+
 					popoverContainerA11yAttrs: {},
 					popoverUlA11yAttrs: {
 						'aria-labelledby': this.triggerRandomId,
@@ -1287,6 +1291,7 @@ export default {
 						role: 'menu',
 					},
 				},
+
 				expanded: {
 					popupRole: undefined,
 					withArrowNavigation: false,
@@ -1296,6 +1301,7 @@ export default {
 					popoverContainerA11yAttrs: {},
 					popoverUlA11yAttrs: {},
 				},
+
 				dialog: {
 					popupRole: 'dialog',
 					withArrowNavigation: false,
@@ -1304,6 +1310,7 @@ export default {
 					triggerA11yAttr: {
 						'aria-controls': this.opened ? this.randomId : null,
 					},
+
 					popoverContainerA11yAttrs: {
 						id: this.randomId,
 						role: 'dialog',
@@ -1311,8 +1318,10 @@ export default {
 						'aria-labelledby': this.triggerRandomId,
 						'aria-modal': 'true',
 					},
+
 					popoverUlA11yAttrs: {},
 				},
+
 				tooltip: {
 					popupRole: undefined,
 					withArrowNavigation: false,
@@ -1322,6 +1331,7 @@ export default {
 					popoverContainerA11yAttrs: {},
 					popoverUlA11yAttrs: {},
 				},
+
 				// Due to Vue limitations, we sometimes cannot determine the true type
 				// As a fallback use both arrow navigation and focus trap
 				unknown: {
@@ -1396,18 +1406,19 @@ export default {
 
 		/**
 		 * Check whether a icon prop value is an URL or not
+		 *
 		 * @param {string} url The icon prop value
 		 */
 		isIconUrl(url) {
 			try {
 				return !!(new URL(url, url.startsWith('/') ? window.location.origin : undefined))
-			} catch (error) {
+			} catch {
 				return false
 			}
 		},
 
 		// MENU STATE MANAGEMENT
-		openMenu(e) {
+		openMenu() {
 			if (this.opened) {
 				return
 			}
@@ -1426,6 +1437,7 @@ export default {
 			 */
 			this.$emit('open')
 		},
+
 		async closeMenu(returnFocus = true) {
 			if (!this.opened) {
 				return
@@ -1449,6 +1461,7 @@ export default {
 
 			/**
 			 * Event emitted when the popover menu is *being* closed.
+			 *
 			 * @deprecated use `update:open` instead. This is always emitted the same time as `('update:open', false)`
 			 */
 			this.$emit('close')
@@ -1468,7 +1481,7 @@ export default {
 			 *
 			 * This event is emitted after `update:open` was emitted and the closing transition finished.
 			 */
-			 this.$emit('closed')
+			this.$emit('closed')
 		},
 
 		/**
@@ -1525,12 +1538,14 @@ export default {
 		getCurrentActiveMenuItemElement() {
 			return this.$refs.menu.querySelector('li.active')
 		},
+
 		/**
 		 * @return {NodeList<HTMLElement>}
 		 */
 		getFocusableMenuItemElements() {
 			return this.$refs.menu.querySelectorAll(focusableSelector)
 		},
+
 		/**
 		 * Dispatches the keydown listener to different handlers
 		 *
@@ -1620,6 +1635,7 @@ export default {
 				currentActiveElement.classList.remove('active')
 			}
 		},
+
 		focusAction() {
 			// TODO: have a global disabled state for non input elements
 			const focusElement = this.getFocusableMenuItemElements()[this.focusIndex]
@@ -1632,6 +1648,7 @@ export default {
 				}
 			}
 		},
+
 		focusPreviousAction(event) {
 			if (this.opened) {
 				if (this.focusIndex === 0) {
@@ -1643,6 +1660,7 @@ export default {
 				this.focusAction()
 			}
 		},
+
 		focusNextAction(event) {
 			if (this.opened) {
 				const indexLength = this.getFocusableMenuItemElements().length - 1
@@ -1655,6 +1673,7 @@ export default {
 				this.focusAction()
 			}
 		},
+
 		focusFirstAction(event) {
 			if (this.opened) {
 				this.preventIfEvent(event)
@@ -1668,6 +1687,7 @@ export default {
 				this.focusAction()
 			}
 		},
+
 		focusLastAction(event) {
 			if (this.opened) {
 				this.preventIfEvent(event)
@@ -1675,15 +1695,18 @@ export default {
 				this.focusAction()
 			}
 		},
+
 		preventIfEvent(event) {
 			if (event) {
 				event.preventDefault()
 				event.stopPropagation()
 			}
 		},
+
 		onFocus(event) {
 			this.$emit('focus', event)
 		},
+
 		onBlur(event) {
 			this.$emit('blur', event)
 
@@ -1697,6 +1720,7 @@ export default {
 				}
 			}
 		},
+
 		onClick(event) {
 			/**
 			 * Event emitted when the menu toggle button is clicked.
@@ -1722,7 +1746,7 @@ export default {
 		 * This also ensure that we don't get 'text' elements, which would
 		 * become problematic later on.
 		 */
-		const actions = (this.$slots.default || []).filter(action => this.getActionName(action))
+		const actions = (this.$slots.default || []).filter((action) => this.getActionName(action))
 
 		// Check that we have at least one action
 		if (actions.length === 0) {
@@ -1748,7 +1772,7 @@ export default {
 		/**
 		 * @type {import('vue').VNode[]}
 		 */
-		const menuActions = actions.filter(action => !inlineActions.includes(action))
+		const menuActions = actions.filter((action) => !inlineActions.includes(action))
 
 		/**
 		 * Determine what kind of menu we have.
@@ -1761,9 +1785,9 @@ export default {
 			const menuItemsActions = ['NcActionButton', 'NcActionButtonGroup', 'NcActionCheckbox', 'NcActionRadio']
 			const linkActions = ['NcActionLink', 'NcActionRouter']
 
-			const hasTextInputAction = menuActions.some(action => textInputActions.includes(this.getActionName(action)))
-			const hasMenuItemAction = menuActions.some(action => menuItemsActions.includes(this.getActionName(action)))
-			const hasLinkAction = menuActions.some(action => linkActions.includes(this.getActionName(action)))
+			const hasTextInputAction = menuActions.some((action) => textInputActions.includes(this.getActionName(action)))
+			const hasMenuItemAction = menuActions.some((action) => menuItemsActions.includes(this.getActionName(action)))
+			const hasLinkAction = menuActions.some((action) => linkActions.includes(this.getActionName(action)))
 
 			if (hasTextInputAction) {
 				this.actionsMenuSemanticType = 'dialog'
@@ -1822,7 +1846,8 @@ export default {
 			delete propsToForward.modelValue
 			delete propsToForward.type
 
-			return h('NcButton',
+			return h(
+				'NcButton',
 				{
 					class: [
 						'action-item action-item--single',
@@ -1877,12 +1902,13 @@ export default {
 				this.defaultIcon
 					? h('span', { class: ['icon', this.defaultIcon] })
 					: h(IconDotsHorizontal, {
-						props: {
-							size: 20,
-						},
-					})
+							props: {
+								size: 20,
+							},
+						})
 			)
-			return h('NcPopover',
+			return h(
+				'NcPopover',
 				{
 					ref: 'popover',
 					props: {
@@ -1992,7 +2018,8 @@ export default {
 		 * If we some inline actions to render, render them, then the menu
 		 */
 		if (inlineActions.length > 0 && this.inline > 0) {
-			return h('div',
+			return h(
+				'div',
 				{
 					class: [
 						'action-items',
@@ -2004,26 +2031,30 @@ export default {
 					...inlineActions.map(renderInlineAction),
 					// render the rest within the popover menu
 					menuActions.length > 0
-						? h('div',
-							{
-								class: [
-									'action-item',
-									{
-										'action-item--open': this.opened,
-									},
+						? h(
+								'div',
+								{
+									class: [
+										'action-item',
+										{
+											'action-item--open': this.opened,
+										},
+									],
+								},
+								[
+									renderActionsPopover(menuActions),
 								],
-							},
-							[
-								renderActionsPopover(menuActions),
-							])
+							)
 						: null,
-				])
+				],
+			)
 		}
 
 		/**
 		 * Otherwise, we render the actions in a popover
 		 */
-		return h('div',
+		return h(
+			'div',
 			{
 				class: [
 					'action-item action-item--default-popover',

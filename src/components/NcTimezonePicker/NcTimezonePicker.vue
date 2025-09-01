@@ -24,7 +24,8 @@ export default {
 </docs>
 
 <template>
-	<NcSelect :aria-label-combobox="t('Search for time zone')"
+	<NcSelect
+		:aria-label-combobox="t('Search for time zone')"
 		:clearable="false"
 		:filter-by="filterBy"
 		:multiple="false"
@@ -38,25 +39,27 @@ export default {
 </template>
 
 <script>
+import { useModelMigration } from '../../composables/useModelMigration.ts'
+import { t } from '../../l10n.js'
+import GenRandomId from '../../utils/GenRandomId.js'
+import NcSelect from '../NcSelect/index.js'
 import {
 	getReadableTimezoneName,
 	getSortedTimezoneList,
 } from './timezone.js'
 import getTimezoneManager from './timezoneDataProviderService.js'
-import GenRandomId from '../../utils/GenRandomId.js'
-import NcSelect from '../NcSelect/index.js'
-import { t } from '../../l10n.js'
-import { useModelMigration } from '../../composables/useModelMigration.ts'
 
 export default {
 	name: 'NcTimezonePicker',
 	components: {
 		NcSelect,
 	},
+
 	model: {
 		prop: 'modelValue',
 		event: 'update:modelValue',
 	},
+
 	props: {
 		/**
 		 * An array of additional timezones to include with the standard database. Useful if there is a custom timezone, e.g. read from user data
@@ -65,14 +68,17 @@ export default {
 			type: Array,
 			default: () => [],
 		},
+
 		/**
 		 * Removed in v9 - use `modelValue` (`v-model`) instead
+		 *
 		 * @deprecated
 		 */
 		value: {
 			type: String,
 			default: undefined,
 		},
+
 		/**
 		 * The selected timezone. Use v-model for two-way binding. The default timezone is floating, which means a time independent of timezone. See https://icalendar.org/CalDAV-Access-RFC-4791/7-3-date-and-floating-time.html for details.
 		 */
@@ -80,6 +86,7 @@ export default {
 			type: String,
 			default: 'floating',
 		},
+
 		/**
 		 * ID of the inner vue-select element, can be used for labels like: `vs-${uid}__combobox`
 		 */
@@ -88,9 +95,11 @@ export default {
 			default: () => `tz-${GenRandomId(5)}`,
 		},
 	},
+
 	emits: [
 		/**
 		 * Removed in v9 - use `update:modelValue` (`v-model`) instead
+		 *
 		 * @deprecated
 		 */
 		'input',
@@ -101,16 +110,19 @@ export default {
 		/** Same as update:modelValue for Vue 2 compatibility */
 		'update:model-value',
 	],
+
 	setup() {
 		const model = useModelMigration('value', 'input')
 		return {
 			model,
 		}
 	},
+
 	computed: {
 		placeholder() {
 			return t('Type to search time zone')
 		},
+
 		selectedTimezone() {
 			for (const additionalTimezone of this.additionalTimezones) {
 				if (additionalTimezone.timezoneId === this.model) {
@@ -123,6 +135,7 @@ export default {
 				timezoneId: this.model,
 			}
 		},
+
 		options() {
 			const timezoneManager = getTimezoneManager()
 			const timezoneList = getSortedTimezoneList(timezoneManager.listAllTimezones(), this.additionalTimezones)
@@ -134,7 +147,7 @@ export default {
 			 * in the future, other options can be introduced to better display the different areas
 			 */
 			let timezonesGrouped = []
-			Object.values(timezoneList).forEach(group => {
+			Object.values(timezoneList).forEach((group) => {
 				// Add an entry as group label
 				// timezonesGrouped.push({
 				// label: group.continent,
@@ -146,6 +159,7 @@ export default {
 			return timezonesGrouped
 		},
 	},
+
 	methods: {
 		t,
 
@@ -183,7 +197,7 @@ export default {
 
 			// For the continent labels, we have to check if one region matches every search term.
 			if (option.timezoneId.startsWith('tz-group__')) {
-				return option.regions.some(region => {
+				return option.regions.some((region) => {
 					return this.matchTimezoneId(region.timezoneId, terms)
 				})
 			}
@@ -193,7 +207,7 @@ export default {
 		},
 
 		matchTimezoneId(timezoneId, terms) {
-			return terms.every(term => timezoneId.toLowerCase().includes(term.toLowerCase()))
+			return terms.every((term) => timezoneId.toLowerCase().includes(term.toLowerCase()))
 		},
 	},
 }

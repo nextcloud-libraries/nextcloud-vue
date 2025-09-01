@@ -19,6 +19,7 @@ interface AvatarUrlOptions {
 
 	/**
 	 * Size of the avatar.
+	 *
 	 * @default 64
 	 */
 	size?: 64 | 512

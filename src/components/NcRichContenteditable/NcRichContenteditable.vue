@@ -240,7 +240,8 @@ export default {
 
 <template>
 	<div class="rich-contenteditable">
-		<div :id="id"
+		<div
+			:id="id"
 			ref="contenteditable"
 			:class="{
 				'rich-contenteditable__input--empty': isEmptyValue,
@@ -276,7 +277,8 @@ export default {
 			@keydown.down.exact.stop="onTributeArrowKeyDown"
 			@tribute-active-true="onTributeActive(true)"
 			@tribute-active-false="onTributeActive(false)" />
-		<div v-if="label"
+		<div
+			v-if="label"
 			:id="labelId"
 			class="rich-contenteditable__label">
 			{{ label }}
@@ -285,17 +287,17 @@ export default {
 </template>
 
 <script>
-import { n, t } from '../../l10n.js'
-import NcAutoCompleteResult from './NcAutoCompleteResult.vue'
-import richEditor from '../../mixins/richEditor/index.js'
-import { emojiSearch, emojiAddRecent } from '../../functions/emoji/index.ts'
-import { searchProvider, getLinkWithPicker } from '../NcRichText/index.js'
-
-import Tribute from 'tributejs/dist/tribute.esm.js'
 import debounce from 'debounce'
 import stringLength from 'string-length'
-import GenRandomId from '../../utils/GenRandomId.js'
+import Tribute from 'tributejs/dist/tribute.esm.js'
+import NcAutoCompleteResult from './NcAutoCompleteResult.vue'
 import { useModelMigration } from '../../composables/useModelMigration.ts'
+import { emojiAddRecent, emojiSearch } from '../../functions/emoji/index.ts'
+import { n, t } from '../../l10n.js'
+import richEditor from '../../mixins/richEditor/index.js'
+import GenRandomId from '../../utils/GenRandomId.js'
+import { logger } from '../../utils/logger.ts'
+import { getLinkWithPicker, searchProvider } from '../NcRichText/index.js'
 
 /**
  * Populate the list of text smiles we want to offer via Tribute.
@@ -339,6 +341,7 @@ export default {
 
 		/**
 		 * Removed in v9 - use `modelValue` (`v-model`) instead
+		 *
 		 * @deprecated
 		 */
 		value: {
@@ -346,21 +349,33 @@ export default {
 			default: undefined,
 		},
 
+		/**
+		 * The text content
+		 */
 		modelValue: {
 			type: String,
 			default: '',
 		},
 
+		/**
+		 * Placeholder to be shown if empty
+		 */
 		placeholder: {
 			type: String,
 			default: t('Write a message …'),
 		},
 
+		/**
+		 * Auto complete function
+		 */
 		autoComplete: {
 			type: Function,
 			default: () => [],
 		},
 
+		/**
+		 * The containing element for the menu popover
+		 */
 		menuContainer: {
 			type: Element,
 			default: () => document.body,
@@ -383,6 +398,7 @@ export default {
 		 */
 		contenteditable: {
 			type: Boolean,
+			// eslint-disable-next-line vue/no-boolean-default
 			default: true,
 		},
 
@@ -407,6 +423,7 @@ export default {
 		 */
 		emojiAutocomplete: {
 			type: Boolean,
+			// eslint-disable-next-line vue/no-boolean-default
 			default: true,
 		},
 
@@ -415,6 +432,7 @@ export default {
 		 */
 		linkAutocomplete: {
 			type: Boolean,
+			// eslint-disable-next-line vue/no-boolean-default
 			default: true,
 		},
 	},
@@ -424,6 +442,7 @@ export default {
 		'paste',
 		/**
 		 * Removed in v9 - use `update:modelValue` (`v-model`) instead
+		 *
 		 * @deprecated
 		 */
 		'update:value',
@@ -531,7 +550,7 @@ export default {
 		/**
 		 * Compute debounce function for the autocomplete function
 		 */
-		 debouncedAutoComplete() {
+		debouncedAutoComplete() {
 			return debounce(async (search, callback) => {
 				this.autoComplete(search, callback)
 			}, 100)
@@ -590,14 +609,14 @@ export default {
 			tributesCollection.push({
 				fillAttr: 'id',
 				// Search against id and label (display name) (fallback to title for v8.0.0..8.6.1 compatibility)
-				lookup: result => `${result.id} ${result.label ?? result.title}`,
+				lookup: (result) => `${result.id} ${result.label ?? result.title}`,
 				requireLeadingSpace: true,
 				// Popup mention autocompletion templates
-				menuItemTemplate: item => renderMenuItem(this.renderComponentHtml(item.original, NcAutoCompleteResult)),
+				menuItemTemplate: (item) => renderMenuItem(this.renderComponentHtml(item.original, NcAutoCompleteResult)),
 				// Hide if no results
 				noMatchTemplate: () => '<span class="hidden"></span>',
 				// Inner display of mentions
-				selectTemplate: item => this.genSelectTemplate(item?.original?.id),
+				selectTemplate: (item) => this.genSelectTemplate(item?.original?.id),
 				// Autocompletion results
 				values: this.debouncedAutoComplete,
 				// Class added to the menu container
@@ -615,7 +634,7 @@ export default {
 					lookup: (result, query) => query,
 					requireLeadingSpace: true,
 					// Popup mention autocompletion templates
-					menuItemTemplate: item => {
+					menuItemTemplate: (item) => {
 						if (textSmiles.includes(item.original)) {
 							// Display the raw text string for :), :-D, … for non emoji results,
 							// instead of trying to show an image and their name.
@@ -664,7 +683,7 @@ export default {
 					lookup: (result, query) => query,
 					requireLeadingSpace: true,
 					// Popup mention autocompletion templates
-					menuItemTemplate: item => renderMenuItem(`<img class="${this.$style['tribute-item__icon']}" src="${item.original.icon_url}"> <span class="${this.$style['tribute-item__title']}">${item.original.title}</span>`),
+					menuItemTemplate: (item) => renderMenuItem(`<img class="${this.$style['tribute-item__icon']}" src="${item.original.icon_url}"> <span class="${this.$style['tribute-item__title']}">${item.original.title}</span>`),
 					// Hide if no results
 					noMatchTemplate: () => t('No link provider found'),
 					selectTemplate: this.getLink,
@@ -692,7 +711,7 @@ export default {
 			// there is no way to get a tribute result asynchronously
 			// so we immediately insert a node and replace it when the result comes
 			getLinkWithPicker(item.original.id)
-				.then(result => {
+				.then((result) => {
 					// replace dummy temp element by a text node which contains the picker result
 					const tmpElem = document.getElementById('tmp-smart-picker-result-node')
 					const eventData = {
@@ -710,13 +729,14 @@ export default {
 					}
 				})
 				.catch((error) => {
-					console.debug('Smart picker promise rejected:', error)
+					logger.debug('Smart picker promise rejected:', error)
 					const tmpElem = document.getElementById('tmp-smart-picker-result-node')
 					this.setCursorAfter(tmpElem)
 					tmpElem.remove()
 				})
 			return '<span id="tmp-smart-picker-result-node"></span>'
 		},
+
 		setCursorAfter(element) {
 			const range = document.createRange()
 			range.setEndAfter(element)
@@ -725,6 +745,7 @@ export default {
 			selection.removeAllRanges()
 			selection.addRange(range)
 		},
+
 		moveCursorToEnd() {
 			if (!document.createRange) {
 				return
@@ -736,6 +757,7 @@ export default {
 			selection.removeAllRanges()
 			selection.addRange(range)
 		},
+
 		/**
 		 * Re-emit the input event to the parent
 		 *
@@ -766,7 +788,7 @@ export default {
 
 			// If we have a file or if we don't have any text, ignore
 			if (clipboardData.files.length !== 0
-				|| !Object.values(clipboardData.items).find(item => item?.type.startsWith('text'))) {
+				|| !Object.values(clipboardData.items).find((item) => item?.type.startsWith('text'))) {
 				return
 			}
 
@@ -857,6 +879,7 @@ export default {
 
 		/**
 		 * Get HTML element with Tribute.js container
+		 *
 		 * @return {HTMLElement}
 		 */
 		getTributeContainer() {
@@ -865,6 +888,7 @@ export default {
 
 		/**
 		 * Get the currently selected item element id in Tribute.js container
+		 *
 		 * @return {HTMLElement}
 		 */
 		getTributeSelectedItem() {
@@ -875,6 +899,7 @@ export default {
 
 		/**
 		 * Handle Tribute activation
+		 *
 		 * @param {boolean} isActive - is active
 		 */
 		onTributeActive(isActive) {
@@ -974,13 +999,14 @@ export default {
 
 		/**
 		 * Show tribute menu programmatically.
+		 *
 		 * @param {string} trigger - trigger character, can be '/', '@', or ':'
 		 *
 		 * @public
 		 */
 		showTribute(trigger) {
 			this.focus()
-			const index = this.tribute.collection.findIndex(collection => collection.trigger === trigger)
+			const index = this.tribute.collection.findIndex((collection) => collection.trigger === trigger)
 			this.tribute.showMenuForCollection(this.$refs.contenteditable, index)
 			this.updateValue(this.$refs.contenteditable.innerHTML)
 			document.addEventListener('click', this.hideTribute, true)

@@ -59,15 +59,18 @@ export default {
 ```
 
 </docs>
+
 <template>
-	<component :is="isPopoverComponent"
+	<component
+		:is="isPopoverComponent"
 		trigger="hover focus"
 		:shown="open"
 		class="user-bubble__wrapper"
 		@update:open="onOpenChange">
 		<!-- Main userbubble structure -->
 		<template #trigger="{ attrs }">
-			<component :is="isLinkComponent"
+			<component
+				:is="isLinkComponent"
 				class="user-bubble__content"
 				:style="styles.content"
 				:to="to"
@@ -76,7 +79,8 @@ export default {
 				v-bind="attrs"
 				@click="onClick">
 				<!-- NcAvatar -->
-				<NcAvatar :url="isCustomAvatar && isAvatarUrl ? avatarImage : undefined"
+				<NcAvatar
+					:url="isCustomAvatar && isAvatarUrl ? avatarImage : undefined"
 					:icon-class="isCustomAvatar && !isAvatarUrl ? avatarImage : undefined"
 					:user="user"
 					:display-name="displayName"
@@ -105,11 +109,11 @@ export default {
 </template>
 
 <script>
+import Vue from 'vue'
+import { RouterLink } from 'vue-router'
 import NcUserBubbleDiv from './NcUserBubbleDiv.vue'
 import NcAvatar from '../NcAvatar/index.js'
 import NcPopover from '../NcPopover/index.js'
-import Vue from 'vue'
-import { RouterLink } from 'vue-router'
 
 export default {
 	name: 'NcUserBubble',
@@ -118,6 +122,7 @@ export default {
 		NcPopover,
 		NcUserBubbleDiv,
 	},
+
 	props: {
 		/**
 		 * Override generated avatar, can be an url or an icon class
@@ -126,6 +131,7 @@ export default {
 			type: String,
 			default: undefined,
 		},
+
 		/**
 		 * Provide the user id if this is a user
 		 */
@@ -133,6 +139,7 @@ export default {
 			type: String,
 			default: undefined,
 		},
+
 		/**
 		 * Displayed label
 		 */
@@ -140,6 +147,7 @@ export default {
 			type: String,
 			default: undefined,
 		},
+
 		/**
 		 * Whether or not to display the user-status
 		 */
@@ -147,6 +155,7 @@ export default {
 			type: Boolean,
 			default: false,
 		},
+
 		/**
 		 * Define the whole bubble as a link
 		 */
@@ -155,13 +164,14 @@ export default {
 			default: undefined,
 			validator: (url) => {
 				try {
-					url = new URL(url, url?.startsWith?.('/') ? window.location.href : undefined)
+					new URL(url, url?.startsWith?.('/') ? window.location.href : undefined)
 					return true
-				} catch (error) {
+				} catch {
 					return false
 				}
 			},
 		},
+
 		/**
 		 * Use bubble as a router-link for in-app navigation
 		 */
@@ -169,6 +179,7 @@ export default {
 			type: [String, Object],
 			default: undefined,
 		},
+
 		/**
 		 * Default popover state. Requires the UserBubble
 		 * to have some content to render inside the popover
@@ -177,6 +188,7 @@ export default {
 			type: Boolean,
 			default: false,
 		},
+
 		/**
 		 * Use the primary colour
 		 */
@@ -184,6 +196,7 @@ export default {
 			type: Boolean,
 			default: false,
 		},
+
 		/**
 		 * This is the height of the component
 		 */
@@ -191,6 +204,7 @@ export default {
 			type: Number,
 			default: 20,
 		},
+
 		/**
 		 * This is the margin of the avatar (size - margin = avatar size)
 		 */
@@ -199,10 +213,12 @@ export default {
 			default: 2,
 		},
 	},
+
 	emits: [
 		'click',
 		'update:open',
 	],
+
 	computed: {
 		/**
 		 * If userbubble is empty, let's NOT
@@ -231,10 +247,11 @@ export default {
 			try {
 				const url = new URL(this.avatarImage)
 				return !!url
-			} catch (error) {
+			} catch {
 				return false
 			}
 		},
+
 		/**
 		 * Do we have a custom avatar or not
 		 *
@@ -272,21 +289,25 @@ export default {
 					lineHeight: this.size + 'px',
 					borderRadius: this.size / 2 + 'px',
 				},
+
 				avatar: {
 					marginInlineStart: this.margin + 'px',
 				},
 			}
 		},
 	},
+
 	mounted() {
 		if (!this.displayName && !this.user) {
 			Vue.util.warn('[NcUserBubble] At least `displayName` or `user` property should be set.')
 		}
 	},
+
 	methods: {
 		onOpenChange(state) {
 			this.$emit('update:open', state)
 		},
+
 		/**
 		 * Catch and forward click event to parent
 		 *

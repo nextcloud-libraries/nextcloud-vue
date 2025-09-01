@@ -2,19 +2,19 @@
  * SPDX-FileCopyrightText: 2019 Nextcloud GmbH and Nextcloud contributors
  * SPDX-License-Identifier: AGPL-3.0-or-later
  */
-/* eslint-disable-next-line */
-import 'core-js/stable'
-import Vue from 'vue'
-import { isA11yActivation } from '../src/functions/a11y/index.ts'
-import { EmojiSkinTone, emojiSearch, emojiAddRecent, getCurrentSkinTone, setCurrentSkinTone } from '../src/functions/emoji/index.ts'
-import usernameToColor from '../src/functions/usernameToColor/index.js'
-import Tooltip from './../src/directives/Tooltip/index.js'
-import Focus from './../src/directives/Focus/index.ts'
-import Linkify from './../src/directives/Linkify/index.js'
-import { useIsDarkTheme } from '../src/composables/index.js'
-import { spawnDialog } from '../src/functions/dialog/index.ts'
 
 import axios from '@nextcloud/axios'
+import Vue from 'vue'
+import { useIsDarkTheme } from '../src/composables/index.js'
+import { isA11yActivation } from '../src/functions/a11y/index.ts'
+import { spawnDialog } from '../src/functions/dialog/index.ts'
+import { emojiAddRecent, emojiSearch, EmojiSkinTone, getCurrentSkinTone, setCurrentSkinTone } from '../src/functions/emoji/index.ts'
+import usernameToColor from '../src/functions/usernameToColor/index.js'
+import Focus from './../src/directives/Focus/index.ts'
+import Linkify from './../src/directives/Linkify/index.ts'
+import Tooltip from './../src/directives/Tooltip/index.js'
+
+import 'core-js/stable'
 
 const USER_GROUPS = [
 	{ id: 'admin', displayname: 'The administrators' },
@@ -36,7 +36,7 @@ function mockRequests(error) {
 	// Mock requesting groups
 	const requestGroups = request.responseURL.match(/cloud\/groups\/details\?search=([^&]*)&limit=\d+$/)
 	if (requestGroups) {
-		data = { groups: USER_GROUPS.filter(e => !requestGroups[1] || e.displayname.startsWith(requestGroups[1]) || e.id.startsWith(requestGroups[1])) }
+		data = { groups: USER_GROUPS.filter((e) => !requestGroups[1] || e.displayname.startsWith(requestGroups[1]) || e.id.startsWith(requestGroups[1])) }
 	}
 
 	if (data) {
@@ -45,7 +45,7 @@ function mockRequests(error) {
 	return Promise.reject(error)
 }
 
-axios.interceptors.response.use((r) => r, e => mockRequests(e))
+axios.interceptors.response.use((r) => r, (e) => mockRequests(e))
 
 // app name fallback
 window.appName = 'nextcloud-vue'

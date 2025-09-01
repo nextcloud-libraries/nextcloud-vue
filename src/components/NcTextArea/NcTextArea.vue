@@ -88,13 +88,15 @@ It extends and styles an HTMLTextAreaElement.
 </docs>
 
 <template>
-	<div class="textarea"
+	<div
+		class="textarea"
 		:class="{
 			'textarea--disabled': disabled,
 			'textarea--legacy': isLegacy32,
 		}">
 		<div class="textarea__main-wrapper">
-			<textarea v-bind="$attrs"
+			<textarea
+				v-bind="$attrs"
 				:id="computedId"
 				ref="input"
 				class="textarea__input"
@@ -114,13 +116,15 @@ It extends and styles an HTMLTextAreaElement.
 				v-on="$listeners"
 				@input="handleInput" />
 			<!-- Label -->
-			<label v-if="!labelOutside && isValidLabel"
+			<label
+				v-if="!labelOutside && isValidLabel"
 				class="textarea__label"
 				:for="computedId">
 				{{ label }}
 			</label>
 		</div>
-		<p v-if="helperText.length > 0"
+		<p
+			v-if="helperText.length > 0"
 			:id="`${inputName}-helper-text`"
 			class="textarea__helper-text-message"
 			:class="{
@@ -135,12 +139,12 @@ It extends and styles an HTMLTextAreaElement.
 </template>
 
 <script>
-import GenRandomId from '../../utils/GenRandomId.js'
-
 import AlertCircle from 'vue-material-design-icons/AlertCircleOutline.vue'
 import Check from 'vue-material-design-icons/Check.vue'
 import { useModelMigration } from '../../composables/useModelMigration.ts'
+import GenRandomId from '../../utils/GenRandomId.js'
 import { isLegacy32 } from '../../utils/legacy.ts'
+import { logger } from '../../utils/logger.ts'
 
 export default {
 	name: 'NcTextArea',
@@ -160,6 +164,7 @@ export default {
 	props: {
 		/**
 		 * Removed in v9 - use `modelValue` (`v-model`) instead
+		 *
 		 * @deprecated
 		 */
 		value: {
@@ -265,6 +270,7 @@ export default {
 	emits: [
 		/**
 		 * Removed in v9 - use `update:modelValue` (`v-model`) instead
+		 *
 		 * @deprecated
 		 */
 		'update:value',
@@ -307,7 +313,7 @@ export default {
 		isValidLabel() {
 			const isValidLabel = this.label || this.labelOutside
 			if (!isValidLabel) {
-				console.warn('You need to add a label to the NcInputField component. Either use the prop label or use an external one, as per the example in the documentation.')
+				logger.warn('You need to add a label to the NcInputField component. Either use the prop label or use an external one, as per the example in the documentation.')
 			}
 			return isValidLabel
 		},

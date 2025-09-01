@@ -120,20 +120,17 @@ export default {
 </docs>
 
 <script>
-import NcActions from '../NcActions/index.js'
-import NcActionButton from '../NcActionButton/index.js'
-import NcActionRouter from '../NcActionRouter/index.js'
-import NcActionLink from '../NcActionLink/index.js'
-import NcBreadcrumb from '../NcBreadcrumb/index.js'
-import ValidateSlot from '../../utils/ValidateSlot.js'
-
 import { subscribe, unsubscribe } from '@nextcloud/event-bus'
-
-import IconFolder from 'vue-material-design-icons/Folder.vue'
-
 import debounce from 'debounce'
 import Vue from 'vue'
 import { Fragment } from 'vue-frag'
+import IconFolder from 'vue-material-design-icons/Folder.vue'
+import ValidateSlot from '../../utils/ValidateSlot.js'
+import NcActionButton from '../NcActionButton/index.js'
+import NcActionLink from '../NcActionLink/index.js'
+import NcActionRouter from '../NcActionRouter/index.js'
+import NcActions from '../NcActions/index.js'
+import NcBreadcrumb from '../NcBreadcrumb/index.js'
 
 const crumbClass = 'vue-crumb'
 
@@ -147,6 +144,7 @@ export default {
 		NcBreadcrumb,
 		IconFolder,
 	},
+
 	props: {
 		/**
 		 * Set a css icon-class for the icon of the root breadcrumb to be used.
@@ -164,6 +162,7 @@ export default {
 			default: null,
 		},
 	},
+
 	emits: ['dropped'],
 	data() {
 		return {
@@ -186,17 +185,21 @@ export default {
 				// Is the menu open or not
 				open: false,
 			},
+
 			breadcrumbsRefs: {},
 		}
 	},
+
 	beforeMount() {
 		// Filter all invalid items, only Breadcrumb components are allowed
 		ValidateSlot(this.$slots.default, ['NcBreadcrumb'], this)
 	},
+
 	beforeUpdate() {
 		// Also check before every update
 		ValidateSlot(this.$slots.default, ['NcBreadcrumb'], this)
 	},
+
 	created() {
 		/**
 		 * Add a listener so the component reacts on resize
@@ -206,9 +209,11 @@ export default {
 		}, 100))
 		subscribe('navigation-toggled', this.delayedResize)
 	},
+
 	mounted() {
 		this.handleWindowResize()
 	},
+
 	updated() {
 		/**
 		 * Check the size on update
@@ -221,10 +226,12 @@ export default {
 			this.hideCrumbs()
 		})
 	},
+
 	beforeDestroy() {
 		window.removeEventListener('resize', this.handleWindowResize)
 		unsubscribe('navigation-toggled', this.delayedResize)
 	},
+
 	methods: {
 		/**
 		 * Close the actions menu
@@ -238,13 +245,15 @@ export default {
 			}
 			this.menuBreadcrumbProps.open = false
 		},
+
 		/**
 		 * Call the resize function after a delay
 		 */
-		 async delayedResize() {
+		async delayedResize() {
 			await this.$nextTick()
 			this.handleWindowResize()
 		},
+
 		/**
 		 * Check the width of the breadcrumb and hide breadcrumbs
 		 * if we overflow otherwise.
@@ -286,6 +295,7 @@ export default {
 				this.hiddenIndices = hiddenIndices
 			}
 		},
+
 		/**
 		 * Checks if two arrays are equal.
 		 * Only works for primitive arrays, but that's enough here.
@@ -295,9 +305,15 @@ export default {
 		 * @return {boolean} Wether the arrays are equal
 		 */
 		arraysEqual(a, b) {
-			if (a.length !== b.length) return false
-			if (a === b) return true
-			if (a === null || b === null) return false
+			if (a.length !== b.length) {
+				return false
+			}
+			if (a === b) {
+				return true
+			}
+			if (a === null || b === null) {
+				return false
+			}
 
 			for (let i = 0; i < a.length; ++i) {
 				if (a[i] !== b[i]) {
@@ -306,6 +322,7 @@ export default {
 			}
 			return true
 		},
+
 		/**
 		 * Calculates the total width of all breadcrumbs
 		 *
@@ -315,6 +332,7 @@ export default {
 		getTotalWidth(breadcrumbs) {
 			return breadcrumbs.reduce((width, crumb, index) => width + this.getWidth(crumb?.elm, index === (breadcrumbs.length - 1)), 0)
 		},
+
 		/**
 		 * Calculates the width of the provided element
 		 *
@@ -323,7 +341,9 @@ export default {
 		 * @return {number} The width
 		 */
 		getWidth(el, isLast) {
-			if (!el?.classList) return 0
+			if (!el?.classList) {
+				return 0
+			}
 			const hide = el.classList.contains(`${crumbClass}--hidden`)
 			el.style.minWidth = 'auto'
 			// For the last crumb, we calculate with a max-width of 210px,
@@ -340,6 +360,7 @@ export default {
 			el.style.maxWidth = ''
 			return w
 		},
+
 		/**
 		 * Prevents the default of a provided event
 		 *
@@ -352,6 +373,7 @@ export default {
 			}
 			return false
 		},
+
 		/**
 		 * Handles the drag start.
 		 * Prevents a breadcrumb from being draggable.
@@ -362,6 +384,7 @@ export default {
 		dragStart(e) {
 			return this.preventDefault(e)
 		},
+
 		/**
 		 * Handles when something is dropped on the breadcrumb.
 		 *
@@ -388,9 +411,12 @@ export default {
 
 			// Remove all hovering classes
 			const crumbs = document.querySelectorAll(`.${crumbClass}`)
-			crumbs.forEach((f) => { f.classList.remove(`${crumbClass}--hovered`) })
+			crumbs.forEach((f) => {
+				f.classList.remove(`${crumbClass}--hovered`)
+			})
 			return this.preventDefault(e)
 		},
+
 		/**
 		 * Handles the drag over event
 		 *
@@ -400,6 +426,7 @@ export default {
 		dragOver(e) {
 			return this.preventDefault(e)
 		},
+
 		/**
 		 * Handles the drag enter event
 		 *
@@ -418,11 +445,14 @@ export default {
 				const target = e.target.closest(`.${crumbClass}`)
 				if (target.classList && target.classList.contains(crumbClass)) {
 					const crumbs = document.querySelectorAll(`.${crumbClass}`)
-					crumbs.forEach((f) => { f.classList.remove(`${crumbClass}--hovered`) })
+					crumbs.forEach((f) => {
+						f.classList.remove(`${crumbClass}--hovered`)
+					})
 					target.classList.add(`${crumbClass}--hovered`)
 				}
 			}
 		},
+
 		/**
 		 * Handles the drag leave event
 		 *
@@ -451,6 +481,7 @@ export default {
 				}
 			}
 		},
+
 		/**
 		 * Check for each crumb if we have to hide it and
 		 * add it to the array of all crumbs.
@@ -472,6 +503,7 @@ export default {
 			return (vnode?.componentOptions?.tag || vnode?.tag || '').includes('NcBreadcrumb')
 		},
 	},
+
 	/**
 	 * The render function to display the component
 	 *
@@ -482,14 +514,14 @@ export default {
 		// Get the breadcrumbs
 		const breadcrumbs = []
 		// We have to iterate over all slot elements
-		this.$slots.default.forEach(vnode => {
+		this.$slots.default.forEach((vnode) => {
 			if (this.isBreadcrumb(vnode)) {
 				breadcrumbs.push(vnode)
 				return
 			}
 			// If we encounter a Fragment, we have to check its children too
 			if (vnode?.type === Fragment) {
-				vnode?.children?.forEach?.(child => {
+				vnode?.children?.forEach?.((child) => {
 					if (this.isBreadcrumb(child)) {
 						breadcrumbs.push(child)
 					}
@@ -503,9 +535,7 @@ export default {
 		}
 
 		// Add the root icon to the first breadcrumb
-		// eslint-disable-next-line import/no-named-as-default-member
 		Vue.set(breadcrumbs[0].componentOptions.propsData, 'icon', this.rootIcon)
-		// eslint-disable-next-line import/no-named-as-default-member
 		Vue.set(breadcrumbs[0].componentOptions.propsData, 'ref', 'breadcrumbs')
 
 		/**
@@ -516,7 +546,6 @@ export default {
 		const breadcrumbsRefs = {}
 		// Add the breadcrumbs to the array of the created VNodes, check if hiding them is necessary.
 		breadcrumbs.forEach((crumb, index) => {
-			// eslint-disable-next-line import/no-named-as-default-member
 			Vue.set(crumb, 'ref', `crumb-${index}`)
 			breadcrumbsRefs[index] = crumb
 		})
@@ -565,7 +594,7 @@ export default {
 					},
 				},
 			// Add all hidden breadcrumbs as ActionRouter or ActionLink
-			}, this.hiddenIndices.filter(index => index <= breadcrumbs.length - 1).map(index => {
+			}, this.hiddenIndices.filter((index) => index <= breadcrumbs.length - 1).map((index) => {
 				const crumb = breadcrumbs[index]
 				// Get the parameters from the breadcrumb component props
 				const to = crumb.componentOptions.propsData.to
@@ -613,11 +642,8 @@ export default {
 						dragenter: ($event) => this.dragEnter($event, disabled),
 						dragleave: ($event) => this.dragLeave($event, disabled),
 					},
-				},
-				[folderIcon, name],
-				)
-			})),
-			)
+				}, [folderIcon, name])
+			})))
 
 			// The second half of the breadcrumbs
 			const crumbs2 = breadcrumbs.slice(Math.round(breadcrumbs.length / 2))

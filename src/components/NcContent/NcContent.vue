@@ -54,7 +54,7 @@ It also will set the skip content buttons needed for accessibility.
 </docs>
 
 <template>
-	<div id="content-vue" :class="['content', `app-${appName.toLowerCase()}`]">
+	<div id="content-vue" class="content" :class="`app-${appName.toLowerCase()}`">
 		<!-- TODO: with vue3 the `selector` attribute needs to be changed to `to="#skip-actions"` -->
 		<Teleport selector="#skip-actions">
 			<div class="vue-skip-actions__container">
@@ -62,7 +62,8 @@ It also will set the skip content buttons needed for accessibility.
 					{{ t('Keyboard navigation help') }}
 				</div>
 				<div class="vue-skip-actions__buttons">
-					<NcButton v-show="hasAppNavigation"
+					<NcButton
+						v-show="hasAppNavigation"
 						href="#app-navigation-vue"
 						variant="tertiary"
 						@click.prevent="openAppNavigation"
@@ -70,14 +71,16 @@ It also will set the skip content buttons needed for accessibility.
 						@mouseover="currentFocus = 'navigation'">
 						{{ t('Skip to app navigation') }}
 					</NcButton>
-					<NcButton href="#app-content-vue"
+					<NcButton
+						href="#app-content-vue"
 						variant="tertiary"
 						@focusin="currentFocus = 'content'"
 						@mouseover="currentFocus = 'content'">
 						{{ t('Skip to main content') }}
 					</NcButton>
 				</div>
-				<NcIconSvgWrapper v-show="!isMobile"
+				<NcIconSvgWrapper
+					v-show="!isMobile"
 					class="vue-skip-actions__image"
 					:svg="currentImage"
 					size="auto" />
@@ -89,19 +92,15 @@ It also will set the skip content buttons needed for accessibility.
 </template>
 
 <script>
-import { emit } from '@nextcloud/event-bus'
 // TODO: This is built-in for vue3 just drop the import
 import { Portal as Teleport } from '@linusborg/vue-simple-portal'
-import { useIsMobile } from '../../composables/useIsMobile/index.js'
-import { t } from '../../l10n.js'
-
+import { emit } from '@nextcloud/event-bus'
 import NcButton from '../NcButton/NcButton.vue'
 import NcIconSvgWrapper from '../NcIconSvgWrapper/NcIconSvgWrapper.vue'
-
-/* eslint-disable import/no-unresolved */
+import { useIsMobile } from '../../composables/useIsMobile/index.js'
+import { t } from '../../l10n.js'
 import contentSvg from './content-selected.svg?raw'
 import navigationSvg from './navigation-selected.svg?raw'
-/* eslint-enable import/no-unresolved */
 
 export default {
 	name: 'NcContent',
@@ -110,30 +109,39 @@ export default {
 		NcIconSvgWrapper,
 		Teleport,
 	},
+
 	provide() {
 		return {
 			'NcContent:setHasAppNavigation': this.setAppNavigation,
 			'NcContent:selector': '#content-vue',
 		}
 	},
+
 	props: {
+		/**
+		 * The application name to use.
+		 * This is used to scope all content (content, sidebar, navigation) to the application.
+		 */
 		appName: {
 			type: String,
 			required: true,
 		},
 	},
+
 	setup() {
 		const isMobile = useIsMobile()
 		return {
 			isMobile,
 		}
 	},
+
 	data() {
 		return {
 			hasAppNavigation: false,
 			currentFocus: '', // unknown
 		}
 	},
+
 	computed: {
 		currentImage() {
 			if (this.currentFocus === 'navigation') {
@@ -142,6 +150,7 @@ export default {
 			return contentSvg
 		},
 	},
+
 	beforeMount() {
 		const container = document.getElementById('skip-actions')
 		if (container) {
@@ -151,6 +160,7 @@ export default {
 			container.classList.add('vue-skip-actions')
 		}
 	},
+
 	methods: {
 		t,
 		openAppNavigation() {
@@ -161,6 +171,7 @@ export default {
 				document.getElementById('app-navigation-vue').focus()
 			})
 		},
+
 		setAppNavigation(value) {
 			this.hasAppNavigation = value
 			// If app navigation is available and no focus was set yet, set it to navigation as it is the first button

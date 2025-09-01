@@ -135,9 +135,9 @@ Using `v-if` is also possible, this can e.g. used if the image is not loaded fro
 
 <script setup>
 import { decode } from 'blurhash'
-import { ref, watch, nextTick } from 'vue'
-import { logger } from '../../utils/logger.ts'
+import { nextTick, ref, watch } from 'vue'
 import { preloadImage } from '../../functions/preloadImage/index.ts'
+import { logger } from '../../utils/logger.ts'
 
 const props = defineProps({
 	/**
@@ -235,12 +235,14 @@ function drawBlurHash() {
 </script>
 
 <template>
-	<Transition :css="src ? undefined : false"
+	<Transition
+		:css="src ? undefined : false"
 		:enter-active-class="$style.fadeTransition"
 		:leave-active-class="$style.fadeTransition"
 		:enter-class="$style.fadeTransitionActive"
 		:leave-to-class="$style.fadeTransitionActive">
-		<canvas v-if="!imageLoaded"
+		<canvas
+			v-if="!imageLoaded"
 			ref="canvas"
 			:aria-hidden="alt ? null : 'true'"
 			:aria-label="alt" />

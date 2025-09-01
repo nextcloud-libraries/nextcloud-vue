@@ -19,6 +19,7 @@ declare module '*?raw' {
 
 declare global {
 	interface Window {
+		_nc_vue_element_id?: number
 		_nc_contacts_menu_hooks: { [id: string]: ContactsMenuAction }
 		// eslint-disable-next-line @typescript-eslint/no-explicit-any
 		OCP: any

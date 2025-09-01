@@ -6,7 +6,8 @@
 <template>
 	<div class="raw-link">
 		<div class="input-wrapper">
-			<NcTextField ref="url-input"
+			<NcTextField
+				ref="url-input"
 				:value.sync="inputValue"
 				:show-trailing-button="inputValue !== ''"
 				:label="inputPlaceholder"
@@ -17,13 +18,16 @@
 				<LinkVariantIcon v-else :size="16" />
 			</NcTextField>
 		</div>
-		<NcReferenceWidget v-if="reference !== null"
+		<NcReferenceWidget
+			v-if="reference !== null"
 			class="reference-widget"
 			:reference="reference" />
-		<NcEmptyContent v-else
+		<NcEmptyContent
+			v-else
 			class="raw-link--empty-content">
 			<template #icon>
-				<img v-if="provider.icon_url"
+				<img
+					v-if="provider.icon_url"
 					class="provider-icon"
 					:src="provider.icon_url">
 				<LinkVariantIcon v-else />
@@ -33,17 +37,16 @@
 </template>
 
 <script>
+import axios from '@nextcloud/axios'
+import { generateOcsUrl } from '@nextcloud/router'
+import LinkVariantIcon from 'vue-material-design-icons/LinkVariant.vue'
 import NcReferenceWidget from '../NcReferenceWidget.vue'
-import { isUrl, delay } from './utils.js'
+import { t } from '../../../l10n.js'
+import { logger } from '../../../utils/logger.ts'
 import NcEmptyContent from '../../NcEmptyContent/index.js'
 import NcLoadingIcon from '../../NcLoadingIcon/index.js'
 import NcTextField from '../../NcTextField/index.js'
-import { t } from '../../../l10n.js'
-
-import axios from '@nextcloud/axios'
-import { generateOcsUrl } from '@nextcloud/router'
-
-import LinkVariantIcon from 'vue-material-design-icons/LinkVariant.vue'
+import { delay, isUrl } from './utils.js'
 
 export default {
 	name: 'NcRawLinkInput',
@@ -54,6 +57,7 @@ export default {
 		NcReferenceWidget,
 		NcTextField,
 	},
+
 	props: {
 		/**
 		 * The reference provider
@@ -63,9 +67,11 @@ export default {
 			required: true,
 		},
 	},
+
 	emits: [
 		'submit',
 	],
+
 	data() {
 		return {
 			inputValue: '',
@@ -75,25 +81,30 @@ export default {
 			inputPlaceholder: t('Enter link'),
 		}
 	},
+
 	computed: {
 		isLinkValid() {
 			return isUrl(this.inputValue)
 		},
 	},
+
 	methods: {
 		focus() {
 			this.$refs['url-input'].$el.getElementsByTagName('input')[0]?.focus()
 		},
+
 		onSubmit(e) {
 			const value = e.target.value
 			if (this.isLinkValid) {
 				this.$emit('submit', value)
 			}
 		},
+
 		onClear() {
 			this.inputValue = ''
 			this.reference = null
 		},
+
 		onInput() {
 			this.reference = null
 			if (this.abortController) {
@@ -105,6 +116,7 @@ export default {
 				}, 500)()
 			}
 		},
+
 		updateReference() {
 			this.loading = true
 			this.abortController = new AbortController()
@@ -115,7 +127,7 @@ export default {
 					this.reference = response.data.ocs.data.references[this.inputValue]
 				})
 				.catch((error) => {
-					console.error(error)
+					logger.error(error)
 				})
 				.then(() => {
 					this.loading = false

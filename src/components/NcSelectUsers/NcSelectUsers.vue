@@ -166,11 +166,10 @@ export default {
 
 <script setup>
 import { ref, watch } from 'vue'
-import { t } from '../../l10n.js'
-import createElementId from '../../utils/GenRandomId.js'
-
 import NcListItemIcon from '../NcListItemIcon/NcListItemIcon.vue'
 import NcSelect from '../NcSelect/NcSelect.vue'
+import { t } from '../../l10n.js'
+import createElementId from '../../utils/GenRandomId.js'
 
 const props = defineProps({
 	/**
@@ -192,6 +191,7 @@ const props = defineProps({
 	/**
 	 * Allows to customize the `aria-label` for the deselect-option button
 	 * The default is "Deselect " + optionLabel
+	 *
 	 * @type {(optionLabel: string) => string}
 	 */
 	ariaLabelDeselectOption: {
@@ -372,20 +372,23 @@ export default {
 </script>
 
 <template>
-	<NcSelect class="nc-select-users"
+	<NcSelect
+		class="nc-select-users"
 		v-bind="$props"
 		:filter-by="localFilterBy"
 		label="displayName"
 		@search="search = $event"
 		@update:model-value="$emit('update:modelValue', $event)">
 		<template #option="option">
-			<NcListItemIcon v-bind="option"
+			<NcListItemIcon
+				v-bind="option"
 				:avatar-size="32"
 				:name="option.displayName"
 				:search="search" />
 		</template>
 		<template #selected-option="selectedOption">
-			<NcListItemIcon v-bind="selectedOption"
+			<NcListItemIcon
+				v-bind="selectedOption"
 				:avatar-size="avatarSize"
 				:name="selectedOption.displayName"
 				no-margin

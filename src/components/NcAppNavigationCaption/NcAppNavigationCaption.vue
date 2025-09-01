@@ -149,20 +149,24 @@
 </docs>
 
 <template>
-	<component :is="wrapperTag"
+	<component
+		:is="wrapperTag"
 		class="app-navigation-caption"
 		:class="{ 'app-navigation-caption--heading': isHeading }">
 		<!-- Name of the caption -->
-		<component :is="captionTag"
+		<component
+			:is="captionTag"
 			:id="headingId"
 			class="app-navigation-caption__name">
 			{{ name }}
 		</component>
 
 		<!-- Actions -->
-		<div v-if="hasActions"
+		<div
+			v-if="hasActions"
 			class="app-navigation-caption__actions">
-			<NcActions v-bind="$attrs"
+			<NcActions
+				v-bind="$attrs"
 				v-on="$listeners">
 				<!-- @slot Slot for the actions menu -->
 				<slot name="actions" />
@@ -187,6 +191,9 @@ export default {
 	inheritAttrs: false,
 
 	props: {
+		/**
+		 * The text of the caption
+		 */
 		name: {
 			type: String,
 			required: true,
@@ -230,11 +237,13 @@ export default {
 		wrapperTag() {
 			return this.isHeading ? 'div' : 'li'
 		},
+
 		captionTag() {
 			// Limit to at least h2 as h1 is considered invalid and reserved
 			const headingLevel = Math.max(2, this.headingLevel)
 			return this.isHeading ? `h${headingLevel}` : 'span'
 		},
+
 		// Check if the actions slot is populated
 		hasActions() {
 			return !!this.$slots.actions

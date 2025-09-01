@@ -29,7 +29,8 @@ export default {
 
 <template>
 	<div>
-		<NcTeamResources :provider-id="providerId"
+		<NcTeamResources
+			:provider-id="providerId"
 			:item-id="itemId" />
 
 		<div v-if="appEnabled && isVisible" class="related-resources">
@@ -38,7 +39,8 @@ export default {
 				<p>{{ subline }}</p>
 			</div>
 
-			<NcResource v-for="resource in resources"
+			<NcResource
+				v-for="resource in resources"
 				:key="resource.itemId"
 				class="related-resources__entry"
 				:icon="resource.icon"
@@ -51,10 +53,10 @@ export default {
 <script>
 import axios from '@nextcloud/axios'
 import { generateOcsUrl } from '@nextcloud/router'
-import NcTeamResources from './NcTeamResources.vue'
 import NcResource from './NcResource.vue'
-
+import NcTeamResources from './NcTeamResources.vue'
 import { t } from '../../l10n.js'
+import { logger } from '../../utils/logger.ts'
 
 export default {
 	name: 'NcRelatedResourcesPanel',
@@ -64,6 +66,7 @@ export default {
 		NcTeamResources,
 	},
 
+	/* eslint vue/require-prop-comment: warn -- TODO: Add a proper doc block about what this props do */
 	props: {
 		/**
 		 * The provider id implemented with `\OCA\RelatedResources\IRelatedResourceProvider::getProviderId()`
@@ -72,6 +75,7 @@ export default {
 			type: String,
 			default: null,
 		},
+
 		/**
 		 * The item id which uniquely identities the e.g. Calendar event, Deck board, file, Talk room, etc.
 		 */
@@ -79,6 +83,7 @@ export default {
 			type: [String, Number],
 			default: null,
 		},
+
 		/**
 		 * Limits to specific resource type. i.e. any provider id implemented with `\OCA\RelatedResources\IRelatedResourceProvider::getProviderId()`
 		 */
@@ -86,6 +91,7 @@ export default {
 			type: String,
 			default: '',
 		},
+
 		/**
 		 * Set the maximum number of resources to load
 		 */
@@ -93,6 +99,7 @@ export default {
 			type: Number,
 			default: 0,
 		},
+
 		/**
 		 * Only used by the files sidebar
 		 *
@@ -102,6 +109,7 @@ export default {
 			type: Object,
 			default: null,
 		},
+
 		/**
 		 * Make the header name dynamic
 		 */
@@ -109,10 +117,12 @@ export default {
 			type: String,
 			default: t('Related resources'),
 		},
+
 		description: {
 			type: String,
 			default: t('Anything shared with the same group of people will show up here'),
 		},
+
 		/**
 		 * If this element is used on a primary element set to true for primary styling.
 		 */
@@ -143,6 +153,7 @@ export default {
 			}
 			return this.error ?? this.resources.length > 0
 		},
+
 		subline() {
 			if (this.error) {
 				return t('Error getting related resources. Please contact your system administrator if you have any questions.')
@@ -189,12 +200,15 @@ export default {
 		providerId() {
 			this.fetchRelatedResources()
 		},
+
 		itemId() {
 			this.fetchRelatedResources()
 		},
+
 		fileInfo() {
 			this.fetchRelatedResources()
 		},
+
 		error(error) {
 			/**
 			 * Emitted when the error value changes
@@ -203,6 +217,7 @@ export default {
 			 */
 			this.$emit('has-error', Boolean(error))
 		},
+
 		resources(resources) {
 			/**
 			 * Emitted when the resources value changes
@@ -232,7 +247,7 @@ export default {
 				this.resources = response.data.ocs?.data
 			} catch (e) {
 				this.error = e
-				console.error(e)
+				logger.error(e)
 			} finally {
 				this.loading = false
 			}

@@ -123,17 +123,20 @@ export default {
 </docs>
 
 <template>
-	<NcDialog v-if="open"
+	<NcDialog
+		v-if="open"
 		:navigation-aria-label="settingsNavigationAriaLabel"
 		v-bind="dialogProperties"
 		@update:open="handleCloseModal">
 		<template v-if="hasNavigation" #navigation="{ isCollapsed }">
-			<ul v-if="!isCollapsed"
+			<ul
+				v-if="!isCollapsed"
 				class="navigation-list">
 				<li v-for="section in sections" :key="section.id">
-					<a :aria-current="`${section.id === selectedSection}`"
+					<a
+						:aria-current="`${section.id === selectedSection}`"
+						class="navigation-list__link"
 						:class="{
-							'navigation-list__link': true,
 							'navigation-list__link--active': section.id === selectedSection,
 							'navigation-list__link--icon': hasNavigationIcons,
 						}"
@@ -158,13 +161,12 @@ export default {
 </template>
 
 <script>
-import NcDialog from '../NcDialog/index.js'
-import NcVNodes from '../NcVNodes/index.js'
-import { useIsMobile } from '../../composables/useIsMobile/index.js'
-import { t } from '../../l10n.js'
-
 import debounce from 'debounce'
 import Vue from 'vue'
+import { useIsMobile } from '../../composables/useIsMobile/index.js'
+import { t } from '../../l10n.js'
+import NcDialog from '../NcDialog/index.js'
+import NcVNodes from '../NcVNodes/index.js'
 
 export default {
 
@@ -190,6 +192,7 @@ export default {
 			type: Boolean,
 			required: true,
 		},
+
 		/**
 		 * Shows the navigation on desktop if true
 		 */
@@ -240,6 +243,7 @@ export default {
 			scroller: null,
 			/**
 			 * Currently registered settings sections
+			 *
 			 * @type {{ id: string, name: string, icon?: import('vue').VNode[] }[]}
 			 */
 			sections: [],
@@ -291,12 +295,12 @@ export default {
 			this.scroller.addEventListener('scroll', this.handleScroll)
 			this.addedScrollListener = true
 		}
-
 	},
 
 	methods: {
 		/**
 		 * Called when a new section is registered
+		 *
 		 * @param {string} id The section ID
 		 * @param {string} name The section name
 		 * @param {import('vue').VNode[]|undefined} icon Optional icon component
@@ -313,7 +317,7 @@ export default {
 			const newSections = [...this.sections, { id, name, icon }]
 			// Sort sections by order in slots
 			this.sections = newSections.sort(({ id: idA }, { id: idB }) => {
-				const indexOf = (id) => this.$slots.default?.findIndex?.(vnode => vnode?.componentOptions?.propsData?.id === id) ?? -1
+				const indexOf = (id) => this.$slots.default?.findIndex?.((vnode) => vnode?.componentOptions?.propsData?.id === id) ?? -1
 				return indexOf(idA) - indexOf(idB)
 			})
 
@@ -325,6 +329,7 @@ export default {
 
 		/**
 		 * Called when a section is unregistered to remove it from dialog
+		 *
 		 * @param {string} id The section ID
 		 */
 		unregisterSection(id) {

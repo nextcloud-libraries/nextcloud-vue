@@ -422,6 +422,7 @@ td.row-size {
 
 <script>
 import { isLegacy32 } from '../../utils/legacy.ts'
+import { logger } from '../../utils/logger.ts'
 
 export default {
 	name: 'NcButton',
@@ -482,6 +483,7 @@ export default {
 				return ['primary', 'secondary', 'tertiary', 'tertiary-no-background', 'tertiary-on-primary', 'error', 'warning', 'success'].includes(value)
 					|| ['submit', 'reset', 'button'].includes(value)
 			},
+
 			default: 'secondary',
 		},
 
@@ -497,6 +499,7 @@ export default {
 			validator(value) {
 				return ['submit', 'reset', 'button'].indexOf(value) !== -1
 			},
+
 			default: 'button',
 		},
 
@@ -562,6 +565,7 @@ export default {
 			type: Boolean,
 			default: false,
 		},
+
 		/**
 		 * @deprecated To be removed in @nextcloud/vue 9. Migration guide: remove ariaHidden prop from NcAction* components.
 		 * @todo Add a check in @nextcloud/vue 9 that this prop is not provided,
@@ -569,6 +573,7 @@ export default {
 		 */
 		ariaHidden: {
 			type: Boolean,
+			// eslint-disable-next-line vue/no-boolean-default
 			default: null,
 		},
 
@@ -580,6 +585,7 @@ export default {
 		 */
 		pressed: {
 			type: Boolean,
+			// eslint-disable-next-line vue/no-boolean-default
 			default: null,
 		},
 
@@ -591,11 +597,12 @@ export default {
 		 * @default 'secondary'
 		 * @since 8.24.0
 		 */
-		 variant: {
+		variant: {
 			type: String,
 			validator(value) {
 				return ['primary', 'secondary', 'tertiary', 'tertiary-no-background', 'tertiary-on-primary', 'error', 'warning', 'success'].includes(value)
 			},
+
 			default: 'secondary',
 		},
 	},
@@ -687,18 +694,18 @@ export default {
 		 * Always fill either the text prop or the ariaLabel one.
 		 */
 		if (!hasText && !this.ariaLabel) {
-			console.warn('You need to fill either the text or the ariaLabel props in the button component.', {
+			logger.warn('You need to fill either the text or the ariaLabel props in the button component.', {
 				text: this.$slots.default?.[0]?.text,
 				ariaLabel: this.ariaLabel,
-			},
-			this)
+			}, this)
 		}
 
 		const isLink = (this.to || this.href)
 
 		const hasPressed = !isLink && typeof this.pressed === 'boolean'
 
-		const renderButton = ({ href, navigate, isActive, isExactActive } = {}) => h(isLink ? 'a' : 'button',
+		const renderButton = ({ href, navigate, isActive, isExactActive } = {}) => h(
+			isLink ? 'a' : 'button',
 			{
 				class: [
 					'button-vue',
@@ -753,13 +760,11 @@ export default {
 				h('span', { class: 'button-vue__wrapper' }, [
 					hasIcon
 						? h('span', {
-							class: 'button-vue__icon',
-							attrs: {
-								'aria-hidden': 'true',
-							},
-						},
-						[this.$slots.icon],
-						)
+								class: 'button-vue__icon',
+								attrs: {
+									'aria-hidden': 'true',
+								},
+							}, [this.$slots.icon])
 						: null,
 					hasText ? h('span', { class: 'button-vue__text' }, [this.$slots.default]) : null,
 				]),

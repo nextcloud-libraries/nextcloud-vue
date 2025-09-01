@@ -3,9 +3,10 @@
  * SPDX-License-Identifier: AGPL-3.0-or-later
  */
 
+import type { Component } from 'vue'
+
 import { mount } from 'cypress/vue2'
 import NcModal from '../../src/components/NcModal/NcModal.vue'
-import type { Component } from 'vue'
 
 describe('NcModal', () => {
 	it('Modal is labelled correctly if name is set', () => {
@@ -64,11 +65,10 @@ describe('NcModal', () => {
 			slots: {
 				// Create two div as children, first is 100vh = overflows the content, second just gets some data attribute so we can scroll into view
 				default: {
-					render: (h) =>
-						h('div', [
-							h('div', { style: 'height: 100vh;' }),
-							h('div', { attrs: { 'data-cy': 'bottom' } }),
-						]),
+					render: (h) => h('div', [
+						h('div', { style: 'height: 100vh;' }),
+						h('div', { attrs: { 'data-cy': 'bottom' } }),
+					]),
 				} as Component,
 			},
 		})

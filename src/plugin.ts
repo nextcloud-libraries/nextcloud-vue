@@ -10,6 +10,7 @@ import * as NcDirectives from './directives/index.js'
 
 /**
  * Install all Nextcloud Vue components and directives globally
+ *
  * @example
  * ```js
  * import { NextcloudVuePlugin } from '@nextcloud/vue'

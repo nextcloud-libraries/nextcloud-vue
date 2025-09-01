@@ -58,7 +58,8 @@ available in four versions:
 </docs>
 
 <template>
-	<div class="notecard"
+	<div
+		class="notecard"
 		:class="{
 			[`notecard--${type}`]: type,
 			'notecard--legacy': isLegacy32,
@@ -66,9 +67,10 @@ available in four versions:
 		:role="shouldShowAlert ? 'alert' : 'note'">
 		<!-- @slot Manually provide icon -->
 		<slot name="icon">
-			<component :is="icon"
+			<component
+				:is="icon"
 				class="notecard__icon"
-				:class="{'notecard__icon--heading': heading}"
+				:class="{ 'notecard__icon--heading': heading }"
 				fill-color="var(--note-theme)"
 				:size="20" />
 		</slot>
@@ -87,9 +89,9 @@ available in four versions:
 </template>
 
 <script>
-import CheckboxMarkedCircle from 'vue-material-design-icons/CheckboxMarkedCircle.vue'
-import AlertDecagram from 'vue-material-design-icons/AlertDecagram.vue'
 import Alert from 'vue-material-design-icons/Alert.vue'
+import AlertDecagram from 'vue-material-design-icons/AlertDecagram.vue'
+import CheckboxMarkedCircle from 'vue-material-design-icons/CheckboxMarkedCircle.vue'
 import Information from 'vue-material-design-icons/Information.vue'
 import { isLegacy32 } from '../../utils/legacy.ts'
 
@@ -103,8 +105,9 @@ export default {
 		type: {
 			type: String,
 			default: 'warning',
-			validator: type => ['success', 'info', 'warning', 'error'].includes(type),
+			validator: (type) => ['success', 'info', 'warning', 'error'].includes(type),
 		},
+
 		/**
 		 * Enforce the `alert` role on the note card.
 		 *
@@ -115,6 +118,7 @@ export default {
 			type: Boolean,
 			default: false,
 		},
+
 		/**
 		 * Optional text to show as a heading of the note card
 		 */
@@ -122,6 +126,7 @@ export default {
 			type: String,
 			default: '',
 		},
+
 		/**
 		 * The message text of the note card
 		 */
@@ -141,18 +146,19 @@ export default {
 		shouldShowAlert() {
 			return this.showAlert || this.type === 'error'
 		},
+
 		icon() {
 			switch (this.type) {
-			case 'error':
-				return AlertDecagram
-			case 'success':
-				return CheckboxMarkedCircle
-			case 'info':
-				return Information
-			case 'warning':
-				return Alert
-			default:
-				return Alert
+				case 'error':
+					return AlertDecagram
+				case 'success':
+					return CheckboxMarkedCircle
+				case 'info':
+					return Information
+				case 'warning':
+					return Alert
+				default:
+					return Alert
 			}
 		},
 	},

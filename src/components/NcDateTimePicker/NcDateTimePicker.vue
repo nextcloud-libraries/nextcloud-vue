@@ -107,7 +107,8 @@ export default {
 </docs>
 
 <template>
-	<DatePicker ref="datepicker"
+	<DatePicker
+		ref="datepicker"
 		:append-to-body="appendToBody"
 		:clearable="clearable"
 		:format="internalFormat"
@@ -126,27 +127,31 @@ export default {
 		@select-month="handleSelectMonth"
 		@input="model = $event">
 		<template #icon-calendar>
-			<NcPopover v-if="showTimezoneSelect"
+			<NcPopover
+				v-if="showTimezoneSelect"
 				popup-role="dialog"
 				:shown.sync="showTimezonePopover"
 				popover-base-class="timezone-select__popper">
 				<template #trigger="{ attrs }">
-					<button class="datetime-picker-inline-icon"
-						:class="{'datetime-picker-inline-icon--highlighted': highlightTimezone}"
+					<button
+						class="datetime-picker-inline-icon"
+						:class="{ 'datetime-picker-inline-icon--highlighted': highlightTimezone }"
 						v-bind="attrs"
 						@mousedown.stop.prevent="() => {}">
 						<Web :size="20" />
 					</button>
 				</template>
 
-				<div role="dialog"
+				<div
+					role="dialog"
 					:aria-labelledby="timezoneDialogHeaderId">
 					<div class="timezone-popover-wrapper__label">
 						<strong :id="timezoneDialogHeaderId">
 							{{ t('Please select a time zone:') }}
 						</strong>
 					</div>
-					<NcTimezonePicker v-model="tzVal"
+					<NcTimezonePicker
+						v-model="tzVal"
 						class="timezone-popover-wrapper__timezone-select"
 						@input="$emit('update:timezone-id', arguments[0])" />
 				</div>
@@ -160,28 +165,25 @@ export default {
 </template>
 
 <script>
-import { t } from '../../l10n.js'
-import GenRandomId from '../../utils/GenRandomId.js'
-import { useModelMigration } from '../../composables/useModelMigration.ts'
-
-import NcTimezonePicker from '../NcTimezonePicker/index.js'
-import NcPopover from '../NcPopover/index.js'
-
-import CalendarBlank from 'vue-material-design-icons/CalendarBlank.vue'
-import Web from 'vue-material-design-icons/Web.vue'
-
-import './index.scss'
-
 import {
-	getFirstDay,
 	getDayNames,
-	getDayNamesShort,
 	getDayNamesMin,
+	getDayNamesShort,
+	getFirstDay,
 	getMonthNames,
 	getMonthNamesShort,
 } from '@nextcloud/l10n'
-
 import DatePicker from 'vue2-datepicker'
+import CalendarBlank from 'vue-material-design-icons/CalendarBlank.vue'
+import Web from 'vue-material-design-icons/Web.vue'
+import { useModelMigration } from '../../composables/useModelMigration.ts'
+import { t } from '../../l10n.js'
+import GenRandomId from '../../utils/GenRandomId.js'
+import { logger } from '../../utils/logger.ts'
+import NcPopover from '../NcPopover/index.js'
+import NcTimezonePicker from '../NcTimezonePicker/index.js'
+
+import './index.scss'
 
 const formatMap = {
 	date: 'YYYY-MM-DD',
@@ -211,11 +213,17 @@ export default {
 	},
 
 	props: {
+		/**
+		 * Allow to clear the input.
+		 */
 		clearable: {
 			type: Boolean,
 			default: false,
 		},
 
+		/**
+		 * Default increment step for minutes in the time picker.
+		 */
 		minuteStep: {
 			type: Number,
 			default: 10,
@@ -247,6 +255,10 @@ export default {
 			default: null,
 		},
 
+		/**
+		 * The locale to use for formatting the shown dates.
+		 * By default the users current Nextcloud locale is used.
+		 */
 		lang: {
 			type: Object,
 			default: null,
@@ -254,6 +266,7 @@ export default {
 
 		/**
 		 * Removed in v9 - use `modelValue` (`v-model`) instead
+		 *
 		 * @deprecated
 		 */
 		// eslint-disable-next-line
@@ -279,26 +292,44 @@ export default {
 			default: 'UTC',
 		},
 
+		/**
+		 * Include a timezone picker within the menu.
+		 * Please note that the dates are still bound to the locale timezone
+		 * and any conversion needs to be done by the app itself.
+		 */
 		showTimezoneSelect: {
 			type: Boolean,
 			default: false,
 		},
 
+		/**
+		 * If set to true the timezone select icon will be highlighted.
+		 */
 		highlightTimezone: {
 			type: Boolean,
 			default: false,
 		},
 
+		/**
+		 * If set to true the menu will be placed on the `<body>`
+		 * instead of default placement on the picker.
+		 */
 		appendToBody: {
 			type: Boolean,
 			default: false,
 		},
 
+		/**
+		 * Show the ISO week numbers within the calendar.
+		 */
 		showWeekNumber: {
 			type: Boolean,
 			default: false,
 		},
 
+		/**
+		 * Optional custom placeholder for the input box.
+		 */
 		placeholder: {
 			type: String,
 			default: null,
@@ -316,6 +347,7 @@ export default {
 	emits: [
 		/**
 		 * Removed in v9 - use `update:modelValue` (`v-model`) instead
+		 *
 		 * @deprecated
 		 */
 		'update:value',
@@ -362,6 +394,7 @@ export default {
 					// 0 = sunday, 1 = monday
 					firstDayOfWeek: getFirstDay(),
 				},
+
 				monthFormat: 'MMMM',
 			}
 		},
@@ -410,6 +443,7 @@ export default {
 		internalFormatter() {
 			/**
 			 * Get the ISO week number of the date
+			 *
 			 * @param {Date} date The date to format
 			 */
 			const getWeek = (date) => {
@@ -442,8 +476,8 @@ export default {
 				try {
 					const date = new Date(new Date(value).setFullYear(year))
 					this.$refs.datepicker.selectDate(date)
-				} catch (error) {
-					console.error('Invalid value', value, year)
+				} catch {
+					logger.error('Invalid value', value, year)
 				}
 			}
 		},
@@ -454,8 +488,8 @@ export default {
 				try {
 					const date = new Date(new Date(value).setMonth(month))
 					this.$refs.datepicker.selectDate(date)
-				} catch (error) {
-					console.error('Invalid value', value, month)
+				} catch {
+					logger.error('Invalid value', value, month)
 				}
 			}
 		},

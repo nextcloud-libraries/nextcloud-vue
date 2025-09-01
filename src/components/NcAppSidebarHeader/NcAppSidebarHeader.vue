@@ -5,7 +5,7 @@
 
 <script setup>
 import { inject } from 'vue'
-import vLinkify from '../../directives/Linkify/index.js'
+import vLinkify from '../../directives/Linkify/index.ts'
 
 defineProps({
 	/**
@@ -21,6 +21,7 @@ defineProps({
 	 */
 	title: {
 		type: String,
+		default: undefined,
 	},
 
 	/**
@@ -35,7 +36,8 @@ const headerRef = inject('NcAppSidebar:header:ref')
 </script>
 
 <template>
-	<h2 ref="headerRef"
+	<h2
+		ref="headerRef"
 		v-linkify="{ text: name, linkify }"
 		tabindex="-1"
 		:title="title">

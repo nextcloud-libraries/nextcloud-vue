@@ -13,7 +13,6 @@ window._registerCustomPickerElement ??= registerCustomPickerElement
  * It contains a dom element and an object (Vue instance or other fancy things)
  */
 export class NcCustomPickerRenderResult {
-
 	public element: HTMLElement
 	public object: object
 
@@ -25,7 +24,6 @@ export class NcCustomPickerRenderResult {
 		this.element = element
 		this.object = object
 	}
-
 }
 
 interface CustomPickerElementProps {

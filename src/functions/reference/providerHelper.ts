@@ -3,14 +3,12 @@
  * SPDX-License-Identifier: AGPL-3.0-or-later
  */
 
-import { isCustomPickerElementRegistered } from './customPickerElements.ts'
-
-import { t } from '../../l10n.js'
-
 import axios from '@nextcloud/axios'
 import { loadState } from '@nextcloud/initial-state'
 import { generateOcsUrl, imagePath } from '@nextcloud/router'
+import { t } from '../../l10n.js'
 import { logger } from '../../utils/logger.ts'
+import { isCustomPickerElementRegistered } from './customPickerElements.ts'
 
 export interface ReferenceProvider {
 	id: string
@@ -38,12 +36,12 @@ window._vue_richtext_reference_provider_timestamps ??= loadState('core', 'refere
  * @param providerId - The provider ID
  * @return The provider object
  */
-export function getProvider(providerId: string): ReferenceProvider|undefined {
+export function getProvider(providerId: string): ReferenceProvider | undefined {
 	if (providerId === anyLinkProviderId) {
 		return anyLinkProvider
 	}
 
-	return getProviders().find(p => p.id === providerId)
+	return getProviders().find((p) => p.id === providerId)
 }
 
 /**

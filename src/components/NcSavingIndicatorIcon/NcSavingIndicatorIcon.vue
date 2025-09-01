@@ -51,11 +51,13 @@ export default {
 </docs>
 
 <template>
-	<span :aria-label="name"
+	<span
+		:aria-label="name"
 		class="material-design-icon"
 		role="img"
 		@click="$emit('click', $event)">
-		<svg :fill="fillColor"
+		<svg
+			:fill="fillColor"
 			class="material-design-icon__svg"
 			:width="size"
 			:height="size"
@@ -81,6 +83,7 @@ export default defineComponent({
 			type: Number,
 			default: 20,
 		},
+
 		/**
 		 * Specify what is saved.
 		 */
@@ -88,6 +91,7 @@ export default defineComponent({
 			type: String,
 			default: '',
 		},
+
 		/**
 		 * Set to true when saving is in progress.
 		 */
@@ -96,6 +100,7 @@ export default defineComponent({
 			default: false,
 			required: false,
 		},
+
 		/**
 		 * Set to true if an error occured while saving.
 		 */
@@ -105,6 +110,7 @@ export default defineComponent({
 			required: false,
 		},
 	},
+
 	emits: ['click'],
 	computed: {
 		indicatorColor() {

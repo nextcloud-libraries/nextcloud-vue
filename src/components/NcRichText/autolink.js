@@ -3,11 +3,11 @@
  * SPDX-License-Identifier: AGPL-3.0-or-later
  */
 
-import { URL_PATTERN_AUTOLINK } from './helpers.js'
-
-import { visit, SKIP } from 'unist-util-visit'
-import { u } from 'unist-builder'
 import { getBaseUrl, getRootUrl } from '@nextcloud/router'
+import { u } from 'unist-builder'
+import { SKIP, visit } from 'unist-util-visit'
+import { logger } from '../../utils/logger.ts'
+import { URL_PATTERN_AUTOLINK } from './helpers.js'
 
 const NcLink = {
 	name: 'NcLink',
@@ -29,7 +29,15 @@ const NcLink = {
 	},
 }
 
-export const remarkAutolink = function({ autolink, useMarkdown, useExtendedMarkdown }) {
+/**
+ * Remark plugin for autolink parsing
+ *
+ * @param {object} root0 - Options
+ * @param {boolean} root0.autolink - Whether to enable autolink parsing
+ * @param {boolean} root0.useMarkdown - Whether markdown is being used
+ * @param {boolean} root0.useExtendedMarkdown - Whether extended markdown is being used
+ */
+export function remarkAutolink({ autolink, useMarkdown, useExtendedMarkdown }) {
 	return function(tree) {
 		// remark-gfm has its own autolink parser which can not be disabled
 		// and thus a local one is not needed
@@ -55,7 +63,13 @@ export const remarkAutolink = function({ autolink, useMarkdown, useExtendedMarkd
 	}
 }
 
-export const parseUrl = (text) => {
+/**
+ * Parse URLs in text and create link components
+ *
+ * @param {string} text - Text to parse
+ * @return {Array<string | { component: typeof NcLink, props: { href: string } }>} Array of text parts - plain text and description of the link component to use
+ */
+export function parseUrl(text) {
 	let match = URL_PATTERN_AUTOLINK.exec(text)
 	const list = []
 	let start = 0
@@ -85,7 +99,7 @@ export const parseUrl = (text) => {
 	if (text === joinedText) {
 		return list
 	}
-	console.error('Failed to reassemble the chunked text: ' + text)
+	logger.error('Failed to reassemble the chunked text: ' + text)
 	return text
 }
 
@@ -97,7 +111,7 @@ export const parseUrl = (text) => {
  * @return {string|null} a path that can be used in the router link or null if this URL doesn't match this router config
  * @example http://cloud.ltd/nextcloud/index.php/apps/files/favorites?fileid=2#fragment => /files/favorites?fileid=2#fragment
  */
-export const getRoute = (router, url) => {
+export function getRoute(router, url) {
 	/**
 	 * http://cloud.ltd /nextcloud /index.php /apps/files /favorites?fileid=2#fragment
 	 * |_____origin____|___________router-base____________|                           |

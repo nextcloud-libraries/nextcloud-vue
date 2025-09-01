@@ -4,7 +4,8 @@
 -->
 
 <template>
-	<span class="checkbox-content"
+	<span
+		class="checkbox-content"
 		:class="{
 			['checkbox-content-' + type]: true,
 			'checkbox-content--button-variant': buttonVariant,
@@ -14,10 +15,11 @@
 			label can't be used here because of shift+click firefox bug
 			https://bugzilla.mozilla.org/show_bug.cgi?id=559506
 		-->
-		<span :class="{
-				'checkbox-content__icon': true,
+		<span
+			class="checkbox-content__icon"
+			:class="{
 				'checkbox-content__icon--checked': isChecked,
-				[iconClass]: true
+				[iconClass]: true,
 			}"
 			:aria-hidden="true"
 			inert>
@@ -25,11 +27,13 @@
 					@binding {bool} checked The input checked state
 					@binding {bool} loading The loading state
 			-->
-			<slot name="icon"
+			<slot
+				name="icon"
 				:checked="isChecked"
 				:loading="loading">
 				<NcLoadingIcon v-if="loading" />
-				<component :is="checkboxRadioIconElement"
+				<component
+					:is="checkboxRadioIconElement"
 					v-else-if="!buttonVariant"
 					:size="size" />
 			</slot>
@@ -52,13 +56,12 @@
 
 <script>
 import CheckboxBlankOutline from 'vue-material-design-icons/CheckboxBlankOutline.vue'
-import MinusBox from 'vue-material-design-icons/MinusBox.vue'
 import CheckboxMarked from 'vue-material-design-icons/CheckboxMarked.vue'
-import RadioboxMarked from 'vue-material-design-icons/RadioboxMarked.vue'
+import MinusBox from 'vue-material-design-icons/MinusBox.vue'
 import RadioboxBlank from 'vue-material-design-icons/RadioboxBlank.vue'
-import ToggleSwitchOff from 'vue-material-design-icons/ToggleSwitchOff.vue'
+import RadioboxMarked from 'vue-material-design-icons/RadioboxMarked.vue'
 import ToggleSwitch from 'vue-material-design-icons/ToggleSwitch.vue'
-
+import ToggleSwitchOff from 'vue-material-design-icons/ToggleSwitchOff.vue'
 import NcLoadingIcon from '../NcLoadingIcon/index.js'
 
 export const TYPE_CHECKBOX = 'checkbox'
@@ -101,7 +104,7 @@ export default {
 		type: {
 			type: String,
 			default: 'checkbox',
-			validator: type => [
+			validator: (type) => [
 				TYPE_CHECKBOX,
 				TYPE_RADIO,
 				TYPE_SWITCH,

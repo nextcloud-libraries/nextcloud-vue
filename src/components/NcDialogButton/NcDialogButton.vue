@@ -8,7 +8,8 @@ Dialog button component used by NcDialog in the actions slot to display the butt
 </docs>
 
 <template>
-	<NcButton :aria-label="label"
+	<NcButton
+		:aria-label="label"
 		:disabled="disabled"
 		:type="type"
 		:native-type="nativeType"
@@ -29,7 +30,6 @@ Dialog button component used by NcDialog in the actions slot to display the butt
 <script setup>
 import { ref } from 'vue'
 import { t } from '../../l10n.js'
-
 import NcButton from '../NcButton/index.js'
 import NcIconSvgWrapper from '../NcIconSvgWrapper/index.js'
 import NcLoadingIcon from '../NcLoadingIcon/index.js'
@@ -80,6 +80,7 @@ const props = defineProps({
 
 	/**
 	 * See `nativeType` of `NcButton`.
+	 *
 	 * @deprecated use `type` instead - will removed with v9
 	 */
 	nativeType: {
@@ -119,9 +120,10 @@ const isLoading = ref(false)
 
 /**
  * Handle clicking the button
+ *
  * @param {MouseEvent} e The click event
  */
-const handleClick = async (e) => {
+async function handleClick(e) {
 	// Do not re-emit while loading
 	if (isLoading.value) {
 		return

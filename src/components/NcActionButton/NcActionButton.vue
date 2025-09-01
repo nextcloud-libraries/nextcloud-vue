@@ -324,11 +324,13 @@ export default {
 
 <template>
 	<li class="action" :class="{ 'action--disabled': disabled }" :role="isInSemanticMenu && 'presentation'">
-		<button :aria-label="ariaLabel"
-			:class="['action-button button-vue', {
+		<button
+			:aria-label="ariaLabel"
+			class="action-button button-vue"
+			:class="{
 				'action-button--active': isChecked,
 				focusable: isFocusable,
-			}]"
+			}"
 			:disabled="disabled"
 			:title="title"
 			:type="nativeType"
@@ -336,7 +338,8 @@ export default {
 			@click="handleClick">
 			<!-- @slot Manually provide icon -->
 			<slot name="icon">
-				<span :class="[isIconUrl ? 'action-button__icon--url' : icon]"
+				<span
+					:class="[isIconUrl ? 'action-button__icon--url' : icon]"
 					:style="{ backgroundImage: isIconUrl ? `url(${icon})` : null }"
 					aria-hidden="true"
 					class="action-button__icon" />
@@ -344,27 +347,32 @@ export default {
 
 			<!-- long text with name -->
 			<span class="action-button__longtext-wrapper">
-				<strong v-if="name"
+				<strong
+					v-if="name"
 					class="action-button__name">
 					{{ name }}
 				</strong>
 				<!-- white space is shown on longtext, so we can't
 					put {{ text }} on a new line for code readability -->
-				<span v-if="isLongText"
+				<span
+					v-if="isLongText"
 					class="action-button__longtext"
 					v-text="text" />
 				<!-- default text display -->
-				<span v-else
+				<span
+					v-else
 					class="action-button__text">
 					{{ text }}
 				</span>
-				<span v-if="description"
+				<span
+					v-if="description"
 					class="action-button__description"
 					v-text="description" />
 			</span>
 
 			<!-- right(in LTR) or left(in RTL) arrow icon when there is a sub-menu -->
-			<NcIconSvgWrapper v-if="isMenu"
+			<NcIconSvgWrapper
+				v-if="isMenu"
 				class="action-button__menu-icon"
 				directional
 				:path="mdiChevronRight" />
@@ -380,8 +388,8 @@ export default {
 
 <script>
 import { mdiCheck, mdiChevronRight } from '@mdi/js'
-import ActionTextMixin from '../../mixins/actionText.js'
 import NcIconSvgWrapper from '../NcIconSvgWrapper/NcIconSvgWrapper.vue'
+import ActionTextMixin from '../../mixins/actionText.js'
 
 /**
  * Button component to be used in Actions
@@ -392,6 +400,7 @@ export default {
 	components: {
 		NcIconSvgWrapper,
 	},
+
 	mixins: [ActionTextMixin],
 
 	inject: {
@@ -409,6 +418,7 @@ export default {
 		 */
 		ariaHidden: {
 			type: Boolean,
+			// eslint-disable-next-line vue/no-boolean-default
 			default: null,
 		},
 
@@ -473,6 +483,7 @@ export default {
 			default: '',
 		},
 	},
+
 	setup() {
 		return {
 			mdiCheck,
@@ -540,6 +551,7 @@ export default {
 	methods: {
 		/**
 		 * Forward click event, let mixin handle the close-after-click and emit new modelValue if needed
+		 *
 		 * @param {MouseEvent} event The click event
 		 */
 		handleClick(event) {

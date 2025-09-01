@@ -13,10 +13,14 @@ import clone from 'clone'
 
 const noop = () => false
 
-const throwing = (msg) =>
-	() => {
+/**
+ * @param {string} msg - Error message
+ */
+function throwing(msg) {
+	return () => {
 		throw new Error(msg)
 	}
+}
 
 /**
  *
@@ -28,7 +32,9 @@ function ignore({ block = [], inline = [] } = {}) {
 	if (block.length) {
 		block
 			.filter((key) => {
-				if (Array.isArray(key)) return block.map(xs => xs[0]).includes(key[0])
+				if (Array.isArray(key)) {
+					return block.map((xs) => xs[0]).includes(key[0])
+				}
 				return block.includes(key)
 			})
 			.forEach((key) => {
@@ -43,7 +49,9 @@ function ignore({ block = [], inline = [] } = {}) {
 	if (inline.length) {
 		inline
 			.filter((key) => {
-				if (Array.isArray(key)) return inline.map(xs => xs[0]).includes(key[0])
+				if (Array.isArray(key)) {
+					return inline.map((xs) => xs[0]).includes(key[0])
+				}
 				return inline.includes(key)
 			})
 			.forEach((key) => {

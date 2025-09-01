@@ -37,7 +37,8 @@ export default {
 <template>
 	<li class="action" :class="{ 'action--disabled': disabled }" :role="isInSemanticMenu && 'presentation'">
 		<span class="action-checkbox" :role="isInSemanticMenu && 'menuitemcheckbox'" :aria-checked="ariaChecked">
-			<input :id="id"
+			<input
+				:id="id"
 				ref="checkbox"
 				:disabled="disabled"
 				:checked="model"
@@ -84,15 +85,17 @@ export default {
 		id: {
 			type: String,
 			default: () => 'action-' + GenRandomId(),
-			validator: id => id.trim() !== '',
+			validator: (id) => id.trim() !== '',
 		},
 
 		/**
 		 * Removed in v9 - use `modelValue` (`v-model`) instead
+		 *
 		 * @deprecated
 		 */
 		checked: {
 			type: Boolean,
+			// eslint-disable-next-line vue/no-boolean-default
 			default: undefined,
 		},
 
@@ -127,11 +130,13 @@ export default {
 		'uncheck',
 		/**
 		 * Removed in v9 - use `update:modelValue` (`v-model`) instead
+		 *
 		 * @deprecated
 		 */
 		'update:checked',
 		/**
 		 * Emitted when the checkbox state is changed
+		 *
 		 * @type {boolean}
 		 */
 		'update:modelValue',
@@ -170,10 +175,11 @@ export default {
 	},
 
 	methods: {
-		checkInput(event) {
+		checkInput() {
 			// by clicking we also trigger the change event
 			this.$refs.label.click()
 		},
+
 		onChange(event) {
 			this.model = this.$refs.checkbox.checked
 

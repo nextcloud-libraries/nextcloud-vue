@@ -3,10 +3,9 @@
  * SPDX-License-Identifier: AGPL-3.0-or-later
  */
 
+import Vue from 'vue'
 import NcReferencePickerModal from './../../components/NcRichText/NcReferencePicker/NcReferencePickerModal.vue'
 import { getProvider } from './providerHelper.ts'
-
-import Vue from 'vue'
 
 /**
  * Creates a reference picker modal and return a promise which provides the result
@@ -19,7 +18,7 @@ export async function getLinkWithPicker(providerId?: string, isInsideViewer?: bo
 	const modalElement = document.createElement('div')
 	modalElement.id = modalId
 	document.body.append(modalElement)
-	
+
 	const { promise, reject, resolve } = Promise.withResolvers<string>()
 	const initialProvider = (providerId && getProvider(providerId)) || null
 	const View = Vue.extend(NcReferencePickerModal)

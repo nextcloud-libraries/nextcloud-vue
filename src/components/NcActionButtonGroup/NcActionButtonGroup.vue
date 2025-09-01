@@ -87,8 +87,8 @@ export default {
 
 <script>
 import { defineComponent } from 'vue'
-import GenRandomId from '../../utils/GenRandomId.js'
 import { t } from '../../l10n.js'
+import GenRandomId from '../../utils/GenRandomId.js'
 
 /**
  * A wrapper for allowing inlining NcAction components within the action menu

@@ -211,7 +211,8 @@ export default {
 </docs>
 
 <template>
-	<NcModal v-if="open"
+	<NcModal
+		v-if="open"
 		class="dialog__modal"
 		:enable-slideshow="false"
 		:enable-swipe="false"
@@ -220,14 +221,16 @@ export default {
 		@update:show="handleClosing()">
 		<!-- The dialog name / header -->
 		<h2 :id="navigationId" class="dialog__name" v-text="name" />
-		<component :is="dialogTagName"
+		<component
+			:is="dialogTagName"
 			ref="dialogElement"
 			class="dialog"
 			:class="dialogClasses"
 			v-on="dialogListeners">
-			<div ref="wrapper" :class="['dialog__wrapper', { 'dialog__wrapper--collapsed': isNavigationCollapsed }]">
+			<div ref="wrapper" class="dialog__wrapper" :class="{ 'dialog__wrapper--collapsed': isNavigationCollapsed }">
 				<!-- When the navigation is collapsed (too small dialog) it is displayed above the main content, otherwise on the inline start -->
-				<nav v-if="hasNavigation"
+				<nav
+					v-if="hasNavigation"
 					class="dialog__navigation"
 					:class="navigationClasses"
 					:aria-label="navigationAriaLabelAttr"
@@ -246,7 +249,8 @@ export default {
 			<!-- The dialog actions aka the buttons -->
 			<div class="dialog__actions">
 				<slot name="actions">
-					<NcDialogButton v-for="(button, idx) in buttons"
+					<NcDialogButton
+						v-for="(button, idx) in buttons"
 						:key="idx"
 						v-bind="button"
 						@click="(_, result) => handleButtonClose(button, result)" />
@@ -259,11 +263,9 @@ export default {
 <script>
 import { useElementSize } from '@vueuse/core'
 import { computed, defineComponent, ref } from 'vue'
-
-import NcModal from '../NcModal/index.js'
-import NcDialogButton from '../NcDialogButton/index.js'
-
 import GenRandomId from '../../utils/GenRandomId.js'
+import NcDialogButton from '../NcDialogButton/index.js'
+import NcModal from '../NcModal/index.js'
 
 export default defineComponent({
 	name: 'NcDialog',
@@ -291,17 +293,16 @@ export default defineComponent({
 			type: Array,
 			validator: (arr) => {
 				return (
-					Array.isArray(arr) && arr.every(
-						(element) =>
-							typeof element === 'string' || element instanceof HTMLElement,
-					)
+					Array.isArray(arr) && arr.every((element) => typeof element === 'string' || element instanceof HTMLElement)
 				)
 			},
+
 			default: () => ([]),
 		},
 
 		/**
 		 * The element where to mount the dialog, if `null` is passed the dialog is mounted in place
+		 *
 		 * @default 'body'
 		 */
 		container: {
@@ -312,15 +313,18 @@ export default defineComponent({
 
 		/**
 		 * Whether the dialog should be shown
+		 *
 		 * @default true
 		 */
 		open: {
 			type: Boolean,
+			// eslint-disable-next-line vue/no-boolean-default
 			default: true,
 		},
 
 		/**
 		 * Size of the underlying NcModal
+		 *
 		 * @default 'small'
 		 * @type {'small'|'normal'|'large'|'full'}
 		 */
@@ -333,6 +337,7 @@ export default defineComponent({
 
 		/**
 		 * Buttons to display
+		 *
 		 * @default []
 		 */
 		buttons: {
@@ -344,6 +349,7 @@ export default defineComponent({
 
 		/**
 		 * Do not show the close button for the dialog.
+		 *
 		 * @default false
 		 */
 		noClose: {
@@ -353,11 +359,13 @@ export default defineComponent({
 
 		/**
 		 * Set to false to no show a close button on the dialog
+		 *
 		 * @deprecated - Use `noClose` instead. Will be removed in v9.
 		 * @default true
 		 */
 		canClose: {
 			type: Boolean,
+			// eslint-disable-next-line vue/no-boolean-default
 			default: true,
 		},
 
@@ -382,6 +390,7 @@ export default defineComponent({
 
 		/**
 		 * Declare if hiding the modal should be animated
+		 *
 		 * @default false
 		 */
 		outTransition: {
@@ -391,6 +400,7 @@ export default defineComponent({
 
 		/**
 		 * Optionally pass additional classes which will be set on the navigation for custom styling
+		 *
 		 * @default ''
 		 * @example
 		 * ```html
@@ -435,6 +445,7 @@ export default defineComponent({
 
 		/**
 		 * Optionally pass additional classes which will be set on the content wrapper for custom styling
+		 *
 		 * @default ''
 		 */
 		contentClasses: {
@@ -446,6 +457,7 @@ export default defineComponent({
 		/**
 		 * Optionally pass additional classes which will be set on the dialog itself
 		 * (the default `class` attribute will be set on the modal wrapper)
+		 *
 		 * @default ''
 		 */
 		dialogClasses: {
@@ -460,6 +472,7 @@ export default defineComponent({
 	setup(props, { emit, slots }) {
 		/**
 		 * The dialog wrapper element
+		 *
 		 * @type {import('vue').Ref<HTMLDivElement>}
 		 */
 		const wrapper = ref()
@@ -519,24 +532,23 @@ export default defineComponent({
 				/**
 				 * @param {SubmitEvent} event Form submit event
 				 */
-				submit(event) {
-					event.preventDefault()
-					/** Forwarded HTMLFormElement submit event (only if `is-form` is set) */
-					emit('submit', event)
-				},
-				/**
-				 * @param {Event} event Form submit event
-				 */
-				reset(event) {
-					event.preventDefault()
+					submit(event) {
+						event.preventDefault()
+						/** Forwarded HTMLFormElement submit event (only if `is-form` is set) */
+						emit('submit', event)
+					},
 					/**
-					 * Forwarded HTMLFormElement reset event (only if `is-form` is set).
+					 * @param {Event} event Form submit event
 					 */
-					emit('reset', event)
-				},
-			}
-			: {},
-		)
+					reset(event) {
+						event.preventDefault()
+						/**
+						 * Forwarded HTMLFormElement reset event (only if `is-form` is set).
+						 */
+						emit('reset', event)
+					},
+				}
+			: {})
 
 		/**
 		 * If the underlying modal is shown
@@ -546,6 +558,7 @@ export default defineComponent({
 		// Because NcModal does not emit `close` when show prop is changed
 		/**
 		 * Handle clicking a dialog button -> should close
+		 *
 		 * @param {MouseEvent} button The button that was clicked
 		 * @param {unknown} result Result of the callback function
 		 */
@@ -562,12 +575,14 @@ export default defineComponent({
 
 		/**
 		 * Handle closing the dialog, optional out transition did not run yet
+		 *
 		 * @param {unknown} result the result of the callback
 		 */
-		const handleClosing = (result) => {
+		function handleClosing(result) {
 			showModal.value = false
 			/**
 			 * Emitted when the dialog is closing, so the out transition did not finish yet.
+			 *
 			 * @param result The result of the button callback (`undefined` if closing because of clicking the 'close'-button)
 			 */
 			emit('closing', result)
@@ -576,7 +591,7 @@ export default defineComponent({
 		/**
 		 * Handle dialog closed (out transition finished)
 		 */
-		const handleClosed = () => {
+		function handleClosed() {
 			showModal.value = true
 			/**
 			 * Emitted then the dialog is fully closed and the out transition run

@@ -4,11 +4,13 @@
 -->
 
 <template>
-	<div id="app-settings"
+	<div
+		id="app-settings"
 		v-click-outside="clickOutsideConfig"
 		:class="{ open }">
 		<div id="app-settings__header">
-			<button class="settings-button"
+			<button
+				class="settings-button"
 				type="button"
 				:aria-expanded="open ? 'true' : 'false'"
 				aria-controls="app-settings__content"
@@ -29,27 +31,36 @@
 import { mdiCog, mdiCogOutline } from '@mdi/js'
 import { vOnClickOutside as ClickOutside } from '@vueuse/components'
 import NcIconSvgWrapper from '../NcIconSvgWrapper/NcIconSvgWrapper.vue'
+import { t } from '../../l10n.js'
 import { clickOutsideOptions } from '../../mixins/index.js'
 import { isLegacy32 } from '../../utils/legacy.ts'
-import { t } from '../../l10n.js'
 
 export default {
 	directives: {
 		ClickOutside,
 	},
+
 	components: {
 		NcIconSvgWrapper,
 	},
+
 	mixins: [
 		clickOutsideOptions,
 	],
+
 	props: {
+		/**
+		 * Text of the button
+		 *
+		 * @default 'Settings'
+		 */
 		name: {
 			type: String,
 			required: false,
 			default: t('Settings'),
 		},
 	},
+
 	setup() {
 		return {
 			isLegacy32,
@@ -57,11 +68,13 @@ export default {
 			mdiCogOutline,
 		}
 	},
+
 	data() {
 		return {
 			open: false,
 		}
 	},
+
 	computed: {
 		clickOutsideConfig() {
 			return [
@@ -70,16 +83,19 @@ export default {
 			]
 		},
 	},
+
 	methods: {
 		toggleMenu() {
 			this.open = !this.open
 		},
+
 		closeMenu() {
 			this.open = false
 		},
 	},
 }
 </script>
+
 <style lang="scss" scoped>
 #app-settings {
 	margin-top: auto;

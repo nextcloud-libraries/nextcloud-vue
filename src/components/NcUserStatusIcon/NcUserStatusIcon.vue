@@ -68,7 +68,8 @@ This component displays a user status icon.
 </docs>
 
 <template>
-	<span v-if="activeStatus"
+	<span
+		v-if="activeStatus"
 		class="user-status-icon"
 		:class="{
 			'user-status-icon--invisible': ['invisible', 'offline'].includes(status),
@@ -81,22 +82,20 @@ This component displays a user status icon.
 
 <script>
 import axios from '@nextcloud/axios'
-import { generateOcsUrl } from '@nextcloud/router'
 import { getCapabilities } from '@nextcloud/capabilities'
-
-import onlineSvg from '../../assets/status-icons/user-status-online.svg?raw'
-import onlineLegacySvg from '../../assets/status-icons/user-status-online-legacy.svg?raw'
-import awaySvg from '../../assets/status-icons/user-status-away.svg?raw'
+import { generateOcsUrl } from '@nextcloud/router'
 import awayLegacySvg from '../../assets/status-icons/user-status-away-legacy.svg?raw'
+import awaySvg from '../../assets/status-icons/user-status-away.svg?raw'
 import busySvg from '../../assets/status-icons/user-status-busy.svg?raw'
-import dndSvg from '../../assets/status-icons/user-status-dnd.svg?raw'
 import dndLegacySvg from '../../assets/status-icons/user-status-dnd-legacy.svg?raw'
-import invisibleSvg from '../../assets/status-icons/user-status-invisible.svg?raw'
+import dndSvg from '../../assets/status-icons/user-status-dnd.svg?raw'
 import invisibleLegacySvg from '../../assets/status-icons/user-status-invisible-legacy.svg?raw'
-
-import { getUserStatusText } from '../../utils/UserStatus.ts'
-import { isLegacy32 } from '../../utils/legacy.ts'
+import invisibleSvg from '../../assets/status-icons/user-status-invisible.svg?raw'
+import onlineLegacySvg from '../../assets/status-icons/user-status-online-legacy.svg?raw'
+import onlineSvg from '../../assets/status-icons/user-status-online.svg?raw'
 import { t } from '../../l10n.js'
+import { isLegacy32 } from '../../utils/legacy.ts'
+import { getUserStatusText } from '../../utils/UserStatus.ts'
 
 const matchSvg = {
 	online: isLegacy32 ? onlineLegacySvg : onlineSvg,
@@ -178,7 +177,7 @@ export default {
 	watch: {
 		user: {
 			immediate: true,
-			async handler(user, _oldUser) {
+			async handler(user) {
 				if (!user || !getCapabilities()?.user_status?.enabled) {
 					this.fetchedUserStatus = null
 					return
@@ -186,7 +185,7 @@ export default {
 				try {
 					const { data } = await axios.get(generateOcsUrl('/apps/user_status/api/v1/statuses/{user}', { user }))
 					this.fetchedUserStatus = data.ocs?.data?.status
-				} catch (error) {
+				} catch {
 					this.fetchedUserStatus = null
 				}
 			},
