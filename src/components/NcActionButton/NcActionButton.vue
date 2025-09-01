@@ -326,10 +326,10 @@ export default {
 	<li class="action" :class="{ 'action--disabled': disabled }" :role="isInSemanticMenu && 'presentation'">
 		<button :aria-label="ariaLabel"
 			class="action-button button-vue"
-			:class="[{
+			:class="{
 				'action-button--active': isChecked,
 				focusable: isFocusable,
-			}]"
+			}"
 			:disabled="disabled"
 			:title="title"
 			:type="nativeType"
