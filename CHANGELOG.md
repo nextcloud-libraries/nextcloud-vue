@@ -7,8 +7,8 @@
 
 All notable changes to this project will be documented in this file.
 
-## [v9.0.0](https://github.com/nextcloud-libraries/nextcloud-vue/tree/v9.0.0-rc.7) (unreleased)
-[Full Changelog](https://github.com/nextcloud-libraries/nextcloud-vue/compare/v8.29.2...v9.0.0-rc.7)
+## [v9.0.0](https://github.com/nextcloud-libraries/nextcloud-vue/tree/v9.0.0-rc.8) (unreleased)
+[Full Changelog](https://github.com/nextcloud-libraries/nextcloud-vue/compare/v8.30.0...v9.0.0-rc.8)
 
 ### 💥 Breaking Changes
 * The package now uses Vue 3 instead of Vue 2.7
@@ -197,6 +197,8 @@ The `richEditing` mixin can be replaced by just using the `NcRichText` component
 * feat(NcButton): add border with a bottom shadow [#7282](https://github.com/nextcloud-libraries/nextcloud-vue/pull/7282) ([susnux](https://github.com/susnux))
 * feat: add new border design for NcInputField and NcTextArea [\#7351](https://github.com/nextcloud-libraries/nextcloud-vue/pull/7351) \([susnux](https://github.com/susnux)\)
 * feat(NcCheckboxRadioSwitch): Add support for a description field [\#7378](https://github.com/nextcloud-libraries/nextcloud-vue/pull/7378) \([CarlSchwan](https://github.com/CarlSchwan)\)
+* feat: add NcKbd component [\#7401](https://github.com/nextcloud-libraries/nextcloud-vue/pull/7401) \([ShGKme](https://github.com/ShGKme)\)
+* feat(NcAssistant*): provide components for consistent integrations design [\#7398](https://github.com/nextcloud-libraries/nextcloud-vue/pull/7398) \([susnux](https://github.com/susnux)\)
 
 ### 🐛 Fixed bugs
 * feat(NcAppSidebar): add `info` slot [#6666](https://github.com/nextcloud-libraries/nextcloud-vue/pull/6666) ([Antreesy](https://github.com/Antreesy))
