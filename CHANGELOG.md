@@ -7,8 +7,8 @@
 
 All notable changes to this project will be documented in this file.
 
-## [v9.0.0](https://github.com/nextcloud-libraries/nextcloud-vue/tree/v9.0.0-rc.7) (unreleased)
-[Full Changelog](https://github.com/nextcloud-libraries/nextcloud-vue/compare/v8.29.2...v9.0.0-rc.7)
+## [v9.0.0](https://github.com/nextcloud-libraries/nextcloud-vue/tree/v9.0.0-rc.8) (unreleased)
+[Full Changelog](https://github.com/nextcloud-libraries/nextcloud-vue/compare/v8.30.0...v9.0.0-rc.8)
 
 ### 💥 Breaking Changes
 * The package now uses Vue 3 instead of Vue 2.7
@@ -197,6 +197,8 @@ The `richEditing` mixin can be replaced by just using the `NcRichText` component
 * feat(NcButton): add border with a bottom shadow [#7282](https://github.com/nextcloud-libraries/nextcloud-vue/pull/7282) ([susnux](https://github.com/susnux))
 * feat: add new border design for NcInputField and NcTextArea [\#7351](https://github.com/nextcloud-libraries/nextcloud-vue/pull/7351) \([susnux](https://github.com/susnux)\)
 * feat(NcCheckboxRadioSwitch): Add support for a description field [\#7378](https://github.com/nextcloud-libraries/nextcloud-vue/pull/7378) \([CarlSchwan](https://github.com/CarlSchwan)\)
+* feat: add NcKbd component [\#7401](https://github.com/nextcloud-libraries/nextcloud-vue/pull/7401) \([ShGKme](https://github.com/ShGKme)\)
+* feat(NcAssistant*): provide components for consistent integrations design [\#7398](https://github.com/nextcloud-libraries/nextcloud-vue/pull/7398) \([susnux](https://github.com/susnux)\)
 
 ### 🐛 Fixed bugs
 * feat(NcAppSidebar): add `info` slot [#6666](https://github.com/nextcloud-libraries/nextcloud-vue/pull/6666) ([Antreesy](https://github.com/Antreesy))
@@ -450,6 +452,15 @@ The `richEditing` mixin can be replaced by just using the `NcRichText` component
 * chore(docs): fix css modules export names in styleguidist [\#7385](https://github.com/nextcloud-libraries/nextcloud-vue/pull/7385) \([ShGKme](https://github.com/ShGKme)\)
 * fix(NcUserStatusIcon): adjust icon colors [\#7392](https://github.com/nextcloud-libraries/nextcloud-vue/pull/7392) \([Antreesy](https://github.com/Antreesy)\)
 * fix(NcUserStatusIcon): adjust scoped names for style variables [\#7396](https://github.com/nextcloud-libraries/nextcloud-vue/pull/7396) \([Antreesy](https://github.com/Antreesy)\)
+
+## [v8.30.0](https://github.com/nextcloud-libraries/nextcloud-vue/tree/v8.30.0) (2025-09-01)
+### 🚀 Enhancements
+* feat(NcPopover): auto return focus to trigger button on close [#5155](https://github.com/nextcloud-libraries/nextcloud-vue/pull/5155) ([ShGKme](https://github.com/ShGKme))
+* feat(NcAssistant*): provide components for consistent integrations design [#7413](https://github.com/nextcloud-libraries/nextcloud-vue/pull/7413)
+* feat(NcCheckboxRadioSwitch): Add support for a description field [#7395](https://github.com/nextcloud-libraries/nextcloud-vue/pull/7395)
+### Other Changes
+* refactor: migrate reference widget related function to Typescript [#7417](https://github.com/nextcloud-libraries/nextcloud-vue/pull/7417)
+
 
 ## [v8.29.2](https://github.com/nextcloud-libraries/nextcloud-vue/tree/v8.29.2) (2025-08-28)
 ### 🐛 Fixed bugs
