@@ -3,6 +3,7 @@
  * SPDX-License-Identifier: AGPL-3.0-or-later
  */
 
+import { beforeEach, describe, expect, it } from '@jest/globals'
 import { mount } from '@vue/test-utils'
 import { defineComponent } from 'vue'
 import { Fragment } from 'vue-frag'

@@ -3,6 +3,7 @@
  * SPDX-License-Identifier: AGPL-3.0-or-later
  */
 
+import { describe, expect, it } from '@jest/globals'
 import { mount } from '@vue/test-utils'
 import { isRef, nextTick } from 'vue'
 import { useIsMobile } from '../../../src/composables/useIsMobile/index.js'

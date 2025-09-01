@@ -3,6 +3,8 @@
  * SPDX-License-Identifier: AGPL-3.0-or-later
  */
 
+import { beforeEach, describe, expect, jest, test } from '@jest/globals'
+
 describe('createElementId', () => {
 	beforeEach(() => {
 		delete window._nc_vue_element_id

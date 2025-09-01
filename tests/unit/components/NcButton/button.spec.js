@@ -3,6 +3,7 @@
  * SPDX-License-Identifier: AGPL-3.0-or-later
  */
 
+import { describe, expect, it, test } from '@jest/globals'
 import { shallowMount } from '@vue/test-utils'
 import NcButton from '../../../../src/components/NcButton/NcButton.vue'
 

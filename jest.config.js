@@ -39,6 +39,9 @@ const ignorePatterns = [
 ]
 
 module.exports = {
+	// Disable globals to simplify migration to Vitest
+	injectGlobals: false,
+
 	moduleFileExtensions: [
 		'js',
 		'ts',

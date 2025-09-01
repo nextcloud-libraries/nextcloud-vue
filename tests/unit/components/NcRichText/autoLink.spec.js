@@ -3,7 +3,7 @@
  * SPDX-License-Identifier: AGPL-3.0-or-later
  */
 
-import { beforeAll, describe, it, jest } from '@jest/globals'
+import { beforeAll, describe, expect, it, jest } from '@jest/globals'
 import { getBaseUrl, getRootUrl } from '@nextcloud/router'
 import Vue from 'vue'
 import VueRouter from 'vue-router'

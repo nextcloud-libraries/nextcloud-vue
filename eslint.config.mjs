@@ -48,24 +48,6 @@ export default defineConfig([
 	},
 
 	{
-		name: '@nextcloud/vue/tests-jest',
-		files: ['tests/**/*.{js,ts}', '**/*.spec.{js,ts}', '**/*.test.{js,ts}'],
-		languageOptions: {
-			globals: {
-				describe: 'readonly',
-				it: 'readonly',
-				test: 'readonly',
-				expect: 'readonly',
-				beforeEach: 'readonly',
-				afterEach: 'readonly',
-				beforeAll: 'readonly',
-				afterAll: 'readonly',
-				jest: 'readonly',
-			},
-		},
-	},
-
-	{
 		name: '@nextcloud/vue/tests-cypres',
 		files: ['cypress/**/*.{js,ts}'],
 		languageOptions: {

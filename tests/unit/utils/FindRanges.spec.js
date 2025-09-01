@@ -3,6 +3,7 @@
  * SPDX-License-Identifier: AGPL-3.0-or-later
  */
 
+import { describe, expect, it } from '@jest/globals'
 import FindRanges from '../../../src/utils/FindRanges.js'
 
 describe('FindRanges.js', () => {
