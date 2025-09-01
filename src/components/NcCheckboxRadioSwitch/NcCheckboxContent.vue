@@ -40,7 +40,8 @@
 		</span>
 
 		<span class="checkbox-content__wrapper">
-			<span v-if="$slots.default"
+			<span
+				v-if="$slots.default"
 				:id="labelId"
 				class="checkbox-content__text"
 				:class="textClass">

@@ -49,7 +49,8 @@ const sizePx = computed(() => `${props.size}px`)
 </script>
 
 <template>
-	<span aria-hidden="true"
+	<span
+		aria-hidden="true"
 		:class="[$style.assistantIcon, inline && $style.assistantIcon_inline]"
 		role="img">
 		<svg :class="$style.assistantIcon__svg" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
