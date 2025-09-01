@@ -788,6 +788,39 @@ p {
 </style>
 ```
 
+## Submenus
+
+To create multi-level menus:
+- Add `<NcActionButton is-menu="NAME" />` where NAME is the name of the submenu
+- Pass submenu to a `submenu:NAME` slot
+
+```vue
+<template>
+	<NcActions>
+		<template #default>
+			<NcActionButton>Option 1</NcActionButton>
+			<NcActionButton is-menu="two">Option 2</NcActionButton>
+			<NcActionButton is-menu="three">Option 3</NcActionButton>
+			<NcActionButton>Option 4</NcActionButton>
+		</template>
+		<template #submenu:two>
+			<NcActionButton>Option 2.1</NcActionButton>
+			<NcActionButton is-menu="two-two">Option 2.2</NcActionButton>
+			<NcActionButton>Option 2.3</NcActionButton>
+		</template>
+		<template #submenu:two-two>
+			<NcActionButton>Option 2.2.1</NcActionButton>
+			<NcActionButton>Option 2.2.2</NcActionButton>
+		</template>
+		<template #submenu:three>
+			<NcActionButton>Option 3.1</NcActionButton>
+			<NcActionButton>Option 3.2</NcActionButton>
+			<NcActionButton>Option 3.3</NcActionButton>
+		</template>
+	</NcActions>
+</template>
+```
+
 ## NcActions children limitations
 
 `<NcActions>` is supposed to be used with direct `<NcAction*>` children.
@@ -959,6 +992,8 @@ import { useElementBounding, useWindowSize } from '@vueuse/core'
 import Vue, { ref, computed, toRef } from 'vue'
 
 import IconDotsHorizontal from 'vue-material-design-icons/DotsHorizontal.vue'
+import IconArrowLeft from 'vue-material-design-icons/ArrowLeft.vue'
+import NcActionButton from '../NcActionButton/NcActionButton.vue'
 
 const focusableSelector = '.focusable'
 
@@ -990,6 +1025,7 @@ export default {
 			 * @type {import('vue').ComputedRef<boolean>}
 			 */
 			'NcActions:isSemanticMenu': computed(() => this.actionsMenuSemanticType === 'menu'),
+			'NcActions:openSubmenu': this.pushSubmenu,
 		}
 	},
 
@@ -1229,6 +1265,8 @@ export default {
 		return {
 			opened: this.open,
 			focusIndex: 0,
+			submenuStack: [],
+			submenuIndexStack: [],
 			/**
 			 * @type {'menu'|'expanded'|'dialog'|'tooltip'|'unknown'}
 			 */
@@ -1406,6 +1444,31 @@ export default {
 			}
 		},
 
+		pushSubmenu(submenu) {
+			// Only allow existing submenus
+			if (!this.$slots[`submenu:${submenu}`]) {
+				return
+			}
+
+			this.submenuStack.push(submenu)
+			this.submenuIndexStack.push(this.focusIndex)
+			this.$nextTick(() => {
+				this.focusFirstAction()
+			})
+		},
+
+		popSubmenu() {
+			if (!this.submenuStack.length) {
+				return
+			}
+
+			this.submenuStack.pop()
+			this.focusIndex = this.submenuIndexStack.pop()
+			this.$nextTick(() => {
+				this.focusAction()
+			})
+		},
+
 		// MENU STATE MANAGEMENT
 		openMenu(e) {
 			if (this.opened) {
@@ -1428,6 +1491,12 @@ export default {
 		},
 		async closeMenu(returnFocus = true) {
 			if (!this.opened) {
+				return
+			}
+
+			// Only close submenu
+			if (this.submenuStack.length) {
+				this.popSubmenu()
 				return
 			}
 
@@ -1596,6 +1665,14 @@ export default {
 			this.handleEscapePressed(event)
 		},
 
+		onKeyup(event) {
+			// Escape is handled globally on body by keydown
+			// Prevent floating-vue to handle it again on keyup
+			if (event.key === 'Escape') {
+				event.stopPropagation()
+			}
+		},
+
 		onTriggerKeydown(event) {
 			if (event.key === 'Escape') {
 				// Tooltip has no focusable elements and the focus remains on the trigger button.
@@ -1717,12 +1794,14 @@ export default {
 	 * @return {object|undefined} The created VNode
 	 */
 	render(h) {
+		const menuSlot = this.submenuStack.length ? `submenu:${this.submenuStack.at(-1)}` : 'default'
+
 		/**
 		 * Filter the Actions, so that we only get allowed components.
 		 * This also ensure that we don't get 'text' elements, which would
 		 * become problematic later on.
 		 */
-		const actions = (this.$slots.default || []).filter(action => this.getActionName(action))
+		const actions = (this.$slots[menuSlot] || []).filter(action => this.getActionName(action))
 
 		// Check that we have at least one action
 		if (actions.length === 0) {
@@ -1749,6 +1828,27 @@ export default {
 		 * @type {import('vue').VNode[]}
 		 */
 		const menuActions = actions.filter(action => !inlineActions.includes(action))
+
+		if (this.submenuStack.length) {
+			const backButton = h(NcActionButton, {
+				on: {
+					click: () => {
+						this.popSubmenu()
+					},
+				},
+				nativeOn: {
+					keydown: (event) => {
+						if (event.key === 'ArrowLeft') {
+							this.popSubmenu()
+						}
+					},
+				},
+			}, [
+				t('Back'),
+				h(IconArrowLeft, { slot: 'icon' }),
+			])
+			menuActions.unshift(backButton)
+		}
 
 		/**
 		 * Determine what kind of menu we have.
@@ -1949,6 +2049,7 @@ export default {
 							...this.config.popoverContainerA11yAttrs,
 						},
 						on: {
+							keyup: this.onKeyup,
 							keydown: this.onKeydown,
 						},
 						ref: 'menu',
@@ -2034,7 +2135,7 @@ export default {
 				],
 			},
 			[
-				renderActionsPopover(actions),
+				renderActionsPopover(menuActions),
 			],
 		)
 	},

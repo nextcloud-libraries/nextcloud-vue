@@ -333,7 +333,8 @@ export default {
 			:title="title"
 			:type="nativeType"
 			v-bind="buttonAttributes"
-			@click="handleClick">
+			@click="handleClick"
+			@keydown="handleKeydown">
 			<!-- @slot Manually provide icon -->
 			<slot name="icon">
 				<span :class="[isIconUrl ? 'action-button__icon--url' : icon]"
@@ -399,6 +400,10 @@ export default {
 			from: 'NcActions:isSemanticMenu',
 			default: false,
 		},
+		openSubmenu: {
+			from: 'NcActions:openSubmenu',
+			default: () => () => {},
+		},
 	},
 
 	props: {
@@ -421,11 +426,12 @@ export default {
 		},
 
 		/**
-		 * If this is a menu, a chevron icon will
-		 * be added at the end of the line
+		 * Whether the button opens a submenu
+		 * - Boolean value makes button looks like a submenu opener
+		 * - String value can be used to open a specific submenu slot in NcActions
 		 */
 		isMenu: {
-			type: Boolean,
+			type: [Boolean, String],
 			default: false,
 		},
 
@@ -544,6 +550,11 @@ export default {
 		 */
 		handleClick(event) {
 			this.onClick(event)
+
+			if (typeof this.isMenu === 'string') {
+				this.openSubmenu(this.isMenu)
+			}
+
 			// If modelValue or type is set (so modelValue might be null for tri-state) we need to update it
 			if (this.modelValue !== null || this.type !== 'button') {
 				if (this.type === 'radio') {
@@ -560,6 +571,17 @@ export default {
 					// Checkbox toggles value
 					this.$emit('update:modelValue', !this.isChecked)
 				}
+			}
+		},
+
+		handleKeydown(event) {
+			if (typeof this.isMenu !== 'string') {
+				return
+			}
+
+			// TODO RTL support
+			if (event.key === 'ArrowRight') {
+				this.openSubmenu(this.isMenu)
 			}
 		},
 	},
