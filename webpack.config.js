@@ -40,13 +40,6 @@ const sassLoader = {
 	},
 }
 
-webpackRules.RULE_TS = {
-	test: /\.tsx?$/,
-	use: [
-		'babel-loader',
-	],
-}
-
 const cssLoaderOptions = {
 	modules: {
 		namedExport: false,
@@ -110,6 +103,17 @@ webpackRules.RULE_JS.exclude = BabelLoaderExcludeNodeModulesExcept([
 	'tributejs',
 ])
 
+// Speedup styleguide build
+webpackRules.RULE_TS.use = [
+	'babel-loader',
+	{
+		loader: 'ts-loader',
+		options: {
+			transpileOnly: true,
+		},
+	},
+]
+
 webpackRules.RULE_RAW_SVG = {
 	resourceQuery: /raw/,
 	type: 'asset/source',
@@ -131,6 +135,11 @@ module.exports = () => {
 		PRODUCTION: JSON.stringify(!isDev),
 		SCOPE_VERSION,
 	}))
+
+	webpackConfig.resolve.extensionAlias = {
+		'.js': ['.ts', '.js'],
+		'.mjs': ['.mts', '.mjs'],
+	}
 
 	return webpackConfig
 }
