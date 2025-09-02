@@ -175,7 +175,7 @@
     "remark-gfm": "^4.0.1",
     "resolve-url-loader": "^5.0.0",
     "sanitize-filename": "^1.6.3",
-    "sass": "^1.86.1",
+    "sass": "^1.91.0",
     "stylelint-use-logical": "^2.1.2",
     "ts-node": "^10.9.1",
     "typescript": "^5.9.2",
