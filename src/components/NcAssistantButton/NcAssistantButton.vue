@@ -138,16 +138,19 @@ defineEmits([
 </script>
 
 <template>
-	<div :class="[{
-		[$style.assistantButton_disabled]: disabled,
-		[$style.assistantButton_primary]: variant === 'primary',
-	}, $style.assistantButton]">
-		<NcButton :class="$style.assistantButton__button"
+	<div
+		:class="[{
+			[$style.assistantButton_disabled]: disabled,
+			[$style.assistantButton_primary]: variant === 'primary',
+		}, $style.assistantButton]">
+		<NcButton
+			:class="$style.assistantButton__button"
 			:disabled="disabled"
 			variant="tertiary"
 			@click="$emit('click', $event)">
 			<template #icon>
-				<NcIconSvgWrapper v-if="variant === 'primary'"
+				<NcIconSvgWrapper
+					v-if="variant === 'primary'"
 					:class="$style.assistantButton__icon"
 					:path="mdiCreation" />
 				<NcAssistantIcon v-else />
