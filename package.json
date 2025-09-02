@@ -191,10 +191,12 @@
     "node": "^20.0.0 || ^22.0.0 || ^24.0.0"
   },
   "devEngines": {
-    "packageManager": {
-      "name": "npm",
-      "version": "^10"
-    },
+    "packageManager": [
+      {
+        "name": "npm",
+        "version": "^10.5.1"
+      }
+    ],
     "runtime": {
       "name": "node",
       "version": "^22"
