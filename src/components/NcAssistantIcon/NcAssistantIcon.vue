@@ -6,8 +6,70 @@
 <docs>
 ```vue
 <template>
-	<NcAssistantIcon />
+	<NcThemeProvider class="wrapper" :dark="userTheme === 'dark'">
+			<fieldset class="controls">
+				<legend>
+					Color theme
+				</legend>
+				<NcCheckboxRadioSwitch
+					v-model="providerTheme"
+					type="radio"
+					value="dark">
+					Dark
+				</NcCheckboxRadioSwitch>
+				<NcCheckboxRadioSwitch
+					v-model="providerTheme"
+					value="light"
+					type="radio">
+					Light
+				</NcCheckboxRadioSwitch>
+			</div>
+		</fieldset>
+		<NcThemeProvider
+			:dark="providerTheme === 'dark'"
+			:light="providerTheme === 'light'">
+			<div class="theme-preview">
+				<NcAssistantIcon />
+			</div>
+		</NcThemeProvider>
+	</NcThemeProvider>
 </template>
+<script>
+export default {
+	data() {
+		return {
+			providerTheme: 'light',
+		}
+	}
+}
+</script>
+<style scoped>
+.wrapper {
+	background-color: var(--color-main-background);
+	color: var(--color-main-text);
+}
+
+.controls {
+	display: flex;
+	justify-content: center;
+	gap: 2lh;
+}
+
+legend {
+	width: 100%;
+	text-align: center;
+}
+
+.theme-preview {
+	background-color: var(--color-main-background);
+	color: var(--color-main-text);
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	margin-top: 0.5lh;
+	min-height: 2lh;
+}
+</style>
 ```
 
 ### Usage as inline icon
@@ -23,6 +85,8 @@
 <script setup>
 import { mdiCreation } from '@mdi/js'
 import { computed } from 'vue'
+import { useIsDarkTheme } from '../../composables/useIsDarkTheme/index.ts'
+import { createElementId } from '../../utils/createElementId.ts'
 
 const props = defineProps({
 	/**
@@ -45,6 +109,8 @@ const props = defineProps({
 	},
 })
 
+const isDarkTheme = useIsDarkTheme()
+const gradientId = createElementId()
 const sizePx = computed(() => `${props.size}px`)
 </script>
 
@@ -55,13 +121,18 @@ const sizePx = computed(() => `${props.size}px`)
 		role="img">
 		<svg :class="$style.assistantIcon__svg" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
 			<defs>
-				<linearGradient id="AssistantGradient" gradientTransform="rotateX(285)">
+				<linearGradient v-if="isDarkTheme" :id="gradientId" gradientTransform="rotateX(285)">
+					<stop offset="15%" stop-color="#CDACE7" />
+					<stop offset="40%" stop-color="#008FDB" />
+					<stop offset="82%" stop-color="#A180E0" />
+				</linearGradient>
+				<linearGradient v-else :id="gradientId" gradientTransform="rotateX(285)">
 					<stop offset="15%" stop-color="#9669D3" />
 					<stop offset="40%" stop-color="#00679E" />
 					<stop offset="80%" stop-color="#492083" />
 				</linearGradient>
 			</defs>
-			<path :d="mdiCreation" fill="url('#AssistantGradient')" />
+			<path :d="mdiCreation" :fill="`url('#${gradientId}')`" />
 		</svg>
 	</span>
 </template>
