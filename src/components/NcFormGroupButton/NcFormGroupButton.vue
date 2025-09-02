@@ -260,6 +260,23 @@ export default {
 	flex-direction: column;
 	gap: var(--default-grid-baseline);
 }
+
+/* WIP */
+/* Added for demonstration */
+.sample > * {
+	border-radius: var(--border-radius) !important;
+
+	&:first-child {
+		border-start-start-radius: var(--border-radius-element) !important;
+		border-start-end-radius: var(--border-radius-element) !important;
+	}
+
+	&:last-child {
+		border-end-start-radius: var(--border-radius-element) !important;
+		border-end-end-radius: var(--border-radius-element) !important;
+	}
+}
+/* WIP */
 </style>
 ```
 </docs>
