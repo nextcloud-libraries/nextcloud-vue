@@ -3,6 +3,7 @@
  * SPDX-License-Identifier: AGPL-3.0-or-later
  */
 
+import { afterEach, describe, expect, it, jest } from '@jest/globals'
 import { useHotKey } from '../../../src/composables/useHotKey/index.ts'
 
 describe('useHotKey', () => {

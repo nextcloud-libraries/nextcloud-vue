@@ -3,6 +3,7 @@
  * SPDX-License-Identifier: AGPL-3.0-or-later
  */
 
+import { describe, expect, it, jest } from '@jest/globals'
 import { mount } from '@vue/test-utils'
 import Tribute from 'tributejs/dist/tribute.esm.js'
 import NcRichContenteditable from '../../../../src/components/NcRichContenteditable/NcRichContenteditable.vue'

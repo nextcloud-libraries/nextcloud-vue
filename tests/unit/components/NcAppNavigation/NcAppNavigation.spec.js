@@ -3,7 +3,7 @@
  * SPDX-License-Identifier: AGPL-3.0-or-later
  */
 
-import { describe, expect, it } from '@jest/globals'
+import { beforeEach, describe, expect, it } from '@jest/globals'
 import { emit } from '@nextcloud/event-bus'
 import { mount } from '@vue/test-utils'
 import { nextTick } from 'vue'

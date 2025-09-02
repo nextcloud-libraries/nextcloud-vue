@@ -2,6 +2,7 @@
  * SPDX-FileCopyrightText: 2020 Nextcloud GmbH and Nextcloud contributors
  * SPDX-License-Identifier: AGPL-3.0-or-later
  */
+import { describe, expect, it } from '@jest/globals'
 import usernameToColor from '../../../../src/functions/usernameToColor/index.js'
 
 function rgbToHex(color) {

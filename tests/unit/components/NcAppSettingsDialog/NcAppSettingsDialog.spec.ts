@@ -3,6 +3,7 @@
  * SPDX-License-Identifier: AGPL-3.0-or-later
  */
 
+import { beforeAll, describe, expect, it, jest } from '@jest/globals'
 import { mount } from '@vue/test-utils'
 import { defineComponent, inject, nextTick, onMounted } from 'vue'
 import NcAppSettingsDialog from '../../../../src/components/NcAppSettingsDialog/NcAppSettingsDialog.vue'

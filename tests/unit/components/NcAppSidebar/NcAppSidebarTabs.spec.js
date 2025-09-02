@@ -3,6 +3,7 @@
  * SPDX-License-Identifier: AGPL-3.0-or-later
  */
 
+import { afterEach, beforeEach, describe, expect, it, jest } from '@jest/globals'
 import { mount } from '@vue/test-utils'
 import Vue from 'vue'
 import NcActionButton from '../../../../src/components/NcActionButton/NcActionButton.vue'

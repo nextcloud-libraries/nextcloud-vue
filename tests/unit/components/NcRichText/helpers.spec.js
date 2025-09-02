@@ -3,6 +3,7 @@
  * SPDX-License-Identifier: AGPL-3.0-or-later
  */
 
+import { describe, expect, it } from '@jest/globals'
 import { URL_PATTERN, URL_PATTERN_AUTOLINK } from '../../../../src/components/NcRichText/helpers.js'
 
 describe('URL_PATTERN', () => {

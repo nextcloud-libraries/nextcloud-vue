@@ -3,6 +3,7 @@
  * SPDX-License-Identifier: AGPL-3.0-or-later
  */
 
+import { afterAll, beforeAll, beforeEach, describe, expect, it, jest } from '@jest/globals'
 import * as nextcloudl10n from '@nextcloud/l10n'
 import { mount } from '@vue/test-utils'
 import { nextTick } from 'vue'

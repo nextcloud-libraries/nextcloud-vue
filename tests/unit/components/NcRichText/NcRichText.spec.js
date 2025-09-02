@@ -3,6 +3,7 @@
  * SPDX-License-Identifier: AGPL-3.0-or-later
  */
 
+import { describe, expect, it, test } from '@jest/globals'
 import { mount } from '@vue/test-utils'
 import { nextTick } from 'vue'
 import NcRichText from '../../../../src/components/NcRichText/NcRichText.vue'
