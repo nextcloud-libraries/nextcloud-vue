@@ -204,6 +204,7 @@ module.exports = async () => {
 					'src/components/NcHeader*/*.vue',
 					'src/components/NcListItem*/*.vue',
 					'src/components/NcPopover/NcPopoverTriggerProvider.vue',
+					'src/components/NcRadioGroup*/*.vue',
 					'src/components/NcRichContenteditable/!(NcRichContenteditable).vue',
 					'src/components/NcRichText*/*.vue',
 					'src/components/NcSelect*/*.vue',
@@ -313,6 +314,12 @@ module.exports = async () => {
 						name: 'NcPickers',
 						components: [
 							'src/components/Nc*Picker*/*.vue',
+						],
+					},
+					{
+						name: 'NcRadioGroup',
+						components: [
+							'src/components/NcRadioGroup*/*.vue',
 						],
 					},
 					{
