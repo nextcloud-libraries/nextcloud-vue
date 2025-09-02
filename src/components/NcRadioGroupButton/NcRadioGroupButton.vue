@@ -82,8 +82,10 @@ function onUpdate() {
 	--radio-group-button--background-color: var(--color-primary-element-light);
 	--radio-group-button--background-color-hover: var(--color-primary-element-light-hover);
 	--radio-group-button--padding: 1px;
+	cursor: pointer;
 	color: var(--radio-group-button--color);
 	background-color: var(--radio-group-button--background-color);
+	transition: var(--animation-quick) background-color;
 	border: var(--radio-group-button--border-width) solid var(--radio-group-button--background-color-hover);
 	border-bottom-width: 2px;
 	border-radius: var(--radio-group-button--border-radius);
@@ -94,6 +96,10 @@ function onUpdate() {
 	// ensure that the content is centered because of uneven border
 	padding-block: var(--radio-group-button--padding) 0;
 	padding-inline: var(--radio-group-button--padding);
+
+	* {
+		cursor: pointer;
+	}
 
 	:has(&__label) {
 		padding-inline: calc(var(--radio-group-button--padding) + var(--border-radius-element));

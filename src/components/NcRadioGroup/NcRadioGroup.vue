@@ -88,8 +88,10 @@ function onUpdate(value: string) {
 }
 
 .radioGroup__label {
+	font-size: 1.2em;
 	font-weight: bold;
 	margin-inline-start: var(--border-radius-element);
+	margin-block-end: var(--default-grid-baseline);
 }
 </style>
 
