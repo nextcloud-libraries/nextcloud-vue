@@ -1,11 +1,11 @@
 # 
 # Translators:
-# John Molakvoæ <skjnldsv@protonmail.com>, 2023
-# Иван Пешић, 2024
+# Joas Schilling, 2025
+# Иван Пешић, 2025
 # 
 msgid ""
 msgstr ""
-"Last-Translator: Иван Пешић, 2024\n"
+"Last-Translator: Иван Пешић, 2025\n"
 "Language-Team: Serbian (https://app.transifex.com/nextcloud/teams/64236/sr/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Language: sr\n"
@@ -35,6 +35,10 @@ msgstr "Активности"
 
 msgid "Add to a project"
 msgstr "Додај у пројекат"
+
+#. TRANSLATORS: Alt key on keyboard (Windows/Linux)
+msgid "Alt"
+msgstr "Alt"
 
 msgid "Animals & Nature"
 msgstr "Животиње и природа"
@@ -72,6 +76,12 @@ msgstr "Бостон плава"
 msgid "busy"
 msgstr "заузет"
 
+msgid "Calendar icon"
+msgstr "Икона календара"
+
+msgid "Cancel"
+msgstr "Откажи"
+
 msgid "Cancel changes"
 msgstr "Откажи измене"
 
@@ -90,6 +100,9 @@ msgstr "Обриши изабрано"
 msgid "Clear text"
 msgstr "Обриши текст"
 
+msgid "Clear value"
+msgstr "Обриши вредност"
+
 msgid "Close"
 msgstr "Затвори"
 
@@ -101,6 +114,9 @@ msgstr "Затвори бочну траку"
 
 msgid "Close Smart Picker"
 msgstr "Затвори паметни бирач"
+
+msgid "Close time Picker"
+msgstr "Затвори бирач времена"
 
 msgid "Collapse menu"
 msgstr "Сажми мени"
@@ -114,11 +130,34 @@ msgstr "Потврдите измене"
 msgid "Connect items to a project to make them easier to find"
 msgstr "Повезује ставке у пројекат како би се лакше пронашле"
 
+#. TRANSLATORS: Ctrl key on keyboard (Windows/Linux)
+msgid "Ctrl"
+msgstr "Ctrl"
+
 msgid "Custom"
 msgstr "Произвољно"
 
 msgid "Dark skin tone"
 msgstr "Тамни тен коже"
+
+msgid "Datepicker input"
+msgstr "Улаз бирача датума"
+
+msgid "Datepicker menu"
+msgstr "Мени бирача датума"
+
+msgid "Decrement hours"
+msgstr "Умањи сате"
+
+msgid "Decrement minutes"
+msgstr "Умањи минуте"
+
+msgid "Decrement seconds"
+msgstr "Умањи секунде"
+
+#. TRANSLATORS: Delete key on keyboard
+msgid "Delete"
+msgstr "Обриши"
 
 #. TRANSLATORS: A color name for RGB(136, 85, 168)
 msgid "Deluge"
@@ -139,6 +178,10 @@ msgstr "Бирач емођија"
 msgid "Enable interactive view"
 msgstr "Укључи интерактивни приказ"
 
+#. TRANSLATORS: Enter key on keyboard
+msgid "Enter"
+msgstr "Enter"
+
 msgid "Enter link"
 msgstr "Унесите линк"
 
@@ -149,8 +192,12 @@ msgstr ""
 "Грешка код прибављања везаних ресурса. Молимо вас да се обратите "
 "администратору ако имате питања."
 
-msgid "External documentation for {name}"
-msgstr "Спољна документација за {name}"
+#. TRANSLATORS: Escape key on keyboard
+msgid "Escape"
+msgstr "Escape"
+
+msgid "External documentation"
+msgstr "Спољна документација"
 
 msgid "Failed to add the item to the project"
 msgstr "Није успело додавање ставке у пројекат"
@@ -177,6 +224,7 @@ msgstr "Храна и пиће"
 msgid "Frequently used"
 msgstr "Често коришћено"
 
+#. TRANSLATORS: This refers to global timezones in the timezone picker
 msgid "Global"
 msgstr "Глобално"
 
@@ -191,6 +239,15 @@ msgstr "Сакриј детаље"
 
 msgid "Hide password"
 msgstr "Сакриј лозинку"
+
+msgid "Increment hours"
+msgstr "Увећај сате"
+
+msgid "Increment minutes"
+msgstr "Увећај минуте"
+
+msgid "Increment seconds"
+msgstr "Увећај секунде"
 
 msgid "invisible"
 msgstr "невидљиво"
@@ -221,8 +278,17 @@ msgstr "Средње светли тен коже"
 msgid "Medium skin tone"
 msgstr "Средњи тен коже"
 
-msgid "Message limit of {count} characters reached"
-msgstr "Достигнуто је ограничење величине поруке од {count} карактера"
+msgid "Message limit of %n character reached"
+msgid_plural "Message limit of %n characters reached"
+msgstr[0] "Достигнуто је ограничење величине поруке од %n карактер"
+msgstr[1] "Достигнуто је ограничење величине поруке од %n карактера"
+msgstr[2] "Достигнуто је ограничење величине поруке од %n карактера"
+
+msgid "Month picker"
+msgstr "Бирач месеца"
+
+msgid "Month picker overlay"
+msgstr "Маска бирача месеца"
 
 msgid "More items …"
 msgstr "Још ставки..."
@@ -236,6 +302,12 @@ msgstr "Неутрална боја коже"
 msgid "Next"
 msgstr "Следеће"
 
+msgid "Next month"
+msgstr "Наредни месец"
+
+msgid "Next year"
+msgstr "Наредна година"
+
 msgid "Nextcloud blue"
 msgstr "Nextcloud плава"
 
@@ -247,6 +319,9 @@ msgstr "Није пронађен ниједан пружалац линка"
 
 msgid "No results"
 msgstr "Нема резултата"
+
+msgid "Now"
+msgstr "Сада"
 
 msgid "Objects"
 msgstr "Предмети"
@@ -261,17 +336,35 @@ msgstr "Маслинаста"
 msgid "online"
 msgstr "на мрежи"
 
+msgid "Open hours overlay"
+msgstr "Отвори маску сати"
+
 msgid "Open link to \"{resourceName}\""
 msgstr "Отвори линк на „{resourceName}”"
 
 msgid "Open menu"
 msgstr "Отвори мени"
 
-msgid "Open navigation {shortcut}"
-msgstr "Отвори навигацију {shortcut}"
+msgid "Open minutes overlay"
+msgstr "Отвори маску минута"
+
+msgid "Open months overlay"
+msgstr "Отвори маску месеци"
+
+msgid "Open navigation"
+msgstr "Отвори навигацију"
+
+msgid "Open seconds overlay"
+msgstr "Отвори маску секунди"
 
 msgid "Open sidebar"
 msgstr "Отвори бочну траку"
+
+msgid "Open time picker"
+msgstr "Отвори бирач времена"
+
+msgid "Open years overlay"
+msgstr "Отвори маску година"
 
 msgid "Options"
 msgstr "Опције"
@@ -285,32 +378,23 @@ msgstr "Паузирај слајд шоу"
 msgid "People & Body"
 msgstr "Људи и тело"
 
-msgid "Pick a date"
-msgstr "Изаберите датум"
-
-msgid "Pick a date and a time"
-msgstr "Изаберите датум и време"
-
-msgid "Pick a month"
-msgstr "Изаберите месец"
-
-msgid "Pick a time"
-msgstr "Изаберите време"
-
-msgid "Pick a week"
-msgstr "Изаберите недељу"
-
-msgid "Pick a year"
-msgstr "Изаберите годину"
+msgid "Pick"
+msgstr "Изабери"
 
 msgid "Pick an emoji"
 msgstr "Изаберите емођи"
 
-msgid "Please select a time zone:"
-msgstr "Молимо вас да изаберете временску зону:"
+msgid "Please choose a date"
+msgstr "Молимо вас да изаберете датум"
 
 msgid "Previous"
 msgstr "Претходно"
+
+msgid "Previous month"
+msgstr "Претходни месец"
+
+msgid "Previous year"
+msgstr "Претходна година"
 
 msgid "Provider icon"
 msgstr "Икона пружаоца"
@@ -340,17 +424,17 @@ msgstr "Сачувај измене"
 msgid "Search"
 msgstr "Претражи"
 
+msgid "Search …"
+msgstr "Претражи…"
+
 msgid "Search emoji"
 msgstr "Претражи емођи"
 
-msgid "Search for time zone"
+msgid "Search for timezone"
 msgstr "Претрага временске зоне"
 
 msgid "Search results"
 msgstr "Резултати претраге"
-
-msgid "Search…"
-msgstr "Претражи…"
 
 #. FOR TRANSLATORS: If possible in your language an even shorter version of 'a
 #. few seconds ago'
@@ -364,8 +448,29 @@ msgstr "секунди раније"
 msgid "Select a tag"
 msgstr "Изаберите ознаку"
 
+msgid "Select date"
+msgstr "Изаберите датум"
+
+msgid "Select date and time"
+msgstr "Изаберите датум и време"
+
+msgid "Select month"
+msgstr "Изаберите месец"
+
 msgid "Select provider"
 msgstr "Изаберите пружаоца"
+
+msgid "Select time"
+msgstr "Изаберите време"
+
+msgid "Select time range"
+msgstr "Изаберите опсег времена"
+
+msgid "Select week"
+msgstr "Изаберите недељу"
+
+msgid "Select year"
+msgstr "Изаберите годину"
 
 msgid "Selected"
 msgstr "Изабрано"
@@ -375,6 +480,10 @@ msgstr "Поставке"
 
 msgid "Settings navigation"
 msgstr "Кретање по подешавањима"
+
+#. TRANSLATORS: Shift key on keyboard
+msgid "Shift"
+msgstr "Shift"
 
 msgid "Show details"
 msgstr "Прикажи детаље"
@@ -397,6 +506,10 @@ msgstr "Паметни бирач"
 msgid "Smileys & Emotion"
 msgstr "Смајлији и емоције"
 
+#. TRANSLATORS: Space key on keyboard
+msgid "Space"
+msgstr "Space"
+
 msgid "Start slideshow"
 msgstr "Покрени слајд шоу"
 
@@ -406,8 +519,24 @@ msgstr "Покрените претрагу куцањем"
 msgid "Submit"
 msgstr "Поднеси"
 
+msgid "Switch AM/PM mode"
+msgstr "Укљ./Искљ. AM/PM режим"
+
 msgid "Symbols"
 msgstr "Симболи"
+
+#. TRANSLATORS: Tab key on keyboard
+msgid "Tab"
+msgstr "Tab"
+
+msgid "Time picker"
+msgstr "Бирач времена"
+
+msgid "Timezone"
+msgstr "Временска зона"
+
+msgid "Toggle overlay"
+msgstr "Укљ./Искљ. маску"
 
 msgid "Travel & Places"
 msgstr "Путовање и места"
@@ -430,9 +559,18 @@ msgstr "Статус корисника: {status}"
 msgid "View team"
 msgstr "Прикажи тим"
 
+msgid "W"
+msgstr "W"
+
 #. TRANSLATORS: A color name for RGB(211, 169, 103)
 msgid "Whiskey"
 msgstr "Виски"
 
 msgid "Write a message …"
 msgstr "Напишите поруку…"
+
+msgid "Year picker"
+msgstr "Бирач године"
+
+msgid "Year picker overlay"
+msgstr "Маска бирача године"
