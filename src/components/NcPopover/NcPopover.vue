@@ -324,7 +324,7 @@ export default {
 		 */
 		removeFloatingVueAriaDescribedBy() {
 			// When the popover is shown, floating-vue mutates the root elements of the trigger adding data-popper-shown and incorrect aria-describedby attributes.
-			const triggerContainer = this.getPopoverTriggerContainerElement()
+			const triggerContainer = this.getPopoverTriggerElement()
 			const triggerElements = triggerContainer.querySelectorAll('[data-popper-shown]')
 			for (const el of triggerElements) {
 				el.removeAttribute('aria-describedby')
