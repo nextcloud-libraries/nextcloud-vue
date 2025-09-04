@@ -226,7 +226,8 @@ export default {
 	max-width: fit-content;
 
 	&__wrapper {
-		flex: 1 0;
+		flex: 1 0 0;
+		max-width: 100%;
 	}
 
 	&__text {
