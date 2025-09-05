@@ -553,6 +553,7 @@ export default {
 						importRehypeHighlightLibrary()
 					}
 					if (String(type) === 'li' && Array.isArray(children)
+						&& children.length !== 0
 						&& children[0].type === 'input'
 						&& children[0].props.type === 'checkbox') {
 						const [inputNode, , ...labelParts] = children
