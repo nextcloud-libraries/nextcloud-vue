@@ -360,12 +360,12 @@ const slots = defineSlots<{
 /**
  * The dialog wrapper element
  */
-const wrapper = useTemplateRef('wrapper-key')
+const wrapperElement = useTemplateRef('wrapper')
 
 /**
  * We use the dialog width to decide if we collapse the navigation (flex direction row)
  */
-const { width: dialogWidth } = useElementSize(wrapper, { width: 900, height: 0 })
+const { width: dialogWidth } = useElementSize(wrapperElement, { width: 900, height: 0 })
 
 /**
  * Whether the navigation is collapsed due to dialog and window size
@@ -400,7 +400,7 @@ const navigationAriaLabelledbyAttr = computed(() => {
 	return props.navigationAriaLabelledby || navigationId
 })
 
-const dialogElement = useTemplateRef<HTMLDivElement | HTMLFormElement>('dialog-key')
+const dialogRootElement = useTemplateRef<HTMLDivElement | HTMLFormElement>('dialogElement')
 /**
  * The HTML element to use for the dialog wrapper - either form or plain div
  */
@@ -449,8 +449,8 @@ function handleButtonClose(button: NcDialogButtonProps, result: unknown) {
 	// Skip close on submit if invalid dialog
 	if (button.type === 'submit'
 		&& dialogTagName.value === 'form'
-		&& 'reportValidity' in dialogElement.value!
-		&& !dialogElement.value.reportValidity()) {
+		&& 'reportValidity' in dialogRootElement.value!
+		&& !dialogRootElement.value.reportValidity()) {
 		return
 	}
 	handleClosing(result)
@@ -506,11 +506,11 @@ const modalProps = computed(() => ({
 		<h2 :id="navigationId" class="dialog__name" v-text="name" />
 		<component
 			:is="dialogTagName"
-			ref="dialog-key"
+			ref="dialogElement"
 			class="dialog"
 			:class="dialogClasses"
 			v-on="dialogListeners">
-			<div ref="wrapper-key" class="dialog__wrapper" :class="[{ 'dialog__wrapper--collapsed': isNavigationCollapsed }]">
+			<div ref="wrapper" class="dialog__wrapper" :class="[{ 'dialog__wrapper--collapsed': isNavigationCollapsed }]">
 				<!-- When the navigation is collapsed (too small dialog) it is displayed above the main content, otherwise on the inline start -->
 				<nav
 					v-if="hasNavigation"

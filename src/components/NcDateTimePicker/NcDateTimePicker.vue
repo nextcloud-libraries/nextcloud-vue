@@ -329,8 +329,8 @@ const emit = defineEmits<{
 	'update:timezoneId': [string]
 }>()
 
-const target = useTemplateRef('target-key')
-const picker = useTemplateRef('picker-key')
+const targetElement = useTemplateRef('target')
+const pickerInstance = useTemplateRef('picker')
 
 /**
  * Mapping of the model-value prop to the format expected by the library.
@@ -573,7 +573,7 @@ const ariaLabels = computed(() => ({
  * This is used by the confirmation button if `confirmation` was set.
  */
 function selectDate() {
-	picker.value!.selectDate()
+	pickerInstance.value!.selectDate()
 }
 
 /**
@@ -581,14 +581,14 @@ function selectDate() {
  * This is used by the confirmation button if `confirmation` was set.
  */
 function cancelSelection() {
-	picker.value!.closeMenu()
+	pickerInstance.value!.closeMenu()
 }
 </script>
 
 <template>
 	<div class="vue-date-time-picker__wrapper">
 		<VueDatePicker
-			ref="picker-key"
+			ref="picker"
 			:aria-labels
 			:auto-apply="!confirm"
 			class="vue-date-time-picker"
@@ -604,7 +604,7 @@ function cancelSelection() {
 			:now-button-label="t('Now')"
 			:select-text="t('Pick')"
 			six-weeks="fair"
-			:teleport="appendToBody ? (target || undefined) : false"
+			:teleport="appendToBody ? (targetElement || undefined) : false"
 			text-input
 			:week-num-name
 			:week-numbers="showWeekNumber ? { type: 'iso' } : undefined"
@@ -656,7 +656,7 @@ function cancelSelection() {
 			</template>
 		</VueDatePicker>
 		<Teleport to="body" :disabled="!appendToBody">
-			<div ref="target-key" class="vue-date-time-picker__wrapper" />
+			<div ref="target" class="vue-date-time-picker__wrapper" />
 		</Teleport>
 	</div>
 </template>

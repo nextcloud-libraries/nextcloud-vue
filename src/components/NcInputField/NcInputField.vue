@@ -159,7 +159,7 @@ defineExpose({
 
 const attrs = useAttrs()
 
-const input = useTemplateRef('input-key')
+const inputElement = useTemplateRef('input')
 
 const hasTrailingIcon = computed(() => props.showTrailingButton || props.success)
 
@@ -191,7 +191,7 @@ const ariaDescribedby = computed(() => {
  * @public
  */
 function focus(options?: FocusOptions) {
-	input.value!.focus(options)
+	inputElement.value!.focus(options)
 }
 
 /**
@@ -200,7 +200,7 @@ function focus(options?: FocusOptions) {
  * @public
  */
 function select() {
-	input.value!.select()
+	inputElement.value!.select()
 }
 
 /**
@@ -234,7 +234,7 @@ function handleInput(event: Event) {
 			<input
 				v-bind="$attrs"
 				:id
-				ref="input-key"
+				ref="input"
 				:aria-describedby="ariaDescribedby"
 				aria-live="polite"
 				class="input-field__input"

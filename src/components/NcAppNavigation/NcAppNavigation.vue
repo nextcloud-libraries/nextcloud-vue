@@ -187,7 +187,7 @@ const setHasAppNavigation = inject(
 	false,
 )
 
-const appNavigationContainer = useTemplateRef('app-navigation-container-key')
+const appNavigationContainerElement = useTemplateRef('appNavigationContainer')
 const isMobile = useIsMobile()
 const open = ref(!isMobile.value)
 
@@ -213,9 +213,9 @@ onMounted(() => {
 		open: open.value,
 	})
 
-	focusTrap = createFocusTrap(appNavigationContainer.value!, {
+	focusTrap = createFocusTrap(appNavigationContainerElement.value!, {
 		allowOutsideClick: true,
-		fallbackFocus: appNavigationContainer.value!,
+		fallbackFocus: appNavigationContainerElement.value!,
 		trapStack: getTrapStack(),
 		escapeDeactivates: false,
 	})
@@ -287,7 +287,7 @@ function handleEsc(): void {
 
 <template>
 	<div
-		ref="app-navigation-container-key"
+		ref="appNavigationContainer"
 		class="app-navigation"
 		:class="{ 'app-navigation--closed': !open }">
 		<nav
