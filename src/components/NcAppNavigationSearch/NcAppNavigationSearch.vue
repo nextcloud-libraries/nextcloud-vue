@@ -193,7 +193,7 @@ const { focused: inputHasFocus } = useFocusWithin(inputElement)
 /** Timeout used to define when the search input is fully expanded */
 const transitionTimeout = Number.parseInt(window.getComputedStyle(window.document.body).getPropertyValue('--animation-quick')) || 100
 
-const actionsContainer = useTemplateRef('actionsContainer')
+const actionsContainerElement = useTemplateRef('actionsContainer')
 const hasActions = () => !!slots.actions?.({})
 const showActions = ref(true)
 const timeoutId = ref()
@@ -219,7 +219,7 @@ function onCloseSearch() {
 	model.value = ''
 	if (hasActions()) {
 		showActions.value = true
-		nextTick(() => actionsContainer.value?.querySelector('button')?.focus())
+		nextTick(() => actionsContainerElement.value?.querySelector('button')?.focus())
 	}
 }
 </script>

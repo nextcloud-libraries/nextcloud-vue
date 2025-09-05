@@ -187,7 +187,7 @@ const setHasAppNavigation = inject(
 	false,
 )
 
-const appNavigationContainer = useTemplateRef('appNavigationContainer')
+const appNavigationContainerElement = useTemplateRef('appNavigationContainer')
 const isMobile = useIsMobile()
 const open = ref(!isMobile.value)
 
@@ -213,9 +213,9 @@ onMounted(() => {
 		open: open.value,
 	})
 
-	focusTrap = createFocusTrap(appNavigationContainer.value!, {
+	focusTrap = createFocusTrap(appNavigationContainerElement.value!, {
 		allowOutsideClick: true,
-		fallbackFocus: appNavigationContainer.value!,
+		fallbackFocus: appNavigationContainerElement.value!,
 		trapStack: getTrapStack(),
 		escapeDeactivates: false,
 	})

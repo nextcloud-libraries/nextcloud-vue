@@ -206,7 +206,7 @@ interface PasswordPolicy {
 const { password_policy: passwordPolicy } = getCapabilities() as { password_policy?: PasswordPolicy }
 
 // internal state
-const inputField = useTemplateRef('inputField')
+const inputFieldInstance = useTemplateRef('inputField')
 
 const internalHelpMessage = ref('')
 const isValid = ref<boolean>()
@@ -273,7 +273,7 @@ function toggleVisibility() {
  * @public
  */
 function focus(options?: FocusOptions) {
-	inputField.value!.focus(options)
+	inputFieldInstance.value!.focus(options)
 }
 
 /**
@@ -282,7 +282,7 @@ function focus(options?: FocusOptions) {
  * @public
  */
 function select() {
-	inputField.value!.select()
+	inputFieldInstance.value!.select()
 }
 </script>
 

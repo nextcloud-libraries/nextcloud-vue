@@ -329,8 +329,8 @@ const emit = defineEmits<{
 	'update:timezoneId': [string]
 }>()
 
-const target = useTemplateRef('target')
-const picker = useTemplateRef('picker')
+const targetElement = useTemplateRef('target')
+const pickerInstance = useTemplateRef('picker')
 
 /**
  * Mapping of the model-value prop to the format expected by the library.
@@ -573,7 +573,7 @@ const ariaLabels = computed(() => ({
  * This is used by the confirmation button if `confirmation` was set.
  */
 function selectDate() {
-	picker.value!.selectDate()
+	pickerInstance.value!.selectDate()
 }
 
 /**
@@ -581,7 +581,7 @@ function selectDate() {
  * This is used by the confirmation button if `confirmation` was set.
  */
 function cancelSelection() {
-	picker.value!.closeMenu()
+	pickerInstance.value!.closeMenu()
 }
 </script>
 
@@ -604,7 +604,7 @@ function cancelSelection() {
 			:now-button-label="t('Now')"
 			:select-text="t('Pick')"
 			six-weeks="fair"
-			:teleport="appendToBody ? (target || undefined) : false"
+			:teleport="appendToBody ? (targetElement || undefined) : false"
 			text-input
 			:week-num-name
 			:week-numbers="showWeekNumber ? { type: 'iso' } : undefined"

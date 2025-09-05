@@ -142,17 +142,17 @@ const isOpened = ref(open)
 const wrapperTag = computed(() => isNav ? 'nav' : 'div')
 
 /** The menu content container element */
-const contentContainer = useTemplateRef('contentContainer')
+const contentContainerElement = useTemplateRef('contentContainer')
 /** The overall header menu wrapping element (<nav> or <div>) */
-const headerMenu = useTemplateRef<HTMLElement>('headerMenu')
+const headerMenuElement = useTemplateRef<HTMLElement>('headerMenu')
 /** The menu trigger button */
-const triggerButton = useTemplateRef('triggerButton')
+const triggerButtonInstance = useTemplateRef('triggerButton')
 
 // Handle click outside of the menu -> should close the menu
 const ignore = computed(() => Array.isArray(excludeClickOutsideSelectors)
 	? excludeClickOutsideSelectors
 	: excludeClickOutsideSelectors.split(' '))
-onClickOutside(headerMenu, () => setMenuState(false), { ignore })
+onClickOutside(headerMenuElement, () => setMenuState(false), { ignore })
 
 // Pressing escape should close the menu
 useHotKey('Escape', () => setMenuState(false), { prevent: true })
@@ -213,7 +213,7 @@ function onFocusOut(event: FocusEvent) {
 		return
 	}
 
-	if (headerMenu.value?.contains(event.relatedTarget)) {
+	if (headerMenuElement.value?.contains(event.relatedTarget)) {
 		setMenuState(false)
 	}
 }
@@ -231,10 +231,10 @@ async function addFocusTrap() {
 	}
 
 	// Init focus trap
-	focusTrap.value = createFocusTrap(contentContainer.value!, {
+	focusTrap.value = createFocusTrap(contentContainerElement.value!, {
 		allowOutsideClick: true,
 		trapStack: getTrapStack(),
-		fallbackFocus: triggerButton.value?.$el,
+		fallbackFocus: triggerButtonInstance.value?.$el,
 	})
 	focusTrap.value.activate()
 }
