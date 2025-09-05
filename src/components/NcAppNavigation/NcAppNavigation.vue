@@ -187,7 +187,7 @@ const setHasAppNavigation = inject(
 	false,
 )
 
-const appNavigationContainer = useTemplateRef('app-navigation-container-key')
+const appNavigationContainer = useTemplateRef('appNavigationContainer')
 const isMobile = useIsMobile()
 const open = ref(!isMobile.value)
 
@@ -287,7 +287,7 @@ function handleEsc(): void {
 
 <template>
 	<div
-		ref="app-navigation-container-key"
+		ref="appNavigationContainer"
 		class="app-navigation"
 		:class="{ 'app-navigation--closed': !open }">
 		<nav

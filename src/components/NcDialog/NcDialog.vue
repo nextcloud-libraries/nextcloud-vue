@@ -360,7 +360,7 @@ const slots = defineSlots<{
 /**
  * The dialog wrapper element
  */
-const wrapper = useTemplateRef('wrapper-key')
+const wrapper = useTemplateRef('wrapper')
 
 /**
  * We use the dialog width to decide if we collapse the navigation (flex direction row)
@@ -400,7 +400,7 @@ const navigationAriaLabelledbyAttr = computed(() => {
 	return props.navigationAriaLabelledby || navigationId
 })
 
-const dialogElement = useTemplateRef<HTMLDivElement | HTMLFormElement>('dialog-key')
+const dialogElement = useTemplateRef<HTMLDivElement | HTMLFormElement>('dialogElement')
 /**
  * The HTML element to use for the dialog wrapper - either form or plain div
  */
@@ -506,11 +506,11 @@ const modalProps = computed(() => ({
 		<h2 :id="navigationId" class="dialog__name" v-text="name" />
 		<component
 			:is="dialogTagName"
-			ref="dialog-key"
+			ref="dialogElement"
 			class="dialog"
 			:class="dialogClasses"
 			v-on="dialogListeners">
-			<div ref="wrapper-key" class="dialog__wrapper" :class="[{ 'dialog__wrapper--collapsed': isNavigationCollapsed }]">
+			<div ref="wrapper" class="dialog__wrapper" :class="[{ 'dialog__wrapper--collapsed': isNavigationCollapsed }]">
 				<!-- When the navigation is collapsed (too small dialog) it is displayed above the main content, otherwise on the inline start -->
 				<nav
 					v-if="hasNavigation"

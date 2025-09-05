@@ -127,7 +127,7 @@ export default {
 <template>
 	<NcInputField
 		v-bind="propsToForward"
-		ref="input-field-key"
+		ref="inputField"
 		v-model="modelValue">
 		<template v-if="!!$slots.icon" #icon>
 			<slot name="icon" />
@@ -188,7 +188,7 @@ defineExpose({
 	select,
 })
 
-const inputField = useTemplateRef('input-field-key')
+const inputField = useTemplateRef('inputField')
 
 const defaultTrailingButtonLabels = {
 	arrowEnd: t('Save changes'),
