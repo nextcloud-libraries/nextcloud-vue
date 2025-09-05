@@ -100,6 +100,41 @@ export default {
 </style>
 ```
 
+* Allowing to clear the selected color
+
+```vue
+<template>
+	<div class="container1">
+		<NcButton @click="open = !open"> Click Me </NcButton>
+		<NcColorPicker clearable v-model="color" v-model:open="open" v-slot="{ attrs }">
+			<div v-bind="attrs" :style="{'background-color': color}" class="color1" />
+		</NcColorPicker>
+	</div>
+</template>
+<script>
+export default {
+	data() {
+		return {
+			color: '#0082c9',
+			open: false
+		}
+	}
+}
+</script>
+<style>
+.container1 {
+	display: flex;
+	gap: 20px;
+}
+
+.color1 {
+	width: 100px;
+	height: 34px;
+	border-radius: 6px;
+}
+</style>
+```
+
 * Using advanced fields including HEX, RGB, and HSL:
 
 ```vue
@@ -137,6 +172,7 @@ export default {
 </docs>
 
 <script setup lang="ts">
+import type { Payload } from '@ckpack/vue-color'
 import type { Color } from '../../utils/colors.ts'
 
 import { Chrome as VueChrome } from '@ckpack/vue-color'
@@ -151,9 +187,11 @@ import NcIconSvgWrapper from '../NcIconSvgWrapper/index.ts'
 import NcPopover from '../NcPopover/index.js'
 
 /**
- * A HEX color that represents the initial value of the picker
+ * A HEX color that represents the initial value of the picker.
+ *
+ * If the `clearable` prop is set then also `undefined` might be given or emitted for when the color gets cleared.
  */
-const currentColor = defineModel<string>({ required: true })
+const currentColor = defineModel<string | undefined>({ required: true })
 
 /**
  * The open state of the color picker.
@@ -165,6 +203,12 @@ const props = withDefaults(defineProps<{
 	 * Set to `true` to enable advanced fields including HEX, RGB, and HSL
 	 */
 	advancedFields?: boolean
+
+	/**
+	 * Allow to clear the current color.
+	 * When set the `update:modelValue` and `submit` event might emit also `undefined`.
+	 */
+	clearable?: boolean
 
 	/**
 	 * Selector for the popover container
@@ -194,8 +238,10 @@ const emit = defineEmits<{
 	/**
 	 * Emitted when the submit button was pressed.
 	 * The payload is the same as the current modelValue.
+	 *
+	 * The value might be undefined if the `clearable` prop is set.
 	 */
-	submit: [string]
+	submit: [string | undefined]
 
 	/**
 	 * The color picker was fully closed and all transitions are finished.
@@ -229,18 +275,12 @@ const normalizedPalette = computed(() => {
 		}
 	}
 
-	return palette.map((item) => ({
+	return palette.map((item: Color | string) => ({
 		color: typeof item === 'object' ? item.color : item,
 		name: typeof item === 'object' && item.name
 			? item.name
-			: t('A color with a HEX value {hex}', { hex: item.color }),
+			: t('A color with a HEX value {hex}', { hex: typeof item === 'string' ? item : item.color }),
 	}))
-})
-
-const contrastColor = computed(() => {
-	const black = '#000000'
-	const white = '#FFFFFF'
-	return calculateLuma(currentColor.value) > 0.5 ? black : white
 })
 
 /**
@@ -255,15 +295,36 @@ function handleConfirm(hideCallback: () => void) {
 }
 
 /**
- * Pick a colour
+ * Toggle the currently selected palette color.
  *
- * @param color - The picked color
+ * @param color - The color to toggle
  */
-function pickColor(color: string | Color | { hex: string }) {
-	if (typeof color !== 'string') {
-		color = 'hex' in color ? color.hex : color.color
+function toggleColor(color: string | Color) {
+	color = typeof color === 'string' ? color : color.color
+
+	if (props.clearable && currentColor.value === color) {
+		currentColor.value = undefined
+	} else {
+		currentColor.value = color
 	}
-	currentColor.value = color
+}
+
+/**
+ * @param color - The picked color from the Chrome component
+ */
+function pickCustomColor(color: Payload): void {
+	currentColor.value = color.hex
+}
+
+/**
+ * Get the text color with the most constrast for a given background color.
+ *
+ * @param color - The background color
+ */
+function getContrastColor(color: string): string {
+	const black = '#000000'
+	const white = '#FFFFFF'
+	return calculateLuma(color) > 0.5 ? black : white
 }
 
 /**
@@ -306,7 +367,10 @@ function hexToRGB(hex: string): [number, number, number] {
 				class="color-picker"
 				aria-modal="true"
 				:aria-label="t('Color picker')"
-				:class="{ 'color-picker--advanced-fields': advanced && advancedFields }">
+				:class="{
+					'color-picker--advanced-fields': advanced && advancedFields,
+					'color-picker--can-clear': clearable,
+				}">
 				<Transition name="slide" mode="out-in">
 					<div v-if="!advanced" class="color-picker__simple">
 						<label
@@ -316,7 +380,7 @@ function hexToRGB(hex: string): [number, number, number] {
 							:class="{ 'color-picker__simple-color-circle--active': color === currentColor }"
 							:style="{
 								backgroundColor: color,
-								color: contrastColor,
+								color: getContrastColor(color),
 							}">
 							<NcIconSvgWrapper v-if="color === currentColor" :path="mdiCheck" />
 							<input
@@ -325,16 +389,16 @@ function hexToRGB(hex: string): [number, number, number] {
 								:aria-label="name"
 								:name="`color-picker-${id}`"
 								:checked="color === currentColor"
-								@click="pickColor(color)">
+								@click="toggleColor(color)">
 						</label>
 					</div>
 					<VueChrome
 						v-else
-						v-model="currentColor"
 						class="color-picker__advanced"
 						:disable-alpha="true"
 						:disable-fields="!advancedFields"
-						@update:model-value="pickColor" />
+						:model-value="currentColor ?? '#000000'"
+						@update:model-value="pickCustomColor" />
 				</Transition>
 				<div v-if="!paletteOnly" class="color-picker__navigation">
 					<NcButton
@@ -349,11 +413,15 @@ function hexToRGB(hex: string): [number, number, number] {
 					<NcButton
 						v-else
 						:aria-label="t('More options')"
+						:title="t('More options')"
 						variant="tertiary"
 						@click="advanced = true">
 						<template #icon>
 							<NcIconSvgWrapper :path="mdiDotsHorizontal" />
 						</template>
+					</NcButton>
+					<NcButton v-if="clearable" @click="currentColor = undefined">
+						{{ t('Clear') }}
 					</NcButton>
 					<NcButton
 						variant="primary"
@@ -376,6 +444,10 @@ function hexToRGB(hex: string): [number, number, number] {
 	width: 176px;
 	padding: 8px;
 	border-radius: 3px;
+
+	&--can-clear {
+		width: 230px;
+	}
 
 	&--advanced-fields {
 		width: 264px;
