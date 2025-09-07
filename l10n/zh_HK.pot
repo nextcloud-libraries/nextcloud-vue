@@ -36,6 +36,10 @@ msgstr "活動"
 msgid "Add to a project"
 msgstr "添加到方案中"
 
+#. TRANSLATORS: Alt key on keyboard (Windows/Linux)
+msgid "Alt"
+msgstr "Alt"
+
 msgid "Animals & Nature"
 msgstr "動物與自然"
 
@@ -126,6 +130,10 @@ msgstr "確認更改"
 msgid "Connect items to a project to make them easier to find"
 msgstr "將項目連接到方案中，以便更容易找到。"
 
+#. TRANSLATORS: Ctrl key on keyboard (Windows/Linux)
+msgid "Ctrl"
+msgstr "Ctrl"
+
 msgid "Custom"
 msgstr "自定義"
 
@@ -147,6 +155,10 @@ msgstr "分鐘遞減"
 msgid "Decrement seconds"
 msgstr "秒遞減"
 
+#. TRANSLATORS: Delete key on keyboard
+msgid "Delete"
+msgstr "Delete"
+
 #. TRANSLATORS: A color name for RGB(136, 85, 168)
 msgid "Deluge"
 msgstr "大洪水"
@@ -166,6 +178,10 @@ msgstr "表情符號選擇器"
 msgid "Enable interactive view"
 msgstr "啟用互動視圖"
 
+#. TRANSLATORS: Enter key on keyboard
+msgid "Enter"
+msgstr "Enter"
+
 msgid "Enter link"
 msgstr "輸入連結"
 
@@ -173,6 +189,10 @@ msgid ""
 "Error getting related resources. Please contact your system administrator if"
 " you have any questions."
 msgstr "取得相關資源時發生錯誤。如果有任何問題，請聯絡系統管理員。"
+
+#. TRANSLATORS: Escape key on keyboard
+msgid "Escape"
+msgstr "Escape"
 
 msgid "External documentation"
 msgstr "外部文件"
@@ -400,6 +420,9 @@ msgstr "保存更改"
 msgid "Search"
 msgstr "搜尋"
 
+msgid "Search …"
+msgstr "搜尋 …"
+
 msgid "Search emoji"
 msgstr "搜尋表情符號"
 
@@ -408,9 +431,6 @@ msgstr "搜尋時區"
 
 msgid "Search results"
 msgstr "搜尋結果"
-
-msgid "Search…"
-msgstr "搜尋 ..."
 
 #. FOR TRANSLATORS: If possible in your language an even shorter version of 'a
 #. few seconds ago'
@@ -457,6 +477,10 @@ msgstr "設定"
 msgid "Settings navigation"
 msgstr "設定值導覽"
 
+#. TRANSLATORS: Shift key on keyboard
+msgid "Shift"
+msgstr "Shift"
+
 msgid "Show details"
 msgstr "顯示詳情"
 
@@ -478,6 +502,10 @@ msgstr "Smart Picker"
 msgid "Smileys & Emotion"
 msgstr "表情"
 
+#. TRANSLATORS: Space key on keyboard
+msgid "Space"
+msgstr "Space"
+
 msgid "Start slideshow"
 msgstr "開始幻燈片"
 
@@ -492,6 +520,10 @@ msgstr "切換上午/下午模式"
 
 msgid "Symbols"
 msgstr "標誌"
+
+#. TRANSLATORS: Tab key on keyboard
+msgid "Tab"
+msgstr "Tab"
 
 msgid "Time picker"
 msgstr "時間挑選器"
@@ -530,8 +562,8 @@ msgstr "週"
 msgid "Whiskey"
 msgstr "威士忌"
 
-msgid "Write a message …"
-msgstr "編寫訊息 …"
+msgid "Write a message …"
+msgstr "編寫訊息 …"
 
 msgid "Year picker"
 msgstr "年挑選器"
