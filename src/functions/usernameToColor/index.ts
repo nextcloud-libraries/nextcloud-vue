@@ -5,6 +5,7 @@
 
 import type { Color } from '../../utils/colors.ts'
 
+import { createHash } from 'crypto-browserify'
 import { generatePalette } from '../../utils/colors.ts'
 
 /**
@@ -13,18 +14,23 @@ import { generatePalette } from '../../utils/colors.ts'
  * @param str - The string to hash
  */
 function hashCode(str: string): number {
-	let hash = 0
+	let hash = str
 
-	if (str.length === 0) {
-		return hash
+	// Hash a given string, if it is not md5 hash already
+	if (str.match(/^([0-9a-f]{4}-?){8}$/) === null) {
+		hash = createHash('md5').update(str).digest('hex')
 	}
 
-	for (let i = 0; i < str.length; i++) {
-		const chr = str.charCodeAt(i)
-		hash = ((hash << 5) - hash) + chr
+	hash = hash.replace(/[^0-9a-f]/g, '')
+
+	let finalInt = 0
+
+	for (let i = 0; i < hash.length; i++) {
+		// chars in md5 are [0-9a-f] (base-16)
+		finalInt += parseInt(hash.charAt(i), 16)
 	}
 
-	return Math.abs(hash)
+	return finalInt
 }
 
 /**
