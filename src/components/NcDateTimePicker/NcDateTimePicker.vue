@@ -516,9 +516,13 @@ function formatLibraryTime(time: LibraryTimeObject): Date {
 
 // Localization
 
-const dayNames = getDayNamesMin()
-
 const weekStart = getFirstDay()
+
+const dayNames = [...getDayNamesMin()]
+// see https://github.com/Vuepic/vue-datepicker/issues/1159
+for (let i = 0; i < weekStart; i++) {
+	dayNames.push(dayNames.shift() as string)
+}
 
 // TRANSLATORS: A very short abbrevation used as a heading for "week number"
 const weekNumName = t('W')
