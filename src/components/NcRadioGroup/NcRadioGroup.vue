@@ -4,15 +4,11 @@
 -->
 
 <script setup lang="ts">
-import type { Slot } from 'vue'
-
-import { computed, provide, ref, warn } from 'vue'
+import Vue, { computed, provide, ref } from 'vue'
 import { createElementId } from '../../utils/createElementId.ts'
 import { INSIDE_RADIO_GROUP_KEY } from './useNcRadioGroup.ts'
 
-const modelValue = defineModel<string>({ required: false, default: '' })
-
-defineProps<{
+const props = defineProps<{
 	/**
 	 * Optional visual label of the radio group
 	 */
@@ -22,25 +18,24 @@ defineProps<{
 	 * Optional visual description of the radio group.
 	 */
 	description?: string
+
+	/**
+	 * The currently selected value
+	 */
+	modelValue?: string
 }>()
 
-defineSlots<{
-	/**
-	 * Slot for the included radio buttons (`NcCheckboxRadioSwitch`).
-	 * The `type` prop of the `NcCheckboxRadioSwitch` will be automatically set (and forced) to `radio`.
-	 *
-	 * If you want the button variant, then you have to use `NcRadioGroupButton`.
-	 */
-	default?: Slot
+const emit = defineEmits<{
+	(e: 'update:modelValue', v: string): void
 }>()
 
 const descriptionId = createElementId()
 const buttonVariant = ref<boolean>()
 
 provide(INSIDE_RADIO_GROUP_KEY, computed(() => ({
-	register,
-	modelValue: modelValue.value,
+	modelValue: props.modelValue,
 	onUpdate,
+	register,
 })))
 
 /**
@@ -50,7 +45,7 @@ provide(INSIDE_RADIO_GROUP_KEY, computed(() => ({
  */
 function register(isButton: boolean): void {
 	if (buttonVariant.value !== undefined && buttonVariant.value !== isButton) {
-		warn('[NcRadioGroup] Mixing NcCheckboxRadioSwitch and NcRadioGroupButton is not possible!')
+		Vue.util.warn('[NcRadioGroup] Mixing NcCheckboxRadioSwitch and NcRadioGroupButton is not possible!')
 	}
 	buttonVariant.value = isButton
 }
@@ -61,7 +56,16 @@ function register(isButton: boolean): void {
  * @param value - The new value
  */
 function onUpdate(value: string) {
-	modelValue.value = value
+	emit('update:modelValue', value)
+}
+</script>
+
+<script lang="ts">
+export default {
+	model: {
+		prop: 'modelValue',
+		event: 'update:modelValue',
+	},
 }
 </script>
 
@@ -78,6 +82,9 @@ function onUpdate(value: string) {
 			{{ description }}
 		</p>
 		<div :class="$style.radioGroup__wrapper">
+			<!-- @slot Slot for the included radio buttons (`NcCheckboxRadioSwitch`).
+				 The `type` prop of the `NcCheckboxRadioSwitch` will be automatically set (and forced) to `radio`.
+				 If you want the button variant, then you have to use `NcRadioGroupButton`.-->
 			<slot />
 		</div>
 	</fieldset>

@@ -4,12 +4,7 @@
 -->
 
 <script setup lang="ts">
-import {
-	type Slot,
-
-	computed,
-	onMounted,
-} from 'vue'
+import { computed, onMounted } from 'vue'
 import { createElementId } from '../../utils/createElementId.ts'
 import { useInsideRadioGroup } from '../NcRadioGroup/useNcRadioGroup.ts'
 
@@ -28,13 +23,6 @@ const props = defineProps<{
 	 * The value that should be assigned to the `modelValue` of the `NcRadioGroup`.
 	 */
 	value: string
-}>()
-
-defineSlots<{
-	/**
-	 * Optional icon slot
-	 */
-	icon?: Slot
 }>()
 
 const labelId = createElementId()
@@ -58,6 +46,7 @@ function onUpdate() {
 		}, $style.radioGroupButton]"
 		@click="onUpdate">
 		<div v-if="$slots.icon" :class="$style.radioGroupButton__icon">
+			<!-- @slot Optional icon slot -->
 			<slot name="icon" />
 		</div>
 
@@ -71,7 +60,7 @@ function onUpdate() {
 			class="hidden-visually"
 			:checked="isChecked"
 			type="radio"
-			:value
+			:value="value"
 			@input="onUpdate">
 	</div>
 </template>
