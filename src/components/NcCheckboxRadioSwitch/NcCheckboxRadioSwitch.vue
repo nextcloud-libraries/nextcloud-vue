@@ -335,7 +335,7 @@ export default {
 </template>
 
 <script>
-import { computed } from 'vue'
+import { computed, onMounted } from 'vue'
 import NcCheckboxContent, { TYPE_BUTTON, TYPE_CHECKBOX, TYPE_RADIO, TYPE_SWITCH } from './NcCheckboxContent.vue'
 import { useModelMigration } from '../../composables/useModelMigration.ts'
 import { n, t } from '../../l10n.js'
@@ -528,6 +528,7 @@ export default {
 	setup(props) {
 		const radioGroup = useInsideRadioGroup()
 		const internalType = computed(() => radioGroup?.value ? TYPE_RADIO : props.type)
+		onMounted(() => radioGroup?.value.register(false))
 
 		const model = useModelMigration('checked', 'update:checked')
 		/**
