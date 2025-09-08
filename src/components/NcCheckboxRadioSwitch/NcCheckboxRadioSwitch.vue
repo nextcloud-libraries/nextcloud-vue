@@ -337,7 +337,7 @@ export default {
 </template>
 
 <script>
-import { computed } from 'vue'
+import { computed, onMounted } from 'vue'
 import NcCheckboxContent, { TYPE_BUTTON, TYPE_CHECKBOX, TYPE_RADIO, TYPE_SWITCH } from './NcCheckboxContent.vue'
 import { n, t } from '../../l10n.ts'
 import { createElementId } from '../../utils/createElementId.ts'
@@ -519,6 +519,7 @@ export default {
 
 	setup(props, { emit }) {
 		const radioGroup = useInsideRadioGroup()
+		onMounted(() => radioGroup?.value.register(false))
 
 		const internalType = computed(() => radioGroup?.value ? TYPE_RADIO : props.type)
 

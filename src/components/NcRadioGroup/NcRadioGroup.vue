@@ -6,22 +6,22 @@
 <script setup lang="ts">
 import type { Slot } from 'vue'
 
-import { computed, provide } from 'vue'
+import { computed, provide, ref, warn } from 'vue'
+import { createElementId } from '../../utils/createElementId.ts'
 import { INSIDE_RADIO_GROUP_KEY } from './useNcRadioGroup.ts'
 
 const modelValue = defineModel<string>({ required: false, default: '' })
 
 defineProps<{
 	/**
-	 * If the radio group should be shown as buttons.
-	 * When set `NcRadioGroupButton` must be used in the default slot.
-	 */
-	buttonVariant?: boolean
-
-	/**
 	 * Optional visual label of the radio group
 	 */
 	label?: string
+
+	/**
+	 * Optional visual description of the radio group.
+	 */
+	description?: string
 }>()
 
 defineSlots<{
@@ -34,10 +34,26 @@ defineSlots<{
 	default?: Slot
 }>()
 
+const descriptionId = createElementId()
+const buttonVariant = ref<boolean>()
+
 provide(INSIDE_RADIO_GROUP_KEY, computed(() => ({
+	register,
 	modelValue: modelValue.value,
 	onUpdate,
 })))
+
+/**
+ * Register a child component
+ *
+ * @param isButton - Whether the registered child component is a button or normal radio
+ */
+function register(isButton: boolean): void {
+	if (buttonVariant.value !== undefined && buttonVariant.value !== isButton) {
+		warn('[NcRadioGroup] Mixing NcCheckboxRadioSwitch and NcRadioGroupButton is not possible!')
+	}
+	buttonVariant.value = isButton
+}
 
 /**
  * Handle updating the current model value
@@ -51,12 +67,16 @@ function onUpdate(value: string) {
 
 <template>
 	<fieldset
+		:aria-describedby="description ? descriptionId : undefined"
 		:class="[{
 			[$style.radioGroup_buttonVariant]: buttonVariant,
 		}, $style.radioGroup]">
 		<legend v-if="label" :class="$style.radioGroup__label">
 			{{ label }}
 		</legend>
+		<p v-if="description" :id="descriptionId" :class="$style.radioGroup__description">
+			{{ description }}
+		</p>
 		<div :class="$style.radioGroup__wrapper">
 			<slot />
 		</div>
@@ -73,6 +93,18 @@ function onUpdate(value: string) {
 	}
 }
 
+.radioGroup__label {
+	font-size: 1.2em;
+	font-weight: bold;
+	margin-inline-start: var(--border-radius-element);
+}
+
+.radioGroup__description {
+	color: var(--color-text-maxcontrast);
+	margin-block-end: var(--default-grid-baseline);
+	margin-inline-start: var(--border-radius-element);
+}
+
 .radioGroup__wrapper {
 	display: flex;
 	flex-direction: column;
@@ -82,16 +114,14 @@ function onUpdate(value: string) {
 	}
 }
 
+.radioGroup__label + .radioGroup__wrapper {
+	// when there is no description we need to add some margin between wrapper and label
+	margin-block-start: var(--default-grid-baseline);
+}
+
 .radioGroup_buttonVariant .radioGroup__wrapper {
 	flex-direction: row;
 	gap: var(--default-grid-baseline);
-}
-
-.radioGroup__label {
-	font-size: 1.2em;
-	font-weight: bold;
-	margin-inline-start: var(--border-radius-element);
-	margin-block-end: var(--default-grid-baseline);
 }
 </style>
 
@@ -105,7 +135,7 @@ The `v-model` only needs to be bound to the group component, also the `type` wil
 
 ```vue
 <template>
-	<NcRadioGroup v-model="selectedSides" class="radio-group" label="Sides">
+	<NcRadioGroup v-model="selectedSides" class="radio-group" label="Sides" description="Please choose the sides for your menu.">
 		<NcCheckboxRadioSwitch value="fries">
 			Fries
 		</NcCheckboxRadioSwitch>
@@ -144,7 +174,7 @@ The radio group also allows to create a button like styling together with the `N
 	<div>
 		<h4>With text labels</h4>
 		<div style="max-width: 400px">
-			<NcRadioGroup v-model="alignment" button-variant>
+			<NcRadioGroup v-model="alignment">
 				<NcRadioGroupButton label="Start" value="start" />
 				<NcRadioGroupButton label="Center" value="center" />
 				<NcRadioGroupButton label="End" value="end" />
@@ -155,7 +185,7 @@ The radio group also allows to create a button like styling together with the `N
 
 		<h4>With icons</h4>
 		<div style="max-width: 250px">
-			<NcRadioGroup v-model="alignment" button-variant>
+			<NcRadioGroup v-model="alignment">
 				<NcRadioGroupButton aria-label="Start" value="start">
 					<template #icon>
 						<NcIconSvgWrapper directional :path="mdiAlignHorizontalLeft" />

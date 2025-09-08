@@ -8,6 +8,7 @@ import {
 	type Slot,
 
 	computed,
+	onMounted,
 } from 'vue'
 import { createElementId } from '../../utils/createElementId.ts'
 import { useInsideRadioGroup } from '../NcRadioGroup/useNcRadioGroup.ts'
@@ -38,6 +39,7 @@ defineSlots<{
 
 const labelId = createElementId()
 const radioGroup = useInsideRadioGroup()
+onMounted(() => radioGroup!.value.register(true))
 
 const isChecked = computed(() => radioGroup?.value.modelValue === props.value)
 
