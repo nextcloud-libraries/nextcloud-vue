@@ -273,7 +273,7 @@ export default {
 		:class="[
 			$props.class,
 			{
-				['checkbox-radio-switch-' + type]: type,
+				['checkbox-radio-switch-' + internalType]: internalType,
 				'checkbox-radio-switch--checked': isChecked,
 				'checkbox-radio-switch--disabled': disabled,
 				'checkbox-radio-switch--indeterminate': hasIndeterminate ? indeterminate : false,
@@ -308,7 +308,7 @@ export default {
 			class="checkbox-radio-switch__content"
 			icon-class="checkbox-radio-switch__icon"
 			text-class="checkbox-radio-switch__text"
-			:type="type"
+			:type="internalType"
 			:indeterminate="hasIndeterminate ? indeterminate : false"
 			:button-variant="buttonVariant"
 			:is-checked="isChecked"
@@ -337,9 +337,11 @@ export default {
 </template>
 
 <script>
+import { computed, onMounted } from 'vue'
 import NcCheckboxContent, { TYPE_BUTTON, TYPE_CHECKBOX, TYPE_RADIO, TYPE_SWITCH } from './NcCheckboxContent.vue'
 import { n, t } from '../../l10n.ts'
 import { createElementId } from '../../utils/createElementId.ts'
+import { useInsideRadioGroup } from '../NcRadioGroup/useNcRadioGroup.ts'
 
 export default {
 	name: 'NcCheckboxRadioSwitch',
@@ -515,8 +517,35 @@ export default {
 
 	emits: ['update:modelValue'],
 
-	setup() {
+	setup(props, { emit }) {
+		const radioGroup = useInsideRadioGroup()
+		onMounted(() => radioGroup?.value.register(false))
+
+		const internalType = computed(() => radioGroup?.value ? TYPE_RADIO : props.type)
+
+		/**
+		 * A wrapper around the model value, if inside a radio group use the injected value otherwise use the prop.
+		 */
+		const internalModelValue = computed({
+			get() {
+				if (radioGroup?.value) {
+					return radioGroup.value.modelValue
+				}
+				return props.modelValue
+			},
+			set(value) {
+				if (radioGroup?.value) {
+					radioGroup.value.onUpdate(value)
+				} else {
+					emit('update:modelValue', value)
+				}
+			},
+		})
+
 		return {
+			internalType,
+			internalModelValue,
+
 			labelId: createElementId(),
 			descriptionId: createElementId(),
 		}
@@ -524,7 +553,7 @@ export default {
 
 	computed: {
 		isButtonType() {
-			return this.type === TYPE_BUTTON
+			return this.internalType === TYPE_BUTTON
 		},
 
 		computedWrapperElement() {
@@ -549,7 +578,7 @@ export default {
 		},
 
 		iconSize() {
-			return this.type === TYPE_SWITCH
+			return this.internalType === TYPE_SWITCH
 				? 36
 				: 20
 		},
@@ -559,7 +588,7 @@ export default {
 		},
 
 		cssIconHeight() {
-			return this.type === TYPE_SWITCH
+			return this.internalType === TYPE_SWITCH
 				? '16px'
 				: this.cssIconSize
 		},
@@ -576,8 +605,8 @@ export default {
 				TYPE_RADIO,
 				TYPE_BUTTON,
 			]
-			if (nativeTypes.includes(this.type)) {
-				return this.type
+			if (nativeTypes.includes(this.internalType)) {
+				return this.internalType
 			}
 			return TYPE_CHECKBOX
 		},
@@ -591,12 +620,12 @@ export default {
 		 */
 		isChecked() {
 			if (this.value !== null) {
-				if (Array.isArray(this.modelValue)) {
-					return [...this.modelValue].indexOf(this.value) > -1
+				if (Array.isArray(this.internalModelValue)) {
+					return [...this.internalModelValue].indexOf(this.value) > -1
 				}
-				return this.modelValue === this.value
+				return this.internalModelValue === this.value
 			}
-			return this.modelValue === true
+			return this.internalModelValue === true
 		},
 
 		hasIndeterminate() {
@@ -608,19 +637,19 @@ export default {
 	},
 
 	mounted() {
-		if (this.name && this.type === TYPE_CHECKBOX) {
-			if (!Array.isArray(this.modelValue)) {
+		if (this.name && this.internalType === TYPE_CHECKBOX) {
+			if (!Array.isArray(this.internalModelValue)) {
 				throw new Error('When using groups of checkboxes, the updated value will be an array.')
 			}
 		}
 
 		// https://material.io/components/checkboxes#usage
-		if (this.name && this.type === TYPE_SWITCH) {
+		if (this.name && this.internalType === TYPE_SWITCH) {
 			throw new Error('Switches are not made to be used for data sets. Please use checkboxes instead.')
 		}
 
 		// https://material.io/components/checkboxes#usage
-		if (typeof this.modelValue !== 'boolean' && this.type === TYPE_SWITCH) {
+		if (typeof this.internalModelValue !== 'boolean' && this.internalType === TYPE_SWITCH) {
 			throw new Error('Switches can only be used with boolean as modelValue prop.')
 		}
 	},
@@ -635,20 +664,20 @@ export default {
 			}
 
 			// If this is a radio, there can only be one value
-			if (this.type === TYPE_RADIO) {
-				this.$emit('update:modelValue', this.value)
+			if (this.internalType === TYPE_RADIO) {
+				this.internalModelValue = this.value
 				return
 			}
 
 			// If this is a radio, there can only be one value
-			if (this.type === TYPE_SWITCH) {
-				this.$emit('update:modelValue', !this.isChecked)
+			if (this.internalType === TYPE_SWITCH) {
+				this.internalModelValue = !this.isChecked
 				return
 			}
 
 			// If the initial value was a boolean, let's keep it that way
-			if (typeof this.modelValue === 'boolean') {
-				this.$emit('update:modelValue', !this.modelValue)
+			if (typeof this.internalModelValue === 'boolean') {
+				this.internalModelValue = !this.internalModelValue
 				return
 			}
 
@@ -658,9 +687,9 @@ export default {
 				.map((input) => input.value)
 
 			if (values.includes(this.value)) {
-				this.$emit('update:modelValue', values.filter((v) => v !== this.value))
+				this.internalModelValue = values.filter((v) => v !== this.value)
 			} else {
-				this.$emit('update:modelValue', [...values, this.value])
+				this.internalModelValue = [...values, this.value]
 			}
 		},
 
