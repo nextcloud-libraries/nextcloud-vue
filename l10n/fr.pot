@@ -272,7 +272,7 @@ msgstr "Chargement..."
 
 #. TRANSLATORS: A color name for RGB(45, 115, 190)
 msgid "Mariner"
-msgstr "Bleu marine"
+msgstr "Marin"
 
 msgid "Medium dark skin tone"
 msgstr "Teint de peau moyennement foncé"
