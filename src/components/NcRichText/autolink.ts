@@ -117,7 +117,7 @@ export function parseUrl(text: string) {
  * @return a path that can be used in the router link or null if this URL doesn't match this router config
  * @example http://cloud.ltd/nextcloud/index.php/apps/files/favorites?fileid=2#fragment => /files/favorites?fileid=2#fragment
  */
-export function getRoute(router: Router, url: string): string | null {
+export function getRoute(router: Router | null, url: string): string | null {
 	/**
 	 * http://cloud.ltd /nextcloud /index.php /apps/files /favorites?fileid=2#fragment
 	 * |_____origin____|___________router-base____________|                           |
