@@ -3,39 +3,6 @@
   - SPDX-License-Identifier: AGPL-3.0-or-later
 -->
 
-<template>
-	<div ref="widgetRoot" :class="{ 'toggle-interactive': referenceHasInteractiveView && !isInteractive }">
-		<div
-			v-if="reference && hasCustomWidget"
-			ref="customWidget"
-			class="widget-custom"
-			:class="{ 'full-width': referenceHasFullWidth }" />
-
-		<component
-			:is="referenceWidgetLinkComponent"
-			v-else-if="!noAccess && reference && reference.openGraphObject && !hasCustomWidget"
-			v-bind="referenceWidgetLinkProps"
-			rel="noopener noreferrer"
-			class="widget-default">
-			<img v-if="reference.openGraphObject.thumb" class="widget-default--image" :src="reference.openGraphObject.thumb">
-			<div class="widget-default--details">
-				<p class="widget-default--name">
-					{{ reference.openGraphObject.name }}
-				</p>
-				<p class="widget-default--description" :style="descriptionStyle">
-					{{ reference.openGraphObject.description }}
-				</p>
-				<p class="widget-default--link">
-					{{ compactLink }}
-				</p>
-			</div>
-		</component>
-		<NcButton v-if="interactiveOptIn && referenceHasInteractiveView && !isInteractive" class="toggle-interactive--button" @click="enableInteractive">
-			{{ t('Enable interactive view') }}
-		</NcButton>
-	</div>
-</template>
-
 <script setup lang="ts">
 import type { ReferenceWidgetObject } from './../../functions/reference/widgets.ts'
 
@@ -224,6 +191,39 @@ function destroyReferenceWidget() {
 	}
 }
 </script>
+
+<template>
+	<div ref="widgetRoot" :class="{ 'toggle-interactive': referenceHasInteractiveView && !isInteractive }">
+		<div
+			v-if="reference && hasCustomWidget"
+			ref="customWidget"
+			class="widget-custom"
+			:class="{ 'full-width': referenceHasFullWidth }" />
+
+		<component
+			:is="referenceWidgetLinkComponent"
+			v-else-if="!noAccess && reference && reference.openGraphObject && !hasCustomWidget"
+			v-bind="referenceWidgetLinkProps"
+			rel="noopener noreferrer"
+			class="widget-default">
+			<img v-if="reference.openGraphObject.thumb" class="widget-default--image" :src="reference.openGraphObject.thumb">
+			<div class="widget-default--details">
+				<p class="widget-default--name">
+					{{ reference.openGraphObject.name }}
+				</p>
+				<p class="widget-default--description" :style="descriptionStyle">
+					{{ reference.openGraphObject.description }}
+				</p>
+				<p class="widget-default--link">
+					{{ compactLink }}
+				</p>
+			</div>
+		</component>
+		<NcButton v-if="interactiveOptIn && referenceHasInteractiveView && !isInteractive" class="toggle-interactive--button" @click="enableInteractive">
+			{{ t('Enable interactive view') }}
+		</NcButton>
+	</div>
+</template>
 
 <style lang="scss" scoped>
 
