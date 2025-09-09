@@ -104,14 +104,23 @@ export default {
 		},
 
 		hasFullWidth() {
+			if (!this.reference) {
+				return false
+			}
 			return hasFullWidth(this.reference.richObjectType)
 		},
 
 		hasCustomWidget() {
+			if (!this.reference) {
+				return false
+			}
 			return isWidgetRegistered(this.reference.richObjectType)
 		},
 
 		hasInteractiveView() {
+			if (!this.reference) {
+				return false
+			}
 			return isWidgetRegistered(this.reference.richObjectType) && hasInteractiveView(this.reference.richObjectType)
 		},
 
@@ -139,6 +148,9 @@ export default {
 		},
 
 		compactLink() {
+			if (!this.reference) {
+				return ''
+			}
 			const link = this.reference.openGraphObject.link
 			if (!link) {
 				return ''
@@ -154,6 +166,9 @@ export default {
 		},
 
 		route() {
+			if (!this.reference) {
+				return null
+			}
 			return getRoute(this.$router, this.reference.openGraphObject.link)
 		},
 
@@ -162,6 +177,9 @@ export default {
 		},
 
 		referenceWidgetLinkProps() {
+			if (!this.reference) {
+				return undefined
+			}
 			return this.route
 				? { to: this.route }
 				: { href: this.reference.openGraphObject.link, target: '_blank' }
@@ -208,11 +226,15 @@ export default {
 		},
 
 		renderWidget() {
+			if (!this.reference) {
+				return
+			}
+
 			if (!this.$refs.customWidget) {
 				return
 			}
 
-			if (this?.reference?.richObjectType === 'open-graph') {
+			if (this.reference.richObjectType === 'open-graph') {
 				return
 			}
 
@@ -233,8 +255,8 @@ export default {
 		},
 
 		destroyWidget() {
-			if (this.rendered) {
-				destroyWidget(this.reference.richObjectType, this.$el)
+			if (this.rendered && this.widgetRoot) {
+				destroyWidget(this.reference.richObjectType, this.widgetRoot)
 				this.rendered = false
 			}
 		},
