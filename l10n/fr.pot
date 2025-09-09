@@ -5,10 +5,11 @@
 # Corentin Noël <tintou@noel.tf>, 2025
 # Pascal Prugna, 2025
 # Charles Taborin, 2025
+# Caro Leviia, 2025
 # 
 msgid ""
 msgstr ""
-"Last-Translator: Charles Taborin, 2025\n"
+"Last-Translator: Caro Leviia, 2025\n"
 "Language-Team: French (https://app.transifex.com/nextcloud/teams/64236/fr/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Language: fr\n"
@@ -38,6 +39,10 @@ msgstr "Activités"
 
 msgid "Add to a project"
 msgstr "Ajouter à un projet"
+
+#. TRANSLATORS: Alt key on keyboard (Windows/Linux)
+msgid "Alt"
+msgstr "Alt"
 
 msgid "Animals & Nature"
 msgstr "Animaux & Nature"
@@ -130,6 +135,10 @@ msgstr "Confirmer les modifications"
 msgid "Connect items to a project to make them easier to find"
 msgstr "Connectez des éléments à un projet pour les retrouver plus facilement"
 
+#. TRANSLATORS: Ctrl key on keyboard (Windows/Linux)
+msgid "Ctrl"
+msgstr "Ctrl"
+
 msgid "Custom"
 msgstr "Personnalisé"
 
@@ -151,6 +160,10 @@ msgstr "Diminuer les minutes"
 msgid "Decrement seconds"
 msgstr "Diminuer les secondes"
 
+#. TRANSLATORS: Delete key on keyboard
+msgid "Delete"
+msgstr "Suppr"
+
 #. TRANSLATORS: A color name for RGB(136, 85, 168)
 msgid "Deluge"
 msgstr "Deluge"
@@ -170,6 +183,10 @@ msgstr "Sélecteur d'émojis"
 msgid "Enable interactive view"
 msgstr "Activer la vue interactive"
 
+#. TRANSLATORS: Enter key on keyboard
+msgid "Enter"
+msgstr "Entrée"
+
 msgid "Enter link"
 msgstr "Saisissez le lien"
 
@@ -179,6 +196,10 @@ msgid ""
 msgstr ""
 "Erreur lors de la récupération des ressources liées. Contactez votre "
 "administrateur système pour répondre à vos éventuelles questions."
+
+#. TRANSLATORS: Escape key on keyboard
+msgid "Escape"
+msgstr "Echap"
 
 msgid "External documentation"
 msgstr "Documentation externe"
@@ -247,7 +268,7 @@ msgstr "Charger d'avantage \"{options}\""
 
 #. TRANSLATORS: The button is in a loading state
 msgid "Loading …"
-msgstr "Chargement …"
+msgstr "Chargement..."
 
 #. TRANSLATORS: A color name for RGB(45, 115, 190)
 msgid "Mariner"
@@ -408,6 +429,9 @@ msgstr "Sauvegarder les changements"
 msgid "Search"
 msgstr "Rechercher"
 
+msgid "Search …"
+msgstr "Rechercher…"
+
 msgid "Search emoji"
 msgstr "Rechercher un emoji"
 
@@ -416,9 +440,6 @@ msgstr "Rechercher un fuseau horaire"
 
 msgid "Search results"
 msgstr "Résultats de recherche"
-
-msgid "Search…"
-msgstr "Rechercher…"
 
 #. FOR TRANSLATORS: If possible in your language an even shorter version of 'a
 #. few seconds ago'
@@ -465,6 +486,10 @@ msgstr "Paramètres"
 msgid "Settings navigation"
 msgstr "Navigation dans les paramètres"
 
+#. TRANSLATORS: Shift key on keyboard
+msgid "Shift"
+msgstr "Maj"
+
 msgid "Show details"
 msgstr "Afficher les détails"
 
@@ -486,6 +511,10 @@ msgstr "Sélecteur intelligent"
 msgid "Smileys & Emotion"
 msgstr "Smileys & Émotions"
 
+#. TRANSLATORS: Space key on keyboard
+msgid "Space"
+msgstr "Espace"
+
 msgid "Start slideshow"
 msgstr "Démarrer le diaporama"
 
@@ -500,6 +529,10 @@ msgstr "Basculer le mode Matin/Après-midi"
 
 msgid "Symbols"
 msgstr "Symboles"
+
+#. TRANSLATORS: Tab key on keyboard
+msgid "Tab"
+msgstr "Tab"
 
 msgid "Time picker"
 msgstr "Sélecteur de temps"
@@ -539,7 +572,7 @@ msgid "Whiskey"
 msgstr "Whiskey"
 
 msgid "Write a message …"
-msgstr "Écrire un message..."
+msgstr "Ecrire un message..."
 
 msgid "Year picker"
 msgstr "Sélecteur d'année"
