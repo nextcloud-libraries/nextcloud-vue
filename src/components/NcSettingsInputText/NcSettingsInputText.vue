@@ -5,6 +5,8 @@
 
 <docs>
 
+⚠️ This component is deprecated and might be removed in a future version ⚠️
+
 ```vue
 <template>
 	<div>
@@ -57,6 +59,9 @@ import { useModelMigration } from '../../composables/useModelMigration.ts'
 import { t } from '../../l10n.js'
 import GenRandomId from '../../utils/GenRandomId.js'
 
+/**
+ * @deprecated - This component is nolonger used and might be removed in a future version
+ */
 export default {
 	name: 'NcSettingsInputText',
 
