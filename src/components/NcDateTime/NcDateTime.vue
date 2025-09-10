@@ -92,6 +92,7 @@ h4 {
 <template>
 	<span
 		class="nc-datetime"
+		dir="auto"
 		:data-timestamp="timestamp"
 		:title
 		v-text="formattedTime" />
