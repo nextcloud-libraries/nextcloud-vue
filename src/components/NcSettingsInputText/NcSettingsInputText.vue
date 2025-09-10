@@ -5,6 +5,8 @@
 
 <docs>
 
+⚠️ This component is deprecated and might be removed in a future version ⚠️
+
 ```vue
 <NcSettingsInputText label="Label" hint="Hint" />
 <NcSettingsInputText label="Label" model-value="Value" hint="Hint" disabled />
@@ -42,6 +44,9 @@
 import { t } from '../../l10n.ts'
 import { createElementId } from '../../utils/createElementId.ts'
 
+/**
+ * @deprecated - This component is nolonger used and might be removed in a future version
+ */
 export default {
 	name: 'NcSettingsInputText',
 	props: {
