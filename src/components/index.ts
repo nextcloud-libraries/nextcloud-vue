@@ -81,7 +81,6 @@ export { default as NcSavingIndicatorIcon } from './NcSavingIndicatorIcon/index.
 export { default as NcSelect } from './NcSelect/index.js'
 export { default as NcSelectTags } from './NcSelectTags/index.js'
 export { default as NcSelectUsers } from './NcSelectUsers/index.ts'
-export { default as NcSettingsInputText } from './NcSettingsInputText/index.js'
 export { default as NcSettingsSection } from './NcSettingsSection/index.ts'
 export { default as NcSettingsSelectGroup } from './NcSettingsSelectGroup/index.js'
 export { default as NcTextArea } from './NcTextArea/index.ts'
