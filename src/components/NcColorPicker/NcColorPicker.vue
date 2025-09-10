@@ -105,10 +105,10 @@ export default {
 ```vue
 <template>
 	<div class="container1">
-		<NcButton @click="open = !open"> Click Me </NcButton>
-		<NcColorPicker clearable v-model="color" v-model:open="open" v-slot="{ attrs }">
-			<div v-bind="attrs" :style="{'background-color': color}" class="color1" />
+		<NcColorPicker clearable v-model="color">
+			<NcButton>Click Me</NcButton>
 		</NcColorPicker>
+		<div :style="{'background-color': color}" class="color-preview" :class="{'color-preview--none': !color}" />
 	</div>
 </template>
 <script>
@@ -121,16 +121,21 @@ export default {
 	}
 }
 </script>
-<style>
+<style scoped>
 .container1 {
 	display: flex;
 	gap: 20px;
 }
 
-.color1 {
+.color-preview {
 	width: 100px;
 	height: 34px;
+	border: 1px solid black;
 	border-radius: 6px;
+}
+
+.color-preview--none {
+	background: repeating-conic-gradient(#808080 0 25%, #0000 0 50%) 50% / 20px 20px;
 }
 </style>
 ```
@@ -176,7 +181,7 @@ import type { Payload } from '@ckpack/vue-color'
 import type { Color } from '../../utils/colors.ts'
 
 import { Chrome as VueChrome } from '@ckpack/vue-color'
-import { mdiArrowLeft, mdiCheck, mdiDotsHorizontal } from '@mdi/js'
+import { mdiArrowLeft, mdiCheck, mdiCloseCircleOutline, mdiDotsHorizontal } from '@mdi/js'
 import { computed, ref } from 'vue'
 import { t } from '../../l10n.ts'
 import { defaultPalette } from '../../utils/colors.ts'
@@ -369,7 +374,6 @@ function hexToRGB(hex: string): [number, number, number] {
 				:aria-label="t('Color picker')"
 				:class="{
 					'color-picker--advanced-fields': advanced && advancedFields,
-					'color-picker--can-clear': clearable,
 				}">
 				<Transition name="slide" mode="out-in">
 					<div v-if="!advanced" class="color-picker__simple">
@@ -391,6 +395,18 @@ function hexToRGB(hex: string): [number, number, number] {
 								:checked="color === currentColor"
 								@click="toggleColor(color)">
 						</label>
+						<label class="color-picker__clear" :title="t('No color')">
+							<NcIconSvgWrapper
+								:size="currentColor ? 28 : 34 /* size is adusted so that inner mdi icon aligns with color circles */"
+								:path="mdiCloseCircleOutline" />
+							<input
+								type="radio"
+								class="hidden-visually"
+								:aria-label="t('No color')"
+								:name="`color-picker-${id}`"
+								:checked="!currentColor"
+								@click="currentColor = undefined">
+						</label>
 					</div>
 					<VueChrome
 						v-else
@@ -404,6 +420,7 @@ function hexToRGB(hex: string): [number, number, number] {
 					<NcButton
 						v-if="advanced"
 						:aria-label="t('Back')"
+						:title="t('Back')"
 						variant="tertiary"
 						@click="advanced = false">
 						<template #icon>
@@ -419,9 +436,6 @@ function hexToRGB(hex: string): [number, number, number] {
 						<template #icon>
 							<NcIconSvgWrapper :path="mdiDotsHorizontal" />
 						</template>
-					</NcButton>
-					<NcButton v-if="clearable" @click="currentColor = undefined">
-						{{ t('Clear') }}
 					</NcButton>
 					<NcButton
 						variant="primary"
@@ -441,16 +455,19 @@ function hexToRGB(hex: string): [number, number, number] {
 	align-content: flex-end;
 	flex-direction: column;
 	justify-content: space-between;
-	width: 176px;
-	padding: 8px;
-	border-radius: 3px;
-
-	&--can-clear {
-		width: 230px;
-	}
+	padding: var(--border-radius-element); // align with NcPopover border radius
+	min-width: calc(4 * var(--default-clickable-area) + 2 * var(--border-radius-element)); // space for 4 color circles
 
 	&--advanced-fields {
-		width: 264px;
+		min-width: 264px;
+	}
+
+	&__clear {
+		color: var(--color-main-text);
+
+		&:hover:not(:has(:checked)) {
+			color: var(--color-text-maxcontrast);
+		}
 	}
 
 	&__simple {
@@ -494,8 +511,9 @@ function hexToRGB(hex: string): [number, number, number] {
 	&__navigation {
 		display: flex;
 		flex-direction: row;
+		gap: var(--default-grid-baseline);
 		justify-content: space-between;
-		margin-top: 10px;
+		margin-top: calc(2 * var(--default-grid-baseline));
 	}
 }
 
