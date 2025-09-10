@@ -4,10 +4,11 @@
 # Elena Mishina, 2025
 # Igor Orlov, 2025
 # Leonid Fedotov, 2025
+# Maksim Sukharev, 2025
 # 
 msgid ""
 msgstr ""
-"Last-Translator: Leonid Fedotov, 2025\n"
+"Last-Translator: Maksim Sukharev, 2025\n"
 "Language-Team: Russian (https://app.transifex.com/nextcloud/teams/64236/ru/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Language: ru\n"
@@ -37,6 +38,10 @@ msgstr "События"
 
 msgid "Add to a project"
 msgstr "Добавить в проект"
+
+#. TRANSLATORS: Alt key on keyboard (Windows/Linux)
+msgid "Alt"
+msgstr "Alt"
 
 msgid "Animals & Nature"
 msgstr "Животные и природа "
@@ -128,6 +133,10 @@ msgstr "Подтвердить изменения"
 msgid "Connect items to a project to make them easier to find"
 msgstr "Подключайте элементы к проекту, чтобы их было легче найти"
 
+#. TRANSLATORS: Ctrl key on keyboard (Windows/Linux)
+msgid "Ctrl"
+msgstr "Ctrl"
+
 msgid "Custom"
 msgstr "Пользовательское"
 
@@ -149,6 +158,10 @@ msgstr "Уменьшить количество минут"
 msgid "Decrement seconds"
 msgstr "Уменьшить количество секунд"
 
+#. TRANSLATORS: Delete key on keyboard
+msgid "Delete"
+msgstr "Delete"
+
 #. TRANSLATORS: A color name for RGB(136, 85, 168)
 msgid "Deluge"
 msgstr "Перламутрово-фиолетовый"
@@ -168,6 +181,10 @@ msgstr "Подборщик эмодзи"
 msgid "Enable interactive view"
 msgstr "Включить интерактивный просмотр"
 
+#. TRANSLATORS: Enter key on keyboard
+msgid "Enter"
+msgstr "Enter"
+
 msgid "Enter link"
 msgstr "Введите ссылку"
 
@@ -177,6 +194,10 @@ msgid ""
 msgstr ""
 "Ошибка при получении связанных ресурсов. Если у вас есть какие-либо вопросы,"
 " обратитесь к системному администратору."
+
+#. TRANSLATORS: Escape key on keyboard
+msgid "Escape"
+msgstr "Escape"
 
 msgid "External documentation"
 msgstr "Внешняя документация"
@@ -245,7 +266,7 @@ msgstr "Загрузить больше \"{options}\"\""
 
 #. TRANSLATORS: The button is in a loading state
 msgid "Loading …"
-msgstr "Загрузка ..."
+msgstr "Загрузка …"
 
 #. TRANSLATORS: A color name for RGB(45, 115, 190)
 msgid "Mariner"
@@ -274,7 +295,7 @@ msgid "Month picker overlay"
 msgstr "Окно выбора месяца"
 
 msgid "More items …"
-msgstr "Больше элементов..."
+msgstr "Больше элементов …"
 
 msgid "More options"
 msgstr "Больше опций"
@@ -407,6 +428,9 @@ msgstr "Сохранить изменения"
 msgid "Search"
 msgstr "Поиск"
 
+msgid "Search …"
+msgstr "Поиск …"
+
 msgid "Search emoji"
 msgstr "Поиск эмодзи"
 
@@ -415,9 +439,6 @@ msgstr "Поиск часового пояса"
 
 msgid "Search results"
 msgstr "Результаты поиска"
-
-msgid "Search…"
-msgstr "Поиск..."
 
 #. FOR TRANSLATORS: If possible in your language an even shorter version of 'a
 #. few seconds ago'
@@ -464,6 +485,10 @@ msgstr "Параметры"
 msgid "Settings navigation"
 msgstr "Навигация по настройкам"
 
+#. TRANSLATORS: Shift key on keyboard
+msgid "Shift"
+msgstr "Shift"
+
 msgid "Show details"
 msgstr "Показать детали"
 
@@ -485,6 +510,10 @@ msgstr "Умный выбор"
 msgid "Smileys & Emotion"
 msgstr "Смайлики и эмоции"
 
+#. TRANSLATORS: Space key on keyboard
+msgid "Space"
+msgstr "Пробел"
+
 msgid "Start slideshow"
 msgstr "Начать показ слайдов"
 
@@ -499,6 +528,10 @@ msgstr "Переключение режима AM/PM"
 
 msgid "Symbols"
 msgstr "Символы"
+
+#. TRANSLATORS: Tab key on keyboard
+msgid "Tab"
+msgstr "Tab"
 
 msgid "Time picker"
 msgstr "Выбор времени"
@@ -538,7 +571,7 @@ msgid "Whiskey"
 msgstr "Виски"
 
 msgid "Write a message …"
-msgstr "Напиши сообщение …"
+msgstr "Напишите сообщение …"
 
 msgid "Year picker"
 msgstr "Выбор года"
