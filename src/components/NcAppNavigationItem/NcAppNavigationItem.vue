@@ -322,13 +322,13 @@ Just set the `pinned` prop.
 				:class="{
 					'app-navigation-entry--editing': editingActive,
 					'app-navigation-entry--deleted': undo,
-					active: (isActive && to) || active,
+					active: (to && isActive) || active,
 				}">
 				<!-- Icon and name -->
 				<a
 					v-if="!undo"
 					class="app-navigation-entry-link"
-					:aria-current="active || (isActive && to) ? 'page' : undefined"
+					:aria-current="active || (to && isActive) ? 'page' : undefined"
 					:aria-description="ariaDescription"
 					:aria-expanded="!!$slots.default ? opened.toString() : undefined"
 					:href="href || routerLinkHref || '#'"
@@ -356,7 +356,7 @@ Just set the `pinned` prop.
 							ref="editingInput"
 							v-model="editingValue"
 							:placeholder="editPlaceholder !== '' ? editPlaceholder : name"
-							:primary="(isActive && to) || active"
+							:primary="(to && isActive) || active"
 							@cancel="cancelEditing"
 							@confirm="handleEditingDone" />
 					</div>
@@ -391,7 +391,7 @@ Just set the `pinned` prop.
 						:open="menuOpen"
 						:force-menu="forceMenu"
 						:default-icon="menuIcon"
-						:variant="(isActive && to) || active ? 'tertiary-on-primary' : 'tertiary'"
+						:variant="(to && isActive) || active ? 'tertiary-on-primary' : 'tertiary'"
 						@update:open="onMenuToggle">
 						<template #icon>
 							<!-- @slot Slot for the custom menu icon -->
@@ -420,7 +420,7 @@ Just set the `pinned` prop.
 				</div>
 				<NcAppNavigationIconCollapsible
 					v-if="allowCollapse && !!$slots.default"
-					:active="(isActive && to) || active"
+					:active="(to && isActive) || active"
 					:open="opened"
 					@click.prevent.stop="toggleCollapse" />
 
