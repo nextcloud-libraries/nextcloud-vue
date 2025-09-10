@@ -301,14 +301,14 @@ Just set the `pinned` prop.
 				:class="{
 					'app-navigation-entry--editing': editingActive,
 					'app-navigation-entry--deleted': undo,
-					active: (isActive && to) || active,
+					active: (to && isActive) || active,
 				}"
 				class="app-navigation-entry">
 				<!-- Icon and name -->
 				<a
 					v-if="!undo"
 					class="app-navigation-entry-link"
-					:aria-current="active || (isActive && to) ? 'page' : undefined"
+					:aria-current="active || (to && isActive) ? 'page' : undefined"
 					:aria-description="ariaDescription"
 					:aria-expanded="$scopedSlots.default ? opened.toString() : undefined"
 					:href="href || routerLinkHref || '#'"
@@ -336,7 +336,7 @@ Just set the `pinned` prop.
 							ref="editingInput"
 							v-model="editingValue"
 							:placeholder="editPlaceholder !== '' ? editPlaceholder : name"
-							:primary="(isActive && to) || active"
+							:primary="(to && isActive) || active"
 							@cancel="cancelEditing"
 							@confirm="handleEditingDone" />
 					</div>
@@ -369,7 +369,7 @@ Just set the `pinned` prop.
 						:boundaries-element="actionsBoundariesElement"
 						:placement="menuPlacement"
 						:open="menuOpen"
-						:type="(isActive && to) || active ? 'tertiary-on-primary' : 'tertiary'"
+						:type="(to && isActive) || active ? 'tertiary-on-primary' : 'tertiary'"
 						:force-menu="forceMenu"
 						:default-icon="menuIcon"
 						@update:open="onMenuToggle">
@@ -400,7 +400,7 @@ Just set the `pinned` prop.
 				</div>
 				<NcAppNavigationIconCollapsible
 					v-if="isCollapsible()"
-					:active="(isActive && to) || active"
+					:active="(to && isActive) || active"
 					:open="opened"
 					@click.prevent.stop="toggleCollapse" />
 
