@@ -7,7 +7,7 @@
 	<div v-if="isVisible" class="widgets--list" :class="{ 'icon-loading': loading }">
 		<NcReferenceWidget
 			v-for="reference in displayedReferences"
-			:key="reference?.openGraphObject?.id"
+			:key="reference.openGraphObject?.id"
 			:reference="reference"
 			:interactive="interactive"
 			:interactive-opt-in="interactiveOptIn" />
@@ -92,7 +92,7 @@ export default {
 		},
 
 		displayedReferences() {
-			return this.values.slice(0, this.limit)
+			return this.values.filter(Boolean).slice(0, this.limit)
 		},
 
 		fallbackReference() {
