@@ -273,8 +273,9 @@ export default {
 		:is="computedWrapperElement"
 		:id="wrapperId"
 		:aria-label="isButtonType && ariaLabel ? ariaLabel : undefined"
+		class="checkbox-radio-switch"
 		:class="{
-			['checkbox-radio-switch-' + type]: type,
+			['checkbox-radio-switch-' + internalType]: internalType,
 			'checkbox-radio-switch--checked': isChecked,
 			'checkbox-radio-switch--disabled': disabled,
 			'checkbox-radio-switch--indeterminate': hasIndeterminate ? indeterminate : false,
@@ -283,8 +284,6 @@ export default {
 			'checkbox-radio-switch--button-variant-h-grouped': buttonVariant && buttonVariantGrouped === 'horizontal',
 			'button-vue': isButtonType,
 		}"
-		class="checkbox-radio-switch"
-		:style="cssVars"
 		:type="isButtonType ? 'button' : null"
 		v-bind="isButtonType ? $attrs : dataAttrs"
 		v-on="isButtonType ? listeners : null">
@@ -309,14 +308,14 @@ export default {
 			class="checkbox-radio-switch__content"
 			icon-class="checkbox-radio-switch__icon"
 			text-class="checkbox-radio-switch__text"
-			:type="type"
+			:type="internalType"
 			:indeterminate="hasIndeterminate ? indeterminate : false"
 			:button-variant="buttonVariant"
 			:is-checked="isChecked"
 			:loading="loading"
 			:label-id="labelId"
 			:description-id="descriptionId"
-			:size="size"
+			:icon-size="iconSize"
 			@click.native="onToggle">
 			<template #icon>
 				<!-- @slot The checkbox/radio icon, you can use it for adding an icon to the button variant -->
@@ -336,10 +335,12 @@ export default {
 </template>
 
 <script>
+import { computed, onMounted } from 'vue'
 import NcCheckboxContent, { TYPE_BUTTON, TYPE_CHECKBOX, TYPE_RADIO, TYPE_SWITCH } from './NcCheckboxContent.vue'
 import { useModelMigration } from '../../composables/useModelMigration.ts'
 import { n, t } from '../../l10n.js'
 import GenRandomId from '../../utils/GenRandomId.js'
+import { useInsideRadioGroup } from '../NcRadioGroup/useNcRadioGroup.ts'
 
 export default {
 	name: 'NcCheckboxRadioSwitch',
@@ -524,10 +525,35 @@ export default {
 		'update:model-value',
 	],
 
-	setup() {
+	setup(props) {
+		const radioGroup = useInsideRadioGroup()
+		const internalType = computed(() => radioGroup?.value ? TYPE_RADIO : props.type)
+		onMounted(() => radioGroup?.value.register(false))
+
 		const model = useModelMigration('checked', 'update:checked')
+		/**
+		 * A wrapper around the model value, if inside a radio group use the injected value otherwise use the prop.
+		 */
+		const internalModelValue = computed({
+			get() {
+				if (radioGroup?.value) {
+					return radioGroup.value.modelValue
+				}
+				return model.value
+			},
+			set(value) {
+				if (radioGroup?.value) {
+					radioGroup.value.onUpdate(value)
+				} else {
+					model.value = value
+				}
+			},
+		})
+
 		return {
-			model,
+			internalType,
+			internalModelValue,
+
 			labelId: GenRandomId(),
 			descriptionId: GenRandomId(),
 		}
@@ -547,7 +573,7 @@ export default {
 		},
 
 		isButtonType() {
-			return this.type === TYPE_BUTTON
+			return this.internalType === TYPE_BUTTON
 		},
 
 		computedWrapperElement() {
@@ -571,27 +597,20 @@ export default {
 			}
 		},
 
-		/**
-		 * Icon size
-		 *
-		 * @return {number}
-		 */
-		size() {
-			return this.type === TYPE_SWITCH
+		iconSize() {
+			return this.internalType === TYPE_SWITCH
 				? 36
 				: 24
 		},
 
-		/**
-		 * Css local variables for this component
-		 *
-		 * @return {object}
-		 */
-		cssVars() {
-			return {
-				'--icon-size': this.size + 'px',
-				'--icon-height': (this.type === TYPE_SWITCH ? 16 : this.size) + 'px',
-			}
+		cssIconSize() {
+			return this.iconSize + 'px'
+		},
+
+		cssIconHeight() {
+			return this.internalType === TYPE_SWITCH
+				? '16px'
+				: this.cssIconSize
 		},
 
 		/**
@@ -606,8 +625,8 @@ export default {
 				TYPE_RADIO,
 				TYPE_BUTTON,
 			]
-			if (nativeTypes.includes(this.type)) {
-				return this.type
+			if (nativeTypes.includes(this.internalType)) {
+				return this.internalType
 			}
 			return TYPE_CHECKBOX
 		},
@@ -621,12 +640,12 @@ export default {
 		 */
 		isChecked() {
 			if (this.value !== null) {
-				if (Array.isArray(this.model)) {
-					return [...this.model].indexOf(this.value) > -1
+				if (Array.isArray(this.internalModelValue)) {
+					return [...this.internalModelValue].indexOf(this.value) > -1
 				}
-				return this.model === this.value
+				return this.internalModelValue === this.value
 			}
-			return this.model === true
+			return this.internalModelValue === true
 		},
 
 		hasIndeterminate() {
@@ -638,20 +657,20 @@ export default {
 	},
 
 	mounted() {
-		if (this.name && this.type === TYPE_CHECKBOX) {
-			if (!Array.isArray(this.model)) {
+		if (this.name && this.internalType === TYPE_CHECKBOX) {
+			if (!Array.isArray(this.internalModelValue)) {
 				throw new Error('When using groups of checkboxes, the updated value will be an array.')
 			}
 		}
 
 		// https://material.io/components/checkboxes#usage
-		if (this.name && this.type === TYPE_SWITCH) {
+		if (this.name && this.internalType === TYPE_SWITCH) {
 			throw new Error('Switches are not made to be used for data sets. Please use checkboxes instead.')
 		}
 
 		// https://material.io/components/checkboxes#usage
-		if (typeof this.model !== 'boolean' && this.type === TYPE_SWITCH) {
-			throw new Error('Switches can only be used with boolean as checked prop.')
+		if (typeof this.internalModelValue !== 'boolean' && this.internalType === TYPE_SWITCH) {
+			throw new Error('Switches can only be used with boolean as modelValue prop.')
 		}
 	},
 
@@ -665,20 +684,20 @@ export default {
 			}
 
 			// If this is a radio, there can only be one value
-			if (this.type === TYPE_RADIO) {
-				this.model = this.value
+			if (this.internalType === TYPE_RADIO) {
+				this.internalModelValue = this.value
 				return
 			}
 
 			// If this is a radio, there can only be one value
-			if (this.type === TYPE_SWITCH) {
-				this.model = !this.isChecked
+			if (this.internalType === TYPE_SWITCH) {
+				this.internalModelValue = !this.isChecked
 				return
 			}
 
 			// If the initial value was a boolean, let's keep it that way
-			if (typeof this.model === 'boolean') {
-				this.model = !this.model
+			if (typeof this.internalModelValue === 'boolean') {
+				this.internalModelValue = !this.internalModelValue
 				return
 			}
 
@@ -688,9 +707,9 @@ export default {
 				.map((input) => input.value)
 
 			if (values.includes(this.value)) {
-				this.model = values.filter((v) => v !== this.value)
+				this.internalModelValue = values.filter((v) => v !== this.value)
 			} else {
-				this.model = [...values, this.value]
+				this.internalModelValue = [...values, this.value]
 			}
 		},
 
@@ -708,6 +727,8 @@ export default {
 
 <style lang="scss" scoped>
 .checkbox-radio-switch {
+	--icon-size: v-bind('cssIconSize');
+	--icon-height: v-bind('cssIconHeight');
 	display: flex;
 	align-items: center;
 	color: var(--color-main-text);
