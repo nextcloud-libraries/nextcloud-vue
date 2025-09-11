@@ -7,8 +7,8 @@
 
 All notable changes to this project will be documented in this file.
 
-## [v9.0.0](https://github.com/nextcloud-libraries/nextcloud-vue/tree/v9.0.0-rc.8) (unreleased)
-[Full Changelog](https://github.com/nextcloud-libraries/nextcloud-vue/compare/v8.30.0...v9.0.0-rc.8)
+## [v9.0.0](https://github.com/nextcloud-libraries/nextcloud-vue/tree/v9.0.0-rc.9) (unreleased)
+[Full Changelog](https://github.com/nextcloud-libraries/nextcloud-vue/compare/v8.30.0...v9.0.0-rc.9)
 
 ### 💥 Breaking Changes
 * The package now uses Vue 3 instead of Vue 2.7
@@ -200,6 +200,7 @@ The `richEditing` mixin can be replaced by just using the `NcRichText` component
 * feat(NcCheckboxRadioSwitch): Add support for a description field [\#7378](https://github.com/nextcloud-libraries/nextcloud-vue/pull/7378) \([CarlSchwan](https://github.com/CarlSchwan)\)
 * feat: add NcKbd component [\#7401](https://github.com/nextcloud-libraries/nextcloud-vue/pull/7401) \([ShGKme](https://github.com/ShGKme)\)
 * feat(NcAssistant*): provide components for consistent integrations design [\#7398](https://github.com/nextcloud-libraries/nextcloud-vue/pull/7398) \([susnux](https://github.com/susnux)\)
+* feat(NcRadioGroup): add component to group radio buttons [\#7441](https://github.com/nextcloud-libraries/nextcloud-vue/pull/7441) \([susnux](https://github.com/susnux)\)
 
 ### 🐛 Fixed bugs
 * feat(NcAppSidebar): add `info` slot [#6666](https://github.com/nextcloud-libraries/nextcloud-vue/pull/6666) ([Antreesy](https://github.com/Antreesy))
@@ -305,6 +306,17 @@ The `richEditing` mixin can be replaced by just using the `NcRichText` component
 * fix(NcHeaderMenu): pause trap stack on opening [\#7370](https://github.com/nextcloud-libraries/nextcloud-vue/pull/7370) \([Antreesy](https://github.com/Antreesy)\)
 * fix(NcAppNavigationSettings): bring filled icon back for Nextcloud 31 [\#7397](https://github.com/nextcloud-libraries/nextcloud-vue/pull/7397) \([susnux](https://github.com/susnux)\)
 * fix(NcHeaderMenu): apply `ariaLabel` prop and add proper default values [\#7367](https://github.com/nextcloud-libraries/nextcloud-vue/pull/7367) \([susnux](https://github.com/susnux)\)
+* fix(NcAssistantIcon): adjust gradient for dark theme [\#7426](https://github.com/nextcloud-libraries/nextcloud-vue/pull/7426) \([susnux](https://github.com/susnux)\)
+* fix(NcCheckboxContent): limit wrapper width [\#7445](https://github.com/nextcloud-libraries/nextcloud-vue/pull/7445) \([Antreesy](https://github.com/Antreesy)\)
+* fix(NcRichText): correctly render empty children list [\#7447](https://github.com/nextcloud-libraries/nextcloud-vue/pull/7447) \([Antreesy](https://github.com/Antreesy)\)
+* fix: revert renaming template refs resulting in a breaking change [\#7448](https://github.com/nextcloud-libraries/nextcloud-vue/pull/7448) \([ShGKme](https://github.com/ShGKme)\)
+* fix(NcDateTimePicker): use proper day names [\#7473](https://github.com/nextcloud-libraries/nextcloud-vue/pull/7473) \([susnux](https://github.com/susnux)\)
+* fix(NcCheckboxRadioSwitch): ensure label less radio has proper size [\#7471](https://github.com/nextcloud-libraries/nextcloud-vue/pull/7471) \([susnux](https://github.com/susnux)\)
+* fix(NcDateTime): adjust for bidi support [\#7484](https://github.com/nextcloud-libraries/nextcloud-vue/pull/7484) \([susnux](https://github.com/susnux)\)
+* fix(NcAppNavigationItem): ensure to pass boolean where needed [\#7489](https://github.com/nextcloud-libraries/nextcloud-vue/pull/7489) \([susnux](https://github.com/susnux)\)
+* fix(NcReferenceWidget): harden checks for reference = null [\#7478](https://github.com/nextcloud-libraries/nextcloud-vue/pull/7478) \([Antreesy](https://github.com/Antreesy)\)
+* fix(NcAvatar): make min status size visually accessible [\#7476](https://github.com/nextcloud-libraries/nextcloud-vue/pull/7476) \([DorraJaouad](https://github.com/DorraJaouad)\)
+* fix(NcRadioGroup): fieldsets always need a label for accessibility [\#7483](https://github.com/nextcloud-libraries/nextcloud-vue/pull/7483)
 
 ### Changed
 * refactor: replace boolean properties with `default: true` with `default: false` [#6653](https://github.com/nextcloud-libraries/nextcloud-vue/pull/6653) ([susnux](https://github.com/susnux))
@@ -453,11 +465,37 @@ The `richEditing` mixin can be replaced by just using the `NcRichText` component
 * chore(docs): fix css modules export names in styleguidist [\#7385](https://github.com/nextcloud-libraries/nextcloud-vue/pull/7385) \([ShGKme](https://github.com/ShGKme)\)
 * fix(NcUserStatusIcon): adjust icon colors [\#7392](https://github.com/nextcloud-libraries/nextcloud-vue/pull/7392) \([Antreesy](https://github.com/Antreesy)\)
 * fix(NcUserStatusIcon): adjust scoped names for style variables [\#7396](https://github.com/nextcloud-libraries/nextcloud-vue/pull/7396) \([Antreesy](https://github.com/Antreesy)\)
+* docs: enhance NcAppSidebar documentation [\#6913](https://github.com/nextcloud-libraries/nextcloud-vue/pull/6913) \([Antreesy](https://github.com/Antreesy)\)
+* chore!: deprecate and remove `NcSettingsInputText` component [\#7486](https://github.com/nextcloud-libraries/nextcloud-vue/pull/7486) \([susnux](https://github.com/susnux)\)
+* chore(NcCheckboxRadioSwitch): deprecate button variant in favor of `NcRadioGroup` [\#7490](https://github.com/nextcloud-libraries/nextcloud-vue/pull/7490) \([susnux](https://github.com/susnux)\)
 
-## [v8.31.0](https://github.com/nextcloud-libraries/nextcloud-vue/tree/v8.31.0) (unreleased)
+## [v8.31.0](https://github.com/nextcloud-libraries/nextcloud-vue/tree/v8.31.0) (2025-09-11)
 ### 📝 Notes
 The `NcSettingsInputText` component was deprecated,
 it is no longer used by Nextcloud or Nextcloud apps and not recommended to be used for design reasons.
+
+### 🚀 Enhancements
+* feat: add NcKbd component [\#7407](https://github.com/nextcloud-libraries/nextcloud-vue/pull/7407)
+* feat(NcRadioGroup): add component to group radio buttons [\#7474](https://github.com/nextcloud-libraries/nextcloud-vue/pull/7474)
+
+### 🐛 Fixed bugs
+* fix(NcAssistantIcon): adjust gradient for dark theme [\#7430](https://github.com/nextcloud-libraries/nextcloud-vue/pull/7430)
+* fix(NcPopover): regression with `this.getPopoverTriggerContainerElement is not a function` [\#7443](https://github.com/nextcloud-libraries/nextcloud-vue/pull/7443) \([max-nextcloud](https://github.com/max-nextcloud)\)
+* fix(NcCheckboxRadioSwitch): ensure label less radio has proper size [\#7477](https://github.com/nextcloud-libraries/nextcloud-vue/pull/7477)
+* fix(NcDateTime): adjust for bidi support [\#7485](https://github.com/nextcloud-libraries/nextcloud-vue/pull/7485)
+* fix(NcReferenceWidget): harden checks for reference = null [\#7493](https://github.com/nextcloud-libraries/nextcloud-vue/pull/7493)
+* fix(NcRadioGroup): fieldsets always need a label for accessibility [\#7495](https://github.com/nextcloud-libraries/nextcloud-vue/pull/7495)
+* fix(NcAvatar): make min status size visually accessible [\#7480](https://github.com/nextcloud-libraries/nextcloud-vue/pull/7480)
+* fix(NcAppNavigationItem): ensure to pass boolean where needed [\#7491](https://github.com/nextcloud-libraries/nextcloud-vue/pull/7491)
+
+### Other Changes
+* chore(NcCheckboxRadioSwitch): deprecate button variant in favor of `NcRadioGroup` [\#7492](https://github.com/nextcloud-libraries/nextcloud-vue/pull/7492)
+* chore: deprecate `NcSettingsInputText` component [\#7488](https://github.com/nextcloud-libraries/nextcloud-vue/pull/7488)
+* chore: migrate to ESLint 9 and @nextcloud/eslint-config 9 [\#7418](https://github.com/nextcloud-libraries/nextcloud-vue/pull/7418) \([ShGKme](https://github.com/ShGKme)\)
+* chore(lint): fix [\#7425](https://github.com/nextcloud-libraries/nextcloud-vue/pull/7425) \([ShGKme](https://github.com/ShGKme)\)
+* chore(test): explicitly import from jest/globals to simplify migration to/from Vitest [\#7424](https://github.com/nextcloud-libraries/nextcloud-vue/pull/7424) \([ShGKme](https://github.com/ShGKme)\)
+* docs: typos in 8.30.0 changelog [\#7422](https://github.com/nextcloud-libraries/nextcloud-vue/pull/7422)
+
 
 ## [v8.30.0](https://github.com/nextcloud-libraries/nextcloud-vue/tree/v8.30.0) (2025-09-01)
 ### 🚀 Enhancements
