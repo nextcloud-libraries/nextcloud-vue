@@ -5,10 +5,33 @@
 
 # Changelog
 
-## [v8.31.0](https://github.com/nextcloud-libraries/nextcloud-vue/tree/v8.31.0) (unreleased)
+## [v8.31.0](https://github.com/nextcloud-libraries/nextcloud-vue/tree/v8.31.0) (2025-09-11)
 ### 📝 Notes
 The `NcSettingsInputText` component was deprecated,
 it is no longer used by Nextcloud or Nextcloud apps and not recommended to be used for design reasons.
+
+### 🚀 Enhancements
+* feat: add NcKbd component [\#7407](https://github.com/nextcloud-libraries/nextcloud-vue/pull/7407)
+* feat(NcRadioGroup): add component to group radio buttons [\#7474](https://github.com/nextcloud-libraries/nextcloud-vue/pull/7474)
+
+### 🐛 Fixed bugs
+* fix(NcAssistantIcon): adjust gradient for dark theme [\#7430](https://github.com/nextcloud-libraries/nextcloud-vue/pull/7430)
+* fix(NcPopover): regression with `this.getPopoverTriggerContainerElement is not a function` [\#7443](https://github.com/nextcloud-libraries/nextcloud-vue/pull/7443) \([max-nextcloud](https://github.com/max-nextcloud)\)
+* fix(NcCheckboxRadioSwitch): ensure label less radio has proper size [\#7477](https://github.com/nextcloud-libraries/nextcloud-vue/pull/7477)
+* fix(NcDateTime): adjust for bidi support [\#7485](https://github.com/nextcloud-libraries/nextcloud-vue/pull/7485)
+* fix(NcReferenceWidget): harden checks for reference = null [\#7493](https://github.com/nextcloud-libraries/nextcloud-vue/pull/7493)
+* fix(NcRadioGroup): fieldsets always need a label for accessibility [\#7495](https://github.com/nextcloud-libraries/nextcloud-vue/pull/7495)
+* fix(NcAvatar): make min status size visually accessible [\#7480](https://github.com/nextcloud-libraries/nextcloud-vue/pull/7480)
+* fix(NcAppNavigationItem): ensure to pass boolean where needed [\#7491](https://github.com/nextcloud-libraries/nextcloud-vue/pull/7491) 
+
+### Other Changes
+* chore(NcCheckboxRadioSwitch): deprecate button variant in favor of `NcRadioGroup` [\#7492](https://github.com/nextcloud-libraries/nextcloud-vue/pull/7492) 
+* chore: deprecate `NcSettingsInputText` component [\#7488](https://github.com/nextcloud-libraries/nextcloud-vue/pull/7488)
+* chore: migrate to ESLint 9 and @nextcloud/eslint-config 9 [\#7418](https://github.com/nextcloud-libraries/nextcloud-vue/pull/7418) \([ShGKme](https://github.com/ShGKme)\)
+* chore(lint): fix [\#7425](https://github.com/nextcloud-libraries/nextcloud-vue/pull/7425) \([ShGKme](https://github.com/ShGKme)\)
+* chore(test): explicitly import from jest/globals to simplify migration to/from Vitest [\#7424](https://github.com/nextcloud-libraries/nextcloud-vue/pull/7424) \([ShGKme](https://github.com/ShGKme)\)
+* docs: typos in 8.30.0 changelog [\#7422](https://github.com/nextcloud-libraries/nextcloud-vue/pull/7422)
+
 
 ## [v8.30.0](https://github.com/nextcloud-libraries/nextcloud-vue/tree/v8.30.0) (2025-09-01)
 ### 🚀 Enhancements
