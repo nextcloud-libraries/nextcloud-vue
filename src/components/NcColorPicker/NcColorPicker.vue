@@ -334,9 +334,9 @@ function pickCustomColor(color: Payload): void {
  * @param color - The background color
  */
 function getContrastColor(color: string): string {
-	const black = '#000000'
-	const white = '#FFFFFF'
-	return calculateLuma(color) > 0.5 ? black : white
+	return calculateLuma(color) > 0.5
+		? COLOR_BLACK.color
+		: COLOR_WHITE.color
 }
 
 /**
@@ -403,7 +403,7 @@ function hexToRGB(hex: string): [number, number, number] {
 								:checked="color === currentColor"
 								@click="toggleColor(color)">
 						</label>
-						<label class="color-picker__clear" :title="t('No color')">
+						<label v-if="clearable" class="color-picker__clear" :title="t('No color')">
 							<NcIconSvgWrapper
 								:size="currentColor ? 28 : 34 /* size is adusted so that inner mdi icon aligns with color circles */"
 								:path="mdiCloseCircleOutline" />
