@@ -184,7 +184,7 @@ import { Chrome as VueChrome } from '@ckpack/vue-color'
 import { mdiArrowLeft, mdiCheck, mdiCloseCircleOutline, mdiDotsHorizontal } from '@mdi/js'
 import { computed, ref } from 'vue'
 import { t } from '../../l10n.ts'
-import { defaultPalette } from '../../utils/colors.ts'
+import { COLOR_BLACK, COLOR_WHITE, defaultPalette } from '../../utils/colors.ts'
 import { createElementId } from '../../utils/createElementId.ts'
 import logger from '../../utils/logger.ts'
 import NcButton from '../NcButton/index.ts'
@@ -236,7 +236,7 @@ const props = withDefaults(defineProps<{
 	paletteOnly?: boolean
 }>(), {
 	container: 'body',
-	palette: () => [...defaultPalette],
+	palette: () => [],
 })
 
 const emit = defineEmits<{
@@ -267,7 +267,8 @@ const id = createElementId()
 const advanced = ref(false)
 
 /**
- * Normalized palette by converting array of hex colors to color objects
+ * Normalized palette by converting array of hex colors to color objects.
+ * This also ensures there is a default palette if needed (no palette passed).
  */
 const normalizedPalette = computed(() => {
 	let palette = props.palette
@@ -275,9 +276,15 @@ const normalizedPalette = computed(() => {
 		if ((typeof color === 'string' && !color.match(HEX_REGEX))
 			|| (typeof color === 'object' && !color.color?.match(HEX_REGEX))) {
 			logger.error('[NcColorPicker] Invalid palette passed', { color })
-			palette = [...defaultPalette]
+			palette = []
 			break
 		}
+	}
+
+	if (palette.length === 0) {
+		palette = props.clearable
+			? [...defaultPalette, COLOR_BLACK, COLOR_WHITE]
+			: [...defaultPalette]
 	}
 
 	return palette.map((item: Color | string) => ({
@@ -374,6 +381,7 @@ function hexToRGB(hex: string): [number, number, number] {
 				:aria-label="t('Color picker')"
 				:class="{
 					'color-picker--advanced-fields': advanced && advancedFields,
+					'color-picker--clearable': clearable,
 				}">
 				<Transition name="slide" mode="out-in">
 					<div v-if="!advanced" class="color-picker__simple">
@@ -457,6 +465,10 @@ function hexToRGB(hex: string): [number, number, number] {
 	justify-content: space-between;
 	padding: var(--border-radius-element); // align with NcPopover border radius
 	min-width: calc(4 * var(--default-clickable-area) + 2 * var(--border-radius-element)); // space for 4 color circles
+
+	&--clearable {
+		min-width: calc(5 * var(--default-clickable-area) + 2 * var(--border-radius-element));
+	}
 
 	&--advanced-fields {
 		min-width: 264px;
