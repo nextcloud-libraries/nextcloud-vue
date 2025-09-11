@@ -53,6 +53,29 @@ export default {
 </script>
 ```
 
+### Standard checkbox set
+```vue
+<template>
+	<div>
+		<NcCheckboxRadioSwitch v-model="sharingPermission" value="r" name="sharing_permission" disabled>Permission read</NcCheckboxRadioSwitch>
+		<NcCheckboxRadioSwitch v-model="sharingPermission" value="w" name="sharing_permission">Permission write</NcCheckboxRadioSwitch>
+		<NcCheckboxRadioSwitch v-model="sharingPermission" value="d" name="sharing_permission">Permission delete</NcCheckboxRadioSwitch>
+		<NcCheckboxRadioSwitch v-model="sharingPermission" value="x" name="sharing_permission">Permission execute</NcCheckboxRadioSwitch>
+		<br>
+		sharingPermission: {{ sharingPermission }}
+	</div>
+</template>
+<script>
+export default {
+	data() {
+		return {
+			sharingPermission: ['r', 'd'],
+		}
+	}
+}
+</script>
+```
+
 ### Standard radio set
 ```vue
 <template>
@@ -78,7 +101,47 @@ export default {
 </script>
 ```
 
-### Standard radio set with alternative button style
+### Standard switch
+```vue
+<template>
+	<div>
+		<NcCheckboxRadioSwitch v-model="sharingEnabled" type="switch">Enable sharing</NcCheckboxRadioSwitch>
+		<NcCheckboxRadioSwitch v-model="sharingEnabled" type="switch">Enable sharing (v-model)</NcCheckboxRadioSwitch>
+		<NcCheckboxRadioSwitch v-model="sharingEnabled" type="switch" disabled>Enable sharing (disabled)</NcCheckboxRadioSwitch>
+		<NcCheckboxRadioSwitch v-model="sharingEnabled" type="switch">
+			Enable sharing. This can contain a long multiline text, that will be wrapped in a second row. It is generally not advised to have such long text inside of an element
+		</NcCheckboxRadioSwitch>
+		<NcCheckboxRadioSwitch v-model="sharingEnabled" type="switch" description="Instead you can use a description as a prop which can also be a long multiline text, that will be wrapped in a second row.">
+			Enable sharing.
+		</NcCheckboxRadioSwitch>
+
+		<NcCheckboxRadioSwitch v-model="sharingEnabled" type="switch">
+			Enable sharing.
+			<template #description>
+				Or you can use a description as slot which can also be a <strong>long multiline text</strong>, that will be wrapped in a second row.
+			</template>
+		</NcCheckboxRadioSwitch>
+		<br>
+		sharingEnabled: {{ sharingEnabled }}
+	</div>
+</template>
+<script>
+export default {
+	data() {
+		return {
+			sharingEnabled: true,
+		}
+	},
+}
+</script>
+```
+
+### Deprecated button variants
+⚠️ Warning the button variant is deprecated ⚠️
+The button variant does not provide proper grouping,
+to overcome this and other limitations we now provide `NcRadioGroup` instead.
+
+#### Standard radio set with alternative button style
 ```vue
 <template>
 	<div>
@@ -138,7 +201,7 @@ export default {
 </script>
 ```
 
-### Radio set with button style and icons
+#### Radio set with button style and icons
 ```vue
 <template>
 	<div>
@@ -207,65 +270,6 @@ export default {
 }
 </script>
 ```
-
-### Standard checkbox set
-```vue
-<template>
-	<div>
-		<NcCheckboxRadioSwitch :disabled="true" v-model="sharingPermission" value="r" name="sharing_permission">Permission read</NcCheckboxRadioSwitch>
-		<NcCheckboxRadioSwitch v-model="sharingPermission" value="w" name="sharing_permission">Permission write</NcCheckboxRadioSwitch>
-		<NcCheckboxRadioSwitch v-model="sharingPermission" value="d" name="sharing_permission">Permission delete</NcCheckboxRadioSwitch>
-		<NcCheckboxRadioSwitch v-model="sharingPermission" value="x" name="sharing_permission">Permission execute</NcCheckboxRadioSwitch>
-		<br>
-		sharingPermission: {{ sharingPermission }}
-	</div>
-</template>
-<script>
-export default {
-	data() {
-		return {
-			sharingPermission: ['r', 'd'],
-		}
-	}
-}
-</script>
-```
-
-### Standard switch
-```vue
-<template>
-	<div>
-		<NcCheckboxRadioSwitch v-model="sharingEnabled" type="switch">Enable sharing</NcCheckboxRadioSwitch>
-		<NcCheckboxRadioSwitch v-model="sharingEnabled" type="switch">Enable sharing (v-model)</NcCheckboxRadioSwitch>
-		<NcCheckboxRadioSwitch v-model="sharingEnabled" type="switch" :disabled="true">Enable sharing (disabled)</NcCheckboxRadioSwitch>
-		<NcCheckboxRadioSwitch v-model="sharingEnabled" type="switch">
-			Enable sharing. This can contain a long multiline text, that will be wrapped in a second row. It is generally not advised to have such long text inside of an element
-		</NcCheckboxRadioSwitch>
-		<NcCheckboxRadioSwitch v-model="sharingEnabled" type="switch" description="Instead you can use a description as a prop which can also be a long multiline text, that will be wrapped in a second row.">
-			Enable sharing.
-		</NcCheckboxRadioSwitch>
-
-		<NcCheckboxRadioSwitch v-model="sharingEnabled" type="switch">
-			Enable sharing.
-			<template #description>
-				Or you can use a description as slot which can also be a <strong>long multiline text</strong>, that will be wrapped in a second row.
-			</template>
-		</NcCheckboxRadioSwitch>
-		<br>
-		sharingEnabled: {{ sharingEnabled }}
-	</div>
-</template>
-<script>
-export default {
-	data() {
-		return {
-			sharingEnabled: true,
-		}
-	},
-}
-</script>
-```
-
 </docs>
 
 <template>
@@ -414,6 +418,8 @@ export default {
 
 		/**
 		 * Toggle the alternative button style
+		 *
+		 * @deprecated - Use `NcRadioGroup` instead
 		 */
 		buttonVariant: {
 			type: Boolean,
@@ -425,6 +431,7 @@ export default {
 		 * If so they will be grouped horizontally or vertically
 		 *
 		 * @type {'no'|'horizontal'|'vertical'}
+		 * @deprecated - Use `NcRadioGroup` instead
 		 */
 		buttonVariantGrouped: {
 			type: String,
