@@ -10,9 +10,15 @@ import { INSIDE_RADIO_GROUP_KEY } from './useNcRadioGroup.ts'
 
 const props = defineProps<{
 	/**
-	 * Optional visual label of the radio group
+	 * Label of the radio group (accessible name).
+	 * It can be hidden visually if needed using `hidden-label` prop.
 	 */
-	label?: string
+	label: string
+
+	/**
+	 * If set the label of the button group will not be shown visually but only for accessibility purposes.
+	 */
+	labelHidden?: boolean
 
 	/**
 	 * Optional visual description of the radio group.
@@ -75,7 +81,7 @@ export default {
 		:class="[{
 			[$style.radioGroup_buttonVariant]: buttonVariant,
 		}, $style.radioGroup]">
-		<legend v-if="label" :class="$style.radioGroup__label">
+		<legend :class="[$style.radioGroup__label, { 'hidden-visually': labelHidden }]">
 			{{ label }}
 		</legend>
 		<p v-if="description" :id="descriptionId" :class="$style.radioGroup__description">
@@ -181,7 +187,7 @@ The radio group also allows to create a button like styling together with the `N
 	<div>
 		<h4>With text labels</h4>
 		<div style="max-width: 400px">
-			<NcRadioGroup v-model="alignment">
+			<NcRadioGroup v-model="alignment" label="Example alignment" label-hidden>
 				<NcRadioGroupButton label="Start" value="start" />
 				<NcRadioGroupButton label="Center" value="center" />
 				<NcRadioGroupButton label="End" value="end" />
@@ -192,7 +198,7 @@ The radio group also allows to create a button like styling together with the `N
 
 		<h4>With icons</h4>
 		<div style="max-width: 250px">
-			<NcRadioGroup v-model="alignment">
+			<NcRadioGroup v-model="alignment" label="Example alignment with icons" label-hidden>
 				<NcRadioGroupButton aria-label="Start" value="start">
 					<template #icon>
 						<NcIconSvgWrapper directional :path="mdiAlignHorizontalLeft" />
