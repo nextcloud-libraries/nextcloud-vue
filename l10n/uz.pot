@@ -36,6 +36,10 @@ msgstr "Faolliklar"
 msgid "Add to a project"
 msgstr "Loyihaga qo'shish"
 
+#. TRANSLATORS: Alt key on keyboard (Windows/Linux)
+msgid "Alt"
+msgstr "Alt"
+
 msgid "Animals & Nature"
 msgstr "Hayvonlar va Tabiat"
 
@@ -127,6 +131,10 @@ msgstr "O'zgarishlarni tasdiqlang"
 msgid "Connect items to a project to make them easier to find"
 msgstr "Elementlarni topishni osonlashtirish uchun ularni loyihaga ulang"
 
+#. TRANSLATORS: Ctrl key on keyboard (Windows/Linux)
+msgid "Ctrl"
+msgstr "Ctrl"
+
 msgid "Custom"
 msgstr "Moslashtirilgan"
 
@@ -148,6 +156,10 @@ msgstr "Daqiqalarni kamaytirish"
 msgid "Decrement seconds"
 msgstr "Soniyalarni kamaytirish"
 
+#. TRANSLATORS: Delete key on keyboard
+msgid "Delete"
+msgstr "O'chirish"
+
 #. TRANSLATORS: A color name for RGB(136, 85, 168)
 msgid "Deluge"
 msgstr "To'fon"
@@ -167,6 +179,10 @@ msgstr "Emoji tanlagich"
 msgid "Enable interactive view"
 msgstr "Interaktiv ko'rinishni yoqing"
 
+#. TRANSLATORS: Enter key on keyboard
+msgid "Enter"
+msgstr "Kirish"
+
 msgid "Enter link"
 msgstr "Havolani kiriting"
 
@@ -176,6 +192,10 @@ msgid ""
 msgstr ""
 "Tegishli manbalarni olishda xatolik yuz berdi. Savollaringiz bo'lsa, tizim "
 "administratoriga murojaat qiling."
+
+#. TRANSLATORS: Escape key on keyboard
+msgid "Escape"
+msgstr "Orqaga"
 
 msgid "External documentation"
 msgstr "Tashqi hujjatlar"
@@ -270,7 +290,7 @@ msgid "Month picker overlay"
 msgstr "Oyni tanlash vositasi qoplamasi"
 
 msgid "More items …"
-msgstr "Ko`proq tafsilotlar..."
+msgstr "Yana elementlar..."
 
 msgid "More options"
 msgstr "Boshqa variantlar"
@@ -403,6 +423,9 @@ msgstr "O'zgarishlarni saqlang"
 msgid "Search"
 msgstr "Qidiruv"
 
+msgid "Search …"
+msgstr "Izlash..."
+
 msgid "Search emoji"
 msgstr "Emoji qidirish"
 
@@ -411,9 +434,6 @@ msgstr "Vaqt mintaqasini qidiring"
 
 msgid "Search results"
 msgstr "Qidiruv natijalari"
-
-msgid "Search…"
-msgstr "Qidiruv…"
 
 #. FOR TRANSLATORS: If possible in your language an even shorter version of 'a
 #. few seconds ago'
@@ -460,6 +480,10 @@ msgstr "Sozlamalar"
 msgid "Settings navigation"
 msgstr "Sozlamalar navigatsiyasi"
 
+#. TRANSLATORS: Shift key on keyboard
+msgid "Shift"
+msgstr "Yuqorigi"
+
 msgid "Show details"
 msgstr "Tafsilotlarni ko'rsatish"
 
@@ -481,6 +505,10 @@ msgstr "Aqlli tanlovchi"
 msgid "Smileys & Emotion"
 msgstr "Smayllar va Hissiyotlar"
 
+#. TRANSLATORS: Space key on keyboard
+msgid "Space"
+msgstr "Bo'shliq"
+
 msgid "Start slideshow"
 msgstr "Slayd-shouni boshlash"
 
@@ -495,6 +523,10 @@ msgstr "AM/PM rejimini almashtiring"
 
 msgid "Symbols"
 msgstr "Belgilar"
+
+#. TRANSLATORS: Tab key on keyboard
+msgid "Tab"
+msgstr "Tab"
 
 msgid "Time picker"
 msgstr "Vaqtni tanlovchi"
@@ -534,7 +566,7 @@ msgid "Whiskey"
 msgstr "Whiskey"
 
 msgid "Write a message …"
-msgstr "Xabar yozish…"
+msgstr "Xabar yozish..."
 
 msgid "Year picker"
 msgstr "Yilni tanlovchi"
