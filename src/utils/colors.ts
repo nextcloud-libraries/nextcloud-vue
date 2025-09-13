@@ -70,15 +70,20 @@ function mixPalette(steps: number, color1: Color, color2: Color): Color[] {
 	return palette
 }
 
+// This are our default base colors we use for mixing palettes
+const COLOR_RED = new Color(182, 70, 157, t('Purple'))
+const COLOR_YELLOW = new Color(221, 203, 85, t('Gold'))
+const COLOR_BLUE = new Color(0, 130, 201, t('Nextcloud blue'))
+// Special "none"-colors
+export const COLOR_BLACK = new Color(0, 0, 0, t('Black'))
+export const COLOR_WHITE = new Color(255, 255, 255, t('White'))
+
 /**
  * Like GenColor(4) but with labels
  */
 export const defaultPalette = [
 	/* eslint-disable @stylistic/function-call-argument-newline -- Allow to put translators comments */
-	new Color(
-		182, 70, 157,
-		t('Purple'),
-	),
+	COLOR_RED,
 	new Color(
 		191, 103, 139,
 		t('Rosy brown'), // TRANSLATORS: A color name for RGB(191, 103, 139)
@@ -91,10 +96,7 @@ export const defaultPalette = [
 		211, 169, 103,
 		t('Whiskey'), // TRANSLATORS: A color name for RGB(211, 169, 103)
 	),
-	new Color(
-		221, 203, 85,
-		t('Gold'),
-	),
+	COLOR_YELLOW,
 	new Color(
 		165, 184, 114,
 		t('Olivine'), // TRANSLATORS: A color name for RGB(165, 184, 114)
@@ -107,10 +109,7 @@ export const defaultPalette = [
 		55, 148, 172,
 		t('Boston Blue'), // TRANSLATORS: A color name for RGB(55, 148, 172)
 	),
-	new Color(
-		0, 130, 201,
-		t('Nextcloud blue'),
-	),
+	COLOR_BLUE,
 	new Color(
 		45, 115, 190,
 		t('Mariner'), // TRANSLATORS: A color name for RGB(45, 115, 190)
@@ -143,13 +142,9 @@ export function generatePalette(steps: number): Color[] {
 		return [...defaultPalette]
 	}
 
-	const red = new Color(182, 70, 157, t('Purple'))
-	const yellow = new Color(221, 203, 85, t('Gold'))
-	const blue = new Color(0, 130, 201, t('Nextcloud blue'))
-
-	const palette1 = mixPalette(steps, red, yellow)
-	const palette2 = mixPalette(steps, yellow, blue)
-	const palette3 = mixPalette(steps, blue, red)
+	const palette1 = mixPalette(steps, COLOR_RED, COLOR_YELLOW)
+	const palette2 = mixPalette(steps, COLOR_YELLOW, COLOR_BLUE)
+	const palette3 = mixPalette(steps, COLOR_BLUE, COLOR_RED)
 
 	return palette1.concat(palette2).concat(palette3)
 }
