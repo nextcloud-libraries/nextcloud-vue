@@ -325,6 +325,8 @@ export default {
 	<VueSelect
 		class="select"
 		:class="{
+			'select--dark': isDark,
+			'select--legacy': isLegacy,
 			'select--no-wrap': noWrap,
 		}"
 		v-bind="propsToForward"
@@ -398,10 +400,12 @@ import { h, warn } from 'vue'
 import VueSelect from 'vue-select'
 import ChevronDown from 'vue-material-design-icons/ChevronDown.vue'
 import Close from 'vue-material-design-icons/Close.vue'
+import NcEllipsisedOption from '../NcEllipsisedOption/NcEllipsisedOption.vue'
+import NcLoadingIcon from '../NcLoadingIcon/NcLoadingIcon.vue'
+import { useIsDarkTheme } from '../../composables/index.ts'
 import { t } from '../../l10n.ts'
 import { createElementId } from '../../utils/createElementId.ts'
-import NcEllipsisedOption from '../NcEllipsisedOption/index.js'
-import NcLoadingIcon from '../NcLoadingIcon/index.ts'
+import { isLegacy } from '../../utils/legacy.ts'
 
 // TODO: Use @nextcloud/vue-select once a vue 3 version is available.
 // Until then, all @nextcloud/vue-select specific improvements won't be available.
@@ -777,8 +781,11 @@ export default {
 		const gridBaseLine = Number.parseInt(window.getComputedStyle(document.body).getPropertyValue('--default-grid-baseline'))
 		const avatarSize = clickableArea - 2 * gridBaseLine
 
+		const isDark = useIsDarkTheme()
+
 		return {
 			avatarSize,
+			isLegacy,
 		}
 	},
 
@@ -902,6 +909,8 @@ export default {
 </script>
 
 <style lang="scss">
+@use '../../assets/input-border.scss' as border;
+
 body {
 	/**
 	 * Set custom vue-select CSS variables.
@@ -971,7 +980,7 @@ body {
 
 .v-select.select {
 	/* Override default vue-select styles */
-	min-height: var(--default-clickable-area);
+	min-height: calc(var(--default-clickable-area) - 2 * var(--border-width-input));
 	min-width: 260px;
 	margin: 0 0 var(--default-grid-baseline);
 
@@ -1016,7 +1025,7 @@ body {
 	.vs__dropdown-toggle {
 		position: relative;
 		max-height: 100px;
-		padding: 0;
+		padding: var(--border-width-input);
 		overflow-y: auto;
 	}
 
@@ -1030,15 +1039,22 @@ body {
 	}
 
 	&.vs--open .vs__dropdown-toggle {
-		border-width: var(--border-width-input-focused);
-		outline: 2px solid var(--color-main-background);
 		border-color: var(--color-main-text);
 		border-bottom-color: transparent;
+		border-bottom-left-radius: 0;
+		border-bottom-right-radius: 0;
+		border-style: solid;
+		border-width: var(--border-width-input-focused);
+		outline: 2px solid var(--color-main-background);
+		padding: 0;
 	}
 
-	&:not(.vs--disabled, .vs--open) .vs__dropdown-toggle:hover {
-		outline: 2px solid var(--color-main-background);
-		border-color: var(--color-main-text);
+	&:not(.vs--disabled, .vs--open) {
+		.vs__dropdown-toggle:active,
+		.vs__dropdown-toggle:focus-within {
+			outline: 2px solid var(--color-main-background);
+			border-color: var(--color-main-text);
+		}
 	}
 
 	&.vs--disabled {
@@ -1103,6 +1119,10 @@ body {
 			background: unset !important;
 		}
 	}
+}
+
+.vs__dropdown-toggle {
+	@include border.inputLikeBorder('.select--dark', '.select--legacy', var(--vs-border-color));
 }
 
 .vs__dropdown-menu {
