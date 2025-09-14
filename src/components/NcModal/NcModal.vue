@@ -4,6 +4,10 @@
 -->
 
 <docs>
+The `NcModel` is the base component used for modals and dialogs.
+While `NcDialog` should be used for general dialogs like confirmations or forms,
+`NcModal` allows for custom content like showing image multimedia.
+
 For showing the modal you can use either `v-model:show="showModal"` or `v-if` on the `NcModal`,
 depending on whether you require the Modal to stay within the DOM or not. Do not mix both, as this will break the out transition animation.
 
@@ -16,9 +20,7 @@ depending on whether you require the Modal to stay within the DOM or not. Do not
 			@close="closeModal"
 			size="small"
 			name="Name"
-			:outTransition="true"
-			:hasNext="true"
-			:hasPrevious="true">
+			out-transition>
 			<template #actions>
 				<NcActionCaption name="Some action" />
 			</template>
@@ -51,89 +53,63 @@ export default {
 </style>
 ```
 
-### Modal with more properties
+### Modal with slideshow
 
 ```vue
 <template>
 	<div>
-		<NcButton @click="showModal">Show Modal with fields</NcButton>
+		<NcButton @click="isOpen = true">Show Modal</NcButton>
 		<NcModal
-			v-if="modal"
-			ref="modalRef"
-			@close="closeModal"
-			name="Name inside modal">
-			<div class="modal__content">
-				<h2>Please enter your name</h2>
-				<div class="form-group">
-					<NcTextField label="First Name" v-model="firstName" />
-				</div>
-				<div class="form-group">
-					<NcTextField label="Last Name" v-model="lastName" />
-				</div>
-				<div class="form-group">
-					<label for="pizza">What is the most important pizza item?</label>
-					<NcSelect input-id="pizza" :options="['Cheese', 'Tomatoes', 'Pineapples']" v-model="pizza" />
-				</div>
-				<div class="form-group">
-					<label for="emoji-trigger">Select your favorite emoji</label>
-					<NcEmojiPicker v-if="modalRef" :container="modalRef.$el">
-						<NcButton id="emoji-trigger">Select</NcButton>
-					</NcEmojiPicker>
-				</div>
-
-				<NcButton
-					:disabled="!firstName || !lastName || !pizza"
-					@click="closeModal"
-					variant="primary">
-					Submit
-				</NcButton>
+			v-if="isOpen"
+			close-button-outside
+			enable-slideshow
+			:has-next="page < lastPage"
+			:has-previous="page > 0"
+			name="Modal with slideshow"
+			@next="page++"
+			@previous="page--"
+			@close="isOpen = false">
+			<div class="modal__content" :style="{ background: currentPage.background }">
+				<p class="model__content-text">{{ currentPage.text }}</p>
 			</div>
 		</NcModal>
 	</div>
 </template>
 <script>
-import { ref } from 'vue'
+const PAGES = [
+	{ text: 'First page', background: 'linear-gradient(#e66465, #9198e5)' },
+	{ text: 'Second page', background: 'linear-gradient(0.25turn, #3f87a6, #ebf8e1, #f69d3c)' },
+	{ text: 'Third page', background: 'lightblue' },
+	{ text: 'Last page', background: 'lightgrey' },
+]
 
 export default {
-	setup() {
-		return {
-			modalRef: ref(null),
-		}
-	},
 	data() {
 		return {
-			modal: false,
-			firstName: '',
-			lastName: '',
-			pizza: [],
+			isOpen: false,
+			page: 0,
+			lastPage: PAGES.length - 1,
 		}
 	},
-	methods: {
-		showModal() {
-			this.firstName = ''
-			this.lastName = ''
-			this.modal = true
+	computed: {
+		currentPage() {
+			return PAGES[this.page]
 		},
-		closeModal() {
-			this.modal = false
-		}
 	}
 }
 </script>
 <style scoped>
 .modal__content {
-	margin: 50px;
-}
-
-.modal__content h2 {
-	text-align: center;
-}
-
-.form-group {
-	margin: calc(var(--default-grid-baseline) * 4) 0;
+	height: 100%;
+	min-height: 30vh;
 	display: flex;
-	flex-direction: column;
-	align-items: flex-start;
+	align-items: center;
+	justify-content: center;
+}
+
+.model__content-text {
+	font-size: 16px;
+	font-weight: bold;
 }
 </style>
 ```
@@ -1046,6 +1022,7 @@ export default defineComponent({
 		background-color: var(--color-main-background);
 		color: var(--color-main-text);
 		box-shadow: 0 0 40px rgba(0, 0, 0, .2);
+		overflow: auto;
 
 		&__close {
 			// Ensure the close button is always on top of the content
