@@ -201,17 +201,11 @@ export default {
 							type="button"
 							@click="togglePlayPause">
 							<!-- Play/pause icons -->
-							<Play
-								v-if="!isPlaying"
-								class="play-pause-icons__play"
-								:size="iconSize" />
-							<Pause
-								v-else
-								class="play-pause-icons__pause"
-								:size="iconSize" />
-							<span class="hidden-visually">
-								{{ playPauseName }}
-							</span>
+							<NcIconSvgWrapper
+								class="modal__icons-play-pause"
+								inline
+								:name="playPauseName"
+								:path="isPlaying ? mdiPause : mdiPlay" />
 
 							<!-- Progress circle, css animated -->
 							<svg
@@ -245,7 +239,7 @@ export default {
 							variant="tertiary"
 							@click="close">
 							<template #icon>
-								<Close :size="iconSize" />
+								<NcIconSvgWrapper :path="mdiClose" />
 							</template>
 						</NcButton>
 					</div>
@@ -293,7 +287,7 @@ export default {
 							variant="tertiary"
 							@click="close">
 							<template #icon>
-								<Close :size="20" />
+								<NcIconSvgWrapper :path="mdiClose" />
 							</template>
 						</NcButton>
 					</div>
@@ -325,27 +319,21 @@ import type { UseSwipeDirection } from '@vueuse/core'
 import type { FocusTargetValueOrFalse, FocusTrap } from 'focus-trap'
 import type { PropType } from 'vue'
 
-import { mdiChevronLeft, mdiChevronRight } from '@mdi/js'
+import { mdiChevronLeft, mdiChevronRight, mdiClose, mdiPause, mdiPlay } from '@mdi/js'
 import { useIntervalFn, useSwipe } from '@vueuse/core'
 import { createFocusTrap } from 'focus-trap'
 import { defineComponent, onUnmounted, ref, toRef, useTemplateRef, warn as VueWarn, watchEffect } from 'vue'
-import Close from 'vue-material-design-icons/Close.vue'
-import Pause from 'vue-material-design-icons/Pause.vue'
-import Play from 'vue-material-design-icons/Play.vue'
+import NcActions from '../NcActions/NcActions.vue'
+import NcButton from '../NcButton/NcButton.vue'
+import NcIconSvgWrapper from '../NcIconSvgWrapper/NcIconSvgWrapper.vue'
 import { t } from '../../l10n.ts'
 import { createElementId } from '../../utils/createElementId.ts'
 import { getTrapStack } from '../../utils/focusTrap.ts'
-import NcActions from '../NcActions/index.js'
-import NcButton from '../NcButton/index.ts'
-import NcIconSvgWrapper from '../NcIconSvgWrapper/index.ts'
 
 export default defineComponent({
 	name: 'NcModal',
 
 	components: {
-		Close,
-		Pause,
-		Play,
 		NcActions,
 		NcButton,
 		NcIconSvgWrapper,
@@ -642,6 +630,9 @@ export default defineComponent({
 
 			mdiChevronLeft,
 			mdiChevronRight,
+			mdiClose,
+			mdiPause,
+			mdiPlay,
 		}
 	},
 
