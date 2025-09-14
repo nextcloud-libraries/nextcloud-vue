@@ -227,7 +227,6 @@ export default {
 
 							<!-- Actions menu -->
 							<NcActions class="header-actions" :inline="inlineActions">
-								<!-- @slot Actions to show (one or more NcAction* components) -->
 								<slot name="actions" />
 							</NcActions>
 
@@ -276,7 +275,6 @@ export default {
 						<!-- Content -->
 						<div :id="'modal-description-' + modalId" class="modal-container">
 							<div class="modal-container__content">
-								<!-- @slot Modal content to render -->
 								<slot />
 							</div>
 							<!-- Close modal -->
@@ -317,8 +315,8 @@ export default {
 
 <script setup lang="ts">
 import type { UseSwipeDirection } from '@vueuse/core'
-import type { FocusTargetValueOrFalse, FocusTrap } from 'focus-trap'
-import type { PropType } from 'vue'
+import type { FocusTargetValueOrFalse, FocusTrap, Options as FocusTrapOptions } from 'focus-trap'
+import type { Slot } from 'vue'
 
 import { mdiChevronLeft, mdiChevronRight, mdiClose, mdiPause, mdiPlay } from '@mdi/js'
 import { useIntervalFn, useSwipe } from '@vueuse/core'
@@ -333,199 +331,171 @@ import { createElementId } from '../../utils/createElementId.ts'
 import { getTrapStack } from '../../utils/focusTrap.ts'
 import { isRtl } from '../../utils/rtl.ts'
 
-const props = defineProps({
+const props = withDefaults(defineProps<{
 	/**
 	 * Name to be shown with the modal
 	 */
-	name: {
-		type: String,
-		default: '',
-	},
+	name?: string
 
 	/**
 	 * Declare if a previous slide is available
 	 */
-	hasPrevious: {
-		type: Boolean,
-		default: false,
-	},
+	hasPrevious?: boolean
 
 	/**
 	 * Declare if a next slide is available
 	 */
-	hasNext: {
-		type: Boolean,
-		default: false,
-	},
+	hasNext?: boolean
 
 	/**
 	 * Declare if hiding the modal should be animated
 	 */
-	outTransition: {
-		type: Boolean,
-		default: false,
-	},
+	outTransition?: boolean
 
 	/**
 	 * Declare if the slideshow functionality should be enabled
 	 */
-	enableSlideshow: {
-		type: Boolean,
-		default: false,
-	},
+	enableSlideshow?: boolean
 
 	/**
 	 * Declare the slide interval
 	 */
-	slideshowDelay: {
-		type: Number,
-		default: 5000,
-	},
+	slideshowDelay?: number
 
 	/**
 	 * Allow to pause an ongoing slideshow
 	 */
-	slideshowPaused: {
-		type: Boolean,
-		default: false,
-	},
+	slideshowPaused?: boolean
 
 	/**
 	 * Disable swipe between slides
 	 */
-	disableSwipe: {
-		type: Boolean,
-		default: false,
-	},
+	disableSwipe?: boolean
 
 	/**
 	 * Enable spread navigation
 	 */
-	spreadNavigation: {
-		type: Boolean,
-		default: false,
-	},
+	spreadNavigation?: boolean
 
 	/**
 	 * Defines the modal size.
-	 * Default is 'normal'.
-	 * Available are 'small', 'normal', 'large' and 'full'.
 	 * All sizes except 'small' change automatically to full-screen on mobile.
 	 */
-	size: {
-		type: String as PropType<'small' | 'normal' | 'large' | 'full'>,
-		default: 'normal',
-		validator: (size: string) => {
-			return ['small', 'normal', 'large', 'full'].includes(size)
-		},
-	},
+	size?: 'small' | 'normal' | 'large' | 'full'
 
 	/**
 	 * Do not show the close button for the dialog.
-	 *
-	 * @default false
 	 */
-	noClose: {
-		type: Boolean,
-		default: false,
-	},
+	noClose?: boolean
 
 	/**
 	 * Close the modal if the user clicked outside the modal
 	 * Only relevant if `noClose` is not set.
 	 */
-	closeOnClickOutside: {
-		type: Boolean,
-		default: false,
-	},
+	closeOnClickOutside?: boolean
 
 	/**
 	 * Makes the modal backdrop opaque if true
 	 * Will be overwritten if some buttons are shown outside
 	 */
-	dark: {
-		type: Boolean,
-		default: false,
-	},
+	dark?: boolean
 
 	/**
 	 * Set light backdrop. Makes the modal header appear light.
 	 */
-	lightBackdrop: {
-		type: Boolean,
-		default: false,
-	},
+	lightBackdrop?: boolean
 
 	/**
 	 * Selector for the modal container, pass `null` to prevent automatic container mounting
 	 */
-	container: {
-		type: [String, null],
-		default: 'body',
-	},
+	container?: string | null
 
 	/**
 	 * Pass in `true` if you want the modal 'close' button to be displayed
 	 * outside the modal boundaries, in the top right corner of the window.
 	 *
-	 * @default false
 	 * @since 8.25.0
 	 */
-	closeButtonOutside: {
-		type: Boolean,
-		default: false,
-	},
+	closeButtonOutside?: boolean
 
 	/**
 	 * Additional elements to add to the focus trap
 	 */
-	additionalTrapElements: {
-		type: Array as PropType<(string | HTMLElement)[]>,
-		default: () => [],
-	},
+	additionalTrapElements?: (string | HTMLElement)[]
 
 	/**
 	 * Display x items inline
 	 *
-	 * @see Actions component usage
+	 * @see NcActions component usage
 	 */
-	inlineActions: {
-		type: Number,
-		default: 0,
-	},
+	inlineActions?: number
 
 	/**
 	 * The current open property of the modal
 	 */
-	show: {
-		type: Boolean as PropType<boolean | undefined>,
-		default: undefined,
-	},
+	show?: boolean | undefined
 
 	/**
 	 * Id of the element that labels the dialog (the name)
 	 * Not needed if the `name` prop is set, but if no name is set you need to provide the ID of an element to label the dialog for accessibility.
 	 */
-	labelId: {
-		type: String,
-		default: '',
-	},
+	labelId?: string
 
 	/**
 	 * Set element to return focus to after focus trap deactivation
 	 */
-	setReturnFocus: {
-		default: undefined,
-		type: [Boolean, HTMLElement, SVGElement, String] as PropType<FocusTargetValueOrFalse>,
-	},
+	setReturnFocus?: FocusTargetValueOrFalse
+}>(), {
+	additionalTrapElements: () => [],
+	container: 'body',
+	inlineActions: 0,
+	labelId: '',
+	slideshowDelay: 5000,
+	size: 'normal',
+	name: '',
+	show: undefined,
+	setReturnFocus: undefined,
 })
 
-const emit = defineEmits([
-	'previous',
-	'next',
-	'close',
-	'update:show',
-])
+const emit = defineEmits<{
+	/**
+	 * Trigger showing the next slide.
+	 *
+	 * @param payload - The event that triggered showing the next slide
+	 */
+	next: [payload?: Event]
+
+	/**
+	 * Trigger showing the previous slide.
+	 *
+	 * @param payload - The event that triggered showing the previous slide
+	 */
+	previous: [payload?: Event]
+
+	/**
+	 * Emitted when the closing animation is finished
+	 *
+	 * @param payload - The event that triggered the close
+	 */
+	close: [payload?: Event]
+
+	/**
+	 * @param payload - The new show-state
+	 */
+	'update:show': [payload: boolean]
+}>()
+
+defineSlots<{
+	/**
+	 * Actions to show (one or more NcAction* components)
+	 */
+	actions?: Slot
+
+	/**
+	 * The modal content to show.
+	 */
+	default?: Slot
+}>()
 
 const modalId = createElementId()
 const maskElement = useTemplateRef<HTMLDivElement>('mask')
@@ -676,9 +646,6 @@ function close(event?: Event) {
 
 	// delay closing for animation
 	setTimeout(() => {
-		/**
-		 * Emitted when the closing animation is finished
-		 */
 		emit('close', event)
 	}, 300)
 }
@@ -708,7 +675,7 @@ async function useFocusTrap() {
 	// wait until all children are mounted and available in the DOM before focusTrap can be added
 	await nextTick()
 
-	const options = {
+	const options: FocusTrapOptions = {
 		allowOutsideClick: true,
 		fallbackFocus: maskElement.value!,
 		trapStack: getTrapStack(),
