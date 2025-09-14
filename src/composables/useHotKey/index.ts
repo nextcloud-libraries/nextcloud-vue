@@ -112,11 +112,11 @@ function eventHandler(callback: KeyboardEventHandler, options: UseHotKeyOptions)
  * @param keysOrFilter - keyboard key(s) to listen to, or filter function or pass `true` for listening to all keys
  * @param callback - callback function
  * @param options - composable options
- * @see docs/composables/usekeystroke.md
+ * @see docs/composables/useHotKey.md
  */
 export function useHotKey(
 	keysOrFilter: true | string | string[] | ((e: KeyboardEvent) => boolean),
-	callback = () => {},
+	callback: KeyboardEventHandler = () => {},
 	options: UseHotKeyOptions = {},
 ) {
 	if (disableKeyboardShortcuts) {
