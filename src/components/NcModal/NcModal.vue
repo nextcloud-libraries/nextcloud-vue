@@ -201,7 +201,7 @@ export default {
 			role="dialog"
 			aria-modal="true"
 			:aria-labelledby="modalLabelId"
-			:aria-describedby="'modal-description-' + randId"
+			:aria-describedby="'modal-description-' + modalId"
 			tabindex="-1">
 			<!-- Header -->
 			<transition name="fade-visibility" appear>
@@ -211,7 +211,7 @@ export default {
 					:data-theme-dark="!lightBackdrop">
 					<h2
 						v-if="name.trim() !== ''"
-						:id="'modal-name-' + randId"
+						:id="'modal-name-' + modalId"
 						class="modal-header__name">
 						{{ name }}
 					</h2>
@@ -226,7 +226,7 @@ export default {
 							@click="togglePlayPause">
 							<!-- Play/pause icons -->
 							<Play
-								v-if="!playing"
+								v-if="!isPlaying"
 								class="play-pause-icons__play"
 								:size="iconSize" />
 							<Pause
@@ -239,7 +239,8 @@ export default {
 
 							<!-- Progress circle, css animated -->
 							<svg
-								v-if="playing"
+								v-if="isPlaying"
+								:key="`${modalId}-animation-${animationKey}`"
 								class="progress-ring"
 								height="50"
 								width="50">
@@ -292,7 +293,7 @@ export default {
 							:aria-label="prevButtonAriaLabel"
 							class="prev"
 							variant="tertiary-no-background"
-							@click="previous">
+							@click="previousSlide">
 							<template #icon>
 								<NcIconSvgWrapper
 									directional
@@ -303,7 +304,7 @@ export default {
 					</transition>
 
 					<!-- Content -->
-					<div :id="'modal-description-' + randId" class="modal-container">
+					<div :id="'modal-description-' + modalId" class="modal-container">
 						<div class="modal-container__content">
 							<!-- @slot Modal content to render -->
 							<slot />
@@ -328,7 +329,7 @@ export default {
 							:aria-label="nextButtonAriaLabel"
 							class="next"
 							variant="tertiary-no-background"
-							@click="next">
+							@click="nextSlide">
 							<template #icon>
 								<NcIconSvgWrapper
 									directional
@@ -343,23 +344,26 @@ export default {
 	</transition>
 </template>
 
-<script>
+<script lang="ts">
+import type { UseSwipeDirection } from '@vueuse/core'
+import type { FocusTargetValueOrFalse, FocusTrap } from 'focus-trap'
+import type { PropType } from 'vue'
+
 import { mdiChevronLeft, mdiChevronRight } from '@mdi/js'
-import { useSwipe } from '@vueuse/core'
+import { useIntervalFn, useSwipe } from '@vueuse/core'
 import { createFocusTrap } from 'focus-trap'
-import { warn as VueWarn } from 'vue'
+import { defineComponent, onUnmounted, ref, toRef, useTemplateRef, warn as VueWarn, watchEffect } from 'vue'
 import Close from 'vue-material-design-icons/Close.vue'
 import Pause from 'vue-material-design-icons/Pause.vue'
 import Play from 'vue-material-design-icons/Play.vue'
 import { t } from '../../l10n.ts'
 import { createElementId } from '../../utils/createElementId.ts'
 import { getTrapStack } from '../../utils/focusTrap.ts'
-import Timer from '../../utils/Timer.js'
 import NcActions from '../NcActions/index.js'
 import NcButton from '../NcButton/index.ts'
 import NcIconSvgWrapper from '../NcIconSvgWrapper/index.ts'
 
-export default {
+export default defineComponent({
 	name: 'NcModal',
 
 	components: {
@@ -451,9 +455,9 @@ export default {
 		 * All sizes except 'small' change automatically to full-screen on mobile.
 		 */
 		size: {
-			type: String,
+			type: String as PropType<'small' | 'normal' | 'large' | 'full'>,
 			default: 'normal',
-			validator: (size) => {
+			validator: (size: string) => {
 				return ['small', 'normal', 'large', 'full'].includes(size)
 			},
 		},
@@ -518,7 +522,7 @@ export default {
 		 * Additional elements to add to the focus trap
 		 */
 		additionalTrapElements: {
-			type: Array,
+			type: Array as PropType<(string | HTMLElement)[]>,
 			default: () => [],
 		},
 
@@ -536,7 +540,7 @@ export default {
 		 * The current open property of the modal
 		 */
 		show: {
-			type: Boolean,
+			type: Boolean as PropType<boolean | undefined>,
 			default: undefined,
 		},
 
@@ -551,12 +555,10 @@ export default {
 
 		/**
 		 * Set element to return focus to after focus trap deactivation
-		 *
-		 * @type {import('focus-trap').FocusTargetValueOrFalse}
 		 */
 		setReturnFocus: {
 			default: undefined,
-			type: [Boolean, HTMLElement, SVGElement, String],
+			type: [Boolean, HTMLElement, SVGElement, String] as PropType<FocusTargetValueOrFalse>,
 		},
 	},
 
@@ -567,8 +569,101 @@ export default {
 		'update:show',
 	],
 
-	setup() {
+	setup(props, { emit }) {
+		const modalId = createElementId()
+		const maskElement = useTemplateRef<HTMLDivElement>('mask')
+
+		const { stop: stopSwipe } = useSwipe(maskElement, {
+			onSwipeEnd: handleSwipe,
+		})
+		onUnmounted(stopSwipe)
+
+		const {
+			isActive: isPlaying,
+			pause: stopSlideshow,
+			resume: startSlideshow,
+		} = useIntervalFn(nextSlide, toRef(() => props.slideshowDelay), { immediate: false })
+
+		const animationKey = ref(0)
+		const runSlideshow = ref(false)
+		watchEffect(() => {
+			if (runSlideshow.value && !props.slideshowPaused) {
+				startSlideshow()
+			} else if (isPlaying.value) {
+				stopSlideshow()
+			}
+		})
+
+		/**
+		 * Trigger showing the next slide
+		 *
+		 * @param event - The mouse click event if triggered by user
+		 */
+		function nextSlide(event?: Event) {
+			if (!props.hasNext) {
+				runSlideshow.value = false
+				// do not send the event if nothing is available
+				return
+			}
+
+			if (event && isPlaying.value) {
+				restartSlideshow()
+			}
+			emit('next', event)
+		}
+
+		/**
+		 * Trigger showing the previous slide
+		 *
+		 * @param event - The mouse click event if triggered by user
+		 */
+		function previousSlide(event?: Event) {
+			if (!props.hasPrevious) {
+				// do not send the event if nothing is available
+				return
+			}
+
+			if (event && isPlaying.value) {
+				restartSlideshow()
+			}
+			emit('previous', event)
+		}
+
+		/**
+		 * handle the swipe event
+		 *
+		 * @param e - The touch event
+		 * @param direction - Swipe direction
+		 */
+		function handleSwipe(e: TouchEvent, direction: UseSwipeDirection) {
+			if (!props.disableSwipe) {
+				if (direction === 'left') {
+					// swiping to left to go to the next item
+					nextSlide(e)
+				} else if (direction === 'right') {
+					// swiping to right to go back to the previous item
+					previousSlide(e)
+				}
+			}
+		}
+
+		/**
+		 * Reset the slideshow interval and animation
+		 */
+		function restartSlideshow() {
+			stopSlideshow()
+			startSlideshow()
+			animationKey.value++
+		}
+
 		return {
+			animationKey,
+			modalId,
+			isPlaying,
+			runSlideshow,
+			nextSlide,
+			previousSlide,
+
 			mdiChevronLeft,
 			mdiChevronRight,
 		}
@@ -576,12 +671,8 @@ export default {
 
 	data() {
 		return {
-			mc: null,
-			playing: false,
-			slideshowTimeout: null,
 			iconSize: 24,
-			focusTrap: null,
-			randId: createElementId(),
+			focusTrap: null as FocusTrap | null,
 			internalShow: true,
 		}
 	},
@@ -591,7 +682,7 @@ export default {
 		 * ID of the element to label the modal
 		 */
 		modalLabelId() {
-			return this.labelId || `modal-name-${this.randId}`
+			return this.labelId || `modal-name-${this.modalId}`
 		},
 
 		showModal() {
@@ -603,7 +694,7 @@ export default {
 		},
 
 		playPauseName() {
-			return this.playing ? t('Pause slideshow') : t('Start slideshow')
+			return this.isPlaying ? t('Pause slideshow') : t('Start slideshow')
 		},
 
 		cssVariables() {
@@ -627,21 +718,6 @@ export default {
 	},
 
 	watch: {
-		/**
-		 * Handle play/pause of an ongoing slideshow
-		 *
-		 * @param {boolean} paused is the player paused
-		 */
-		slideshowPaused(paused) {
-			if (this.slideshowTimeout) {
-				if (paused) {
-					this.slideshowTimeout.pause()
-				} else {
-					this.slideshowTimeout.start()
-				}
-			}
-		},
-
 		additionalTrapElements(elements) {
 			if (this.focusTrap) {
 				const contentContainer = this.$refs.mask
@@ -656,7 +732,6 @@ export default {
 
 	beforeUnmount() {
 		window.removeEventListener('keydown', this.handleKeydown)
-		this.mc.stop()
 	},
 
 	mounted() {
@@ -666,9 +741,6 @@ export default {
 
 		// init clear view
 		this.useFocusTrap()
-		this.mc = useSwipe(this.$refs.mask, {
-			onSwipeEnd: this.handleSwipe,
-		})
 
 		if (this.container) {
 			if (this.container === 'body') {
@@ -676,7 +748,7 @@ export default {
 				document.body.insertBefore(this.$el, document.body.lastChild)
 			} else {
 				const container = document.querySelector(this.container)
-				container.appendChild(this.$el)
+				container!.appendChild(this.$el)
 			}
 		}
 	},
@@ -689,34 +761,10 @@ export default {
 	methods: {
 		t,
 
-		// Events emitters
-		previous(event) {
-			// do not send the event if nothing is available
-			if (this.hasPrevious) {
-				// if data is set, then it's a user mouse event
-				// and not the slideshow handler, therefore
-				// we reset the timer
-				if (event) {
-					this.resetSlideshow()
-				}
-				this.$emit('previous', event)
-			}
-		},
-
-		next(event) {
-			// do not send the event if nothing is available
-			if (this.hasNext) {
-				// if data is set, then it's a mouse event
-				// and not the slideshow handler, therefore
-				// we reset the timer
-				if (event) {
-					this.resetSlideshow()
-				}
-				this.$emit('next', event)
-			}
-		},
-
-		close(data) {
+		/**
+		 * @param event - The event that triggered the close
+		 */
+		close(event?: Event) {
 			// do not fire event if forbidden
 			if (this.noClose) {
 				return
@@ -731,7 +779,7 @@ export default {
 				/**
 				 * Emitted when the closing animation is finished
 				 */
-				this.$emit('close', data)
+				this.$emit('close', event)
 			}, 300)
 		},
 
@@ -739,18 +787,18 @@ export default {
 		 * Handle click on modal wrapper
 		 * If `closeOnClickOutside` is set the modal will be closed
 		 *
-		 * @param {MouseEvent} event The click event
+		 * @param event - The click event
 		 */
-		handleClickModalWrapper(event) {
+		handleClickModalWrapper(event: MouseEvent) {
 			if (this.closeOnClickOutside) {
 				this.close(event)
 			}
 		},
 
 		/**
-		 * @param {KeyboardEvent} event - keyboard event
+		 * @param event - The keyboard event
 		 */
-		handleKeydown(event) {
+		handleKeydown(event: KeyboardEvent) {
 			if (event.key === 'Escape') {
 				const trapStack = getTrapStack()
 				// Only close the most recent focus trap modal
@@ -761,8 +809,8 @@ export default {
 			}
 
 			const arrowHandlers = {
-				ArrowLeft: this.previous,
-				ArrowRight: this.next,
+				ArrowLeft: this.previousSlide,
+				ArrowRight: this.nextSlide,
 			}
 			if (arrowHandlers[event.key]) {
 				// Ignore arrow navigation, if there is a current focus outside the modal.
@@ -776,69 +824,10 @@ export default {
 		},
 
 		/**
-		 * handle the swipe event
-		 *
-		 * @param {TouchEvent} e The touch event
-		 * @param {import('@vueuse/core').SwipeDirection} direction Swipe direction
-		 */
-		handleSwipe(e, direction) {
-			if (!this.disableSwipe) {
-				if (direction === 'left') {
-					// swiping to left to go to the next item
-					this.next(e)
-				} else if (direction === 'right') {
-					// swiping to right to go back to the previous item
-					this.previous(e)
-				}
-			}
-		},
-
-		/**
 		 * Toggle the slideshow state
 		 */
 		togglePlayPause() {
-			this.playing = !this.playing
-			if (this.playing) {
-				this.handleSlideshow()
-			} else {
-				this.clearSlideshowTimeout()
-			}
-		},
-
-		/**
-		 * Reset the slideshow timer and keep going if it was on
-		 */
-		resetSlideshow() {
-			this.playing = !this.playing
-			this.clearSlideshowTimeout()
-			this.$nextTick(function() {
-				this.togglePlayPause()
-			})
-		},
-
-		/**
-		 * Handle the slideshow timer and next event
-		 */
-		handleSlideshow() {
-			this.playing = true
-			if (this.hasNext) {
-				this.slideshowTimeout = new Timer(() => {
-					this.next()
-					this.handleSlideshow()
-				}, this.slideshowDelay)
-			} else {
-				this.playing = false
-				this.clearSlideshowTimeout()
-			}
-		},
-
-		/**
-		 * Clear slideshowTimeout if ongoing
-		 */
-		clearSlideshowTimeout() {
-			if (this.slideshowTimeout) {
-				this.slideshowTimeout.clear()
-			}
+			this.runSlideshow = !this.runSlideshow
 		},
 
 		/**
@@ -851,7 +840,7 @@ export default {
 				return
 			}
 
-			const contentContainer = this.$refs.mask
+			const contentContainer = this.$refs.mask as HTMLDivElement
 			// wait until all children are mounted and available in the DOM before focusTrap can be added
 			await this.$nextTick()
 
@@ -879,7 +868,7 @@ export default {
 		},
 
 	},
-}
+})
 </script>
 
 <style lang="scss" scoped>
