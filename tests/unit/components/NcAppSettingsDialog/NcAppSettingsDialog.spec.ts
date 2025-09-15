@@ -7,6 +7,7 @@ import { mount } from '@vue/test-utils'
 import { beforeAll, describe, expect, it, vi } from 'vitest'
 import { defineComponent, h, inject, nextTick, onMounted } from 'vue'
 import NcAppSettingsDialog from '../../../../src/components/NcAppSettingsDialog/NcAppSettingsDialog.vue'
+import { APP_SETTINGS_REGISTRATION_KEY } from '../../../../src/components/NcAppSettingsDialog/useAppSettingsDialog.ts'
 import { resizeWindowWidth } from '../../testing-utils.ts'
 
 /**
@@ -15,8 +16,8 @@ import { resizeWindowWidth } from '../../testing-utils.ts'
 const MockSection = defineComponent({
 	props: { id: { type: String, default: 'test_id' } },
 	setup(props) {
-		const register = inject<(id: string, name: string) => void>('registerSection')
-		onMounted(() => register?.(props.id, 'test_name'))
+		const context = inject(APP_SETTINGS_REGISTRATION_KEY)
+		onMounted(() => context?.registerSection(props.id, 'test_name'))
 		return () => h('li', ['empty'])
 	},
 })
