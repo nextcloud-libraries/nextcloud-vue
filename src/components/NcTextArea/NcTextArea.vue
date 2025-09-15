@@ -91,7 +91,6 @@ It extends and styles an HTMLTextAreaElement.
 	<div
 		class="textarea"
 		:class="{
-			'textarea--dark': isDarkTheme,
 			'textarea--disabled': disabled,
 			'textarea--legacy': isLegacy32,
 		}">
@@ -142,7 +141,6 @@ It extends and styles an HTMLTextAreaElement.
 <script>
 import AlertCircle from 'vue-material-design-icons/AlertCircleOutline.vue'
 import Check from 'vue-material-design-icons/Check.vue'
-import { useIsDarkTheme } from '../../composables/useIsDarkTheme/index.ts'
 import { useModelMigration } from '../../composables/useModelMigration.ts'
 import GenRandomId from '../../utils/GenRandomId.js'
 import { isLegacy32 } from '../../utils/legacy.ts'
@@ -283,12 +281,10 @@ export default {
 
 	setup() {
 		const model = useModelMigration('value', 'update:value', true)
-		const isDarkTheme = useIsDarkTheme()
 
 		return {
 			isLegacy32,
 			model,
-			isDarkTheme,
 		}
 	},
 
@@ -395,7 +391,7 @@ export default {
 
 		background-color: var(--color-main-background);
 		color: var(--color-main-text);
-		@include border.inputBorder('.textarea--dark', '.textarea--legacy', var(--input-border-color));
+		@include border.inputBorder('.textarea--legacy', var(--input-border-color));
 
 		&:active:not([disabled]),
 		&:focus:not([disabled]) {

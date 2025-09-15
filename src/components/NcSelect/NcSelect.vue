@@ -325,7 +325,6 @@ export default {
 	<VueSelect
 		class="select"
 		:class="{
-			'select--dark': isDark,
 			'select--legacy': isLegacy,
 			'select--no-wrap': noWrap,
 			'user-select': userSelect,
@@ -419,7 +418,6 @@ import Close from 'vue-material-design-icons/Close.vue'
 import NcEllipsisedOption from '../NcEllipsisedOption/NcEllipsisedOption.vue'
 import NcListItemIcon from '../NcListItemIcon/NcListItemIcon.vue'
 import NcLoadingIcon from '../NcLoadingIcon/NcLoadingIcon.vue'
-import { useIsDarkTheme } from '../../composables/index.ts'
 import { useModelMigration } from '../../composables/useModelMigration.ts'
 import { t } from '../../l10n.js'
 import GenRandomId from '../../utils/GenRandomId.js'
@@ -860,12 +858,10 @@ export default {
 		const avatarSize = clickableArea - 2 * gridBaseLine
 
 		const model = useModelMigration('value', 'input')
-		const isDark = useIsDarkTheme()
 
 		return {
 			avatarSize,
 			model,
-			isDark,
 			isLegacy,
 		}
 	},
@@ -1233,7 +1229,7 @@ body {
 }
 
 .vs__dropdown-toggle {
-	@include border.inputLikeBorder('.select--dark', '.select--legacy', var(--vs-border-color));
+	@include border.inputLikeBorder('.select--legacy', var(--vs-border-color));
 }
 
 .vs__dropdown-menu {

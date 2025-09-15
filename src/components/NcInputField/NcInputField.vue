@@ -20,7 +20,6 @@ For a list of all available props and attributes, please check the [HTMLInputEle
 	<div
 		class="input-field"
 		:class="{
-			'input-field--dark': isDarkTheme,
 			'input-field--disabled': disabled,
 			'input-field--error': error,
 			'input-field--label-outside': labelOutside || !isValidLabel,
@@ -108,7 +107,6 @@ For a list of all available props and attributes, please check the [HTMLInputEle
 import AlertCircle from 'vue-material-design-icons/AlertCircleOutline.vue'
 import Check from 'vue-material-design-icons/Check.vue'
 import NcButton from '../NcButton/NcButton.vue'
-import { useIsDarkTheme } from '../../composables/useIsDarkTheme/index.ts'
 import { useModelMigration } from '../../composables/useModelMigration.ts'
 import GenRandomId from '../../utils/GenRandomId.js'
 import { isLegacy32 } from '../../utils/legacy.ts'
@@ -288,12 +286,10 @@ export default {
 
 	setup() {
 		const model = useModelMigration('value', 'update:value', true)
-		const isDarkTheme = useIsDarkTheme()
 
 		return {
 			isLegacy32,
 			model,
-			isDarkTheme,
 		}
 	},
 
@@ -417,7 +413,7 @@ export default {
 	}
 
 	&__input {
-		@include border.inputBorder('.input-field--dark', '.input-field--legacy', var(--input-border-color));
+		@include border.inputBorder('.input-field--legacy', var(--input-border-color));
 		background-color: var(--color-main-background);
 		color: var(--color-main-text);
 		border-radius: var(--input-border-radius);
