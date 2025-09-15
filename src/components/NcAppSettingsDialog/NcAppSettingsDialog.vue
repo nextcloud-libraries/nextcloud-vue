@@ -125,8 +125,15 @@ export default {
 <template>
 	<NcDialog
 		v-if="open"
+		class="app-settings"
+		content-classes="app-settings__content"
+		navigation-classes="app-settings__navigation"
+		:additional-trap-elements
+		:container
+		close-on-click-outside
 		:navigation-aria-label="settingsNavigationAriaLabel"
-		v-bind="dialogProperties"
+		size="large"
+		:name
 		@update:open="handleCloseModal">
 		<template v-if="hasNavigation" #navigation="{ isCollapsed }">
 			<ul
@@ -160,15 +167,23 @@ export default {
 	</NcDialog>
 </template>
 
-<script>
+<script lang="ts">
+import type { PropType, VNode } from 'vue'
+
 import debounce from 'debounce'
-import { warn } from 'vue'
+import { defineComponent, warn } from 'vue'
+import NcDialog from '../NcDialog/NcDialog.vue'
+import NcVNodes from '../NcVNodes/NcVNodes.vue'
 import { useIsMobile } from '../../composables/useIsMobile/index.ts'
 import { t } from '../../l10n.ts'
-import NcDialog from '../NcDialog/index.ts'
-import NcVNodes from '../NcVNodes/index.ts'
 
-export default {
+export interface IAppSettingsSection {
+	id: string
+	name: string
+	icon?: VNode[]
+}
+
+export default defineComponent({
 
 	name: 'NcAppSettingsDialog',
 
@@ -221,7 +236,7 @@ export default {
 		 * Additional elements to add to the focus trap
 		 */
 		additionalTrapElements: {
-			type: Array,
+			type: Array as PropType<(string | HTMLElement)[]>,
 			default: () => [],
 		},
 
@@ -240,30 +255,15 @@ export default {
 			selectedSection: '',
 			linkClicked: false,
 			addedScrollListener: false,
-			scroller: null,
+			scroller: null as HTMLDivElement | null,
 			/**
 			 * Currently registered settings sections
-			 *
-			 * @type {{ id: string, name: string, icon?: import('vue').VNode[] }[]}
 			 */
-			sections: [],
+			sections: [] as IAppSettingsSection[],
 		}
 	},
 
 	computed: {
-		dialogProperties() {
-			return {
-				additionalTrapElements: this.additionalTrapElements,
-				closeOnClickOutside: true,
-				class: 'app-settings',
-				container: this.container,
-				contentClasses: 'app-settings__content',
-				size: 'large',
-				name: this.name,
-				navigationClasses: 'app-settings__navigation',
-			}
-		},
-
 		/**
 		 * Check if one or more navigation entries provide icons
 		 */
@@ -282,6 +282,18 @@ export default {
 		settingsNavigationAriaLabel() {
 			return t('Settings navigation')
 		},
+
+		/**
+		 * Remove selected section once the user starts scrolling
+		 */
+		unfocusNavigationItem() {
+			return debounce(() => {
+				this.selectedSection = ''
+				if (document.activeElement?.className.includes('navigation-list__link')) {
+					(document.activeElement as HTMLElement).blur()
+				}
+			}, 300)
+		},
 	},
 
 	updated() {
@@ -290,7 +302,7 @@ export default {
 			return
 		}
 		// Get the scroller element
-		this.scroller = this.$refs.settingsScroller
+		this.scroller = this.$refs.settingsScroller as HTMLDivElement
 		if (!this.addedScrollListener) {
 			this.scroller.addEventListener('scroll', this.handleScroll)
 			this.addedScrollListener = true
@@ -301,11 +313,11 @@ export default {
 		/**
 		 * Called when a new section is registered
 		 *
-		 * @param {string} id The section ID
-		 * @param {string} name The section name
-		 * @param {import('vue').VNode[]|undefined} icon Optional icon component
+		 * @param id - The section ID
+		 * @param name - The section name
+		 * @param icon - Optional icon component
 		 */
-		registerSection(id, name, icon) {
+		registerSection(id: string, name: string, icon?: VNode[]) {
 			// Check for the uniqueness of section names
 			if (this.sections.some(({ id: otherId }) => id === otherId)) {
 				throw new Error(`Duplicate section id found: ${id}. Settings navigation sections must have unique section ids.`)
@@ -317,7 +329,7 @@ export default {
 			const newSections = [...this.sections, { id, name, icon }]
 			// Sort sections by order in slots
 			this.sections = newSections.sort(({ id: idA }, { id: idB }) => {
-				const indexOf = (id) => this.$slots.default?.().indexOf((vnode) => vnode?.props?.id === id) ?? -1
+				const indexOf = (id) => this.$slots.default?.().findIndex((vnode: VNode) => vnode?.props?.id === id) ?? -1
 				return indexOf(idA) - indexOf(idB)
 			})
 
@@ -330,9 +342,9 @@ export default {
 		/**
 		 * Called when a section is unregistered to remove it from dialog
 		 *
-		 * @param {string} id The section ID
+		 * @param id - The section ID
 		 */
-		unregisterSection(id) {
+		unregisterSection(id: string) {
 			this.sections = this.sections.filter(({ id: otherId }) => id !== otherId)
 
 			// If the current section is unregistered, set the first section as selected
@@ -344,11 +356,11 @@ export default {
 		/**
 		 * Scrolls the content to the selected settings section.absolute
 		 *
-		 * @param {string} item the ID of the section
+		 * @param item - the ID of the section
 		 */
-		handleSettingsNavigationClick(item) {
+		handleSettingsNavigationClick(item: string) {
 			this.linkClicked = true
-			document.getElementById('settings-section_' + item).scrollIntoView({
+			document.getElementById('settings-section_' + item)!.scrollIntoView({
 				behavior: 'smooth',
 				inline: 'nearest',
 			})
@@ -358,16 +370,16 @@ export default {
 			}, 1000)
 		},
 
-		handleCloseModal(isOpen) {
+		handleCloseModal(isOpen: boolean) {
 			if (isOpen) {
 				return
 			}
 
 			this.$emit('update:open', false)
 			// Remove scroll listener each time the modal is closed
-			this.scroller.removeEventListener('scroll', this.handleScroll)
+			this.scroller!.removeEventListener('scroll', this.handleScroll)
 			this.addedScrollListener = false
-			this.scroller.scrollTop = 0
+			this.scroller!.scrollTop = 0
 		},
 
 		handleScroll() {
@@ -375,21 +387,8 @@ export default {
 				this.unfocusNavigationItem()
 			}
 		},
-
-		/**
-		 * Remove selected section once the user starts scrolling
-		 *
-		 * @type {import('debounce').DebouncedFunction<() => void>}
-		 */
-		unfocusNavigationItem: debounce(function() {
-			this.selectedSection = ''
-			if (document.activeElement.className.includes('navigation-list__link')) {
-				document.activeElement.blur()
-			}
-		}, 300),
 	},
-}
-
+})
 </script>
 
 <style lang="scss" scoped>
