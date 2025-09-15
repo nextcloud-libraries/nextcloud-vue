@@ -24,7 +24,6 @@ import { mdiAlertCircleOutline, mdiCheck } from '@mdi/js'
 import { computed, useAttrs, useTemplateRef, warn } from 'vue'
 import NcButton from '../NcButton/NcButton.vue'
 import NcIconSvgWrapper from '../NcIconSvgWrapper/NcIconSvgWrapper.vue'
-import { useIsDarkTheme } from '../../composables/useIsDarkTheme/index.ts'
 import { createElementId } from '../../utils/createElementId.ts'
 import { isLegacy } from '../../utils/legacy.ts'
 
@@ -162,8 +161,6 @@ const attrs = useAttrs()
 
 const inputElement = useTemplateRef('input')
 
-const isDarkTheme = useIsDarkTheme()
-
 const hasTrailingIcon = computed(() => props.showTrailingButton || props.success)
 
 const internalPlaceholder = computed(() => {
@@ -234,7 +231,6 @@ function handleInput(event: Event) {
 	<div
 		class="input-field"
 		:class="[{
-			'input-field--dark': isDarkTheme,
 			'input-field--disabled': disabled,
 			'input-field--error': error,
 			'input-field--label-outside': labelOutside || !isValidLabel,
@@ -355,7 +351,7 @@ function handleInput(event: Event) {
 	}
 
 	&__input {
-		@include border.inputBorder('.input-field--dark', '.input-field--legacy', var(--input-border-color));
+		@include border.inputBorder('.input-field--legacy', var(--input-border-color));
 		background-color: var(--color-main-background);
 		color: var(--color-main-text);
 		border-radius: var(--input-border-radius);
