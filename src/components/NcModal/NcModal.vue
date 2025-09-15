@@ -3,316 +3,6 @@
   - SPDX-License-Identifier: AGPL-3.0-or-later
 -->
 
-<docs>
-The `NcModel` is the base component used for modals and dialogs.
-While `NcDialog` should be used for general dialogs like confirmations or forms,
-`NcModal` allows for custom content like showing image multimedia.
-
-For showing the modal you can use either `v-model:show="showModal"` or `v-if` on the `NcModal`,
-depending on whether you require the Modal to stay within the DOM or not. Do not mix both, as this will break the out transition animation.
-
-```vue
-<template>
-	<div>
-		<NcButton @click="showModal">Show Modal</NcButton>
-		<NcModal
-			v-model:show="modal"
-			@close="closeModal"
-			size="small"
-			name="Name"
-			out-transition>
-			<template #actions>
-				<NcActionCaption name="Some action" />
-			</template>
-			<div class="modal__content">Hello world</div>
-		</NcModal>
-	</div>
-</template>
-<script>
-export default {
-	data() {
-		return {
-			modal: false
-		}
-	},
-	methods: {
-		showModal() {
-			this.modal = true
-		},
-		closeModal() {
-			this.modal = false
-		}
-	}
-}
-</script>
-<style scoped>
-.modal__content {
-	margin: 50px;
-	text-align: center;
-}
-</style>
-```
-
-### Modal with slideshow
-
-```vue
-<template>
-	<div>
-		<NcButton @click="isOpen = true">Show Modal</NcButton>
-		<NcModal
-			v-if="isOpen"
-			close-button-outside
-			enable-slideshow
-			:has-next="page < lastPage"
-			:has-previous="page > 0"
-			name="Modal with slideshow"
-			@next="page++"
-			@previous="page--"
-			@close="isOpen = false">
-			<div class="modal__content" :style="{ background: currentPage.background }">
-				<p class="model__content-text">{{ currentPage.text }}</p>
-			</div>
-		</NcModal>
-	</div>
-</template>
-<script>
-const PAGES = [
-	{ text: 'First page', background: 'linear-gradient(#e66465, #9198e5)' },
-	{ text: 'Second page', background: 'linear-gradient(0.25turn, #3f87a6, #ebf8e1, #f69d3c)' },
-	{ text: 'Third page', background: 'lightblue' },
-	{ text: 'Last page', background: 'lightgrey' },
-]
-
-export default {
-	data() {
-		return {
-			isOpen: false,
-			page: 0,
-			lastPage: PAGES.length - 1,
-		}
-	},
-	computed: {
-		currentPage() {
-			return PAGES[this.page]
-		},
-	}
-}
-</script>
-<style scoped>
-.modal__content {
-	height: 100%;
-	min-height: 30vh;
-	display: flex;
-	align-items: center;
-	justify-content: center;
-}
-
-.model__content-text {
-	font-size: 16px;
-	font-weight: bold;
-}
-</style>
-```
-
-### Usage of popover in modal
-
-* Set container property to .modal-mask to inject popover context of the modal:
-
-```vue
-<template>
-	<div>
-		<NcButton @click="showModal">Show Modal</NcButton>
-		<NcModal v-if="modal" @close="closeModal" size="small" class="emoji-modal">
-			<NcEmojiPicker container=".emoji-modal" @select="select">
-				<NcButton>Select emoji {{ emoji }}</NcButton>
-			</NcEmojiPicker>
-		</NcModal>
-	</div>
-</template>
-<script>
-export default {
-	data() {
-		return {
-			emoji: '😛',
-			modal: false
-		}
-	},
-	methods: {
-		showModal() {
-			this.modal = true
-		},
-		closeModal() {
-			this.modal = false
-		},
-		select(emoji) {
-			this.emoji = emoji
-		},
-	},
-}
-</script>
-<style scoped>
-.modal__content {
-	margin: 50px;
-	text-align: center;
-}
-</style>
-```
-</docs>
-
-<template>
-	<Teleport :disabled="container === null" :to="container">
-		<transition
-			name="fade"
-			appear
-			@after-enter="useFocusTrap"
-			@before-leave="clearFocusTrap">
-			<div
-				v-show="showModal"
-				ref="mask"
-				class="modal-mask"
-				:class="{
-					'modal-mask--opaque': dark || closeButtonOutside || hasPrevious || hasNext,
-					'modal-mask--light': lightBackdrop,
-				}"
-				role="dialog"
-				aria-modal="true"
-				:aria-labelledby="labelId || `modal-name-${modalId}`"
-				:aria-describedby="'modal-description-' + modalId"
-				tabindex="-1">
-				<!-- Header -->
-				<transition name="fade-visibility" appear>
-					<div
-						class="modal-header"
-						:data-theme-light="lightBackdrop"
-						:data-theme-dark="!lightBackdrop">
-						<h2
-							v-if="name.trim() !== ''"
-							:id="'modal-name-' + modalId"
-							class="modal-header__name">
-							{{ name }}
-						</h2>
-						<div class="icons-menu">
-							<!-- Play-pause toggle -->
-							<button
-								v-if="hasNext && enableSlideshow"
-								class="play-pause-icons"
-								:class="{ 'play-pause-icons--paused': slideshowPaused }"
-								:title="isPlaying ? t('Pause slideshow') : t('Start slideshow')"
-								type="button"
-								@click="runSlideshow = !runSlideshow">
-								<!-- Play/pause icons -->
-								<NcIconSvgWrapper
-									class="play-pause-icons__icon"
-									inline
-									:name="isPlaying ? t('Pause slideshow') : t('Start slideshow')"
-									:path="isPlaying ? mdiPause : mdiPlay" />
-
-								<!-- Progress circle, css animated -->
-								<svg
-									v-if="isPlaying"
-									:key="`${modalId}-animation-${animationKey}`"
-									class="progress-ring"
-									height="50"
-									width="50">
-									<circle
-										class="progress-ring__circle"
-										stroke="white"
-										stroke-width="2"
-										fill="transparent"
-										r="15"
-										cx="25"
-										cy="25" />
-								</svg>
-							</button>
-
-							<!-- Actions menu -->
-							<NcActions class="header-actions" :inline="inlineActions">
-								<slot name="actions" />
-							</NcActions>
-
-							<!-- Close modal -->
-							<NcButton
-								v-if="!noClose && closeButtonOutside"
-								:aria-label="t('Close')"
-								class="header-close"
-								variant="tertiary"
-								@click="close">
-								<template #icon>
-									<NcIconSvgWrapper :path="mdiClose" />
-								</template>
-							</NcButton>
-						</div>
-					</div>
-				</transition>
-
-				<!-- Content wrapper -->
-				<transition :name="`modal-${outTransition ? 'out' : 'in'}`" appear>
-					<div
-						v-show="showModal"
-						class="modal-wrapper"
-						:class="[
-							`modal-wrapper--${size}`,
-							{ 'modal-wrapper--spread-navigation': spreadNavigation },
-						]"
-						@mousedown.self="handleClickModalWrapper">
-						<!-- Navigation button -->
-						<transition name="fade-visibility" appear>
-							<NcButton
-								v-show="hasPrevious"
-								:aria-label="t('Previous')"
-								class="prev"
-								variant="tertiary-no-background"
-								@click="previousSlide">
-								<template #icon>
-									<NcIconSvgWrapper
-										directional
-										:path="mdiChevronLeft"
-										:size="40" />
-								</template>
-							</NcButton>
-						</transition>
-
-						<!-- Content -->
-						<div :id="'modal-description-' + modalId" class="modal-container">
-							<div class="modal-container__content">
-								<slot />
-							</div>
-							<!-- Close modal -->
-							<NcButton
-								v-if="!noClose && !closeButtonOutside"
-								:aria-label="t('Close')"
-								class="modal-container__close"
-								variant="tertiary"
-								@click="close">
-								<template #icon>
-									<NcIconSvgWrapper :path="mdiClose" />
-								</template>
-							</NcButton>
-						</div>
-
-						<!-- Navigation button -->
-						<transition name="fade-visibility" appear>
-							<NcButton
-								v-show="hasNext"
-								:aria-label="t('Next')"
-								class="next"
-								variant="tertiary-no-background"
-								@click="nextSlide">
-								<template #icon>
-									<NcIconSvgWrapper
-										directional
-										:path="mdiChevronRight"
-										:size="40" />
-								</template>
-							</NcButton>
-						</transition>
-					</div>
-				</transition>
-			</div>
-		</transition>
-	</Teleport>
-</template>
-
 <script setup lang="ts">
 import type { UseSwipeDirection } from '@vueuse/core'
 import type { FocusTargetValueOrFalse, FocusTrap, Options as FocusTrapOptions } from 'focus-trap'
@@ -702,6 +392,160 @@ function clearFocusTrap() {
 }
 </script>
 
+<template>
+	<Teleport :disabled="container === null" :to="container">
+		<transition
+			name="fade"
+			appear
+			@after-enter="useFocusTrap"
+			@before-leave="clearFocusTrap">
+			<div
+				v-show="showModal"
+				ref="mask"
+				class="modal-mask"
+				:class="{
+					'modal-mask--opaque': dark || closeButtonOutside || hasPrevious || hasNext,
+					'modal-mask--light': lightBackdrop,
+				}"
+				role="dialog"
+				aria-modal="true"
+				:aria-labelledby="labelId || `modal-name-${modalId}`"
+				:aria-describedby="'modal-description-' + modalId"
+				tabindex="-1">
+				<!-- Header -->
+				<transition name="fade-visibility" appear>
+					<div
+						class="modal-header"
+						:data-theme-light="lightBackdrop"
+						:data-theme-dark="!lightBackdrop">
+						<h2
+							v-if="name.trim() !== ''"
+							:id="'modal-name-' + modalId"
+							class="modal-header__name">
+							{{ name }}
+						</h2>
+						<div class="icons-menu">
+							<!-- Play-pause toggle -->
+							<button
+								v-if="hasNext && enableSlideshow"
+								class="play-pause-icons"
+								:class="{ 'play-pause-icons--paused': slideshowPaused }"
+								:title="isPlaying ? t('Pause slideshow') : t('Start slideshow')"
+								type="button"
+								@click="runSlideshow = !runSlideshow">
+								<!-- Play/pause icons -->
+								<NcIconSvgWrapper
+									class="play-pause-icons__icon"
+									inline
+									:name="isPlaying ? t('Pause slideshow') : t('Start slideshow')"
+									:path="isPlaying ? mdiPause : mdiPlay" />
+
+								<!-- Progress circle, css animated -->
+								<svg
+									v-if="isPlaying"
+									:key="`${modalId}-animation-${animationKey}`"
+									class="progress-ring"
+									height="50"
+									width="50">
+									<circle
+										class="progress-ring__circle"
+										stroke="white"
+										stroke-width="2"
+										fill="transparent"
+										r="15"
+										cx="25"
+										cy="25" />
+								</svg>
+							</button>
+
+							<!-- Actions menu -->
+							<NcActions class="header-actions" :inline="inlineActions">
+								<slot name="actions" />
+							</NcActions>
+
+							<!-- Close modal -->
+							<NcButton
+								v-if="!noClose && closeButtonOutside"
+								:aria-label="t('Close')"
+								class="header-close"
+								variant="tertiary"
+								@click="close">
+								<template #icon>
+									<NcIconSvgWrapper :path="mdiClose" />
+								</template>
+							</NcButton>
+						</div>
+					</div>
+				</transition>
+
+				<!-- Content wrapper -->
+				<transition :name="`modal-${outTransition ? 'out' : 'in'}`" appear>
+					<div
+						v-show="showModal"
+						class="modal-wrapper"
+						:class="[
+							`modal-wrapper--${size}`,
+							{ 'modal-wrapper--spread-navigation': spreadNavigation },
+						]"
+						@mousedown.self="handleClickModalWrapper">
+						<!-- Navigation button -->
+						<transition name="fade-visibility" appear>
+							<NcButton
+								v-show="hasPrevious"
+								:aria-label="t('Previous')"
+								class="prev"
+								variant="tertiary-no-background"
+								@click="previousSlide">
+								<template #icon>
+									<NcIconSvgWrapper
+										directional
+										:path="mdiChevronLeft"
+										:size="40" />
+								</template>
+							</NcButton>
+						</transition>
+
+						<!-- Content -->
+						<div :id="'modal-description-' + modalId" class="modal-container">
+							<div class="modal-container__content">
+								<slot />
+							</div>
+							<!-- Close modal -->
+							<NcButton
+								v-if="!noClose && !closeButtonOutside"
+								:aria-label="t('Close')"
+								class="modal-container__close"
+								variant="tertiary"
+								@click="close">
+								<template #icon>
+									<NcIconSvgWrapper :path="mdiClose" />
+								</template>
+							</NcButton>
+						</div>
+
+						<!-- Navigation button -->
+						<transition name="fade-visibility" appear>
+							<NcButton
+								v-show="hasNext"
+								:aria-label="t('Next')"
+								class="next"
+								variant="tertiary-no-background"
+								@click="nextSlide">
+								<template #icon>
+									<NcIconSvgWrapper
+										directional
+										:path="mdiChevronRight"
+										:size="40" />
+								</template>
+							</NcButton>
+						</transition>
+					</div>
+				</transition>
+			</div>
+		</transition>
+	</Teleport>
+</template>
+
 <style lang="scss" scoped>
 
 .modal-mask {
@@ -1025,5 +869,160 @@ $pi: 3.14159265358979;
 		opacity: 1;
 	}
 }
-
 </style>
+
+<docs>
+The `NcModel` is the base component used for modals and dialogs.
+While `NcDialog` should be used for general dialogs like confirmations or forms,
+`NcModal` allows for custom content like showing image multimedia.
+
+For showing the modal you can use either `v-model:show="showModal"` or `v-if` on the `NcModal`,
+depending on whether you require the Modal to stay within the DOM or not. Do not mix both, as this will break the out transition animation.
+
+```vue
+<template>
+	<div>
+		<NcButton @click="showModal">Show Modal</NcButton>
+		<NcModal
+			v-model:show="modal"
+			@close="closeModal"
+			size="small"
+			name="Name"
+			out-transition>
+			<template #actions>
+				<NcActionCaption name="Some action" />
+			</template>
+			<div class="modal__content">Hello world</div>
+		</NcModal>
+	</div>
+</template>
+<script>
+export default {
+	data() {
+		return {
+			modal: false
+		}
+	},
+	methods: {
+		showModal() {
+			this.modal = true
+		},
+		closeModal() {
+			this.modal = false
+		}
+	}
+}
+</script>
+<style scoped>
+.modal__content {
+	margin: 50px;
+	text-align: center;
+}
+</style>
+```
+
+### Modal with slideshow
+
+```vue
+<template>
+	<div>
+		<NcButton @click="isOpen = true">Show Modal</NcButton>
+		<NcModal
+			v-if="isOpen"
+			close-button-outside
+			enable-slideshow
+			:has-next="page < lastPage"
+			:has-previous="page > 0"
+			name="Modal with slideshow"
+			@next="page++"
+			@previous="page--"
+			@close="isOpen = false">
+			<div class="modal__content" :style="{ background: currentPage.background }">
+				<p class="model__content-text">{{ currentPage.text }}</p>
+			</div>
+		</NcModal>
+	</div>
+</template>
+<script>
+const PAGES = [
+	{ text: 'First page', background: 'linear-gradient(#e66465, #9198e5)' },
+	{ text: 'Second page', background: 'linear-gradient(0.25turn, #3f87a6, #ebf8e1, #f69d3c)' },
+	{ text: 'Third page', background: 'lightblue' },
+	{ text: 'Last page', background: 'lightgrey' },
+]
+
+export default {
+	data() {
+		return {
+			isOpen: false,
+			page: 0,
+			lastPage: PAGES.length - 1,
+		}
+	},
+	computed: {
+		currentPage() {
+			return PAGES[this.page]
+		},
+	}
+}
+</script>
+<style scoped>
+.modal__content {
+	height: 100%;
+	min-height: 30vh;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.model__content-text {
+	font-size: 16px;
+	font-weight: bold;
+}
+</style>
+```
+
+### Usage of popover in modal
+
+* Set container property to .modal-mask to inject popover context of the modal:
+
+```vue
+<template>
+	<div>
+		<NcButton @click="showModal">Show Modal</NcButton>
+		<NcModal v-if="modal" @close="closeModal" size="small" class="emoji-modal">
+			<NcEmojiPicker container=".emoji-modal" @select="select">
+				<NcButton>Select emoji {{ emoji }}</NcButton>
+			</NcEmojiPicker>
+		</NcModal>
+	</div>
+</template>
+<script>
+export default {
+	data() {
+		return {
+			emoji: '😛',
+			modal: false
+		}
+	},
+	methods: {
+		showModal() {
+			this.modal = true
+		},
+		closeModal() {
+			this.modal = false
+		},
+		select(emoji) {
+			this.emoji = emoji
+		},
+	},
+}
+</script>
+<style scoped>
+.modal__content {
+	margin: 50px;
+	text-align: center;
+}
+</style>
+```
+</docs>
