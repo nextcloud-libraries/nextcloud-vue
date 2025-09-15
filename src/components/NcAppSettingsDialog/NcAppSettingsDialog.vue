@@ -125,14 +125,21 @@ export default {
 <template>
 	<NcDialog
 		v-if="open"
-		:navigation-aria-label="settingsNavigationAriaLabel"
-		v-bind="dialogProperties"
+		class="app-settings"
+		content-classes="app-settings__content"
+		navigation-classes="app-settings__navigation"
+		:additional-trap-elements
+		:container
+		close-on-click-outside
+		:navigation-aria-label="t('Settings navigation')"
+		size="large"
+		:name
 		@update:open="handleCloseModal">
 		<template v-if="hasNavigation" #navigation="{ isCollapsed }">
 			<ul
 				v-if="!isCollapsed"
 				class="navigation-list">
-				<li v-for="section in sections" :key="section.id">
+				<li v-for="section in registeredSections" :key="section.id">
 					<a
 						:aria-current="`${section.id === selectedSection}`"
 						class="navigation-list__link"
@@ -154,13 +161,15 @@ export default {
 				</li>
 			</ul>
 		</template>
-		<div ref="settingsScroller">
+		<div ref="settingsScroller" @scroll="handleScroll">
 			<slot />
 		</div>
 	</NcDialog>
 </template>
 
-<script>
+<script setup lang="ts">
+import type { Slot, VNode } from 'vue'
+
 import debounce from 'debounce'
 import Vue from 'vue'
 import { useIsMobile } from '../../composables/useIsMobile/index.js'
@@ -168,21 +177,32 @@ import { t } from '../../l10n.js'
 import NcDialog from '../NcDialog/index.js'
 import NcVNodes from '../NcVNodes/index.js'
 
-export default {
+export interface IAppSettingsSection {
+	id: string
+	name: string
+	icon?: VNode[]
+}
 
-	name: 'NcAppSettingsDialog',
+/**
+ * Determines the open / closed state of the modal
+ */
+const open = defineModel<boolean>('open', { required: true })
 
-	components: {
-		NcDialog,
-		NcVNodes,
-	},
+const props = withDefaults(defineProps<{
+	/**
+	 * Shows the navigation on desktop if true
+	 */
+	showNavigation?: boolean
 
-	provide() {
-		return {
-			registerSection: this.registerSection,
-			unregisterSection: this.unregisterSection,
-		}
-	},
+	/**
+	 * Selector for the popover container
+	 */
+	container?: string
+
+	/**
+	 * Name of the settings
+	 */
+	name?: string
 
 	props: {
 		/**
@@ -221,7 +241,7 @@ export default {
 		 * Additional elements to add to the focus trap
 		 */
 		additionalTrapElements: {
-			type: Array,
+			type: Array as PropType<(string | HTMLElement)[]>,
 			default: () => [],
 		},
 
@@ -240,30 +260,15 @@ export default {
 			selectedSection: '',
 			linkClicked: false,
 			addedScrollListener: false,
-			scroller: null,
+			scroller: null as HTMLDivElement | null,
 			/**
 			 * Currently registered settings sections
-			 *
-			 * @type {{ id: string, name: string, icon?: import('vue').VNode[] }[]}
 			 */
-			sections: [],
+			sections: [] as IAppSettingsSection[],
 		}
 	},
 
 	computed: {
-		dialogProperties() {
-			return {
-				additionalTrapElements: this.additionalTrapElements,
-				closeOnClickOutside: true,
-				class: 'app-settings',
-				container: this.container,
-				contentClasses: 'app-settings__content',
-				size: 'large',
-				name: this.name,
-				navigationClasses: 'app-settings__navigation',
-			}
-		},
-
 		/**
 		 * Check if one or more navigation entries provide icons
 		 */
@@ -282,6 +287,18 @@ export default {
 		settingsNavigationAriaLabel() {
 			return t('Settings navigation')
 		},
+
+		/**
+		 * Remove selected section once the user starts scrolling
+		 */
+		unfocusNavigationItem() {
+			return debounce(() => {
+				this.selectedSection = ''
+				if (document.activeElement?.className.includes('navigation-list__link')) {
+					(document.activeElement as HTMLElement).blur()
+				}
+			}, 300)
+		},
 	},
 
 	updated() {
@@ -290,7 +307,7 @@ export default {
 			return
 		}
 		// Get the scroller element
-		this.scroller = this.$refs.settingsScroller
+		this.scroller = this.$refs.settingsScroller as HTMLDivElement
 		if (!this.addedScrollListener) {
 			this.scroller.addEventListener('scroll', this.handleScroll)
 			this.addedScrollListener = true
@@ -301,11 +318,11 @@ export default {
 		/**
 		 * Called when a new section is registered
 		 *
-		 * @param {string} id The section ID
-		 * @param {string} name The section name
-		 * @param {import('vue').VNode[]|undefined} icon Optional icon component
+		 * @param id - The section ID
+		 * @param name - The section name
+		 * @param icon - Optional icon component
 		 */
-		registerSection(id, name, icon) {
+		registerSection(id: string, name: string, icon?: VNode[]) {
 			// Check for the uniqueness of section names
 			if (this.sections.some(({ id: otherId }) => id === otherId)) {
 				throw new Error(`Duplicate section id found: ${id}. Settings navigation sections must have unique section ids.`)
@@ -330,9 +347,9 @@ export default {
 		/**
 		 * Called when a section is unregistered to remove it from dialog
 		 *
-		 * @param {string} id The section ID
+		 * @param id - The section ID
 		 */
-		unregisterSection(id) {
+		unregisterSection(id: string) {
 			this.sections = this.sections.filter(({ id: otherId }) => id !== otherId)
 
 			// If the current section is unregistered, set the first section as selected
@@ -344,11 +361,11 @@ export default {
 		/**
 		 * Scrolls the content to the selected settings section.absolute
 		 *
-		 * @param {string} item the ID of the section
+		 * @param item - the ID of the section
 		 */
-		handleSettingsNavigationClick(item) {
+		handleSettingsNavigationClick(item: string) {
 			this.linkClicked = true
-			document.getElementById('settings-section_' + item).scrollIntoView({
+			document.getElementById('settings-section_' + item)!.scrollIntoView({
 				behavior: 'smooth',
 				inline: 'nearest',
 			})
@@ -358,16 +375,16 @@ export default {
 			}, 1000)
 		},
 
-		handleCloseModal(isOpen) {
+		handleCloseModal(isOpen: boolean) {
 			if (isOpen) {
 				return
 			}
 
 			this.$emit('update:open', false)
 			// Remove scroll listener each time the modal is closed
-			this.scroller.removeEventListener('scroll', this.handleScroll)
+			this.scroller!.removeEventListener('scroll', this.handleScroll)
 			this.addedScrollListener = false
-			this.scroller.scrollTop = 0
+			this.scroller!.scrollTop = 0
 		},
 
 		handleScroll() {
@@ -384,9 +401,175 @@ export default {
 			}
 		}, 300),
 	},
+})
+
+const slots = defineSlots<{
+	/**
+	 * The NcAppSettingsSections
+	 */
+	default?: Slot
+}>()
+
+provide(APP_SETTINGS_REGISTRATION_KEY, {
+	registerSection,
+	unregisterSection,
+})
+
+const settingsScrollerElement = useTemplateRef('settingsScroller')
+
+const isMobile = useIsMobile()
+
+const selectedSection = ref('')
+const linkClicked = ref(false)
+const registeredSections = ref<IAppSettingsSection[]>([])
+
+const hasNavigation = computed(() => !isMobile.value && props.showNavigation)
+
+/**
+ * Check if one or more navigation entries provide icons
+ */
+const hasNavigationIcons = computed(() => registeredSections.value.some(({ icon }) => !!icon))
+
+/**
+ * Remove selected section once the user starts scrolling
+ */
+const unfocusNavigationItem = debounce(() => {
+	selectedSection.value = ''
+	if (document.activeElement?.className.includes('navigation-list__link')) {
+		(document.activeElement as HTMLElement).blur()
+	}
+}, 300)
+
+/**
+ * Scrolls the content to the selected settings section.absolute
+ *
+ * @param item - the ID of the section
+ */
+function handleSettingsNavigationClick(item: string) {
+	linkClicked.value = true
+	document.getElementById('settings-section_' + item)!.scrollIntoView({
+		behavior: 'smooth',
+		inline: 'nearest',
+	})
+	selectedSection.value = item
+	setTimeout(() => {
+		linkClicked.value = false
+	}, 1000)
 }
 
+/**
+ * Reset the dialog state when closed to have a clean state if re-opened.
+ *
+ * @param isOpen - The new modal open state
+ */
+function handleCloseModal(isOpen: boolean) {
+	if (isOpen) {
+		return
+	}
+
+	open.value = false
+	// reset the scrolling state if the modal is just hidden
+	settingsScrollerElement.value!.scrollTop = 0
+}
+
+/**
+ * When scrolled manually we remove the focus from the navigation item.
+ */
+function handleScroll() {
+	if (open.value && !linkClicked.value) {
+		unfocusNavigationItem()
+	}
+}
+
+/**
+ * Called when a new section is registered
+ *
+ * @param id - The section ID
+ * @param name - The section name
+ * @param icon - Optional icon component
+ */
+function registerSection(id: string, name: string, icon?: VNode[]) {
+	// Check for the uniqueness of section names
+	if (registeredSections.value.some(({ id: otherId }) => id === otherId)) {
+		throw new Error(`Duplicate section id found: ${id}. Settings navigation sections must have unique section ids.`)
+	}
+	if (registeredSections.value.some(({ name: otherName }) => name === otherName)) {
+		warn(`Duplicate section name found: ${name}. Settings navigation sections must have unique section names.`)
+	}
+
+	const newSections = [...registeredSections.value, { id, name, icon }]
+	// Sort sections by order in slots
+	registeredSections.value = newSections.sort(({ id: idA }, { id: idB }) => {
+		const indexOf = (id) => slots.default?.().findIndex((vnode: VNode) => vnode?.props?.id === id) ?? -1
+		return indexOf(idA) - indexOf(idB)
+	})
+
+	// If this is the first section registered, set it as selected
+	if (registeredSections.value.length === 1) {
+		selectedSection.value = id
+	}
+}
+
+/**
+ * Called when a section is unregistered to remove it from dialog
+ *
+ * @param id - The section ID
+ */
+function unregisterSection(id: string) {
+	registeredSections.value = registeredSections.value
+		.filter(({ id: otherId }) => id !== otherId)
+
+	// If the current section is unregistered, set the first section as selected
+	if (selectedSection.value === id) {
+		selectedSection.value = registeredSections.value[0]?.id ?? ''
+	}
+}
 </script>
+
+<template>
+	<NcDialog
+		v-if="open"
+		class="app-settings"
+		content-classes="app-settings__content"
+		navigation-classes="app-settings__navigation"
+		:additional-trap-elements
+		:container
+		close-on-click-outside
+		:navigation-aria-label="t('Settings navigation')"
+		size="large"
+		:name
+		@update:open="handleCloseModal">
+		<template v-if="hasNavigation" #navigation="{ isCollapsed }">
+			<ul
+				v-if="!isCollapsed"
+				class="navigation-list">
+				<li v-for="section in registeredSections" :key="section.id">
+					<a
+						:aria-current="`${section.id === selectedSection}`"
+						class="navigation-list__link"
+						:class="{
+							'navigation-list__link--active': section.id === selectedSection,
+							'navigation-list__link--icon': hasNavigationIcons,
+						}"
+						:href="`#settings-section_${section.id}`"
+						tabindex="0"
+						@click.prevent="handleSettingsNavigationClick(section.id)"
+						@keydown.enter="handleSettingsNavigationClick(section.id)">
+						<div v-if="hasNavigationIcons" class="navigation-list__link-icon">
+							<NcVNodes v-if="section.icon" :vnodes="section.icon" />
+						</div>
+						<span class="navigation-list__link-text">
+							{{ section.name }}
+						</span>
+					</a>
+				</li>
+			</ul>
+		</template>
+		<div ref="settingsScroller" @scroll="handleScroll">
+			<slot />
+		</div>
+	</NcDialog>
+</template>
 
 <style lang="scss" scoped>
 .app-settings {
@@ -458,3 +641,122 @@ export default {
 	}
 }
 </style>
+
+<docs>
+Just nest the `AppSettingSections` component into `NcAppSettingsDialog`,
+providing the section's name prop. You can put your settings within each
+`NcAppSettingsSection` component.
+
+```vue
+<template>
+	<div>
+		<NcButton @click="settingsOpen = true">Show Settings</NcButton>
+		<NcAppSettingsDialog v-model:open="settingsOpen" :show-navigation="true" name="Application settings">
+			<NcAppSettingsSection id="asci-name-1" name="Example name 1">
+				Some example content
+			</NcAppSettingsSection>
+			<NcAppSettingsSection id="asci-name-2" name="Example name 2">
+				Some more content
+			</NcAppSettingsSection>
+			<NcAppSettingsSection id="asci-name-3" name="Example name 3">
+				Some example content
+			</NcAppSettingsSection>
+			<NcAppSettingsSection id="asci-name-4" name="Example name 4">
+				Some more content
+			</NcAppSettingsSection>
+			<NcAppSettingsSection id="asci-name-5" name="Example name 5">
+				Some example content
+			</NcAppSettingsSection>
+			<NcAppSettingsSection id="asci-name-6" name="Example name 6">
+				Some more content
+			</NcAppSettingsSection>
+			<NcAppSettingsSection id="asci-name-7" name="Example name 7">
+				Some example content
+			</NcAppSettingsSection>
+			<NcAppSettingsSection id="asci-name-8" name="Example name 8">
+				Some more content
+			</NcAppSettingsSection>
+			<NcAppSettingsSection id="asci-name-9" name="Example name 9">
+				Some more content
+			</NcAppSettingsSection>
+			<NcAppSettingsSection id="asci-name-10" name="Example name 10">
+				Some more content
+			</NcAppSettingsSection>
+		</NcAppSettingsDialog>
+	</div>
+</template>
+
+<script>
+export default {
+	data() {
+		return {
+			settingsOpen: false,
+		}
+	},
+}
+</script>
+```
+
+You can also add icons to the section navigation:
+
+```vue
+<template>
+	<div>
+		<NcButton @click="settingsOpen = true">Show Settings</NcButton>
+		<NcAppSettingsDialog v-model:open="settingsOpen" :show-navigation="true" name="Application settings">
+			<NcAppSettingsSection id="asci-name-1" name="Instagram">
+				<template #icon>
+					<Instagram :size="20" />
+				</template>
+				<p style="height: 100vh;">
+					Instagram setting
+				</p>
+			</NcAppSettingsSection>
+			<NcAppSettingsSection id="asci-name-2" name="Mastodon">
+				<template #icon>
+					<Mastodon :size="20" />
+				</template>
+				<p style="height: 100vh;">
+					Mastodon setting
+				</p>
+			</NcAppSettingsSection>
+			<NcAppSettingsSection id="asci-name-3" name="Twitch">
+				<template #icon>
+					<Twitch :size="20" />
+				</template>
+				<p style="height: 100vh;">
+					Twitch setting
+				</p>
+			</NcAppSettingsSection>
+			<NcAppSettingsSection id="asci-name-4" name="Twitter">
+				<template #icon>
+					<Twitter :size="20" />
+				</template>
+				Twitter setting
+			</NcAppSettingsSection>
+		</NcAppSettingsDialog>
+	</div>
+</template>
+
+<script>
+import Instagram from 'vue-material-design-icons/Instagram.vue'
+import Mastodon from 'vue-material-design-icons/Mastodon.vue'
+import Twitch from 'vue-material-design-icons/Twitch.vue'
+import Twitter from 'vue-material-design-icons/Twitter.vue'
+
+export default {
+	components: {
+		Instagram,
+		Mastodon,
+		Twitch,
+		Twitter,
+	},
+	data() {
+		return {
+			settingsOpen: false,
+		}
+	},
+}
+</script>
+```
+</docs>
