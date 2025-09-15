@@ -42,6 +42,7 @@
 </template>
 
 <script>
+import { getCanonicalLocale } from '@nextcloud/l10n'
 import NcAppSidebarTabsButton from './NcAppSidebarTabsButton.vue'
 
 export default {
@@ -82,7 +83,7 @@ export default {
 
 	emits: ['update:active'],
 
-	data() {
+	data(props) {
 		return {
 			/**
 			 * Tab descriptions from the passed NcSidebarTab components' props to build the tab navbar from.
@@ -91,7 +92,7 @@ export default {
 			/**
 			 * Local active (open) tab's ID. It allows to use component without v-model:active
 			 */
-			activeTab: '',
+			activeTab: props.active,
 		}
 	},
 
@@ -115,6 +116,12 @@ export default {
 	},
 
 	watch: {
+		tabs() {
+			if (this.active) {
+				this.updateActive()
+			}
+		},
+
 		active(active) {
 			// Prevent running it twice
 			if (active !== this.activeTab) {
@@ -197,11 +204,9 @@ export default {
 		 * Update the current active tab
 		 */
 		updateActive() {
-			this.activeTab = (this.active && this.tabs.some((tab) => tab.id === this.active))
+			this.activeTab = (this.active && this.tabs.some(({ id }) => id === this.active))
 				? this.active
-				: this.tabs.length > 0
-					? this.tabs[0].id
-					: ''
+				: (this.tabs[0]?.id ?? '')
 		},
 
 		/**
@@ -213,7 +218,7 @@ export default {
 			this.tabs.push(tab)
 			this.tabs.sort((a, b) => {
 				if (a.order === b.order) {
-					return OC.Util.naturalSortCompare(a.name, b.name)
+					return a.name.localeCompare(b.name, [getCanonicalLocale()])
 				}
 				return a.order - b.order
 			})
