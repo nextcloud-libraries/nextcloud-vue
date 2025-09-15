@@ -28,7 +28,7 @@ export { default as NcAppNavigationNewItem } from './NcAppNavigationNewItem/inde
 export { default as NcAppNavigationSearch } from './NcAppNavigationSearch/index.js'
 export { default as NcAppNavigationSettings } from './NcAppNavigationSettings/index.js'
 export { default as NcAppNavigationSpacer } from './NcAppNavigationSpacer/index.js'
-export { default as NcAppSettingsDialog } from './NcAppSettingsDialog/index.js'
+export { default as NcAppSettingsDialog } from './NcAppSettingsDialog/index.ts'
 export { default as NcAppSettingsSection } from './NcAppSettingsSection/index.js'
 export { default as NcAppSidebar } from './NcAppSidebar/index.js'
 export { default as NcAppSidebarHeader } from './NcAppSidebarHeader/index.ts'
