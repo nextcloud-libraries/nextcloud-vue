@@ -15,9 +15,10 @@
 </template>
 
 <script>
+import { useAppSettingsDialog } from '../NcAppSettingsDialog/useAppSettingsDialog.ts'
+
 export default {
 	name: 'NcAppSettingsSection',
-	inject: ['registerSection', 'unregisterSection'],
 
 	props: {
 		/**
@@ -39,6 +40,12 @@ export default {
 				return /^[a-z0-9\-_]+$/.test(id)
 			},
 		},
+	},
+
+	setup() {
+		return {
+			...useAppSettingsDialog(),
+		}
 	},
 
 	computed: {

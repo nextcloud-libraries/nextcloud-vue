@@ -7,6 +7,7 @@ import { beforeAll, describe, expect, it, jest } from '@jest/globals'
 import { mount } from '@vue/test-utils'
 import { defineComponent, inject, nextTick, onMounted } from 'vue'
 import NcAppSettingsDialog from '../../../../src/components/NcAppSettingsDialog/NcAppSettingsDialog.vue'
+import { APP_SETTINGS_REGISTRATION_KEY } from '../../../../src/components/NcAppSettingsDialog/useAppSettingsDialog.ts'
 import { resizeWindowWidth } from '../../testing-utils.ts'
 
 /**
