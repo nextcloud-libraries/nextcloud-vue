@@ -77,7 +77,6 @@ import type { VueClassType } from '../../utils/VueTypes.ts'
 import { mdiAlertCircleOutline, mdiCheck } from '@mdi/js'
 import { computed, useAttrs, useTemplateRef, watch } from 'vue'
 import NcIconSvgWrapper from '../NcIconSvgWrapper/NcIconSvgWrapper.vue'
-import { useIsDarkTheme } from '../../composables/useIsDarkTheme/index.ts'
 import { createElementId } from '../../utils/createElementId.ts'
 import { isLegacy } from '../../utils/legacy.ts'
 import { logger } from '../../utils/logger.ts'
@@ -171,8 +170,6 @@ const attrs = useAttrs()
  */
 const textAreaElement = useTemplateRef('input')
 
-const isDarkTheme = useIsDarkTheme()
-
 const internalPlaceholder = computed(() => props.placeholder || (isLegacy ? props.label : undefined))
 
 // warn about invalid labels (missing label and no label outside)
@@ -229,7 +226,6 @@ function select() {
 		:class="[
 			$attrs.class,
 			{
-				'textarea--dark': isDarkTheme,
 				'textarea--disabled': disabled,
 				'textarea--legacy': isLegacy,
 			},
@@ -321,7 +317,7 @@ function select() {
 
 		background-color: var(--color-main-background);
 		color: var(--color-main-text);
-		@include border.inputBorder('.textarea--dark', '.textarea--legacy', var(--input-border-color));
+		@include border.inputBorder('.textarea--legacy', var(--input-border-color));
 
 		&:active:not([disabled]),
 		&:focus:not([disabled]) {

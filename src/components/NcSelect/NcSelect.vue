@@ -325,7 +325,6 @@ export default {
 	<VueSelect
 		class="select"
 		:class="{
-			'select--dark': isDark,
 			'select--legacy': isLegacy,
 			'select--no-wrap': noWrap,
 		}"
@@ -402,7 +401,6 @@ import ChevronDown from 'vue-material-design-icons/ChevronDown.vue'
 import Close from 'vue-material-design-icons/Close.vue'
 import NcEllipsisedOption from '../NcEllipsisedOption/NcEllipsisedOption.vue'
 import NcLoadingIcon from '../NcLoadingIcon/NcLoadingIcon.vue'
-import { useIsDarkTheme } from '../../composables/index.ts'
 import { t } from '../../l10n.ts'
 import { createElementId } from '../../utils/createElementId.ts'
 import { isLegacy } from '../../utils/legacy.ts'
@@ -781,8 +779,6 @@ export default {
 		const gridBaseLine = Number.parseInt(window.getComputedStyle(document.body).getPropertyValue('--default-grid-baseline'))
 		const avatarSize = clickableArea - 2 * gridBaseLine
 
-		const isDark = useIsDarkTheme()
-
 		return {
 			avatarSize,
 			isLegacy,
@@ -1122,7 +1118,7 @@ body {
 }
 
 .vs__dropdown-toggle {
-	@include border.inputLikeBorder('.select--dark', '.select--legacy', var(--vs-border-color));
+	@include border.inputLikeBorder('.select--legacy', var(--vs-border-color));
 }
 
 .vs__dropdown-menu {

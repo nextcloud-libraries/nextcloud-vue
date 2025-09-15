@@ -2,31 +2,35 @@
  * SPDX-FileCopyrightText: 2025 Nextcloud GmbH and Nextcloud contributors
  * SPDX-License-Identifier: AGPL-3.0-or-later
  */
- 
- @mixin boxShadow($borderColor) {
-	box-shadow: 0 -1px $borderColor,
-			0 0 0 1px color-mix(in srgb, $borderColor, 65% transparent);
-}
-
-@mixin boxShadowDark($borderColor) {
-	box-shadow: 0 1px $borderColor,
-			0 0 0 1px color-mix(in srgb, $borderColor, 65% transparent);
-}
 
 /**
  * Similar as inputBorder but without active styles.
  */
-@mixin inputLikeBorder($darkThemeSelector, $legacySelector, $borderColor: var(--color-border-maxcontrast)) {
+@mixin inputLikeBorder($legacySelector, $borderColor: var(--color-border-maxcontrast)) {
+	--input-border-box-shadow-light: 0 -1px #{$borderColor},
+		0 0 0 1px color-mix(in srgb, #{$borderColor}, 65% transparent);
+	--input-border-box-shadow-dark: 0 1px #{$borderColor},
+		0 0 0 1px color-mix(in srgb, #{$borderColor}, 65% transparent);
+	--input-border-box-shadow: var(--input-border-box-shadow-light);
 	border: none;
 	border-radius: var(--border-radius-element);
-	@include boxShadow($borderColor);
+	box-shadow: var(--input-border-box-shadow);
 
 	&:hover:not([disabled]) {
 		box-shadow: 0 0 0 1px $borderColor;
 	}
 
-	@at-root #{$darkThemeSelector} #{&} {
-		@include boxShadowDark($borderColor);
+	// override with system theme
+	@media (prefers-color-scheme: dark) {
+		--input-border-box-shadow: var(--input-border-box-shadow-dark);
+	}
+
+	// override with nextcloud theme
+	@at-root [data-theme-dark] #{&} {
+		--input-border-box-shadow: var(--input-border-box-shadow-dark);
+	}
+	@at-root [data-theme-light] #{&} {
+		--input-border-box-shadow: var(--input-border-box-shadow-light);
 	}
 
 	@at-root #{$legacySelector} #{&} {
@@ -42,8 +46,8 @@
  * Create a consistent border for an input element.
  * With Nextcloud 32+ there is no real border anymore but we use a box-shadow.
  */
-@mixin inputBorder($darkThemeSelector, $legacySelector, $borderColor: var(--color-border-maxcontrast)) {
-	@include inputLikeBorder($darkThemeSelector, $legacySelector, $borderColor);
+@mixin inputBorder($legacySelector, $borderColor: var(--color-border-maxcontrast)) {
+	@include inputLikeBorder($legacySelector, $borderColor);
 
 	&:focus-within:not([disabled]),
 	&:active:not([disabled]) {
