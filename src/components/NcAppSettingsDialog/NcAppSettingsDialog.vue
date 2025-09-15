@@ -128,18 +128,18 @@ export default {
 		class="app-settings"
 		content-classes="app-settings__content"
 		navigation-classes="app-settings__navigation"
-		:additional-trap-elements
-		:container
+		:additional-trap-elements="additionalTrapElements"
+		:container="container"
 		close-on-click-outside
-		:navigation-aria-label="settingsNavigationAriaLabel"
+		:navigation-aria-label="t('Settings navigation')"
 		size="large"
-		:name
+		:name="name"
 		@update:open="handleCloseModal">
 		<template v-if="hasNavigation" #navigation="{ isCollapsed }">
 			<ul
 				v-if="!isCollapsed"
 				class="navigation-list">
-				<li v-for="section in sections" :key="section.id">
+				<li v-for="section in registeredSections" :key="section.id">
 					<a
 						:aria-current="`${section.id === selectedSection}`"
 						class="navigation-list__link"
@@ -161,21 +161,23 @@ export default {
 				</li>
 			</ul>
 		</template>
-		<div ref="settingsScroller">
+		<div ref="settingsScroller" @scroll="handleScroll">
 			<slot />
 		</div>
 	</NcDialog>
 </template>
 
-<script lang="ts">
-import type { PropType, VNode } from 'vue'
+<script setup lang="ts">
+import type { VNode } from 'vue'
 
+import { useVModel } from '@vueuse/core'
 import debounce from 'debounce'
-import Vue from 'vue'
+import Vue, { computed, provide, ref, shallowRef, useSlots } from 'vue'
 import NcDialog from '../NcDialog/NcDialog.vue'
 import NcVNodes from '../NcVNodes/NcVNodes.vue'
-import { useIsMobile } from '../../composables/useIsMobile/index.js'
+import { useIsMobile } from '../../composables/useIsMobile/index.ts'
 import { t } from '../../l10n.js'
+import { APP_SETTINGS_REGISTRATION_KEY } from './useAppSettingsDialog.ts'
 
 export interface IAppSettingsSection {
 	id: string
@@ -183,212 +185,163 @@ export interface IAppSettingsSection {
 	icon?: VNode[]
 }
 
-export default defineComponent({
+const props = withDefaults(defineProps<{
+	/**
+	 * Determines the open / closed state of the modal
+	 */
+	open: boolean
 
-	name: 'NcAppSettingsDialog',
+	/**
+	 * Shows the navigation on desktop if true
+	 */
+	showNavigation?: boolean
 
-	components: {
-		NcDialog,
-		NcVNodes,
-	},
+	/**
+	 * Selector for the popover container
+	 */
+	container?: string
 
-	provide() {
-		return {
-			registerSection: this.registerSection,
-			unregisterSection: this.unregisterSection,
-		}
-	},
+	/**
+	 * Name of the settings
+	 */
+	name?: string
 
-	props: {
-		/**
-		 * Determines the open / closed state of the modal
-		 */
-		open: {
-			type: Boolean,
-			required: true,
-		},
-
-		/**
-		 * Shows the navigation on desktop if true
-		 */
-		showNavigation: {
-			type: Boolean,
-			default: false,
-		},
-
-		/**
-		 * Selector for the popover container
-		 */
-		container: {
-			type: String,
-			default: 'body',
-		},
-
-		/**
-		 * Name of the settings
-		 */
-		name: {
-			type: String,
-			default: '',
-		},
-
-		/**
-		 * Additional elements to add to the focus trap
-		 */
-		additionalTrapElements: {
-			type: Array as PropType<(string | HTMLElement)[]>,
-			default: () => [],
-		},
-
-	},
-
-	emits: ['update:open'],
-
-	setup() {
-		return {
-			isMobile: useIsMobile(),
-		}
-	},
-
-	data() {
-		return {
-			selectedSection: '',
-			linkClicked: false,
-			addedScrollListener: false,
-			scroller: null as HTMLDivElement | null,
-			/**
-			 * Currently registered settings sections
-			 */
-			sections: [] as IAppSettingsSection[],
-		}
-	},
-
-	computed: {
-		/**
-		 * Check if one or more navigation entries provide icons
-		 */
-		hasNavigationIcons() {
-			return this.sections.some(({ icon }) => !!icon)
-		},
-
-		hasNavigation() {
-			if (this.isMobile || !this.showNavigation) {
-				return false
-			} else {
-				return true
-			}
-		},
-
-		settingsNavigationAriaLabel() {
-			return t('Settings navigation')
-		},
-
-		/**
-		 * Remove selected section once the user starts scrolling
-		 */
-		unfocusNavigationItem() {
-			return debounce(() => {
-				this.selectedSection = ''
-				if (document.activeElement?.className.includes('navigation-list__link')) {
-					(document.activeElement as HTMLElement).blur()
-				}
-			}, 300)
-		},
-	},
-
-	updated() {
-		// Check that the scroller element has been mounted
-		if (!this.$refs.settingsScroller) {
-			return
-		}
-		// Get the scroller element
-		this.scroller = this.$refs.settingsScroller as HTMLDivElement
-		if (!this.addedScrollListener) {
-			this.scroller.addEventListener('scroll', this.handleScroll)
-			this.addedScrollListener = true
-		}
-	},
-
-	methods: {
-		/**
-		 * Called when a new section is registered
-		 *
-		 * @param id - The section ID
-		 * @param name - The section name
-		 * @param icon - Optional icon component
-		 */
-		registerSection(id: string, name: string, icon?: VNode[]) {
-			// Check for the uniqueness of section names
-			if (this.sections.some(({ id: otherId }) => id === otherId)) {
-				throw new Error(`Duplicate section id found: ${id}. Settings navigation sections must have unique section ids.`)
-			}
-			if (this.sections.some(({ name: otherName }) => name === otherName)) {
-				Vue.util.warn(`Duplicate section name found: ${name}. Settings navigation sections must have unique section names.`)
-			}
-
-			const newSections = [...this.sections, { id, name, icon }]
-			// Sort sections by order in slots
-			this.sections = newSections.sort(({ id: idA }, { id: idB }) => {
-				const indexOf = (id) => this.$slots.default?.findIndex?.((vnode: VNode) => vnode?.componentOptions?.propsData?.id === id) ?? -1
-				return indexOf(idA) - indexOf(idB)
-			})
-
-			// If this is the first section registered, set it as selected
-			if (this.sections.length === 1) {
-				this.selectedSection = id
-			}
-		},
-
-		/**
-		 * Called when a section is unregistered to remove it from dialog
-		 *
-		 * @param id - The section ID
-		 */
-		unregisterSection(id: string) {
-			this.sections = this.sections.filter(({ id: otherId }) => id !== otherId)
-
-			// If the current section is unregistered, set the first section as selected
-			if (this.selectedSection === id) {
-				this.selectedSection = this.sections[0]?.id ?? ''
-			}
-		},
-
-		/**
-		 * Scrolls the content to the selected settings section.absolute
-		 *
-		 * @param item - the ID of the section
-		 */
-		handleSettingsNavigationClick(item: string) {
-			this.linkClicked = true
-			document.getElementById('settings-section_' + item)!.scrollIntoView({
-				behavior: 'smooth',
-				inline: 'nearest',
-			})
-			this.selectedSection = item
-			setTimeout(() => {
-				this.linkClicked = false
-			}, 1000)
-		},
-
-		handleCloseModal(isOpen: boolean) {
-			if (isOpen) {
-				return
-			}
-
-			this.$emit('update:open', false)
-			// Remove scroll listener each time the modal is closed
-			this.scroller!.removeEventListener('scroll', this.handleScroll)
-			this.addedScrollListener = false
-			this.scroller!.scrollTop = 0
-		},
-
-		handleScroll() {
-			if (!this.linkClicked) {
-				this.unfocusNavigationItem()
-			}
-		},
-	},
+	/**
+	 * Additional elements to add to the focus trap
+	 */
+	additionalTrapElements?: (string | HTMLElement)[]
+}>(), {
+	container: 'body',
+	name: '',
+	additionalTrapElements: () => [],
 })
+
+const emit = defineEmits<{
+	(e: 'update:open', v: boolean): void
+}>()
+
+const open = useVModel(props, 'open', emit, { passive: true })
+
+provide(APP_SETTINGS_REGISTRATION_KEY, {
+	registerSection,
+	unregisterSection,
+})
+
+const settingsScroller = ref<HTMLDivElement>()
+
+const isMobile = useIsMobile()
+
+const selectedSection = ref('')
+const linkClicked = ref(false)
+const registeredSections = shallowRef<IAppSettingsSection[]>([])
+
+const hasNavigation = computed(() => !isMobile.value && props.showNavigation)
+
+/**
+ * Check if one or more navigation entries provide icons
+ */
+const hasNavigationIcons = computed(() => registeredSections.value.some(({ icon }) => !!icon))
+
+/**
+ * Remove selected section once the user starts scrolling
+ */
+const unfocusNavigationItem = debounce(() => {
+	selectedSection.value = ''
+	if (document.activeElement?.className.includes('navigation-list__link')) {
+		(document.activeElement as HTMLElement).blur()
+	}
+}, 300)
+
+/**
+ * Scrolls the content to the selected settings section.absolute
+ *
+ * @param item - the ID of the section
+ */
+function handleSettingsNavigationClick(item: string) {
+	linkClicked.value = true
+	document.getElementById('settings-section_' + item)!.scrollIntoView({
+		behavior: 'smooth',
+		inline: 'nearest',
+	})
+	selectedSection.value = item
+	setTimeout(() => {
+		linkClicked.value = false
+	}, 1000)
+}
+
+/**
+ * Reset the dialog state when closed to have a clean state if re-opened.
+ *
+ * @param isOpen - The new modal open state
+ */
+function handleCloseModal(isOpen: boolean) {
+	if (isOpen) {
+		return
+	}
+
+	open.value = false
+	// reset the scrolling state if the modal is just hidden
+	settingsScroller.value!.scrollTop = 0
+}
+
+/**
+ * When scrolled manually we remove the focus from the navigation item.
+ */
+function handleScroll() {
+	if (open.value && !linkClicked.value) {
+		unfocusNavigationItem()
+	}
+}
+
+const slots = useSlots()
+
+/**
+ * Called when a new section is registered
+ *
+ * @param id - The section ID
+ * @param name - The section name
+ * @param icon - Optional icon component
+ */
+function registerSection(id: string, name: string, icon?: VNode[]) {
+	// Check for the uniqueness of section names
+	if (registeredSections.value.some(({ id: otherId }) => id === otherId)) {
+		throw new Error(`Duplicate section id found: ${id}. Settings navigation sections must have unique section ids.`)
+	}
+	if (registeredSections.value.some(({ name: otherName }) => name === otherName)) {
+		Vue.util.warn(`Duplicate section name found: ${name}. Settings navigation sections must have unique section names.`)
+	}
+
+	const newSections = [
+		...registeredSections.value,
+		{ id, name, icon },
+	]
+
+	// Sort sections by order in slots
+	registeredSections.value = newSections.sort(({ id: idA }, { id: idB }) => {
+		const indexOf = (id) => slots.default?.().findIndex((vnode: VNode) => (vnode?.componentOptions?.propsData as { id: string | undefined })?.id === id) ?? -1
+		return indexOf(idA) - indexOf(idB)
+	})
+
+	// If this is the first section registered, set it as selected
+	if (registeredSections.value.length === 1) {
+		selectedSection.value = id
+	}
+}
+
+/**
+ * Called when a section is unregistered to remove it from dialog
+ *
+ * @param id - The section ID
+ */
+function unregisterSection(id: string) {
+	registeredSections.value = registeredSections.value
+		.filter(({ id: otherId }) => id !== otherId)
+
+	// If the current section is unregistered, set the first section as selected
+	if (selectedSection.value === id) {
+		selectedSection.value = registeredSections.value[0]?.id ?? ''
+	}
+}
 </script>
 
 <style lang="scss" scoped>
