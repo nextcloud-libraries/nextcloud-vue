@@ -20,30 +20,15 @@
 			@keydown.end.exact.prevent.stop="focusLastTab"
 			@keydown.page-up.exact.prevent.stop="focusFirstTab"
 			@keydown.page-down.exact.prevent.stop="focusLastTab">
-			<NcCheckboxRadioSwitch
+			<NcAppSidebarTabsButton
 				v-for="tab in tabs"
+				:id="`tab-button-${tab.id}`"
 				:key="tab.id"
-				:aria-controls="`tab-${tab.id}`"
-				:aria-selected="String(activeTab === tab.id)"
-				:button-variant="true"
-				:model-value="activeTab === tab.id"
-				:wrapper-id="`tab-button-${tab.id}`"
-				:tabindex="activeTab === tab.id ? 0 : -1"
-				button-variant-grouped="horizontal"
 				class="app-sidebar-tabs__tab"
-				:class="{ active: tab.id === activeTab }"
-				role="tab"
-				type="button"
-				@update:model-value="setActive(tab.id)">
-				<span class="app-sidebar-tabs__tab-caption">
-					{{ tab.name }}
-				</span>
-				<template #icon>
-					<NcVNodes :vnodes="tab.renderIcon()">
-						<span class="app-sidebar-tabs__tab-icon" :class="tab.icon" />
-					</NcVNodes>
-				</template>
-			</NcCheckboxRadioSwitch>
+				:aria-controls="`tab-${tab.id}`"
+				:selected="activeTab === tab.id"
+				:tab
+				@update:selected="setActive(tab.id)" />
 		</div>
 
 		<!-- tabs content -->
@@ -57,15 +42,13 @@
 </template>
 
 <script>
-import NcCheckboxRadioSwitch from '../NcCheckboxRadioSwitch/index.js'
-import NcVNodes from '../NcVNodes/index.ts'
+import NcAppSidebarTabsButton from './NcAppSidebarTabsButton.vue'
 
 export default {
 	name: 'NcAppSidebarTabs',
 
 	components: {
-		NcCheckboxRadioSwitch,
-		NcVNodes,
+		NcAppSidebarTabsButton,
 	},
 
 	provide() {
@@ -267,54 +250,10 @@ export default {
 		justify-content: stretch;
 		margin: 10px 8px 0 8px;
 		border-bottom: 1px solid var(--color-border);
-
-		// Override checkbox-radio-switch styles so that it looks like tabs
-		& :deep(.checkbox-radio-switch--button-variant) {
-			border: unset !important;
-			border-radius: 0 !important;
-			.checkbox-content {
-				padding: var(--default-grid-baseline);
-				border-radius: var(--default-grid-baseline) var(--default-grid-baseline) 0 0 !important;
-				margin: 0 !important;
-				border-bottom: var(--default-grid-baseline) solid transparent !important;
-				.checkbox-content__icon > * {
-					color: var(--color-main-text) !important;
-				}
-			}
-			&.checkbox-radio-switch--checked .checkbox-radio-switch__content{
-				background: transparent !important;
-				color: var(--color-main-text) !important;
-				border-bottom: var(--default-grid-baseline) solid var(--color-primary-element) !important;
-			}
-		}
 	}
 
 	&__tab {
-		flex: 1 1;
-		&.active {
-			color: var(--color-primary-element);
-		}
-
-		&-caption {
-			flex: 0 1 100%;
-			width: 100%;
-			overflow: hidden;
-			white-space: nowrap;
-			text-overflow: ellipsis;
-			text-align: center;
-		}
-
-		&-icon {
-			display: flex;
-			align-items: center;
-			justify-content: center;
-			background-size: 20px;
-		}
-
-		// Override max-width to use all available space
-		:deep(.checkbox-radio-switch__content) {
-			max-width: unset;
-		}
+		flex: 1 1 1px;
 	}
 
 	&__content {
