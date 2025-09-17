@@ -6,7 +6,7 @@
 import { getLanguage } from '@nextcloud/l10n'
 import { memoize } from '../../utils/utils.ts'
 
-const zeroDate = new Date(0)
+const now = new Date()
 
 /**
  * Convert timezone ID in IANA format (e.g. "Europe/Berlin") to specified format via Intl.DateTimeFormat
@@ -17,7 +17,7 @@ const zeroDate = new Date(0)
  */
 export function formatTimezone(timeZone: string, timeZoneName: NonNullable<Intl.DateTimeFormatOptions['timeZoneName']>, lang: string = getLanguage()): string | undefined {
 	return new Intl.DateTimeFormat(lang, { timeZone, timeZoneName })
-		.formatToParts(zeroDate)
+		.formatToParts(now)
 		.find((part) => part.type === 'timeZoneName')
 		?.value
 }
@@ -31,11 +31,11 @@ export function formatTimezone(timeZone: string, timeZoneName: NonNullable<Intl.
 const getTimezoneOffset = memoize((timeZone: string): number => {
 	// 'en-US' gives predictable GMT+00:00 or GMT+00:00:00 format
 	const gmt = formatTimezone(timeZone, 'longOffset', 'en-US')
-	// +01:00 or nothing
-	const offsetString = gmt?.slice(3) || 'Z'
-	const offset = new Date(0).valueOf() - new Date('1970-01-01T00:00:00.000' + offsetString).valueOf()
-
-	return offset
+	const [isMatched, sign, h = '0', m = '0', s = '0'] = gmt?.match(/GMT([+-])(\d+):(\d+)(?::(\d+))?/) ?? []
+	if (!isMatched) {
+		return 0
+	}
+	return (sign === '+' ? 1 : -1) * (parseInt(h) * 3600 + parseInt(m) * 60 + parseInt(s)) * 1000
 })
 
 /**
