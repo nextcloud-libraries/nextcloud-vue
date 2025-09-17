@@ -251,7 +251,8 @@ export default {
 		 */
 		closeOnClickOutside: {
 			type: Boolean,
-			default: false,
+			// eslint-disable-next-line vue/no-boolean-default
+			default: true,
 		},
 
 		/**
