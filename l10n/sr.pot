@@ -224,10 +224,6 @@ msgstr "Храна и пиће"
 msgid "Frequently used"
 msgstr "Често коришћено"
 
-#. TRANSLATORS: This refers to global timezones in the timezone picker
-msgid "Global"
-msgstr "Глобално"
-
 msgid "Go back to the list"
 msgstr "Назад на листу"
 

@@ -36,6 +36,10 @@ msgstr "Atividades"
 msgid "Add to a project"
 msgstr "Adicionar a um projeto"
 
+#. TRANSLATORS: Alt key on keyboard (Windows/Linux)
+msgid "Alt"
+msgstr "Alt"
+
 msgid "Animals & Nature"
 msgstr "Animais & Natureza"
 
@@ -127,6 +131,10 @@ msgstr "Confirmar alterações"
 msgid "Connect items to a project to make them easier to find"
 msgstr "Conectar itens a um projeto para encontrá-los mais facilmente"
 
+#. TRANSLATORS: Ctrl key on keyboard (Windows/Linux)
+msgid "Ctrl"
+msgstr "Ctrl"
+
 msgid "Custom"
 msgstr "Personalizados"
 
@@ -148,6 +156,10 @@ msgstr "Diminuir minutos"
 msgid "Decrement seconds"
 msgstr "Diminuir segundos"
 
+#. TRANSLATORS: Delete key on keyboard
+msgid "Delete"
+msgstr "Excluir"
+
 #. TRANSLATORS: A color name for RGB(136, 85, 168)
 msgid "Deluge"
 msgstr "Deluge"
@@ -167,6 +179,10 @@ msgstr "Seletor de emoji"
 msgid "Enable interactive view"
 msgstr "Ativar visualização interativa"
 
+#. TRANSLATORS: Enter key on keyboard
+msgid "Enter"
+msgstr "Enter"
+
 msgid "Enter link"
 msgstr "Insira o link"
 
@@ -176,6 +192,10 @@ msgid ""
 msgstr ""
 "Erro ao obter recursos relacionados. Por favor, entre em contato com o "
 "administrador do sistema se tiver alguma dúvida."
+
+#. TRANSLATORS: Escape key on keyboard
+msgid "Escape"
+msgstr "Escape"
 
 msgid "External documentation"
 msgstr "Documentação externa"
@@ -204,10 +224,6 @@ msgstr "Comida & Bebida"
 
 msgid "Frequently used"
 msgstr "Mais usados"
-
-#. TRANSLATORS: This refers to global timezones in the timezone picker
-msgid "Global"
-msgstr "Global"
 
 msgid "Go back to the list"
 msgstr "Voltar para a lista"
@@ -405,6 +421,9 @@ msgstr "Salvar alterações"
 msgid "Search"
 msgstr "Pesquisar"
 
+msgid "Search …"
+msgstr "Pesquisar …"
+
 msgid "Search emoji"
 msgstr "Pesquisar emoji"
 
@@ -413,9 +432,6 @@ msgstr "Pesquisar fuso horário"
 
 msgid "Search results"
 msgstr "Resultados da pesquisa"
-
-msgid "Search…"
-msgstr "Pesquisar…"
 
 #. FOR TRANSLATORS: If possible in your language an even shorter version of 'a
 #. few seconds ago'
@@ -462,6 +478,10 @@ msgstr "Configurações"
 msgid "Settings navigation"
 msgstr "Navegação de configurações"
 
+#. TRANSLATORS: Shift key on keyboard
+msgid "Shift"
+msgstr "Shift"
+
 msgid "Show details"
 msgstr "Mostrar detalhes"
 
@@ -483,6 +503,10 @@ msgstr "Seletor Inteligente"
 msgid "Smileys & Emotion"
 msgstr "Smileys & Emoções"
 
+#. TRANSLATORS: Space key on keyboard
+msgid "Space"
+msgstr "Barra de espaço"
+
 msgid "Start slideshow"
 msgstr "Iniciar apresentação de slides"
 
@@ -497,6 +521,10 @@ msgstr "Alternar modo AM/PM"
 
 msgid "Symbols"
 msgstr "Símbolos"
+
+#. TRANSLATORS: Tab key on keyboard
+msgid "Tab"
+msgstr "Tab"
 
 msgid "Time picker"
 msgstr "Seletor de tempo"

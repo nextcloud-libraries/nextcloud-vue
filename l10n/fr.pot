@@ -229,10 +229,6 @@ msgstr "Nourriture & Boissons"
 msgid "Frequently used"
 msgstr "Utilisés fréquemment"
 
-#. TRANSLATORS: This refers to global timezones in the timezone picker
-msgid "Global"
-msgstr "Global"
-
 msgid "Go back to the list"
 msgstr "Retourner à la liste"
 

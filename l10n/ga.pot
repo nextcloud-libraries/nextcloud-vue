@@ -225,10 +225,6 @@ msgstr "Bia & Deoch"
 msgid "Frequently used"
 msgstr "Úsáidtear go minic"
 
-#. TRANSLATORS: This refers to global timezones in the timezone picker
-msgid "Global"
-msgstr "Domhanda"
-
 msgid "Go back to the list"
 msgstr "Téigh ar ais go dtí an liosta"
 

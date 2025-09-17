@@ -225,10 +225,6 @@ msgstr "Oziq-ovqat va ichimliklar"
 msgid "Frequently used"
 msgstr "Tez-tez ishlatiladi"
 
-#. TRANSLATORS: This refers to global timezones in the timezone picker
-msgid "Global"
-msgstr "Global"
-
 msgid "Go back to the list"
 msgstr "Ro'yxatga qayting"
 

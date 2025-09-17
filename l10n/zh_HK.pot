@@ -222,10 +222,6 @@ msgstr "食物與飲料"
 msgid "Frequently used"
 msgstr "經常使用"
 
-#. TRANSLATORS: This refers to global timezones in the timezone picker
-msgid "Global"
-msgstr "全球的"
-
 msgid "Go back to the list"
 msgstr "返回清單"
 
