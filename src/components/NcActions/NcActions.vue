@@ -1788,7 +1788,7 @@ export default {
 					...this.manualOpen && {
 						triggers: [],
 					},
-					closeOnClickOutside: !this.manualOpen,
+					noCloseOnClickOutside: this.manualOpen,
 					popoverBaseClass: 'action-item__popper',
 					popupRole: this.config.popupRole,
 					setReturnFocus: this.config.withFocusTrap ? this.$refs.triggerButton?.$el : undefined,
