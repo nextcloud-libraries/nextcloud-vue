@@ -224,10 +224,6 @@ msgstr "Söök ja jook"
 msgid "Frequently used"
 msgstr "Sageli kasutatud"
 
-#. TRANSLATORS: This refers to global timezones in the timezone picker
-msgid "Global"
-msgstr "Globaalne"
-
 msgid "Go back to the list"
 msgstr "Tagasi nimekirja juurde"
 
