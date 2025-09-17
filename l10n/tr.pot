@@ -224,10 +224,6 @@ msgstr "Yeme ve içme"
 msgid "Frequently used"
 msgstr "Sık kullanılanlar"
 
-#. TRANSLATORS: This refers to global timezones in the timezone picker
-msgid "Global"
-msgstr "Evrensel"
-
 msgid "Go back to the list"
 msgstr "Listeye dön"
 
