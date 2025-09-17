@@ -36,6 +36,10 @@ msgstr "Aktivity"
 msgid "Add to a project"
 msgstr "Přidat do projektu"
 
+#. TRANSLATORS: Alt key on keyboard (Windows/Linux)
+msgid "Alt"
+msgstr "Alt"
+
 msgid "Animals & Nature"
 msgstr "Zvířata a příroda"
 
@@ -126,6 +130,10 @@ msgstr "Potvrdit změny"
 msgid "Connect items to a project to make them easier to find"
 msgstr "Připojte položky k projektu, čímž budou snáze dohledatelné"
 
+#. TRANSLATORS: Ctrl key on keyboard (Windows/Linux)
+msgid "Ctrl"
+msgstr "Ctrl"
+
 msgid "Custom"
 msgstr "Uživatelsky určené"
 
@@ -147,6 +155,10 @@ msgstr "Snížit minuty"
 msgid "Decrement seconds"
 msgstr "Snížit sekundy"
 
+#. TRANSLATORS: Delete key on keyboard
+msgid "Delete"
+msgstr "Delete"
+
 #. TRANSLATORS: A color name for RGB(136, 85, 168)
 msgid "Deluge"
 msgstr "Deluge"
@@ -166,6 +178,10 @@ msgstr "Výběr emotikon"
 msgid "Enable interactive view"
 msgstr "Zapnout interaktivní zobrazení"
 
+#. TRANSLATORS: Enter key on keyboard
+msgid "Enter"
+msgstr "Enter"
+
 msgid "Enter link"
 msgstr "Zadat odkaz"
 
@@ -175,6 +191,10 @@ msgid ""
 msgstr ""
 "Chyba při získávání souvisejících prostředků. Pokud máte jakékoli dotazy, "
 "obraťte se na správce vámi využívaného systému."
+
+#. TRANSLATORS: Escape key on keyboard
+msgid "Escape"
+msgstr "Esc"
 
 msgid "External documentation"
 msgstr "Externí dokumentace"
@@ -203,10 +223,6 @@ msgstr "Jídlo a pití"
 
 msgid "Frequently used"
 msgstr "Často používané"
-
-#. TRANSLATORS: This refers to global timezones in the timezone picker
-msgid "Global"
-msgstr "Globální"
 
 msgid "Go back to the list"
 msgstr "Jít zpět na seznam"
@@ -243,7 +259,7 @@ msgstr "Načíst další „{options}“"
 
 #. TRANSLATORS: The button is in a loading state
 msgid "Loading …"
-msgstr "Načítání…"
+msgstr "Načítání …"
 
 #. TRANSLATORS: A color name for RGB(45, 115, 190)
 msgid "Mariner"
@@ -272,7 +288,7 @@ msgid "Month picker overlay"
 msgstr "Překryvné okno výběru měsíce"
 
 msgid "More items …"
-msgstr "Další položky…"
+msgstr "Další položky …"
 
 msgid "More options"
 msgstr "Další volby"
@@ -405,6 +421,9 @@ msgstr "Uložit změny"
 msgid "Search"
 msgstr "Hledat"
 
+msgid "Search …"
+msgstr "Hledat …"
+
 msgid "Search emoji"
 msgstr "Hledat emoji"
 
@@ -413,9 +432,6 @@ msgstr "Vyhledat časové pásmo"
 
 msgid "Search results"
 msgstr "Výsledky hledání"
-
-msgid "Search…"
-msgstr "Hledat…"
 
 #. FOR TRANSLATORS: If possible in your language an even shorter version of 'a
 #. few seconds ago'
@@ -462,6 +478,10 @@ msgstr "Nastavení"
 msgid "Settings navigation"
 msgstr "Pohyb po nastavení"
 
+#. TRANSLATORS: Shift key on keyboard
+msgid "Shift"
+msgstr "Shift"
+
 msgid "Show details"
 msgstr "Zobrazit podrobnosti"
 
@@ -483,6 +503,10 @@ msgstr "Inteligentní výběr"
 msgid "Smileys & Emotion"
 msgstr "Úsměvy a emoce"
 
+#. TRANSLATORS: Space key on keyboard
+msgid "Space"
+msgstr "Mezerník"
+
 msgid "Start slideshow"
 msgstr "Spustit prezentaci"
 
@@ -497,6 +521,10 @@ msgstr "Přepnout režim dopo/odpoledne"
 
 msgid "Symbols"
 msgstr "Symboly"
+
+#. TRANSLATORS: Tab key on keyboard
+msgid "Tab"
+msgstr "Tab"
 
 msgid "Time picker"
 msgstr "Výběr času"
@@ -536,7 +564,7 @@ msgid "Whiskey"
 msgstr "Whisky"
 
 msgid "Write a message …"
-msgstr "Napsat zprávu…"
+msgstr "Napište zprávu …"
 
 msgid "Year picker"
 msgstr "Výběr roku"
