@@ -436,8 +436,8 @@ td.row-size {
 import type { Slot } from 'vue'
 import type { RouteLocationRaw } from 'vue-router'
 
-import { computed, inject } from 'vue'
-import { routerKey } from 'vue-router'
+import { computed, inject, toRef } from 'vue'
+import { useButtonLink } from '../../composables/useButtonLink.ts'
 import { isLegacy } from '../../utils/legacy.ts'
 
 export type ButtonAlignment = 'start'
@@ -606,19 +606,19 @@ defineSlots<{
 	icon?: Slot
 }>()
 
-const hasVueRouterContext = inject(routerKey, null) !== null
-
-const tag = computed(() => {
-	// TODO: should we warn if props.to is provided but there is no vue-router?
-	if (hasVueRouterContext && props.to) {
-		// Note: RouterLink is used as globally registered component (by name) and not imported intentionally
-		// to use injected component from the app and not bundle it to the button
-		return 'RouterLink'
-	} else if (props.href) {
-		return 'a'
-	} else {
-		return 'button'
-	}
+const { tag, attrs } = useButtonLink({
+	to: toRef(props, 'to'),
+	href: toRef(props, 'href'),
+	// RouterLink
+	activeClass: 'active',
+	// HyperLink
+	target: toRef(props, 'target'),
+	download: toRef(props, 'download'),
+	// Button
+	type: toRef(props, 'type'),
+	disabled: toRef(props, 'disabled'),
+	// Misc
+	additionalAttrs: getAdditionalAttrs,
 })
 
 const hasPressedState = computed(() => tag.value === 'button' && typeof props.pressed === 'boolean')
@@ -643,30 +643,19 @@ const isReverseAligned = computed(() => props.alignment.includes('-'))
 const getNcPopoverTriggerAttrs = inject<() => Record<string, string | undefined>>('NcPopover:trigger:attrs', () => ({}), false)
 const ncPopoverTriggerAttrs = computed(() => getNcPopoverTriggerAttrs())
 
-const attrs = computed(() => {
-	if (tag.value === 'RouterLink') {
-		return {
-			to: props.to,
-			activeClass: 'active',
-		}
-	} else if (tag.value === 'a') {
-		return {
-			href: props.href || '#',
-			target: props.target,
-			rel: 'nofollow noreferrer noopener',
-			download: props.download || undefined,
-		}
-	} else if (tag.value === 'button') {
+/**
+ * Get additional attributes to set on the interactive element
+ *
+ * @param tag - Element tag
+ */
+function getAdditionalAttrs(tag: 'RouterLink' | 'a' | 'button') {
+	if (tag === 'button') {
 		return {
 			...ncPopoverTriggerAttrs.value,
 			'aria-pressed': props.pressed,
-			type: props.type,
-			disabled: props.disabled,
 		}
 	}
-
-	return undefined
-})
+}
 
 /**
  * Handle the click on the link / button
