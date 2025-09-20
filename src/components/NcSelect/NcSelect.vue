@@ -781,7 +781,6 @@ export default {
 
 		return {
 			avatarSize,
-			isDark,
 			isLegacy,
 		}
 	},
