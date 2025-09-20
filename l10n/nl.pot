@@ -67,6 +67,9 @@ msgstr "Terug"
 msgid "Back to provider selection"
 msgstr "Terug naar provider selectie"
 
+msgid "Black"
+msgstr "Zwart"
+
 #. TRANSLATORS: A color name for RGB(91, 100, 179)
 msgid "Blue Violet"
 msgstr "Blauw Paars"
@@ -307,6 +310,9 @@ msgstr "Volgend jaar"
 
 msgid "Nextcloud blue"
 msgstr "Nextcloud blauw"
+
+msgid "No color"
+msgstr "Geen kleur"
 
 msgid "No emoji found"
 msgstr "Geen emoji gevonden"
@@ -562,6 +568,9 @@ msgstr "W"
 #. TRANSLATORS: A color name for RGB(211, 169, 103)
 msgid "Whiskey"
 msgstr "Whiskey"
+
+msgid "White"
+msgstr "Wit"
 
 msgid "Write a message …"
 msgstr "Schrijf een bericht …"
