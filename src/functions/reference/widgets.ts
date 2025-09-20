@@ -5,10 +5,23 @@
 
 import logger from '../../utils/logger.ts'
 
-export interface ReferenceWidgetRenderProperties {
+/** Reference interface (copied from OpenAPI core) */
+export interface ReferenceWidgetObject {
 	richObjectType: string
-	richObject: object
+	richObject: {
+		[key: string]: Record<string, unknown> | null
+	}
+	openGraphObject: {
+		id: string
+		name: string
+		description: string | null
+		thumb: string | null
+		link: string
+	}
 	accessible: boolean
+}
+
+export interface ReferenceWidgetRenderProperties extends ReferenceWidgetObject {
 	interactive: boolean
 }
 
