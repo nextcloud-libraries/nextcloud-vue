@@ -20,16 +20,15 @@
 		box-shadow: 0 0 0 1px $borderColor;
 	}
 
-	@at-root [data-theme-default] #{&} {
-		@media (prefers-color-scheme: dark) {
-			--input-border-box-shadow: var(--input-border-box-shadow-dark);
-		}
-	}
-
-	@at-root [data-theme-dark] #{&} {
+	// override with system theme
+	@media (prefers-color-scheme: dark) {
 		--input-border-box-shadow: var(--input-border-box-shadow-dark);
 	}
 
+	// override with nextcloud theme
+	@at-root [data-theme-dark] #{&} {
+		--input-border-box-shadow: var(--input-border-box-shadow-dark);
+	}
 	@at-root [data-theme-light] #{&} {
 		--input-border-box-shadow: var(--input-border-box-shadow-light);
 	}
