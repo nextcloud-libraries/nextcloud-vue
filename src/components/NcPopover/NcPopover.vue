@@ -179,7 +179,7 @@ See: https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Attributes/
 		ref="popover"
 		v-model:shown="internalShown"
 		:arrow-padding="10"
-		:auto-hide="closeOnClickOutside"
+		:auto-hide="!noCloseOnClickOutside && closeOnClickOutside"
 		:boundary="boundary || undefined"
 		:container
 		:delay
@@ -248,11 +248,21 @@ export default {
 
 		/**
 		 * Automatically hide the popover on click outside.
+		 *
+		 * @deprecated Use `no-close-on-click-outside` instead (inverted value)
 		 */
 		closeOnClickOutside: {
 			type: Boolean,
 			// eslint-disable-next-line vue/no-boolean-default
 			default: true,
+		},
+
+		/**
+		 * Disable the automatic popover hide on click outside.
+		 */
+		noCloseOnClickOutside: {
+			type: Boolean,
+			default: false,
 		},
 
 		/**
