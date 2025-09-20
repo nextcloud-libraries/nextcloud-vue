@@ -13,6 +13,7 @@ import { Chrome } from 'vue-color'
 import NcButton from '../NcButton/NcButton.vue'
 import NcIconSvgWrapper from '../NcIconSvgWrapper/NcIconSvgWrapper.vue'
 import NcPopover from '../NcPopover/NcPopover.vue'
+import { useModelMigration } from '../../composables/useModelMigration.ts'
 import { t } from '../../l10n.js'
 import { defaultPalette } from '../../utils/colors.ts'
 import { createElementId } from '../../utils/createElementId.ts'
@@ -32,7 +33,12 @@ const props = withDefaults(defineProps<{
 	/**
 	 * The model value (selected color).
 	 */
-	modelValue: string // eslint-disable-line vue/no-unused-properties -- used by useVModel
+	modelValue?: string // eslint-disable-line vue/no-unused-properties -- used by useModelMigration
+
+	/**
+	 * @deprecated use `modelValue`
+	 */
+	value?: string // eslint-disable-line vue/no-unused-properties -- used by useModelMigration
 
 	/**
 	 * Current open state of the color picker
@@ -54,6 +60,8 @@ const props = withDefaults(defineProps<{
 }>(), {
 	container: 'body',
 	palette: () => [...defaultPalette],
+	modelValue: '',
+	value: undefined,
 })
 
 const emit = defineEmits<{
@@ -72,12 +80,15 @@ const emit = defineEmits<{
 	 * The updated color
 	 */
 	(e: 'update:modelValue', v: string): void
+
+	/**
+	 * @deprecated use `update:modelValue`
+	 */
+	(e: 'update:value', v: string): void
 }>()
 
-/**
- * A HEX color that represents the initial value of the picker
- */
-const currentColor = useVModel(props, 'modelValue', emit, { passive: true })
+const currentColor = useModelMigration<string>('value', 'update:value', true)
+// watchEffect(() => console.error('current: ', currentColor.value))
 
 const modelOpen = useVModel(props, 'open', emit, { passive: true, eventName: 'update:open' })
 
@@ -97,7 +108,7 @@ const advanced = ref(false)
  * Normalized palette by converting array of hex colors to color objects
  */
 const normalizedPalette = computed(() => {
-	let palette = props.palette
+	let palette = props.palette as (string | Color)[]
 	for (const color of palette) {
 		if ((typeof color === 'string' && !color.match(HEX_REGEX))
 			|| (typeof color === 'object' && !color.color?.match(HEX_REGEX))) {
@@ -111,7 +122,7 @@ const normalizedPalette = computed(() => {
 		color: typeof item === 'object' ? item.color : item,
 		name: typeof item === 'object' && item.name
 			? item.name
-			: t('A color with a HEX value {hex}', { hex: item.color }),
+			: t('A color with a HEX value {hex}', { hex: typeof item === 'string' ? item : item.color }),
 	}))
 })
 
@@ -167,6 +178,15 @@ function hexToRGB(hex: string) {
 }
 </script>
 
+<script lang="ts">
+export default {
+	model: {
+		event: 'update:modelValue',
+		prop: 'modelValue',
+	},
+}
+</script>
+
 <template>
 	<NcPopover
 		:shown.sync="modelOpen"
@@ -196,6 +216,9 @@ function hexToRGB(hex: string) {
 								backgroundColor: color,
 								color: contrastColor,
 							}">
+							<span class="hidden-visually">
+								{{ color }} -- {{ currentColor }}
+							</span>
 							<NcIconSvgWrapper v-if="color === currentColor" :path="mdiCheck" />
 							<input
 								type="radio"
@@ -471,7 +494,6 @@ export default {
 				'#F5A9B8',
 				'#FFFFFF',
 				'#F5A9B8',
-				'#5BCEFA',
 			],
 		}
 	}
