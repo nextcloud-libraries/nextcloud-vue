@@ -297,7 +297,7 @@ msgid "More options"
 msgstr "Další volby"
 
 msgid "Neutral skin color"
-msgstr "Neutřální tělová barva"
+msgstr "Neutrální tělová barva"
 
 msgid "Next"
 msgstr "Následující"
