@@ -65,6 +65,9 @@ msgstr "Zpět"
 msgid "Back to provider selection"
 msgstr "Zpět na výběr poskytovatele"
 
+msgid "Black"
+msgstr "Černá"
+
 #. TRANSLATORS: A color name for RGB(91, 100, 179)
 msgid "Blue Violet"
 msgstr "Modrofialová"
@@ -294,7 +297,7 @@ msgid "More options"
 msgstr "Další volby"
 
 msgid "Neutral skin color"
-msgstr "Neutřální tělová barva"
+msgstr "Neutrální tělová barva"
 
 msgid "Next"
 msgstr "Následující"
@@ -307,6 +310,9 @@ msgstr "Příští rok"
 
 msgid "Nextcloud blue"
 msgstr "Nextcloud modrá"
+
+msgid "No color"
+msgstr "Žádná barva"
 
 msgid "No emoji found"
 msgstr "Nenalezeno žádné emoji"
@@ -562,6 +568,9 @@ msgstr "T"
 #. TRANSLATORS: A color name for RGB(211, 169, 103)
 msgid "Whiskey"
 msgstr "Whisky"
+
+msgid "White"
+msgstr "Bílá"
 
 msgid "Write a message …"
 msgstr "Napište zprávu …"
