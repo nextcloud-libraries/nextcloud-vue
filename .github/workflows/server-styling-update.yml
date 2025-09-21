@@ -34,17 +34,18 @@ jobs:
         uses: peter-evans/create-pull-request@271a8d0340265f705b14b6d32b9829c1cb33d45e # v7.0.8
         with:
           token: ${{ secrets.COMMAND_BOT_PAT }}
-          commit-message: "chore(assets): Update styling from server"
-          committer: GitHub <noreply@github.com>
           author: nextcloud-command <nextcloud-command@users.noreply.github.com>
+          committer: nextcloud-command <nextcloud-command@users.noreply.github.com>
+          commit-message: "chore(docs): update docs styling from server"
           signoff: true
-          branch: 'automated/${{ github.run_id }}/server-styling-update'
-          title: '[${{ matrix.branch }}] Automated styling update from server'
+          branch: 'automated/${{ github.run_id }}/server-styling-update-${{ matrix.branch }}'
+          title: '[${{ matrix.branch }}] chore(docs): Automated styling update from server'
           add-paths: styleguide/assets
           body: |
             Auto-generated update of our locally cached css styling from
              * https://nextcloud.github.io/server/apps/theming/css/default.css
              * https://nextcloud.github.io/server/core/css/server.css
+             * https://nextcloud.github.io/server/core/css/apps.css
              * https://nextcloud.github.io/server/dist/icons.css
           labels: |
             dependencies
