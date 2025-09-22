@@ -76,6 +76,7 @@ This affects the following components:
   - `NcActionRouter`
   - `NcAppNavigationItem`
   - `NcBreadcrumb`
+  - `NcButton`
   - `NcListItem`
 
 #### Renaming icon slot of `Nc*Field`
