@@ -13,14 +13,14 @@ import Vue, { computed, getCurrentInstance } from 'vue'
  * @param required - If the prop is required
  * @return - model proxy
  */
-export function useModelMigration(oldModelName, oldModelEvent, required = false) {
+export function useModelMigration<T = unknown>(oldModelName, oldModelEvent, required = false) {
 	const vm = getCurrentInstance()!.proxy
 
 	if (required && vm.$props[oldModelName] === undefined && vm.$props.modelValue === undefined) {
 		Vue.util.warn(`Missing required prop: "modelValue" or old "${oldModelName}"`)
 	}
 
-	const model = computed({
+	const model = computed<T>({
 		get() {
 			if (vm.$props[oldModelName] !== undefined) {
 				return vm.$props[oldModelName]
