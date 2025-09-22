@@ -6,7 +6,7 @@
 <script setup lang="ts">
 import type { Color } from '../../utils/colors.ts'
 
-import { mdiArrowLeft, mdiCheck, mdiDotsHorizontal } from '@mdi/js'
+import { mdiArrowLeft, mdiCheck, mdiCloseCircleOutline, mdiDotsHorizontal } from '@mdi/js'
 import { useVModel } from '@vueuse/core'
 import { computed, ref } from 'vue'
 import { Chrome } from 'vue-color'
@@ -15,7 +15,7 @@ import NcIconSvgWrapper from '../NcIconSvgWrapper/NcIconSvgWrapper.vue'
 import NcPopover from '../NcPopover/NcPopover.vue'
 import { useModelMigration } from '../../composables/useModelMigration.ts'
 import { t } from '../../l10n.js'
-import { defaultPalette } from '../../utils/colors.ts'
+import { COLOR_BLACK, COLOR_WHITE, defaultPalette } from '../../utils/colors.ts'
 import { createElementId } from '../../utils/createElementId.ts'
 import { logger } from '../../utils/logger.ts'
 
@@ -24,6 +24,12 @@ const props = withDefaults(defineProps<{
 	 * Set to `true` to enable advanced fields including HEX, RGB, and HSL
 	 */
 	advancedFields?: boolean
+
+	/**
+	 * Allow to clear the current color.
+	 * When set the `update:modelValue` and `submit` event might emit also `undefined`.
+	 */
+	clearable?: boolean
 
 	/**
 	 * Selector for the popover container
@@ -59,7 +65,7 @@ const props = withDefaults(defineProps<{
 	paletteOnly?: boolean
 }>(), {
 	container: 'body',
-	palette: () => [...defaultPalette],
+	palette: () => [],
 	modelValue: '',
 	value: undefined,
 })
@@ -68,8 +74,10 @@ const emit = defineEmits<{
 	/**
 	 * Emitted when the submit button was pressed.
 	 * The payload is the same as the current modelValue.
+	 *
+	 * The value might be undefined if the `clearable` prop is set.
 	 */
-	(e: 'submit', v: string): void
+	(e: 'submit', v: string | undefined): void
 
 	/**
 	 * The color picker was fully closed.
@@ -79,15 +87,15 @@ const emit = defineEmits<{
 	/**
 	 * The updated color
 	 */
-	(e: 'update:modelValue', v: string): void
+	(e: 'update:modelValue', v: string | undefined): void
 
 	/**
 	 * @deprecated use `update:modelValue`
 	 */
-	(e: 'update:value', v: string): void
+	(e: 'update:value', v: string | undefined): void
 }>()
 
-const currentColor = useModelMigration<string>('value', 'update:value', true)
+const currentColor = useModelMigration<string | undefined>('value', 'update:value', true)
 // watchEffect(() => console.error('current: ', currentColor.value))
 
 const modelOpen = useVModel(props, 'open', emit, { passive: true, eventName: 'update:open' })
@@ -105,7 +113,8 @@ const id = createElementId()
 const advanced = ref(false)
 
 /**
- * Normalized palette by converting array of hex colors to color objects
+ * Normalized palette by converting array of hex colors to color objects.
+ * This also ensures there is a default palette if needed (no palette passed).
  */
 const normalizedPalette = computed(() => {
 	let palette = props.palette as (string | Color)[]
@@ -113,23 +122,23 @@ const normalizedPalette = computed(() => {
 		if ((typeof color === 'string' && !color.match(HEX_REGEX))
 			|| (typeof color === 'object' && !color.color?.match(HEX_REGEX))) {
 			logger.error('[NcColorPicker] Invalid palette passed', { color })
-			palette = [...defaultPalette]
+			palette = []
 			break
 		}
 	}
 
-	return palette.map((item) => ({
+	if (palette.length === 0) {
+		palette = props.clearable
+			? [...defaultPalette, COLOR_BLACK, COLOR_WHITE]
+			: [...defaultPalette]
+	}
+
+	return palette.map((item: Color | string) => ({
 		color: typeof item === 'object' ? item.color : item,
 		name: typeof item === 'object' && item.name
 			? item.name
 			: t('A color with a HEX value {hex}', { hex: typeof item === 'string' ? item : item.color }),
 	}))
-})
-
-const contrastColor = computed(() => {
-	const black = '#000000'
-	const white = '#FFFFFF'
-	return calculateLuma(currentColor.value) > 0.5 ? black : white
 })
 
 /**
@@ -144,15 +153,37 @@ function handleConfirm(hideCallback: () => void) {
 }
 
 /**
- * Pick a colour
+ * Toggle the currently selected palette color.
  *
- * @param color - The picked color
+ * @param color - The color to toggle
  */
-function pickColor(color: string | Color | { hex: string }) {
-	if (typeof color !== 'string') {
-		color = 'hex' in color ? color.hex : color.color
+function toggleColor(color: string | Color) {
+	color = typeof color === 'string' ? color : color.color
+
+	if (props.clearable && currentColor.value === color) {
+		currentColor.value = undefined
+	} else {
+		currentColor.value = color
 	}
-	currentColor.value = color
+}
+
+/**
+ * @param color - The picked color from the Chrome component
+ * @param color.hex - The hex string of the color
+ */
+function pickCustomColor(color: { hex: string }): void {
+	currentColor.value = color.hex
+}
+
+/**
+ * Get the text color with the most constrast for a given background color.
+ *
+ * @param color - The background color
+ */
+function getContrastColor(color: string): string {
+	return calculateLuma(color) > 0.5
+		? COLOR_BLACK.color
+		: COLOR_WHITE.color
 }
 
 /**
@@ -204,7 +235,10 @@ export default {
 				class="color-picker"
 				aria-modal="true"
 				:aria-label="t('Color picker')"
-				:class="{ 'color-picker--advanced-fields': advanced && advancedFields }">
+				:class="{
+					'color-picker--advanced-fields': advanced && advancedFields,
+					'color-picker--clearable': clearable,
+				}">
 				<Transition name="slide" mode="out-in">
 					<div v-if="!advanced" class="color-picker__simple">
 						<label
@@ -214,7 +248,7 @@ export default {
 							:class="{ 'color-picker__simple-color-circle--active': color === currentColor }"
 							:style="{
 								backgroundColor: color,
-								color: contrastColor,
+								color: getContrastColor(color),
 							}">
 							<span class="hidden-visually">
 								{{ color }} -- {{ currentColor }}
@@ -226,21 +260,34 @@ export default {
 								:aria-label="name"
 								:name="`color-picker-${id}`"
 								:checked="color === currentColor"
-								@click="pickColor(color)">
+								@click="toggleColor(color)">
+						</label>
+						<label v-if="clearable" class="color-picker__clear" :title="t('No color')">
+							<NcIconSvgWrapper
+								:size="currentColor ? 28 : 34 /* size is adusted so that inner mdi icon aligns with color circles */"
+								:path="mdiCloseCircleOutline" />
+							<input
+								type="radio"
+								class="hidden-visually"
+								:aria-label="t('No color')"
+								:name="`color-picker-${id}`"
+								:checked="!currentColor"
+								@click="currentColor = undefined">
 						</label>
 					</div>
 					<Chrome
 						v-else
-						v-model="currentColor"
 						class="color-picker__advanced"
 						:disable-alpha="true"
 						:disable-fields="!advancedFields"
-						@input="pickColor" />
+						:value="currentColor ?? '#000000'"
+						@input="pickCustomColor" />
 				</Transition>
 				<div v-if="!paletteOnly" class="color-picker__navigation">
 					<NcButton
 						v-if="advanced"
 						:aria-label="t('Back')"
+						:title="t('Back')"
 						variant="tertiary"
 						@click="advanced = false">
 						<template #icon>
@@ -250,6 +297,7 @@ export default {
 					<NcButton
 						v-else
 						:aria-label="t('More options')"
+						:title="t('More options')"
 						variant="tertiary"
 						@click="advanced = true">
 						<template #icon>
@@ -274,13 +322,23 @@ export default {
 	align-content: flex-end;
 	flex-direction: column;
 	justify-content: space-between;
-	box-sizing: content-box !important;
-	width: 176px;
-	padding: 8px;
-	border-radius: 3px;
+	padding: var(--border-radius-element); // align with NcPopover border radius
+	min-width: calc(4 * var(--default-clickable-area) + 2 * var(--border-radius-element)); // space for 4 color circles
+
+	&--clearable {
+		min-width: calc(5 * var(--default-clickable-area) + 2 * var(--border-radius-element));
+	}
 
 	&--advanced-fields {
-		width: 264px;
+		min-width: 264px;
+	}
+
+	&__clear {
+		color: var(--color-main-text);
+
+		&:hover:not(:has(:checked)) {
+			color: var(--color-text-maxcontrast);
+		}
 	}
 
 	&__simple {
@@ -324,8 +382,9 @@ export default {
 	&__navigation {
 		display: flex;
 		flex-direction: row;
+		gap: var(--default-grid-baseline);
 		justify-content: space-between;
-		margin-top: 10px;
+		margin-top: calc(2 * var(--default-grid-baseline));
 	}
 }
 
@@ -400,7 +459,7 @@ export default {
 			align-items: center;
 			width: var(--default-clickable-area);
 			height: var(--default-clickable-area);
-			margin-left: 6px;
+			margin-inline-start: 6px;
 			filter: var(--background-invert-if-dark);
 		}
 
@@ -544,6 +603,46 @@ export default {
 	width: 100px;
 	height: 34px;
 	border-radius: 6px;
+}
+</style>
+```
+
+* Allowing to clear the selected color
+
+```vue
+<template>
+	<div class="container1">
+		<NcColorPicker clearable v-model="color">
+			<NcButton>Click Me</NcButton>
+		</NcColorPicker>
+		<div :style="{'background-color': color}" class="color-preview" :class="{'color-preview--none': !color}" />
+	</div>
+</template>
+<script>
+export default {
+	data() {
+		return {
+			color: '#0082c9',
+			open: false
+		}
+	}
+}
+</script>
+<style scoped>
+.container1 {
+	display: flex;
+	gap: 20px;
+}
+
+.color-preview {
+	width: 100px;
+	height: 34px;
+	border: 1px solid black;
+	border-radius: 6px;
+}
+
+.color-preview--none {
+	background: repeating-conic-gradient(#808080 0 25%, #0000 0 50%) 50% / 20px 20px;
 }
 </style>
 ```
