@@ -151,7 +151,7 @@ The `richEditing` mixin can be replaced by just using the `NcRichText` component
   - The default slot was removed
   - The `count` prop is now required [\#5997](https://github.com/nextcloud-libraries/nextcloud-vue/pull/5997)
 - `NcHeaderMenu`
-  - `open` and `close` events were removed in favor of `opened` and `closed` events [\#6429](https://github.com/nextcloud-libraries/nextcloud-vue/pull/6429)
+  - `open`, `close` and `cancel` events were removed in favor of `opened` and `closed` events [\#6429](https://github.com/nextcloud-libraries/nextcloud-vue/pull/6429)
 - `NcSettingsSection`
   - The `limitWidth` was removed (the content is now always limited width) [\#5605](https://github.com/nextcloud-libraries/nextcloud-vue/pull/5605)
 - The `isFullscreen`, and `isMobile` mixins were removed. Use the according composables instead.
