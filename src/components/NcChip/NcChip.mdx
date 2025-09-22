@@ -1,0 +1,28 @@
+{/*!
+  * SPDX-FileCopyrightText: 2025 Nextcloud GmbH and Nextcloud contributors
+  * SPDX-License-Identifier: AGPL-3.0-or-later
+  */}
+import { Meta, ArgTypes } from '@storybook/addon-docs/blocks'
+import { Canvas } from '../../../.storybook/utils.ts'
+import * as NcChipStories from './stories/NcChip.stories.ts'
+
+<Meta of={NcChipStories} />
+
+# NcChip
+
+<ArgTypes of={NcChipStories} />
+
+## Usage
+
+<Canvas of={NcChipStories.Basic} />
+
+### Advanced usage
+
+It is also possible to use custom components for the icon by using the `icon` slot.
+In this example we are using the `NcAvatar` component to render the users avatar as the icon.
+
+*Hint: If you use round icons like avatars you should set their size to `24px` (or use CSS variable `--chip-size`) to make them fully fill and align with the the chip*
+
+Also it is possible to pass custom actions.
+
+<Canvas of={NcChipStories.WithAvatar} />

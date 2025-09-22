@@ -26,9 +26,11 @@ coverage
 # Docs compiled build
 styleguide/build/
 styleguide/index.html
+.storybook/output/
 
 # Playwright files
 /test-results/
 /playwright-report/
 /blob-report/
 /tests/component/setup/.cache/
+
