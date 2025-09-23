@@ -1,12 +1,12 @@
 # 
 # Translators:
-# John Molakvoæ <skjnldsv@protonmail.com>, 2023
-# otterbash <mixalis.tsokaris@gmail.com>, 2023
+# Joas Schilling, 2025
 # Efstathios Iosifidis <iefstathios@gmail.com>, 2025
+# Γιάννος, 2025
 # 
 msgid ""
 msgstr ""
-"Last-Translator: Efstathios Iosifidis <iefstathios@gmail.com>, 2025\n"
+"Last-Translator: Γιάννος, 2025\n"
 "Language-Team: Greek (https://app.transifex.com/nextcloud/teams/64236/el/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Language: el\n"
@@ -37,6 +37,10 @@ msgstr "Δραστηριότητες"
 msgid "Add to a project"
 msgstr "Προσθήκη σε ένα έργο"
 
+#. TRANSLATORS: Alt key on keyboard (Windows/Linux)
+msgid "Alt"
+msgstr "Alt"
+
 msgid "Animals & Nature"
 msgstr "Ζώα & Φύση"
 
@@ -62,6 +66,9 @@ msgstr "Επιστροφή"
 msgid "Back to provider selection"
 msgstr "Επιστροφή στην επιλογή παρόχου"
 
+msgid "Black"
+msgstr "Μαύρο"
+
 #. TRANSLATORS: A color name for RGB(91, 100, 179)
 msgid "Blue Violet"
 msgstr "Μπλε Βιολέτ"
@@ -72,6 +79,12 @@ msgstr "Μπλε Βοστώνης"
 
 msgid "busy"
 msgstr "απασχολημένος"
+
+msgid "Calendar icon"
+msgstr "Εικονίδιο ημερολογίου"
+
+msgid "Cancel"
+msgstr "Ακύρωση"
 
 msgid "Cancel changes"
 msgstr "Ακύρωση αλλαγών"
@@ -91,6 +104,9 @@ msgstr "Εκκαθάριση επιλογής"
 msgid "Clear text"
 msgstr "Εκκαθάριση κειμένου"
 
+msgid "Clear value"
+msgstr "Εκκαθάριση αξίας"
+
 msgid "Close"
 msgstr "Κλείσιμο"
 
@@ -102,6 +118,9 @@ msgstr "Κλείσιμο πλευρικής μπάρας"
 
 msgid "Close Smart Picker"
 msgstr "Κλείσιμο Έξυπνης Επιλογής"
+
+msgid "Close time Picker"
+msgstr "Κλείσιμο επιλογέα ώρας"
 
 msgid "Collapse menu"
 msgstr "Σύμπτυξη μενού"
@@ -115,11 +134,34 @@ msgstr "Επιβεβαίωση αλλαγών"
 msgid "Connect items to a project to make them easier to find"
 msgstr "Συνδέστε αντικείμενα σε ένα έργο για να τα βρίσκετε πιο εύκολα"
 
+#. TRANSLATORS: Ctrl key on keyboard (Windows/Linux)
+msgid "Ctrl"
+msgstr "Ctrl"
+
 msgid "Custom"
 msgstr "Προσαρμογή"
 
 msgid "Dark skin tone"
 msgstr "Σκούρο θέμα"
+
+msgid "Datepicker input"
+msgstr "Εισαγωγή ημερομηνίας"
+
+msgid "Datepicker menu"
+msgstr "Μενού επιλογής ημερομηνίας"
+
+msgid "Decrement hours"
+msgstr "Μείωση ωρών"
+
+msgid "Decrement minutes"
+msgstr "Μείωση λεπτών"
+
+msgid "Decrement seconds"
+msgstr "Μείωση δευτερολέπτων"
+
+#. TRANSLATORS: Delete key on keyboard
+msgid "Delete"
+msgstr "Delete"
 
 #. TRANSLATORS: A color name for RGB(136, 85, 168)
 msgid "Deluge"
@@ -140,6 +182,10 @@ msgstr "Επιλογέας emoji"
 msgid "Enable interactive view"
 msgstr "Ενεργοποίηση διαδραστικής προβολής"
 
+#. TRANSLATORS: Enter key on keyboard
+msgid "Enter"
+msgstr "Enter"
+
 msgid "Enter link"
 msgstr "Εισάγετε σύνδεσμο"
 
@@ -150,8 +196,12 @@ msgstr ""
 "Σφάλμα λήψης σχετικών πόρων. Παρακαλούμε επικοινωνήστε με τον διαχειριστή "
 "του συστήματός σας εάν έχετε οποιεσδήποτε ερωτήσεις."
 
-msgid "External documentation for {name}"
-msgstr "Εξωτερική τεκμηρίωση για {name}"
+#. TRANSLATORS: Escape key on keyboard
+msgid "Escape"
+msgstr "Escape"
+
+msgid "External documentation"
+msgstr "Εξωτερική τεκμηρίωση"
 
 msgid "Failed to add the item to the project"
 msgstr "Αποτυχία προσθήκης του αντικειμένου στο έργο"
@@ -178,9 +228,6 @@ msgstr "Φαγητό & Ποτό"
 msgid "Frequently used"
 msgstr "Συχνά χρησιμοποιούμενο"
 
-msgid "Global"
-msgstr "Καθολικό"
-
 msgid "Go back to the list"
 msgstr "Επιστροφή στην αρχική λίστα"
 
@@ -192,6 +239,15 @@ msgstr "Απόκρυψη λεπτομερειών"
 
 msgid "Hide password"
 msgstr "Απόκρυψη συνθηματικού"
+
+msgid "Increment hours"
+msgstr "Αύξηση ωρών"
+
+msgid "Increment minutes"
+msgstr "Αύξηση λεπτών"
+
+msgid "Increment seconds"
+msgstr "Αύξηση δευτερολέπτων"
 
 msgid "invisible"
 msgstr "αόρατο"
@@ -207,7 +263,7 @@ msgstr "Φόρτωση περισσότερων \"{options}\""
 
 #. TRANSLATORS: The button is in a loading state
 msgid "Loading …"
-msgstr "Φόρτωση …"
+msgstr "Φόρτωση  …"
 
 #. TRANSLATORS: A color name for RGB(45, 115, 190)
 msgid "Mariner"
@@ -222,8 +278,16 @@ msgstr "Μέτριο ανοιχτό θέμα"
 msgid "Medium skin tone"
 msgstr "Μέτριος τόνος θέματος"
 
-msgid "Message limit of {count} characters reached"
-msgstr "Συμπληρώθηκε το όριο των {count} χαρακτήρων του μηνύματος"
+msgid "Message limit of %n character reached"
+msgid_plural "Message limit of %n characters reached"
+msgstr[0] "Έφτασε το όριο μηνύματος των %n χαρακτήρων"
+msgstr[1] "Έφτασε το όριο μηνύματος των %n χαρακτήρων"
+
+msgid "Month picker"
+msgstr "Επιλογή μήνα"
+
+msgid "Month picker overlay"
+msgstr "Επικάλυψη επιλογής μήνα"
 
 msgid "More items …"
 msgstr "Περισσότερα στοιχεία …"
@@ -237,8 +301,17 @@ msgstr "Ουδέτερο χρώμα θέματος"
 msgid "Next"
 msgstr "Επόμενο"
 
+msgid "Next month"
+msgstr "Επόμενος μήνας"
+
+msgid "Next year"
+msgstr "Επόμενο έτος"
+
 msgid "Nextcloud blue"
 msgstr "Μπλε Nextcloud"
+
+msgid "No color"
+msgstr "Χωρίς χρώμα"
 
 msgid "No emoji found"
 msgstr "Δεν βρέθηκε emoji"
@@ -248,6 +321,9 @@ msgstr "Δεν βρέθηκε πάροχος συνδέσμου"
 
 msgid "No results"
 msgstr "Κανένα αποτέλεσμα"
+
+msgid "Now"
+msgstr "Τώρα"
 
 msgid "Objects"
 msgstr "Αντικείμενα"
@@ -262,17 +338,35 @@ msgstr "Olivine"
 msgid "online"
 msgstr "συνδεδεμένος"
 
+msgid "Open hours overlay"
+msgstr "Άνοιγμα επικάλυψης ωρών"
+
 msgid "Open link to \"{resourceName}\""
 msgstr "Άνοιγμα συνδέσμου για \"{resourceName}\""
 
 msgid "Open menu"
 msgstr "Άνοιγμα μενού"
 
-msgid "Open navigation {shortcut}"
-msgstr "Άνοιγμα πλοήγησης {shortcut}"
+msgid "Open minutes overlay"
+msgstr "Άνοιγμα επικάλυψης λεπτών"
+
+msgid "Open months overlay"
+msgstr "Άνοιγμα επικάλυψης μηνών"
+
+msgid "Open navigation"
+msgstr "Άνοιγμα πλοήγησης"
+
+msgid "Open seconds overlay"
+msgstr "Άνοιγμα επικάλυψης δευτερολέπτων"
 
 msgid "Open sidebar"
 msgstr "Άνοιγμα πλευρικής μπάρας"
+
+msgid "Open time picker"
+msgstr "Άνοιγμα επιλογέα ώρας"
+
+msgid "Open years overlay"
+msgstr "Άνοιγμα επικάλυψης ετών"
 
 msgid "Options"
 msgstr "Επιλογές"
@@ -286,32 +380,23 @@ msgstr "Παύση προβολής διαφανειών"
 msgid "People & Body"
 msgstr "Άνθρωποι & Σώμα"
 
-msgid "Pick a date"
-msgstr "Επιλέξτε ημερομηνία"
-
-msgid "Pick a date and a time"
-msgstr "Επιλέξτε ημερομηνία και ώρα"
-
-msgid "Pick a month"
-msgstr "Επιλέξτε μήνα"
-
-msgid "Pick a time"
-msgstr "Επιλέξτε ώρα"
-
-msgid "Pick a week"
-msgstr "Επιλέξτε εβδομάδα"
-
-msgid "Pick a year"
-msgstr "Επιλέξτε έτος"
+msgid "Pick"
+msgstr "Επιλογή"
 
 msgid "Pick an emoji"
 msgstr "Επιλέξτε ένα emoji"
 
-msgid "Please select a time zone:"
-msgstr "Παρακαλούμε επιλέξτε μια ζώνη ώρας:"
+msgid "Please choose a date"
+msgstr "Παρακαλώ επιλέξτε μια ημερομηνία"
 
 msgid "Previous"
 msgstr "Προηγούμενο"
+
+msgid "Previous month"
+msgstr "Προηγούμενος μήνας"
+
+msgid "Previous year"
+msgstr "Προηγούμενο έτος"
 
 msgid "Provider icon"
 msgstr "Εικονίδιο παρόχου"
@@ -341,17 +426,17 @@ msgstr "Αποθήκευση αλλαγών"
 msgid "Search"
 msgstr "Αναζήτηση"
 
+msgid "Search …"
+msgstr "Αναζήτηση …"
+
 msgid "Search emoji"
 msgstr "Αναζήτηση emoji"
 
-msgid "Search for time zone"
-msgstr "Αναζήτηση ζώνης ώρας"
+msgid "Search for timezone"
+msgstr "Αναζήτηση για ζώνη ώρας"
 
 msgid "Search results"
 msgstr "Αποτελέσματα αναζήτησης"
-
-msgid "Search…"
-msgstr "Αναζήτηση…"
 
 #. FOR TRANSLATORS: If possible in your language an even shorter version of 'a
 #. few seconds ago'
@@ -365,8 +450,29 @@ msgstr "δευτερόλεπτα πριν"
 msgid "Select a tag"
 msgstr "Επιλογή ετικέτας"
 
+msgid "Select date"
+msgstr "Επιλογή ημερομηνίας"
+
+msgid "Select date and time"
+msgstr "Επιλογή ημερομηνίας και ώρας"
+
+msgid "Select month"
+msgstr "Επιλογή μήνα"
+
 msgid "Select provider"
 msgstr "Επιλογή παρόχου"
+
+msgid "Select time"
+msgstr "Επιλογή ώρας"
+
+msgid "Select time range"
+msgstr "Επιλογή χρονικού διαστήματος"
+
+msgid "Select week"
+msgstr "Επιλογή εβδομάδας"
+
+msgid "Select year"
+msgstr "Επιλογή έτους"
 
 msgid "Selected"
 msgstr "Επιλεγμένο"
@@ -376,6 +482,10 @@ msgstr "Ρυθμίσεις"
 
 msgid "Settings navigation"
 msgstr "Πλοήγηση ρυθμίσεων"
+
+#. TRANSLATORS: Shift key on keyboard
+msgid "Shift"
+msgstr "Shift"
 
 msgid "Show details"
 msgstr "Εμφάνιση λεπτομερειών"
@@ -398,6 +508,10 @@ msgstr "Έξυπνη Επιλογή"
 msgid "Smileys & Emotion"
 msgstr "Φατσούλες & Συναίσθημα"
 
+#. TRANSLATORS: Space key on keyboard
+msgid "Space"
+msgstr "Space"
+
 msgid "Start slideshow"
 msgstr "Έναρξη προβολής διαφανειών"
 
@@ -407,8 +521,24 @@ msgstr "Ξεκινήστε να πληκτρολογείτε για αναζήτ
 msgid "Submit"
 msgstr "Υποβολή"
 
+msgid "Switch AM/PM mode"
+msgstr "Εναλλαγή λειτουργίας AM/PM"
+
 msgid "Symbols"
 msgstr "Σύμβολα"
+
+#. TRANSLATORS: Tab key on keyboard
+msgid "Tab"
+msgstr "Tab"
+
+msgid "Time picker"
+msgstr "Επιλογή ώρας"
+
+msgid "Timezone"
+msgstr "Ζώνη ώρας"
+
+msgid "Toggle overlay"
+msgstr "Εναλλαγή επικάλυψης"
 
 msgid "Travel & Places"
 msgstr "Ταξίδια & Τοποθεσίες"
@@ -431,9 +561,21 @@ msgstr "Κατάσταση χρήστη: {status}"
 msgid "View team"
 msgstr "Προβολή ομάδας"
 
+msgid "W"
+msgstr "Τε"
+
 #. TRANSLATORS: A color name for RGB(211, 169, 103)
 msgid "Whiskey"
 msgstr "Ουίσκι"
 
+msgid "White"
+msgstr "Λευκό"
+
 msgid "Write a message …"
 msgstr "Γράψτε ένα μήνυμα …"
+
+msgid "Year picker"
+msgstr "Επιλογέας έτους"
+
+msgid "Year picker overlay"
+msgstr "Επικάλυψη επιλογέα έτους"
