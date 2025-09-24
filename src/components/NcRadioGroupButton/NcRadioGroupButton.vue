@@ -82,8 +82,10 @@ function onUpdate() {
 	border-radius: var(--radio-group-button--border-radius);
 	display: flex;
 	flex-direction: row;
+	align-items: center;
 	justify-content: center;
-	height: var(--default-clickable-area);
+	text-align: center;
+	min-height: var(--default-clickable-area);
 	// ensure that the content is centered because of uneven border
 	padding-block: var(--radio-group-button--padding) 0;
 	padding-inline: var(--radio-group-button--padding);
@@ -130,7 +132,6 @@ function onUpdate() {
 
 .radioGroupButton__label {
 	font-weight: bold;
-	line-height: calc(var(--default-clickable-area) - 4px);
 }
 
 .radioGroupButton__icon {
