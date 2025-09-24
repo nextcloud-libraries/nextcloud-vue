@@ -7,8 +7,8 @@
 
 All notable changes to this project will be documented in this file.
 
-## [v9.0.0](https://github.com/nextcloud-libraries/nextcloud-vue/tree/v9.0.0-rc.9) (unreleased)
-[Full Changelog](https://github.com/nextcloud-libraries/nextcloud-vue/compare/v8.30.0...v9.0.0-rc.9)
+## [v9.0.0](https://github.com/nextcloud-libraries/nextcloud-vue/tree/v9.0.0) (2025-09-25)
+[Full Changelog](https://github.com/nextcloud-libraries/nextcloud-vue/compare/v8.31.0...v9.0.0)
 
 ### 💥 Breaking Changes
 * The package now uses Vue 3 instead of Vue 2.7
@@ -204,6 +204,8 @@ The `richEditing` mixin can be replaced by just using the `NcRichText` component
 * feat: add NcKbd component [\#7401](https://github.com/nextcloud-libraries/nextcloud-vue/pull/7401) \([ShGKme](https://github.com/ShGKme)\)
 * feat(NcAssistant*): provide components for consistent integrations design [\#7398](https://github.com/nextcloud-libraries/nextcloud-vue/pull/7398) \([susnux](https://github.com/susnux)\)
 * feat(NcRadioGroup): add component to group radio buttons [\#7441](https://github.com/nextcloud-libraries/nextcloud-vue/pull/7441) \([susnux](https://github.com/susnux)\)
+* feat(NcColorPicker): allow to clear selected value [\#7363](https://github.com/nextcloud-libraries/nextcloud-vue/pull/7363) \([susnux](https://github.com/susnux)\)
+* feat(NcPopover): replace `closeOnClickOutside` with `noCloseOnClickOutside` [\#7525](https://github.com/nextcloud-libraries/nextcloud-vue/pull/7525) \([ShGKme](https://github.com/ShGKme)\)
 
 ### 🐛 Fixed bugs
 * feat(NcAppSidebar): add `info` slot [#6666](https://github.com/nextcloud-libraries/nextcloud-vue/pull/6666) ([Antreesy](https://github.com/Antreesy))
@@ -320,6 +322,12 @@ The `richEditing` mixin can be replaced by just using the `NcRichText` component
 * fix(NcReferenceWidget): harden checks for reference = null [\#7478](https://github.com/nextcloud-libraries/nextcloud-vue/pull/7478) \([Antreesy](https://github.com/Antreesy)\)
 * fix(NcAvatar): make min status size visually accessible [\#7476](https://github.com/nextcloud-libraries/nextcloud-vue/pull/7476) \([DorraJaouad](https://github.com/DorraJaouad)\)
 * fix(NcRadioGroup): fieldsets always need a label for accessibility [\#7483](https://github.com/nextcloud-libraries/nextcloud-vue/pull/7483)
+* fix(useHotKey): use correct callback type [\#7505](https://github.com/nextcloud-libraries/nextcloud-vue/pull/7505) \([susnux](https://github.com/susnux)\)
+* perf(NcTimezonePicker): use Intl to reduce self-size from 206kb to 2kb  [\#7522](https://github.com/nextcloud-libraries/nextcloud-vue/pull/7522) \([ShGKme](https://github.com/ShGKme)\)
+* fix(NcPopover): revert disabling close on click outside by default [\#7524](https://github.com/nextcloud-libraries/nextcloud-vue/pull/7524) \([ShGKme](https://github.com/ShGKme)\)
+* fix(NcRadioGroupButton): adjust hight if needed [\#7544](https://github.com/nextcloud-libraries/nextcloud-vue/pull/7544) \([susnux](https://github.com/susnux)\)
+* fix(NcAvatar): log the error object [\#7562](https://github.com/nextcloud-libraries/nextcloud-vue/pull/7562) \([ChristophWurst](https://github.com/ChristophWurst)\)
+* fix(NcReferenceWidget): migrate to TS [\#7479](https://github.com/nextcloud-libraries/nextcloud-vue/pull/7479) \([Antreesy](https://github.com/Antreesy)\)
 
 ### Changed
 * refactor: replace boolean properties with `default: true` with `default: false` [#6653](https://github.com/nextcloud-libraries/nextcloud-vue/pull/6653) ([susnux](https://github.com/susnux))
@@ -471,6 +479,9 @@ The `richEditing` mixin can be replaced by just using the `NcRichText` component
 * docs: enhance NcAppSidebar documentation [\#6913](https://github.com/nextcloud-libraries/nextcloud-vue/pull/6913) \([Antreesy](https://github.com/Antreesy)\)
 * chore!: deprecate and remove `NcSettingsInputText` component [\#7486](https://github.com/nextcloud-libraries/nextcloud-vue/pull/7486) \([susnux](https://github.com/susnux)\)
 * chore(NcCheckboxRadioSwitch): deprecate button variant in favor of `NcRadioGroup` [\#7490](https://github.com/nextcloud-libraries/nextcloud-vue/pull/7490) \([susnux](https://github.com/susnux)\)
+* refactor(NcAppSettingsDialog): migrate to Typescript and script-setup [\#7515](https://github.com/nextcloud-libraries/nextcloud-vue/pull/7515) \([susnux](https://github.com/susnux)\)
+* ci: fix server styling update [\#7547](https://github.com/nextcloud-libraries/nextcloud-vue/pull/7547) \([susnux](https://github.com/susnux)\)
+* docs: document removed events and props [\#7552](https://github.com/nextcloud-libraries/nextcloud-vue/pull/7552) \([Antreesy](https://github.com/Antreesy)\)
 
 ## [v8.31.0](https://github.com/nextcloud-libraries/nextcloud-vue/tree/v8.31.0) (2025-09-11)
 ### 📝 Notes
