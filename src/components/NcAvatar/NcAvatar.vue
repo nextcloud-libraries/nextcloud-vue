@@ -860,8 +860,8 @@ export default {
 				// re-get to avoid concurrent access
 				setUserHasAvatar(this.user, true)
 			}
-			img.onerror = () => {
-				logger.debug('[NcAvatar] Invalid avatar url', { url })
+			img.onerror = (error) => {
+				logger.debug('[NcAvatar] Invalid avatar url', { error, url })
 				// Avatar is invalid, reset
 				this.avatarUrlLoaded = null
 				this.avatarSrcSetLoaded = null
