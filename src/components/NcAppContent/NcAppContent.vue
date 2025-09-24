@@ -451,7 +451,7 @@ export default {
 			 * Emitted when the list pane is resized by the user
 			 */
 			this.$emit('resize-list', { size: listPaneSize })
-			logger.debug('AppContent pane config', listPaneSize)
+			logger.debug('AppContent pane config', { size: listPaneSize })
 		},
 
 		// $slots is not reactive, we need to update this manually

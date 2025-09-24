@@ -729,7 +729,7 @@ export default {
 					}
 				})
 				.catch((error) => {
-					logger.debug('Smart picker promise rejected:', error)
+					logger.debug('Smart picker promise rejected', { error })
 					const tmpElem = document.getElementById('tmp-smart-picker-result-node')
 					this.setCursorAfter(tmpElem)
 					tmpElem.remove()

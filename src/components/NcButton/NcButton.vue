@@ -697,7 +697,8 @@ export default {
 			logger.warn('You need to fill either the text or the ariaLabel props in the button component.', {
 				text: this.$slots.default?.[0]?.text,
 				ariaLabel: this.ariaLabel,
-			}, this)
+				instance: this,
+			})
 		}
 
 		const isLink = (this.to || this.href)

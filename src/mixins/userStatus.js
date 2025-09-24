@@ -53,12 +53,12 @@ export default {
 				this.userStatus.message = message || ''
 				this.userStatus.icon = icon || ''
 				this.hasStatus = true
-			} catch (e) {
-				if (e.response.status === 404 && e.response.data.ocs?.data?.length === 0) {
+			} catch (error) {
+				if (error.response.status === 404 && error.response.data.ocs?.data?.length === 0) {
 					// User just has no status set, so don't log it
 					return
 				}
-				logger.error(e)
+				logger.error('Could not fetch user status', { error })
 			}
 		},
 	},

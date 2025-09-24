@@ -394,8 +394,8 @@ export default {
 			try {
 				this.$focusTrap?.deactivate(options)
 				this.$focusTrap = null
-			} catch (err) {
-				logger.warn(err)
+			} catch (error) {
+				logger.warn('Could not clear focus trap', { error })
 			}
 		},
 

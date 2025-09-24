@@ -142,8 +142,8 @@ export default {
 				loading(true)
 				searchService(query).then((collections) => {
 					searchCollections.value = collections
-				}).catch((e) => {
-					logger.error('Failed to search for collections', e)
+				}).catch((error) => {
+					logger.error('Failed to search for collections', { error })
 				}).finally(() => {
 					loading(false)
 				})
@@ -247,8 +247,8 @@ export default {
 					}).catch((e) => {
 						this.setError(t('Failed to create a project'), e)
 					})
-				}).catch((e) => {
-					logger.error('No resource selected', e)
+				}).catch((error) => {
+					logger.error('No resource selected', { error })
 				})
 			}
 
@@ -269,7 +269,7 @@ export default {
 		},
 
 		setError(error, e) {
-			logger.error(error, e)
+			logger.error(error, { error: e })
 			this.error = error
 			setTimeout(() => {
 				this.error = null
@@ -278,8 +278,8 @@ export default {
 
 		renameCollectionFromItem({ collectionId, name }) {
 			this.renameCollection({ collectionId, name })
-				.catch((e) => {
-					logger.error(t('Failed to rename the project'), e)
+				.catch((error) => {
+					logger.error(t('Failed to rename the project'), { error })
 					this.collectionsError[collectionId] = t('Failed to rename the project')
 					setTimeout(() => {
 						this.collectionsError[collectionId] = null

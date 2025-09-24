@@ -180,9 +180,9 @@ export default {
 				const response = await axios.get(generateOcsUrl(`/teams/resources/${this.providerId}/${this.itemId}`))
 				this.teamResources = response.data.ocs.data.teams
 				this.teamOpen = [this.teamResources[0]?.teamId]
-			} catch (e) {
+			} catch (error) {
 				this.teamResources = null
-				logger.error(e)
+				logger.error('Could not fetch Teams resources', { error })
 			} finally {
 				this.loading = false
 			}
