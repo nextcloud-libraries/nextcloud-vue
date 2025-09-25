@@ -561,7 +561,7 @@ msgid "View team"
 msgstr "Ver o equipo"
 
 msgid "W"
-msgstr "W"
+msgstr "s"
 
 #. TRANSLATORS: A color name for RGB(211, 169, 103)
 msgid "Whiskey"
