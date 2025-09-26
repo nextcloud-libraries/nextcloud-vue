@@ -36,6 +36,10 @@ msgstr "アクティビティ"
 msgid "Add to a project"
 msgstr "プロジェクトに追加する"
 
+#. TRANSLATORS: Alt key on keyboard (Windows/Linux)
+msgid "Alt"
+msgstr "Alt"
+
 msgid "Animals & Nature"
 msgstr "動物と自然"
 
@@ -60,6 +64,9 @@ msgstr "戻る"
 
 msgid "Back to provider selection"
 msgstr "プロバイダーの選択に戻る"
+
+msgid "Black"
+msgstr "黒"
 
 #. TRANSLATORS: A color name for RGB(91, 100, 179)
 msgid "Blue Violet"
@@ -126,6 +133,10 @@ msgstr "変更を承認"
 msgid "Connect items to a project to make them easier to find"
 msgstr "項目をプロジェクトに接続して検索しやすくする"
 
+#. TRANSLATORS: Ctrl key on keyboard (Windows/Linux)
+msgid "Ctrl"
+msgstr "Ctrl"
+
 msgid "Custom"
 msgstr "カスタム"
 
@@ -147,6 +158,10 @@ msgstr "分を減らす"
 msgid "Decrement seconds"
 msgstr "秒を減らす"
 
+#. TRANSLATORS: Delete key on keyboard
+msgid "Delete"
+msgstr "Delete"
+
 #. TRANSLATORS: A color name for RGB(136, 85, 168)
 msgid "Deluge"
 msgstr "豪雨"
@@ -166,6 +181,10 @@ msgstr "絵文字ピッカー"
 msgid "Enable interactive view"
 msgstr "インタラクティブ・ビューを有効にする"
 
+#. TRANSLATORS: Enter key on keyboard
+msgid "Enter"
+msgstr "Enter"
+
 msgid "Enter link"
 msgstr "リンクを入力する"
 
@@ -173,6 +192,10 @@ msgid ""
 "Error getting related resources. Please contact your system administrator if"
 " you have any questions."
 msgstr "関連リソースの取得エラー。ご不明な点がございましたら、システム管理者にお問い合わせください。"
+
+#. TRANSLATORS: Escape key on keyboard
+msgid "Escape"
+msgstr "Escape"
 
 msgid "External documentation"
 msgstr "外部ドキュメント"
@@ -201,10 +224,6 @@ msgstr "食べ物と飲み物"
 
 msgid "Frequently used"
 msgstr "よく使うもの"
-
-#. TRANSLATORS: This refers to global timezones in the timezone picker
-msgid "Global"
-msgstr "全体"
 
 msgid "Go back to the list"
 msgstr "リストに戻る"
@@ -241,7 +260,7 @@ msgstr "\"{options}\" をもっと読み込む"
 
 #. TRANSLATORS: The button is in a loading state
 msgid "Loading …"
-msgstr "読み込み中 …"
+msgstr "読み込み中 …"
 
 #. TRANSLATORS: A color name for RGB(45, 115, 190)
 msgid "Mariner"
@@ -267,7 +286,7 @@ msgid "Month picker overlay"
 msgstr "月ピッカーオーバーレイ"
 
 msgid "More items …"
-msgstr "他のアイテム"
+msgstr "他のアイテム　…"
 
 msgid "More options"
 msgstr "他のオプション"
@@ -286,6 +305,9 @@ msgstr "次年"
 
 msgid "Nextcloud blue"
 msgstr "ネクストクラウド・ブルー"
+
+msgid "No color"
+msgstr "色なし"
 
 msgid "No emoji found"
 msgstr "絵文字が見つかりません"
@@ -400,6 +422,9 @@ msgstr "変更を保存"
 msgid "Search"
 msgstr "検索"
 
+msgid "Search …"
+msgstr "検索…"
+
 msgid "Search emoji"
 msgstr "絵文字を検索"
 
@@ -408,9 +433,6 @@ msgstr "タイムゾーンを検索"
 
 msgid "Search results"
 msgstr "検索結果"
-
-msgid "Search…"
-msgstr "検索…"
 
 #. FOR TRANSLATORS: If possible in your language an even shorter version of 'a
 #. few seconds ago'
@@ -457,6 +479,10 @@ msgstr "設定"
 msgid "Settings navigation"
 msgstr "ナビゲーション設定"
 
+#. TRANSLATORS: Shift key on keyboard
+msgid "Shift"
+msgstr "Shift"
+
 msgid "Show details"
 msgstr "詳細の表示"
 
@@ -478,6 +504,10 @@ msgstr "スマートピッカー"
 msgid "Smileys & Emotion"
 msgstr "感情表現"
 
+#. TRANSLATORS: Space key on keyboard
+msgid "Space"
+msgstr "Space"
+
 msgid "Start slideshow"
 msgstr "スライドショーを開始"
 
@@ -492,6 +522,10 @@ msgstr "AM/PMモードの切り替え"
 
 msgid "Symbols"
 msgstr "記号"
+
+#. TRANSLATORS: Tab key on keyboard
+msgid "Tab"
+msgstr "Tab"
 
 msgid "Time picker"
 msgstr "時刻ピッカー"
@@ -529,6 +563,9 @@ msgstr "W"
 #. TRANSLATORS: A color name for RGB(211, 169, 103)
 msgid "Whiskey"
 msgstr "ウイスキー"
+
+msgid "White"
+msgstr "白"
 
 msgid "Write a message …"
 msgstr "メッセージを書く ..."
