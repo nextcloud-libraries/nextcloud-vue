@@ -127,7 +127,7 @@ export default {
 					this.reference = response.data.ocs.data.references[this.inputValue]
 				})
 				.catch((error) => {
-					logger.error(error)
+					logger.error('Could not update reference', { error })
 				})
 				.then(() => {
 					this.loading = false

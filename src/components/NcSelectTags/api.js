@@ -52,8 +52,8 @@ function parseXml(xml) {
 	let dom = null
 	try {
 		dom = (new DOMParser()).parseFromString(xml, 'text/xml')
-	} catch (e) {
-		logger.error('Failed to parse xml document', e)
+	} catch (error) {
+		logger.error('Failed to parse xml document', { error })
 	}
 	return dom
 }

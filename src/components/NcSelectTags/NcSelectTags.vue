@@ -367,7 +367,7 @@ export default {
 			const result = await searchTags()
 			this.availableTags = result
 		} catch (error) {
-			logger.error('Loading systemtags failed', error)
+			logger.error('Loading systemtags failed', { error })
 		}
 	},
 

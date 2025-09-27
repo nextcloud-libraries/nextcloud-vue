@@ -137,7 +137,7 @@ export default {
 				this.loading = false
 				this.$emit('loaded')
 			}).catch((error) => {
-				logger.error('Failed to extract references', error)
+				logger.error('Failed to extract references', { error })
 				this.loading = false
 				this.$emit('loaded')
 			})

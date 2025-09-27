@@ -245,9 +245,9 @@ export default {
 			try {
 				const response = await axios.get(this.url)
 				this.resources = response.data.ocs?.data
-			} catch (e) {
+			} catch (error) {
 				this.error = e
-				logger.error(e)
+				logger.error('Could not fetch related resources', { error })
 			} finally {
 				this.loading = false
 			}
