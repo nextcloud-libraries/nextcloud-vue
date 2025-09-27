@@ -381,6 +381,13 @@ export default {
 				}
 			},
 		},
+
+		paneConfigKey: {
+			immediate: true,
+			handler() {
+				this.restorePaneConfig()
+			},
+		},
 	},
 
 	updated() {
