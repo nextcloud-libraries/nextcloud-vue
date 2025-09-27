@@ -397,6 +397,13 @@ export default {
 				}
 			},
 		},
+		paneConfigKey: {
+			immediate: true,
+			handler() {
+				console.log('AppContent paneConfigKey changed, restoring pane config', this.paneConfigKey)
+				this.restorePaneConfig()
+			},
+		},
 	},
 
 	updated() {
