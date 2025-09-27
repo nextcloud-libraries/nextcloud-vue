@@ -3,170 +3,6 @@
   - SPDX-License-Identifier: AGPL-3.0-or-later
 -->
 
-<docs>
-Just nest the `AppSettingSections` component into `NcAppSettingsDialog`,
-providing the section's name prop. You can put your settings within each
-`NcAppSettingsSection` component.
-
-```vue
-<template>
-	<div>
-		<NcButton @click="settingsOpen = true">Show Settings</NcButton>
-		<NcAppSettingsDialog :open.sync="settingsOpen" :show-navigation="true" name="Application settings">
-			<NcAppSettingsSection id="asci-name-1" name="Example name 1">
-				Some example content
-			</NcAppSettingsSection>
-			<NcAppSettingsSection id="asci-name-2" name="Example name 2">
-				Some more content
-			</NcAppSettingsSection>
-			<NcAppSettingsSection id="asci-name-3" name="Example name 3">
-				Some example content
-			</NcAppSettingsSection>
-			<NcAppSettingsSection id="asci-name-4" name="Example name 4">
-				Some more content
-			</NcAppSettingsSection>
-			<NcAppSettingsSection id="asci-name-5" name="Example name 5">
-				Some example content
-			</NcAppSettingsSection>
-			<NcAppSettingsSection id="asci-name-6" name="Example name 6">
-				Some more content
-			</NcAppSettingsSection>
-			<NcAppSettingsSection id="asci-name-7" name="Example name 7">
-				Some example content
-			</NcAppSettingsSection>
-			<NcAppSettingsSection id="asci-name-8" name="Example name 8">
-				Some more content
-			</NcAppSettingsSection>
-			<NcAppSettingsSection id="asci-name-9" name="Example name 9">
-				Some more content
-			</NcAppSettingsSection>
-			<NcAppSettingsSection id="asci-name-10" name="Example name 10">
-				Some more content
-			</NcAppSettingsSection>
-		</NcAppSettingsDialog>
-	</div>
-</template>
-
-<script>
-export default {
-	data() {
-		return {
-			settingsOpen: false,
-		}
-	},
-}
-</script>
-```
-
-You can also add icons to the section navigation:
-
-```vue
-<template>
-	<div>
-		<NcButton @click="settingsOpen = true">Show Settings</NcButton>
-		<NcAppSettingsDialog :open.sync="settingsOpen" :show-navigation="true" name="Application settings">
-			<NcAppSettingsSection id="asci-name-1" name="Instagram">
-				<template #icon>
-					<Instagram :size="20" />
-				</template>
-				<p style="height: 100vh;">
-					Instagram setting
-				</p>
-			</NcAppSettingsSection>
-			<NcAppSettingsSection id="asci-name-2" name="Mastodon">
-				<template #icon>
-					<Mastodon :size="20" />
-				</template>
-				<p style="height: 100vh;">
-					Mastodon setting
-				</p>
-			</NcAppSettingsSection>
-			<NcAppSettingsSection id="asci-name-3" name="Twitch">
-				<template #icon>
-					<Twitch :size="20" />
-				</template>
-				<p style="height: 100vh;">
-					Twitch setting
-				</p>
-			</NcAppSettingsSection>
-			<NcAppSettingsSection id="asci-name-4" name="Twitter">
-				<template #icon>
-					<Twitter :size="20" />
-				</template>
-				Twitter setting
-			</NcAppSettingsSection>
-		</NcAppSettingsDialog>
-	</div>
-</template>
-
-<script>
-import Instagram from 'vue-material-design-icons/Instagram.vue'
-import Mastodon from 'vue-material-design-icons/Mastodon.vue'
-import Twitch from 'vue-material-design-icons/Twitch.vue'
-import Twitter from 'vue-material-design-icons/Twitter.vue'
-
-export default {
-	components: {
-		Instagram,
-		Mastodon,
-		Twitch,
-		Twitter,
-	},
-	data() {
-		return {
-			settingsOpen: false,
-		}
-	},
-}
-</script>
-```
-</docs>
-
-<template>
-	<NcDialog
-		v-if="open"
-		class="app-settings"
-		content-classes="app-settings__content"
-		navigation-classes="app-settings__navigation"
-		:additional-trap-elements="additionalTrapElements"
-		:container="container"
-		close-on-click-outside
-		:navigation-aria-label="t('Settings navigation')"
-		size="large"
-		:name="name"
-		@update:open="handleCloseModal">
-		<template v-if="hasNavigation" #navigation="{ isCollapsed }">
-			<ul
-				v-if="!isCollapsed"
-				class="navigation-list">
-				<li v-for="section in registeredSections" :key="section.id">
-					<a
-						:aria-current="`${section.id === selectedSection}`"
-						class="navigation-list__link"
-						:class="{
-							'navigation-list__link--active': section.id === selectedSection,
-							'navigation-list__link--icon': hasNavigationIcons,
-						}"
-						:href="`#settings-section_${section.id}`"
-						tabindex="0"
-						@click.prevent="handleSettingsNavigationClick(section.id)"
-						@keydown.enter="handleSettingsNavigationClick(section.id)">
-						<div v-if="hasNavigationIcons" class="navigation-list__link-icon">
-							<NcVNodes v-if="section.icon" :vnodes="section.icon" />
-						</div>
-						<span class="navigation-list__link-text">
-							{{ section.name }}
-						</span>
-					</a>
-				</li>
-			</ul>
-		</template>
-		<div ref="settingsScroller" @scroll="handleScroll">
-			<slot />
-		</div>
-	</NcDialog>
-</template>
-
 <script setup lang="ts">
 import type { VNode } from 'vue'
 
@@ -344,6 +180,51 @@ function unregisterSection(id: string) {
 }
 </script>
 
+<template>
+	<NcDialog
+		v-if="open"
+		class="app-settings"
+		content-classes="app-settings__content"
+		navigation-classes="app-settings__navigation"
+		:additional-trap-elements="additionalTrapElements"
+		:container="container"
+		close-on-click-outside
+		:navigation-aria-label="t('Settings navigation')"
+		size="large"
+		:name="name"
+		@update:open="handleCloseModal">
+		<template v-if="hasNavigation" #navigation="{ isCollapsed }">
+			<ul
+				v-if="!isCollapsed"
+				class="navigation-list">
+				<li v-for="section in registeredSections" :key="section.id">
+					<a
+						:aria-current="`${section.id === selectedSection}`"
+						class="navigation-list__link"
+						:class="{
+							'navigation-list__link--active': section.id === selectedSection,
+							'navigation-list__link--icon': hasNavigationIcons,
+						}"
+						:href="`#settings-section_${section.id}`"
+						tabindex="0"
+						@click.prevent="handleSettingsNavigationClick(section.id)"
+						@keydown.enter="handleSettingsNavigationClick(section.id)">
+						<div v-if="hasNavigationIcons" class="navigation-list__link-icon">
+							<NcVNodes v-if="section.icon" :vnodes="section.icon" />
+						</div>
+						<span class="navigation-list__link-text">
+							{{ section.name }}
+						</span>
+					</a>
+				</li>
+			</ul>
+		</template>
+		<div ref="settingsScroller" @scroll="handleScroll">
+			<slot />
+		</div>
+	</NcDialog>
+</template>
+
 <style lang="scss" scoped>
 .app-settings {
 	:deep &__navigation {
@@ -414,3 +295,122 @@ function unregisterSection(id: string) {
 	}
 }
 </style>
+
+<docs>
+Just nest the `AppSettingSections` component into `NcAppSettingsDialog`,
+providing the section's name prop. You can put your settings within each
+`NcAppSettingsSection` component.
+
+```vue
+<template>
+	<div>
+		<NcButton @click="settingsOpen = true">Show Settings</NcButton>
+		<NcAppSettingsDialog :open.sync="settingsOpen" :show-navigation="true" name="Application settings">
+			<NcAppSettingsSection id="asci-name-1" name="Example name 1">
+				Some example content
+			</NcAppSettingsSection>
+			<NcAppSettingsSection id="asci-name-2" name="Example name 2">
+				Some more content
+			</NcAppSettingsSection>
+			<NcAppSettingsSection id="asci-name-3" name="Example name 3">
+				Some example content
+			</NcAppSettingsSection>
+			<NcAppSettingsSection id="asci-name-4" name="Example name 4">
+				Some more content
+			</NcAppSettingsSection>
+			<NcAppSettingsSection id="asci-name-5" name="Example name 5">
+				Some example content
+			</NcAppSettingsSection>
+			<NcAppSettingsSection id="asci-name-6" name="Example name 6">
+				Some more content
+			</NcAppSettingsSection>
+			<NcAppSettingsSection id="asci-name-7" name="Example name 7">
+				Some example content
+			</NcAppSettingsSection>
+			<NcAppSettingsSection id="asci-name-8" name="Example name 8">
+				Some more content
+			</NcAppSettingsSection>
+			<NcAppSettingsSection id="asci-name-9" name="Example name 9">
+				Some more content
+			</NcAppSettingsSection>
+			<NcAppSettingsSection id="asci-name-10" name="Example name 10">
+				Some more content
+			</NcAppSettingsSection>
+		</NcAppSettingsDialog>
+	</div>
+</template>
+
+<script>
+export default {
+	data() {
+		return {
+			settingsOpen: false,
+		}
+	},
+}
+</script>
+```
+
+You can also add icons to the section navigation:
+
+```vue
+<template>
+	<div>
+		<NcButton @click="settingsOpen = true">Show Settings</NcButton>
+		<NcAppSettingsDialog :open.sync="settingsOpen" :show-navigation="true" name="Application settings">
+			<NcAppSettingsSection id="asci-name-1" name="Instagram">
+				<template #icon>
+					<Instagram :size="20" />
+				</template>
+				<p style="height: 100vh;">
+					Instagram setting
+				</p>
+			</NcAppSettingsSection>
+			<NcAppSettingsSection id="asci-name-2" name="Mastodon">
+				<template #icon>
+					<Mastodon :size="20" />
+				</template>
+				<p style="height: 100vh;">
+					Mastodon setting
+				</p>
+			</NcAppSettingsSection>
+			<NcAppSettingsSection id="asci-name-3" name="Twitch">
+				<template #icon>
+					<Twitch :size="20" />
+				</template>
+				<p style="height: 100vh;">
+					Twitch setting
+				</p>
+			</NcAppSettingsSection>
+			<NcAppSettingsSection id="asci-name-4" name="Twitter">
+				<template #icon>
+					<Twitter :size="20" />
+				</template>
+				Twitter setting
+			</NcAppSettingsSection>
+		</NcAppSettingsDialog>
+	</div>
+</template>
+
+<script>
+import Instagram from 'vue-material-design-icons/Instagram.vue'
+import Mastodon from 'vue-material-design-icons/Mastodon.vue'
+import Twitch from 'vue-material-design-icons/Twitch.vue'
+import Twitter from 'vue-material-design-icons/Twitter.vue'
+
+export default {
+	components: {
+		Instagram,
+		Mastodon,
+		Twitch,
+		Twitter,
+	},
+	data() {
+		return {
+			settingsOpen: false,
+		}
+	},
+}
+</script>
+```
+</docs>
