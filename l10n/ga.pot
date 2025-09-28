@@ -65,6 +65,9 @@ msgstr "Ar ais"
 msgid "Back to provider selection"
 msgstr "Ar ais go roghnú soláthróra"
 
+msgid "Black"
+msgstr "Dubh"
+
 #. TRANSLATORS: A color name for RGB(91, 100, 179)
 msgid "Blue Violet"
 msgstr "Gorm Violet"
@@ -309,6 +312,9 @@ msgstr "An bhliain seo chugainn"
 
 msgid "Nextcloud blue"
 msgstr "Nextcloud gorm"
+
+msgid "No color"
+msgstr "Gan dath"
 
 msgid "No emoji found"
 msgstr "Níor aimsíodh emoji"
@@ -564,6 +570,9 @@ msgstr "W"
 #. TRANSLATORS: A color name for RGB(211, 169, 103)
 msgid "Whiskey"
 msgstr "Fuisce"
+
+msgid "White"
+msgstr "Bán"
 
 msgid "Write a message …"
 msgstr "Scríobh teachtaireacht …"
