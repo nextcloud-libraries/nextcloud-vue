@@ -157,7 +157,7 @@ import { loadState } from '@nextcloud/initial-state'
 import { useSwipe } from '@vueuse/core'
 import { Pane, Splitpanes } from 'splitpanes'
 import NcAppContentDetailsToggle from './NcAppContentDetailsToggle.vue'
-import { useIsMobile } from '../../composables/useIsMobile/index.js'
+import { useIsMobile } from '../../composables/useIsMobile/index.ts'
 import { logger } from '../../utils/logger.ts'
 import { isRtl } from '../../utils/rtl.ts'
 

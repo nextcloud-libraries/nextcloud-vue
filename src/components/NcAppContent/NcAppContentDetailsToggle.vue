@@ -21,7 +21,7 @@
 import { emit } from '@nextcloud/event-bus'
 import ArrowLeft from 'vue-material-design-icons/ArrowLeft.vue'
 import ArrowRight from 'vue-material-design-icons/ArrowRight.vue'
-import { useIsMobile } from '../../composables/useIsMobile/index.js'
+import { useIsMobile } from '../../composables/useIsMobile/index.ts'
 import { t } from '../../l10n.js'
 import { isRtl } from '../../utils/rtl.ts'
 import NcButton from '../NcButton/index.js'

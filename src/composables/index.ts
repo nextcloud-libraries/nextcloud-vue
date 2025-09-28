@@ -12,4 +12,4 @@ export {
 export * from './useHotKey/index.ts'
 export * from './useIsDarkTheme/index.ts'
 export * from './useIsFullscreen/index.ts'
-export * from './useIsMobile/index.js'
+export * from './useIsMobile/index.ts'
