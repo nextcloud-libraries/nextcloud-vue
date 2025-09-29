@@ -65,6 +65,9 @@ msgstr "Назад"
 msgid "Back to provider selection"
 msgstr "Назад на избор пружаоца"
 
+msgid "Black"
+msgstr "Црно"
+
 #. TRANSLATORS: A color name for RGB(91, 100, 179)
 msgid "Blue Violet"
 msgstr "Плаво љубичаста"
@@ -306,6 +309,9 @@ msgstr "Наредна година"
 
 msgid "Nextcloud blue"
 msgstr "Nextcloud плава"
+
+msgid "No color"
+msgstr "Без боје"
 
 msgid "No emoji found"
 msgstr "Није пронађен ниједан емођи"
@@ -561,6 +567,9 @@ msgstr "W"
 #. TRANSLATORS: A color name for RGB(211, 169, 103)
 msgid "Whiskey"
 msgstr "Виски"
+
+msgid "White"
+msgstr "Бело"
 
 msgid "Write a message …"
 msgstr "Напишите поруку…"
