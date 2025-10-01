@@ -558,6 +558,16 @@ export default {
 			default: undefined,
 			type: [Boolean, HTMLElement, SVGElement, String],
 		},
+
+		/**
+		 * Specify an element to receive initial focus after focus trap activation
+		 *
+		 * @type {import('focus-trap').FocusTargetValueOrFalse}
+		 */
+		initialFocus: {
+			default: undefined,
+			type: [Boolean, HTMLElement, SVGElement, String],
+		},
 	},
 
 	emits: [
@@ -863,6 +873,7 @@ export default {
 				// Focus trap is deactivated on modal close anyway.
 				escapeDeactivates: false,
 				setReturnFocus: this.setReturnFocus,
+				initialFocus: this.initialFocus,
 			}
 
 			// Init focus trap
