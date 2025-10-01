@@ -162,12 +162,20 @@ const props = withDefaults(defineProps<{
 	type: '',
 })
 
+// Special case: browsers do not shorten numbers in German
+// Fallback to English to have 2K instead of 2048
+// TODO: what about Italian with the same issue?
+let locale = getCanonicalLocale()
+if (locale === 'de' || locale === 'de-DE') {
+	locale = 'en'
+}
+
 const humanizedCount = computed(() => {
 	if (props.raw) {
 		return props.count.toString()
 	}
 
-	const formatter = new Intl.NumberFormat(getCanonicalLocale(), {
+	const formatter = new Intl.NumberFormat(locale, {
 		notation: 'compact',
 		compactDisplay: 'short',
 	})
