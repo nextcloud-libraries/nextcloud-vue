@@ -211,6 +211,7 @@ export default {
 </docs>
 
 <script setup lang="ts">
+import type { FocusTargetOrFalse } from 'focus-trap'
 import type { Slot } from 'vue'
 import type { ComponentProps, VueClassType } from '../../utils/VueTypes.ts'
 
@@ -236,6 +237,12 @@ const props = withDefaults(defineProps<{
 
 	/** Additional elements to add to the focus trap */
 	additionalTrapElements?: Array<string | HTMLElement>
+
+	/** Set element to return focus to after focus trap deactivation */
+	setReturnFocus?: FocusTargetOrFalse
+
+	/** Specify an element to receive initial focus after focus trap activation */
+	initialFocus?: FocusTargetOrFalse
 
 	/**
 	 * The element where to mount the dialog, if `null` is passed the dialog is mounted in place.
@@ -490,6 +497,8 @@ const modalProps = computed(() => ({
 	outTransition: props.outTransition,
 	closeOnClickOutside: props.closeOnClickOutside,
 	additionalTrapElements: props.additionalTrapElements,
+	setReturnFocus: props.setReturnFocus,
+	initialFocus: props.initialFocus,
 }))
 </script>
 
