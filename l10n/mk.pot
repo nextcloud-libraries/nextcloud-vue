@@ -1,11 +1,11 @@
 # 
 # Translators:
-# Joas Schilling, 2023
-# Transifex Bot <>, 2023
+# Joas Schilling, 2025
+# Сашко Тодоров <sasetodorov@gmail.com>, 2025
 # 
 msgid ""
 msgstr ""
-"Last-Translator: Transifex Bot <>, 2023\n"
+"Last-Translator: Сашко Тодоров <sasetodorov@gmail.com>, 2025\n"
 "Language-Team: Macedonian (https://app.transifex.com/nextcloud/teams/64236/mk/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Language: mk\n"
@@ -17,26 +17,37 @@ msgstr "{tag} (невидливо)"
 msgid "{tag} (restricted)"
 msgstr "{tag} (ограничено)"
 
+msgid "A color with a HEX value {hex}"
+msgstr "Боја со HEX вредност {hex}"
+
 msgid "a few seconds ago"
-msgstr ""
+msgstr "пред неколку секунди"
+
+#. TRANSLATORS: A color name for RGB(110, 166, 143)
+msgid "Acapulco"
+msgstr "Акапулко"
 
 msgid "Actions"
 msgstr "Акции"
 
-msgid "Actions for item with name \"{name}\""
-msgstr ""
-
 msgid "Activities"
 msgstr "Активности"
+
+msgid "Add to a project"
+msgstr "Додај во проект"
+
+#. TRANSLATORS: Alt key on keyboard (Windows/Linux)
+msgid "Alt"
+msgstr "Alt"
 
 msgid "Animals & Nature"
 msgstr "Животни & Природа"
 
 msgid "Any link"
-msgstr ""
+msgstr "Секој линк"
 
 msgid "Anything shared with the same group of people will show up here"
-msgstr ""
+msgstr "Сè што е споделено со истата група луѓе ќе се појави овде"
 
 msgid "Avatar of {displayName}"
 msgstr "Аватар на {displayName}"
@@ -44,67 +55,168 @@ msgstr "Аватар на {displayName}"
 msgid "Avatar of {displayName}, {status}"
 msgstr "Аватар на {displayName}, {status}"
 
+#. TRANSLATORS: User status if the user is currently away from keyboard
+msgid "away"
+msgstr "оддалечен"
+
 msgid "Back"
-msgstr ""
+msgstr "Назад"
 
 msgid "Back to provider selection"
-msgstr ""
+msgstr "Назад до избор на провајдер"
+
+msgid "Black"
+msgstr "Црно"
+
+#. TRANSLATORS: A color name for RGB(91, 100, 179)
+msgid "Blue Violet"
+msgstr "Сино Виолетова"
+
+#. TRANSLATORS: A color name for RGB(55, 148, 172)
+msgid "Boston Blue"
+msgstr "Бостон Сина"
+
+msgid "busy"
+msgstr "зафатен"
+
+msgid "Calendar icon"
+msgstr "Икона за календар"
+
+msgid "Cancel"
+msgstr "Откажи"
 
 msgid "Cancel changes"
 msgstr "Откажи ги промените"
 
 msgid "Change name"
-msgstr ""
+msgstr "Промени име"
 
 msgid "Choose"
 msgstr "Избери"
 
 msgid "Clear search"
-msgstr ""
+msgstr "Исчисти пребарување"
+
+msgid "Clear selected"
+msgstr "Исчисти означени"
 
 msgid "Clear text"
-msgstr ""
+msgstr "Исчисти текст"
+
+msgid "Clear value"
+msgstr "Исчисти вредност"
 
 msgid "Close"
 msgstr "Затвори"
-
-msgid "Close modal"
-msgstr "Затвори модал"
 
 msgid "Close navigation"
 msgstr "Затвори навигација"
 
 msgid "Close sidebar"
-msgstr ""
+msgstr "Затвори странична лента"
 
 msgid "Close Smart Picker"
-msgstr ""
+msgstr "Затвори паметен избирач"
+
+msgid "Close time Picker"
+msgstr "Затвори избирач на време"
 
 msgid "Collapse menu"
-msgstr ""
+msgstr "Скриј мени"
+
+msgid "Color picker"
+msgstr "Избор на боја"
 
 msgid "Confirm changes"
 msgstr "Потврди ги промените"
 
+msgid "Connect items to a project to make them easier to find"
+msgstr "Поврзете ги елементите со проект за да биде полесно да се најдат"
+
+#. TRANSLATORS: Ctrl key on keyboard (Windows/Linux)
+msgid "Ctrl"
+msgstr "Ctrl"
+
 msgid "Custom"
 msgstr "Прилагодени"
+
+msgid "Dark skin tone"
+msgstr "Темна боја на кожа"
+
+msgid "Datepicker input"
+msgstr "Поле за избор на датум"
+
+msgid "Datepicker menu"
+msgstr "Мени за избор на датум"
+
+msgid "Decrement hours"
+msgstr "Намали часови"
+
+msgid "Decrement minutes"
+msgstr "Намали минути"
+
+msgid "Decrement seconds"
+msgstr "Намали секунди"
+
+#. TRANSLATORS: Delete key on keyboard
+msgid "Delete"
+msgstr "Избриши"
+
+#. TRANSLATORS: A color name for RGB(136, 85, 168)
+msgid "Deluge"
+msgstr "Делуџ"
+
+msgid "Deselect {option}"
+msgstr "Откажи избор на {option}"
+
+msgid "do not disturb"
+msgstr "не вознемирувај"
 
 msgid "Edit item"
 msgstr "Уреди"
 
+msgid "Emoji picker"
+msgstr "Избор на emoji"
+
+msgid "Enable interactive view"
+msgstr "Овозможи интерактивен приказ"
+
+#. TRANSLATORS: Enter key on keyboard
+msgid "Enter"
+msgstr "Ентер"
+
 msgid "Enter link"
-msgstr ""
+msgstr "Внеси линк"
 
 msgid ""
 "Error getting related resources. Please contact your system administrator if"
 " you have any questions."
 msgstr ""
+"Грешка при добивање поврзани ресурси. Ве молиме контактирајте го вашиот "
+"систем администратор ако имате прашања."
 
-msgid "External documentation for {name}"
-msgstr ""
+#. TRANSLATORS: Escape key on keyboard
+msgid "Escape"
+msgstr "Esc"
+
+msgid "External documentation"
+msgstr "Надворешна документација"
+
+msgid "Failed to add the item to the project"
+msgstr "Неуспешно додавање на елементот во проектот"
+
+msgid "Failed to create a project"
+msgstr "Неуспешно креирање на проект"
+
+msgid "Failed to rename the project"
+msgstr "Неуспешно преименување на проектот"
 
 msgid "Favorite"
 msgstr "Фаворити"
+
+#. TRANSLATORS: A color name for RGB(201, 136, 121)
+msgid "Feldspar"
+msgstr "Фелдспар"
 
 msgid "Flags"
 msgstr "Знамиња"
@@ -115,60 +227,151 @@ msgstr "Храна & Пијалоци"
 msgid "Frequently used"
 msgstr "Најчесто користени"
 
-msgid "Global"
-msgstr "Глобално"
-
 msgid "Go back to the list"
 msgstr "Врати се на листата"
 
+msgid "Gold"
+msgstr "Златна"
+
+msgid "Hide details"
+msgstr "Сокриј детали"
+
 msgid "Hide password"
-msgstr ""
+msgstr "Сокриј лозинка"
 
-msgid "Load more \"{options}\"\""
-msgstr ""
+msgid "Increment hours"
+msgstr "Зголеми часови"
 
-msgid "Message limit of {count} characters reached"
-msgstr ""
-"Ограничувањето на должината на пораката од {count} карактери е надминато"
+msgid "Increment minutes"
+msgstr "Зголеми минути"
+
+msgid "Increment seconds"
+msgstr "Зголеми секунди"
+
+msgid "invisible"
+msgstr "невидливо"
+
+msgid "Keyboard navigation help"
+msgstr "Навигација со тастатура"
+
+msgid "Light skin tone"
+msgstr "Светла кожа"
+
+msgid "Load more \"{options}\""
+msgstr "Вчитај повеќе \"{options}\""
+
+#. TRANSLATORS: The button is in a loading state
+msgid "Loading …"
+msgstr "Вчитување …"
+
+#. TRANSLATORS: A color name for RGB(45, 115, 190)
+msgid "Mariner"
+msgstr "Маринер"
+
+msgid "Medium dark skin tone"
+msgstr "Средно темна кожа"
+
+msgid "Medium light skin tone"
+msgstr "Средно светла кожа"
+
+msgid "Medium skin tone"
+msgstr "Средна кожа"
+
+msgid "Message limit of %n character reached"
+msgid_plural "Message limit of %n characters reached"
+msgstr[0] "Достигнат е лимит од %n карактер"
+msgstr[1] "Достигнат е лимит од %n карактери за порака"
+
+msgid "Month picker"
+msgstr "Избор на месец"
+
+msgid "Month picker overlay"
+msgstr "Надолжен избор на месец"
 
 msgid "More items …"
-msgstr ""
+msgstr "Повеќе елементи …"
 
 msgid "More options"
-msgstr ""
+msgstr "Повеќе опции"
+
+msgid "Neutral skin color"
+msgstr "Неутрална боја на кожа"
 
 msgid "Next"
 msgstr "Следно"
+
+msgid "Next month"
+msgstr "Следен месец"
+
+msgid "Next year"
+msgstr "Следна година"
+
+msgid "Nextcloud blue"
+msgstr "Nextcloud сина"
+
+msgid "No color"
+msgstr "Без боја"
 
 msgid "No emoji found"
 msgstr "Не се пронајдени емотикони"
 
 msgid "No link provider found"
-msgstr ""
+msgstr "Не е пронајден давател на линк"
 
 msgid "No results"
 msgstr "Нема резултати"
 
+msgid "Now"
+msgstr "Сега"
+
 msgid "Objects"
 msgstr "Објекти"
 
-msgid "Open contact menu"
-msgstr ""
+msgid "offline"
+msgstr "офлајн"
+
+#. TRANSLATORS: A color name for RGB(165, 184, 114)
+msgid "Olivine"
+msgstr "Оливин"
+
+msgid "online"
+msgstr "онлајн"
+
+msgid "Open hours overlay"
+msgstr "Отвори преклоп за часови"
 
 msgid "Open link to \"{resourceName}\""
-msgstr ""
+msgstr "Отвори линк до \"{resourceName}\""
 
 msgid "Open menu"
-msgstr ""
+msgstr "Отвори мени"
+
+msgid "Open minutes overlay"
+msgstr "Отвори преклоп за минути"
+
+msgid "Open months overlay"
+msgstr "Отвори преклоп за месеци"
 
 msgid "Open navigation"
 msgstr "Отвори навигација"
 
-msgid "Open settings menu"
-msgstr ""
+msgid "Open seconds overlay"
+msgstr "Отвори преклоп за секунди"
+
+msgid "Open sidebar"
+msgstr "Отвори странична лента"
+
+msgid "Open time picker"
+msgstr "Отвори избор на време"
+
+msgid "Open years overlay"
+msgstr "Отвори преклоп за години"
+
+msgid "Options"
+msgstr "Опции"
 
 msgid "Password is secure"
-msgstr ""
+msgstr "Лозинката е безбедна"
 
 msgid "Pause slideshow"
 msgstr "Пузирај слајдшоу"
@@ -176,47 +379,60 @@ msgstr "Пузирај слајдшоу"
 msgid "People & Body"
 msgstr "Луѓе & Тело"
 
-msgid "Pick a date"
-msgstr ""
-
-msgid "Pick a date and a time"
-msgstr ""
-
-msgid "Pick a month"
-msgstr ""
-
-msgid "Pick a time"
-msgstr ""
-
-msgid "Pick a week"
-msgstr ""
-
-msgid "Pick a year"
-msgstr ""
+msgid "Pick"
+msgstr "Избери"
 
 msgid "Pick an emoji"
 msgstr "Избери емотикон"
 
-msgid "Please select a time zone:"
-msgstr "Изберете временска зона:"
+msgid "Please choose a date"
+msgstr "Избери датум"
 
 msgid "Previous"
 msgstr "Предходно"
 
+msgid "Previous month"
+msgstr "Предходен месец"
+
+msgid "Previous year"
+msgstr "Предходна година"
+
 msgid "Provider icon"
-msgstr ""
+msgstr "Икона на давател"
+
+msgid "Purple"
+msgstr "Виолетова"
 
 msgid "Raw link {options}"
-msgstr ""
+msgstr "Суров линк {options}"
 
 msgid "Related resources"
-msgstr ""
+msgstr "Поврзани ресурси"
+
+msgid "Related team resources"
+msgstr "Поврзани ресурси на тимот"
+
+msgid "Rename project"
+msgstr "Преименувај проект"
+
+#. TRANSLATORS: A color name for RGB(191, 103, 139)
+msgid "Rosy brown"
+msgstr "Розево-кафеава"
+
+msgid "Save changes"
+msgstr "Зачувај промени"
 
 msgid "Search"
 msgstr "Барај"
 
+msgid "Search …"
+msgstr "Барај…"
+
 msgid "Search emoji"
-msgstr ""
+msgstr "Барај emoji"
+
+msgid "Search for timezone"
+msgstr "Барај временска зона"
 
 msgid "Search results"
 msgstr "Резултати од барувањето"
@@ -224,17 +440,41 @@ msgstr "Резултати од барувањето"
 #. FOR TRANSLATORS: If possible in your language an even shorter version of 'a
 #. few seconds ago'
 msgid "sec. ago"
-msgstr ""
+msgstr "секунда"
 
 #. FOR TRANSLATORS: Shorter version of 'a few seconds ago'
 msgid "seconds ago"
-msgstr ""
+msgstr "секунди"
 
 msgid "Select a tag"
 msgstr "Избери ознака"
 
+msgid "Select date"
+msgstr "Избери датум"
+
+msgid "Select date and time"
+msgstr "Избери датум и време"
+
+msgid "Select month"
+msgstr "Избери месец"
+
 msgid "Select provider"
-msgstr ""
+msgstr "Избери провајдер"
+
+msgid "Select time"
+msgstr "Избери време"
+
+msgid "Select time range"
+msgstr "Избери времески опсег"
+
+msgid "Select week"
+msgstr "Избери недела"
+
+msgid "Select year"
+msgstr "Избери година"
+
+msgid "Selected"
+msgstr "Избрано"
 
 msgid "Settings"
 msgstr "Параметри"
@@ -242,40 +482,99 @@ msgstr "Параметри"
 msgid "Settings navigation"
 msgstr "Параметри за навигација"
 
+#. TRANSLATORS: Shift key on keyboard
+msgid "Shift"
+msgstr "Shift"
+
+msgid "Show details"
+msgstr "Прикажи детали"
+
 msgid "Show password"
-msgstr ""
+msgstr "Прикажи лозинка"
+
+msgid "Skin tone"
+msgstr "Боја на кожа"
+
+msgid "Skip to app navigation"
+msgstr "Прескокни на навигација на апликацијата"
+
+msgid "Skip to main content"
+msgstr "Прескокни на главна содржина"
 
 msgid "Smart Picker"
-msgstr ""
+msgstr "Паметен избирач"
 
 msgid "Smileys & Emotion"
 msgstr "Смешковци & Емотикони"
+
+#. TRANSLATORS: Space key on keyboard
+msgid "Space"
+msgstr "Празно место"
 
 msgid "Start slideshow"
 msgstr "Стартувај слајдшоу"
 
 msgid "Start typing to search"
-msgstr ""
+msgstr "Почни да пишуваш за пребарување"
 
 msgid "Submit"
 msgstr "Испрати"
 
+msgid "Switch AM/PM mode"
+msgstr "Смени AM/PM режим"
+
 msgid "Symbols"
 msgstr "Симболи"
 
+#. TRANSLATORS: Tab key on keyboard
+msgid "Tab"
+msgstr "Tab"
+
+msgid "Time picker"
+msgstr "Избирач на време"
+
+msgid "Timezone"
+msgstr "Временска зона"
+
+msgid "Toggle overlay"
+msgstr "Вклучи/исклучи преклоп"
+
 msgid "Travel & Places"
 msgstr "Патувања & Места"
+
+msgid "Type to search for existing projects"
+msgstr "Пишувај за пребарување постоечки проекти"
 
 msgid "Type to search time zone"
 msgstr "Напишете за да пребарате временска зона"
 
 msgid "Unable to search the group"
-msgstr "Неможе да се принајде групата"
+msgstr "Неможе да се пронајде групата"
 
 msgid "Undo changes"
 msgstr "Врати ги промените"
 
-msgid ""
-"Write message, use \"@\" to mention someone, use \":\" for emoji "
-"autocompletion …"
-msgstr ""
+msgid "User status: {status}"
+msgstr "Статус: {status}"
+
+msgid "View team"
+msgstr "Прикажи тим"
+
+msgid "W"
+msgstr "W"
+
+#. TRANSLATORS: A color name for RGB(211, 169, 103)
+msgid "Whiskey"
+msgstr "Виски"
+
+msgid "White"
+msgstr "Бела"
+
+msgid "Write a message …"
+msgstr "Напиши порака …"
+
+msgid "Year picker"
+msgstr "Избор на година"
+
+msgid "Year picker overlay"
+msgstr "Надолжен избор на година"
