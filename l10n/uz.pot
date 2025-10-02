@@ -66,6 +66,9 @@ msgstr "Orqaga"
 msgid "Back to provider selection"
 msgstr "Provayder tanloviga qaytish"
 
+msgid "Black"
+msgstr "Qora"
+
 #. TRANSLATORS: A color name for RGB(91, 100, 179)
 msgid "Blue Violet"
 msgstr "Moviy binafsha"
@@ -305,6 +308,9 @@ msgstr "Keyingi yil"
 
 msgid "Nextcloud blue"
 msgstr "Ko'k Nextcloud "
+
+msgid "No color"
+msgstr "Rangsiz"
 
 msgid "No emoji found"
 msgstr "Hech qanday emoji topilmadi"
@@ -560,6 +566,9 @@ msgstr "W"
 #. TRANSLATORS: A color name for RGB(211, 169, 103)
 msgid "Whiskey"
 msgstr "Whiskey"
+
+msgid "White"
+msgstr "Oq"
 
 msgid "Write a message …"
 msgstr "Xabar yozish..."
