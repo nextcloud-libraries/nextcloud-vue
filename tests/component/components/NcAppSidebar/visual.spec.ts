@@ -3,7 +3,7 @@
  * SPDX-License-Identifier: AGPL-3.0-or-later
  */
 import { expect, test } from '@playwright/experimental-ct-vue'
-import AppSidebar from './AppSidebar.story.vue'
+import AppSidebar from './NcAppSidebar.story.vue'
 
 test.skip(({ browserName }) => browserName !== 'chromium')
 
