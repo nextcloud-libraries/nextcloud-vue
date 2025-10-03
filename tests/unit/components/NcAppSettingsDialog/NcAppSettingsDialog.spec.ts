@@ -36,6 +36,11 @@ describe('NcAppSettingsDialog: Sections registration', () => {
 				open: true,
 				showNavigation: true,
 			},
+			global: {
+				stubs: {
+					teleport: true,
+				},
+			},
 		})
 
 		await nextTick()
@@ -45,24 +50,34 @@ describe('NcAppSettingsDialog: Sections registration', () => {
 	})
 
 	it('can register a new section', async () => {
-		const wrapper = mount<Vue & { registerSection: any }>(NcAppSettingsDialog, {
+		const wrapper = mount(NcAppSettingsDialog, {
 			props: {
 				open: true,
 				showNavigation: true,
 			},
+			global: {
+				stubs: {
+					teleport: true,
+				},
+			},
 		})
 
-		wrapper.vm.registerSection('test_id', 'test_name')
+		wrapper.vm.registerSection('test_id', 'test_name', undefined)
 		await nextTick()
 		expect(wrapper.findAll('nav a')).toHaveLength(1)
 		expect(wrapper.find('nav a').text()).toBe('test_name')
 	})
 
 	it('warn on register a already registered section name', async () => {
-		const wrapper = mount<Vue & { registerSection: any }>(NcAppSettingsDialog, {
+		const wrapper = mount(NcAppSettingsDialog, {
 			props: {
 				open: true,
 				showNavigation: true,
+			},
+			global: {
+				stubs: {
+					teleport: true,
+				},
 			},
 		})
 
@@ -70,47 +85,57 @@ describe('NcAppSettingsDialog: Sections registration', () => {
 		spy.mockImplementationOnce(() => {})
 
 		// First call should be OK
-		wrapper.vm.registerSection('test_id', 'test_name')
+		wrapper.vm.registerSection('test_id', 'test_name', undefined)
 		await nextTick()
 		expect(wrapper.findAll('nav a')).toHaveLength(1)
 		expect(spy).not.toHaveBeenCalled()
 
 		// Second one should unregister first and replace with this one, but show an error
-		wrapper.vm.registerSection('test_id_2', 'test_name')
+		wrapper.vm.registerSection('test_id_2', 'test_name', undefined)
 		await nextTick()
 		expect(wrapper.findAll('nav a')).toHaveLength(2)
 		expect(spy).toHaveBeenCalled()
 	})
 
 	it('error on register a already registered section ID', async () => {
-		const wrapper = mount<Vue & { registerSection: any }>(NcAppSettingsDialog, {
+		const wrapper = mount(NcAppSettingsDialog, {
 			props: {
 				open: true,
 				showNavigation: true,
 			},
+			global: {
+				stubs: {
+					teleport: true,
+				},
+			},
 		})
 
 		// First call should be OK
-		wrapper.vm.registerSection('test_id', 'test_name')
+		wrapper.vm.registerSection('test_id', 'test_name', undefined)
 		await nextTick()
 		expect(wrapper.findAll('nav a')).toHaveLength(1)
 
 		// Second one should unregister first and replace with this one, but show an error
-		expect(() => wrapper.vm.registerSection('test_id', 'test_other_name')).toThrow()
+		expect(() => wrapper.vm.registerSection('test_id', 'test_other_name', undefined)).toThrow()
 		await nextTick()
 		expect(wrapper.findAll('nav a')).toHaveLength(1)
 	})
 
 	it('can unregister a section', async () => {
-		const wrapper = mount<Vue & { registerSection: any, unregisterSection: any }>(NcAppSettingsDialog, {
+		const wrapper = mount(NcAppSettingsDialog, {
 			props: {
 				open: true,
 				showNavigation: true,
 			},
+			global: {
+				stubs: {
+					teleport: true,
+				},
+			},
 		})
 
-		wrapper.vm.registerSection('test_id', 'test_name')
-		wrapper.vm.registerSection('test_id2', 'test_name2')
+		wrapper.vm.registerSection('test_id', 'test_name', undefined)
+		wrapper.vm.registerSection('test_id2', 'test_name2', undefined)
 		await nextTick()
 		expect(wrapper.findAll('nav a')).toHaveLength(2)
 
