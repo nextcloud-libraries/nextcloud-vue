@@ -65,6 +65,9 @@ msgstr "Geri"
 msgid "Back to provider selection"
 msgstr "Hizmet sağlayıcı seçimine dön"
 
+msgid "Black"
+msgstr "Siyah"
+
 #. TRANSLATORS: A color name for RGB(91, 100, 179)
 msgid "Blue Violet"
 msgstr "Mavi mor"
@@ -305,6 +308,9 @@ msgstr "Sonraki yıl"
 
 msgid "Nextcloud blue"
 msgstr "Nextcloud mavi"
+
+msgid "No color"
+msgstr "Renk yok"
 
 msgid "No emoji found"
 msgstr "Herhangi bir emoji bulunamadı"
@@ -560,6 +566,9 @@ msgstr "W"
 #. TRANSLATORS: A color name for RGB(211, 169, 103)
 msgid "Whiskey"
 msgstr "Viski"
+
+msgid "White"
+msgstr "Beyaz"
 
 msgid "Write a message …"
 msgstr "Bir ileti yazın…"
