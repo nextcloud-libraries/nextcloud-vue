@@ -92,12 +92,12 @@ export default {
 </docs>
 
 <template>
-	<main id="app-content-vue" class="app-content no-snapper" :class="{ 'app-content--has-list': hasList }">
+	<main id="app-content-vue" class="app-content no-snapper" :class="{ 'app-content--has-list': !!$slots.list }">
 		<h1 v-if="pageHeading" class="hidden-visually">
 			{{ pageHeading }}
 		</h1>
 
-		<template v-if="hasList">
+		<template v-if="!!$slots.list">
 			<!-- Mobile view does not allow resizeable panes -->
 			<div
 				v-if="isMobile || layout === 'no-split'"
@@ -145,7 +145,7 @@ export default {
 			</div>
 		</template>
 		<!-- @slot Provide the main content to the app content -->
-		<slot v-if="!hasList" />
+		<slot v-if="!$slots.list" />
 	</main>
 </template>
 
@@ -293,8 +293,6 @@ export default {
 	data() {
 		return {
 			contentHeight: 0,
-			hasList: false,
-			hasContent: false,
 			swiping: {},
 			listPaneSize: this.restorePaneConfig(),
 		}
@@ -390,10 +388,6 @@ export default {
 		},
 	},
 
-	updated() {
-		this.checkSlots()
-	},
-
 	mounted() {
 		if (!this.disableSwipe) {
 			this.swiping = useSwipe(this.$el, {
@@ -401,7 +395,6 @@ export default {
 			})
 		}
 
-		this.checkSlots()
 		this.restorePaneConfig()
 	},
 
@@ -437,12 +430,6 @@ export default {
 			 */
 			this.$emit('resizeList', { size: listPaneSize })
 			logger.debug('[NcAppContent] pane config', { listPaneSize })
-		},
-
-		// $slots is not reactive, we need to update this manually
-		checkSlots() {
-			this.hasList = !!this.$slots.list
-			this.hasContent = !!this.$slots.default
 		},
 
 		// browserStorage is not reactive, we need to update this manually
