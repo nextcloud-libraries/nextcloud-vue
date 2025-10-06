@@ -3,7 +3,7 @@
  * SPDX-License-Identifier: AGPL-3.0-or-later
  */
 
-import { mount } from 'cypress/vue2'
+import { mount } from '@cypress/vue2'
 import NcDialog from '../../src/components/NcDialog/NcDialog.vue'
 
 describe('NcDialog', () => {
