@@ -5,7 +5,7 @@
 
 import type { Color } from '../../utils/colors.ts'
 
-import { createHash } from 'crypto-browserify'
+import { Md5 } from 'ts-md5'
 import { generatePalette } from '../../utils/colors.ts'
 
 /**
@@ -18,7 +18,7 @@ function hashCode(str: string): number {
 
 	// Hash a given string, if it is not md5 hash already
 	if (str.match(/^([0-9a-f]{4}-?){8}$/) === null) {
-		hash = createHash('md5').update(str).digest('hex')
+		hash = Md5.hashStr(str)
 	}
 
 	hash = hash.replace(/[^0-9a-f]/g, '')
