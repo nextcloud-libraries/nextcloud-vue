@@ -7,6 +7,16 @@
 
 All notable changes to this project will be documented in this file.
 
+## [v9.0.1](https://github.com/nextcloud-libraries/nextcloud-vue/tree/v9.0.0) (2025-10-06)
+[Full Changelog](https://github.com/nextcloud-libraries/nextcloud-vue/compare/v9.0.0...v9.0.1)
+
+### 🐛 Fixed bugs
+* fix(NcAppContent): avoid double content mount [\#7590](https://github.com/nextcloud-libraries/nextcloud-vue/pull/7590) \([ShGKme](https://github.com/ShGKme)\)
+* fix(NcAppContent): add reactivity to pane config key  [\#7574](https://github.com/nextcloud-libraries/nextcloud-vue/pull/7574)
+
+### Other Changes
+* Updated translations
+
 ## [v9.0.0](https://github.com/nextcloud-libraries/nextcloud-vue/tree/v9.0.0) (2025-09-25)
 [Full Changelog](https://github.com/nextcloud-libraries/nextcloud-vue/compare/v8.31.0...v9.0.0)
 
