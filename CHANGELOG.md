@@ -5,7 +5,7 @@
 
 # Changelog
 
-## [v8.31.0](https://github.com/nextcloud-libraries/nextcloud-vue/tree/v8.32.0) (2025-10-06)
+## [v8.32.0](https://github.com/nextcloud-libraries/nextcloud-vue/tree/v8.32.0) (2025-10-06)
 ### 🚀 Enhancements
 * feat(NcColorPicker): allow to clear selected value [\#7531](https://github.com/nextcloud-libraries/nextcloud-vue/pull/7531)
 * feat(NcModal): add new `closeButtonOutside` prop and deprecated `closeButtonContained` [\#7553](https://github.com/nextcloud-libraries/nextcloud-vue/pull/7553) \([Antreesy](https://github.com/Antreesy)\)
