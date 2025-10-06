@@ -5,6 +5,23 @@
 
 # Changelog
 
+## [v8.31.0](https://github.com/nextcloud-libraries/nextcloud-vue/tree/v8.32.0) (2025-10-06)
+### 🚀 Enhancements
+* feat(NcColorPicker): allow to clear selected value [\#7531](https://github.com/nextcloud-libraries/nextcloud-vue/pull/7531)
+* feat(NcModal): add new `closeButtonOutside` prop and deprecated `closeButtonContained` [\#7553](https://github.com/nextcloud-libraries/nextcloud-vue/pull/7553) \([Antreesy](https://github.com/Antreesy)\)
+
+### 🐛 Fixed bugs
+* fix(useHotKey): use correct callback type [\#7511](https://github.com/nextcloud-libraries/nextcloud-vue/pull/7511)
+* fix(NcRadioGroupButton): adjust hight if needed [\#7554](https://github.com/nextcloud-libraries/nextcloud-vue/pull/7554)
+* fix(NcAvatar): log error and URL on error [\#7561](https://github.com/nextcloud-libraries/nextcloud-vue/pull/7561) \([ChristophWurst](https://github.com/ChristophWurst)\)
+* fix(console): fix log context object [\#7563](https://github.com/nextcloud-libraries/nextcloud-vue/pull/7563) \([ChristophWurst](https://github.com/ChristophWurst)\)
+* fix(NcAppContent): avoid double content mount [\#7619](https://github.com/nextcloud-libraries/nextcloud-vue/pull/7619)
+* fix(NcAppContent): add reactivity to pane config key  [\#7573](https://github.com/nextcloud-libraries/nextcloud-vue/pull/7573) \([GVodyanov](https://github.com/GVodyanov)\)
+
+### Other Changes
+* refactor(NcColorPicker): migrate component to Typescript and script-setup [\#7532](https://github.com/nextcloud-libraries/nextcloud-vue/pull/7532)
+* refactor(NcAppSettingsDialog): migrate to Typescript and script-setup [\#7517](https://github.com/nextcloud-libraries/nextcloud-vue/pull/7517)
+
 ## [v8.31.0](https://github.com/nextcloud-libraries/nextcloud-vue/tree/v8.31.0) (2025-09-11)
 ### 📝 Notes
 The `NcSettingsInputText` component was deprecated,
