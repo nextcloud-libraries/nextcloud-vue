@@ -15,12 +15,10 @@ defineSlots<{
 	 */
 	default?: Slot
 }>()
-
-const name = t('Keyboard shortcuts')
 </script>
 
 <template>
-	<NcAppSettingsSection id="keyboard-shortcuts" :name>
+	<NcAppSettingsSection id="keyboard-shortcuts" :name="t('Keyboard shortcuts')">
 		<div :class="$style.appSettingsSectionShortcuts">
 			<slot />
 		</div>
