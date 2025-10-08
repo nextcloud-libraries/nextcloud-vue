@@ -163,7 +163,17 @@ const inputElement = useTemplateRef('input')
 
 const hasTrailingIcon = computed(() => props.showTrailingButton || props.success)
 
-const internalPlaceholder = computed(() => props.placeholder || (isLegacy ? props.label : undefined))
+const internalPlaceholder = computed(() => {
+	if (props.placeholder) {
+		return props.placeholder
+	}
+	if (props.label) {
+		// if there is a label we use it as fallback on legacy but on current we need
+		// to pass at least an empty string as placeholder to make css `:placeholder-shown` work.
+		return isLegacy ? props.label : ''
+	}
+	return undefined
+})
 
 const isValidLabel = computed(() => {
 	const isValidLabel = props.label || props.labelOutside
