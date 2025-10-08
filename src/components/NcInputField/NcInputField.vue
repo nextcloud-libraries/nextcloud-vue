@@ -305,16 +305,14 @@ export default {
 			return this.success
 		},
 
-		hasPlaceholder() {
-			return this.placeholder !== '' && this.placeholder !== undefined
-		},
-
 		computedPlaceholder() {
-			if (this.hasPlaceholder) {
+			if (this.placeholder) {
 				return this.placeholder
 			}
-			if (isLegacy32) {
-				return this.label
+			if (this.label) {
+				// if there is a label we use it as fallback on legacy but on current we need
+				// to pass at least an empty string as placeholder to make css `:placeholder-shown` work.
+				return isLegacy32 ? this.label : ''
 			}
 			return undefined
 		},
