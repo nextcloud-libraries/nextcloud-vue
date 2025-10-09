@@ -77,7 +77,7 @@
   "dependencies": {
     "@ckpack/vue-color": "^1.6.0",
     "@floating-ui/dom": "^1.7.4",
-    "@nextcloud/auth": "^2.5.2",
+    "@nextcloud/auth": "^2.5.3",
     "@nextcloud/axios": "^2.5.2",
     "@nextcloud/browser-storage": "^0.5.0",
     "@nextcloud/capabilities": "^1.2.0",
