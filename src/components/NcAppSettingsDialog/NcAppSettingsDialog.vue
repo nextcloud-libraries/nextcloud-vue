@@ -7,7 +7,7 @@
 import type { Slot, VNode } from 'vue'
 
 import debounce from 'debounce'
-import { computed, provide, ref, useTemplateRef, warn } from 'vue'
+import { computed, Fragment, provide, ref, useTemplateRef, warn } from 'vue'
 import NcDialog from '../NcDialog/NcDialog.vue'
 import NcVNodes from '../NcVNodes/NcVNodes.vue'
 import { useIsMobile } from '../../composables/useIsMobile/index.ts'
@@ -145,11 +145,16 @@ function registerSection(id: string, name: string, icon?: VNode[]) {
 		warn(`Duplicate section name found: ${name}. Settings navigation sections must have unique section names.`)
 	}
 
+	// Unwrap fragments (<template>) to get the correct order of sections in the slot
+	const slotChildren = (slots.default?.() ?? []).flatMap<VNode>((vnode: VNode) => vnode?.type === Fragment ? (vnode.children as VNode[]) : vnode)
+	function getIndexOfSlotChild(id: string) {
+		return slotChildren.findIndex((vnode: VNode) => vnode?.props?.id === id)
+	}
+
 	const newSections = [...registeredSections.value, { id, name, icon }]
 	// Sort sections by order in slots
 	registeredSections.value = newSections.sort(({ id: idA }, { id: idB }) => {
-		const indexOf = (id) => slots.default?.().findIndex((vnode: VNode) => vnode?.props?.id === id) ?? -1
-		return indexOf(idA) - indexOf(idB)
+		return getIndexOfSlotChild(idA) - getIndexOfSlotChild(idB)
 	})
 
 	// If this is the first section registered, set it as selected
@@ -300,6 +305,9 @@ providing the section's name prop. You can put your settings within each
 		<NcAppSettingsDialog v-model:open="settingsOpen" :show-navigation="true" name="Application settings">
 			<NcAppSettingsSection id="asci-name-1" name="Example name 1">
 				Some example content
+				<NcCheckboxRadioSwitch type="switch" v-model="showExtraSections">
+					Show extra sections
+				</NcCheckboxRadioSwitch>
 			</NcAppSettingsSection>
 			<NcAppSettingsSection id="asci-name-2" name="Example name 2">
 				Some more content
@@ -313,21 +321,23 @@ providing the section's name prop. You can put your settings within each
 			<NcAppSettingsSection id="asci-name-5" name="Example name 5">
 				Some example content
 			</NcAppSettingsSection>
-			<NcAppSettingsSection id="asci-name-6" name="Example name 6">
-				Some more content
-			</NcAppSettingsSection>
-			<NcAppSettingsSection id="asci-name-7" name="Example name 7">
-				Some example content
-			</NcAppSettingsSection>
-			<NcAppSettingsSection id="asci-name-8" name="Example name 8">
-				Some more content
-			</NcAppSettingsSection>
-			<NcAppSettingsSection id="asci-name-9" name="Example name 9">
-				Some more content
-			</NcAppSettingsSection>
-			<NcAppSettingsSection id="asci-name-10" name="Example name 10">
-				Some more content
-			</NcAppSettingsSection>
+			<template v-if="showExtraSections">
+				<NcAppSettingsSection id="asci-name-6" name="Example name 6">
+					Some more content
+				</NcAppSettingsSection>
+				<NcAppSettingsSection id="asci-name-7" name="Example name 7">
+					Some example content
+				</NcAppSettingsSection>
+				<NcAppSettingsSection id="asci-name-8" name="Example name 8">
+					Some more content
+				</NcAppSettingsSection>
+				<NcAppSettingsSection id="asci-name-9" name="Example name 9">
+					Some more content
+				</NcAppSettingsSection>
+				<NcAppSettingsSection id="asci-name-10" name="Example name 10">
+					Some more content
+				</NcAppSettingsSection>
+			</template>
 		</NcAppSettingsDialog>
 	</div>
 </template>
@@ -337,6 +347,7 @@ export default {
 	data() {
 		return {
 			settingsOpen: false,
+			showExtraSections: true,
 		}
 	},
 }
