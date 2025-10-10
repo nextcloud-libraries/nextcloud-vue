@@ -3,884 +3,548 @@
   - SPDX-License-Identifier: AGPL-3.0-or-later
 -->
 
-<docs>
-For showing the modal you can use either `v-model:show="showModal"` or `v-if` on the `NcModal`,
-depending on whether you require the Modal to stay within the DOM or not. Do not mix both, as this will break the out transition animation.
+<script setup lang="ts">
+import type { UseSwipeDirection } from '@vueuse/core'
+import type { FocusTargetValueOrFalse, FocusTrap, Options as FocusTrapOptions } from 'focus-trap'
+import type { Slot } from 'vue'
 
-```vue
-<template>
-	<div>
-		<NcButton @click="showModal">Show Modal</NcButton>
-		<NcModal
-			v-model:show="modal"
-			@close="closeModal"
-			size="small"
-			name="Name"
-			:outTransition="true"
-			:hasNext="true"
-			:hasPrevious="true">
-			<template #actions>
-				<NcActionCaption name="Some action" />
-			</template>
-			<div class="modal__content">Hello world</div>
-		</NcModal>
-	</div>
-</template>
-<script>
-export default {
-	data() {
-		return {
-			modal: false
-		}
-	},
-	methods: {
-		showModal() {
-			this.modal = true
-		},
-		closeModal() {
-			this.modal = false
-		}
-	}
-}
-</script>
-<style scoped>
-.modal__content {
-	margin: 50px;
-	text-align: center;
-}
-</style>
-```
-
-### Modal with more properties
-
-```vue
-<template>
-	<div>
-		<NcButton @click="showModal">Show Modal with fields</NcButton>
-		<NcModal
-			v-if="modal"
-			ref="modalRef"
-			@close="closeModal"
-			name="Name inside modal">
-			<div class="modal__content">
-				<h2>Please enter your name</h2>
-				<div class="form-group">
-					<NcTextField label="First Name" v-model="firstName" />
-				</div>
-				<div class="form-group">
-					<NcTextField label="Last Name" v-model="lastName" />
-				</div>
-				<div class="form-group">
-					<label for="pizza">What is the most important pizza item?</label>
-					<NcSelect input-id="pizza" :options="['Cheese', 'Tomatoes', 'Pineapples']" v-model="pizza" />
-				</div>
-				<div class="form-group">
-					<label for="emoji-trigger">Select your favorite emoji</label>
-					<NcEmojiPicker v-if="modalRef" :container="modalRef.$el">
-						<NcButton id="emoji-trigger">Select</NcButton>
-					</NcEmojiPicker>
-				</div>
-
-				<NcButton
-					:disabled="!firstName || !lastName || !pizza"
-					@click="closeModal"
-					variant="primary">
-					Submit
-				</NcButton>
-			</div>
-		</NcModal>
-	</div>
-</template>
-<script>
-import { ref } from 'vue'
-
-export default {
-	setup() {
-		return {
-			modalRef: ref(null),
-		}
-	},
-	data() {
-		return {
-			modal: false,
-			firstName: '',
-			lastName: '',
-			pizza: [],
-		}
-	},
-	methods: {
-		showModal() {
-			this.firstName = ''
-			this.lastName = ''
-			this.modal = true
-		},
-		closeModal() {
-			this.modal = false
-		}
-	}
-}
-</script>
-<style scoped>
-.modal__content {
-	margin: 50px;
-}
-
-.modal__content h2 {
-	text-align: center;
-}
-
-.form-group {
-	margin: calc(var(--default-grid-baseline) * 4) 0;
-	display: flex;
-	flex-direction: column;
-	align-items: flex-start;
-}
-</style>
-```
-
-### Usage of popover in modal
-
-* Set container property to .modal-mask to inject popover context of the modal:
-
-```vue
-<template>
-	<div>
-		<NcButton @click="showModal">Show Modal</NcButton>
-		<NcModal v-if="modal" @close="closeModal" size="small" class="emoji-modal">
-			<NcEmojiPicker container=".emoji-modal" @select="select">
-				<NcButton>Select emoji {{ emoji }}</NcButton>
-			</NcEmojiPicker>
-		</NcModal>
-	</div>
-</template>
-<script>
-export default {
-	data() {
-		return {
-			emoji: '😛',
-			modal: false
-		}
-	},
-	methods: {
-		showModal() {
-			this.modal = true
-		},
-		closeModal() {
-			this.modal = false
-		},
-		select(emoji) {
-			this.emoji = emoji
-		},
-	},
-}
-</script>
-<style scoped>
-.modal__content {
-	margin: 50px;
-	text-align: center;
-}
-</style>
-```
-</docs>
-
-<template>
-	<transition
-		name="fade"
-		appear
-		@after-enter="useFocusTrap"
-		@before-leave="clearFocusTrap">
-		<div
-			v-show="showModal"
-			ref="mask"
-			class="modal-mask"
-			:class="{
-				'modal-mask--opaque': dark || closeButtonOutside || hasPrevious || hasNext,
-				'modal-mask--light': lightBackdrop,
-			}"
-			:style="cssVariables"
-			role="dialog"
-			aria-modal="true"
-			:aria-labelledby="modalLabelId"
-			:aria-describedby="'modal-description-' + randId"
-			tabindex="-1">
-			<!-- Header -->
-			<transition name="fade-visibility" appear>
-				<div
-					class="modal-header"
-					:data-theme-light="lightBackdrop"
-					:data-theme-dark="!lightBackdrop">
-					<h2
-						v-if="name.trim() !== ''"
-						:id="'modal-name-' + randId"
-						class="modal-header__name">
-						{{ name }}
-					</h2>
-					<div class="icons-menu">
-						<!-- Play-pause toggle -->
-						<button
-							v-if="hasNext && enableSlideshow"
-							class="play-pause-icons"
-							:class="{ 'play-pause-icons--paused': slideshowPaused }"
-							:title="playPauseName"
-							type="button"
-							@click="togglePlayPause">
-							<!-- Play/pause icons -->
-							<Play
-								v-if="!playing"
-								class="play-pause-icons__play"
-								:size="iconSize" />
-							<Pause
-								v-else
-								class="play-pause-icons__pause"
-								:size="iconSize" />
-							<span class="hidden-visually">
-								{{ playPauseName }}
-							</span>
-
-							<!-- Progress circle, css animated -->
-							<svg
-								v-if="playing"
-								class="progress-ring"
-								height="50"
-								width="50">
-								<circle
-									class="progress-ring__circle"
-									stroke="white"
-									stroke-width="2"
-									fill="transparent"
-									r="15"
-									cx="25"
-									cy="25" />
-							</svg>
-						</button>
-
-						<!-- Actions menu -->
-						<NcActions class="header-actions" :inline="inlineActions">
-							<!-- @slot Actions to show (one or more NcAction* components) -->
-							<slot name="actions" />
-						</NcActions>
-
-						<!-- Close modal -->
-						<NcButton
-							v-if="!noClose && closeButtonOutside"
-							:aria-label="closeButtonAriaLabel"
-							class="header-close"
-							variant="tertiary"
-							@click="close">
-							<template #icon>
-								<Close :size="iconSize" />
-							</template>
-						</NcButton>
-					</div>
-				</div>
-			</transition>
-
-			<!-- Content wrapper -->
-			<transition :name="modalTransitionName" appear>
-				<div
-					v-show="showModal"
-					class="modal-wrapper"
-					:class="[
-						`modal-wrapper--${size}`,
-						{ 'modal-wrapper--spread-navigation': spreadNavigation },
-					]"
-					@mousedown.self="handleClickModalWrapper">
-					<!-- Navigation button -->
-					<transition name="fade-visibility" appear>
-						<NcButton
-							v-show="hasPrevious"
-							:aria-label="prevButtonAriaLabel"
-							class="prev"
-							variant="tertiary-no-background"
-							@click="previous">
-							<template #icon>
-								<NcIconSvgWrapper
-									directional
-									:path="mdiChevronLeft"
-									:size="40" />
-							</template>
-						</NcButton>
-					</transition>
-
-					<!-- Content -->
-					<div :id="'modal-description-' + randId" class="modal-container">
-						<div class="modal-container__content">
-							<!-- @slot Modal content to render -->
-							<slot />
-						</div>
-						<!-- Close modal -->
-						<NcButton
-							v-if="!noClose && !closeButtonOutside"
-							:aria-label="closeButtonAriaLabel"
-							class="modal-container__close"
-							variant="tertiary"
-							@click="close">
-							<template #icon>
-								<Close :size="20" />
-							</template>
-						</NcButton>
-					</div>
-
-					<!-- Navigation button -->
-					<transition name="fade-visibility" appear>
-						<NcButton
-							v-show="hasNext"
-							:aria-label="nextButtonAriaLabel"
-							class="next"
-							variant="tertiary-no-background"
-							@click="next">
-							<template #icon>
-								<NcIconSvgWrapper
-									directional
-									:path="mdiChevronRight"
-									:size="40" />
-							</template>
-						</NcButton>
-					</transition>
-				</div>
-			</transition>
-		</div>
-	</transition>
-</template>
-
-<script>
-import { mdiChevronLeft, mdiChevronRight } from '@mdi/js'
-import { useSwipe } from '@vueuse/core'
+import { mdiChevronLeft, mdiChevronRight, mdiClose, mdiPause, mdiPlay } from '@mdi/js'
+import { useIntervalFn, useSwipe } from '@vueuse/core'
 import { createFocusTrap } from 'focus-trap'
-import { warn as VueWarn } from 'vue'
-import Close from 'vue-material-design-icons/Close.vue'
-import Pause from 'vue-material-design-icons/Pause.vue'
-import Play from 'vue-material-design-icons/Play.vue'
+import { computed, nextTick, onMounted, onUnmounted, ref, toRef, useTemplateRef, warn as VueWarn, watch, watchEffect } from 'vue'
+import NcActions from '../NcActions/NcActions.vue'
+import NcButton from '../NcButton/NcButton.vue'
+import NcIconSvgWrapper from '../NcIconSvgWrapper/NcIconSvgWrapper.vue'
+import { useHotKey } from '../../composables/index.ts'
 import { t } from '../../l10n.ts'
 import { createElementId } from '../../utils/createElementId.ts'
 import { getTrapStack } from '../../utils/focusTrap.ts'
-import Timer from '../../utils/Timer.js'
-import NcActions from '../NcActions/index.js'
-import NcButton from '../NcButton/index.ts'
-import NcIconSvgWrapper from '../NcIconSvgWrapper/index.ts'
+import { isRtl } from '../../utils/rtl.ts'
 
-export default {
-	name: 'NcModal',
+const props = withDefaults(defineProps<{
+	/**
+	 * Name to be shown with the modal
+	 */
+	name?: string
 
-	components: {
-		Close,
-		Pause,
-		Play,
-		NcActions,
-		NcButton,
-		NcIconSvgWrapper,
-	},
+	/**
+	 * Declare if a previous slide is available
+	 */
+	hasPrevious?: boolean
 
-	props: {
-		/**
-		 * Name to be shown with the modal
-		 */
-		name: {
-			type: String,
-			default: '',
-		},
+	/**
+	 * Declare if a next slide is available
+	 */
+	hasNext?: boolean
 
-		/**
-		 * Declare if a previous slide is available
-		 */
-		hasPrevious: {
-			type: Boolean,
-			default: false,
-		},
+	/**
+	 * Declare if hiding the modal should be animated
+	 */
+	outTransition?: boolean
 
-		/**
-		 * Declare if a next slide is available
-		 */
-		hasNext: {
-			type: Boolean,
-			default: false,
-		},
+	/**
+	 * Declare if the slideshow functionality should be enabled
+	 */
+	enableSlideshow?: boolean
 
-		/**
-		 * Declare if hiding the modal should be animated
-		 */
-		outTransition: {
-			type: Boolean,
-			default: false,
-		},
+	/**
+	 * Declare the slide interval
+	 */
+	slideshowDelay?: number
 
-		/**
-		 * Declare if the slideshow functionality should be enabled
-		 */
-		enableSlideshow: {
-			type: Boolean,
-			default: false,
-		},
+	/**
+	 * Allow to pause an ongoing slideshow
+	 */
+	slideshowPaused?: boolean
 
-		/**
-		 * Declare the slide interval
-		 */
-		slideshowDelay: {
-			type: Number,
-			default: 5000,
-		},
+	/**
+	 * Disable swipe between slides
+	 */
+	disableSwipe?: boolean
 
-		/**
-		 * Allow to pause an ongoing slideshow
-		 */
-		slideshowPaused: {
-			type: Boolean,
-			default: false,
-		},
+	/**
+	 * Enable spread navigation
+	 */
+	spreadNavigation?: boolean
 
-		/**
-		 * Disable swipe between slides
-		 */
-		disableSwipe: {
-			type: Boolean,
-			default: false,
-		},
+	/**
+	 * Defines the modal size.
+	 * All sizes except 'small' change automatically to full-screen on mobile.
+	 */
+	size?: 'small' | 'normal' | 'large' | 'full'
 
-		/**
-		 * Enable spread navigation
-		 */
-		spreadNavigation: {
-			type: Boolean,
-			default: false,
-		},
+	/**
+	 * Do not show the close button for the dialog.
+	 */
+	noClose?: boolean
 
-		/**
-		 * Defines the modal size.
-		 * Default is 'normal'.
-		 * Available are 'small', 'normal', 'large' and 'full'.
-		 * All sizes except 'small' change automatically to full-screen on mobile.
-		 */
-		size: {
-			type: String,
-			default: 'normal',
-			validator: (size) => {
-				return ['small', 'normal', 'large', 'full'].includes(size)
-			},
-		},
+	/**
+	 * Close the modal if the user clicked outside the modal
+	 * Only relevant if `noClose` is not set.
+	 */
+	closeOnClickOutside?: boolean
 
-		/**
-		 * Do not show the close button for the dialog.
-		 *
-		 * @default false
-		 */
-		noClose: {
-			type: Boolean,
-			default: false,
-		},
+	/**
+	 * Makes the modal backdrop opaque if true
+	 * Will be overwritten if some buttons are shown outside
+	 */
+	dark?: boolean
 
-		/**
-		 * Close the modal if the user clicked outside the modal
-		 * Only relevant if `noClose` is not set.
-		 */
-		closeOnClickOutside: {
-			type: Boolean,
-			default: false,
-		},
+	/**
+	 * Set light backdrop. Makes the modal header appear light.
+	 */
+	lightBackdrop?: boolean
 
-		/**
-		 * Makes the modal backdrop opaque if true
-		 * Will be overwritten if some buttons are shown outside
-		 */
-		dark: {
-			type: Boolean,
-			default: false,
-		},
+	/**
+	 * Selector for the modal container, pass `null` to prevent automatic container mounting
+	 */
+	container?: string | null
 
-		/**
-		 * Set light backdrop. Makes the modal header appear light.
-		 */
-		lightBackdrop: {
-			type: Boolean,
-			default: false,
-		},
+	/**
+	 * Pass in `true` if you want the modal 'close' button to be displayed
+	 * outside the modal boundaries, in the top right corner of the window.
+	 *
+	 * @since 8.25.0
+	 */
+	closeButtonOutside?: boolean
 
-		/**
-		 * Selector for the modal container, pass `null` to prevent automatic container mounting
-		 */
-		container: {
-			type: [String, null],
-			default: 'body',
-		},
+	/**
+	 * Additional elements to add to the focus trap
+	 */
+	additionalTrapElements?: (string | HTMLElement)[]
 
-		/**
-		 * Pass in `true` if you want the modal 'close' button to be displayed
-		 * outside the modal boundaries, in the top right corner of the window.
-		 *
-		 * @default false
-		 * @since 8.25.0
-		 */
-		closeButtonOutside: {
-			type: Boolean,
-			default: false,
-		},
+	/**
+	 * Display x items inline
+	 *
+	 * @see NcActions component usage
+	 */
+	inlineActions?: number
 
-		/**
-		 * Additional elements to add to the focus trap
-		 */
-		additionalTrapElements: {
-			type: Array,
-			default: () => [],
-		},
+	/**
+	 * The current open property of the modal
+	 */
+	show?: boolean | undefined
 
-		/**
-		 * Display x items inline
-		 *
-		 * @see Actions component usage
-		 */
-		inlineActions: {
-			type: Number,
-			default: 0,
-		},
+	/**
+	 * Id of the element that labels the dialog (the name)
+	 * Not needed if the `name` prop is set, but if no name is set you need to provide the ID of an element to label the dialog for accessibility.
+	 */
+	labelId?: string
 
-		/**
-		 * The current open property of the modal
-		 */
-		show: {
-			type: Boolean,
-			default: undefined,
-		},
+	/**
+	 * Set element to return focus to after focus trap deactivation
+	 */
+	setReturnFocus?: FocusTargetValueOrFalse
+}>(), {
+	additionalTrapElements: () => [],
+	container: 'body',
+	inlineActions: 0,
+	labelId: '',
+	slideshowDelay: 5000,
+	size: 'normal',
+	name: '',
+	show: undefined,
+	setReturnFocus: undefined,
+})
 
-		/**
-		 * Id of the element that labels the dialog (the name)
-		 * Not needed if the `name` prop is set, but if no name is set you need to provide the ID of an element to label the dialog for accessibility.
-		 */
-		labelId: {
-			type: String,
-			default: '',
-		},
+const emit = defineEmits<{
+	/**
+	 * Trigger showing the next slide.
+	 *
+	 * @param payload - The event that triggered showing the next slide
+	 */
+	next: [payload?: Event]
 
-		/**
-		 * Set element to return focus to after focus trap deactivation
-		 *
-		 * @type {import('focus-trap').FocusTargetValueOrFalse}
-		 */
-		setReturnFocus: {
-			default: undefined,
-			type: [Boolean, HTMLElement, SVGElement, String],
-		},
-	},
+	/**
+	 * Trigger showing the previous slide.
+	 *
+	 * @param payload - The event that triggered showing the previous slide
+	 */
+	previous: [payload?: Event]
 
-	emits: [
-		'previous',
-		'next',
-		'close',
-		'update:show',
-	],
+	/**
+	 * Emitted when the closing animation is finished
+	 *
+	 * @param payload - The event that triggered the close
+	 */
+	close: [payload?: Event]
 
-	setup() {
-		return {
-			mdiChevronLeft,
-			mdiChevronRight,
+	/**
+	 * @param payload - The new show-state
+	 */
+	'update:show': [payload: boolean]
+}>()
+
+defineSlots<{
+	/**
+	 * Actions to show (one or more NcAction* components)
+	 */
+	actions?: Slot
+
+	/**
+	 * The modal content to show.
+	 */
+	default?: Slot
+}>()
+
+const modalId = createElementId()
+const maskElement = useTemplateRef<HTMLDivElement>('mask')
+
+const internalShow = ref(true)
+const showModal = computed(() => props.show ?? internalShow.value)
+
+// Set up the focus trap
+let focusTrap: FocusTrap | undefined
+onMounted(() => useFocusTrap())
+onUnmounted(() => clearFocusTrap())
+watch(() => props.additionalTrapElements, (elements) => {
+	if (focusTrap) {
+		focusTrap.updateContainerElements([maskElement.value!, ...elements])
+	}
+})
+
+// Set up the slideshow
+const {
+	isActive: isPlaying,
+	pause: stopSlideshow,
+	resume: startSlideshow,
+} = useIntervalFn(nextSlide, toRef(() => props.slideshowDelay), { immediate: false })
+
+const animationKey = ref(0)
+const runSlideshow = ref(false)
+watchEffect(() => {
+	if (runSlideshow.value && !props.slideshowPaused) {
+		startSlideshow()
+	} else if (isPlaying.value) {
+		stopSlideshow()
+	}
+})
+
+const cssSlideshowDelay = computed(() => `${props.slideshowDelay}ms`)
+
+// Setup swipe navigation
+const { stop: stopSwipe } = useSwipe(maskElement, {
+	onSwipeEnd: handleSwipe,
+})
+onUnmounted(stopSwipe)
+
+// Setup hotkeys (keyboard navigation)
+useHotKey('Escape', () => {
+	const trapStack = getTrapStack()
+	// Only close the most recent focus trap modal
+	if (trapStack.length === 0 || trapStack[trapStack.length - 1] === focusTrap) {
+		close()
+	}
+})
+
+useHotKey(['ArrowLeft', 'ArrowRight'], (event) => {
+	// Ignore arrow navigation, if there is a current focus outside the modal.
+	// For example, when the focus is in Sidebar or NcActions' items,
+	// arrow navigation should not be intercepted by modal slider
+	if (document.activeElement && !maskElement.value!.contains(document.activeElement)) {
+		return
+	}
+
+	if (event.key === 'ArrowLeft' || isRtl) {
+		previousSlide()
+	} else {
+		nextSlide()
+	}
+})
+
+// for developers we should add a warning if used with invalid props combination
+onMounted(() => {
+	if (!props.name && !props.labelId) {
+		VueWarn('[NcModal] You need either set the name or set a `labelId` for accessibility.')
+	}
+})
+
+/**
+ * Trigger showing the next slide
+ *
+ * @param event - The mouse click event if triggered by user
+ */
+function nextSlide(event?: Event) {
+	if (!props.hasNext) {
+		runSlideshow.value = false
+		// do not send the event if nothing is available
+		return
+	}
+
+	if (event && isPlaying.value) {
+		restartSlideshow()
+	}
+	emit('next', event)
+}
+
+/**
+ * Trigger showing the previous slide
+ *
+ * @param event - The mouse click event if triggered by user
+ */
+function previousSlide(event?: Event) {
+	if (!props.hasPrevious) {
+		// do not send the event if nothing is available
+		return
+	}
+
+	if (event && isPlaying.value) {
+		restartSlideshow()
+	}
+	emit('previous', event)
+}
+
+/**
+ * handle the swipe event
+ *
+ * @param e - The touch event
+ * @param direction - Swipe direction
+ */
+function handleSwipe(e: TouchEvent, direction: UseSwipeDirection) {
+	if (!props.disableSwipe) {
+		if (direction === 'left' || (direction === 'right' && isRtl)) {
+			nextSlide(e)
+		} else if (direction === 'right') {
+			previousSlide(e)
 		}
-	},
+	}
+}
 
-	data() {
-		return {
-			mc: null,
-			playing: false,
-			slideshowTimeout: null,
-			iconSize: 24,
-			focusTrap: null,
-			randId: createElementId(),
-			internalShow: true,
-		}
-	},
+/**
+ * Reset the slideshow interval and animation
+ */
+function restartSlideshow() {
+	stopSlideshow()
+	startSlideshow()
+	animationKey.value++
+}
 
-	computed: {
-		/**
-		 * ID of the element to label the modal
-		 */
-		modalLabelId() {
-			return this.labelId || `modal-name-${this.randId}`
-		},
+/**
+ * Handle closing the modal.
+ *
+ * @param event - The event that triggered closing the modal
+ */
+function close(event?: Event) {
+	// do not fire event if forbidden
+	if (props.noClose) {
+		return
+	}
 
-		showModal() {
-			return (this.show === undefined) ? this.internalShow : this.show
-		},
+	// We set internalShow here, so the out transitions properly run before the component is destroyed
+	internalShow.value = false
+	emit('update:show', false)
 
-		modalTransitionName() {
-			return `modal-${this.outTransition ? 'out' : 'in'}`
-		},
+	// delay closing for animation
+	setTimeout(() => {
+		emit('close', event)
+	}, 300)
+}
 
-		playPauseName() {
-			return this.playing ? t('Pause slideshow') : t('Start slideshow')
-		},
+/**
+ * Handle click on modal wrapper
+ * If `closeOnClickOutside` is set the modal will be closed
+ *
+ * @param event - The click event
+ */
+function handleClickModalWrapper(event: MouseEvent) {
+	if (props.closeOnClickOutside) {
+		close(event)
+	}
+}
 
-		cssVariables() {
-			return {
-				'--slideshow-duration': this.slideshowDelay + 'ms',
-				'--icon-size': this.iconSize + 'px',
-			}
-		},
+/**
+ * Add focus trap for accessibility.
+ */
+async function useFocusTrap() {
+	// Don't do anything if the modal is hidden,
+	// or we have a focus trap already
+	if (!showModal.value || focusTrap) {
+		return
+	}
 
-		closeButtonAriaLabel() {
-			return t('Close')
-		},
+	// wait until all children are mounted and available in the DOM before focusTrap can be added
+	await nextTick()
 
-		prevButtonAriaLabel() {
-			return t('Previous')
-		},
+	const options: FocusTrapOptions = {
+		allowOutsideClick: true,
+		fallbackFocus: maskElement.value!,
+		trapStack: getTrapStack(),
+		// Esc can be used without stop in content or additionalTrapElements where it should not deactivate modal's focus trap.
+		// Focus trap is deactivated on modal close anyway.
+		escapeDeactivates: false,
+		setReturnFocus: props.setReturnFocus,
+	}
 
-		nextButtonAriaLabel() {
-			return t('Next')
-		},
-	},
+	// Init focus trap
+	focusTrap = createFocusTrap([maskElement.value!, ...props.additionalTrapElements], options)
+	focusTrap.activate()
+}
 
-	watch: {
-		/**
-		 * Handle play/pause of an ongoing slideshow
-		 *
-		 * @param {boolean} paused is the player paused
-		 */
-		slideshowPaused(paused) {
-			if (this.slideshowTimeout) {
-				if (paused) {
-					this.slideshowTimeout.pause()
-				} else {
-					this.slideshowTimeout.start()
-				}
-			}
-		},
-
-		additionalTrapElements(elements) {
-			if (this.focusTrap) {
-				const contentContainer = this.$refs.mask
-				this.focusTrap.updateContainerElements([contentContainer, ...elements])
-			}
-		},
-	},
-
-	beforeMount() {
-		window.addEventListener('keydown', this.handleKeydown)
-	},
-
-	beforeUnmount() {
-		window.removeEventListener('keydown', this.handleKeydown)
-		this.mc.stop()
-	},
-
-	mounted() {
-		if (!this.name && !this.labelId) {
-			VueWarn('[NcModal] You need either set the name or set a `labelId` for accessibility.')
-		}
-
-		// init clear view
-		this.useFocusTrap()
-		this.mc = useSwipe(this.$refs.mask, {
-			onSwipeEnd: this.handleSwipe,
-		})
-
-		if (this.container) {
-			if (this.container === 'body') {
-				// force mount the component to body
-				document.body.insertBefore(this.$el, document.body.lastChild)
-			} else {
-				const container = document.querySelector(this.container)
-				container.appendChild(this.$el)
-			}
-		}
-	},
-
-	unmounted() {
-		this.clearFocusTrap()
-		this.$el.remove()
-	},
-
-	methods: {
-		t,
-
-		// Events emitters
-		previous(event) {
-			// do not send the event if nothing is available
-			if (this.hasPrevious) {
-				// if data is set, then it's a user mouse event
-				// and not the slideshow handler, therefore
-				// we reset the timer
-				if (event) {
-					this.resetSlideshow()
-				}
-				this.$emit('previous', event)
-			}
-		},
-
-		next(event) {
-			// do not send the event if nothing is available
-			if (this.hasNext) {
-				// if data is set, then it's a mouse event
-				// and not the slideshow handler, therefore
-				// we reset the timer
-				if (event) {
-					this.resetSlideshow()
-				}
-				this.$emit('next', event)
-			}
-		},
-
-		close(data) {
-			// do not fire event if forbidden
-			if (this.noClose) {
-				return
-			}
-
-			// We set internalShow here, so the out transitions properly run before the component is destroyed
-			this.internalShow = false
-			this.$emit('update:show', false)
-
-			// delay closing for animation
-			setTimeout(() => {
-				/**
-				 * Emitted when the closing animation is finished
-				 */
-				this.$emit('close', data)
-			}, 300)
-		},
-
-		/**
-		 * Handle click on modal wrapper
-		 * If `closeOnClickOutside` is set the modal will be closed
-		 *
-		 * @param {MouseEvent} event The click event
-		 */
-		handleClickModalWrapper(event) {
-			if (this.closeOnClickOutside) {
-				this.close(event)
-			}
-		},
-
-		/**
-		 * @param {KeyboardEvent} event - keyboard event
-		 */
-		handleKeydown(event) {
-			if (event.key === 'Escape') {
-				const trapStack = getTrapStack()
-				// Only close the most recent focus trap modal
-				if (trapStack.length > 0 && trapStack[trapStack.length - 1] !== this.focusTrap) {
-					return
-				}
-				return this.close(event)
-			}
-
-			const arrowHandlers = {
-				ArrowLeft: this.previous,
-				ArrowRight: this.next,
-			}
-			if (arrowHandlers[event.key]) {
-				// Ignore arrow navigation, if there is a current focus outside the modal.
-				// For example, when the focus is in Sidebar or NcActions' items,
-				// arrow navigation should not be intercepted by modal slider
-				if (document.activeElement && !this.$el.contains(document.activeElement)) {
-					return
-				}
-				return arrowHandlers[event.key](event)
-			}
-		},
-
-		/**
-		 * handle the swipe event
-		 *
-		 * @param {TouchEvent} e The touch event
-		 * @param {import('@vueuse/core').SwipeDirection} direction Swipe direction
-		 */
-		handleSwipe(e, direction) {
-			if (!this.disableSwipe) {
-				if (direction === 'left') {
-					// swiping to left to go to the next item
-					this.next(e)
-				} else if (direction === 'right') {
-					// swiping to right to go back to the previous item
-					this.previous(e)
-				}
-			}
-		},
-
-		/**
-		 * Toggle the slideshow state
-		 */
-		togglePlayPause() {
-			this.playing = !this.playing
-			if (this.playing) {
-				this.handleSlideshow()
-			} else {
-				this.clearSlideshowTimeout()
-			}
-		},
-
-		/**
-		 * Reset the slideshow timer and keep going if it was on
-		 */
-		resetSlideshow() {
-			this.playing = !this.playing
-			this.clearSlideshowTimeout()
-			this.$nextTick(function() {
-				this.togglePlayPause()
-			})
-		},
-
-		/**
-		 * Handle the slideshow timer and next event
-		 */
-		handleSlideshow() {
-			this.playing = true
-			if (this.hasNext) {
-				this.slideshowTimeout = new Timer(() => {
-					this.next()
-					this.handleSlideshow()
-				}, this.slideshowDelay)
-			} else {
-				this.playing = false
-				this.clearSlideshowTimeout()
-			}
-		},
-
-		/**
-		 * Clear slideshowTimeout if ongoing
-		 */
-		clearSlideshowTimeout() {
-			if (this.slideshowTimeout) {
-				this.slideshowTimeout.clear()
-			}
-		},
-
-		/**
-		 * Add focus trap for accessibility.
-		 */
-		async useFocusTrap() {
-			// Don't do anything if the modal is hidden,
-			// or we have a focus trap already
-			if (!this.showModal || this.focusTrap) {
-				return
-			}
-
-			const contentContainer = this.$refs.mask
-			// wait until all children are mounted and available in the DOM before focusTrap can be added
-			await this.$nextTick()
-
-			const options = {
-				allowOutsideClick: true,
-				fallbackFocus: contentContainer,
-				trapStack: getTrapStack(),
-				// Esc can be used without stop in content or additionalTrapElements where it should not deactivate modal's focus trap.
-				// Focus trap is deactivated on modal close anyway.
-				escapeDeactivates: false,
-				setReturnFocus: this.setReturnFocus,
-			}
-
-			// Init focus trap
-			this.focusTrap = createFocusTrap([contentContainer, ...this.additionalTrapElements], options)
-			this.focusTrap.activate()
-		},
-
-		clearFocusTrap() {
-			if (!this.focusTrap) {
-				return
-			}
-			this.focusTrap?.deactivate()
-			this.focusTrap = null
-		},
-
-	},
+/**
+ * Deactivate the active focus trap - if any.
+ */
+function clearFocusTrap() {
+	if (!focusTrap) {
+		return
+	}
+	focusTrap?.deactivate()
+	focusTrap = undefined
 }
 </script>
+
+<template>
+	<Teleport :disabled="container === null" :to="container">
+		<transition
+			name="fade"
+			appear
+			@after-enter="useFocusTrap"
+			@before-leave="clearFocusTrap">
+			<div
+				v-show="showModal"
+				ref="mask"
+				class="modal-mask"
+				:class="{
+					'modal-mask--opaque': dark || closeButtonOutside || hasPrevious || hasNext,
+					'modal-mask--light': lightBackdrop,
+				}"
+				role="dialog"
+				aria-modal="true"
+				:aria-labelledby="labelId || `modal-name-${modalId}`"
+				:aria-describedby="'modal-description-' + modalId"
+				tabindex="-1">
+				<!-- Header -->
+				<transition name="fade-visibility" appear>
+					<div
+						class="modal-header"
+						:data-theme-light="lightBackdrop"
+						:data-theme-dark="!lightBackdrop">
+						<h2
+							v-if="name.trim() !== ''"
+							:id="'modal-name-' + modalId"
+							class="modal-header__name">
+							{{ name }}
+						</h2>
+						<div class="icons-menu">
+							<!-- Play-pause toggle -->
+							<button
+								v-if="hasNext && enableSlideshow"
+								class="play-pause-icons"
+								:class="{ 'play-pause-icons--paused': slideshowPaused }"
+								:title="isPlaying ? t('Pause slideshow') : t('Start slideshow')"
+								type="button"
+								@click="runSlideshow = !runSlideshow">
+								<!-- Play/pause icons -->
+								<NcIconSvgWrapper
+									class="play-pause-icons__icon"
+									inline
+									:name="isPlaying ? t('Pause slideshow') : t('Start slideshow')"
+									:path="isPlaying ? mdiPause : mdiPlay" />
+
+								<!-- Progress circle, css animated -->
+								<svg
+									v-if="isPlaying"
+									:key="`${modalId}-animation-${animationKey}`"
+									class="progress-ring"
+									height="50"
+									width="50">
+									<circle
+										class="progress-ring__circle"
+										stroke="white"
+										stroke-width="2"
+										fill="transparent"
+										r="15"
+										cx="25"
+										cy="25" />
+								</svg>
+							</button>
+
+							<!-- Actions menu -->
+							<NcActions class="header-actions" :inline="inlineActions">
+								<slot name="actions" />
+							</NcActions>
+
+							<!-- Close modal -->
+							<NcButton
+								v-if="!noClose && closeButtonOutside"
+								:aria-label="t('Close')"
+								class="header-close"
+								variant="tertiary"
+								@click="close">
+								<template #icon>
+									<NcIconSvgWrapper :path="mdiClose" />
+								</template>
+							</NcButton>
+						</div>
+					</div>
+				</transition>
+
+				<!-- Content wrapper -->
+				<transition :name="`modal-${outTransition ? 'out' : 'in'}`" appear>
+					<div
+						v-show="showModal"
+						class="modal-wrapper"
+						:class="[
+							`modal-wrapper--${size}`,
+							{ 'modal-wrapper--spread-navigation': spreadNavigation },
+						]"
+						@mousedown.self="handleClickModalWrapper">
+						<!-- Navigation button -->
+						<transition name="fade-visibility" appear>
+							<NcButton
+								v-show="hasPrevious"
+								:aria-label="t('Previous')"
+								class="prev"
+								variant="tertiary-no-background"
+								@click="previousSlide">
+								<template #icon>
+									<NcIconSvgWrapper
+										directional
+										:path="mdiChevronLeft"
+										:size="40" />
+								</template>
+							</NcButton>
+						</transition>
+
+						<!-- Content -->
+						<div :id="'modal-description-' + modalId" class="modal-container">
+							<div class="modal-container__content">
+								<slot />
+							</div>
+							<!-- Close modal -->
+							<NcButton
+								v-if="!noClose && !closeButtonOutside"
+								:aria-label="t('Close')"
+								class="modal-container__close"
+								variant="tertiary"
+								@click="close">
+								<template #icon>
+									<NcIconSvgWrapper :path="mdiClose" />
+								</template>
+							</NcButton>
+						</div>
+
+						<!-- Navigation button -->
+						<transition name="fade-visibility" appear>
+							<NcButton
+								v-show="hasNext"
+								:aria-label="t('Next')"
+								class="next"
+								variant="tertiary-no-background"
+								@click="nextSlide">
+								<template #icon>
+									<NcIconSvgWrapper
+										directional
+										:path="mdiChevronRight"
+										:size="40" />
+								</template>
+							</NcButton>
+						</transition>
+					</div>
+				</transition>
+			</div>
+		</transition>
+	</Teleport>
+</template>
 
 <style lang="scss" scoped>
 
@@ -968,15 +632,13 @@ export default {
 			background-color: transparent;
 			&:hover,
 			&:focus {
-				.play-pause-icons__play,
-				.play-pause-icons__pause {
+				.play-pause-icons__icon {
 					opacity: $opacity_full;
 					border-radius: calc(var(--default-clickable-area) / 2);
 					background-color: $icon-focus-bg;
 				}
 			}
-			&__play,
-			&__pause {
+			&__icon {
 				width: var(--default-clickable-area);
 				height: var(--default-clickable-area);
 				margin: calc((var(--header-height) - var(--default-clickable-area)) / 2);
@@ -1002,15 +664,6 @@ export default {
 		.header-actions :deep(button:focus-visible) {
 			box-shadow: none !important;
 			outline: 2px solid #fff !important;
-		}
-
-		// Force the Actions menu icon to be the same size as other icons
-		&:deep(.action-item__menutoggle) {
-			padding: 0;
-			span, svg {
-				width: var(--icon-size);
-				height: var(--icon-size);
-			}
 		}
 	}
 }
@@ -1057,6 +710,7 @@ export default {
 		background-color: var(--color-main-background);
 		color: var(--color-main-text);
 		box-shadow: 0 0 40px rgba(0, 0, 0, .2);
+		overflow: auto;
 
 		&__close {
 			// Ensure the close button is always on top of the content
@@ -1169,6 +823,8 @@ $radius: 15;
 $pi: 3.14159265358979;
 
 .modal-mask .play-pause-icons {
+	--slideshow-duration: v-bind('cssSlideshowDelay');
+
 	.progress-ring {
 		position: absolute;
 		top: 0;
@@ -1185,7 +841,7 @@ $pi: 3.14159265358979;
 		}
 	}
 	&--paused {
-		.icon-pause {
+		.play-pause-icons__icon {
 			animation: breath 2s cubic-bezier(.4, 0, .2, 1) infinite;
 		}
 		.progress-ring__circle {
@@ -1215,5 +871,160 @@ $pi: 3.14159265358979;
 		opacity: 1;
 	}
 }
-
 </style>
+
+<docs>
+The `NcModel` is the base component used for modals and dialogs.
+While `NcDialog` should be used for general dialogs like confirmations or forms,
+`NcModal` allows for custom content like showing image multimedia.
+
+For showing the modal you can use either `v-model:show="showModal"` or `v-if` on the `NcModal`,
+depending on whether you require the Modal to stay within the DOM or not. Do not mix both, as this will break the out transition animation.
+
+```vue
+<template>
+	<div>
+		<NcButton @click="showModal">Show Modal</NcButton>
+		<NcModal
+			v-model:show="modal"
+			@close="closeModal"
+			size="small"
+			name="Name"
+			out-transition>
+			<template #actions>
+				<NcActionCaption name="Some action" />
+			</template>
+			<div class="modal__content">Hello world</div>
+		</NcModal>
+	</div>
+</template>
+<script>
+export default {
+	data() {
+		return {
+			modal: false
+		}
+	},
+	methods: {
+		showModal() {
+			this.modal = true
+		},
+		closeModal() {
+			this.modal = false
+		}
+	}
+}
+</script>
+<style scoped>
+.modal__content {
+	margin: 50px;
+	text-align: center;
+}
+</style>
+```
+
+### Modal with slideshow
+
+```vue
+<template>
+	<div>
+		<NcButton @click="isOpen = true">Show Modal</NcButton>
+		<NcModal
+			v-if="isOpen"
+			close-button-outside
+			enable-slideshow
+			:has-next="page < lastPage"
+			:has-previous="page > 0"
+			name="Modal with slideshow"
+			@next="page++"
+			@previous="page--"
+			@close="isOpen = false">
+			<div class="modal__content" :style="{ background: currentPage.background }">
+				<p class="model__content-text">{{ currentPage.text }}</p>
+			</div>
+		</NcModal>
+	</div>
+</template>
+<script>
+const PAGES = [
+	{ text: 'First page', background: 'linear-gradient(#e66465, #9198e5)' },
+	{ text: 'Second page', background: 'linear-gradient(0.25turn, #3f87a6, #ebf8e1, #f69d3c)' },
+	{ text: 'Third page', background: 'lightblue' },
+	{ text: 'Last page', background: 'lightgrey' },
+]
+
+export default {
+	data() {
+		return {
+			isOpen: false,
+			page: 0,
+			lastPage: PAGES.length - 1,
+		}
+	},
+	computed: {
+		currentPage() {
+			return PAGES[this.page]
+		},
+	}
+}
+</script>
+<style scoped>
+.modal__content {
+	height: 100%;
+	min-height: 30vh;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.model__content-text {
+	font-size: 16px;
+	font-weight: bold;
+}
+</style>
+```
+
+### Usage of popover in modal
+
+* Set container property to .modal-mask to inject popover context of the modal:
+
+```vue
+<template>
+	<div>
+		<NcButton @click="showModal">Show Modal</NcButton>
+		<NcModal v-if="modal" @close="closeModal" size="small" class="emoji-modal">
+			<NcEmojiPicker container=".emoji-modal" @select="select">
+				<NcButton>Select emoji {{ emoji }}</NcButton>
+			</NcEmojiPicker>
+		</NcModal>
+	</div>
+</template>
+<script>
+export default {
+	data() {
+		return {
+			emoji: '😛',
+			modal: false
+		}
+	},
+	methods: {
+		showModal() {
+			this.modal = true
+		},
+		closeModal() {
+			this.modal = false
+		},
+		select(emoji) {
+			this.emoji = emoji
+		},
+	},
+}
+</script>
+<style scoped>
+.modal__content {
+	margin: 50px;
+	text-align: center;
+}
+</style>
+```
+</docs>
