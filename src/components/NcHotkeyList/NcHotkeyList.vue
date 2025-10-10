@@ -29,7 +29,7 @@ const labelId = `NcHotkeyList_${createElementId()}`
 </script>
 
 <template>
-	<div>
+	<div :class="$style.hotkeyList">
 		<div :id="labelId" :class="[$style.hotkeyList__heading, { 'hidden-visually': !label }]">
 			{{ label || t('Keyboard shortcuts') }}
 		</div>
@@ -40,6 +40,11 @@ const labelId = `NcHotkeyList_${createElementId()}`
 </template>
 
 <style module>
+.hotkeyList {
+	/* Too wide list is less readable - 400px seems a good width */
+	max-width: 400px;
+}
+
 .hotkeyList__heading {
 	font-weight: bold;
 	margin-inline: var(--border-radius-element); /* Align with form group */

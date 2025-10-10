@@ -61,6 +61,7 @@ const NO_LABEL_WARNING = '⚠️ NcHotKey must have a label or slot content'
 	display: flex;
 	flex-direction: row-reverse;
 	align-items: stretch;
+	padding-inline: var(--border-radius-element); /* Align with form group */
 
 	&:first-child {
 		.hotkey__label,

@@ -29,7 +29,7 @@ defineSlots<{
 .appSettingsSectionShortcuts {
 	display: flex;
 	flex-direction: column;
-	gap: calc(2 * var(--default-grid-baseline));
+	gap: calc(4 * var(--default-grid-baseline));
 }
 </style>
 
