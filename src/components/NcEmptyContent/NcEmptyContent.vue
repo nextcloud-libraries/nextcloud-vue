@@ -124,6 +124,8 @@ export default {
 <script setup lang="ts">
 import type { Slot } from 'vue'
 
+import { createElementId } from '../../utils/createElementId.ts'
+
 withDefaults(defineProps<{
 	/**
 	 * Desription of the empty content
@@ -165,18 +167,20 @@ defineSlots<{
 	 */
 	description?: Slot
 }>()
+
+const nameId = createElementId()
 </script>
 
 <template>
-	<div class="empty-content" role="note">
+	<div :aria-labelledby="nameId" class="empty-content" role="note">
 		<div v-if="$slots.icon" class="empty-content__icon" aria-hidden="true">
 			<slot name="icon" />
 		</div>
-		<slot name="name">
-			<span v-if="name !== ''" class="empty-content__name">
+		<div v-if="name !== '' || $slots.name" :id="nameId" class="empty-content__name">
+			<slot name="name">
 				{{ name }}
-			</span>
-		</slot>
+			</slot>
+		</div>
 		<p v-if="description !== '' || $slots.description" class="empty-content__description">
 			<slot name="description">
 				{{ description }}
