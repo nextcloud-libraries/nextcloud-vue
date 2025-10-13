@@ -4,8 +4,7 @@
  */
 
 const ignorePatterns = [
-	'@nextcloud/initial-state',
-	'@nextcloud/sharing',
+	'@nextcloud/',
 	'ansi-regex',
 	'bail',
 	'ccount', // ESM dependency of remark-gfm
