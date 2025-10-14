@@ -156,7 +156,7 @@ msgid "Decrement minutes"
 msgstr "Formindsk minutter"
 
 msgid "Decrement seconds"
-msgstr "Efterladte sekunder"
+msgstr "Formindsk sekunder"
 
 #. TRANSLATORS: Delete key on keyboard
 msgid "Delete"
