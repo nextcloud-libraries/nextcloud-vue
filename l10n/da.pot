@@ -426,7 +426,7 @@ msgid "Search"
 msgstr "Søg"
 
 msgid "Search …"
-msgstr "Søg.."
+msgstr "Søg ..."
 
 msgid "Search emoji"
 msgstr "Søg emoji"
