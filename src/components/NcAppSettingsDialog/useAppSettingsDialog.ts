@@ -13,9 +13,10 @@ interface AppSettingsRegistrationContext {
 	 *
 	 * @param id - The section ID
 	 * @param name - The section name
+	 * @param order - Optional section order in the list
 	 * @param icon - Optional icon component
 	 */
-	registerSection(id: string, name: string, icon?: VNode[]): void
+	registerSection(id: string, name: string, order?: number, icon?: VNode[]): void
 
 	/**
 	 * Unregistered from the app settings dialog to remove it from dialog
