@@ -150,10 +150,10 @@ msgid "Datepicker menu"
 msgstr "Datapicker menu"
 
 msgid "Decrement hours"
-msgstr "Ansættelsestimer"
+msgstr "Formindsk timer"
 
 msgid "Decrement minutes"
-msgstr "Ansættelsesminutter"
+msgstr "Formindsk minutter"
 
 msgid "Decrement seconds"
 msgstr "Efterladte sekunder"
