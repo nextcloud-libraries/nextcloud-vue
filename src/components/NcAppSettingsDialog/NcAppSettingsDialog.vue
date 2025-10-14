@@ -427,4 +427,43 @@ export default {
 }
 </script>
 ```
+
+Sections order in navigation list is defined during initial rendering.
+In case of dynamic/conditional sections rendering explicit `order` prop must be used for ordering.
+
+```vue
+<template>
+	<div>
+		<NcButton @click="settingsOpen = true">Show Settings</NcButton>
+		<NcAppSettingsDialog :open.sync="settingsOpen" :show-navigation="true" name="Application settings">
+			<NcAppSettingsSection id="asci-name-1" name="Example name 1" :order="1">
+				Some example content
+				<NcCheckboxRadioSwitch v-model="showExtraSections">Show section 3</NcCheckboxRadioSwitch>
+			</NcAppSettingsSection>
+			<NcAppSettingsSection id="asci-name-2" name="Example name 2" :order="2">
+				Some more content
+			</NcAppSettingsSection>
+			<template v-if="showExtraSections">
+				<NcAppSettingsSection id="asci-name-3" name="Example name 3" :order="3">
+					Some example content
+				</NcAppSettingsSection>
+			</template>
+			<NcAppSettingsSection id="asci-name-4" name="Example name 4" :order="4">
+				Some more content
+			</NcAppSettingsSection>
+		</NcAppSettingsDialog>
+	</div>
+</template>
+
+<script>
+	export default {
+		data() {
+			return {
+				settingsOpen: false,
+				showExtraSections: true,
+			}
+		},
+	}
+</script>
+```
 </docs>
