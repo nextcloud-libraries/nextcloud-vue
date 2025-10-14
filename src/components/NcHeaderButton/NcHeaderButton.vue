@@ -137,5 +137,5 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import '../NcHeaderMenu/header-menu__trigger';
+@use '../NcHeaderMenu/header-menu__trigger.scss';
 </style>

@@ -6,7 +6,7 @@
  $cell_height: 32px;
  $opacity_full: 1;
 
-@import 'vue2-datepicker/scss/index';
+@use 'vue2-datepicker/scss/index.scss';
 
 .mx-datepicker[data-v-#{$scope_version}] {
 	user-select: none;

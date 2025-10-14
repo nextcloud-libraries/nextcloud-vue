@@ -65,7 +65,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import '../../assets/action';
+@use '../../assets/action.scss' as *;
 @include action-active;
 @include action-item('text');
 @include action--disabled;

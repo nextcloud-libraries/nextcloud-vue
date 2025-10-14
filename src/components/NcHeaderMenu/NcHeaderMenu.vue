@@ -355,7 +355,7 @@ export default {
 // Also used for menu top-right positioning
 $externalMargin: 8px;
 
-@import './header-menu__trigger';
+@use './header-menu__trigger.scss';
 
 .header-menu {
 	&__wrapper {
