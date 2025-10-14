@@ -159,7 +159,7 @@ import { Pane, Splitpanes } from 'splitpanes'
 import NcAppContentDetailsToggle from './NcAppContentDetailsToggle.vue'
 import { useIsMobile } from '../../composables/useIsMobile/index.js'
 import { APP_NAME } from '../../utils/appName.ts'
-import logger from '../../utils/logger.ts'
+import { logger } from '../../utils/logger.ts'
 import { isRtl } from '../../utils/rtl.ts'
 
 import 'splitpanes/dist/splitpanes.css'

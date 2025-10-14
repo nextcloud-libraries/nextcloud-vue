@@ -7,7 +7,7 @@
 import type { Slot } from 'vue'
 
 import { computed, onBeforeUnmount, onMounted, watch } from 'vue'
-import logger from '../../utils/logger.ts'
+import { logger } from '../../utils/logger.ts'
 import { useAppSettingsDialog } from '../NcAppSettingsDialog/useAppSettingsDialog.ts'
 
 const props = defineProps<{

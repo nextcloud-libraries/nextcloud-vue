@@ -79,7 +79,7 @@ import { computed, useAttrs, useTemplateRef, watch } from 'vue'
 import NcIconSvgWrapper from '../NcIconSvgWrapper/NcIconSvgWrapper.vue'
 import { createElementId } from '../../utils/createElementId.ts'
 import { isLegacy } from '../../utils/legacy.ts'
-import logger from '../../utils/logger.ts'
+import { logger } from '../../utils/logger.ts'
 
 defineOptions({ inheritAttrs: false })
 

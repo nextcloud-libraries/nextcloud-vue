@@ -7,7 +7,7 @@ import axios from '@nextcloud/axios'
 import { loadState } from '@nextcloud/initial-state'
 import { generateOcsUrl, imagePath } from '@nextcloud/router'
 import { t } from '../../l10n.ts'
-import logger from '../../utils/logger.js'
+import { logger } from '../../utils/logger.js'
 import { isCustomPickerElementRegistered } from './customPickerElements.js'
 
 export interface ReferenceProvider {

@@ -5,7 +5,7 @@
 
 import axios from '@nextcloud/axios'
 import { generateRemoteUrl } from '@nextcloud/router'
-import logger from '../../utils/logger.ts'
+import { logger } from '../../utils/logger.ts'
 
 /**
  * @param {Document} xml - The xml document

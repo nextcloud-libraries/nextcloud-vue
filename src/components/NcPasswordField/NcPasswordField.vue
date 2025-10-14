@@ -106,7 +106,7 @@ import { computed, ref, useTemplateRef, watch } from 'vue'
 import NcIconSvgWrapper from '../NcIconSvgWrapper/NcIconSvgWrapper.vue'
 import NcInputField from '../NcInputField/NcInputField.vue'
 import { t } from '../../l10n.ts'
-import logger from '../../utils/logger.ts'
+import { logger } from '../../utils/logger.ts'
 
 const modelValue = defineModel<string>({ default: '' })
 
