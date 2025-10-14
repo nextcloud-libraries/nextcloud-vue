@@ -3,18 +3,6 @@
   - SPDX-License-Identifier: AGPL-3.0-or-later
 -->
 
-<template>
-	<section :id="htmlId" :aria-labelledby="`${htmlId}--label`" class="app-settings-section">
-		<h3 :id="`${htmlId}--label`" class="app-settings-section__name">
-			{{ name }}
-		</h3>
-		<!-- @slot Section content -->
-		<slot />
-		<!-- @slot Optional icon for the section in the navigation -->
-		<slot v-if="false" name="icon" />
-	</section>
-</template>
-
 <script setup lang="ts">
 import { computed, onBeforeUnmount, onMounted, useSlots, watch } from 'vue'
 import { logger } from '../../utils/logger.ts'
@@ -58,6 +46,18 @@ onBeforeUnmount(() => {
 	unregisterSection(props.id)
 })
 </script>
+
+<template>
+	<section :id="htmlId" :aria-labelledby="`${htmlId}--label`" class="app-settings-section">
+		<h3 :id="`${htmlId}--label`" class="app-settings-section__name">
+			{{ name }}
+		</h3>
+		<!-- @slot Section content -->
+		<slot />
+		<!-- @slot Optional icon for the section in the navigation -->
+		<slot v-if="false" name="icon" />
+	</section>
+</template>
 
 <style lang="scss" scoped>
 .app-settings-section {
