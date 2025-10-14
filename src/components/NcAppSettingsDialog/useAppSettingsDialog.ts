@@ -32,5 +32,5 @@ export const APP_SETTINGS_REGISTRATION_KEY: InjectionKey<AppSettingsRegistration
  * This is to be used in the app settings sections.
  */
 export function useAppSettingsDialog() {
-	return inject(APP_SETTINGS_REGISTRATION_KEY)
+	return inject(APP_SETTINGS_REGISTRATION_KEY)!
 }
