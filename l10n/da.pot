@@ -509,7 +509,7 @@ msgstr "Smileys & Emotion"
 
 #. TRANSLATORS: Space key on keyboard
 msgid "Space"
-msgstr "Rummet"
+msgstr "Mellemrum"
 
 msgid "Start slideshow"
 msgstr "Start fremvisning"
