@@ -197,7 +197,7 @@ msgstr ""
 
 #. TRANSLATORS: Escape key on keyboard
 msgid "Escape"
-msgstr "Flugt"
+msgstr "Afbrud"
 
 msgid "External documentation"
 msgstr "Ekstern dokumentation"
@@ -240,13 +240,13 @@ msgid "Hide password"
 msgstr "Skjul kodeord"
 
 msgid "Increment hours"
-msgstr "Forskydningstid"
+msgstr "Forøg timer"
 
 msgid "Increment minutes"
-msgstr "Stigningsminutter"
+msgstr "Forøg minutter"
 
 msgid "Increment seconds"
-msgstr "Stigningssekunder"
+msgstr "Forøg sekunder"
 
 msgid "invisible"
 msgstr "usynlig"
@@ -262,7 +262,7 @@ msgstr "Indlæs flere \"{options}\""
 
 #. TRANSLATORS: The button is in a loading state
 msgid "Loading …"
-msgstr "Indlæser.."
+msgstr "Indlæser ..."
 
 #. TRANSLATORS: A color name for RGB(45, 115, 190)
 msgid "Mariner"
@@ -286,10 +286,10 @@ msgid "Month picker"
 msgstr "Månedsvælger"
 
 msgid "Month picker overlay"
-msgstr "Måneder plukker overlay"
+msgstr "Måneder vælger overlay"
 
 msgid "More items …"
-msgstr "Flere elementer.."
+msgstr "Flere elementer ..."
 
 msgid "More options"
 msgstr "Flere muligheder"
