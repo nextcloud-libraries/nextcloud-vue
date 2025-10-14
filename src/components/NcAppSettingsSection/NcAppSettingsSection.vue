@@ -30,19 +30,12 @@ watch(() => props.id, () => {
 }, { immediate: true })
 
 // Reactive changes for section navigation
-watch(() => props.id, (newId, oldId) => {
+watch([() => props.id, () => props.name, () => props.order], (
+	[newId, newName, newOrder],
+	[oldId, ,],
+) => {
 	unregisterSection(oldId)
-	registerSection(newId, props.name, props.order, slots?.icon?.())
-})
-
-watch(() => props.name, (newName) => {
-	unregisterSection(props.id)
-	registerSection(props.id, newName, props.order, slots?.icon?.())
-})
-
-watch(() => props.order, (newOrder) => {
-	unregisterSection(props.id)
-	registerSection(props.id, props.name, newOrder, slots?.icon?.())
+	registerSection(newId, newName, newOrder, slots?.icon?.())
 })
 
 onMounted(() => {
