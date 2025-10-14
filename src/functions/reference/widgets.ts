@@ -3,7 +3,7 @@
  * SPDX-License-Identifier: AGPL-3.0-or-later
  */
 
-import logger from '../../utils/logger.ts'
+import { logger } from '../../utils/logger.ts'
 
 /** Reference interface (copied from OpenAPI core) */
 export interface ReferenceWidgetObject {

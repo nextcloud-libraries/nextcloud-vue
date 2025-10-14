@@ -82,7 +82,7 @@ import OpenInNew from 'vue-material-design-icons/OpenInNew.vue'
 import NcButton from '../NcButton/NcButton.vue'
 import NcIconSvgWrapper from '../NcIconSvgWrapper/NcIconSvgWrapper.vue'
 import { t } from '../../l10n.ts'
-import logger from '../../utils/logger.ts'
+import { logger } from '../../utils/logger.ts'
 
 const teamResourceProviders = getCapabilities()?.circles?.teamResourceProviders ?? []
 

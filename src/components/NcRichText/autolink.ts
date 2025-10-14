@@ -9,7 +9,7 @@ import { getBaseUrl, getRootUrl } from '@nextcloud/router'
 import { u } from 'unist-builder'
 import { SKIP, visit } from 'unist-util-visit'
 import { defineComponent, h } from 'vue'
-import logger from '../../utils/logger.ts'
+import { logger } from '../../utils/logger.ts'
 import { URL_PATTERN_AUTOLINK } from './helpers.js'
 
 const NcLink = defineComponent({

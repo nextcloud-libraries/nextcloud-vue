@@ -139,7 +139,7 @@ export default {
 
 <script>
 import { t } from '../../l10n.ts'
-import logger from '../../utils/logger.ts'
+import { logger } from '../../utils/logger.ts'
 import NcEllipsisedOption from '../NcEllipsisedOption/index.js'
 import NcSelect from '../NcSelect/index.js'
 import { searchTags } from './api.js'

@@ -78,7 +78,7 @@ import dndSvg from '../../assets/status-icons/user-status-dnd.svg?raw'
 import invisibleSvg from '../../assets/status-icons/user-status-invisible.svg?raw'
 import onlineSvg from '../../assets/status-icons/user-status-online.svg?raw'
 import { t } from '../../l10n.ts'
-import logger from '../../utils/logger.ts'
+import { logger } from '../../utils/logger.ts'
 import { getUserStatusText } from '../../utils/UserStatus.ts'
 
 /**

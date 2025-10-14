@@ -7,7 +7,7 @@ import { getCurrentUser } from '@nextcloud/auth'
 import axios from '@nextcloud/axios'
 import { getCapabilities } from '@nextcloud/capabilities'
 import { generateOcsUrl } from '@nextcloud/router'
-import logger from '../utils/logger.ts'
+import { logger } from '../utils/logger.ts'
 
 export default {
 	data() {
