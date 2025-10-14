@@ -122,17 +122,17 @@ export default {
 </docs>
 
 <template>
-	<div class="empty-content" role="note">
+	<div :aria-labelledby="nameId" class="empty-content" role="note">
 		<div v-if="$slots.icon" class="empty-content__icon" aria-hidden="true">
 			<!-- @slot Optional material design icon -->
 			<slot name="icon" />
 		</div>
 		<!-- @slot Optional name if not set as property, shall be enclosed by a header element -->
-		<slot name="name">
-			<span v-if="hasName" class="empty-content__name">
+		<div v-if="hasName" :id="nameId" class="empty-content__name">
+			<slot name="name">
 				{{ name }}
-			</span>
-		</slot>
+			</slot>
+		</div>
 		<p v-if="hasDescription" class="empty-content__description">
 			<!-- @slot Optional formatted description rendered inside a paragraph -->
 			<slot name="description">
@@ -147,6 +147,8 @@ export default {
 </template>
 
 <script>
+import { createElementId } from '../../utils/createElementId.ts'
+
 export default {
 	name: 'NcEmptyContent',
 
@@ -172,9 +174,15 @@ export default {
 		},
 	},
 
+	setup() {
+		return {
+			nameId: createElementId(),
+		}
+	},
+
 	computed: {
 		hasName() {
-			return this.name !== ''
+			return this.name !== '' || this.$slots.name
 		},
 
 		/**
