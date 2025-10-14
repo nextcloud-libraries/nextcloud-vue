@@ -12,14 +12,20 @@
 		<NcChip text="Files" :icon-path="mdiFile" />
 		<NcChip text="Color" :icon-path="mdiPalette" variant="tertiary" />
 		<NcChip text="Current time" :icon-path="mdiClock" no-close variant="primary" />
+		<NcChip text="Canceled" :icon-path="mdiCancel" variant="error" no-close />
+		<NcChip text="Open" :icon-path="mdiCircle" variant="success" no-close />
+		<NcChip text="Due tomorrow" :icon-path="mdiAlertCircleOutline" variant="warning" no-close />
 	</div>
 </template>
 <script>
-import { mdiClock, mdiFile, mdiPalette } from '@mdi/js'
+import { mdiClock, mdiFile, mdiPalette, mdiCancel, mdiCircle, mdiAlertCircleOutline } from '@mdi/js'
 
 export default {
 	setup() {
 		return {
+			mdiAlertCircleOutline,
+			mdiCancel,
+			mdiCircle,
 			mdiClock,
 			mdiFile,
 			mdiPalette,
@@ -233,6 +239,21 @@ const hasIcon = () => Boolean(props.iconPath || props.iconSvg || !!slots.icon?.(
 	&--secondary {
 		background-color: var(--color-primary-element-light);
 		color: var(--color-primary-element-light-text);
+	}
+
+	&--error {
+		background-color: var(--color-error);
+		color: var(--color-error-text);
+	}
+
+	&--warning {
+		background-color: var(--color-warning);
+		color: var(--color-warning-text);
+	}
+
+	&--success {
+		background-color: var(--color-success);
+		color: var(--color-success-text);
 	}
 
 	&--no-actions &__text {
