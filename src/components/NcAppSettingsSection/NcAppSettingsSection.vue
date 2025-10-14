@@ -13,6 +13,8 @@ const props = defineProps<{
 	name: string
 	/** The id of the section */
 	id: string
+	/** The id of the section */
+	order?: number
 }>()
 
 const slots = useSlots()
@@ -30,16 +32,21 @@ watch(() => props.id, () => {
 // Reactive changes for section navigation
 watch(() => props.id, (newId, oldId) => {
 	unregisterSection(oldId)
-	registerSection(newId, props.name, slots?.icon?.())
+	registerSection(newId, props.name, props.order, slots?.icon?.())
 })
 
 watch(() => props.name, (newName) => {
 	unregisterSection(props.id)
-	registerSection(props.id, newName, slots?.icon?.())
+	registerSection(props.id, newName, props.order, slots?.icon?.())
+})
+
+watch(() => props.order, (newOrder) => {
+	unregisterSection(props.id)
+	registerSection(props.id, props.name, newOrder, slots?.icon?.())
 })
 
 onMounted(() => {
-	registerSection(props.id, props.name, slots?.icon?.())
+	registerSection(props.id, props.name, props.order, slots?.icon?.())
 })
 
 onBeforeUnmount(() => {
