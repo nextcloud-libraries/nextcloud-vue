@@ -8,42 +8,36 @@
 		<h3 :id="`${htmlId}--label`" class="app-settings-section__name">
 			{{ name }}
 		</h3>
+		<!-- @slot Section content -->
 		<slot />
-		<!-- @slot Optonal icon to for the secion in the navigation -->
+		<!-- @slot Optional icon for the section in the navigation -->
 		<slot v-if="false" name="icon" />
 	</section>
 </template>
 
-<script setup>
+<script setup lang="ts">
 import { computed, onBeforeUnmount, onMounted, useSlots, watch } from 'vue'
+import { logger } from '../../utils/logger.ts'
 import { useAppSettingsDialog } from '../NcAppSettingsDialog/useAppSettingsDialog.ts'
 
-const props = defineProps({
-	/**
-	 * Name of the section
-	 */
-	name: {
-		type: String,
-		required: true,
-	},
-
-	/**
-	 * The id of the section
-	 */
-	id: {
-		type: String,
-		required: true,
-		validator(id) {
-			// Only alphanumeric, dash and underscore
-			return /^[a-z0-9\-_]+$/.test(id)
-		},
-	},
-})
+const props = defineProps<{
+	/** Name of the section */
+	name: string
+	/** The id of the section */
+	id: string
+}>()
 
 const slots = useSlots()
 const { registerSection, unregisterSection } = useAppSettingsDialog()
 
 const htmlId = computed(() => 'settings-section_' + props.id)
+
+// Validate id prop - only alphanumeric, dash and underscore
+watch(() => props.id, () => {
+	if (!/^[a-z0-9\-_]+$/.test(props.id)) {
+		logger.warn(`Invalid id prop: ${props.id}. Only alphanumeric, dash and underscore are allowed.`)
+	}
+}, { immediate: true })
 
 // Reactive changes for section navigation
 watch(() => props.id, (newId, oldId) => {
@@ -57,7 +51,6 @@ watch(() => props.name, (newName) => {
 })
 
 onMounted(() => {
-	// register section for navigation
 	registerSection(props.id, props.name, slots?.icon?.())
 })
 
