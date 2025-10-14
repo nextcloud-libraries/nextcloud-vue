@@ -577,4 +577,4 @@ msgid "Year picker"
 msgstr "År vælger"
 
 msgid "Year picker overlay"
-msgstr "Året med plukker overlay"
+msgstr "År vælger overlay"
