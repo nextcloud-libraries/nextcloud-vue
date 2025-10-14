@@ -3,82 +3,66 @@
   - SPDX-License-Identifier: AGPL-3.0-or-later
 -->
 
+<script setup lang="ts">
+import type { Slot } from 'vue'
+
+import { computed, onBeforeUnmount, onMounted, watch } from 'vue'
+import logger from '../../utils/logger.ts'
+import { useAppSettingsDialog } from '../NcAppSettingsDialog/useAppSettingsDialog.ts'
+
+const props = defineProps<{
+	/** Name of the section */
+	name: string
+	/** The id of the section */
+	id: string
+}>()
+
+const slots = defineSlots<{
+	/** Section content */
+	default?: Slot
+	/** Optional icon for the section in the navigation */
+	icon?: Slot
+}>()
+
+const { registerSection, unregisterSection } = useAppSettingsDialog()
+
+const htmlId = computed(() => 'settings-section_' + props.id)
+
+// Validate id prop - only alphanumeric, dash and underscore
+watch(() => props.id, () => {
+	if (!/^[a-z0-9\-_]+$/.test(props.id)) {
+		logger.warn(`Invalid id prop: ${props.id}. Only alphanumeric, dash and underscore are allowed.`)
+	}
+}, { immediate: true })
+
+// Reactive changes for section navigation
+watch(() => props.id, (newId, oldId) => {
+	unregisterSection(oldId)
+	registerSection(newId, props.name, slots?.icon?.())
+})
+
+watch(() => props.name, (newName) => {
+	unregisterSection(props.id)
+	registerSection(props.id, newName, slots?.icon?.())
+})
+
+onMounted(() => {
+	registerSection(props.id, props.name, slots?.icon?.())
+})
+
+onBeforeUnmount(() => {
+	unregisterSection(props.id)
+})
+</script>
+
 <template>
 	<section :id="htmlId" :aria-labelledby="`${htmlId}--label`" class="app-settings-section">
 		<h3 :id="`${htmlId}--label`" class="app-settings-section__name">
 			{{ name }}
 		</h3>
 		<slot />
-		<!-- @slot Optonal icon to for the secion in the navigation -->
-		<slot v-if="false" name="icon" />
 	</section>
 </template>
-
-<script>
-import { useAppSettingsDialog } from '../NcAppSettingsDialog/useAppSettingsDialog.ts'
-
-export default {
-	name: 'NcAppSettingsSection',
-
-	props: {
-		/**
-		 * Name of the section
-		 */
-		name: {
-			type: String,
-			required: true,
-		},
-
-		/**
-		 * The id of the section
-		 */
-		id: {
-			type: String,
-			required: true,
-			validator(id) {
-				// Only alphanumeric, dash and underscore
-				return /^[a-z0-9\-_]+$/.test(id)
-			},
-		},
-	},
-
-	setup() {
-		return {
-			...useAppSettingsDialog(),
-		}
-	},
-
-	computed: {
-		// generate an id for each settingssection based on the name without whitespaces
-		htmlId() {
-			return 'settings-section_' + this.id
-		},
-	},
-
-	// Reactive changes for section navigation
-	watch: {
-		id(newId, oldId) {
-			this.unregisterSection(oldId)
-			this.registerSection(newId, this.name, this.$slots?.icon?.())
-		},
-
-		name(newName) {
-			this.unregisterSection(this.id)
-			this.registerSection(this.id, newName, this.$slots?.icon?.())
-		},
-	},
-
-	mounted() {
-		// register section for navigation
-		this.registerSection(this.id, this.name, this.$slots?.icon?.())
-	},
-
-	beforeUnmount() {
-		this.unregisterSection(this.id)
-	},
-}
-
-</script>
 
 <style lang="scss" scoped>
 .app-settings-section {

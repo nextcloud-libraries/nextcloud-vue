@@ -29,7 +29,7 @@ export { default as NcAppNavigationSearch } from './NcAppNavigationSearch/index.
 export { default as NcAppNavigationSettings } from './NcAppNavigationSettings/index.js'
 export { default as NcAppNavigationSpacer } from './NcAppNavigationSpacer/index.ts'
 export { default as NcAppSettingsDialog } from './NcAppSettingsDialog/index.ts'
-export { default as NcAppSettingsSection } from './NcAppSettingsSection/index.js'
+export { default as NcAppSettingsSection } from './NcAppSettingsSection/index.ts'
 export { default as NcAppSidebar } from './NcAppSidebar/index.js'
 export { default as NcAppSidebarHeader } from './NcAppSidebarHeader/index.ts'
 export { default as NcAppSidebarTab } from './NcAppSidebarTab/index.js'
