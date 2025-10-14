@@ -25,16 +25,24 @@ This component displays rich text with optional autolink or [Markdown support](h
 export default {
 	data() {
 		return {
-			text: `## Hello everyone 🎉
-The file {file} was added by {username}. Visit https://nextcloud.com to check it!
+			text: `3. one
+4. three
+5. five
+6. eleven
 
-Some examples for markdown syntax:
-1. **bold text**
-2. _italic text_
-3. example of \`inline code\`
+fsdf
 
-> blockquote example
-`,
+2. one
+4. three
+7. five
+11. eleven
+
+afsfd
+
+3. one
+4. three
+5. five
+6. eleven`,
 			autolink: true,
 			useMarkdown: true,
 			args: {
@@ -62,243 +70,6 @@ textarea {
 </style>
 ```
 
-### Flavored Markdown
-
-This component can support [Github Flavored Markdown](https://github.github.com/gfm/).
-It adds such elements, as tables, task lists, strikethrough, and supports code syntax highlighting and autolinks by default
-
-It is also possible to make a rendered content interactive and listen for events
-
-```vue
-<template>
-	<div>
-		<textarea v-model="text" />
-
-		<NcRichText :text="text"
-			:use-extended-markdown="true"
-			:interactive="true"
-			@interact-todo="handleInteraction"/>
-	</div>
-</template>
-<script>
-	export default {
-		data() {
-			return {
-				text: `## Try flavored markdown right now!
-
-~~strikethrough~~
-
-- [ ] task to be done
-- [x] task completed
-
-Table header | Column A | Column B
--- | -- | --
-Table row | value A | value B
-
----
-
-\`\`\`js
-const createElementId = (length) => {
-\treturn Math.random()
-\t\t.toString(36)
-\t\t.replace(/[^a-z]+/g, '')
-\t\t.slice(0, length || 5)
-}
-\`\`\`
-`,
-			}
-		},
-		methods: {
-			handleInteraction(id) {
-				const parentId = id.split('-markdown-input-')[0]
-				const index = Array.from(document.querySelectorAll(`span[id^="${parentId}-markdown-input-"]`)).findIndex((el) => el.id.includes(id))
-				if (index === -1 ) {
-					return
-				}
-				let checkBoxIndex = 0
-				let lines = this.text.split('\n')
-				for (let i = 0; i < lines.length; i++) {
-					if (lines[i].includes('[ ]') || lines[i].includes('[x]')) {
-						if (checkBoxIndex === index) {
-							const isChecked = lines[i].includes('[x]')
-							if (isChecked) {
-								lines[i] = lines[i].replace('[x]', '[ ]')
-							} else {
-								lines[i] = lines[i].replace('[ ]', '[x]')
-							}
-							break
-						}
-						checkBoxIndex++
-					}
-				}
-				this.text = lines.join('\n')
-			},
-		},
-	}
-</script>
-<style lang="scss">
-textarea {
-	width: 100%;
-	height: 200px;
-}
-</style>
-```
-
-### Usage with NcRichContenteditable
-
-See [NcRichContenteditable](#/Components/NcRichContenteditable) documentation for more information
-
-```vue
-<template>
-	<div>
-		<NcRichContenteditable v-model="message"
-			:auto-complete="autoComplete"
-			:maxlength="100"
-			:user-data="userData"
-			placeholder="Try mentioning user @Test01 or inserting emoji :smile"
-			@submit="onSubmit" />
-
-		<NcCheckboxRadioSwitch v-model="autolink" type="checkbox">Autolink</NcCheckboxRadioSwitch>
-		<NcCheckboxRadioSwitch v-model="useMarkdown" type="checkbox">Use Markdown</NcCheckboxRadioSwitch>
-		<NcCheckboxRadioSwitch v-model="useExtendedMarkdown" type="checkbox">Use extended Markdown</NcCheckboxRadioSwitch>
-
-		<NcRichText :text="text"
-			:autolink="autolink"
-			:arguments="userMentions"
-			:use-markdown="useMarkdown"
-			:use-extended-markdown="useExtendedMarkdown" />
-	</div>
-</template>
-<script>
-	export default {
-		data() {
-			return {
-				message: '',
-				autolink: true,
-				useMarkdown: true,
-				useExtendedMarkdown: true,
-				userData: {
-					Test01: {
-						icon: 'icon-user',
-						id: 'Test01',
-						label: 'Test01',
-						source: 'users',
-						primary: true,
-					},
-					Test02: {
-						icon: 'icon-user',
-						id: 'Test02',
-						label: 'Test02',
-						source: 'users',
-						status: {
-							clearAt: null,
-							icon: '🎡',
-							message: 'Visiting London',
-							status: 'away',
-						},
-						subline: 'Visiting London',
-					},
-					'Test@User': {
-						icon: 'icon-user',
-						id: 'Test@User',
-						label: 'Test 03',
-						source: 'users',
-						status: {
-							clearAt: null,
-							icon: '🎡',
-							message: 'Having space in my name',
-							status: 'online',
-						},
-						subline: 'Visiting London',
-					},
-					'Test Offline': {
-						icon: 'icon-user',
-						id: 'Test Offline',
-						label: 'Test Offline',
-						source: 'users',
-						status: {
-							clearAt: null,
-							icon: null,
-							message: null,
-							status: 'offline',
-						},
-						subline: null,
-					},
-					'Test DND': {
-						icon: 'icon-user',
-						id: 'Test DND',
-						label: 'Test DND',
-						source: 'users',
-						status: {
-							clearAt: null,
-							icon: null,
-							message: 'Out sick',
-							status: 'dnd',
-						},
-						subline: 'Out sick',
-					},
-				},
-				userMentions: {
-					'user-1': {
-						component: 'NcUserBubble',
-						props: {
-							displayName: 'Test01',
-							user: 'Test01',
-							primary: true,
-						},
-					},
-					'user-2': {
-						component: 'NcUserBubble',
-						props: {
-							displayName: 'Test02',
-							user: 'Test02',
-						},
-					},
-					'user-3': {
-						component: 'NcUserBubble',
-						props: {
-							displayName: 'Test 03',
-							user: 'Test@User',
-						},
-					},
-					'user-4': {
-						component: 'NcUserBubble',
-						props: {
-							displayName: 'Test Offline',
-							user: 'Test Offline',
-						},
-					},
-					'user-5': {
-						component: 'NcUserBubble',
-						props: {
-							displayName: 'Test DND',
-							user: 'Test DND',
-						},
-					},
-				},
-			}
-		},
-		computed: {
-			text() {
-				return this.message
-						.replace('@Test01', '{user-1}')
-						.replace('@Test02', '{user-2}')
-						.replace('@Test@User', '{user-3}')
-						.replace('@"Test Offline"', '{user-4}')
-						.replace('@"Test DND"', '{user-5}')
-			},
-		},
-		methods: {
-			autoComplete(search, callback) {
-				callback(Object.values(this.userData))
-			},
-			onSubmit() {
-				alert(this.message)
-			}
-		}
-	}
-</script>
-```
 </docs>
 
 <script>
@@ -491,7 +262,25 @@ export default {
 					// escape special symbol "<" to not treat text as HTML
 					.replace(/<[^>]+>/g, (match) => match.replace(/</g, '&lt;'))
 					// unescape special symbol ">" to parse blockquotes
-					.replace(/&gt;/gmi, '>'))
+					.replace(/&gt;/gmi, '>')
+					// ordered list
+					.replace(/\b(\d+)\.\s/g, (match, p1, offset, string) => {
+						const following = string.slice(offset + match.length)
+						const nextMatch = following.match(/\b(\d+)\.\s/)?.[1]
+
+						if (!nextMatch) {
+							return match
+						}
+						// If the next number is not +1, we fix the current number to be +1 of the previous one
+						// This ensures that lists are always rendered correctly, even if the input is wrong
+						console.log(parseInt(p1, 10) + 1, parseInt(nextMatch, 10), parseInt(p1, 10) + 1 !== parseInt(nextMatch, 10))
+						if (parseInt(p1, 10) + 1 !== parseInt(nextMatch, 10)) {
+							console.log('fixing |', p1 + '\\. ')
+							return p1 + '\\. '
+						}
+						return match
+					})
+				)
 				.result
 
 			return h('div', { class: 'rich-text--wrapper rich-text--wrapper-markdown' }, [
@@ -537,6 +326,8 @@ export default {
 		},
 
 		createElement(type, props, key) {
+			console.log(type, props, key)
+
 			// Modified code from vue/jsx-runtime
 			if (key) {
 				props.key = key
