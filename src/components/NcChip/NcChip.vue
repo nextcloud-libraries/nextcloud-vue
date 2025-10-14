@@ -12,14 +12,20 @@
 		<NcChip text="Files" :icon-path="mdiFile" />
 		<NcChip text="Color" :icon-path="mdiPalette" variant="tertiary" />
 		<NcChip text="Current time" :icon-path="mdiClock" no-close variant="primary" />
+		<NcChip text="Canceled" :icon-path="mdiCancel" variant="error" no-close />
+		<NcChip text="Open" :icon-path="mdiCircle" variant="success" no-close />
+		<NcChip text="Due tomorrow" :icon-path="mdiAlertCircleOutline" variant="warning" no-close />
 	</div>
 </template>
 <script>
-import { mdiClock, mdiFile, mdiPalette } from '@mdi/js'
+import { mdiClock, mdiFile, mdiPalette, mdiCancel, mdiCircle, mdiAlertCircleOutline } from '@mdi/js'
 
 export default {
 	setup() {
 		return {
+			mdiAlertCircleOutline,
+			mdiCancel,
+			mdiCircle,
 			mdiClock,
 			mdiFile,
 			mdiPalette,
@@ -163,7 +169,7 @@ const props = withDefaults(defineProps<{
 	 * @default 'secondary'
 	 * @since 8.23.0
 	 */
-	variant?: 'primary' | 'secondary' | 'tertiary'
+	variant?: 'primary' | 'secondary' | 'tertiary' | 'error' | 'warning' | 'success'
 }>(), {
 	ariaLabelClose: t('Close'),
 	actionsContainer: 'body',
@@ -227,14 +233,29 @@ const hasIcon = () => Boolean(props.iconPath || props.iconSvg || !!slots.icon)
 		color: var(--color-primary-element-light-text);
 	}
 
+	&--error {
+		background-color: var(--color-error);
+		color: var(--color-error-text);
+	}
+
+	&--warning {
+		background-color: var(--color-warning);
+		color: var(--color-warning-text);
+	}
+
+	&--success {
+		background-color: var(--color-success);
+		color: var(--color-success-text);
+	}
+
 	&--no-actions &__text {
 		// If there are no actions we need to add some padding to ensure the text is not cut-off
-		padding-inline-end: calc(1.5 * var(--default-grid-baseline));
+		padding-inline-end: calc(2 * var(--default-grid-baseline));
 	}
 
 	&--no-icon &__text {
 		// Add some more space to the border
-		padding-inline-start: calc(1.5 * var(--default-grid-baseline));
+		padding-inline-start: calc(2 * var(--default-grid-baseline));
 	}
 
 	&__text {
