@@ -571,7 +571,7 @@ msgid "White"
 msgstr "Hvid"
 
 msgid "Write a message …"
-msgstr "Skriv en besked.."
+msgstr "Skriv en besked ..."
 
 msgid "Year picker"
 msgstr "Årets plukker"
