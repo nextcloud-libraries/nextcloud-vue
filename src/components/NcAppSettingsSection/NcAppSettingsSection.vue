@@ -14,70 +14,56 @@
 	</section>
 </template>
 
-<script>
+<script setup>
+import { computed, onBeforeUnmount, onMounted, useSlots, watch } from 'vue'
 import { useAppSettingsDialog } from '../NcAppSettingsDialog/useAppSettingsDialog.ts'
 
-export default {
-	name: 'NcAppSettingsSection',
+const props = defineProps({
+	/**
+	 * Name of the section
+	 */
+	name: {
+		type: String,
+		required: true,
+	},
 
-	props: {
-		/**
-		 * Name of the section
-		 */
-		name: {
-			type: String,
-			required: true,
-		},
-
-		/**
-		 * The id of the section
-		 */
-		id: {
-			type: String,
-			required: true,
-			validator(id) {
-				// Only alphanumeric, dash and underscore
-				return /^[a-z0-9\-_]+$/.test(id)
-			},
+	/**
+	 * The id of the section
+	 */
+	id: {
+		type: String,
+		required: true,
+		validator(id) {
+			// Only alphanumeric, dash and underscore
+			return /^[a-z0-9\-_]+$/.test(id)
 		},
 	},
+})
 
-	setup() {
-		return {
-			...useAppSettingsDialog(),
-		}
-	},
+const slots = useSlots()
+const { registerSection, unregisterSection } = useAppSettingsDialog()
 
-	computed: {
-		// generate an id for each settingssection based on the name without whitespaces
-		htmlId() {
-			return 'settings-section_' + this.id
-		},
-	},
+const htmlId = computed(() => 'settings-section_' + props.id)
 
-	// Reactive changes for section navigation
-	watch: {
-		id(newId, oldId) {
-			this.unregisterSection(oldId)
-			this.registerSection(newId, this.name, this.$slots?.icon?.())
-		},
+// Reactive changes for section navigation
+watch(() => props.id, (newId, oldId) => {
+	unregisterSection(oldId)
+	registerSection(newId, props.name, slots?.icon?.())
+})
 
-		name(newName) {
-			this.unregisterSection(this.id)
-			this.registerSection(this.id, newName, this.$slots?.icon?.())
-		},
-	},
+watch(() => props.name, (newName) => {
+	unregisterSection(props.id)
+	registerSection(props.id, newName, slots?.icon?.())
+})
 
-	mounted() {
-		// register section for navigation
-		this.registerSection(this.id, this.name, this.$slots?.icon?.())
-	},
+onMounted(() => {
+	// register section for navigation
+	registerSection(props.id, props.name, slots?.icon?.())
+})
 
-	beforeUnmount() {
-		this.unregisterSection(this.id)
-	},
-}
-
+onBeforeUnmount(() => {
+	unregisterSection(props.id)
+})
 </script>
 
 <style lang="scss" scoped>
