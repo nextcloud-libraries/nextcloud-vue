@@ -574,7 +574,7 @@ msgid "Write a message …"
 msgstr "Skriv en besked ..."
 
 msgid "Year picker"
-msgstr "Årets plukker"
+msgstr "År vælger"
 
 msgid "Year picker overlay"
 msgstr "Året med plukker overlay"
