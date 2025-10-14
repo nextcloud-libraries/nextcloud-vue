@@ -521,7 +521,7 @@ msgid "Submit"
 msgstr "Send"
 
 msgid "Switch AM/PM mode"
-msgstr "Skift AM / PM-tilstand"
+msgstr "Skift AM/PM-tilstand"
 
 msgid "Symbols"
 msgstr "Symboler"
