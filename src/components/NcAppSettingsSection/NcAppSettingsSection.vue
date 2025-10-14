@@ -3,15 +3,6 @@
   - SPDX-License-Identifier: AGPL-3.0-or-later
 -->
 
-<template>
-	<section :id="htmlId" :aria-labelledby="`${htmlId}--label`" class="app-settings-section">
-		<h3 :id="`${htmlId}--label`" class="app-settings-section__name">
-			{{ name }}
-		</h3>
-		<slot />
-	</section>
-</template>
-
 <script setup lang="ts">
 import type { Slot } from 'vue'
 
@@ -63,6 +54,15 @@ onBeforeUnmount(() => {
 	unregisterSection(props.id)
 })
 </script>
+
+<template>
+	<section :id="htmlId" :aria-labelledby="`${htmlId}--label`" class="app-settings-section">
+		<h3 :id="`${htmlId}--label`" class="app-settings-section__name">
+			{{ name }}
+		</h3>
+		<slot />
+	</section>
+</template>
 
 <style lang="scss" scoped>
 .app-settings-section {
