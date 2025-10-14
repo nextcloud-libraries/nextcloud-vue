@@ -250,12 +250,12 @@ const hasIcon = () => Boolean(props.iconPath || props.iconSvg || !!slots.icon)
 
 	&--no-actions &__text {
 		// If there are no actions we need to add some padding to ensure the text is not cut-off
-		padding-inline-end: calc(1.5 * var(--default-grid-baseline));
+		padding-inline-end: calc(2 * var(--default-grid-baseline));
 	}
 
 	&--no-icon &__text {
 		// Add some more space to the border
-		padding-inline-start: calc(1.5 * var(--default-grid-baseline));
+		padding-inline-start: calc(2 * var(--default-grid-baseline));
 	}
 
 	&__text {
