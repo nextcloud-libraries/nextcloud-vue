@@ -8,7 +8,7 @@ import type { VNode } from 'vue'
 
 import { useVModel } from '@vueuse/core'
 import debounce from 'debounce'
-import Vue, { computed, provide, ref, shallowRef, useSlots } from 'vue'
+import Vue, { computed, onBeforeUnmount, provide, ref, shallowRef } from 'vue'
 import NcDialog from '../NcDialog/NcDialog.vue'
 import NcVNodes from '../NcVNodes/NcVNodes.vue'
 import { useIsMobile } from '../../composables/useIsMobile/index.ts'
@@ -18,6 +18,7 @@ import { APP_SETTINGS_REGISTRATION_KEY } from './useAppSettingsDialog.ts'
 export interface IAppSettingsSection {
 	id: string
 	name: string
+	order?: number
 	icon?: VNode[]
 }
 
@@ -89,6 +90,14 @@ const unfocusNavigationItem = debounce(() => {
 }, 300)
 
 /**
+ * Fallback order map to keep track of section orders if not provided by child components
+ */
+const sectionsOrderMap = new Map()
+onBeforeUnmount(() => {
+	sectionsOrderMap.clear()
+})
+
+/**
  * Scrolls the content to the selected settings section.absolute
  *
  * @param item - the ID of the section
@@ -129,16 +138,15 @@ function handleScroll() {
 	}
 }
 
-const slots = useSlots()
-
 /**
  * Called when a new section is registered
  *
  * @param id - The section ID
  * @param name - The section name
+ * @param order - Optional section order in navigation list
  * @param icon - Optional icon component
  */
-function registerSection(id: string, name: string, icon?: VNode[]) {
+function registerSection(id: string, name: string, order?: number, icon?: VNode[]) {
 	// Check for the uniqueness of section names
 	if (registeredSections.value.some(({ id: otherId }) => id === otherId)) {
 		throw new Error(`Duplicate section id found: ${id}. Settings navigation sections must have unique section ids.`)
@@ -147,16 +155,22 @@ function registerSection(id: string, name: string, icon?: VNode[]) {
 		Vue.util.warn(`Duplicate section name found: ${name}. Settings navigation sections must have unique section names.`)
 	}
 
-	const newSections = [
-		...registeredSections.value,
-		{ id, name, icon },
-	]
+	// Ensure tab order is set
+	if (order !== undefined) {
+		sectionsOrderMap.set(id, order)
+	} else if (sectionsOrderMap.has(id)) {
+		order = sectionsOrderMap.get(id)
+	} else {
+		// Fallback to the closest positive number that isn't already taken
+		order = Math.max(0, ...sectionsOrderMap.values()) + 1
+		sectionsOrderMap.set(id, order)
+	}
 
 	// Sort sections by order in slots
-	registeredSections.value = newSections.sort(({ id: idA }, { id: idB }) => {
-		const indexOf = (id) => slots.default?.().findIndex((vnode: VNode) => (vnode?.componentOptions?.propsData as { id: string | undefined })?.id === id) ?? -1
-		return indexOf(idA) - indexOf(idB)
-	})
+	registeredSections.value = [...registeredSections.value, { id, name, order, icon }]
+		.sort(({ order: orderA }, { order: orderB }) => {
+			return orderA! - orderB!
+		})
 
 	// If this is the first section registered, set it as selected
 	if (registeredSections.value.length === 1) {
@@ -411,6 +425,45 @@ export default {
 		}
 	},
 }
+</script>
+```
+
+Sections order in navigation list is defined during initial rendering.
+In case of dynamic/conditional sections rendering explicit `order` prop must be used for ordering.
+
+```vue
+<template>
+	<div>
+		<NcButton @click="settingsOpen = true">Show Settings</NcButton>
+		<NcAppSettingsDialog :open.sync="settingsOpen" :show-navigation="true" name="Application settings">
+			<NcAppSettingsSection id="asci-name-1" name="Example name 1" :order="1">
+				Some example content
+				<NcCheckboxRadioSwitch v-model="showExtraSections">Show section 3</NcCheckboxRadioSwitch>
+			</NcAppSettingsSection>
+			<NcAppSettingsSection id="asci-name-2" name="Example name 2" :order="2">
+				Some more content
+			</NcAppSettingsSection>
+			<template v-if="showExtraSections">
+				<NcAppSettingsSection id="asci-name-3" name="Example name 3" :order="3">
+					Some example content
+				</NcAppSettingsSection>
+			</template>
+			<NcAppSettingsSection id="asci-name-4" name="Example name 4" :order="4">
+				Some more content
+			</NcAppSettingsSection>
+		</NcAppSettingsDialog>
+	</div>
+</template>
+
+<script>
+	export default {
+		data() {
+			return {
+				settingsOpen: false,
+				showExtraSections: true,
+			}
+		},
+	}
 </script>
 ```
 </docs>
