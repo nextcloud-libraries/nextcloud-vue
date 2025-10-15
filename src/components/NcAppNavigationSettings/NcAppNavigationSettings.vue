@@ -134,6 +134,10 @@ export default {
 				white-space: nowrap;
 				text-overflow: ellipsis;
 			}
+
+			&__icon {
+				display: flex;
+			}
 		}
 	}
 
