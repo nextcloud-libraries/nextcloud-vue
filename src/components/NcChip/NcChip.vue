@@ -165,7 +165,7 @@ const props = defineProps({
 	type: {
 		type: String,
 		default: 'secondary',
-		validator: (value) => ['primary', 'secondary', 'tertiary'].includes(value),
+		validator: (value) => ['primary', 'secondary', 'tertiary', 'error', 'warning', 'success'].includes(value),
 	},
 
 	/**
@@ -203,7 +203,7 @@ const props = defineProps({
 	variant: {
 		type: String,
 		default: 'secondary',
-		validator: (value) => ['primary', 'secondary', 'tertiary'].includes(value),
+		validator: (value) => ['primary', 'secondary', 'tertiary', 'error', 'warning', 'success'].includes(value),
 	},
 })
 
@@ -258,12 +258,12 @@ const hasIcon = () => Boolean(props.iconPath || props.iconSvg || !!slots.icon?.(
 
 	&--no-actions &__text {
 		// If there are no actions we need to add some padding to ensure the text is not cut-off
-		padding-inline-end: calc(1.5 * var(--default-grid-baseline));
+		padding-inline-end: calc(2 * var(--default-grid-baseline));
 	}
 
 	&--no-icon &__text {
 		// Add some more space to the border
-		padding-inline-start: calc(1.5 * var(--default-grid-baseline));
+		padding-inline-start: calc(2 * var(--default-grid-baseline));
 	}
 
 	&__text {
