@@ -733,6 +733,12 @@ export default {
 		onClick(event, navigate, routerLinkHref) {
 			// Always forward native event
 			this.$emit('click', event)
+
+			// If no links are defined, and collapsing is enabled, we want it to collapse
+			if (this.to === null && this.href === null && this.collapsible === true) {
+				this.toggleCollapse()
+				event.preventDefault()
+			}
 			// Do not navigate with control keys - it is opening in a new tab
 			if (event.metaKey || event.altKey || event.ctrlKey || event.shiftKey) {
 				return
