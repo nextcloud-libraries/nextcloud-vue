@@ -102,11 +102,11 @@ function onUpdate() {
 		cursor: pointer;
 	}
 
-	:has(&__label) {
+	&:has(&__label) {
 		padding-inline: calc(var(--radio-group-button--padding) + var(--border-radius-element));
 	}
 
-	:has(&__icon) {
+	&:has(&__icon) {
 		padding-inline-start: var(--radio-group-button--padding);
 	}
 
