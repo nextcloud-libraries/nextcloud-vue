@@ -6,6 +6,7 @@
 <script setup lang="ts">
 import { computed, onMounted } from 'vue'
 import { createElementId } from '../../utils/createElementId.ts'
+import { useNcFormBox } from '../NcFormBox/useNcFormBox.ts'
 import { useInsideRadioGroup } from '../NcRadioGroup/useNcRadioGroup.ts'
 
 const props = defineProps<{
@@ -27,6 +28,8 @@ const props = defineProps<{
 
 const labelId = createElementId()
 const radioGroup = useInsideRadioGroup()
+const { formBoxItemClass } = useNcFormBox()
+
 onMounted(() => radioGroup!.value.register(true))
 
 const isChecked = computed(() => radioGroup?.value.modelValue === props.value)
@@ -43,9 +46,9 @@ function onUpdate() {
 	<div
 		:class="[{
 			[$style.radioGroupButton_active]: isChecked,
-		}, $style.radioGroupButton]"
+		}, $style.radioGroupButton, formBoxItemClass]"
 		@click="onUpdate">
-		<div v-if="$slots.icon" :class="$style.radioGroupButton__icon">
+		<div v-if="$scopedSlots.icon" :class="$style.radioGroupButton__icon">
 			<!-- @slot Optional icon slot -->
 			<slot name="icon" />
 		</div>
@@ -111,16 +114,6 @@ function onUpdate() {
 		--radio-group-button--padding: 0px;
 		border: var(--radio-group-button--border-width) solid var(--color-main-text) !important;
 		outline: calc(var(--default-grid-baseline) / 2) var(--color-main-background);
-	}
-
-	&:first-of-type {
-		border-start-start-radius: var(--border-radius-element);
-		border-end-start-radius: var(--border-radius-element);
-	}
-
-	&:last-of-type {
-		border-start-end-radius: var(--border-radius-element);
-		border-end-end-radius: var(--border-radius-element);
 	}
 }
 
