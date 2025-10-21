@@ -1,9 +1,20 @@
-# SPDX-FileCopyrightText: 2025 Nextcloud GmbH and Nextcloud contributors
+# This workflow is provided via the organization template repository
+#
+# https://github.com/nextcloud-libraries/.github
+# https://docs.github.com/en/actions/learn-github-actions/sharing-workflows-with-your-organization
+#
+# SPDX-FileCopyrightText: 2023-2024 Nextcloud GmbH and Nextcloud contributors
 # SPDX-License-Identifier: MIT
 
 name: Type checking
 
-on: pull_request
+on:
+  pull_request:
+  push:
+    branches:
+      - main
+      - master
+      - stable*
 
 permissions:
   contents: read
@@ -13,24 +24,31 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
-  lint:
+  test:
     runs-on: ubuntu-latest
-
-    name: Type checking
+    name: Lint Typescript
 
     steps:
       - name: Checkout
         uses: actions/checkout@08c6903cd8c0fde910a37f88322edcfb5dd907a8 # v5.0.0
+        with:
+          persist-credentials: false
+
+      - name: Read package.json
+        uses: nextcloud-libraries/parse-package-engines-action@122ae05d4257008180a514e1ddeb0c1b9d094bdd # v0.1.0
+        id: versions
 
       - name: Set up node
-        uses: actions/setup-node@a0853c24544627f65ddf259abe73b1d18a591444 # v3
+        uses: actions/setup-node@2028fbc5c25fe9cf00d9f06a71cc4710d4507903 # v6.0.0
         with:
-          node-version-file: package.json
+          node-version: ${{ steps.versions.outputs.node-version }}
+
+      - name: Set up npm
+        run: npm i -g 'npm@${{ steps.versions.outputs.package-manager-version }}'
 
       - name: Install dependencies
         env:
           CYPRESS_INSTALL_BINARY: 0
-          PUPPETEER_SKIP_DOWNLOAD: true
         run: npm ci
 
       - name: Check types

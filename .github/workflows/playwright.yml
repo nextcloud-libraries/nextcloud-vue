@@ -26,16 +26,26 @@ jobs:
       matrix:
         shardIndex: [1, 2]
         shardTotal: [2]
+    outputs:
+      node-version: ${{ steps.versions.outputs.node-version }}
+      package-manager-version: ${{ steps.versions.outputs.package-manager-version }}
 
     steps:
     - uses: actions/checkout@08c6903cd8c0fde910a37f88322edcfb5dd907a8 # v5.0.0
       with:
         persist-credentials: false
 
+    - name: Read package.json
+      uses: nextcloud-libraries/parse-package-engines-action@122ae05d4257008180a514e1ddeb0c1b9d094bdd # v0.1.0
+      id: versions
+
     - name: Set up node
-      uses: actions/setup-node@a0853c24544627f65ddf259abe73b1d18a591444 # v5.0.0
+      uses: actions/setup-node@2028fbc5c25fe9cf00d9f06a71cc4710d4507903 # v6.0.0
       with:
-        node-version-file: package.json
+        node-version: ${{ steps.versions.outputs.node-version }}
+
+    - name: Set up npm
+      run: npm i -g 'npm@${{ steps.versions.outputs.package-manager-version }}'
 
     - name: Install dependencies
       run: npm ci
@@ -65,9 +75,12 @@ jobs:
       with:
         persist-credentials: false
 
-    - uses: actions/setup-node@a0853c24544627f65ddf259abe73b1d18a591444 # v5.0.0
+    - uses: actions/setup-node@2028fbc5c25fe9cf00d9f06a71cc4710d4507903 # v6.0.0
       with:
-        node-version-file: package.json
+        node-version: ${{ needs.playwright-tests.outputs.node-version }}
+
+    - name: Set up npm
+      run: npm i -g 'npm@${{ needs.playwright-tests.outputs.package-manager-version }}'
 
     - name: Install dependencies
       run: npm ci
