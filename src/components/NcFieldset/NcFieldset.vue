@@ -129,9 +129,9 @@ Native `<fieldset>` element for grouping form elements with a legend.
 
 ```vue
 <template>
-	<NcFieldset legend="Personal Information">
-		<NcTextField label="First Name" />
-		<NcTextField label="Last Name" />
+	<NcFieldset legend="Personal information">
+		<NcTextField label="First name" />
+		<NcTextField label="Last name" />
 	</NcFieldset>
 </template>
 ```
@@ -140,9 +140,9 @@ Native `<fieldset>` element for grouping form elements with a legend.
 
 ```vue
 <template>
-	<NcFieldset legend="Personal Information" description="Your contact details">
-		<NcTextField label="First Name" />
-		<NcTextField label="Last Name" />
+	<NcFieldset legend="Personal information" description="Your contact details">
+		<NcTextField label="First name" />
+		<NcTextField label="Last name" />
 	</NcFieldset>
 </template>
 ```
@@ -155,19 +155,19 @@ By default `NcFieldset`:
 
 ```vue
 <template>
-	<NcFieldset legend="Personal Information">
-		<NcTextField label="First Name" />
-		<NcTextField label="Last Name" />
+	<NcFieldset legend="Personal information">
+		<NcTextField label="First name" />
+		<NcTextField label="Last name" />
 	</NcFieldset>
 
-	<NcFieldset legend="Personal Information">
-		<NcTextField label="First Name" />
-		<NcTextField label="Last Name" />
+	<NcFieldset legend="Personal information">
+		<NcTextField label="First name" />
+		<NcTextField label="Last name" />
 	</NcFieldset>
 
 	<NcFieldset legend="No gap (for custom content)" no-gap>
-		<NcTextField label="First Name" />
-		<NcTextField label="Last Name" />
+		<NcTextField label="First name" />
+		<NcTextField label="Last name" />
 	</NcFieldset>
 </template>
 ```
