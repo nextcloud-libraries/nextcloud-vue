@@ -34,10 +34,17 @@ jobs:
         with:
           persist-credentials: false
 
+      - name: Read package.json
+        uses: nextcloud-libraries/parse-package-engines-action@122ae05d4257008180a514e1ddeb0c1b9d094bdd # v0.1.0
+        id: versions
+
       - name: Set up node
-        uses: actions/setup-node@a0853c24544627f65ddf259abe73b1d18a591444 # v5.0.0
+        uses: actions/setup-node@2028fbc5c25fe9cf00d9f06a71cc4710d4507903 # v6.0.0
         with:
-          node-version-file: 'package.json'
+          node-version: ${{ steps.versions.outputs.node-version }}
+
+      - name: Set up npm
+        run: npm i -g 'npm@${{ steps.versions.outputs.package-manager-version }}'
 
       - name: Install dependencies & build
         env:
@@ -56,3 +63,5 @@ jobs:
         uses: codecov/codecov-action@5a1091511ad55cbe89839c7260b706298ca349f7 # v5.5.1
         with:
           files: ./coverage/lcov.info
+        env:
+          CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
