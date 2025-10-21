@@ -49,12 +49,13 @@ export default {
 	},
 
 	watch: {
-		isMobile: {
-			immediate: true,
-			handler() {
-				this.toggleAppNavigationButton(this.isMobile)
-			},
+		isMobile: function() {
+			this.toggleAppNavigationButton(this.isMobile)
 		},
+	},
+
+	mounted() {
+		this.toggleAppNavigationButton(this.isMobile)
 	},
 
 	beforeDestroy() {
