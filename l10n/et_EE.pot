@@ -254,6 +254,9 @@ msgstr "nähtamatu"
 msgid "Keyboard navigation help"
 msgstr "Klahvistiku kasutuse abiteave"
 
+msgid "Keyboard shortcuts"
+msgstr "Klahvistiku kiirklahvid"
+
 msgid "Light skin tone"
 msgstr "Kesta hele toon"
 
