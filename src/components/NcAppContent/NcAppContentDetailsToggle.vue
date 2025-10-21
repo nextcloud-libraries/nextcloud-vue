@@ -6,14 +6,18 @@
 <script setup lang="ts">
 import { mdiArrowRight } from '@mdi/js'
 import { emit } from '@nextcloud/event-bus'
-import { onBeforeUnmount, watch } from 'vue'
+import { onBeforeUnmount, onMounted, watch } from 'vue'
 import { useIsMobile } from '../../composables/useIsMobile/index.js'
 import { t } from '../../l10n.ts'
 import NcButton from '../NcButton/index.ts'
 import NcIconSvgWrapper from '../NcIconSvgWrapper/index.ts'
 
 const isMobile = useIsMobile()
-watch(isMobile, toggleAppNavigationButton, { immediate: true })
+watch(isMobile, toggleAppNavigationButton)
+
+onMounted(() => {
+	toggleAppNavigationButton(isMobile.value)
+})
 
 onBeforeUnmount(() => {
 	if (isMobile.value) {
