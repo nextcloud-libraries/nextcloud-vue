@@ -9,24 +9,24 @@ import type { Slot } from 'vue'
 import { createElementId } from '../../utils/createElementId.ts'
 
 const {
-	legend = undefined,
+	label = undefined,
 	description = undefined,
-	hideLegend = false,
+	hideLabel = false,
 	hideDescription = false,
 	noGap = false,
 } = defineProps<{
 	/**
-	 * Fieldset legend. #legend slot can be used for custom legend content
+	 * Group label (the fieldset's legend). #label slot can be used for custom label content
 	 */
-	legend?: string
+	label?: string
 	/**
 	 * Optional fieldset description. #description slot can be used for custom description content
 	 */
 	description?: string
 	/**
-	 * Hide the legend visually but keep it accessible for screen readers
+	 * Hide the label visually but keep it accessible for screen readers
 	 */
-	hideLegend?: boolean
+	hideLabel?: boolean
 	/**
 	 * Hide the description visually but keep it accessible for screen readers
 	 */
@@ -43,9 +43,9 @@ const slots = defineSlots<{
 	 */
 	default?: Slot
 	/**
-	 * Custom legend content
+	 * Custom label content
 	 */
-	legend?: Slot
+	label?: Slot
 	/**
 	 * Custom description content
 	 */
@@ -53,7 +53,7 @@ const slots = defineSlots<{
 }>()
 
 const id = `nc-fieldset-${createElementId()}`
-const labelId = `${id}-legend`
+const labelId = `${id}-label`
 const descriptionId = `${id}-description`
 
 const hasDescription = () => !!description || !!slots.description
@@ -64,9 +64,9 @@ const getDescriptionId = () => hasDescription() ? descriptionId : undefined
 	<fieldset
 		:class="[$style.fieldset, { [$style.fieldset_noGap]: noGap }]"
 		:aria-describedby="getDescriptionId()">
-		<legend :id="labelId" :class="[$style.fieldset__legend, { 'hidden-visually': hideLegend }]">
-			<slot name="legend">
-				{{ legend || '⚠️ Missing legend' }}
+		<legend :id="labelId" :class="[$style.fieldset__legend, { 'hidden-visually': hideLabel }]">
+			<slot name="label">
+				{{ label || '⚠️ Missing label' }}
 			</slot>
 		</legend>
 		<div v-if="hasDescription()" :id="descriptionId" :class="[$style.fieldset__description, { 'hidden-visually': hideDescription }]">
@@ -129,7 +129,7 @@ Native `<fieldset>` element for grouping form elements with a legend.
 
 ```vue
 <template>
-	<NcFieldset legend="Personal information">
+	<NcFieldset label="Personal information">
 		<NcTextField label="First name" />
 		<NcTextField label="Last name" />
 	</NcFieldset>
@@ -140,7 +140,7 @@ Native `<fieldset>` element for grouping form elements with a legend.
 
 ```vue
 <template>
-	<NcFieldset legend="Personal information" description="Your contact details">
+	<NcFieldset label="Personal information" description="Your contact details">
 		<NcTextField label="First name" />
 		<NcTextField label="Last name" />
 	</NcFieldset>
@@ -155,17 +155,17 @@ By default `NcFieldset`:
 
 ```vue
 <template>
-	<NcFieldset legend="Personal information">
+	<NcFieldset label="Personal information">
 		<NcTextField label="First name" />
 		<NcTextField label="Last name" />
 	</NcFieldset>
 
-	<NcFieldset legend="Personal information">
+	<NcFieldset label="Personal information">
 		<NcTextField label="First name" />
 		<NcTextField label="Last name" />
 	</NcFieldset>
 
-	<NcFieldset legend="No gap (for custom content)" no-gap>
+	<NcFieldset label="No gap (for custom content)" no-gap>
 		<NcTextField label="First name" />
 		<NcTextField label="Last name" />
 	</NcFieldset>
