@@ -9,18 +9,22 @@
 		v-click-outside="clickOutsideConfig"
 		:class="{ open }">
 		<div id="app-settings__header">
-			<button
-				class="settings-button"
-				type="button"
+			<NcButton
+				:aria-controls="contentId"
 				:aria-expanded="open ? 'true' : 'false'"
-				aria-controls="app-settings__content"
-				@click="toggleMenu">
-				<NcIconSvgWrapper class="settings-button__icon" :path="isLegacy32 ? mdiCog : mdiCogOutline" />
-				<span class="settings-button__label">{{ name }}</span>
-			</button>
+				class="settings-button"
+				alignment="start"
+				variant="tertiary"
+				wide
+				@click="open = !open">
+				<template #icon>
+					<NcIconSvgWrapper class="settings-button__icon" :path="isLegacy32 ? mdiCog : mdiCogOutline" />
+				</template>
+				{{ name }}
+			</NcButton>
 		</div>
 		<Transition name="slide-up">
-			<div v-show="open" id="app-settings__content">
+			<div v-show="open" :id="contentId">
 				<slot />
 			</div>
 		</Transition>
@@ -30,9 +34,11 @@
 <script>
 import { mdiCog, mdiCogOutline } from '@mdi/js'
 import { vOnClickOutside as ClickOutside } from '@vueuse/components'
+import NcButton from '../NcButton/NcButton.vue'
 import NcIconSvgWrapper from '../NcIconSvgWrapper/NcIconSvgWrapper.vue'
 import { t } from '../../l10n.js'
 import { clickOutsideOptions } from '../../mixins/index.js'
+import GenRandomId from '../../utils/GenRandomId.js'
 import { isLegacy32 } from '../../utils/legacy.ts'
 
 export default {
@@ -41,6 +47,7 @@ export default {
 	},
 
 	components: {
+		NcButton,
 		NcIconSvgWrapper,
 	},
 
@@ -62,7 +69,9 @@ export default {
 	},
 
 	setup() {
+		const contentId = GenRandomId()
 		return {
+			contentId,
 			isLegacy32,
 			mdiCog,
 			mdiCogOutline,
@@ -85,10 +94,6 @@ export default {
 	},
 
 	methods: {
-		toggleMenu() {
-			this.open = !this.open
-		},
-
 		closeMenu() {
 			this.open = false
 		},
@@ -106,33 +111,10 @@ export default {
 		margin: 0 $app-navigation-settings-margin $app-navigation-settings-margin $app-navigation-settings-margin;
 
 		.settings-button {
-			display: flex;
-			flex: 1 1 0;
-			height: var(--default-clickable-area);
-			width: 100%;
-			padding: 0;
-			margin: 0;
-			background-color: transparent;
-			box-shadow: none;
-			border: 0;
-			border-radius: var(--body-container-radius);
-			text-align: start;
-			font-weight: normal;
-			font-size: 100%;
-			color: var(--color-main-text);
-			padding-inline-end: 14px;
-			line-height: var(--default-clickable-area);
+			padding-inline: 0 calc((var(--default-clickable-area) - 16px) / 2) !important;
 
-			&:hover,
-			&:focus {
-				background-color: var(--color-background-hover);
-			}
-
-			&__label {
-				overflow: hidden;
-				max-width: 100%;
-				white-space: nowrap;
-				text-overflow: ellipsis;
+			:deep(.button-vue__text) {
+				font-weight: normal !important;
 			}
 		}
 	}
