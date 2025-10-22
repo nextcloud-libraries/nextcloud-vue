@@ -254,6 +254,9 @@ msgstr "invisíbel"
 msgid "Keyboard navigation help"
 msgstr "Axuda á navegación co teclado"
 
+msgid "Keyboard shortcuts"
+msgstr "Atallos de teclado"
+
 msgid "Light skin tone"
 msgstr "Ton de pel claro"
 
