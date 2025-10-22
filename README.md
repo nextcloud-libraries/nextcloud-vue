@@ -58,7 +58,7 @@ import { NcButton, useHotKey } from '@nextcloud/vue'
    - Make sure to follow the [Conventional Commits](https://www.conventionalcommits.org) in commit messages, and PR titles, for example:\
      `fix(NcButton): correct layout on Safari`
    - Make sure to follow the **Pull Request template**
-   - Sign-off you commits for the [Developer Certificate of Origin (DCO)](https://developercertificate.org/)
+   - Sign-off your commits for the [Developer Certificate of Origin (DCO)](https://developercertificate.org/)
 6. Get your PR reviewed
    - If you don't receive a feedback in a week, feel free to mention the maintainers, for example, last developers worked on the module
 7. Get your PR merged 
