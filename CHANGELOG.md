@@ -5,6 +5,23 @@
 
 # Changelog
 
+## [v8.33.0](https://github.com/nextcloud-libraries/nextcloud-vue/tree/v8.33.0) (2025-10-22)
+### 🚀 Enhancements
+* feat(NcChip): add error, success and warning variants [\#7653](https://github.com/nextcloud-libraries/nextcloud-vue/pull/7653) \([backportbot[bot]](https://github.com/backportbot[bot])\)
+* feat(NcAppSettingsSection): add `order` prop, ensure intended order in navigation list [\#7656](https://github.com/nextcloud-libraries/nextcloud-vue/pull/7656) \([backportbot[bot]](https://github.com/backportbot[bot])\)
+* feat: add `NcAppSettingsSectionShortcuts`, `NcHotkeyList` and `NcHotkey` [\#7696](https://github.com/nextcloud-libraries/nextcloud-vue/pull/7696) \([backportbot[bot]](https://github.com/backportbot[bot])\)
+
+### 🐛 Fixed bugs
+* fix(NcInputField): use empty string to fix label position [\#7637](https://github.com/nextcloud-libraries/nextcloud-vue/pull/7637) \([susnux](https://github.com/susnux)\)
+* fix(NcEmptyContent): use name as label [\#7649](https://github.com/nextcloud-libraries/nextcloud-vue/pull/7649) \([backportbot[bot]](https://github.com/backportbot[bot])\)
+* fix(NcRadioGroupButton): scope expensive CSS selectors [\#7662](https://github.com/nextcloud-libraries/nextcloud-vue/pull/7662) \([backportbot[bot]](https://github.com/backportbot[bot])\)
+* fix(NcAppContentDetailsToggle): Hide navigation toggle on mobile [\#7698](https://github.com/nextcloud-libraries/nextcloud-vue/pull/7698) \([mejo-](https://github.com/mejo-)\)
+* fix(NcAppNavigationSettings): migrate to NcButton component [\#7700](https://github.com/nextcloud-libraries/nextcloud-vue/pull/7700) \([mejo-](https://github.com/mejo-)\)
+
+### Other Changes
+* chore: adjust heading in changelog to match version [\#7622](https://github.com/nextcloud-libraries/nextcloud-vue/pull/7622) \([susnux](https://github.com/susnux)\)
+* refactor(NcAppSettingsSection): migrate to `<script setup lang="ts">` [\#7654](https://github.com/nextcloud-libraries/nextcloud-vue/pull/7654) \([backportbot[bot]](https://github.com/backportbot[bot])\)
+
 ## [v8.32.0](https://github.com/nextcloud-libraries/nextcloud-vue/tree/v8.32.0) (2025-10-06)
 ### 🚀 Enhancements
 * feat(NcColorPicker): allow to clear selected value [\#7531](https://github.com/nextcloud-libraries/nextcloud-vue/pull/7531)
