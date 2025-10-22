@@ -7,6 +7,26 @@
 
 All notable changes to this project will be documented in this file.
 
+## [v9.1.0](https://github.com/nextcloud-libraries/nextcloud-vue/tree/v9.1.0) (2025-10-22)
+[Full Changelog](https://github.com/nextcloud-libraries/nextcloud-vue/compare/v9.0.1...v9.1.0)
+
+### 🚀 Enhancements
+* feat(NcChip): add error, success and warning variants [\#7652](https://github.com/nextcloud-libraries/nextcloud-vue/pull/7652) \([DorraJaouad](https://github.com/DorraJaouad)\)
+* feat(NcAppSettingsSection): add `order` prop, ensure intended order in navigation list [\#7636](https://github.com/nextcloud-libraries/nextcloud-vue/pull/7636) \([Antreesy](https://github.com/Antreesy)\)
+* feat: add `NcAppSettingsSectionShortcuts`, `NcHotkeyList` and `NcHotkey` [\#7633](https://github.com/nextcloud-libraries/nextcloud-vue/pull/7633) \([ShGKme](https://github.com/ShGKme)\)
+
+### 🐛 Fixed bugs
+* fix(NcInputField): use empty string to fix label position [\#7630](https://github.com/nextcloud-libraries/nextcloud-vue/pull/7630) \([susnux](https://github.com/susnux)\)
+* chore: switch dependency for MD5 to `ts-md5` [\#7623](https://github.com/nextcloud-libraries/nextcloud-vue/pull/7623) \([susnux](https://github.com/susnux)\)
+* fix(NcEmptyContent): use name as label [\#7634](https://github.com/nextcloud-libraries/nextcloud-vue/pull/7634) \([susnux](https://github.com/susnux)\)
+* fix(NcRadioGroupButton): scope expensive CSS selectors [\#7661](https://github.com/nextcloud-libraries/nextcloud-vue/pull/7661) \([Antreesy](https://github.com/Antreesy)\)
+* fix(NcAppContentDetailsToggle): Hide navigation toggle on mobile [\#7697](https://github.com/nextcloud-libraries/nextcloud-vue/pull/7697) \([mejo-](https://github.com/mejo-)\)
+
+### Other Changes
+* refactor(NcAppSidebarTabs): use custom components for tab buttons [\#7516](https://github.com/nextcloud-libraries/nextcloud-vue/pull/7516) \([susnux](https://github.com/susnux)\)
+* refactor(NcAppSettingsSection): migrate to `<script setup lang="ts">` [\#7651](https://github.com/nextcloud-libraries/nextcloud-vue/pull/7651) \([ShGKme](https://github.com/ShGKme)\)
+* refactor: use named export for logger [\#7655](https://github.com/nextcloud-libraries/nextcloud-vue/pull/7655) \([ShGKme](https://github.com/ShGKme)\)
+
 ## [v9.0.1](https://github.com/nextcloud-libraries/nextcloud-vue/tree/v9.0.0) (2025-10-06)
 [Full Changelog](https://github.com/nextcloud-libraries/nextcloud-vue/compare/v9.0.0...v9.0.1)
 
