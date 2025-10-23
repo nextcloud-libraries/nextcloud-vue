@@ -3,8 +3,7 @@
  * SPDX-License-Identifier: AGPL-3.0-or-later
  */
 
-import type { MaybeRefOrGetter } from '@vueuse/core'
-import type { Ref } from 'vue'
+import type { MaybeRefOrGetter, Ref } from 'vue'
 
 import { onUnmounted, toValue, watch } from 'vue'
 import { createTrapStackController } from '../utils/focusTrap.ts'
