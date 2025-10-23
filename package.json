@@ -87,7 +87,7 @@
     "@nextcloud/logger": "^3.0.2",
     "@nextcloud/router": "^3.0.1",
     "@nextcloud/sharing": "^0.3.0",
-    "@vuepic/vue-datepicker": "^11.0.2",
+    "@vuepic/vue-datepicker": "^11.0.3",
     "@vueuse/components": "^14.0.0",
     "@vueuse/core": "^14.0.0",
     "blurhash": "^2.0.5",
