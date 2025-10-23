@@ -7,6 +7,26 @@
 
 All notable changes to this project will be documented in this file.
 
+## [v9.1.0](https://github.com/nextcloud-libraries/nextcloud-vue/tree/v9.1.0) (2025-10-22)
+[Full Changelog](https://github.com/nextcloud-libraries/nextcloud-vue/compare/v9.0.1...v9.1.0)
+
+### 🚀 Enhancements
+* feat(NcChip): add error, success and warning variants [\#7652](https://github.com/nextcloud-libraries/nextcloud-vue/pull/7652) \([DorraJaouad](https://github.com/DorraJaouad)\)
+* feat(NcAppSettingsSection): add `order` prop, ensure intended order in navigation list [\#7636](https://github.com/nextcloud-libraries/nextcloud-vue/pull/7636) \([Antreesy](https://github.com/Antreesy)\)
+* feat: add `NcAppSettingsSectionShortcuts`, `NcHotkeyList` and `NcHotkey` [\#7633](https://github.com/nextcloud-libraries/nextcloud-vue/pull/7633) \([ShGKme](https://github.com/ShGKme)\)
+
+### 🐛 Fixed bugs
+* fix(NcInputField): use empty string to fix label position [\#7630](https://github.com/nextcloud-libraries/nextcloud-vue/pull/7630) \([susnux](https://github.com/susnux)\)
+* chore: switch dependency for MD5 to `ts-md5` [\#7623](https://github.com/nextcloud-libraries/nextcloud-vue/pull/7623) \([susnux](https://github.com/susnux)\)
+* fix(NcEmptyContent): use name as label [\#7634](https://github.com/nextcloud-libraries/nextcloud-vue/pull/7634) \([susnux](https://github.com/susnux)\)
+* fix(NcRadioGroupButton): scope expensive CSS selectors [\#7661](https://github.com/nextcloud-libraries/nextcloud-vue/pull/7661) \([Antreesy](https://github.com/Antreesy)\)
+* fix(NcAppContentDetailsToggle): Hide navigation toggle on mobile [\#7697](https://github.com/nextcloud-libraries/nextcloud-vue/pull/7697) \([mejo-](https://github.com/mejo-)\)
+
+### Other Changes
+* refactor(NcAppSidebarTabs): use custom components for tab buttons [\#7516](https://github.com/nextcloud-libraries/nextcloud-vue/pull/7516) \([susnux](https://github.com/susnux)\)
+* refactor(NcAppSettingsSection): migrate to `<script setup lang="ts">` [\#7651](https://github.com/nextcloud-libraries/nextcloud-vue/pull/7651) \([ShGKme](https://github.com/ShGKme)\)
+* refactor: use named export for logger [\#7655](https://github.com/nextcloud-libraries/nextcloud-vue/pull/7655) \([ShGKme](https://github.com/ShGKme)\)
+
 ## [v9.0.1](https://github.com/nextcloud-libraries/nextcloud-vue/tree/v9.0.0) (2025-10-06)
 [Full Changelog](https://github.com/nextcloud-libraries/nextcloud-vue/compare/v9.0.0...v9.0.1)
 
@@ -520,6 +540,22 @@ it is no longer used by Nextcloud or Nextcloud apps and not recommended to be us
 * chore(test): explicitly import from jest/globals to simplify migration to/from Vitest [\#7424](https://github.com/nextcloud-libraries/nextcloud-vue/pull/7424) \([ShGKme](https://github.com/ShGKme)\)
 * docs: typos in 8.30.0 changelog [\#7422](https://github.com/nextcloud-libraries/nextcloud-vue/pull/7422)
 
+## [v8.33.0](https://github.com/nextcloud-libraries/nextcloud-vue/tree/v8.33.0) (2025-10-22)
+### 🚀 Enhancements
+* feat(NcChip): add error, success and warning variants [\#7653](https://github.com/nextcloud-libraries/nextcloud-vue/pull/7653) \([backportbot[bot]](https://github.com/backportbot[bot])\)
+* feat(NcAppSettingsSection): add `order` prop, ensure intended order in navigation list [\#7656](https://github.com/nextcloud-libraries/nextcloud-vue/pull/7656) \([backportbot[bot]](https://github.com/backportbot[bot])\)
+* feat: add `NcAppSettingsSectionShortcuts`, `NcHotkeyList` and `NcHotkey` [\#7696](https://github.com/nextcloud-libraries/nextcloud-vue/pull/7696) \([backportbot[bot]](https://github.com/backportbot[bot])\)
+
+### 🐛 Fixed bugs
+* fix(NcInputField): use empty string to fix label position [\#7637](https://github.com/nextcloud-libraries/nextcloud-vue/pull/7637) \([susnux](https://github.com/susnux)\)
+* fix(NcEmptyContent): use name as label [\#7649](https://github.com/nextcloud-libraries/nextcloud-vue/pull/7649) \([backportbot[bot]](https://github.com/backportbot[bot])\)
+* fix(NcRadioGroupButton): scope expensive CSS selectors [\#7662](https://github.com/nextcloud-libraries/nextcloud-vue/pull/7662) \([backportbot[bot]](https://github.com/backportbot[bot])\)
+* fix(NcAppContentDetailsToggle): Hide navigation toggle on mobile [\#7698](https://github.com/nextcloud-libraries/nextcloud-vue/pull/7698) \([mejo-](https://github.com/mejo-)\)
+* fix(NcAppNavigationSettings): migrate to NcButton component [\#7700](https://github.com/nextcloud-libraries/nextcloud-vue/pull/7700) \([mejo-](https://github.com/mejo-)\)
+
+### Other Changes
+* chore: adjust heading in changelog to match version [\#7622](https://github.com/nextcloud-libraries/nextcloud-vue/pull/7622) \([susnux](https://github.com/susnux)\)
+* refactor(NcAppSettingsSection): migrate to `<script setup lang="ts">` [\#7654](https://github.com/nextcloud-libraries/nextcloud-vue/pull/7654) \([backportbot[bot]](https://github.com/backportbot[bot])\)
 
 ## [v8.30.0](https://github.com/nextcloud-libraries/nextcloud-vue/tree/v8.30.0) (2025-09-01)
 ### 🚀 Enhancements
