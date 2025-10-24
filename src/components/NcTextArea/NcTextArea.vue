@@ -222,7 +222,8 @@ function select() {
 </script>
 
 <template>
-	<div class="textarea"
+	<div
+		class="textarea"
 		:class="[
 			$attrs.class,
 			{
