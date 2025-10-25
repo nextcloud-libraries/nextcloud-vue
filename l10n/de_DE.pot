@@ -260,6 +260,9 @@ msgstr "Unsichtbar"
 msgid "Keyboard navigation help"
 msgstr "Tastatur-Navigationshilfe"
 
+msgid "Keyboard shortcuts"
+msgstr "Tastenkombinationen"
+
 msgid "Light skin tone"
 msgstr "Heller Hautfarbton"
 

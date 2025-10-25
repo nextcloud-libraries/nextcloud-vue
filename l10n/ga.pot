@@ -255,6 +255,9 @@ msgstr "dofheicthe"
 msgid "Keyboard navigation help"
 msgstr "Cabhair le nascleanúint méarchláir"
 
+msgid "Keyboard shortcuts"
+msgstr "Aicearraí méarchláir"
+
 msgid "Light skin tone"
 msgstr "Ton craiceann éadrom"
 
