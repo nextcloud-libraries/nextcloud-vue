@@ -254,6 +254,9 @@ msgstr "neviditelné"
 msgid "Keyboard navigation help"
 msgstr "Nápověda pro pohyb pomocí klávesnice"
 
+msgid "Keyboard shortcuts"
+msgstr "Klávesové zkratky"
+
 msgid "Light skin tone"
 msgstr "Světlý tělový tón"
 
