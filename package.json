@@ -142,7 +142,7 @@
   },
   "devDependencies": {
     "@babel/plugin-syntax-import-assertions": "^7.22.5",
-    "@babel/preset-typescript": "^7.27.0",
+    "@babel/preset-typescript": "^7.28.5",
     "@cypress/vue2": "^2.0.1",
     "@fontsource/roboto": "^5.2.8",
     "@jest/globals": "^29.7.0",
