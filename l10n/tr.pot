@@ -254,6 +254,9 @@ msgstr "görünmez"
 msgid "Keyboard navigation help"
 msgstr "Klavye ile gezinme yardımı"
 
+msgid "Keyboard shortcuts"
+msgstr "Klavye kısayolları"
+
 msgid "Light skin tone"
 msgstr "Açık deri rengi"
 
