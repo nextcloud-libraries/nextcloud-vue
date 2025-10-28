@@ -482,11 +482,19 @@ export default {
 				.use(rehype2react, {
 					createElement: (tag, attrs, children) => {
 						if (!tag.startsWith('#')) {
+							// <h1>..<h3> headings are used on the page for semantic structure
+							// Using them for user content leads to accessibility issues
+							// Levelling down headings to start from <h4>
+							if (['h1', 'h2', 'h3', 'h4', 'h5', 'h6'].includes(tag)) {
+								tag = `h${Math.min(+String(tag)[1] + 3, 6)}`
+							}
+
 							if (this.useExtendedMarkdown) {
 								if (tag === 'code' && !rehypeHighlight.value
 									&& attrs?.attrs?.class?.includes('language')) {
 									importRehypeHighlightLibrary()
 								}
+
 								let nestedNode = null
 								if (tag === 'li' && Array.isArray(children)
 									&& children[0].tag === 'input'
