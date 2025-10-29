@@ -4,7 +4,7 @@
  */
 
 import { mount, shallowMount } from '@vue/test-utils'
-import { afterAll, beforeAll, describe, expect, it, vi } from 'vitest'
+import { afterAll, beforeAll, describe, expect, it } from 'vitest'
 import { h, nextTick } from 'vue'
 import NcAvatar from '../../../../src/components/NcAvatar/NcAvatar.vue'
 
@@ -117,27 +117,30 @@ describe('NcAvatar.vue', () => {
 	})
 
 	describe('Icon and image rendering', () => {
-		// Mock the Image constructor
-		let originalImage
+		const ImageConstructor = globalThis.Image
 
 		beforeAll(() => {
-			originalImage = global.Image
-			global.Image = vi.fn(() => ({
-				onload: null,
-				onerror: null,
-				_src: '',
+			// @ts-expect-error mock Image constructor for tests
+			globalThis.Image = class {
+				_src: string = ''
+
+				onload() {
+					throw new Error('Method not implemented.')
+				}
+
 				get src() {
 					return this._src
-				},
-				set src(value) {
+				}
+
+				set src(value: string) {
 					this._src = value
 					this.onload?.() // Trigger the onload event
-				},
-			}))
+				}
+			}
 		})
 
 		afterAll(() => {
-			global.Image = originalImage
+			globalThis.Image = ImageConstructor
 		})
 
 		it('should render image with avatar url pointing to a user', async () => {
