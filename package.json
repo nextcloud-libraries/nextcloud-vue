@@ -153,7 +153,7 @@
     "@nextcloud/eslint-config": "^9.0.0-rc.5",
     "@nextcloud/stylelint-config": "^3.1.1",
     "@nextcloud/vite-config": "^1.7.2",
-    "@nextcloud/webpack-vue-config": "^6.2.0",
+    "@nextcloud/webpack-vue-config": "^6.3.2",
     "@testing-library/cypress": "^10.1.0",
     "@types/gettext-parser": "^8.0.0",
     "@types/jest": "^29.5.5",
