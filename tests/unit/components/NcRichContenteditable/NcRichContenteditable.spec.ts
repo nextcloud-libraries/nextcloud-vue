@@ -4,16 +4,18 @@
  */
 
 import { mount } from '@vue/test-utils'
-import Tribute from 'tributejs/dist/tribute.esm.js'
 import { describe, expect, it, vi } from 'vitest'
 import NcRichContenteditable from '../../../../src/components/NcRichContenteditable/NcRichContenteditable.vue'
 
 // FIXME: find a way to use Tribute in JSDOM or test with e2e
-vi.mock('tributejs/dist/tribute.esm.js')
-Tribute.mockImplementation(() => ({
-	attach: vi.fn(),
-	detach: vi.fn(),
-}))
+vi.mock('tributejs/dist/tribute.esm.js', () => {
+	const Tribute = vi.fn(class {
+		attach = vi.fn()
+		detach = vi.fn()
+	})
+
+	return { default: Tribute }
+})
 
 function mountNcRichContenteditable({ props, attrs }: any = {}) {
 	let currentValue = props?.modelVvalue ?? ''

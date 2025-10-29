@@ -13,6 +13,15 @@ updates:
     labels:
     - 3. to review
     - dependencies
+    groups:
+      vite:
+        patterns:
+          - "vite"
+          - "@nextcloud/vite-config"
+      vitest:
+        patterns:
+          - "vitest"
+          - "@vitest/*"
 
   - package-ecosystem: github-actions
     directory: "/"
