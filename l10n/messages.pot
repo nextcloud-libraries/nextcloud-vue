@@ -375,6 +375,9 @@ msgstr ""
 msgid "Pick an emoji"
 msgstr ""
 
+msgid "Pick files"
+msgstr ""
+
 msgid "Please choose a date"
 msgstr ""
 
@@ -541,6 +544,12 @@ msgid "Unable to search the group"
 msgstr ""
 
 msgid "Undo changes"
+msgstr ""
+
+msgid "Upload files"
+msgstr ""
+
+msgid "Upload folders"
 msgstr ""
 
 msgid "User status: {status}"
