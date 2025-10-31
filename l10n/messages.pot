@@ -421,9 +421,6 @@ msgstr ""
 msgid "Search emoji"
 msgstr ""
 
-msgid "Search for timezone"
-msgstr ""
-
 msgid "Search results"
 msgstr ""
 
