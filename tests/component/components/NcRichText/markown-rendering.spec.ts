@@ -110,12 +110,12 @@ test.describe('headings', () => {
 			},
 		})
 
-		await expect(component.getByRole('heading', { level: 1 })).toHaveText('heading 1')
-		await expect(component.getByRole('heading', { level: 2 })).toHaveText('heading 2')
-		await expect(component.getByRole('heading', { level: 3 })).toHaveText('heading 3')
-		await expect(component.getByRole('heading', { level: 4 })).toHaveText('heading 4')
-		await expect(component.getByRole('heading', { level: 5 })).toHaveText('heading 5')
-		await expect(component.getByRole('heading', { level: 6 })).toHaveText('heading 6')
+		await expect(component.getByText('heading 1')).toHaveJSProperty('tagName', 'H4')
+		await expect(component.getByText('heading 2')).toHaveJSProperty('tagName', 'H5')
+		await expect(component.getByText('heading 3')).toHaveJSProperty('tagName', 'H6')
+		await expect(component.getByText('heading 4')).toHaveJSProperty('tagName', 'H6')
+		await expect(component.getByText('heading 5')).toHaveJSProperty('tagName', 'H6')
+		await expect(component.getByText('heading 6')).toHaveJSProperty('tagName', 'H6')
 	})
 
 	test('ignore heading (with hash (#) syntax padded to the text)', async ({ mount }) => {
@@ -138,7 +138,7 @@ test.describe('headings', () => {
 			},
 		})
 
-		await expect(component.getByRole('heading', { level: 1 })).toHaveText('heading 1')
+		await expect(component.getByText('heading 1')).toHaveJSProperty('tagName', 'H4')
 	})
 
 	test('render heading 2 (with dash (-) syntax on the next line)', async ({ mount }) => {
@@ -149,7 +149,7 @@ test.describe('headings', () => {
 			},
 		})
 
-		await expect(component.getByRole('heading', { level: 2 })).toHaveText('heading 2')
+		await expect(component.getByText('heading 2')).toHaveJSProperty('tagName', 'H5')
 	})
 })
 

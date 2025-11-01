@@ -546,6 +546,13 @@ export default {
 			delete props.children
 
 			if (!String(type).startsWith('#')) {
+				// <h1>..<h3> headings are used on the page for semantic structure
+				// Using them for user content leads to accessibility issues
+				// Levelling down headings to start from <h4>
+				if (['h1', 'h2', 'h3', 'h4', 'h5', 'h6'].includes(String(type))) {
+					type = `h${Math.min(+String(type)[1] + 3, 6)}`
+				}
+
 				let nestedNode = null
 				if (this.useExtendedMarkdown) {
 					if (String(type) === 'code' && !rehypeHighlight.value
@@ -681,8 +688,16 @@ export default {
 		font-weight: bold;
 	}
 
-	h1 {
-		font-size: 30px;
+	h4 {
+		font-size: 20px;
+	}
+
+	h5 {
+		font-size: 18px;
+	}
+
+	h6 {
+		font-size: 15px;
 	}
 
 	ul, ol {
