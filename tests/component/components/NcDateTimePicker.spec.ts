@@ -79,7 +79,7 @@ test('Today is selected by default', async ({ mount, page }) => {
 	const current = page.getByRole('dialog', { name: 'Datepicker menu' })
 		.getByRole('gridcell', { name: '22' })
 	await expect(current).toHaveText('22')
-	await expect(current).toHaveAttribute('aria-pressed', 'true')
+	await expect(current).toHaveAttribute('aria-selected', 'true')
 })
 
 test('Pick a date', async ({ mount, page }) => {
