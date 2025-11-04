@@ -166,14 +166,6 @@ export default {
 </docs>
 
 <script setup lang="ts">
-import type {
-	// The accepted model value
-	ModelValue as LibraryModelValue,
-	// The emitted object for time picker
-	TimeObj as LibraryTimeObject,
-	VueDatePickerProps,
-} from '@vuepic/vue-datepicker'
-
 import {
 	mdiCalendarBlank,
 	mdiChevronDown,
@@ -189,14 +181,18 @@ import {
 	getDayNamesMin,
 	getFirstDay,
 } from '@nextcloud/l10n'
-import VueDatePicker from '@vuepic/vue-datepicker'
+import { VueDatePicker } from '@vuepic/vue-datepicker'
+import * as locales from 'date-fns/locale'
 import { computed, useTemplateRef } from 'vue'
 import NcIconSvgWrapper from '../NcIconSvgWrapper/NcIconSvgWrapper.vue'
 import NcTimezonePicker from '../NcTimezonePicker/NcTimezonePicker.vue'
 import { t } from '../../l10n.ts'
 import NcButton from '../NcButton/index.ts'
 
-type LibraryFormatOptions = VueDatePickerProps['format']
+type VueDatePickerProps = InstanceType<typeof VueDatePicker>['$props']
+type LibraryFormatOptions = NonNullable<VueDatePickerProps['formats']>['input']
+type LibraryModelValue = VueDatePickerProps['modelValue']
+type LibraryTimeObject = NonNullable<VueDatePickerProps['minTime']>
 
 /**
  * The preselected IANA time zone ID for the time zone picker,
@@ -359,7 +355,7 @@ const value = computed<LibraryModelValue>(() => {
 			hours: time.getHours(),
 			minutes: time.getMinutes(),
 			seconds: time.getSeconds(),
-		} satisfies LibraryTimeObject
+		}
 	} else if (props.type === 'time-range') {
 		const time = [props.modelValue].flat()
 		if (time.length !== 2) {
@@ -373,7 +369,7 @@ const value = computed<LibraryModelValue>(() => {
 			hours: date.getHours(),
 			minutes: date.getMinutes(),
 			seconds: date.getSeconds(),
-		} as LibraryTimeObject))
+		}))
 	} else if (props.type.endsWith('-range')) {
 		if (props.modelValue === undefined) {
 			const start = new Date()
@@ -458,10 +454,19 @@ const pickerType = computed(() => ({
 		partialRange: false,
 	},
 	enableTimePicker: !(props.type === 'date' || props.type === 'date-range'),
-	flow: props.type === 'datetime'
-		? ['calendar', 'time'] as ['calendar', 'time']
-		: undefined,
+	...(props.type === 'datetime'
+		? { flow: { steps: ['calendar', 'time'] as ['calendar', 'time'] } }
+		: {}
+	),
 }))
+
+const localeObject = computed(() => {
+	const name = props.locale.split('-').map((value, index) => index > 0 ? value[0]?.toUpperCase() + value.slice(1) : value).join('')
+	if (name in locales) {
+		return locales[name]
+	}
+	return undefined
+})
 
 /**
  * Called on model value update of the library.
@@ -469,7 +474,7 @@ const pickerType = computed(() => ({
  * @param value The value emitted from the underlying library
  */
 function onUpdateModelValue(value: LibraryModelValue): void {
-	if (value === null) {
+	if (value === null || value === undefined) {
 		return emit('update:modelValue', null)
 	}
 
@@ -508,18 +513,27 @@ function onUpdateModelValue(value: LibraryModelValue): void {
  */
 function formatLibraryTime(time: LibraryTimeObject): Date {
 	const date = new Date()
-	date.setHours(time.hours)
-	date.setMinutes(time.minutes)
-	date.setSeconds(time.seconds)
+	date.setHours(toNumber(time.hours))
+	date.setMinutes(toNumber(time.minutes))
+	if (time.seconds) {
+		date.setSeconds(toNumber(time.seconds))
+	}
 	return date
+
+	/**
+	 * @param value - The value to convert to a number
+	 */
+	function toNumber(value: string | number): number {
+		return typeof value === 'number' ? value : Number.parseInt(value)
+	}
 }
 
 // Localization
 
 const weekStart = getFirstDay()
 
+// day names must be ordered based on week start
 const dayNames = [...getDayNamesMin()]
-// see https://github.com/Vuepic/vue-datepicker/issues/1159
 for (let i = 0; i < weekStart; i++) {
 	dayNames.push(dayNames.shift() as string)
 }
@@ -594,19 +608,21 @@ function cancelSelection() {
 		<VueDatePicker
 			ref="picker"
 			:aria-labels
+			:action-row="{
+				selectBtnLabel: t('Pick'),
+				cancelBtnLabel: t('Cancel'),
+				nowBtnLabel: t('Now'),
+			}"
 			:auto-apply="!confirm"
 			class="vue-date-time-picker"
 			:class="{ 'vue-date-time-picker--clearable': clearable }"
-			:cancel-text="t('Cancel')"
-			:clearable
 			:day-names
 			:placeholder="placeholder ?? placeholderFallback"
-			:format="realFormat"
-			:locale
+			:formats="{ input: realFormat }"
+			:input-attrs="{ clearable }"
+			:locale="localeObject"
 			:minutes-increment="minuteStep"
 			:model-value="value"
-			:now-button-label="t('Now')"
-			:select-text="t('Pick')"
 			six-weeks="fair"
 			:teleport="appendToBody ? (targetElement || undefined) : false"
 			text-input
