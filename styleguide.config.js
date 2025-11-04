@@ -93,11 +93,11 @@ module.exports = async () => {
 				sections: [
 					{
 						name: 'v9 (Nextcloud 30+ on Vue 3)',
-						href: 'https://next--nextcloud-vue-components.netlify.app',
+						href: 'https://nextcloud-vue-components.netlify.app',
 					},
 					{
 						name: 'v8 (Nextcloud 28+ on Vue 2)',
-						href: 'https://nextcloud-vue-components.netlify.app',
+						href: 'https://stable8--nextcloud-vue-components.netlify.app',
 					},
 				],
 			},
