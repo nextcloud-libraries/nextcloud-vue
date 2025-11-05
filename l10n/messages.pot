@@ -124,6 +124,12 @@ msgstr ""
 msgid "Connect items to a project to make them easier to find"
 msgstr ""
 
+msgid "Copied"
+msgstr ""
+
+msgid "Copy to clipboard"
+msgstr ""
+
 #. TRANSLATORS: Ctrl key on keyboard (Windows/Linux)
 msgid "Ctrl"
 msgstr ""
