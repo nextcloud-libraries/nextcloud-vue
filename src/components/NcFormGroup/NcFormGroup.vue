@@ -105,7 +105,8 @@ const hasContentOnly = () => hideLabel && (!hasDescription() || hideDescription)
 	display: flex;
 	flex-direction: column;
 	gap: var(--form-group-content-gap);
-	margin-block-start: calc(4 * var(--default-grid-baseline));
+	margin-block-start: calc(2.5 * var(--default-grid-baseline));
+
 	&.formGroup__content_only {
 		margin-block-start: 0;
 	}
