@@ -40,7 +40,7 @@ module.exports = async () => {
 		styleguideDir: 'styleguide/build',
 
 		pagePerSection: true,
-		minimize: true,
+		minimize: false,
 		verbose: false,
 
 		webpackConfig: merge(newConfig, {
