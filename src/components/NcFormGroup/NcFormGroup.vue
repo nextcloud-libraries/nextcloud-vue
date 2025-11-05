@@ -53,18 +53,18 @@ const slots = defineSlots<{
 }>()
 
 const id = `nc-form-group-${createElementId()}`
-const labelId = `${id}-label`
 const descriptionId = `${id}-description`
 
 const hasDescription = () => !!description || !!slots.description
 const getDescriptionId = () => hasDescription() ? descriptionId : undefined
+const hasContentOnly = () => hideLabel && (!hasDescription() || hideDescription)
 </script>
 
 <template>
 	<fieldset
 		:class="[$style.formGroup, { [$style.formGroup_noGap]: noGap }]"
 		:aria-describedby="getDescriptionId()">
-		<legend :id="labelId" :class="[$style.formGroup__label, { 'hidden-visually': hideLabel }]">
+		<legend :class="[$style.formGroup__label, { 'hidden-visually': hideLabel }]">
 			<slot name="label">
 				{{ label || '⚠️ Missing label' }}
 			</slot>
@@ -74,7 +74,7 @@ const getDescriptionId = () => hasDescription() ? descriptionId : undefined
 				{{ description }}
 			</slot>
 		</div>
-		<div :class="$style.formGroup__content">
+		<div :class="[$style.formGroup__content, { [$style.formGroup__content_only]: hasContentOnly() }]">
 			<slot />
 		</div>
 	</fieldset>
@@ -106,8 +106,7 @@ const getDescriptionId = () => hasDescription() ? descriptionId : undefined
 	flex-direction: column;
 	gap: var(--form-group-content-gap);
 	margin-block-start: calc(4 * var(--default-grid-baseline));
-
-	&:first-child {
+	&.formGroup__content_only {
 		margin-block-start: 0;
 	}
 }
@@ -132,6 +131,24 @@ Labelled group of form elements.
 ```vue
 <template>
 	<NcFormGroup label="Personal information" description="Your contact details">
+		<NcTextField label="First name" />
+		<NcTextField label="Last name" />
+	</NcFormGroup>
+</template>
+```
+
+### Hidden label/description
+
+You can visually hide the label and/or the description.\
+Note: you still must provide the label. Do not visually hide the missing label warning!
+
+```vue
+<template>
+	<NcFormGroup
+		label="Personal information"
+		description="Your contact details"
+		hide-label
+		hide-description>
 		<NcTextField label="First name" />
 		<NcTextField label="Last name" />
 	</NcFormGroup>
