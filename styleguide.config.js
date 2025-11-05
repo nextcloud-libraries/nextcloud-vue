@@ -208,6 +208,7 @@ module.exports = async () => {
 					'src/components/NcUserBubble/NcUserBubbleDiv.vue',
 					'src/components/NcTextArea/*.vue',
 					'src/components/NcPopover/NcPopoverTriggerProvider.vue',
+					'src/components/NcFormBox/NcFormBoxItem.vue',
 				],
 				sections: [
 					{
