@@ -1,12 +1,12 @@
 # 
 # Translators:
 # Joas Schilling, 2025
-# F Bausch, 2025
 # Flávio Veras <flaviove@gmail.com>, 2025
+# F Bausch, 2025
 # 
 msgid ""
 msgstr ""
-"Last-Translator: Flávio Veras <flaviove@gmail.com>, 2025\n"
+"Last-Translator: F Bausch, 2025\n"
 "Language-Team: Portuguese (Brazil) (https://app.transifex.com/nextcloud/teams/64236/pt_BR/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Language: pt_BR\n"
@@ -68,7 +68,7 @@ msgid "Back to provider selection"
 msgstr "Voltar para seleção de provedor"
 
 msgid "Black"
-msgstr "Preta"
+msgstr "Preto"
 
 #. TRANSLATORS: A color name for RGB(91, 100, 179)
 msgid "Blue Violet"
@@ -574,7 +574,7 @@ msgid "Whiskey"
 msgstr "Uísque"
 
 msgid "White"
-msgstr "Branca"
+msgstr "Branco"
 
 msgid "Write a message …"
 msgstr "Escreva uma mensagem …"
