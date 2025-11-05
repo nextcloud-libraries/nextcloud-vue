@@ -141,5 +141,13 @@ module.exports = () => {
 		'.mjs': ['.mts', '.mjs'],
 	}
 
+	// In Vue 2 (for some reason) vue-styleguidist uses Vue as vue/dist/vue.js - UMD module
+	// UMD (global) module doesn't support some features, such as useCssModule
+	// See: https://github.com/vuejs/vue/blob/v2.7.16/src/v3/sfc-helpers/useCssModule.ts
+	// Workaround: explicitly point to the ESM build of Vue (full version to support template compilation on the page)
+	webpackConfig.resolve.alias = {
+		vue: require.resolve('vue/dist/vue.esm.js'),
+	}
+
 	return webpackConfig
 }

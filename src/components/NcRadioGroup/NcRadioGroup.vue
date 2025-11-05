@@ -5,7 +5,8 @@
 
 <script setup lang="ts">
 import Vue, { computed, provide, ref } from 'vue'
-import { createElementId } from '../../utils/createElementId.ts'
+import NcFormBox from '../NcFormBox/NcFormBox.vue'
+import NcFormGroup from '../NcFormGroup/NcFormGroup.vue'
 import { INSIDE_RADIO_GROUP_KEY } from './useNcRadioGroup.ts'
 
 const props = defineProps<{
@@ -32,10 +33,9 @@ const props = defineProps<{
 }>()
 
 const emit = defineEmits<{
-	(e: 'update:modelValue', v: string): void
+	(event: 'update:modelValue', value: string): void
 }>()
 
-const descriptionId = createElementId()
 const buttonVariant = ref<boolean>()
 
 provide(INSIDE_RADIO_GROUP_KEY, computed(() => ({
@@ -76,65 +76,25 @@ export default {
 </script>
 
 <template>
-	<fieldset
-		:aria-describedby="description ? descriptionId : undefined"
-		:class="[{
-			[$style.radioGroup_buttonVariant]: buttonVariant,
-		}, $style.radioGroup]">
-		<legend :class="[$style.radioGroup__label, { 'hidden-visually': labelHidden }]">
-			{{ label }}
-		</legend>
-		<p v-if="description" :id="descriptionId" :class="$style.radioGroup__description">
-			{{ description }}
-		</p>
-		<div :class="$style.radioGroup__wrapper">
+	<NcFormGroup
+		:label="label"
+		:description="description"
+		:hide-label="labelHidden">
+		<NcFormBox v-if="buttonVariant" row>
 			<!-- @slot Slot for the included radio buttons (`NcCheckboxRadioSwitch`).
 				 The `type` prop of the `NcCheckboxRadioSwitch` will be automatically set (and forced) to `radio`.
 				 If you want the button variant, then you have to use `NcRadioGroupButton`.-->
 			<slot />
-		</div>
-	</fieldset>
+		</NcFormBox>
+		<span v-else :class="$style.radioGroup_checkboxRadioContainer">
+			<slot />
+		</span>
+	</NcFormGroup>
 </template>
 
 <style module lang="scss">
-.radioGroup {
-	display: flex;
-	flex-direction: column;
-
-	&:not(.radioGroup_buttonVariant) :global(.checkbox-content) {
-		max-width: unset !important;
-	}
-}
-
-.radioGroup__label {
-	font-size: 1.2em;
-	font-weight: bold;
-	margin-inline-start: var(--border-radius-element);
-}
-
-.radioGroup__description {
-	color: var(--color-text-maxcontrast);
-	margin-block-end: var(--default-grid-baseline);
-	margin-inline-start: var(--border-radius-element);
-}
-
-.radioGroup__wrapper {
-	display: flex;
-	flex-direction: column;
-
-	> * {
-		flex: 1 0 1px;
-	}
-}
-
-.radioGroup__label + .radioGroup__wrapper {
-	// when there is no description we need to add some margin between wrapper and label
-	margin-block-start: var(--default-grid-baseline);
-}
-
-.radioGroup_buttonVariant .radioGroup__wrapper {
-	flex-direction: row;
-	gap: var(--default-grid-baseline);
+.radioGroup_checkboxRadioContainer :global(.checkbox-content) {
+	max-width: unset !important;
 }
 </style>
 
