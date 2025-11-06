@@ -112,6 +112,7 @@ const hasDescription = () => !!props.description || !!slots.description
 	transition-property: color, border-color, background-color;
 	transition-duration: var(--animation-quick);
 	transition-timing-function: linear;
+	-webkit-user-select: none;
 	user-select: none;
 	cursor: pointer;
 
