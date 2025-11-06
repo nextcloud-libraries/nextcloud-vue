@@ -799,7 +799,7 @@ async function loadLocale(locale: string) {
 
 	// make the bottom page toggle stand out better
 	:deep(.dp__btn.dp__button.dp__button_bottom) {
-		color: var(--color-primary-element-light);
+		color: var(--color-primary-element-light-text);
 		background-color: var(--color-primary-element-light);
 	}
 
