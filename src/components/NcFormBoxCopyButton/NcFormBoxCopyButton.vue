@@ -25,7 +25,8 @@ const props = withDefaults(defineProps<{
 })
 
 const emit = defineEmits<{
-	copy: () => void
+	/** Value has been successfully copied */
+	(event: 'copy'): void
 }>()
 
 const { isCopied, copy } = useCopy(() => props.value)
