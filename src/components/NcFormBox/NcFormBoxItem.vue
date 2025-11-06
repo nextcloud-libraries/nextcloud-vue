@@ -1,0 +1,182 @@
+<!--
+  - SPDX-FileCopyrightText: 2025 Nextcloud GmbH and Nextcloud contributors
+  - SPDX-License-Identifier: AGPL-3.0-or-later
+-->
+
+<script lang="ts">
+export default {
+	inheritAttrs: false,
+}
+</script>
+
+<script setup lang="ts">
+import type { VueClassType } from '../../utils/VueTypes.ts'
+
+import { useSlots } from 'vue'
+import { useNcFormBox } from '../../components/NcFormBox/useNcFormBox.ts'
+import { createElementId } from '../../utils/createElementId.ts'
+import { isLegacy32 } from '../../utils/legacy.ts'
+
+const props = withDefaults(defineProps<{
+	/** Interactive item element's tag */
+	tag: string
+	/** Main Label */
+	label?: string
+	/** Optional description below the label, also used for the aria-describedby */
+	description?: string
+	/** Accent on the description instead of the label */
+	invertedAccent?: boolean
+	/** Interactive item classes */
+	itemClasses?: VueClassType
+}>(), {
+	label: undefined,
+	description: undefined,
+	invertedAccent: false,
+	class: undefined,
+	itemClasses: undefined,
+})
+
+defineEmits<{
+	/** Click on the item */
+	(e: 'click', event: MouseEvent): void
+}>()
+
+const slots = useSlots()
+
+const { formBoxItemClass } = useNcFormBox()
+
+const descriptionId = createElementId()
+const hasDescription = () => !!props.description || !!slots.description
+</script>
+
+<template>
+	<div
+		:class="[
+			$style.formBoxItem,
+			formBoxItemClass,
+			{
+				[$style.formBoxItem_inverted]: invertedAccent && hasDescription(),
+				[$style.formBoxItem_legacy]: isLegacy32,
+			},
+		]">
+		<span :class="$style.formBoxItem__content">
+			<component
+				:is="tag"
+				:class="[$style.formBoxItem__element, itemClasses]"
+				v-bind="$attrs"
+				@click="$emit('click', $event)">
+				<!-- @slot Item's label custom content
+				     @binding {string} descriptionId IDRef of the description element if present -->
+				<slot :description-id="descriptionId">
+					{{ label || '⚠️ Label is missing' }}
+				</slot>
+			</component>
+			<span v-if="hasDescription()" :id="descriptionId" :class="$style.formBoxItem__description">
+				<!-- @slot Custom description content
+				     @binding {string} descriptionId IDRef of the description element if present -->
+				<slot name="description">
+					{{ description }}
+				</slot>
+			</span>
+		</span>
+		<span :class="$style.formBoxItem__icon">
+			<!-- @slot Icon content -->
+			<slot name="icon" :description-id="descriptionId">
+				⚠️ Icon is missing
+			</slot>
+		</span>
+	</div>
+</template>
+
+<style lang="scss" module>
+.formBoxItem {
+	--nc-form-box-item-border-width: 1px;
+	--nc-form-box-item-min-height: 40px; // Special size defined by the design
+	--form-element-label-offset: calc(var(--border-radius-element) + var(--default-grid-baseline));
+	--form-element-label-padding: calc(var(--form-element-label-offset) - var(--nc-form-box-item-border-width));
+	// New colors we don't yet have in theming
+	// TODO: add new colors to the theming
+	--color-primary-element-extra-light: hsl(from var(--color-primary-element-light) h s calc(l * 1.045));
+	--color-primary-element-extra-light-hover: hsl(from var(--color-primary-element-light-hover) h s calc(l * 1.045));
+	position: relative;
+	display: flex;
+	align-items: center;
+	gap: calc(2 * var(--default-grid-baseline));
+	min-height: var(--nc-form-box-item-min-height);
+	padding-inline: var(--form-element-label-padding);
+	border: 1px solid var(--color-primary-element-extra-light-hover);
+	border-bottom-width: 2px;
+	border-radius: var(--border-radius-element);
+	background-color: var(--color-primary-element-extra-light);
+	color: var(--color-primary-element-light-text);
+	transition-property: color, border-color, background-color;
+	transition-duration: var(--animation-quick);
+	transition-timing-function: linear;
+	user-select: none;
+	cursor: pointer;
+
+	* {
+		cursor: inherit;
+	}
+
+	&:has(:disabled) {
+		cursor: default;
+		opacity: 0.5;
+	}
+
+	&:hover:not(:has(:disabled)) {
+		color: var(--color-primary-element-light-text);
+		background-color: var(--color-primary-element-extra-light-hover);
+	}
+
+	&:has(:focus-visible) {
+		outline: 2px solid var(--color-main-text);
+		box-shadow: 0 0 0 4px var(--color-main-background);
+	}
+
+	&.formBoxItem_legacy {
+		--nc-form-box-item-border-width: 0px;
+		border: none;
+	}
+
+	&.formBoxItem_inverted {
+		.formBoxItem__element {
+			color: var(--color-text-maxcontrast);
+		}
+
+		.formBoxItem__description {
+			color: inherit;
+		}
+	}
+}
+
+.formBoxItem__content {
+	flex: 1;
+	display: flex;
+	flex-direction: column;
+	padding-block: calc(2 * var(--default-grid-baseline));
+	overflow-wrap: anywhere;
+}
+
+// A trick for accessibility:
+// make entire component clickable while internally splitting the interactive item and the description
+.formBoxItem__element::after {
+	content: '';
+	position: absolute;
+	inset: 0;
+}
+
+.formBoxItem__description {
+	color: var(--color-text-maxcontrast);
+}
+
+.formBoxItem__icon {
+	display: flex;
+	align-items: center;
+	justify-content: flex-end;
+}
+</style>
+
+<docs>
+An internal component
+</docs>
