@@ -449,7 +449,7 @@ const realFormat = computed<LibraryFormatOptions>(() => {
 	return undefined
 })
 
-const pickerType = computed(() => ({
+const pickerType = computed<Partial<VueDatePickerProps>>(() => ({
 	timePicker: props.type === 'time' || props.type === 'time-range',
 	yearPicker: props.type === 'year',
 	monthPicker: props.type === 'month',
@@ -460,7 +460,9 @@ const pickerType = computed(() => ({
 		// but its not covered by our component interface (props / events) documentation so just disabled for now.
 		partialRange: false,
 	},
-	enableTimePicker: !(props.type === 'date' || props.type === 'date-range'),
+	timeConfig: {
+		enableTimePicker: !(props.type === 'date' || props.type === 'date-range'),
+	},
 	...(props.type === 'datetime'
 		? { flow: { steps: ['calendar', 'time'] as ['calendar', 'time'] } }
 		: {}
@@ -645,8 +647,7 @@ async function loadLocale(locale: string) {
 			six-weeks="fair"
 			:teleport="appendToBody ? (targetElement || undefined) : false"
 			text-input
-			:week-num-name
-			:week-numbers="showWeekNumber ? { type: 'iso' } : undefined"
+			:week-numbers="showWeekNumber ? { type: 'iso', label: weekNumName } : undefined"
 			:week-start
 			v-bind="pickerType"
 			@update:model-value="onUpdateModelValue">
