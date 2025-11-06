@@ -11,6 +11,8 @@ import { useAppSettingsDialog } from '../NcAppSettingsDialog/useAppSettingsDialo
 const props = defineProps<{
 	/** Name of the section */
 	name: string
+	/** Optional description of the section */
+	description?: string
 	/** The id of the section */
 	id: string
 	/** The id of the section */
@@ -48,12 +50,20 @@ onBeforeUnmount(() => {
 </script>
 
 <template>
-	<section :id="htmlId" :aria-labelledby="`${htmlId}--label`" class="app-settings-section">
+	<section
+		:id="htmlId"
+		:aria-labelledby="`${htmlId}--label`"
+		class="app-settings-section">
 		<h3 :id="`${htmlId}--label`" class="app-settings-section__name">
 			{{ name }}
 		</h3>
-		<!-- @slot Section content -->
-		<slot />
+		<div class="app-settings-section__description">
+			{{ description }}
+		</div>
+		<div class="app-settings-section__content">
+			<!-- @slot Section content -->
+			<slot />
+		</div>
 		<!-- @slot Optional icon for the section in the navigation -->
 		<slot v-if="false" name="icon" />
 	</section>
@@ -61,15 +71,21 @@ onBeforeUnmount(() => {
 
 <style lang="scss" scoped>
 .app-settings-section {
-	margin-bottom: 80px;
+	margin-block-end: calc(8 * var(--default-grid-baseline));
 	&__name {
-		font-size: 1.6em;
 		margin: 0;
-		padding: 20px 0;
+		padding-inline: 0;
+		padding-block: 0;
+		font-size: 20px;
 		font-weight: bold;
-		overflow: hidden;
-		white-space: nowrap;
-		text-overflow: ellipsis;
+	}
+
+	&__description {
+		color: var(--color-text-maxcontrast);
+	}
+
+	&__content {
+		margin-block-start: calc(2 * var(--default-grid-baseline));
 	}
 }
 </style>
