@@ -6,13 +6,15 @@
 <script setup lang="ts">
 import type { Slot } from 'vue'
 
-import { computed, onBeforeUnmount, onMounted, watch } from 'vue'
+import { computed, inject, onBeforeUnmount, onMounted, watch } from 'vue'
 import { logger } from '../../utils/logger.ts'
-import { useAppSettingsDialog } from '../NcAppSettingsDialog/useAppSettingsDialog.ts'
+import { APP_SETTINGS_LEGACY_DESIGN_KEY, useAppSettingsDialog } from '../NcAppSettingsDialog/useAppSettingsDialog.ts'
 
 const props = defineProps<{
 	/** Name of the section */
 	name: string
+	/** Optional description of the section */
+	description?: string
 	/** The id of the section */
 	id: string
 	/** The id of the section */
@@ -27,6 +29,7 @@ const slots = defineSlots<{
 }>()
 
 const { registerSection, unregisterSection } = useAppSettingsDialog()
+const legacy = inject(APP_SETTINGS_LEGACY_DESIGN_KEY)!
 
 const htmlId = computed(() => 'settings-section_' + props.id)
 
@@ -56,25 +59,55 @@ onBeforeUnmount(() => {
 </script>
 
 <template>
-	<section :id="htmlId" :aria-labelledby="`${htmlId}--label`" class="app-settings-section">
+	<section
+		:id="htmlId"
+		:aria-labelledby="`${htmlId}--label`"
+		class="app-settings-section"
+		:class="{ 'app-settings-section__legacy': legacy }">
 		<h3 :id="`${htmlId}--label`" class="app-settings-section__name">
 			{{ name }}
 		</h3>
-		<slot />
+		<div class="app-settings-section__description">
+			{{ description }}
+		</div>
+		<div class="app-settings-section__content">
+			<slot />
+		</div>
 	</section>
 </template>
 
 <style lang="scss" scoped>
 .app-settings-section {
-	margin-bottom: 80px;
+	--form-element-label-offset: calc(var(--border-radius-element) + var(--default-grid-baseline));
+	--app-settings-section-text-offset: var(--form-element-label-offset);
+	--app-settings-section-content-gap: calc(6 * var(--default-grid-baseline));
+	margin-block-end: calc(8 * var(--default-grid-baseline));
+
 	&__name {
-		font-size: 1.6em;
 		margin: 0;
-		padding: 20px 0;
+		padding-inline: var(--app-settings-section-text-offset);
+		padding-block: 0;
+		font-size: 20px;
 		font-weight: bold;
-		overflow: hidden;
-		white-space: nowrap;
-		text-overflow: ellipsis;
 	}
+
+	&__description {
+		padding-inline: var(--app-settings-section-text-offset);
+		color: var(--color-text-maxcontrast);
+	}
+
+	&__content {
+		margin-block-start: calc(2 * var(--default-grid-baseline));
+
+		display: flex;
+		flex-direction: column;
+		justify-content: stretch;
+		gap: var(--app-settings-section-content-gap);
+	}
+}
+
+.app-settings-section__legacy {
+	--app-settings-section-text-offset: 0;
+	--app-settings-section-content-gap: 0;
 }
 </style>
