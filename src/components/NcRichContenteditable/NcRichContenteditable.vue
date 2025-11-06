@@ -715,6 +715,12 @@ export default {
 			if (!document.createRange) {
 				return
 			}
+
+			if (window.getSelection().rangeCount > 0
+				&& this.$refs.contenteditable.contains(window.getSelection().getRangeAt(0).commonAncestorContainer)) {
+				return
+			}
+
 			const range = document.createRange()
 			range.selectNodeContents(this.$refs.contenteditable)
 			range.collapse(false)
