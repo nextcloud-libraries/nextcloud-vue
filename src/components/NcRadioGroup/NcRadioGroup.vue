@@ -12,14 +12,21 @@ import { INSIDE_RADIO_GROUP_KEY } from './useNcRadioGroup.ts'
 const props = defineProps<{
 	/**
 	 * Label of the radio group (accessible name).
-	 * It can be hidden visually if needed using `hidden-label` prop.
+	 * It can be hidden visually if needed using `hide-label` prop.
 	 */
 	label: string
 
 	/**
 	 * If set the label of the button group will not be shown visually but only for accessibility purposes.
+	 *
+	 * @deprecated Use `hide-label` instead.
 	 */
 	labelHidden?: boolean
+
+	/**
+	 * If set the label of the button group will not be shown visually but only for accessibility purposes.
+	 */
+	hideLabel?: boolean
 
 	/**
 	 * Optional visual description of the radio group.
@@ -79,7 +86,7 @@ export default {
 	<NcFormGroup
 		:label="label"
 		:description="description"
-		:hide-label="labelHidden">
+		:hide-label="labelHidden || hideLabel">
 		<NcFormBox v-if="buttonVariant" row>
 			<!-- @slot Slot for the included radio buttons (`NcCheckboxRadioSwitch`).
 				 The `type` prop of the `NcCheckboxRadioSwitch` will be automatically set (and forced) to `radio`.
@@ -147,7 +154,7 @@ The radio group also allows to create a button like styling together with the `N
 	<div>
 		<h4>With text labels</h4>
 		<div style="max-width: 400px">
-			<NcRadioGroup v-model="alignment" label="Example alignment" label-hidden>
+			<NcRadioGroup v-model="alignment" label="Example alignment" hide-label>
 				<NcRadioGroupButton label="Start" value="start" />
 				<NcRadioGroupButton label="Center" value="center" />
 				<NcRadioGroupButton label="End" value="end" />
@@ -158,7 +165,7 @@ The radio group also allows to create a button like styling together with the `N
 
 		<h4>With icons</h4>
 		<div style="max-width: 250px">
-			<NcRadioGroup v-model="alignment" label="Example alignment with icons" label-hidden>
+			<NcRadioGroup v-model="alignment" label="Example alignment with icons" hide-label>
 				<NcRadioGroupButton aria-label="Start" value="start">
 					<template #icon>
 						<NcIconSvgWrapper directional :path="mdiAlignHorizontalLeft" />
