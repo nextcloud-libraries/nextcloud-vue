@@ -133,6 +133,12 @@ msgstr "Confirma os cambios"
 msgid "Connect items to a project to make them easier to find"
 msgstr "Conectar elementos a un proxecto para facelos máis doados de atopar"
 
+msgid "Copied"
+msgstr "Copiado"
+
+msgid "Copy to clipboard"
+msgstr "Copiar ao portapapeis"
+
 #. TRANSLATORS: Ctrl key on keyboard (Windows/Linux)
 msgid "Ctrl"
 msgstr "Ctrl"
