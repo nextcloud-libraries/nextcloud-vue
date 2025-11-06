@@ -166,6 +166,8 @@ export default {
 </docs>
 
 <script setup lang="ts">
+import type { Locale } from 'date-fns'
+
 import {
 	mdiCalendarBlank,
 	mdiChevronDown,
@@ -182,11 +184,13 @@ import {
 	getFirstDay,
 } from '@nextcloud/l10n'
 import { VueDatePicker } from '@vuepic/vue-datepicker'
-import * as locales from 'date-fns/locale'
 import { computed, useTemplateRef } from 'vue'
+import { ref } from 'vue'
+import { watch } from 'vue'
 import NcIconSvgWrapper from '../NcIconSvgWrapper/NcIconSvgWrapper.vue'
 import NcTimezonePicker from '../NcTimezonePicker/NcTimezonePicker.vue'
 import { t } from '../../l10n.ts'
+import { logger } from '../../utils/logger.ts'
 import NcButton from '../NcButton/index.ts'
 
 type VueDatePickerProps = InstanceType<typeof VueDatePicker>['$props']
@@ -328,6 +332,9 @@ const emit = defineEmits<{
 const targetElement = useTemplateRef('target')
 const pickerInstance = useTemplateRef('picker')
 
+const localeObject = ref<Locale>()
+watch(() => props.locale, loadLocale, { immediate: true })
+
 /**
  * Mapping of the model-value prop to the format expected by the library.
  * We do not directly pass the prop and adjust the interface to not transparently wrap the library.
@@ -459,14 +466,6 @@ const pickerType = computed(() => ({
 		: {}
 	),
 }))
-
-const localeObject = computed(() => {
-	const name = props.locale.split('-').map((value, index) => index > 0 ? value[0]?.toUpperCase() + value.slice(1) : value).join('')
-	if (name in locales) {
-		return locales[name]
-	}
-	return undefined
-})
 
 /**
  * Called on model value update of the library.
@@ -600,6 +599,26 @@ function selectDate() {
  */
 function cancelSelection() {
 	pickerInstance.value!.closeMenu()
+}
+
+/**
+ * Load the locale object from date-fns dynamically.
+ *
+ * @param locale - The locale to load
+ */
+async function loadLocale(locale: string) {
+	try {
+		const { default: dateFnLocale } = await import(`date-fns/locale/${locale}`)
+		localeObject.value = dateFnLocale
+	} catch (error) {
+		if (locale.includes('-')) {
+			locale = locale.split('-')[0]!
+			logger.debug('Try loading fallback locale for NcDateTimePicker', { locale })
+			await loadLocale(locale)
+		} else {
+			logger.error('Failed to load locale for NcDateTimePicker', { locale, error })
+		}
+	}
 }
 </script>
 
