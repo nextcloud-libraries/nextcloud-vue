@@ -6,9 +6,9 @@
 <script setup lang="ts">
 import type { Slot } from 'vue'
 
-import { computed, onBeforeUnmount, onMounted, watch } from 'vue'
+import { computed, inject, onBeforeUnmount, onMounted, watch } from 'vue'
 import { logger } from '../../utils/logger.ts'
-import { useAppSettingsDialog } from '../NcAppSettingsDialog/useAppSettingsDialog.ts'
+import { APP_SETTINGS_LEGACY_DESIGN_KEY, useAppSettingsDialog } from '../NcAppSettingsDialog/useAppSettingsDialog.ts'
 
 const props = defineProps<{
 	/** Name of the section */
@@ -29,6 +29,7 @@ const slots = defineSlots<{
 }>()
 
 const { registerSection, unregisterSection } = useAppSettingsDialog()
+const legacy = inject(APP_SETTINGS_LEGACY_DESIGN_KEY)!
 
 const htmlId = computed(() => 'settings-section_' + props.id)
 
@@ -61,7 +62,8 @@ onBeforeUnmount(() => {
 	<section
 		:id="htmlId"
 		:aria-labelledby="`${htmlId}--label`"
-		class="app-settings-section">
+		class="app-settings-section"
+		:class="{ 'app-settings-section__legacy': legacy }">
 		<h3 :id="`${htmlId}--label`" class="app-settings-section__name">
 			{{ name }}
 		</h3>
@@ -76,21 +78,36 @@ onBeforeUnmount(() => {
 
 <style lang="scss" scoped>
 .app-settings-section {
+	--form-element-label-offset: calc(var(--border-radius-element) + var(--default-grid-baseline));
+	--app-settings-section-text-offset: var(--form-element-label-offset);
+	--app-settings-section-content-gap: calc(6 * var(--default-grid-baseline));
 	margin-block-end: calc(8 * var(--default-grid-baseline));
+
 	&__name {
 		margin: 0;
-		padding-inline: 0;
+		padding-inline: var(--app-settings-section-text-offset);
 		padding-block: 0;
 		font-size: 20px;
 		font-weight: bold;
 	}
 
 	&__description {
+		padding-inline: var(--app-settings-section-text-offset);
 		color: var(--color-text-maxcontrast);
 	}
 
 	&__content {
 		margin-block-start: calc(2 * var(--default-grid-baseline));
+
+		display: flex;
+		flex-direction: column;
+		justify-content: stretch;
+		gap: var(--app-settings-section-content-gap);
 	}
+}
+
+.app-settings-section__legacy {
+	--app-settings-section-text-offset: 0;
+	--app-settings-section-content-gap: 0;
 }
 </style>

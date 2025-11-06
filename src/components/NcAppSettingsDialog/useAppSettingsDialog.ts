@@ -3,7 +3,7 @@
  * SPDX-License-Identifier: AGPL-3.0-or-later
  */
 
-import type { InjectionKey, VNode } from 'vue'
+import type { InjectionKey, Ref, VNode } from 'vue'
 
 import { inject } from 'vue'
 
@@ -27,6 +27,7 @@ interface AppSettingsRegistrationContext {
 }
 
 export const APP_SETTINGS_REGISTRATION_KEY: InjectionKey<AppSettingsRegistrationContext> = Symbol.for('NcAppSettingsDialog:registration')
+export const APP_SETTINGS_LEGACY_DESIGN_KEY: InjectionKey<Ref<boolean>> = Symbol.for('NcAppSettingsDialog:legacy')
 
 /**
  * Get the provided methods from the app settings dialog.
