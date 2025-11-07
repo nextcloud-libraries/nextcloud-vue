@@ -53,7 +53,7 @@ const labelId = `NcHotkeyList_${createElementId()}`
 <docs>
 ## General
 
-List of keyboard shortcuts for the `<NcAppSettingsSectionShortcuts>`.
+List of keyboard shortcuts for the `<NcAppSettingsShortcutsSection>`.
 
 ```vue
 <template>

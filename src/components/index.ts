@@ -31,6 +31,7 @@ export { default as NcAppNavigationSpacer } from './NcAppNavigationSpacer/index.
 export { default as NcAppSettingsDialog } from './NcAppSettingsDialog/index.ts'
 export { default as NcAppSettingsSection } from './NcAppSettingsSection/index.ts'
 export { default as NcAppSettingsSectionShortcuts } from './NcAppSettingsSectionShortcuts/index.ts'
+export { default as NcAppSettingsShortcutsSection } from './NcAppSettingsShortcutsSection/index.ts'
 export { default as NcAppSidebar } from './NcAppSidebar/index.js'
 export { default as NcAppSidebarHeader } from './NcAppSidebarHeader/index.ts'
 export { default as NcAppSidebarTab } from './NcAppSidebarTab/index.js'
