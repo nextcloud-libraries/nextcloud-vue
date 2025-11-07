@@ -42,8 +42,6 @@ const labelId = `NcHotkeyList_${createElementId()}`
 <style module>
 .hotkeyList {
 	--form-element-label-offset: calc(var(--border-radius-element) + var(--default-grid-baseline));
-	/* Too wide list is less readable - 400px seems a good width */
-	max-width: 400px;
 }
 
 .hotkeyList__heading {
