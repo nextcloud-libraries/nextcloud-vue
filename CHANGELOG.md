@@ -7,6 +7,41 @@
 
 All notable changes to this project will be documented in this file.
 
+## [v9.2.0](https://github.com/nextcloud-libraries/nextcloud-vue/tree/v9.1.0) (2025-11-07)
+[Full Changelog](https://github.com/nextcloud-libraries/nextcloud-vue/compare/v9.1.0...v9.2.0)
+
+### 📝 Notes
+* `NcAppSettingsSectionShortcuts` has been renamed to `NcAppSettingsShortcutsSection` but still available by the previous name
+* `NcAppSettingsDialog` has started the process of migration to the new design. It may break the existing settings layout. Use `layout` prop to partially revert the change or migrate to use `NcFormBox` and `NcFormGroup` components in the settings sections.
+
+### 🚀 Enhancements
+* feat: add NcFormGroup [\#7689](https://github.com/nextcloud-libraries/nextcloud-vue/pull/7689) \([ShGKme](https://github.com/ShGKme)\)
+* feat: add `NcFormBox` and adjust `NcRadioGroup` to `NcFormbox` and `NcFormGroup` [\#7690](https://github.com/nextcloud-libraries/nextcloud-vue/pull/7690) \([ShGKme](https://github.com/ShGKme)\)
+* feat(NcRadioGroup): deprecate `labelHidden` prop in favor of `hideLabel` [\#7771](https://github.com/nextcloud-libraries/nextcloud-vue/pull/7771) \([susnux](https://github.com/susnux)\)
+* feat: add NcFormBoxButton [\#7779](https://github.com/nextcloud-libraries/nextcloud-vue/pull/7779) \([ShGKme](https://github.com/ShGKme)\)
+* feat: add NcFormBoxSwitch [\#7781](https://github.com/nextcloud-libraries/nextcloud-vue/pull/7781) \([ShGKme](https://github.com/ShGKme)\)
+* feat: add NcFormBoxCopyButton [\#7787](https://github.com/nextcloud-libraries/nextcloud-vue/pull/7787) \([ShGKme](https://github.com/ShGKme)\)
+* feat(NcAppSettingsDialog): adjust design for new form elements, add section descriptions and optional switch to legacy design [\#7797](https://github.com/nextcloud-libraries/nextcloud-vue/pull/7797) \([ShGKme](https://github.com/ShGKme)\)
+* feat: NcAppSettingsSectionShortcuts -> NcAppSettingsShortcutsSection [\#7814](https://github.com/nextcloud-libraries/nextcloud-vue/pull/7814) \([ShGKme](https://github.com/ShGKme)\)
+
+### 🐛 Fixed bugs
+* fix(NcRichText): start heading from h4 [\#7748](https://github.com/nextcloud-libraries/nextcloud-vue/pull/7748) \([ShGKme](https://github.com/ShGKme)\)
+* fix(NcFormGroup): remove margin when no label/description [\#7764](https://github.com/nextcloud-libraries/nextcloud-vue/pull/7764) \([ShGKme](https://github.com/ShGKme)\)
+* fix(NcFormGroup): decrease gap between label and content [\#7775](https://github.com/nextcloud-libraries/nextcloud-vue/pull/7775) \([ShGKme](https://github.com/ShGKme)\)
+* fix(NcFormBox*): user-select: none on Safari as well [\#7792](https://github.com/nextcloud-libraries/nextcloud-vue/pull/7792) \([ShGKme](https://github.com/ShGKme)\)
+* fix(NcRichContenteditable): keep previous cursor position on focus [\#7791](https://github.com/nextcloud-libraries/nextcloud-vue/pull/7791) \([Antreesy](https://github.com/Antreesy)\)
+* fix(NcHotkeyList): align with form labels [\#7807](https://github.com/nextcloud-libraries/nextcloud-vue/pull/7807) \([ShGKme](https://github.com/ShGKme)\)
+* fix(NcHotkeyList): align with the section [\#7811](https://github.com/nextcloud-libraries/nextcloud-vue/pull/7811) \([ShGKme](https://github.com/ShGKme)\)
+* fix(NcActions): improve performance by only computing popover maxHeight on demand [\#7808](https://github.com/nextcloud-libraries/nextcloud-vue/pull/7808) \([Antreesy](https://github.com/Antreesy)\)
+* fix(NcListItem): do not mount NcAction until necessary [\#7817](https://github.com/nextcloud-libraries/nextcloud-vue/pull/7817) \([ShGKme](https://github.com/ShGKme)\)
+
+### Other Changes
+* chore(docs): update docs link titles [\#7768](https://github.com/nextcloud-libraries/nextcloud-vue/pull/7768) \([ShGKme](https://github.com/ShGKme)\)
+* chore(docs): correct min supported Nextcloud version [\#7774](https://github.com/nextcloud-libraries/nextcloud-vue/pull/7774) \([ShGKme](https://github.com/ShGKme)\)
+* chore(docs): do not minimize docs and add examples code highlight [\#7784](https://github.com/nextcloud-libraries/nextcloud-vue/pull/7784) \([ShGKme](https://github.com/ShGKme)\)
+* chore(docs): optionally set docs server port via VUE_STYLEGUIDIST_PORT [\#7805](https://github.com/nextcloud-libraries/nextcloud-vue/pull/7805) \([ShGKme](https://github.com/ShGKme)\)
+* chore: bump node and npm dev versions [\#7785](https://github.com/nextcloud-libraries/nextcloud-vue/pull/7785) \([susnux](https://github.com/susnux)\)
+
 ## [v9.1.0](https://github.com/nextcloud-libraries/nextcloud-vue/tree/v9.1.0) (2025-10-22)
 [Full Changelog](https://github.com/nextcloud-libraries/nextcloud-vue/compare/v9.0.1...v9.1.0)
 
