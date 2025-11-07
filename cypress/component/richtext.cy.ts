@@ -62,11 +62,11 @@ describe('NcRichText', () => {
 		describe('headings', () => {
 			it('heading (with hash (#) syntax divided with space from text)', () => {
 				const testCases = [
-					{ tag: 'h1', input: '# heading 1', output: 'heading 1' },
-					{ tag: 'h2', input: '## heading 2', output: 'heading 2' },
-					{ tag: 'h3', input: '### heading 3', output: 'heading 3' },
-					{ tag: 'h4', input: '#### heading 4', output: 'heading 4' },
-					{ tag: 'h5', input: '##### heading 5', output: 'heading 5' },
+					{ tag: 'h4', input: '# heading 1', output: 'heading 1' },
+					{ tag: 'h5', input: '## heading 2', output: 'heading 2' },
+					{ tag: 'h6', input: '### heading 3', output: 'heading 3' },
+					{ tag: 'h6', input: '#### heading 4', output: 'heading 4' },
+					{ tag: 'h6', input: '##### heading 5', output: 'heading 5' },
 					{ tag: 'h6', input: '###### heading 6', output: 'heading 6' },
 				]
 
@@ -101,7 +101,7 @@ describe('NcRichText', () => {
 					},
 				})
 
-				cy.get('h1').should('have.text', 'heading 1')
+				cy.get('h4').should('have.text', 'heading 1')
 			})
 
 			it('heading 2 (with dash (-) syntax on the next line)', () => {
@@ -112,7 +112,7 @@ describe('NcRichText', () => {
 					},
 				})
 
-				cy.get('h2').should('have.text', 'heading 2')
+				cy.get('h5').should('have.text', 'heading 2')
 			})
 		})
 
