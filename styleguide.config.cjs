@@ -67,6 +67,8 @@ module.exports = async () => {
 			},
 		}),
 
+		serverPort: +(process.env.VUE_STYLEGUIDIST_PORT || 6060),
+
 		exampleMode: 'collapse',
 		usageMode: 'collapse',
 
