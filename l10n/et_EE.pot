@@ -133,6 +133,12 @@ msgstr "Kinnitage muudatused"
 msgid "Connect items to a project to make them easier to find"
 msgstr "Selleks, et objekte oleks lihtsam leida, seo nad projektiga"
 
+msgid "Copied"
+msgstr "Kopeeritud"
+
+msgid "Copy to clipboard"
+msgstr "Kopeeri lõikelauale"
+
 #. TRANSLATORS: Ctrl key on keyboard (Windows/Linux)
 msgid "Ctrl"
 msgstr "Ctrl"
