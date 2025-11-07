@@ -6,14 +6,14 @@
 <script setup lang="ts">
 import type { VNode } from 'vue'
 
-import { useVModel } from '@vueuse/core'
+import { toRef, useVModel } from '@vueuse/core'
 import debounce from 'debounce'
 import Vue, { computed, onBeforeUnmount, provide, ref, shallowRef } from 'vue'
 import NcDialog from '../NcDialog/NcDialog.vue'
 import NcVNodes from '../NcVNodes/NcVNodes.vue'
 import { useIsMobile } from '../../composables/useIsMobile/index.ts'
 import { t } from '../../l10n.js'
-import { APP_SETTINGS_REGISTRATION_KEY } from './useAppSettingsDialog.ts'
+import { APP_SETTINGS_LEGACY_DESIGN_KEY, APP_SETTINGS_REGISTRATION_KEY } from './useAppSettingsDialog.ts'
 
 export interface IAppSettingsSection {
 	id: string
@@ -47,10 +47,18 @@ const props = withDefaults(defineProps<{
 	 * Additional elements to add to the focus trap
 	 */
 	additionalTrapElements?: (string | HTMLElement)[]
+
+	/**
+	 * Use legacy design without any requirements for the section content
+	 *
+	 * @deprecated The legacy design is disabled by default on v9 and will be removed in future releases
+	 */
+	legacy?: boolean
 }>(), {
 	container: 'body',
 	name: '',
 	additionalTrapElements: () => [],
+	legacy: true, // eslint-disable-line vue/no-boolean-default -- changed to false in v9
 })
 
 const emit = defineEmits<{
@@ -63,6 +71,8 @@ provide(APP_SETTINGS_REGISTRATION_KEY, {
 	registerSection,
 	unregisterSection,
 })
+
+provide(APP_SETTINGS_LEGACY_DESIGN_KEY, toRef(() => props.legacy))
 
 const settingsScroller = ref<HTMLDivElement>()
 
@@ -465,5 +475,223 @@ In case of dynamic/conditional sections rendering explicit `order` prop must be 
 		},
 	}
 </script>
+```
+
+### New design
+
+```vue
+<script>
+import { mdiPlus, mdiDomain, mdiDockLeft, mdiDockBottom, mdiListBoxOutline, mdiPencilOutline, mdiTrashCanOutline, mdiMedalOutline, mdiEmailOutline } from '@mdi/js'
+export default {
+	setup() {
+		return { mdiPlus, mdiDomain, mdiDockLeft, mdiDockBottom, mdiListBoxOutline, mdiPencilOutline, mdiTrashCanOutline, mdiMedalOutline, mdiEmailOutline }
+	},
+	data() {
+		return {
+			settingsOpen: false,
+			switchValue: true,
+			layout: 'vertical',
+			sorting: 'asc',
+			reply: 'top',
+		}
+	},
+}
+</script>
+
+<template>
+	<div>
+		<NcButton @click="settingsOpen = true">Mail Settings</NcButton>
+		<NcAppSettingsDialog :open.sync="settingsOpen" :show-navigation="true" name="Application settings" :legacy="false">
+			<NcAppSettingsSection id="general" name="General">
+				<NcButton wide>Set as default mail app</NcButton>
+
+				<NcFormGroup label="Account settings">
+					<NcFormBox v-slot="{ itemClass }">
+						<NcFormBoxButton href="#">user@example.com</NcFormBoxButton>
+						<NcFormBoxButton href="#">sales@example.com</NcFormBoxButton>
+						<NcButton :class="itemClass" wide>
+							<template #icon>
+								<NcIconSvgWrapper :path="mdiPlus" />
+							</template>
+							Add mail account
+						</NcButton>
+					</NcFormBox>
+				</NcFormGroup>
+			</NcAppSettingsSection>
+
+			<NcAppSettingsSection id="appearance" name="Appearance">
+				<NcFormBox>
+					<NcFormBoxSwitch
+						v-model="switchValue"
+						label="Show all messages in thread"
+						description="When off, only the selected messages will be shown" />
+				</NcFormBox>
+				<NcRadioGroup v-model="layout" label="Layout">
+					<NcRadioGroupButton label="Vertical" value="vertical">
+						<template #icon>
+							<NcIconSvgWrapper :path="mdiDockLeft" />
+						</template>
+					</NcRadioGroupButton>
+					<NcRadioGroupButton label="Horizontal" value="horizontal">
+						<template #icon>
+							<NcIconSvgWrapper :path="mdiDockBottom" />
+						</template>
+					</NcRadioGroupButton>
+					<NcRadioGroupButton label="List" value="list">
+						<template #icon>
+							<NcIconSvgWrapper :path="mdiListBoxOutline" />
+						</template>
+					</NcRadioGroupButton>
+				</NcRadioGroup>
+				<NcRadioGroup v-model="sorting" label="Sorting">
+					<NcRadioGroupButton label="Newest first" value="asc" />
+					<NcRadioGroupButton label="Oldest first" value="desc" />
+				</NcRadioGroup>
+			</NcAppSettingsSection>
+
+			<NcAppSettingsSection id="messages" name="Messages">
+				<NcFormBox>
+					<NcFormBoxSwitch v-model="switchValue" label="Avatars from Gravatar and favicons" />
+					<NcFormBoxSwitch v-model="switchValue" label="Determine importance using machine learning" />
+					<NcFormBoxSwitch v-model="switchValue" label="Search the body of messages in Priority inbox" />
+				</NcFormBox>
+				<NcRadioGroup v-model="reply" label="Reply position">
+					<NcRadioGroupButton label="Top" value="top" />
+					<NcRadioGroupButton label="Bottom" value="bottom" />
+				</NcRadioGroup>
+				<NcFormGroup
+					label="Text blocks"
+					description="Reusable pieces of text that can be inserted in messages">
+					<NcListItem name="Title">
+						<template #subname>
+							Content
+						</template>
+						<template #extra-actions>
+							<NcButton variant="tertiary" #icon>
+								<NcIconSvgWrapper :path="mdiPencilOutline" inline />
+							</NcButton>
+							<NcButton variant="tertiary" #icon>
+								<NcIconSvgWrapper :path="mdiTrashCanOutline" inline />
+							</NcButton>
+						</template>
+					</NcListItem>
+					<NcListItem name="Reply">
+						<template #subname>
+							Thank you for contacting us!
+						</template>
+						<template #extra-actions>
+							<NcButton variant="tertiary" #icon>
+								<NcIconSvgWrapper :path="mdiPencilOutline" inline />
+							</NcButton>
+							<NcButton variant="tertiary" #icon>
+								<NcIconSvgWrapper :path="mdiTrashCanOutline" inline />
+							</NcButton>
+						</template>
+					</NcListItem>
+				</NcFormGroup>
+			</NcAppSettingsSection>
+
+			<NcAppSettingsSection id="privacy" name="Privacy">
+				<NcFormBox>
+					<NcFormBoxSwitch
+						v-model="switchValue"
+						label="Data collection"
+						description="Allow the app to collect and process data locally to adapt to your preferences" />
+				</NcFormBox>
+				<NcFormGroup label="Always show images from">
+					<NcListItem name="example.com">
+						<template #icon>
+							<NcIconSvgWrapper :path="mdiDomain" inline />
+						</template>
+						<template #extra-actions>
+							<NcButton variant="tertiary" #icon>
+								<NcIconSvgWrapper :path="mdiTrashCanOutline" inline />
+							</NcButton>
+						</template>
+					</NcListItem>
+					<NcListItem name="example.net">
+						<template #icon>
+							<NcIconSvgWrapper :path="mdiDomain" inline />
+						</template>
+						<template #extra-actions>
+							<NcButton variant="tertiary" #icon>
+								<NcIconSvgWrapper :path="mdiTrashCanOutline" inline />
+							</NcButton>
+						</template>
+					</NcListItem>
+					<NcListItem name="mail@example.org">
+						<template #icon>
+							<NcIconSvgWrapper :path="mdiEmailOutline" inline />
+						</template>
+						<template #extra-actions>
+							<NcButton variant="tertiary" #icon>
+								<NcIconSvgWrapper :path="mdiTrashCanOutline" inline />
+							</NcButton>
+						</template>
+					</NcListItem>
+				</NcFormGroup>
+			</NcAppSettingsSection>
+
+			<NcAppSettingsSection id="security" name="Security">
+				<NcFormBox>
+					<NcFormBoxSwitch v-model="switchValue" label="Highlight external addresses" />
+				</NcFormBox>
+				<NcFormGroup label="Internal addresses">
+					<NcListItem name="example.com">
+						<template #icon>
+							<NcIconSvgWrapper :path="mdiDomain" inline />
+						</template>
+						<template #extra-actions>
+							<NcButton variant="tertiary" #icon>
+								<NcIconSvgWrapper :path="mdiTrashCanOutline" inline />
+							</NcButton>
+						</template>
+					</NcListItem>
+					<NcListItem name="example.company@example.net">
+						<template #icon>
+							<NcIconSvgWrapper :path="mdiEmailOutline" inline />
+						</template>
+						<template #extra-actions>
+							<NcButton variant="tertiary" #icon>
+								<NcIconSvgWrapper :path="mdiTrashCanOutline" inline />
+							</NcButton>
+						</template>
+					</NcListItem>
+					<NcButton wide>Add internal address</NcButton>
+				</NcFormGroup>
+				<NcFormGroup label="S/MIME">
+					<NcButton wide>
+						<template #icon>
+							<NcIconSvgWrapper :path="mdiMedalOutline" inline />
+						</template>
+						Manage certificates
+					</NcButton>
+				</NcFormGroup>
+				<NcFormGroup label="Mailvelope">
+					<NcFormBox>
+						<NcFormBoxButton
+							label="Step 1"
+							description="Install the browser extension"
+							href="https://www.mailvelope.com/"
+							target="_blank"
+							inverted-accent />
+						<NcFormBoxButton
+							label="Step 2"
+							description="Enable the current domain"
+							inverted-accent>
+							<template #icon>
+								<NcIconSvgWrapper :path="mdiDomain" inline />
+							</template>
+						</NcFormBoxButton>
+					</NcFormBox>
+				</NcFormGroup>
+			</NcAppSettingsSection>
+
+			<NcAppSettingsSection id="about" name="About">
+				<NcFormGroup label="Acknowledgements" description="This application includes CKEditor, an open-source editor. Copyright (C) CKEditor contributors. Licensed under GPLv2." />
+			</NcAppSettingsSection>
+		</NcAppSettingsDialog>
+	</div>
+</template>
 ```
 </docs>
