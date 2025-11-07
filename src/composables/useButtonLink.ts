@@ -7,7 +7,7 @@ import type { MaybeRef } from '@vueuse/core'
 import type { AnchorHTMLAttributes, ButtonHTMLAttributes } from 'vue'
 import type { RawLocation } from 'vue-router'
 
-import Vue, { computed, reactive } from 'vue'
+import { computed, getCurrentInstance, reactive } from 'vue'
 
 type ButtonLinkProps = {
 	// Required - general link props
@@ -65,7 +65,8 @@ export function useButtonLink(options: ButtonLinkProps) {
 	// Resolve all MaybeRef-s values and maybe reactive object via unwrapping
 	const props = reactive(options)
 
-	const hasVueRouterContext = Vue.prototype.$router !== undefined
+	const instance = getCurrentInstance()!
+	const hasVueRouterContext = '$router' in instance.proxy.$root
 
 	/**
 	 * Tag name to be used
