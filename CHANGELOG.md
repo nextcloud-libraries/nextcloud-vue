@@ -5,6 +5,41 @@
 
 # Changelog
 
+## [v8.34.0](https://github.com/nextcloud-libraries/nextcloud-vue/tree/v8.34.0) (2025-11-07)
+### 📝 Notes
+* `NcAppSettingsSectionShortcuts` has been renamed to `NcAppSettingsShortcutsSection` but still available by the previous name
+
+### 🚀 Enhancements
+* feat: add NcFormGroup [\#7762](https://github.com/nextcloud-libraries/nextcloud-vue/pull/7762) \([backportbot[bot]](https://github.com/backportbot[bot])\)
+* feat: add `NcFormBox` and adjust `NcRadioGroup` to `NcFormBox` and `NcFormGroup` [\#7765](https://github.com/nextcloud-libraries/nextcloud-vue/pull/7765) \([backportbot[bot]](https://github.com/backportbot[bot])\)
+* feat: add NcFormBoxButton [\#7789](https://github.com/nextcloud-libraries/nextcloud-vue/pull/7789) \([backportbot[bot]](https://github.com/backportbot[bot])\)
+* feat(NcRadioGroup): deprecate `labelHidden` prop in favor of `hideLabel` [\#7772](https://github.com/nextcloud-libraries/nextcloud-vue/pull/7772) \([backportbot[bot]](https://github.com/backportbot[bot])\)
+* feat: add NcFormBoxCopyButton [\#7793](https://github.com/nextcloud-libraries/nextcloud-vue/pull/7793) \([backportbot[bot]](https://github.com/backportbot[bot])\)
+* feat: add NcFormBoxSwitch [\#7795](https://github.com/nextcloud-libraries/nextcloud-vue/pull/7795) \([backportbot[bot]](https://github.com/backportbot[bot])\)
+* feat(NcAppSettingsDialog): adjust design for new form elements, add section descriptions [\#7802](https://github.com/nextcloud-libraries/nextcloud-vue/pull/7802) \([backportbot[bot]](https://github.com/backportbot[bot])\)
+* feat: NcAppSettingsSectionShortcuts -> NcAppSettingsShortcutsSection [\#7816](https://github.com/nextcloud-libraries/nextcloud-vue/pull/7816) \([backportbot[bot]](https://github.com/backportbot[bot])\)
+
+### 🐛 Fixed bugs
+* fix(NcFormGroup): remove margin when no label/description [\#7780](https://github.com/nextcloud-libraries/nextcloud-vue/pull/7780) \([backportbot[bot]](https://github.com/backportbot[bot])\)
+* fix(NcFormGroup): decrease gap between label and content [\#7782](https://github.com/nextcloud-libraries/nextcloud-vue/pull/7782) \([ShGKme](https://github.com/ShGKme)\)
+* fix(NcFormBox*): user-select: none on Safari as well [\#7796](https://github.com/nextcloud-libraries/nextcloud-vue/pull/7796) \([backportbot[bot]](https://github.com/backportbot[bot])\)
+* fix(NcRichContenteditable): keep previous cursor position on focus [\#7804](https://github.com/nextcloud-libraries/nextcloud-vue/pull/7804) \([backportbot[bot]](https://github.com/backportbot[bot])\)
+* fix(NcHotkeyList): align with form labels [\#7810](https://github.com/nextcloud-libraries/nextcloud-vue/pull/7810) \([backportbot[bot]](https://github.com/backportbot[bot])\)
+* fix(NcHotkeyList): align with the section [\#7812](https://github.com/nextcloud-libraries/nextcloud-vue/pull/7812) \([backportbot[bot]](https://github.com/backportbot[bot])\)
+* fix(NcActions): improve performance by only computing popover maxHeight on demand [\#7815](https://github.com/nextcloud-libraries/nextcloud-vue/pull/7815) \([backportbot[bot]](https://github.com/backportbot[bot])\)
+* fix(NcListItem): do not mount NcAction until necessary [\#7818](https://github.com/nextcloud-libraries/nextcloud-vue/pull/7818) \([backportbot[bot]](https://github.com/backportbot[bot])\)
+* fix(NcRichText): start heading from h4 [\#7821](https://github.com/nextcloud-libraries/nextcloud-vue/pull/7821)\([ShGKme](https://github.com/ShGKme)\)
+* fix(NcFormBoxButton): router check on Vue 2 [\#7822](https://github.com/nextcloud-libraries/nextcloud-vue/pull/7822)\([ShGKme](https://github.com/ShGKme)\)
+
+### Other Changes
+* chore(docs): update docs link titles [\#7770](https://github.com/nextcloud-libraries/nextcloud-vue/pull/7770) \([backportbot[bot]](https://github.com/backportbot[bot])\)
+* chore: update workflows from organization [\#7763](https://github.com/nextcloud-libraries/nextcloud-vue/pull/7763) \([susnux](https://github.com/susnux)\)
+* chore(docs): add missing backports around supported versions and links [\#7773](https://github.com/nextcloud-libraries/nextcloud-vue/pull/7773) \([ShGKme](https://github.com/ShGKme)\)
+* chore(docs): correct min supported Nextcloud version [\#7776](https://github.com/nextcloud-libraries/nextcloud-vue/pull/7776) \([backportbot[bot]](https://github.com/backportbot[bot])\)
+* chore(docs): do not minimize docs and add examples code highlight [\#7803](https://github.com/nextcloud-libraries/nextcloud-vue/pull/7803) \([backportbot[bot]](https://github.com/backportbot[bot])\)
+* chore: update Node and NPM version in dev engines [\#7786](https://github.com/nextcloud-libraries/nextcloud-vue/pull/7786) \([susnux](https://github.com/susnux)\)
+* chore(docs): optionally set docs server port via VUE_STYLEGUIDIST_PORT [\#7806](https://github.com/nextcloud-libraries/nextcloud-vue/pull/7806) \([backportbot[bot]](https://github.com/backportbot[bot])\)
+
 ## [v8.33.0](https://github.com/nextcloud-libraries/nextcloud-vue/tree/v8.33.0) (2025-10-22)
 ### 🚀 Enhancements
 * feat(NcChip): add error, success and warning variants [\#7653](https://github.com/nextcloud-libraries/nextcloud-vue/pull/7653) \([backportbot[bot]](https://github.com/backportbot[bot])\)
