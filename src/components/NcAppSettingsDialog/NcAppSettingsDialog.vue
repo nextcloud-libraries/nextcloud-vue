@@ -688,6 +688,21 @@ export default {
 			<NcAppSettingsSection id="about" name="About">
 				<NcFormGroup label="Acknowledgements" description="This application includes CKEditor, an open-source editor. Copyright (C) CKEditor contributors. Licensed under GPLv2." />
 			</NcAppSettingsSection>
+
+			<NcAppSettingsSectionShortcuts>
+				<NcHotkeyList>
+					<NcHotkey label="Compose new message" hotkey="C" />
+					<NcHotkey label="Newer message" hotkey="ArrowLeft" />
+					<NcHotkey label="Older message" hotkey="ArrowRight" />
+					<NcHotkey label="Toggle star" hotkey="S" />
+					<NcHotkey label="Toggle unread" hotkey="U" />
+					<NcHotkey label="Archive" hotkey="A" />
+					<NcHotkey label="Delete" hotkey="Delete" />
+					<NcHotkey label="Search" hotkey="Control F" />
+					<NcHotkey label="Send" hotkey="Control Enter" />
+					<NcHotkey label="Refresh" hotkey="R" />
+				</NcHotkeyList>
+			</NcAppSettingsSectionShortcuts>
 		</NcAppSettingsDialog>
 	</div>
 </template>
