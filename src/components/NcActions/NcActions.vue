@@ -949,8 +949,7 @@ export default {
 </docs>
 
 <script>
-import { useElementBounding, useWindowSize } from '@vueuse/core'
-import Vue, { computed, ref, toRef } from 'vue'
+import Vue, { computed } from 'vue'
 import IconDotsHorizontal from 'vue-material-design-icons/DotsHorizontal.vue'
 import { useTrapStackControl } from '../../composables/useTrapStackControl.ts'
 import { t } from '../../l10n.js'
@@ -1193,36 +1192,11 @@ export default {
 		'update:open',
 	],
 
-	setup(props) {
+	setup() {
 		const randomId = `menu-${GenRandomId()}`
 		const triggerRandomId = `trigger-${randomId}`
 
-		const triggerButton = ref()
-
-		const { top, bottom } = useElementBounding(triggerButton)
-		const { top: boundaryTop, bottom: boundaryBottom } = useElementBounding(toRef(props, 'boundariesElement'))
-		const { height: windowHeight } = useWindowSize()
-		const maxMenuHeight = computed(() => Math.max(
-			// Either expand to the top
-			Math.min(
-				// max height is the top position of the trigger minus the header height minus the wedge and the padding
-				top.value - 84,
-				// and also limited to the space in the boundary
-				top.value - boundaryTop.value,
-			),
-			// or expand to the bottom
-			Math.min(
-				// the max height is the window height minus current position of the trigger minus the wedge and padding
-				windowHeight.value - bottom.value - 34,
-				// and limit to the available space in the boundary
-				boundaryBottom.value - bottom.value,
-			),
-		))
-
 		return {
-			triggerButton,
-			maxMenuHeight,
-
 			randomId,
 			triggerRandomId,
 		}
@@ -1508,9 +1482,10 @@ export default {
 			// Get the inner v-popper element that defines the popover height (from floating-vue)
 			const inner = this.$refs.menu.closest('.v-popper__inner')
 			const height = this.$refs.menu.clientHeight
+			const maxMenuHeight = this.getMaxMenuHeight()
 
 			// If the popover height is limited by the max-height (scrollbars shown) limit the height to half of the last element
-			if (height > this.maxMenuHeight) {
+			if (height > maxMenuHeight) {
 				// sum of action heights
 				let currentHeight = 0
 				// last action height
@@ -1518,7 +1493,7 @@ export default {
 				for (const action of this.$refs.menuList.children) {
 					// If the max height would be overflown by half of the current element,
 					// then we limit the height to the half of the previous element
-					if ((currentHeight + action.clientHeight / 2) > this.maxMenuHeight) {
+					if ((currentHeight + action.clientHeight / 2) > maxMenuHeight) {
 						inner.style.height = `${currentHeight - actionHeight / 2}px`
 						break
 					}
@@ -1529,6 +1504,28 @@ export default {
 			} else {
 				inner.style.height = 'fit-content'
 			}
+		},
+
+		getMaxMenuHeight() {
+			const { top, bottom } = this.$refs.triggerButton?.$el.getBoundingClientRect() ?? { top: 0, bottom: 0 }
+			const { top: boundaryTop, bottom: boundaryBottom } = this.boundariesElement?.getBoundingClientRect() ?? { top: 0, bottom: window.innerHeight }
+
+			return Math.max(
+				// Either expand to the top
+				Math.min(
+					// max height is the top position of the trigger minus the header height minus the wedge and the padding
+					top - 84,
+					// and also limited to the space in the boundary
+					top - boundaryTop,
+				),
+				// or expand to the bottom
+				Math.min(
+					// the max height is the window height minus current position of the trigger minus the wedge and padding
+					window.innerHeight - bottom - 34,
+					// and limit to the available space in the boundary
+					boundaryBottom - bottom,
+				),
+			)
 		},
 
 		// MENU KEYS & FOCUS MANAGEMENT
