@@ -196,12 +196,12 @@
     "packageManager": [
       {
         "name": "npm",
-        "version": "^10.5.1"
+        "version": "^11.3.0"
       }
     ],
     "runtime": {
       "name": "node",
-      "version": "^22"
+      "version": "^24"
     }
   }
 }
