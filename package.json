@@ -170,13 +170,13 @@
     "packageManager": [
       {
         "name": "npm",
-        "version": "^10",
+        "version": "^11.3.0",
         "onFail": "error"
       }
     ],
     "runtime": {
       "name": "node",
-      "version": "^22",
+      "version": "^24",
       "onFail": "error"
     }
   }
