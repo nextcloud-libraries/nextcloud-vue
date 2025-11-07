@@ -513,7 +513,7 @@ The `actions-icon` slot can be used to pass icon to the inner NcActions componen
 
 				<!-- Actions -->
 				<div
-					v-show="forceDisplayActions || displayActionsOnHoverFocus"
+					v-if="forceDisplayActions || displayActionsOnHoverFocus"
 					class="list-item-content__actions"
 					@focusout="handleBlur">
 					<NcActions
