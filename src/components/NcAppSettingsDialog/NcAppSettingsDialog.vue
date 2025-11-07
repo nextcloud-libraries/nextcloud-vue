@@ -691,7 +691,7 @@ export default {
 				<NcFormGroup label="Acknowledgements" description="This application includes CKEditor, an open-source editor. Copyright (C) CKEditor contributors. Licensed under GPLv2." />
 			</NcAppSettingsSection>
 
-			<NcAppSettingsSectionShortcuts>
+			<NcAppSettingsShortcutsSection>
 				<NcHotkeyList>
 					<NcHotkey label="Compose new message" hotkey="C" />
 					<NcHotkey label="Newer message" hotkey="ArrowLeft" />
@@ -704,7 +704,7 @@ export default {
 					<NcHotkey label="Send" hotkey="Control Enter" />
 					<NcHotkey label="Refresh" hotkey="R" />
 				</NcHotkeyList>
-			</NcAppSettingsSectionShortcuts>
+			</NcAppSettingsShortcutsSection>
 		</NcAppSettingsDialog>
 	</div>
 </template>

@@ -49,7 +49,7 @@ export default {
 	<div>
 		<NcButton @click="open = true">App Settings</NcButton>
 		<NcAppSettingsDialog :open.sync="open" name="Application settings" show-navigation>
-			<NcAppSettingsSectionShortcuts>
+			<NcAppSettingsShortcutsSection>
 				<NcHotkeyList label="Actions">
 					<NcHotkey label="File actions" hotkey="A" />
 					<NcHotkey label="Rename" hotkey="F2" />
@@ -78,7 +78,7 @@ export default {
 					<NcHotkey label="Open file sidebar" hotkey="D" />
 					<NcHotkey label="Show those shortcuts" hotkey="?" />
 				</NcHotkeyList>
-			</NcAppSettingsSectionShortcuts>
+			</NcAppSettingsShortcutsSection>
 		</NcAppSettingsDialog>
 	</div>
 </template>
