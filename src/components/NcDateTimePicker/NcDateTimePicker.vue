@@ -190,7 +190,7 @@ import { watch } from 'vue'
 import NcIconSvgWrapper from '../NcIconSvgWrapper/NcIconSvgWrapper.vue'
 import NcTimezonePicker from '../NcTimezonePicker/NcTimezonePicker.vue'
 import { t } from '../../l10n.ts'
-import { logger } from '../../utils/logger.ts'
+import { loadDateFnsLocale } from '../../utils/date-fns.ts'
 import NcButton from '../NcButton/index.ts'
 
 type VueDatePickerProps = InstanceType<typeof VueDatePicker>['$props']
@@ -333,7 +333,9 @@ const targetElement = useTemplateRef('target')
 const pickerInstance = useTemplateRef('picker')
 
 const localeObject = ref<Locale>()
-watch(() => props.locale, loadLocale, { immediate: true })
+watch(() => props.locale, async () => {
+	localeObject.value = await loadDateFnsLocale(props.locale)
+}, { immediate: true })
 
 /**
  * Mapping of the model-value prop to the format expected by the library.
@@ -601,26 +603,6 @@ function selectDate() {
  */
 function cancelSelection() {
 	pickerInstance.value!.closeMenu()
-}
-
-/**
- * Load the locale object from date-fns dynamically.
- *
- * @param locale - The locale to load
- */
-async function loadLocale(locale: string) {
-	try {
-		const { default: dateFnLocale } = await import(`date-fns/locale/${locale}`)
-		localeObject.value = dateFnLocale
-	} catch (error) {
-		if (locale.includes('-')) {
-			locale = locale.split('-')[0]!
-			logger.debug('Try loading fallback locale for NcDateTimePicker', { locale })
-			await loadLocale(locale)
-		} else {
-			logger.error('Failed to load locale for NcDateTimePicker', { locale, error })
-		}
-	}
 }
 </script>
 
