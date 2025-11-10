@@ -33,6 +33,8 @@ const {
 	class?: VueClassType
 	/** Interactive item classes */
 	itemClasses?: VueClassType
+	/** Disable clickable overlay from the interactive item element to manually implement */
+	pure?: boolean
 }>()
 
 defineEmits<{
@@ -52,7 +54,15 @@ const slots = defineSlots<{
 		descriptionId?: string
 	}>
 	/** Icon content */
-	icon?: Slot
+	icon?: Slot<{
+		/** IDRef of the description element if present */
+		descriptionId?: string
+	}>
+	/** Extra content slot for additional overlays */
+	extra?: Slot<{
+		/** IDRef of the description element if present */
+		descriptionId?: string
+	}>
 }>()
 
 const { formBoxItemClass } = useNcFormBox()
@@ -72,10 +82,11 @@ const hasDescription = () => !!description || !!slots.description
 				[$style.formBoxItem_legacy]: isLegacy,
 			},
 		]">
+		<slot name="extra" :description-id />
 		<span :class="$style.formBoxItem__content">
 			<component
 				:is="tag"
-				:class="[$style.formBoxItem__element, itemClasses]"
+				:class="[$style.formBoxItem__element, itemClasses, { [$style.formBoxItem__element_clickable]: !pure }]"
 				v-bind="$attrs"
 				@click="$emit('click', $event)">
 				<slot :description-id>
@@ -83,7 +94,7 @@ const hasDescription = () => !!description || !!slots.description
 				</slot>
 			</component>
 			<span v-if="hasDescription()" :id="descriptionId" :class="$style.formBoxItem__description">
-				<slot name="description">
+				<slot name="description" :description-id>
 					{{ description }}
 				</slot>
 			</span>
@@ -169,7 +180,7 @@ const hasDescription = () => !!description || !!slots.description
 
 // A trick for accessibility:
 // make entire component clickable while internally splitting the interactive item and the description
-.formBoxItem__element::after {
+.formBoxItem__element_clickable::after {
 	content: '';
 	position: absolute;
 	inset: 0;

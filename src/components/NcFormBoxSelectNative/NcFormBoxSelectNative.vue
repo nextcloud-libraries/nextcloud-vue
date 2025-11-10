@@ -4,9 +4,11 @@
   -->
 
 <script setup lang="ts" generic="T extends string">
-import { computed, useId, useTemplateRef } from 'vue'
-import IconUnfoldMoreHorizontal from 'vue-material-design-icons/UnfoldMoreHorizontal.vue'
+import { mdiUnfoldMoreHorizontal } from '@mdi/js'
+import { computed, useTemplateRef } from 'vue'
 import NcFormBoxItem from '../NcFormBox/NcFormBoxItem.vue'
+import NcIconSvgWrapper from '../NcIconSvgWrapper/NcIconSvgWrapper.vue'
+import { createElementId } from '../../utils/createElementId.ts'
 
 /** Selected value */
 const modelValue = defineModel<T>({ required: true })
@@ -27,9 +29,29 @@ const {
 	disabled?: boolean
 }>()
 
-const selectId = useId()
+const selectId = createElementId()
 const selectElement = useTemplateRef('select')
+
 const selectedLabel = computed(() => options.find((option) => option.value === modelValue.value)?.label)
+
+// .showPicker() is not available some browsers (e.g. Safari)
+// When the method is not available, we keep select overlay clickable not invisible
+// When the method is available, hidden select is not directly clickable but opens programmatically
+// The last approach looks slightly better without focusing select by click
+const isShowPickerAvailable = 'showPicker' in HTMLSelectElement.prototype
+
+/**
+ * Handle label click to open the native select picker if possible.
+ *
+ * @param event - Click event
+ */
+function onLabelClick(event: MouseEvent) {
+	if (!isShowPickerAvailable) {
+		return
+	}
+	event?.preventDefault()
+	selectElement.value!.showPicker()
+}
 </script>
 
 <template>
@@ -39,15 +61,18 @@ const selectedLabel = computed(() => options.find((option) => option.value === m
 		:label
 		:description="selectedLabel"
 		:disabled
+		:pure="!isShowPickerAvailable"
 		inverted-accent
-		@click.prevent="selectElement!.showPicker() /* Not available in old Safari */">
-		<template #icon="{ descriptionId }">
-			<IconUnfoldMoreHorizontal :size="20" />
+		@click="onLabelClick">
+		<template #icon>
+			<NcIconSvgWrapper :path="mdiUnfoldMoreHorizontal" inline />
+		</template>
+		<template #extra="{ descriptionId }">
 			<select
 				:id="selectId"
 				ref="select"
 				v-model="modelValue"
-				class="hidden-select"
+				:class="[$style.hiddenSelect, { [$style.hiddenSelect_manual]: isShowPickerAvailable }]"
 				:aria-describedby="descriptionId">
 				<option v-for="option in options" :key="option.value" :value="option.value">
 					{{ option.label }}
@@ -57,20 +82,20 @@ const selectedLabel = computed(() => options.find((option) => option.value === m
 	</NcFormBoxItem>
 </template>
 
-<!-- TODO: module -->
-<style scoped>
-.hidden-select {
+<style lang="scss" module>
+.hiddenSelect {
 	position: absolute;
 	inset: 0;
 	margin: 0;
 	height: auto;
+	cursor: pointer;
 	/* TODO: does it work well cross-browser? */
 	opacity: 0;
-	pointer-events: none;
+}
 
-	option {
-		pointer-events: all;
-	}
+// Select is open manual instead of opening by click on invisible select
+.hiddenSelect_manual {
+	pointer-events: none;
 }
 </style>
 
