@@ -98,7 +98,7 @@
     "@nextcloud/axios": "^2.5.2",
     "@nextcloud/browser-storage": "^0.5.0",
     "@nextcloud/capabilities": "^1.2.0",
-    "@nextcloud/event-bus": "^3.3.2",
+    "@nextcloud/event-bus": "^3.3.3",
     "@nextcloud/initial-state": "^2.2.0",
     "@nextcloud/l10n": "^3.4.0",
     "@nextcloud/logger": "^3.0.2",
