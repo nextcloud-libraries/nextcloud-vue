@@ -68,3 +68,12 @@ window.NextcloudVueDocs = {
 
 // Add #skip-actions container
 document.body.insertAdjacentHTML('afterbegin', '<div id="skip-actions"></div>')
+
+// Add some initial state
+const toInitialStateValue = (value) => btoa(JSON.stringify(value))
+document.body.appendChild(new DOMParser().parseFromString(`
+	<div id="initial-state-container" style="display: none;">
+		<input type="hidden" id="initial-state-core-active-app" value="${toInitialStateValue('nextcloud-vue')}" />
+		<input type="hidden" id="initial-state-core-apps" value="${toInitialStateValue([{ id: 'nextcloud-vue', name: 'Nextcloud Vue' }])}" />
+	</div>
+`, 'text/html').body.firstChild)
