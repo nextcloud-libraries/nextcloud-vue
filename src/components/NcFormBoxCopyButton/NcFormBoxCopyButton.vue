@@ -6,13 +6,10 @@
 <script setup lang="ts">
 import type { Slot } from 'vue'
 
-import { mdiCheck, mdiContentCopy } from '@mdi/js'
 import { whenever } from '@vueuse/core'
-import { computed } from 'vue'
 import NcFormBoxButton from '../NcFormBoxButton/NcFormBoxButton.vue'
 import NcIconSvgWrapper from '../NcIconSvgWrapper/NcIconSvgWrapper.vue'
-import { t } from '../../l10n.ts'
-import { useCopy } from './useCopy.ts'
+import { useCopy } from '../../composables/useCopy.ts'
 
 const {
 	label = undefined,
@@ -37,9 +34,7 @@ defineSlots<{
 	default?: Slot
 }>()
 
-const { isCopied, copy } = useCopy(() => value)
-
-const icon = computed(() => isCopied.value ? mdiCheck : mdiContentCopy)
+const { isCopied, copy, icon, altText } = useCopy(() => value)
 
 whenever(isCopied, () => emit('copy'))
 </script>
@@ -51,7 +46,7 @@ whenever(isCopied, () => emit('copy'))
 		@click="copy">
 		<template v-if="$slots.default || label" #default>
 			<span class="hidden-visually">
-				{{ isCopied ? t('Copied') : t('Copy to clipboard') }}
+				{{ altText }}
 			</span>
 			<slot>
 				{{ label }}
