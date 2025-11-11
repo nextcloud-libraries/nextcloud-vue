@@ -495,6 +495,13 @@ export default {
 									importRehypeHighlightLibrary()
 								}
 
+								if (tag === 'pre' && Array.isArray(children)
+									&& children[0].tag === 'code') {
+									return h('p', { class: 'rich-text__code-block' }, [
+										h(tag, attrs, children),
+									])
+								}
+
 								let nestedNode = null
 								if (tag === 'li' && Array.isArray(children)
 									&& children[0].tag === 'input'
@@ -613,4 +620,13 @@ a:not(.rich-text--component) {
 	text-decoration: underline;
 }
 
+.rich-text__code-block {
+	position: relative;
+	padding-inline-end: calc(var(--clickable-area-small) + var(--default-grid-baseline));
+
+	& pre {
+		width: 100%;
+		overflow-x: auto;
+	}
+}
 </style>
