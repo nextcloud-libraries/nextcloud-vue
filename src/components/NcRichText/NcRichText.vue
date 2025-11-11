@@ -559,6 +559,13 @@ export default {
 						&& props?.class?.includes('language')) {
 						importRehypeHighlightLibrary()
 					}
+
+					if (String(type) === 'pre' && children && String(children.type) === 'code') {
+						return h('p', { class: 'rich-text__code-block' }, [
+							h(type, props, children),
+						])
+					}
+
 					if (String(type) === 'li' && Array.isArray(children)
 						&& children.length !== 0
 						&& children[0].type === 'input'
@@ -782,6 +789,16 @@ a:not(.rich-text--component) {
 	}
 	[data-theme-light] .rich-text--wrapper-markdown {
 		@include highlight.highlight-light-colors;
+	}
+}
+
+.rich-text__code-block {
+	position: relative;
+	padding-inline-end: calc(var(--clickable-area-small) + var(--default-grid-baseline));
+
+	& pre {
+		width: 100%;
+		overflow-x: auto;
 	}
 }
 </style>
