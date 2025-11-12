@@ -153,12 +153,11 @@ export default {
 import { getBuilder } from '@nextcloud/browser-storage'
 import { getCapabilities } from '@nextcloud/capabilities'
 import { emit } from '@nextcloud/event-bus'
-import { loadState } from '@nextcloud/initial-state'
 import { useSwipe } from '@vueuse/core'
 import { Pane, Splitpanes } from 'splitpanes'
 import NcAppContentDetailsToggle from './NcAppContentDetailsToggle.vue'
 import { useIsMobile } from '../../composables/useIsMobile/index.js'
-import { APP_NAME } from '../../utils/appName.ts'
+import { APP_NAME, getLocalizedAppName } from '../../utils/appName.ts'
 import { logger } from '../../utils/logger.ts'
 import { isRtl } from '../../utils/rtl.ts'
 
@@ -166,8 +165,6 @@ import 'splitpanes/dist/splitpanes.css'
 
 const browserStorage = getBuilder('nextcloud').persist().build()
 const instanceName = getCapabilities().theming?.name ?? 'Nextcloud'
-const activeApp = loadState('core', 'active-app', APP_NAME)
-const localizedAppName = loadState('core', 'apps', []).find(({ id }) => id === activeApp)?.name ?? APP_NAME
 
 /**
  * App content container to be used for the main content of your app
@@ -359,7 +356,7 @@ export default {
 				}
 
 				if (entries.size > 0) {
-					entries.add(localizedAppName)
+					entries.add(getLocalizedAppName())
 				}
 			} else {
 				return null
