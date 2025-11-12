@@ -226,6 +226,12 @@ const propsToForward = computed<Partial<NcInputFieldProps>>(() => {
 	return all satisfies Partial<NcInputFieldProps>
 })
 
+const minLengthWithPolicy = computed(() => {
+	return props.minlength
+		?? (props.checkPasswordStrength ? passwordPolicy?.minLength : undefined)
+		?? undefined
+})
+
 /**
  * Validate the entered password.
  * If available this method will use the password-policy app API to validate the password.
@@ -294,7 +300,7 @@ function select() {
 		:error="error || isValid === false"
 		:helper-text="helperText || internalHelpMessage"
 		:input-class="[inputClass, { 'password-field__input--secure-text': !visible && asText }]"
-		:minlength="minlength ?? passwordPolicy?.minLength ?? 0"
+		:minlength="minLengthWithPolicy"
 		:success="success || isValid === true"
 		:trailing-button-label="visible ? t('Hide password') : t('Show password')"
 		:type="visible || asText ? 'text' : 'password'"
