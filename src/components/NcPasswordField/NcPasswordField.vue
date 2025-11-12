@@ -206,7 +206,7 @@ export default {
 		 */
 		minlength: {
 			type: Number,
-			default: 0,
+			default: undefined,
 		},
 
 		/**
@@ -304,7 +304,7 @@ export default {
 		rules() {
 			const { minlength } = this
 			return {
-				minlength: minlength ?? passwordPolicy?.minLength,
+				minlength: minlength ?? (this.checkPasswordStrength ? passwordPolicy?.minLength : undefined),
 			}
 		},
 
