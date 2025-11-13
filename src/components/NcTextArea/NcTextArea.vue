@@ -74,7 +74,7 @@ export default {
 <script setup lang="ts">
 import type { VueClassType } from '../../utils/VueTypes.ts'
 
-import { mdiAlertCircle, mdiCheck } from '@mdi/js'
+import { mdiAlertCircleOutline, mdiCheck } from '@mdi/js'
 import { computed, useAttrs, useTemplateRef, watch } from 'vue'
 import NcIconSvgWrapper from '../NcIconSvgWrapper/NcIconSvgWrapper.vue'
 import { createElementId } from '../../utils/createElementId.ts'
@@ -277,7 +277,7 @@ function select() {
 			<NcIconSvgWrapper
 				v-else-if="error"
 				class="textarea__helper-text-message__icon"
-				:path="mdiAlertCircle"
+				:path="mdiAlertCircleOutline"
 				inline />
 			{{ helperText }}
 		</p>
