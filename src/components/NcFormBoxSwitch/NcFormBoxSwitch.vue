@@ -43,7 +43,7 @@ const emit = defineEmits<{
 	(event: 'update:modelValue', value: boolean): void
 }>()
 
-const model = useVModel(props, 'modelValue', emit)
+const model = useVModel(props, 'modelValue', emit, { passive: true })
 
 const inputId = createElementId()
 
