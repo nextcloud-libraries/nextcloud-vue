@@ -117,6 +117,7 @@ const hasDescription = () => !!description || !!slots.description
 	border-radius: var(--border-radius-element);
 	background-color: var(--color-primary-element-extra-light);
 	color: var(--color-primary-element-light-text);
+	text-wrap: pretty;
 	transition-property: color, border-color, background-color;
 	transition-duration: var(--animation-quick);
 	transition-timing-function: linear;
