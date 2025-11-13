@@ -20,7 +20,7 @@ For a list of all available props and attributes, please check the [HTMLInputEle
 import type { Slot } from 'vue'
 import type { VueClassType } from '../../utils/VueTypes.ts'
 
-import { mdiAlertCircle, mdiCheck } from '@mdi/js'
+import { mdiAlertCircleOutline, mdiCheck } from '@mdi/js'
 import { computed, useAttrs, useTemplateRef, warn } from 'vue'
 import { createElementId } from '../../utils/createElementId.ts'
 import { isLegacy } from '../../utils/legacy.ts'
@@ -285,15 +285,23 @@ function handleInput(event: Event) {
 				v-else-if="success || error"
 				class="input-field__icon input-field__icon--trailing">
 				<NcIconSvgWrapper v-if="success" :path="mdiCheck" />
-				<NcIconSvgWrapper v-else :path="mdiAlertCircle" />
+				<NcIconSvgWrapper v-else :path="mdiAlertCircleOutline" />
 			</div>
 		</div>
 		<p
 			v-if="helperText"
 			:id="`${id}-helper-text`"
 			class="input-field__helper-text-message">
-			<NcIconSvgWrapper v-if="success" class="input-field__helper-text-message__icon" :path="mdiCheck" />
-			<NcIconSvgWrapper v-else-if="error" class="input-field__helper-text-message__icon" :path="mdiAlertCircle" />
+			<NcIconSvgWrapper
+				v-if="success"
+				class="input-field__helper-text-message__icon"
+				:path="mdiCheck"
+				inline />
+			<NcIconSvgWrapper
+				v-else-if="error"
+				class="input-field__helper-text-message__icon"
+				:path="mdiAlertCircleOutline"
+				inline />
 			{{ helperText }}
 		</p>
 	</div>
