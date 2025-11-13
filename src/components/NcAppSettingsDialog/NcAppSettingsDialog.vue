@@ -11,6 +11,7 @@ import debounce from 'debounce'
 import Vue, { computed, onBeforeUnmount, provide, ref, shallowRef } from 'vue'
 import NcDialog from '../NcDialog/NcDialog.vue'
 import NcVNodes from '../NcVNodes/NcVNodes.vue'
+import NcAppSettingsDialogVersion from './NcAppSettingsDialogVersion.vue'
 import { useIsMobile } from '../../composables/useIsMobile/index.ts'
 import { t } from '../../l10n.js'
 import { APP_SETTINGS_LEGACY_DESIGN_KEY, APP_SETTINGS_REGISTRATION_KEY } from './useAppSettingsDialog.ts'
@@ -54,11 +55,17 @@ const props = withDefaults(defineProps<{
 	 * @deprecated The legacy design is disabled by default on v9 and will be removed in future releases
 	 */
 	legacy?: boolean
+
+	/**
+	 * Do not add the application version at the bottom of the dialog
+	 */
+	noVersion?: boolean
 }>(), {
 	container: 'body',
 	name: '',
 	additionalTrapElements: () => [],
 	legacy: true, // eslint-disable-line vue/no-boolean-default -- changed to false in v9
+	noVersion: false,
 })
 
 const emit = defineEmits<{
@@ -245,6 +252,7 @@ function unregisterSection(id: string) {
 		</template>
 		<div ref="settingsScroller" @scroll="handleScroll">
 			<slot />
+			<NcAppSettingsDialogVersion v-if="!noVersion" />
 		</div>
 	</NcDialog>
 </template>

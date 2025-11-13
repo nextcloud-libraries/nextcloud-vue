@@ -73,3 +73,12 @@ window.useIsDarkTheme = useIsDarkTheme
 Vue.directive('Tooltip', Tooltip)
 Vue.directive('Focus', Focus)
 Vue.directive('Linkify', Linkify)
+
+// Add some initial state
+const toInitialStateValue = (value) => btoa(JSON.stringify(value))
+document.body.appendChild(new DOMParser().parseFromString(`
+	<div id="initial-state-container" style="display: none;">
+		<input type="hidden" id="initial-state-core-active-app" value="${toInitialStateValue('nextcloud-vue')}" />
+		<input type="hidden" id="initial-state-core-apps" value="${toInitialStateValue([{ id: 'nextcloud-vue', name: 'Nextcloud Vue' }])}" />
+	</div>
+`, 'text/html').body.firstChild)

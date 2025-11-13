@@ -18,6 +18,9 @@ declare module '*?raw' {
 }
 
 declare global {
+	declare const appName: string
+	declare const appVersion: string
+
 	interface Window {
 		_nc_vue_element_id?: number
 		_nc_contacts_menu_hooks: { [id: string]: ContactsMenuAction }
