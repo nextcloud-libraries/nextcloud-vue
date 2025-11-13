@@ -1081,7 +1081,6 @@ export default {
 		/**
 		 * Specifies the button variant used for trigger and single actions buttons.
 		 *
-		 * Accepted values: primary, secondary, tertiary, tertiary-no-background, tertiary-on-primary, error, warning, success.
 		 * If left empty, the default button style will be applied.
 		 *
 		 * @since 8.23.0
@@ -1093,6 +1092,19 @@ export default {
 			},
 
 			default: null,
+		},
+
+		/**
+		 * Specify the size used for trigger and single actions buttons.
+		 *
+		 * If left empty, the default button size will be applied.
+		 */
+		size: {
+			type: String,
+			default: 'normal',
+			validator(value) {
+				return ['small', 'normal', 'large'].includes(value)
+			},
 		},
 	},
 
@@ -1741,6 +1753,7 @@ export default {
 						title,
 						disabled: this.disabled || action?.props?.disabled,
 						pressed: action?.props?.modelValue,
+						size: this.size,
 						type,
 						// If it has a menuName, we use a secondary button
 						variant: this.variant || (buttonText ? 'secondary' : 'tertiary'),
@@ -1797,6 +1810,7 @@ export default {
 						id: triggerRandomId,
 						class: 'action-item__menutoggle',
 						disabled: this.disabled,
+						size: this.size,
 						variant: this.triggerButtonVariant,
 						ref: 'triggerButton',
 						'aria-label': this.menuName ? null : this.ariaLabel,
