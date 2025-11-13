@@ -292,8 +292,16 @@ function handleInput(event: Event) {
 			v-if="helperText"
 			:id="`${id}-helper-text`"
 			class="input-field__helper-text-message">
-			<NcIconSvgWrapper v-if="success" class="input-field__helper-text-message__icon" :path="mdiCheck" />
-			<NcIconSvgWrapper v-else-if="error" class="input-field__helper-text-message__icon" :path="mdiAlertCircle" />
+			<NcIconSvgWrapper
+				v-if="success"
+				class="input-field__helper-text-message__icon"
+				:path="mdiCheck"
+				inline />
+			<NcIconSvgWrapper
+				v-else-if="error"
+				class="input-field__helper-text-message__icon"
+				:path="mdiAlertCircle"
+				inline />
 			{{ helperText }}
 		</p>
 	</div>

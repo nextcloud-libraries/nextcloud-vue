@@ -222,7 +222,8 @@ function select() {
 </script>
 
 <template>
-	<div class="textarea"
+	<div
+		class="textarea"
 		:class="[
 			$attrs.class,
 			{
@@ -268,8 +269,16 @@ function select() {
 				'textarea__helper-text-message--error': error,
 				'textarea__helper-text-message--success': success,
 			}">
-			<NcIconSvgWrapper v-if="success" class="textarea__helper-text-message__icon" :path="mdiCheck" />
-			<NcIconSvgWrapper v-else-if="error" class="textarea__helper-text-message__icon" :path="mdiAlertCircle" />
+			<NcIconSvgWrapper
+				v-if="success"
+				class="textarea__helper-text-message__icon"
+				:path="mdiCheck"
+				inline />
+			<NcIconSvgWrapper
+				v-else-if="error"
+				class="textarea__helper-text-message__icon"
+				:path="mdiAlertCircle"
+				inline />
 			{{ helperText }}
 		</p>
 	</div>
