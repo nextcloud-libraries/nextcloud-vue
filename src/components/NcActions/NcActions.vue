@@ -1354,7 +1354,6 @@ export default {
 		onOpened() {
 			this.$nextTick(() => {
 				this.focusFirstAction(null)
-				this.resizePopover()
 
 				/**
 				 * Event emitted when the popover menu is opened.
@@ -1372,59 +1371,6 @@ export default {
 			 * This event is emitted after `update:open` was emitted and the closing transition finished.
 			 */
 			this.$emit('closed')
-		},
-
-		/**
-		 * Handle resizing the popover to make sure users can discover there is more to scroll
-		 */
-		resizePopover() {
-			// Get the inner v-popper element that defines the popover height (from floating-vue)
-			const inner = this.$refs.menu.closest('.v-popper__inner')
-			const height = this.$refs.menu.clientHeight
-			const maxMenuHeight = this.getMaxMenuHeight()
-
-			// If the popover height is limited by the max-height (scrollbars shown) limit the height to half of the last element
-			if (height > maxMenuHeight) {
-				// sum of action heights
-				let currentHeight = 0
-				// last action height
-				let actionHeight = 0
-				for (const action of this.$refs.menuList.children) {
-					// If the max height would be overflown by half of the current element,
-					// then we limit the height to the half of the previous element
-					if ((currentHeight + action.clientHeight / 2) > maxMenuHeight) {
-						inner.style.height = `${currentHeight - actionHeight / 2}px`
-						break
-					}
-					// otherwise sum up the height
-					actionHeight = action.clientHeight
-					currentHeight += actionHeight
-				}
-			} else {
-				inner.style.height = 'fit-content'
-			}
-		},
-
-		getMaxMenuHeight() {
-			const { top, bottom } = this.$refs.triggerButton?.$el.getBoundingClientRect() ?? { top: 0, bottom: 0 }
-			const { top: boundaryTop, bottom: boundaryBottom } = this.boundariesElement?.getBoundingClientRect() ?? { top: 0, bottom: window.innerHeight }
-
-			return Math.max(
-				// Either expand to the top
-				Math.min(
-					// max height is the top position of the trigger minus the header height minus the wedge and the padding
-					top - 84,
-					// and also limited to the space in the boundary
-					top - boundaryTop,
-				),
-				// or expand to the bottom
-				Math.min(
-					// the max height is the window height minus current position of the trigger minus the wedge and padding
-					window.innerHeight - bottom - 34,
-					// and limit to the available space in the boundary
-					boundaryBottom - bottom,
-				),
-			)
 		},
 
 		// MENU KEYS & FOCUS MANAGEMENT
@@ -1792,6 +1738,7 @@ export default {
 					shown: this.opened,
 					placement: this.placement,
 					boundary: this.boundariesElement,
+					autoBoundaryMaxSize: true,
 					container: this.container,
 					...this.manualOpen && {
 						triggers: [],
@@ -1862,7 +1809,6 @@ export default {
 		// Mostly used when clicking a menu item
 		this.$nextTick(() => {
 			if (this.opened && this.$refs.menu) {
-				this.resizePopover()
 				const isAnyActive = this.$refs.menu.querySelector('li.active') || []
 				if (isAnyActive.length === 0) {
 					this.focusFirstAction()
