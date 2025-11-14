@@ -37,7 +37,7 @@ General purpose password field component.
 			placeholder="Min. 12 characters"
 			helper-text="Password is secure">
 			<template #icon>
-				<Lock :size="20" />
+				<IconLockOutline :size="20" />
 			</template>
 		</NcPasswordField>
 
@@ -51,7 +51,7 @@ General purpose password field component.
 	</div>
 </template>
 <script>
-import Lock from 'vue-material-design-icons/Lock'
+import IconLockOutline from 'vue-material-design-icons/LockOutline'
 
 export default {
 	data() {
@@ -66,7 +66,7 @@ export default {
 	},
 
 	components: {
-		Lock,
+		IconLockOutline,
 	},
 }
 </script>

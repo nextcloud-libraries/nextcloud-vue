@@ -34,7 +34,7 @@ and `minlength`.
 			:show-trailing-button="text4 !== ''"
 			@trailing-button-click="clearText">
 			<template #icon>
-				<Lock :size="20" />
+				<IconLockOutline :size="20" />
 			</template>
 		</NcTextField>
 		<NcTextField v-model="text2"
@@ -73,7 +73,7 @@ and `minlength`.
 </template>
 <script>
 import Magnify from 'vue-material-design-icons/Magnify'
-import Lock from 'vue-material-design-icons/Lock'
+import IconLockOutline from 'vue-material-design-icons/LockOutline'
 import Close from 'vue-material-design-icons/Close'
 
 export default {
@@ -89,7 +89,7 @@ export default {
 
 	components: {
 		Magnify,
-		Lock,
+		IconLockOutline,
 		Close,
 	},
 
