@@ -85,7 +85,7 @@
     "@nextcloud/initial-state": "^3.0.0",
     "@nextcloud/l10n": "^3.4.1",
     "@nextcloud/logger": "^3.0.2",
-    "@nextcloud/router": "^3.0.1",
+    "@nextcloud/router": "^3.1.0",
     "@nextcloud/sharing": "^0.3.0",
     "@vuepic/vue-datepicker": "^11.0.3",
     "@vueuse/components": "^14.0.0",
