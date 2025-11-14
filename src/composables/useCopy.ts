@@ -5,7 +5,9 @@
 
 import type { MaybeRefOrGetter } from 'vue'
 
-import { ref, toValue } from 'vue'
+import { mdiCheck, mdiContentCopy } from '@mdi/js'
+import { computed, ref, toValue } from 'vue'
+import { t } from '../l10n.ts'
 
 const DELAY = 2000
 
@@ -16,6 +18,8 @@ const DELAY = 2000
  */
 export function useCopy(content: MaybeRefOrGetter<string>) {
 	const isCopied = ref(false)
+	const icon = computed(() => isCopied.value ? mdiCheck : mdiContentCopy)
+	const altText = computed(() => isCopied.value ? t('Copied') : t('Copy to clipboard'))
 
 	/**
 	 * Copy the content to clipboard
@@ -42,5 +46,7 @@ export function useCopy(content: MaybeRefOrGetter<string>) {
 	return {
 		isCopied,
 		copy,
+		icon,
+		altText,
 	}
 }
