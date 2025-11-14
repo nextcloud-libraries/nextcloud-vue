@@ -23,16 +23,16 @@
 <template>
 	<NcAvatar>
 		<template #icon>
-			<AccountMultiple :size="20" />
+			<IconAccountMultipleOutline :size="20" />
 		</template>
 	</NcAvatar>
 </template>
 <script>
-import AccountMultiple from 'vue-material-design-icons/AccountMultiple.vue'
+import IconAccountMultipleOutline from 'vue-material-design-icons/AccountMultipleOutline.vue'
 
 export default {
 	components: {
-		AccountMultiple,
+		IconAccountMultipleOutline,
 	},
 }
 </script>

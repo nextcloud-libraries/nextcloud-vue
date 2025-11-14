@@ -22,11 +22,11 @@ It might be used for list rendering or within the multiselect for example
 		</NcListItemIcon>
 	</template>
 	<script>
-	import Account from 'vue-material-design-icons/Account.vue'
+	import IconAccountOutline from 'vue-material-design-icons/AccountOutline.vue'
 
 	export default {
 		components: {
-			Account,
+			IconAccountOutline,
 		},
 	}
 	</script>
@@ -42,11 +42,11 @@ It might be used for list rendering or within the multiselect for example
 		</NcListItemIcon>
 	</template>
 	<script>
-	import AccountMultiple from 'vue-material-design-icons/AccountMultiple.vue'
+	import IconAccountMultipleOutline from 'vue-material-design-icons/AccountMultipleOutline.vue'
 
 	export default {
 		components: {
-			AccountMultiple,
+			IconAccountMultipleOutline,
 		},
 	}
 	</script>
@@ -64,11 +64,11 @@ It might be used for list rendering or within the multiselect for example
 		</NcListItemIcon>
 	</template>
 	<script>
-	import AccountMultiple from 'vue-material-design-icons/AccountMultiple.vue'
+	import IconAccountMultipleOutline from 'vue-material-design-icons/AccountMultipleOutline.vue'
 
 	export default {
 		components: {
-			AccountMultiple,
+			IconAccountMultipleOutline,
 		},
 	}
 	</script>
@@ -81,13 +81,13 @@ It might be used for list rendering or within the multiselect for example
 			<NcActions>
 				<NcActionButton @click="alert('Edit')">
 					<template #icon>
-						<Pencil :size="20" />
+						<IconPencilOutline :size="20" />
 					</template>
 					Edit
 				</NcActionButton>
 				<NcActionButton @click="alert('Delete')">
 					<template #icon>
-						<Delete :size="20" />
+						<IconDeleteOutline :size="20" />
 					</template>
 					Delete
 				</NcActionButton>
@@ -95,13 +95,13 @@ It might be used for list rendering or within the multiselect for example
 		</NcListItemIcon>
 	</template>
 	<script>
-	import Delete from 'vue-material-design-icons/Delete.vue'
-	import Pencil from 'vue-material-design-icons/Pencil.vue'
+	import IconDeleteOutline from 'vue-material-design-icons/DeleteOutline.vue'
+	import IconPencilOutline from 'vue-material-design-icons/PencilOutline.vue'
 
 	export default {
 		components: {
-			Delete,
-			Pencil,
+			IconDeleteOutline,
+			IconPencilOutline,
 		},
 	}
 	</script>

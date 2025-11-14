@@ -24,7 +24,7 @@
 			</template>
 			<template #indicator>
 				<!-- Color dot -->
-				<CheckboxBlankCircle :size="16" fill-color="#fff" />
+				<CheckboxBlankCircleOutline :size="16" fill-color="#fff" />
 			</template>
 			<template #actions>
 				<NcActionButton>
@@ -314,17 +314,17 @@ The `actions-icon` slot can be used to pass icon to the inner NcActions componen
 			<template #extra-actions>
 				<NcButton variant="tertiary">
 					<template #icon>
-						<IconPencil :size="20" />
+						<IconPencilOutline :size="20" />
 					</template>
 				</NcButton>
 				<NcButton variant="tertiary">
 					<template #icon>
-						<IconCog :size="20" />
+						<IconCogOutline :size="20" />
 					</template>
 				</NcButton>
 			</template>
 			<template #actions-icon>
-				<IconNoteText :size="20" />
+				<IconNoteTextOutline :size="20" />
 			</template>
 			<template #actions>
 				<NcActionButton>
@@ -342,14 +342,20 @@ The `actions-icon` slot can be used to pass icon to the inner NcActions componen
 </template>
 <script>
 	import IconCog from 'vue-material-design-icons/Cog.vue'
+	import IconCogOutline from 'vue-material-design-icons/CogOutline.vue'
 	import IconNoteText from 'vue-material-design-icons/NoteText.vue'
+	import IconNoteTextOutline from 'vue-material-design-icons/NoteTextOutline.vue'
 	import IconPencil from 'vue-material-design-icons/Pencil.vue'
+	import IconPencilOutline from 'vue-material-design-icons/PencilOutline.vue'
 
 	export default {
 		components: {
 			IconCog,
+			IconCogOutline,
 			IconNoteText,
+			IconNoteTextOutline,
 			IconPencil,
+			IconPencilOutline,
 		},
 	}
 </script>
@@ -368,14 +374,14 @@ The `actions-icon` slot can be used to pass icon to the inner NcActions componen
 		<NcListItem compact
 			name="Name of the element">
 			<template #icon>
-				<IconNoteText :size="20" />
+				<IconNoteTextOutline :size="20" />
 			</template>
 		</NcListItem>
 		<NcListItem compact
 			name="Name of the element"
 			:counter-number="1">
 			<template #icon>
-				<IconNoteText :size="20" />
+				<IconNoteTextOutline :size="20" />
 			</template>
 			<template #subname>
 				This one is with subname
@@ -393,7 +399,7 @@ The `actions-icon` slot can be used to pass icon to the inner NcActions componen
 			name="Name of the element"
 			:counter-number="3">
 			<template #icon>
-				<IconNoteText :size="20" />
+				<IconNoteTextOutline :size="20" />
 			</template>
 			<template #subname>
 				This one is with subname
@@ -412,7 +418,7 @@ The `actions-icon` slot can be used to pass icon to the inner NcActions componen
 			:counter-number="4"
 			href="https://nextcloud.com">
 			<template #icon>
-				<IconNoteText :size="20" />
+				<IconNoteTextOutline :size="20" />
 			</template>
 			<template #subname>
 				This one is with an external link
@@ -422,10 +428,12 @@ The `actions-icon` slot can be used to pass icon to the inner NcActions componen
 </template>
 <script>
 	import IconNoteText from 'vue-material-design-icons/NoteText.vue'
+	import IconNoteTextOutline from 'vue-material-design-icons/NoteTextOutline.vue'
 
 	export default {
 		components: {
 			IconNoteText,
+			IconNoteTextOutline,
 		},
 	}
 </script>
