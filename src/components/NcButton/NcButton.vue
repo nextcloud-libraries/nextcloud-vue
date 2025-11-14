@@ -40,7 +40,7 @@ It can be used with one or multiple actions.
 			:text
 			variant="tertiary-no-background">
 			<template v-if="style.indexOf('icon') !== -1" #icon>
-				<Video
+				<IconVideoOutline
 					:size="20" />
 			</template>
 		</NcButton>
@@ -51,7 +51,7 @@ It can be used with one or multiple actions.
 			:text
 			variant="tertiary">
 			<template v-if="style.indexOf('icon') !== -1" #icon>
-				<Video
+				<IconVideoOutline
 					:size="20" />
 			</template>
 		</NcButton>
@@ -61,7 +61,7 @@ It can be used with one or multiple actions.
 			:size
 			:text>
 			<template v-if="style.indexOf('icon') !== -1" #icon>
-				<Video
+				<IconVideoOutline
 					:size="20" />
 			</template>
 		</NcButton>
@@ -72,7 +72,7 @@ It can be used with one or multiple actions.
 			:text
 			variant="primary">
 			<template v-if="style.indexOf('icon') !== -1" #icon>
-				<Video
+				<IconVideo
 					:size="20" />
 			</template>
 		</NcButton>
@@ -87,7 +87,7 @@ It can be used with one or multiple actions.
 		:wide="true"
 		text="Example text">
 		<template #icon>
-			<Video
+			<IconVideoOutline
 				:size="20" />
 		</template>
 	</NcButton>
@@ -105,7 +105,7 @@ It can be used with one or multiple actions.
 			text="Example text"
 			variant="success">
 			<template #icon>
-				<Video
+				<IconVideoOutline
 					:size="20" />
 			</template>
 		</NcButton>
@@ -115,7 +115,7 @@ It can be used with one or multiple actions.
 			text="Example text"
 			variant="warning">
 			<template #icon>
-				<Video
+				<IconVideoOutline
 					:size="20" />
 			</template>
 		</NcButton>
@@ -125,7 +125,7 @@ It can be used with one or multiple actions.
 			text="Example text"
 			variant="error">
 			<template #icon>
-				<Video
+				<IconVideoOutline
 					:size="20" />
 			</template>
 		</NcButton>
@@ -135,11 +135,13 @@ It can be used with one or multiple actions.
 
 </template>
 <script>
-import Video from 'vue-material-design-icons/Video.vue'
+import IconVideo from 'vue-material-design-icons/Video.vue'
+import IconVideoOutline from 'vue-material-design-icons/VideoOutline.vue'
 
 export default {
 	components: {
-		Video,
+		IconVideo,
+		IconVideoOutline,
 	},
 	data() {
 		return {

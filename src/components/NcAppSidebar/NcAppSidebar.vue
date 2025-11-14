@@ -36,19 +36,19 @@ Using `v-show` directly will result in usability issues due to internal focus tr
 			@figure-click="figureClick">
 			<NcAppSidebarTab name="Search" id="search-tab">
 				<template #icon>
-					<Magnify :size="20" />
+					<IconMagnify :size="20" />
 				</template>
 				Search tab content
 			</NcAppSidebarTab>
 			<NcAppSidebarTab name="Settings" id="settings-tab">
 				<template #icon>
-					<Cog :size="20" />
+					<IconCogOutline :size="20" />
 				</template>
 				Settings tab content
 			</NcAppSidebarTab>
 			<NcAppSidebarTab name="Sharing" id="share-tab">
 				<template #icon>
-					<ShareVariant :size="20" />
+					<IconShareVariantOutline :size="20" />
 				</template>
 				Sharing tab content
 			</NcAppSidebarTab>
@@ -57,15 +57,15 @@ Using `v-show` directly will result in usability issues due to internal focus tr
 </template>
 
 <script>
-	import Magnify from 'vue-material-design-icons/Magnify.vue'
-	import Cog from 'vue-material-design-icons/Cog.vue'
-	import ShareVariant from 'vue-material-design-icons/ShareVariant.vue'
+	import IconMagnify from 'vue-material-design-icons/Magnify.vue'
+	import IconCogOutline from 'vue-material-design-icons/CogOutline.vue'
+	import IconShareVariantOutline from 'vue-material-design-icons/ShareVariantOutline.vue'
 
 	export default {
 		components: {
-			Magnify,
-			Cog,
-			ShareVariant,
+			IconMagnify,
+			IconCogOutline,
+			IconShareVariantOutline,
 		},
 		provide() {
 			return {
@@ -133,19 +133,19 @@ Single tab is rendered without navigation, but it is possible to force it.
 			subname="last edited 3 weeks ago">
 			<NcAppSidebarTab v-if="showTabs[0]" name="Search" id="search-tab">
 				<template #icon>
-					<Magnify :size="20" />
+					<IconMagnify :size="20" />
 				</template>
 				Search tab content
 			</NcAppSidebarTab>
 			<NcAppSidebarTab v-if="showTabs[1]" name="Settings" id="settings-tab">
 				<template #icon>
-					<Cog :size="20" />
+					<IconCogOutline :size="20" />
 				</template>
 				Settings
 			</NcAppSidebarTab>
 			<NcAppSidebarTab v-if="showTabs[2]" name="Sharing" id="share-tab">
 				<template #icon>
-					<ShareVariant :size="20" />
+					<IconShareVariantOutline :size="20" />
 				</template>
 				Sharing tab content
 			</NcAppSidebarTab>
@@ -154,15 +154,15 @@ Single tab is rendered without navigation, but it is possible to force it.
 </template>
 
 <script>
-	import Magnify from 'vue-material-design-icons/Magnify.vue'
-	import Cog from 'vue-material-design-icons/Cog.vue'
-	import ShareVariant from 'vue-material-design-icons/ShareVariant.vue'
+	import IconMagnify from 'vue-material-design-icons/Magnify.vue'
+	import IconCogOutline from 'vue-material-design-icons/CogOutline.vue'
+	import IconShareVariantOutline from 'vue-material-design-icons/ShareVariantOutline.vue'
 
 	export default {
 		components: {
-			Magnify,
-			Cog,
-			ShareVariant,
+			IconMagnify,
+			IconCogOutline,
+			IconShareVariantOutline,
 		},
 		provide() {
 			return {
@@ -223,19 +223,19 @@ To customize the order of tabs, ``order`` prop can be used on child components.
 			v-model:active="active">
 			<NcAppSidebarTab name="Search" id="search-tab" :order="3">
 				<template #icon>
-					<Magnify :size="20" />
+					<IconMagnify :size="20" />
 				</template>
 				Search tab content
 			</NcAppSidebarTab>
 			<NcAppSidebarTab name="Settings" id="settings-tab" :order="2">
 				<template #icon>
-					<Cog :size="20" />
+					<IconCogOutline :size="20" />
 				</template>
 				Settings
 			</NcAppSidebarTab>
 			<NcAppSidebarTab name="Sharing" id="share-tab" :order="1">
 				<template #icon>
-					<ShareVariant :size="20" />
+					<IconShareVariantOutline :size="20" />
 				</template>
 				Sharing tab content
 			</NcAppSidebarTab>
@@ -244,15 +244,15 @@ To customize the order of tabs, ``order`` prop can be used on child components.
 </template>
 
 <script>
-	import Magnify from 'vue-material-design-icons/Magnify.vue'
-	import Cog from 'vue-material-design-icons/Cog.vue'
-	import ShareVariant from 'vue-material-design-icons/ShareVariant.vue'
+	import IconMagnify from 'vue-material-design-icons/Magnify.vue'
+	import IconCogOutline from 'vue-material-design-icons/CogOutline.vue'
+	import IconShareVariantOutline from 'vue-material-design-icons/ShareVariantOutline.vue'
 
 	export default {
 		components: {
-			Magnify,
-			Cog,
-			ShareVariant,
+			IconMagnify,
+			IconCogOutline,
+			IconShareVariantOutline,
 		},
 		provide() {
 			return {
