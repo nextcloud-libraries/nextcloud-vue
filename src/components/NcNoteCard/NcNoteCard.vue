@@ -34,7 +34,7 @@ available in four versions:
 		<h4>Custom icon</h4>
 		<NcNoteCard type="warning" text="Custom icon usage">
 			<template #icon>
-				<Cog :size="20"/>
+				<IconCogOutline :size="20"/>
 			</template>
 		</NcNoteCard>
 
@@ -46,11 +46,11 @@ available in four versions:
 </template>
 
 <script>
-	import Cog from 'vue-material-design-icons/Cog.vue'
+	import IconCogOutline from 'vue-material-design-icons/CogOutline.vue'
 
 	export default {
 		components: {
-			Cog,
+			IconCogOutline,
 		},
 	}
 </script>

@@ -43,15 +43,15 @@ Using `v-show` directly will result in usability issues due to internal focus tr
 	</NcAppSidebar>
 </template>
 <script>
-	import Magnify from 'vue-material-design-icons/Magnify.vue'
-	import Cog from 'vue-material-design-icons/Cog.vue'
-	import ShareVariant from 'vue-material-design-icons/ShareVariant.vue'
+	import IconMagnify from 'vue-material-design-icons/Magnify.vue'
+	import IconCogOutline from 'vue-material-design-icons/CogOutline.vue'
+	import IconShareVariantOutline from 'vue-material-design-icons/ShareVariantOutline.vue'
 
 	export default {
 		components: {
-			Magnify,
-			Cog,
-			ShareVariant,
+			IconMagnify,
+			IconCogOutline,
+			IconShareVariantOutline,
 		},
 		data() {
 			return {
@@ -112,19 +112,19 @@ export default {
 			subname="last edited 3 weeks ago">
 			<NcAppSidebarTab v-if="showTabs[0]" name="Search" id="search-tab">
 				<template #icon>
-					<Magnify :size="20" />
+					<IconMagnify :size="20" />
 				</template>
 				Search tab content
 			</NcAppSidebarTab>
 			<NcAppSidebarTab v-if="showTabs[1]" name="Settings" id="settings-tab">
 				<template #icon>
-					<Cog :size="20" />
+					<IconCogOutline :size="20" />
 				</template>
 				Settings
 			</NcAppSidebarTab>
 			<NcAppSidebarTab v-if="showTabs[2]" name="Sharing" id="share-tab">
 				<template #icon>
-					<ShareVariant :size="20" />
+					<IconShareVariantOutline :size="20" />
 				</template>
 				Sharing tab content
 			</NcAppSidebarTab>
@@ -205,19 +205,19 @@ export default {
 			:active.sync="active">
 			<NcAppSidebarTab name="Search" id="search-tab">
 				<template #icon>
-					<Magnify :size="20" />
+					<IconMagnify :size="20" />
 				</template>
 				Search tab content
 			</NcAppSidebarTab>
 			<NcAppSidebarTab name="Settings" id="settings-tab">
 				<template #icon>
-					<Cog :size="20" />
+					<IconCogOutline :size="20" />
 				</template>
 				Settings
 			</NcAppSidebarTab>
 			<NcAppSidebarTab name="Sharing" id="share-tab">
 				<template #icon>
-					<ShareVariant :size="20" />
+					<IconShareVariantOutline :size="20" />
 				</template>
 				Sharing tab content
 			</NcAppSidebarTab>

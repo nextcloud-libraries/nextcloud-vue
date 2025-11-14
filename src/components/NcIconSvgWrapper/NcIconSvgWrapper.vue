@@ -30,12 +30,12 @@ Render raw SVG string icons.
 		</NcButton>
 		<NcButton aria-label="Send">
 			<template #icon>
-				<NcIconSvgWrapper :path="mdiSend" name="Send" />
+				<NcIconSvgWrapper :path="mdiSendOutline" name="Send" />
 			</template>
 		</NcButton>
 		<NcButton aria-label="Star">
 			<template #icon>
-				<NcIconSvgWrapper :path="mdiStar" name="Star" />
+				<NcIconSvgWrapper :path="mdiStarOutline" name="Star" />
 			</template>
 		</NcButton>
 	</div>
@@ -43,20 +43,20 @@ Render raw SVG string icons.
 
 <script>
 import closeSvg from '@mdi/svg/svg/close.svg?raw'
-import cogSvg from '@mdi/svg/svg/cog.svg?raw'
+import cogSvg from '@mdi/svg/svg/cog-outline.svg?raw'
 import plusSvg from '@mdi/svg/svg/plus.svg?raw'
-import { mdiSend } from '@mdi/js'
-import { mdiStar } from '@mdi/js'
+import { mdiSendOutline } from '@mdi/js'
+import { mdiStarOutline } from '@mdi/js'
 
 export default {
 	setup() {
-		// This icons are static data, so you do not need to put them into `data` which will make them reactive
+		// These icons are static data, so you do not need to put them into `data` which will make them reactive
 		return {
 			closeSvg,
 			cogSvg,
 			plusSvg,
-			mdiSend,
-			mdiStar,
+			mdiSendOutline,
+			mdiStarOutline,
 		}
 	},
 }
@@ -76,16 +76,16 @@ export default {
 ```vue
 <template>
 	<p>
-		This is my <NcIconSvgWrapper inline :path="mdiStar" /> Favorite
+		This is my <NcIconSvgWrapper inline :path="mdiStarOutline" /> Favorite
 	</p>
 </template>
 <script>
-import { mdiStar } from '@mdi/js'
+import { mdiStarOutline } from '@mdi/js'
 
 export default {
 	setup() {
 		return {
-			mdiStar,
+			mdiStarOutline,
 		}
 	},
 }
