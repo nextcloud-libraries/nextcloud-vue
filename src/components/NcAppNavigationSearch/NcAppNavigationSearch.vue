@@ -16,24 +16,24 @@
 						<template #actions>
 							<NcActions aria-label="Filters">
 								<template #icon>
-									<IconFilter :size="20" />
+									<IconFilterOutline :size="20" />
 								</template>
 								<NcActionButton>
 									<template #icon>
-										<IconAccount :size="20" />
+										<IconAccountOutline :size="20" />
 									</template>
 									Filter by name
 								</NcActionButton>
 								<NcActionButton>
 									<template #icon>
-										<IconCalendarAccount :size="20" />
+										<IconCalendarAccountOutline :size="20" />
 									</template>
 									Filter by year
 								</NcActionButton>
 							</NcActions>
 							<NcButton aria-label="Search globally" variant="tertiary">
 								<template #icon>
-									<IconSearchGlobal :size="20" />
+									<IconSearchGlobalOutline :size="20" />
 								</template>
 							</NcButton>
 						</template>
@@ -42,12 +42,12 @@
 				<template #list>
 					<NcAppNavigationItem name="First navigation entry">
 						<template #icon>
-							<IconStar :size="20" />
+							<IconStarOutline :size="20" />
 						</template>
 					</NcAppNavigationItem>
 					<NcAppNavigationItem name="Second navigation entry">
 						<template #icon>
-							<IconStar :size="20" />
+							<IconStarOutline :size="20" />
 						</template>
 					</NcAppNavigationItem>
 				</template>
@@ -64,21 +64,21 @@
 	</div>
 </template>
 <script>
-import IconAccount from 'vue-material-design-icons/Account.vue'
-import IconCalendarAccount from 'vue-material-design-icons/CalendarAccount.vue'
-import IconFilter from 'vue-material-design-icons/Filter.vue'
-import IconSearchGlobal from 'vue-material-design-icons/CloudSearch.vue'
-import IconStar from 'vue-material-design-icons/Star.vue'
+import IconAccountOutline from 'vue-material-design-icons/AccountOutline.vue'
+import IconCalendarAccountOutline from 'vue-material-design-icons/CalendarAccountOutline.vue'
+import IconFilterOutline from 'vue-material-design-icons/FilterOutline.vue'
+import IconSearchGlobalOutline from 'vue-material-design-icons/CloudSearchOutline.vue'
+import IconStarOutline from 'vue-material-design-icons/StarOutline.vue'
 
 const exampleItem = ['Mary', 'Patricia', 'James', 'Michael']
 
 export default {
 	components: {
-		IconAccount,
-		IconCalendarAccount,
-		IconFilter,
-		IconSearchGlobal,
-		IconStar,
+		IconAccountOutline,
+		IconCalendarAccountOutline,
+		IconFilterOutline,
+		IconSearchGlobalOutline,
+		IconStarOutline,
 	},
 
 	data() {
