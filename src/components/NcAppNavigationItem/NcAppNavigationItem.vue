@@ -83,7 +83,7 @@ button will be automatically created.
 
 ```vue
 	<template>
-		<div id="app-navigation-vue"><!-- Just a wrapper necessary in the docs. Not needed when NcAppNavigation is correctly used as parent. -->
+		<div id="app-navigation-vue-action"><!-- Just a wrapper necessary in the docs. Not needed when NcAppNavigation is correctly used as parent. -->
 			<ul>
 				<NcAppNavigationItem name="Item with actions">
 					<template #icon>
@@ -142,7 +142,7 @@ Just nest the counter in a template within `<NcAppNavigationItem>` and add `#cou
 		<ul>
 			<NcAppNavigationItem name="Item with counter">
 				<template #icon>
-					<Folder :size="20" />
+					<IconFolderOutline :size="20" />
 				</template>
 				<template #counter>
 					<NcCounterBubble :count="90" />
@@ -151,11 +151,11 @@ Just nest the counter in a template within `<NcAppNavigationItem>` and add `#cou
 		</ul>
 	</template>
 	<script>
-	import Folder from 'vue-material-design-icons/Folder.vue'
+	import IconFolderOutline from 'vue-material-design-icons/FolderOutline.vue'
 
 	export default {
 		components: {
-			Folder,
+			IconFolderOutline,
 		},
 	}
 	</script>
@@ -163,15 +163,15 @@ Just nest the counter in a template within `<NcAppNavigationItem>` and add `#cou
 
 #### Element with children
 
-Wrap the children in a template with the `slot` property and use the prop `allowCollapse` to choose wether to allow or
+Wrap the children in a template with the `slot` property and use the prop `allowCollapse` to choose whether to allow or
 prevent the user from collapsing the items.
 
 ```vue
 	<template>
 		<ul>
-			<NcAppNavigationItem name="Item with children" :allowCollapse="true" :open="true">
+			<NcAppNavigationItem name="Item with children" :allowCollapse="true">
 				<template #icon>
-					<Folder :size="20" />
+					<IconFolderOutline :size="20" />
 				</template>
 				<template #counter>
 					<NcCounterBubble :count="90" />
@@ -205,14 +205,14 @@ prevent the user from collapsing the items.
 		</ul>
 	</template>
 	<script>
-	import Folder from 'vue-material-design-icons/Folder.vue'
+	import IconFolderOutline from 'vue-material-design-icons/FolderOutline.vue'
 	import Delete from 'vue-material-design-icons/Delete.vue'
 	import OpenInNew from 'vue-material-design-icons/OpenInNew.vue'
 	import Pencil from 'vue-material-design-icons/Pencil.vue'
 
 	export default {
 		components: {
-			Folder,
+			IconFolderOutline,
 			Delete,
 			OpenInNew,
 			Pencil,
@@ -236,17 +236,17 @@ the placeholder is the previous name of the element.
 			<NcAppNavigationItem name="Editable Item" :editable="true"
 				editPlaceholder="your_placeholder_here" @update:name="function(value){alert(value)}">
 				<template #icon>
-					<Folder :size="20" />
+					<IconFolderOutline :size="20" />
 				</template>
 			</NcAppNavigationItem>
 		</ul>
 	</template>
 	<script>
-	import Folder from 'vue-material-design-icons/Folder.vue'
+	import IconFolderOutline from 'vue-material-design-icons/FolderOutline.vue'
 
 	export default {
 		components: {
-			Folder,
+			IconFolderOutline,
 		},
 		methods: {
 			alert(msg) {
