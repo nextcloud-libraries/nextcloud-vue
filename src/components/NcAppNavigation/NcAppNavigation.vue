@@ -14,13 +14,13 @@
 						<NcActions>
 							<NcActionButton close-after-click @click="showModal = true">
 								<template #icon>
-									<IconCog :size="20" />
+									<IconCogOutline :size="20" />
 								</template>
 								App settings (close after click)
 							</NcActionButton>
 							<NcActionButton @click="showModal = true">
 								<template #icon>
-									<IconCog :size="20" />
+									<IconCogOutline :size="20" />
 								</template>
 								App settings (handle only click)
 							</NcActionButton>
@@ -39,7 +39,7 @@
 				<div class="navigation__footer">
 					<NcButton wide @click="showModal = true">
 						<template #icon>
-							<IconCog />
+							<IconCogOutline />
 						</template>
 						App settings
 					</NcButton>
@@ -57,12 +57,12 @@
 
 <script>
 	import IconCheck from 'vue-material-design-icons/Check.vue'
-	import IconCog from 'vue-material-design-icons/Cog.vue'
+	import IconCogOutline from 'vue-material-design-icons/CogOutline.vue'
 
 	export default {
 		components: {
 			IconCheck,
-			IconCog,
+			IconCogOutline,
 		},
 		provide() {
 			return {
