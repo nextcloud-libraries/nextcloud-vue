@@ -133,6 +133,12 @@ msgstr "変更を承認"
 msgid "Connect items to a project to make them easier to find"
 msgstr "項目をプロジェクトに接続して検索しやすくする"
 
+msgid "Copied"
+msgstr "コピーされました"
+
+msgid "Copy to clipboard"
+msgstr "クリップボードにコピー"
+
 #. TRANSLATORS: Ctrl key on keyboard (Windows/Linux)
 msgid "Ctrl"
 msgstr "Ctrl"
@@ -251,6 +257,9 @@ msgstr "不可視"
 
 msgid "Keyboard navigation help"
 msgstr "キーボード・ナビゲーション・ヘルプ"
+
+msgid "Keyboard shortcuts"
+msgstr "キーボードショートカット"
 
 msgid "Light skin tone"
 msgstr "明るい肌のトーン"
