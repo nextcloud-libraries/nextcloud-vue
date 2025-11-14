@@ -17,16 +17,16 @@ It might be used for list rendering or within the multiselect for example
 	<template>
 		<NcListItemIcon name="User 1" :avatar-size="44">
 			<template>
-				<Account :size="20" />
+				<IconAccountOutline :size="20" />
 			</template>
 		</NcListItemIcon>
 	</template>
 	<script>
-	import Account from 'vue-material-design-icons/Account.vue'
+	import IconAccountOutline from 'vue-material-design-icons/AccountOutline.vue'
 
 	export default {
 		components: {
-			Account,
+			IconAccountOutline,
 		},
 	}
 	</script>
@@ -37,16 +37,16 @@ It might be used for list rendering or within the multiselect for example
 	<template>
 		<NcListItemIcon name="Group 1" subname="13 members" :is-no-user="true">
 			<template>
-				<AccountMultiple :size="20" />
+				<IconAccountMultipleOutline :size="20" />
 			</template>
 		</NcListItemIcon>
 	</template>
 	<script>
-	import AccountMultiple from 'vue-material-design-icons/AccountMultiple.vue'
+	import IconAccountMultipleOutline from 'vue-material-design-icons/AccountMultipleOutline.vue'
 
 	export default {
 		components: {
-			AccountMultiple,
+			IconAccountMultipleOutline,
 		},
 	}
 	</script>
@@ -59,16 +59,16 @@ It might be used for list rendering or within the multiselect for example
 		<NcListItemIcon name="Testing admin" subname="testme@example.com" search="test" />
 		<NcListItemIcon name="Test group 2" subname="loremipsum@domain.com" :is-no-user="true" search="test">
 			<template>
-				<AccountMultiple :size="20" />
+				<IconAccountMultipleOutline :size="20" />
 			</template>
 		</NcListItemIcon>
 	</template>
 	<script>
-	import AccountMultiple from 'vue-material-design-icons/AccountMultiple.vue'
+	import IconAccountMultipleOutline from 'vue-material-design-icons/AccountMultipleOutline.vue'
 
 	export default {
 		components: {
-			AccountMultiple,
+			IconAccountMultipleOutline,
 		},
 	}
 	</script>
@@ -81,13 +81,13 @@ It might be used for list rendering or within the multiselect for example
 			<NcActions>
 				<NcActionButton @click="alert('Edit')">
 					<template #icon>
-						<Pencil :size="20" />
+						<IconPencilOutline :size="20" />
 					</template>
 					Edit
 				</NcActionButton>
 				<NcActionButton @click="alert('Delete')">
 					<template #icon>
-						<Delete :size="20" />
+						<IconDeleteOutline :size="20" />
 					</template>
 					Delete
 				</NcActionButton>
@@ -95,13 +95,13 @@ It might be used for list rendering or within the multiselect for example
 		</NcListItemIcon>
 	</template>
 	<script>
-	import Delete from 'vue-material-design-icons/Delete.vue'
-	import Pencil from 'vue-material-design-icons/Pencil.vue'
+	import IconDeleteOutline from 'vue-material-design-icons/DeleteOutline.vue'
+	import IconPencilOutline from 'vue-material-design-icons/PencilOutline.vue'
 
 	export default {
 		components: {
-			Delete,
-			Pencil,
+			IconDeleteOutline,
+			IconPencilOutline,
 		},
 	}
 	</script>
