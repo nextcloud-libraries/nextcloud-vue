@@ -133,6 +133,12 @@ msgstr "Potvrdit změny"
 msgid "Connect items to a project to make them easier to find"
 msgstr "Připojte položky k projektu, čímž budou snáze dohledatelné"
 
+msgid "Copied"
+msgstr "Zkopírováno"
+
+msgid "Copy to clipboard"
+msgstr "Zkopírovat do schránky"
+
 #. TRANSLATORS: Ctrl key on keyboard (Windows/Linux)
 msgid "Ctrl"
 msgstr "Ctrl"
