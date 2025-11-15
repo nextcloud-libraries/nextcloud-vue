@@ -1869,7 +1869,6 @@ export default {
 					ref: 'popover',
 					props: {
 						delay: 0,
-						handleResize: true,
 						shown: this.opened,
 						placement: this.placement,
 						boundary: this.boundariesElement,
@@ -1885,10 +1884,10 @@ export default {
 					// so we use both 'attrs' and 'props'
 					attrs: {
 						delay: 0,
-						handleResize: true,
 						shown: this.opened,
 						placement: this.placement,
 						boundary: this.boundariesElement,
+						autoBoundaryMaxSize: true,
 						container: this.container,
 						...this.manualOpen && { triggers: [] },
 					},
