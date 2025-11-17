@@ -234,7 +234,7 @@ const props = defineProps({
 
 	destination: {
 		type: Folder,
-		default: undefined,
+		required: true,
 	},
 
 	allowFolders: {
@@ -243,23 +243,11 @@ const props = defineProps({
 	},
 
 	/**
-	 * List of file present in the destination folder
-	 * It is also possible to provide a function that takes a relative path to the current directory and returns the content of it
-	 * Note: If a function is passed it should return the current base directory when no path or an empty is passed
+	 * A callback function to get the list of files present in the destination folder.
 	 */
 	content: {
-		type: [Array, Function] as PropType<Node[] | ((relativePath?: string) => Node[] | PromiseLike<Node[]>)>,
-		default: () => [],
-	},
-
-	/**
-	 * Overwrite forbidden characters (by default the capabilities of the server are used)
-	 *
-	 * @deprecated Deprecated and will be removed in the next major version
-	 */
-	forbiddenCharacters: {
-		type: Array as PropType<string[]>,
-		default: () => [],
+		type: Function as PropType<(relativePath?: string) => Promise<Node[]>>,
+		required: true,
 	},
 })
 
@@ -341,7 +329,7 @@ function etaTimeAndSpeed(): string {
 async function onClick(entry: NewMenuEntry) {
 	entry.handler(
 		props.destination!,
-		await getContent().catch(() => []),
+		await props.content().catch(() => []),
 	)
 }
 
@@ -361,15 +349,6 @@ function onTriggerPick(uploadFolders: boolean = false) {
 }
 
 /**
- * Helper for backwards compatibility that queries the content of the current directory
- *
- * @param path The current path
- */
-async function getContent(path?: string) {
-	return Array.isArray(props.content) ? props.content : await props.content(path)
-}
-
-/**
  * Start uploading
  */
 async function onPick() {
@@ -379,7 +358,7 @@ async function onPick() {
 	try {
 		await uploadManager
 			.batchUpload('', files, async (nodes, currentPath) => {
-				const content = await getContent(currentPath)
+				const content = await props.content(currentPath)
 				const conflicts = getConflicts(nodes, content)
 				if (conflicts.length === 0) {
 					return nodes
