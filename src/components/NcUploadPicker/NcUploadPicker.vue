@@ -7,10 +7,11 @@
 	<NcFilePicker
 		ref="filePicker"
 		:accept
-		:action-caption="t('Upload from device')"
+		:actionCaption="t('Upload from device')"
 		:directory
 		:disabled
-		:icon-only
+		:iconOnly
+		:label
 		:multiple
 		:variant
 		@pick="onPick">
@@ -23,8 +24,8 @@
 			<NcActionButton
 				v-for="entry in menuEntriesUpload"
 				:key="entry.id"
-				close-after-click
-				class="upload-picker__menu-entry"
+				:class="$style.uploadPicker_menuEntry"
+				closeAfterClick
 				@click="onClick(entry)">
 				<template v-if="entry.iconSvg" #icon>
 					<NcIconSvgWrapper :svg="entry.iconSvg" />
@@ -39,8 +40,8 @@
 				<NcActionButton
 					v-for="entry in menuEntriesNew"
 					:key="entry.id"
-					close-after-click
-					class="upload-picker__menu-entry"
+					:class="$style.uploadPicker_menuEntry"
+					closeAfterClick
 					@click="onClick(entry)">
 					<template v-if="entry.iconSvg" #icon>
 						<NcIconSvgWrapper :svg="entry.iconSvg" />
@@ -55,8 +56,8 @@
 				<NcActionButton
 					v-for="entry in menuEntriesOther"
 					:key="entry.id"
-					close-after-click
-					class="upload-picker__menu-entry"
+					:class="$style.uploadPicker_menuEntry"
+					closeAfterClick
 					@click="onClick(entry)">
 					<template v-if="entry.iconSvg" #icon>
 						<NcIconSvgWrapper :svg="entry.iconSvg" />
@@ -67,15 +68,19 @@
 		</template>
 
 		<!-- Progressbar and status -->
-		<div v-show="isUploading" class="upload-picker__progress">
+		<div
+			v-show="isUploading"
+			:class="[$style.uploadPicker_progress, {
+				[$style.uploadPicker_progress__uploading]: isUploading,
+				[$style.uploadPicker_progress__paused]: isPaused,
+			}]">
 			<NcProgressBar
 				:aria-label="t('Upload progress')"
 				:aria-describedby="progressTimeId"
-				data-cy-upload-picker-progress
 				:error="hasFailure"
 				:value="uploadManager.eta.progress"
 				size="medium" />
-			<p :id="progressTimeId" data-cy-upload-picker-progress-label>
+			<p :id="progressTimeId" :class="$style.uploadPicker_progressLabel">
 				<span v-if="isPaused">
 					{{ t('paused') }}
 				</span>
@@ -96,10 +101,9 @@
 		<!-- Cancel upload button -->
 		<NcButton
 			v-if="isUploading && !isOnlyAssembling"
-			class="upload-picker__cancel"
-			variant="tertiary"
+			:class="$style.uploadPicker_cancelButton"
 			:aria-label="t('Cancel uploads')"
-			data-cy-upload-picker-cancel
+			variant="tertiary"
 			@click="onCancel">
 			<template #icon>
 				<NcIconSvgWrapper :path="mdiClose" />
@@ -159,6 +163,11 @@ const props = withDefaults(defineProps<{
 	disabled?: boolean
 
 	/**
+	 * The label of the upload picker button
+	 */
+	label?: string
+
+	/**
 	 * Allow uploading multiple files
 	 */
 	multiple?: boolean
@@ -189,6 +198,7 @@ const props = withDefaults(defineProps<{
 	directory?: boolean
 }>(), {
 	accept: () => [],
+	label: () => t('New'),
 	menuEntries: () => [],
 	variant: 'secondary',
 })
@@ -210,10 +220,9 @@ const filePickerElement = useTemplateRef('filePicker')
 const uploadManager = getUploader()
 onBeforeMount(() => {
 	uploadManager.addNotifier(onUploadCompletion)
+	setDestination(props.destination)
 })
-watch(() => props.destination, () => {
-	setDestination(props.destination!)
-}, { immediate: true })
+watch(() => props.destination, () => setDestination(props.destination))
 
 const progressTimeId = createElementId()
 
@@ -351,41 +360,32 @@ function onUploadCompletion(upload: Upload) {
 }
 </script>
 
-<style lang="scss" scoped>
-$progress-width: 200px;
+<style module>
+.uploadPicker_progress {
+	--upload-picker-progress-width: 200px;
+	width: var(--upload-picker-progress-width);
+	/* Animate show/hide */
+	max-width: 0;
+	transition: max-width var(--animation-quick) ease-in-out;
+	/* Align progress/text separation with the middle */
+	margin-top: 8px;
+}
 
-.upload-picker {
-	display: inline-flex;
-	align-items: center;
-	height: var(--default-clickable-area);
+.uploadPicker_progress__uploading {
+	max-width: var(--upload-picker-progress-width);
 
-	&__progress {
-		width: $progress-width;
-		// Animate show/hide
-		max-width: 0;
-		transition: max-width var(--animation-quick) ease-in-out;
+	/* Visually more pleasing spacing */
+	margin-inline: 8px 20px;
+}
 
-		// Align progress/text separation with the middle
-		margin-top: 8px;
+.uploadPicker_progress__paused {
+	animation: breathing 3s ease-out infinite normal;
+}
 
-		p {
-			overflow: hidden;
-			white-space: nowrap;
-			text-overflow: ellipsis;
-		}
-	}
-
-	&--uploading &__progress {
-		max-width: $progress-width;
-
-		// Visually more pleasing
-		margin-right: 20px;
-		margin-left: 8px;
-	}
-
-	&--paused &__progress {
-		animation: breathing 3s ease-out infinite normal;
-	}
+.uploadPicker_progressLabel {
+	overflow: hidden;
+	white-space: nowrap;
+	text-overflow: ellipsis;
 }
 
 @keyframes breathing {
@@ -402,5 +402,4 @@ $progress-width: 200px;
 		opacity: .5;
 	}
 }
-
 </style>

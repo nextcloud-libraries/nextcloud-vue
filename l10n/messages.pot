@@ -573,9 +573,6 @@ msgstr ""
 msgid "Undo changes"
 msgstr ""
 
-msgid "Upload"
-msgstr ""
-
 msgid "Upload file"
 msgstr ""
 
@@ -583,9 +580,6 @@ msgid "Upload files"
 msgstr ""
 
 msgid "Upload folder"
-msgstr ""
-
-msgid "Upload folders"
 msgstr ""
 
 msgid "Upload from device"
