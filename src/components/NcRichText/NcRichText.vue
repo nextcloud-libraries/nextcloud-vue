@@ -314,6 +314,7 @@ import { Fragment, h, ref, resolveComponent } from 'vue'
 import { RouterLink } from 'vue-router'
 import NcCheckboxRadioSwitch from '../NcCheckboxRadioSwitch/NcCheckboxRadioSwitch.vue'
 import NcReferenceList from './NcReferenceList.vue'
+import NcRichTextCopyButton from './NcRichTextCopyButton.vue'
 import { createElementId } from '../../utils/createElementId.ts'
 import { getRoute, parseUrl, remarkAutolink } from './autolink.ts'
 import { remarkPlaceholder } from './remarkPlaceholder.ts'
@@ -559,6 +560,15 @@ export default {
 						&& props?.class?.includes('language')) {
 						importRehypeHighlightLibrary()
 					}
+
+					if (String(type) === 'pre' && children && String(children.type) === 'code') {
+						const id = this.parentId + '-code-block-' + createElementId()
+						return h('p', { class: 'rich-text__code-block' }, [
+							h(type, { ...props, id }, children),
+							h(NcRichTextCopyButton, { class: 'rich-text__code-block-button', contentId: id }),
+						])
+					}
+
 					if (String(type) === 'li' && Array.isArray(children)
 						&& children.length !== 0
 						&& children[0].type === 'input'
@@ -782,6 +792,29 @@ a:not(.rich-text--component) {
 	}
 	[data-theme-light] .rich-text--wrapper-markdown {
 		@include highlight.highlight-light-colors;
+	}
+}
+
+.rich-text__code-block {
+	position: relative;
+	padding-inline-end: calc(var(--clickable-area-small) + var(--default-grid-baseline));
+
+	& pre {
+		width: 100%;
+		overflow-x: auto;
+	}
+
+	.rich-text__code-block-button {
+		position: absolute;
+		top: var(--default-grid-baseline);
+		inset-inline-end: var(--default-grid-baseline);
+		opacity: 0;
+	}
+
+	&:hover .rich-text__code-block-button,
+	&:focus-within .rich-text__code-block-button,
+	& .rich-text__code-block-button:focus {
+		opacity: 1;
 	}
 }
 </style>
