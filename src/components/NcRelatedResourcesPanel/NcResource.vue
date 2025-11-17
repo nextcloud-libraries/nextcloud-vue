@@ -81,14 +81,12 @@ export default {
 		justify-content: flex-start !important;
 		padding: 0 !important;
 
-		&:deep {
-			.button-vue__wrapper {
-				justify-content: flex-start !important;
+		& :deep(.button-vue__wrapper) {
+			justify-content: flex-start !important;
 
-				.button-vue__text {
-					font-weight: normal !important;
-					margin-inline-start: 2px !important;
-				}
+			.button-vue__text {
+				font-weight: normal !important;
+				margin-inline-start: 2px !important;
 			}
 		}
 	}

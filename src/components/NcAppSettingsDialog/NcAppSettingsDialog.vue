@@ -259,14 +259,15 @@ function unregisterSection(id: string) {
 
 <style lang="scss" scoped>
 .app-settings {
-	:deep &__navigation {
+	:deep(.app-settings__navigation) {
 		min-width: 200px;
 		margin-inline-end: calc(4 * var(--default-grid-baseline));
 		overflow-x: hidden;
 		overflow-y: auto;
 		position: relative;
 	}
-	:deep &__content {
+
+	:deep(.app-settings__content) {
 		padding-inline: calc(4 * var(--default-grid-baseline));
 	}
 }
@@ -319,7 +320,7 @@ function unregisterSection(id: string) {
 
 @media only screen and (max-width: $breakpoint-small-mobile) {
 	.app-settings {
-		:deep .dialog__name {
+		:deep(.dialog__name) {
 			padding-inline-start: 16px;
 		}
 	}
