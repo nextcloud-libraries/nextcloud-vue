@@ -4,79 +4,33 @@
 -->
 
 <template>
-	<form
-		v-if="destination"
-		ref="form"
-		:class="{ 'upload-picker--uploading': isUploading, 'upload-picker--paused': isPaused }"
-		class="upload-picker"
-		data-cy-upload-picker>
-		<!-- New button -->
-		<NcButton
-			v-if="!haveMenu"
-			:aria-label="buttonLabel"
-			:disabled="disabled"
-			data-cy-upload-picker-add
-			data-cy-upload-picker-menu-entry="upload-file"
-			:variant="primary ? 'primary' : 'secondary'"
-			@click="onTriggerPick()">
-			<template #icon>
-				<IconPlus :size="20" />
-			</template>
-			<template v-if="!isUploading" #default>
-				{{ buttonLabel }}
-			</template>
-		</NcButton>
+	<NcFilePicker
+		ref="filePicker"
+		:accept
+		:action-caption="t('Upload from device')"
+		:directory
+		:disabled
+		:icon-only
+		:multiple
+		:variant
+		@pick="onPick">
+		<template #icon>
+			<NcIconSvgWrapper :path="mdiPlus" />
+		</template>
 
-		<NcActions
-			v-else
-			v-model:open="openedMenu"
-			:aria-label="buttonLabel"
-			:menu-name="noLabel ? undefined : buttonLabel"
-			:variant="primary ? 'primary' : 'secondary'">
-			<template #icon>
-				<IconPlus :size="20" />
-			</template>
-
-			<NcActionCaption :name="t('Upload from device')" />
-
-			<NcActionButton
-				data-cy-upload-picker-add
-				data-cy-upload-picker-menu-entry="upload-file"
-				:close-after-click="true"
-				@click="onTriggerPick()">
-				<template #icon>
-					<IconUpload :size="20" />
-				</template>
-				{{ t('Upload files') }}
-			</NcActionButton>
-			<NcActionButton
-				v-if="canUploadFolders"
-				close-after-click
-				data-cy-upload-picker-add-folders
-				data-cy-upload-picker-menu-entry="upload-folder"
-				@click="onTriggerPick(true)">
-				<template #icon>
-					<IconFolderUpload :size="20" />
-				</template>
-				{{ t('Upload folders') }}
-			</NcActionButton>
-
+		<template #actions>
 			<!-- App defined upload actions -->
-			<template v-if="!noMenu">
-				<NcActionButton
-					v-for="entry in menuEntriesUpload"
-					:key="entry.id"
-					:icon="entry.iconClass"
-					:close-after-click="true"
-					:data-cy-upload-picker-menu-entry="entry.id"
-					class="upload-picker__menu-entry"
-					@click="onClick(entry)">
-					<template v-if="entry.iconSvgInline" #icon>
-						<NcIconSvgWrapper :svg="entry.iconSvgInline" />
-					</template>
-					{{ entry.displayName }}
-				</NcActionButton>
-			</template>
+			<NcActionButton
+				v-for="entry in menuEntriesUpload"
+				:key="entry.id"
+				close-after-click
+				class="upload-picker__menu-entry"
+				@click="onClick(entry)">
+				<template v-if="entry.iconSvg" #icon>
+					<NcIconSvgWrapper :svg="entry.iconSvg" />
+				</template>
+				{{ entry.label }}
+			</NcActionButton>
 
 			<!-- Custom new file entries -->
 			<template v-if="!noMenu && menuEntriesNew.length > 0">
@@ -85,15 +39,13 @@
 				<NcActionButton
 					v-for="entry in menuEntriesNew"
 					:key="entry.id"
-					:icon="entry.iconClass"
-					:close-after-click="true"
-					:data-cy-upload-picker-menu-entry="entry.id"
+					close-after-click
 					class="upload-picker__menu-entry"
 					@click="onClick(entry)">
-					<template v-if="entry.iconSvgInline" #icon>
-						<NcIconSvgWrapper :svg="entry.iconSvgInline" />
+					<template v-if="entry.iconSvg" #icon>
+						<NcIconSvgWrapper :svg="entry.iconSvg" />
 					</template>
-					{{ entry.displayName }}
+					{{ entry.label }}
 				</NcActionButton>
 			</template>
 
@@ -103,18 +55,16 @@
 				<NcActionButton
 					v-for="entry in menuEntriesOther"
 					:key="entry.id"
-					:icon="entry.iconClass"
-					:close-after-click="true"
-					:data-cy-upload-picker-menu-entry="entry.id"
+					close-after-click
 					class="upload-picker__menu-entry"
 					@click="onClick(entry)">
-					<template v-if="entry.iconSvgInline" #icon>
-						<NcIconSvgWrapper :svg="entry.iconSvgInline" />
+					<template v-if="entry.iconSvg" #icon>
+						<NcIconSvgWrapper :svg="entry.iconSvg" />
 					</template>
-					{{ entry.displayName }}
+					{{ entry.label }}
 				</NcActionButton>
 			</template>
-		</NcActions>
+		</template>
 
 		<!-- Progressbar and status -->
 		<div v-show="isUploading" class="upload-picker__progress">
@@ -152,103 +102,95 @@
 			data-cy-upload-picker-cancel
 			@click="onCancel">
 			<template #icon>
-				<IconCancel :size="20" />
+				<NcIconSvgWrapper :path="mdiClose" />
 			</template>
 		</NcButton>
-
-		<!-- Hidden files picker input -->
-		<input
-			ref="input"
-			:accept="accept?.join?.(', ')"
-			:multiple="multiple"
-			class="hidden-visually"
-			data-cy-upload-picker-input
-			type="file"
-			@change="onPick">
-	</form>
+	</NcFilePicker>
 </template>
 
 <script setup lang="ts">
-import type { NewMenuEntry, Node } from '@nextcloud/files'
+import type { Folder, IFolder, INode } from '@nextcloud/files'
 import type { Upload } from '@nextcloud/upload'
-import type { PropType } from 'vue'
 
+import { mdiClose, mdiPlus } from '@mdi/js'
 import { openConflictPicker } from '@nextcloud/dialogs'
-import { Folder, getNewFileMenuEntries, getUniqueName, NewMenuEntryCategory } from '@nextcloud/files'
+import { getUniqueName } from '@nextcloud/files'
+import { basename } from '@nextcloud/paths'
 import { getConflicts, getUploader, UploaderStatus, UploadStatus } from '@nextcloud/upload'
-import { basename } from 'node:path'
-import { computed, getCurrentInstance, nextTick, onBeforeMount, ref, watch } from 'vue'
-import IconCancel from 'vue-material-design-icons/Cancel.vue'
-import IconFolderUpload from 'vue-material-design-icons/FolderUpload.vue'
-import IconPlus from 'vue-material-design-icons/Plus.vue'
-import IconUpload from 'vue-material-design-icons/Upload.vue'
+import { computed, onBeforeMount, useTemplateRef, watch } from 'vue'
 import NcActionButton from '../NcActionButton/NcActionButton.vue'
 import NcActionCaption from '../NcActionCaption/NcActionCaption.vue'
-import NcActions from '../NcActions/NcActions.vue'
 import NcActionSeparator from '../NcActionSeparator/NcActionSeparator.vue'
 import NcButton from '../NcButton/NcButton.vue'
+import NcFilePicker from '../NcFilePicker/NcFilePicker.vue'
 import NcIconSvgWrapper from '../NcIconSvgWrapper/NcIconSvgWrapper.vue'
 import NcProgressBar from '../NcProgressBar/NcProgressBar.vue'
 import { t } from '../../l10n.ts'
+import { createElementId } from '../../utils/createElementId.ts'
 import { logger } from '../../utils/logger.ts'
 
-const props = defineProps({
-	accept: {
-		type: Array as PropType<string[]>,
-		default: null,
-	},
+export interface IUploadPickerMenuEntry {
+	id: string
+	category: 'upload' | 'create' | 'other'
+	label: string
+	iconSvg?: string
+	callback: (destination: IFolder, content: INode[]) => Promise<void> | void
+}
 
-	disabled: {
-		type: Boolean,
-		default: false,
-	},
-
-	multiple: {
-		type: Boolean,
-		default: false,
-	},
-
+const props = withDefaults(defineProps<{
 	/**
-	 * Allow to disable the "new"-menu for this UploadPicker instance
+	 * The upload destination folder
 	 */
-	noMenu: {
-		type: Boolean,
-		default: false,
-	},
-
-	/**
-	 * Allow to disable the button label
-	 */
-	noLabel: {
-		type: Boolean,
-		default: false,
-	},
-
-	/**
-	 * Make the "New"-button primary color.
-	 */
-	primary: {
-		type: Boolean,
-		default: false,
-	},
-
-	destination: {
-		type: Folder,
-		required: true,
-	},
-
-	allowFolders: {
-		type: Boolean,
-		default: false,
-	},
+	destination: IFolder
 
 	/**
 	 * A callback function to get the list of files present in the destination folder.
 	 */
-	content: {
-		type: Function as PropType<(relativePath?: string) => Promise<Node[]>>,
-		required: true,
-	},
+	content: (relativePath?: string) => Promise<INode[]>
+
+	/**
+	 * Allowed MIME types to upload
+	 */
+	accept?: string[]
+
+	/**
+	 * Disable the upload picker
+	 */
+	disabled?: boolean
+
+	/**
+	 * Allow uploading multiple files
+	 */
+	multiple?: boolean
+
+	/**
+	 * Optional menu entries to add to the upload picker menu
+	 */
+	menuEntries?: IUploadPickerMenuEntry[]
+
+	/**
+	 * Allow to disable the actions menu for this UploadPicker instance
+	 */
+	noMenu?: boolean
+
+	/**
+	 * Only show the icon without text label
+	 */
+	iconOnly?: boolean
+
+	/**
+	 * The variant of the menu button
+	 */
+	variant?: 'primary' | 'secondary' | 'tertiary'
+
+	/**
+	 * Allow uploading directories
+	 */
+	directory?: boolean
+}>(), {
+	accept: () => [],
+	menuEntries: () => [],
+	variant: 'secondary',
 })
 
 const emit = defineEmits<{
@@ -258,6 +200,13 @@ const emit = defineEmits<{
 	resumed: [queue: Upload[]]
 }>()
 
+defineExpose({
+	reset,
+	setDestination,
+})
+
+const filePickerElement = useTemplateRef('filePicker')
+
 const uploadManager = getUploader()
 onBeforeMount(() => {
 	uploadManager.addNotifier(onUploadCompletion)
@@ -266,20 +215,12 @@ watch(() => props.destination, () => {
 	setDestination(props.destination!)
 }, { immediate: true })
 
-const progressTimeId = `nc-uploader-progress-${Math.random().toString(36).slice(7)}`
+const progressTimeId = createElementId()
 
-const newFileMenuEntries = ref<NewMenuEntry[]>([])
-const openedMenu = ref(false)
+const menuEntriesUpload = computed(() => props.menuEntries?.filter((entry) => entry.category === 'upload'))
+const menuEntriesNew = computed(() => props.menuEntries?.filter((entry) => entry.category === 'create'))
+const menuEntriesOther = computed(() => props.menuEntries?.filter((entry) => entry.category === 'other'))
 
-const menuEntriesUpload = computed(() => newFileMenuEntries.value.filter((entry) => entry.category === NewMenuEntryCategory.UploadFromDevice))
-const menuEntriesNew = computed(() => newFileMenuEntries.value.filter((entry) => entry.category === NewMenuEntryCategory.CreateNew))
-const menuEntriesOther = computed(() => newFileMenuEntries.value.filter((entry) => entry.category === NewMenuEntryCategory.Other))
-
-/**
- * Check whether the current browser supports uploading directories
- * Hint: This does not check if the current connection supports this, as some browsers require a secure context!
- */
-const canUploadFolders = computed(() => props.allowFolders && 'webkitdirectory' in document.createElement('input'))
 const queue = computed(() => uploadManager.queue as Upload[])
 const hasFailure = computed(() => queue.value.some((upload: Upload) => upload.status === UploadStatus.FAILED))
 const isUploading = computed(() => queue.value.some((upload: Upload) => upload.status !== UploadStatus.CANCELLED))
@@ -294,12 +235,6 @@ const isOnlyAssembling = computed(() => {
 			|| upload.status === UploadStatus.FINISHED
 		))
 })
-const buttonLabel = computed(() => {
-	return props.noMenu ? t('Upload') : t('New')
-})
-const haveMenu = computed(() => {
-	return !((props.noMenu || newFileMenuEntries.value.length === 0) && !canUploadFolders.value)
-})
 
 const isPaused = computed(() => uploadManager.info?.status === UploaderStatus.PAUSED)
 watch(isPaused, (isPaused) => {
@@ -311,7 +246,28 @@ watch(isPaused, (isPaused) => {
 })
 
 /**
+ * Reset the file input form
+ */
+function reset() {
+	filePickerElement.value?.reset()
+}
+
+/**
+ * Set the upload destination
  *
+ * @param destination - The new upload destination
+ */
+function setDestination(destination: IFolder) {
+	if (!destination) {
+		logger.debug('Invalid destination')
+		return
+	}
+
+	uploadManager.destination = destination as Folder
+}
+
+/**
+ * Get the current eta time and speed as a string
  */
 function etaTimeAndSpeed(): string {
 	const speed = uploadManager.eta.speedReadable
@@ -322,49 +278,34 @@ function etaTimeAndSpeed(): string {
 }
 
 /**
- * Handle clicking a new-menu entry
+ * Handle clicking a menu entry
  *
  * @param entry The entry that was clicked
  */
-async function onClick(entry: NewMenuEntry) {
-	entry.handler(
+async function onClick(entry: IUploadPickerMenuEntry) {
+	await entry.callback(
 		props.destination!,
 		await props.content().catch(() => []),
 	)
 }
 
 /**
- * Trigger file picker
- *
- * @param uploadFolders Upload folders
- */
-function onTriggerPick(uploadFolders: boolean = false) {
-	const input = getCurrentInstance()!.refs.input as HTMLInputElement
-	// Setup directory picking if enabled
-	if (canUploadFolders.value) {
-		input.webkitdirectory = uploadFolders
-	}
-	// Trigger click on the input to open the file picker
-	nextTick(() => input.click())
-}
-
-/**
  * Start uploading
+ *
+ * @param files - The files to upload
  */
-async function onPick() {
-	const input = getCurrentInstance()!.refs.input as HTMLInputElement
-	const files = input.files ? Array.from(input.files) : []
-
+async function onPick(files: File[]) {
 	try {
 		await uploadManager
 			.batchUpload('', files, async (nodes, currentPath) => {
 				const content = await props.content(currentPath)
+				// @ts-expect-error - types to be fixed in upload package
 				const conflicts = getConflicts(nodes, content)
 				if (conflicts.length === 0) {
 					return nodes
 				}
 
-				const result = await openConflictPicker(basename(currentPath), conflicts, content, { recursive: props.allowFolders })
+				const result = await openConflictPicker(basename(currentPath), conflicts, content, { recursive: props.directory })
 				if (result) {
 					const names: string[] = content.map((n) => n.displayname)
 					for (const node of result.renamed) {
@@ -382,16 +323,8 @@ async function onPick() {
 	} catch (error) {
 		logger.debug('Error while uploading', { error })
 	} finally {
-		resetForm()
+		reset()
 	}
-}
-
-/**
- *
- */
-function resetForm() {
-	const form = getCurrentInstance()!.refs.form as HTMLFormElement
-	form?.reset()
 }
 
 /**
@@ -401,28 +334,13 @@ function onCancel() {
 	uploadManager.queue.forEach((upload: Upload) => {
 		upload.cancel()
 	})
-	resetForm()
+	reset()
 }
 
 /**
+ * Handle upload completion
  *
- * @param destination
- */
-function setDestination(destination: Folder) {
-	if (!props.destination) {
-		logger.debug('Invalid destination')
-		return
-	}
-
-	uploadManager.destination = destination
-
-	// If the destination change, we need to refresh the menu
-	newFileMenuEntries.value = getNewFileMenuEntries(destination)
-}
-
-/**
- *
- * @param upload
+ * @param upload - The completed upload
  */
 function onUploadCompletion(upload: Upload) {
 	if (upload.status === UploadStatus.FAILED) {
