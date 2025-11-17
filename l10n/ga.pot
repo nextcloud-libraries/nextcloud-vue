@@ -134,6 +134,12 @@ msgid "Connect items to a project to make them easier to find"
 msgstr ""
 "Ceangail míreanna le tionscadal chun iad a dhéanamh níos éasca iad a aimsiú"
 
+msgid "Copied"
+msgstr "Cóipeáilte"
+
+msgid "Copy to clipboard"
+msgstr "Cóipeáil chuig an ghearrthaisce"
+
 #. TRANSLATORS: Ctrl key on keyboard (Windows/Linux)
 msgid "Ctrl"
 msgstr "Ctrl"
