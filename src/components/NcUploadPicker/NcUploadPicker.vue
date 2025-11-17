@@ -188,7 +188,6 @@ import NcActionSeparator from '../NcActionSeparator/NcActionSeparator.vue'
 import NcButton from '../NcButton/NcButton.vue'
 import NcIconSvgWrapper from '../NcIconSvgWrapper/NcIconSvgWrapper.vue'
 import NcProgressBar from '../NcProgressBar/NcProgressBar.vue'
-import { useHotKey } from '../../composables/useHotKey/index.ts'
 import { t } from '../../l10n.ts'
 import { logger } from '../../utils/logger.ts'
 
@@ -389,18 +388,6 @@ export default defineComponent({
 
 		// Update data on upload progress
 		this.uploadManager.addNotifier(this.onUploadCompletion)
-
-		// Register hotkeys
-		useHotKey('u', this.onKeyDown, {
-			stop: true,
-			prevent: true,
-			shift: true,
-		})
-
-		useHotKey('Escape', this.onKeyDown, {
-			stop: true,
-			prevent: true,
-		})
 
 		logger.debug('UploadPicker initialised')
 	},
