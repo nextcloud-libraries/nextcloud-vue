@@ -54,7 +54,7 @@
 }
 
 @mixin highlight-rules {
-	pre:has(.hljs) {
+	.rich-text__code-block:has(.hljs) {
 		color: var(--hljs-color);
 		background: var(--hljs-background-color);
 	}

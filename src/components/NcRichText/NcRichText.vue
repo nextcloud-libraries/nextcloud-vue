@@ -314,6 +314,7 @@ import { ref } from 'vue'
 import { RouterLink } from 'vue-router'
 import NcCheckboxRadioSwitch from '../NcCheckboxRadioSwitch/NcCheckboxRadioSwitch.vue'
 import NcReferenceList from './NcReferenceList.vue'
+import NcRichTextCopyButton from './NcRichTextCopyButton.vue'
 import GenRandomId from '../../utils/GenRandomId.js'
 import { getRoute, remarkAutolink } from './autolink.js'
 import { prepareTextNode, remarkPlaceholder } from './placeholder.js'
@@ -495,6 +496,18 @@ export default {
 									importRehypeHighlightLibrary()
 								}
 
+								if (tag === 'pre' && Array.isArray(children)
+									&& children[0].tag === 'code') {
+									const id = this.parentId + '-code-block-' + GenRandomId(5)
+									return h('p', { class: 'rich-text__code-block' }, [
+										h(tag, { attrs: { ...attrs, id } }, children),
+										h(NcRichTextCopyButton, {
+											props: { contentId: id },
+											class: 'rich-text__code-block-button',
+										}),
+									])
+								}
+
 								let nestedNode = null
 								if (tag === 'li' && Array.isArray(children)
 									&& children[0].tag === 'input'
@@ -613,4 +626,26 @@ a:not(.rich-text--component) {
 	text-decoration: underline;
 }
 
+.rich-text__code-block {
+	position: relative;
+	padding-inline-end: calc(var(--clickable-area-small) + var(--default-grid-baseline));
+
+	& pre {
+		width: 100%;
+		overflow-x: auto;
+	}
+
+	.rich-text__code-block-button {
+		position: absolute;
+		top: var(--default-grid-baseline);
+		inset-inline-end: var(--default-grid-baseline);
+		opacity: 0;
+	}
+
+	&:hover .rich-text__code-block-button,
+	&:focus-within .rich-text__code-block-button,
+	& .rich-text__code-block-button:focus {
+		opacity: 1;
+	}
+}
 </style>

@@ -4,13 +4,10 @@
 -->
 
 <script setup lang="ts">
-import { mdiCheck, mdiContentCopy } from '@mdi/js'
 import { whenever } from '@vueuse/core'
-import { computed } from 'vue'
 import NcFormBoxButton from '../NcFormBoxButton/NcFormBoxButton.vue'
 import NcIconSvgWrapper from '../NcIconSvgWrapper/NcIconSvgWrapper.vue'
-import { t } from '../../l10n.js'
-import { useCopy } from './useCopy.ts'
+import { useCopy } from '../../composables/useCopy.ts'
 
 const props = withDefaults(defineProps<{
 	/** Copied value's value */
@@ -29,9 +26,7 @@ const emit = defineEmits<{
 	(event: 'copy'): void
 }>()
 
-const { isCopied, copy } = useCopy(() => props.value)
-
-const icon = computed(() => isCopied.value ? mdiCheck : mdiContentCopy)
+const { isCopied, copy, icon, altText } = useCopy(() => props.value)
 
 whenever(isCopied, () => emit('copy'))
 </script>
@@ -44,7 +39,7 @@ whenever(isCopied, () => emit('copy'))
 		<template v-if="$slots.default || label" #default>
 			<!-- @slot Custom label content -->
 			<span class="hidden-visually">
-				{{ isCopied ? t('Copied') : t('Copy to clipboard') }}
+				{{ altText }}
 			</span>
 			<slot>
 				{{ label }}
