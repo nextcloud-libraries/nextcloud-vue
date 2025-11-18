@@ -95,65 +95,111 @@ provide(NC_FORM_BOX_CONTEXT_KEY, {
 <docs>
 ### General
 
-Visually group form elements with a small gap and rounded corners forming a solid group for supported components.
+A container of supported components with a small gap and rounded corners forming a solid group.
 
-**Note**: if the group has a semantic meaning, consider using the `<NcFormGroup>` component.
+Currently supported components:
+- **`<NcFormBoxButton>`**: an action button/link with an optional description specially for the `<NcFormBox>` context
+- **`<NcFormBoxCopyButton>`**: a special case of a button to copy a text to the clipboard
+- **`<NcFormBoxSwitch>`**: a toggle switch replacing `<NcCheckboxRadioSwitch type="switch">` in a box
+- **`<NcButton>`**: a general button in case there is a kind of primary action within a box
+
+**Note**: if the group has a semantic meaning, consider wrapping the `<NcFormBox>` into `<NcFormGroup>` component with a label.
 
 ```vue
 <script>
+import { mdiArrowRight, mdiFolderOpenOutline, mdiPlus } from '@mdi/js'
+
 export default {
+	setup() {
+		return { mdiArrowRight, mdiFolderOpenOutline, mdiPlus }
+	},
+
 	data() {
 		return {
 			text: 'Text',
-			option: 'One'
+			switchValue: false,
 		}
-	}
+	},
 }
 </script>
 
 <template>
-	<NcFormBox>
-		<NcTextField v-model="text" label="Text Field" />
-		<NcTextField v-model="text" label="Text Field" />
-		<NcTextField v-model="text" label="Text Field" />
-		<NcSelect v-model="option" input-label="Select Field" :options="['One', 'Two', 'Three']" />
-	</NcFormBox>
+	<div style="display: flex; flex-direction: column; gap: calc(6 * var(--default-grid-baseline));">
+		<NcFormBox>
+			<NcFormBoxCopyButton label="WebDAV URL" value="https://cloud.example.tld/remote.php/dav/files/user" />
+		</NcFormBox>
+
+		<NcFormGroup label="Account settings">
+			<NcFormBox>
+				<NcFormBoxButton label="user@example.com">
+					<template #icon>
+						<NcIconSvgWrapper :path="mdiArrowRight" inline />
+					</template>
+				</NcFormBoxButton>
+				<NcFormBoxButton label="sales@example.com">
+					<template #icon>
+						<NcIconSvgWrapper :path="mdiArrowRight" inline />
+					</template>
+				</NcFormBoxButton>
+				<NcButton wide>
+					<template #icon>
+						<NcIconSvgWrapper :path="mdiPlus" />
+					</template>
+					Add mail account
+				</NcButton>
+			</NcFormBox>
+		</NcFormGroup>
+
+		<NcFormGroup label="Device settings">
+			<NcFormBox>
+				<NcFormBoxSwitch v-model="switchValue" label="Turn camera and microphone off by default" />
+				<NcFormBoxSwitch v-model="switchValue" label="Blur camera background by default"  />
+				<NcFormBoxSwitch
+					v-model="switchValue"
+					label="Skip device preview before joining a call"
+					description="Will always show if recording consent is required" />
+			</NcFormBox>
+		</NcFormGroup>
+
+		<NcFormBox>
+			<NcFormBoxButton
+				label="Attachments folder"
+				description="/Talk"
+				inverted-accent>
+				<template #icon>
+					<NcIconSvgWrapper :path="mdiFolderOpenOutline" inline />
+				</template>
+			</NcFormBoxButton>
+		</NcFormBox>
+	</div>
 </template>
 ```
 
 ### Advanced usage
 
-Use scoped slots params to apply the item class to custom items.
+Scoped slot prop `itemClass` can be used to apply the same border radius effect to custom components.
+Create an issue if you need a composable to inject the class into a custom component.
 
 ```vue
 <template>
-	<div>
-		<h4>NcButton without a group</h4>
-		<div>
-			<NcButton wide>
-				First button
-			</NcButton>
-			<NcButton wide>
-				Second button
-			</NcButton>
-			<NcButton wide>
-				Third button
-			</NcButton>
-		</div>
-
-		<h4>NcButton inside NcFormBox with scoped-slot</h4>
-		<NcFormBox v-slot="{ itemClass }">
-			<NcButton :class="itemClass" wide>
-				First button
-			</NcButton>
-			<NcButton :class="itemClass" wide>
-				Second button
-			</NcButton>
-			<NcButton :class="itemClass" wide>
-				Third button
-			</NcButton>
-		</NcFormBox>
-	</div>
+	<NcFormBox v-slot="{ itemClass }">
+		<button class="native-button" :class="itemClass">
+			First native button
+		</button>
+		<button class="native-button" :class="itemClass">
+			Second native button
+		</button>
+		<button class="native-button" :class="itemClass">
+			Third native button
+		</button>
+	</NcFormBox>
 </template>
+
+<style scoped>
+.native-button {
+	/* Remove default server margin around a native button */
+	margin: 0 !important;
+}
+</style>
 ```
 </docs>
