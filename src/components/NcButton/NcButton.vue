@@ -425,6 +425,7 @@ td.row-size {
 <script>
 import { isLegacy32 } from '../../utils/legacy.ts'
 import { logger } from '../../utils/logger.ts'
+import { useNcFormBox } from '../NcFormBox/useNcFormBox.ts'
 
 export default {
 	name: 'NcButton',
@@ -611,6 +612,14 @@ export default {
 
 	emits: ['update:pressed', 'click'],
 
+	setup() {
+		const { formBoxItemClass } = useNcFormBox()
+
+		return {
+			formBoxItemClass,
+		}
+	},
+
 	computed: {
 		/**
 		 * The real type to be used for the button, enforces `primary` for pressed state and, if stateful button, any other type for not pressed state
@@ -726,6 +735,7 @@ export default {
 						active: isActive,
 						'router-link-exact-active': isExactActive,
 					},
+					this.formBoxItemClass,
 				],
 				attrs: {
 					'aria-label': this.ariaLabel,
