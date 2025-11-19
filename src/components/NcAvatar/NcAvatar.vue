@@ -750,12 +750,12 @@ export default {
 			if (!this.preloadedUserStatus) {
 				this.fetchUserStatus(this.user)
 			} else {
-				this.userStatus.status = this.preloadedUserStatus.status || ''
-				this.userStatus.message = this.preloadedUserStatus.message || ''
-				this.userStatus.icon = this.preloadedUserStatus.icon || ''
-				this.hasStatus = this.preloadedUserStatus.status !== null
+				this.setUserStatus(this.preloadedUserStatus)
 			}
 			subscribe('user_status:status.updated', this.handleUserStatusUpdated)
+		} else if (!this.hideStatus && this.preloadedUserStatus) {
+			// Always set preloaded status if provided
+			this.setUserStatus(this.preloadedUserStatus)
 		}
 	},
 

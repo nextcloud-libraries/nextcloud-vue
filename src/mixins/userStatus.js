@@ -44,15 +44,7 @@ export default {
 
 			try {
 				const { data } = await axios.get(generateOcsUrl('apps/user_status/api/v1/statuses/{userId}', { userId }))
-				const {
-					status,
-					message,
-					icon,
-				} = data.ocs.data
-				this.userStatus.status = status
-				this.userStatus.message = message || ''
-				this.userStatus.icon = icon || ''
-				this.hasStatus = true
+				this.setUserStatus(data.ocs.data)
 			} catch (error) {
 				if (error.response.status === 404 && error.response.data.ocs?.data?.length === 0) {
 					// User just has no status set, so don't log it
@@ -60,6 +52,20 @@ export default {
 				}
 				logger.error('Could not fetch user status', { error })
 			}
+		},
+
+		/**
+		 * Sets the user status
+		 *
+		 * @param {string} status user's status
+		 * @param {string} message user's message
+		 * @param {string} icon user's icon
+		 */
+		setUserStatus({ status, message, icon }) {
+			this.userStatus.status = status || ''
+			this.userStatus.message = message || ''
+			this.userStatus.icon = icon || ''
+			this.hasStatus = !!status
 		},
 	},
 }
