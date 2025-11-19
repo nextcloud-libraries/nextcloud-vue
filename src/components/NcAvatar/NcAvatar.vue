@@ -781,7 +781,7 @@ export default {
 			this.isAvatarLoaded = false
 
 			/** Only run avatar image loading if either user or url property is defined */
-			if (!this.isUrlDefined && (!this.isUserDefined || this.isNoUser || this.iconClass)) {
+			if (!this.isUrlDefined && (!this.isUserDefined || this.isNoUser || this.iconClass || this.$slots.icon)) {
 				this.isAvatarLoaded = true
 				this.userDoesNotExist = true
 				return
