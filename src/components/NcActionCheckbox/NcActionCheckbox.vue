@@ -206,6 +206,7 @@ export default {
 		&::before {
 			margin-block: 0 !important;
 			margin-inline: calc((var(--default-clickable-area) - 14px) / 2) !important;
+			margin: 9px !important;
 		}
 	}
 
