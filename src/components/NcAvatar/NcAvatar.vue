@@ -595,7 +595,7 @@ export default {
 		 * True if initials should be shown as the user icon fallback
 		 */
 		showInitials() {
-			return !this.noPlaceholder && this.allowPlaceholder && this.userDoesNotExist && !(this.iconClass || this.$slots.icon)
+			return !this.noPlaceholder && this.allowPlaceholder && this.userDoesNotExist && !(this.iconClass || this.$scopedSlots.icon)
 		},
 
 		avatarStyle() {
@@ -818,7 +818,7 @@ export default {
 			this.isAvatarLoaded = false
 
 			/** Only run avatar image loading if either user or url property is defined */
-			if (!this.isUrlDefined && (!this.isUserDefined || this.isNoUser || this.iconClass)) {
+			if (!this.isUrlDefined && (!this.isUserDefined || this.isNoUser || this.iconClass || this.$scopedSlots.icon)) {
 				this.isAvatarLoaded = true
 				this.userDoesNotExist = true
 				return
