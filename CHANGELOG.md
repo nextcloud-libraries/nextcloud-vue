@@ -7,7 +7,27 @@
 
 All notable changes to this project will be documented in this file.
 
-## [v9.2.0](https://github.com/nextcloud-libraries/nextcloud-vue/tree/v9.1.0) (2025-11-07)
+## [v9.3.0](https://github.com/nextcloud-libraries/nextcloud-vue/tree/v9.3.0) (2025-11-20)
+[Full Changelog](https://github.com/nextcloud-libraries/nextcloud-vue/compare/v9.2.0...v9.3.0)
+
+### 🚀 Enhancements
+* feat(NcAppSettingsDialog): add version on the bottom and `noVersion` prop to disable it [\#7837](https://github.com/nextcloud-libraries/nextcloud-vue/pull/7837) \([ShGKme](https://github.com/ShGKme)\)
+* fix(NcActions): introduce 'size' prop [\#7847](https://github.com/nextcloud-libraries/nextcloud-vue/pull/7847) \([Antreesy](https://github.com/Antreesy)\)
+* feat(NcRichText): add 'Copy to clipboard' button for code blocks [\#7841](https://github.com/nextcloud-libraries/nextcloud-vue/pull/7841) \([Antreesy](https://github.com/Antreesy)\)
+
+### 🐛 Fixed bugs
+* fix(NcPasswordField): respect `checkPasswordStrength` for input validation [\#7845](https://github.com/nextcloud-libraries/nextcloud-vue/pull/7845) \([Antreesy](https://github.com/Antreesy)\)
+* fix(NcTextField): adjust helper text icon [\#7856](https://github.com/nextcloud-libraries/nextcloud-vue/pull/7856) \([ShGKme](https://github.com/ShGKme)\)
+* fix(NcFormBox): use default text color in items [\#7854](https://github.com/nextcloud-libraries/nextcloud-vue/pull/7854) \([ShGKme](https://github.com/ShGKme)\)
+* fix(NcAvatar): do no request avatar image if icon slot provided [\#7891](https://github.com/nextcloud-libraries/nextcloud-vue/pull/7891) \([Antreesy](https://github.com/Antreesy)\)
+
+### Other Changes
+* ci(dependabot): Use auto merge instead of deprecated option [\#7835](https://github.com/nextcloud-libraries/nextcloud-vue/pull/7835) \([nickvergessen](https://github.com/nickvergessen)\)
+* docs: Update icons to outline style [\#7860](https://github.com/nextcloud-libraries/nextcloud-vue/pull/7860) \([nickvergessen](https://github.com/nickvergessen)\) [\#7862](https://github.com/nextcloud-libraries/nextcloud-vue/pull/7862) \([nickvergessen](https://github.com/nickvergessen)\)
+* fix(NcActions): handle expensive height computation by popover library [\#7778](https://github.com/nextcloud-libraries/nextcloud-vue/pull/7778) \([Antreesy](https://github.com/Antreesy)\)
+* chore: refactor deprecated :deep selector [\#7875](https://github.com/nextcloud-libraries/nextcloud-vue/pull/7875) \([ShGKme](https://github.com/ShGKme)\)
+
+## [v9.2.0](https://github.com/nextcloud-libraries/nextcloud-vue/tree/v9.2.0) (2025-11-07)
 [Full Changelog](https://github.com/nextcloud-libraries/nextcloud-vue/compare/v9.1.0...v9.2.0)
 
 ### 📝 Notes
