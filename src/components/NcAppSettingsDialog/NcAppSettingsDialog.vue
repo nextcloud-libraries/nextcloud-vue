@@ -215,7 +215,7 @@ function unregisterSection(id: string) {
 	<NcDialog
 		v-if="open"
 		class="app-settings"
-		content-classes="app-settings__content"
+		:content-classes="['app-settings__content', { 'app-settings__non-legacy': !legacy }]"
 		navigation-classes="app-settings__navigation"
 		:additional-trap-elements="additionalTrapElements"
 		:container="container"
@@ -259,16 +259,21 @@ function unregisterSection(id: string) {
 
 <style lang="scss" scoped>
 .app-settings {
-	:deep &__navigation {
+	:deep(.app-settings__navigation) {
 		min-width: 200px;
 		margin-right: calc(4 * var(--default-grid-baseline));
 		overflow-x: hidden;
 		overflow-y: auto;
 		position: relative;
 	}
-	:deep &__content {
+
+	:deep(.app-settings__content) {
 		box-sizing: border-box;
 		padding-inline: calc(4 * var(--default-grid-baseline));
+
+		&.app-settings__non-legacy * {
+			box-sizing: border-box;
+		}
 	}
 }
 
