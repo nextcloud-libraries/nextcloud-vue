@@ -1,279 +1,587 @@
 # 
 # Translators:
-# Transifex Bot <>, 2023
+# bone NI, 2025
 # 
 msgid ""
 msgstr ""
-"Last-Translator: Transifex Bot <>, 2023\n"
+"Last-Translator: bone NI, 2025\n"
 "Language-Team: Lao (https://app.transifex.com/nextcloud/teams/64236/lo/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Language: lo\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 
 msgid "{tag} (invisible)"
-msgstr ""
+msgstr "{tag} (ບໍ່ສະແດງ)"
 
 msgid "{tag} (restricted)"
-msgstr ""
+msgstr "{tag} (ຈຳກັດ)"
+
+msgid "A color with a HEX value {hex}"
+msgstr "ສີທີ່ມີຄ່າ HEX {hex}"
 
 msgid "a few seconds ago"
-msgstr ""
+msgstr "ສອງສາມວິນາທີກ່ອນ"
+
+#. TRANSLATORS: A color name for RGB(110, 166, 143)
+msgid "Acapulco"
+msgstr "Acapulco"
 
 msgid "Actions"
-msgstr ""
-
-msgid "Actions for item with name \"{name}\""
-msgstr ""
+msgstr "ການກະທຳ"
 
 msgid "Activities"
-msgstr ""
+msgstr "ກິດຈະກຳ"
+
+msgid "Add to a project"
+msgstr "ເພີ່ມໃສ່ໂຄງການ"
+
+#. TRANSLATORS: Alt key on keyboard (Windows/Linux)
+msgid "Alt"
+msgstr "Alt"
 
 msgid "Animals & Nature"
-msgstr ""
+msgstr "ສັດ ແລະ ທຳມະຊາດ"
 
 msgid "Any link"
-msgstr ""
+msgstr "ລິງໃດກໍໄດ້"
 
 msgid "Anything shared with the same group of people will show up here"
-msgstr ""
+msgstr "ທຸກຢ່າງທີ່ແບ່ງປັນກັບກຸ່ມຄົນດຽວກັນຈະສະແດງຢູ່ບ່ອນນີ້"
 
 msgid "Avatar of {displayName}"
-msgstr ""
+msgstr "ຮູບແທນຕົວຂອງ {displayName}"
 
 msgid "Avatar of {displayName}, {status}"
-msgstr ""
+msgstr "ຮູບແທນຕົວຂອງ {displayName}, {status}"
+
+#. TRANSLATORS: User status if the user is currently away from keyboard
+msgid "away"
+msgstr "ບໍ່ຢູ່"
 
 msgid "Back"
-msgstr ""
+msgstr "ກັບຄືນ"
 
 msgid "Back to provider selection"
-msgstr ""
+msgstr "ກັບໄປທີ່ການເລືອກຜູ້ໃຫ້ບໍລິການ"
+
+msgid "Black"
+msgstr "ສີດຳ"
+
+#. TRANSLATORS: A color name for RGB(91, 100, 179)
+msgid "Blue Violet"
+msgstr "Blue Violet"
+
+#. TRANSLATORS: A color name for RGB(55, 148, 172)
+msgid "Boston Blue"
+msgstr "Boston Blue"
+
+msgid "busy"
+msgstr "ບໍ່ວ່າງ"
+
+msgid "Calendar icon"
+msgstr "ໄອຄອນປະຕິທິນ"
+
+msgid "Cancel"
+msgstr "ຍົກເລີກ"
 
 msgid "Cancel changes"
-msgstr ""
+msgstr "ຍົກເລີກການປ່ຽນແປງ"
 
 msgid "Change name"
-msgstr ""
+msgstr "ປ່ຽນຊື່"
 
 msgid "Choose"
-msgstr ""
+msgstr "ເລືອກ"
 
 msgid "Clear search"
-msgstr ""
+msgstr "ລຶບການຄົ້ນຫາ"
+
+msgid "Clear selected"
+msgstr "ລຶບສິ່ງທີ່ເລືອກ"
 
 msgid "Clear text"
-msgstr ""
+msgstr "ລຶບຂໍ້ຄວາມ"
+
+msgid "Clear value"
+msgstr "ລຶບຄ່າ"
 
 msgid "Close"
-msgstr ""
-
-msgid "Close modal"
-msgstr ""
+msgstr "ປິດ"
 
 msgid "Close navigation"
-msgstr ""
+msgstr "ປິດການນຳທາງ"
 
 msgid "Close sidebar"
-msgstr ""
+msgstr "ປິດແຖບດ້ານຂ້າງ"
 
 msgid "Close Smart Picker"
-msgstr ""
+msgstr "ປິດໂຕເລືອກອັດສະລິຍະ"
+
+msgid "Close time Picker"
+msgstr "ປິດໂຕເລືອກເວລາ"
 
 msgid "Collapse menu"
-msgstr ""
+msgstr "ຫຍໍ້ເມນູ"
+
+msgid "Color picker"
+msgstr "ໂຕເລືອກສີ"
 
 msgid "Confirm changes"
-msgstr ""
+msgstr "ຢືນຢັນການປ່ຽນແປງ"
+
+msgid "Connect items to a project to make them easier to find"
+msgstr "ເຊື່ອມຕໍ່ລາຍການຕ່າງໆໃສ່ໂຄງການ ເພື່ອເຮັດໃຫ້ຊອກຫາງ່າຍຂຶ້ນ"
+
+msgid "Copied"
+msgstr "ສຳເນົາແລ້ວ"
+
+msgid "Copy to clipboard"
+msgstr "ສຳເນົາໃສ່ຄລິບບອດ"
+
+#. TRANSLATORS: Ctrl key on keyboard (Windows/Linux)
+msgid "Ctrl"
+msgstr "Ctrl"
 
 msgid "Custom"
-msgstr ""
+msgstr "ກຳນົດເອງ"
+
+msgid "Dark skin tone"
+msgstr "ໂຕນສີຜິວເຂັ້ມ"
+
+msgid "Datepicker input"
+msgstr "ຊ່ອງປ້ອນວັນທີ"
+
+msgid "Datepicker menu"
+msgstr "ເມນູໂຕເລືອກວັນທີ"
+
+msgid "Decrement hours"
+msgstr "ຫຼຸດຊົ່ວໂມງ"
+
+msgid "Decrement minutes"
+msgstr "ຫຼຸດນາທີ"
+
+msgid "Decrement seconds"
+msgstr "ຫຼຸດວິນາທີ"
+
+#. TRANSLATORS: Delete key on keyboard
+msgid "Delete"
+msgstr "ລຶບ"
+
+#. TRANSLATORS: A color name for RGB(136, 85, 168)
+msgid "Deluge"
+msgstr "Deluge"
+
+msgid "Deselect {option}"
+msgstr "ຍົກເລີກການເລືອກ {option}"
+
+msgid "do not disturb"
+msgstr "ຫ້າມລົບກວນ"
 
 msgid "Edit item"
-msgstr ""
+msgstr "ແກ້ໄຂລາຍການ"
+
+msgid "Emoji picker"
+msgstr "ໂຕເລືອກອີໂມຈິ"
+
+msgid "Enable interactive view"
+msgstr "ເປີດໃຊ້ງານມຸມມອງໂຕ້ຕອບ"
+
+#. TRANSLATORS: Enter key on keyboard
+msgid "Enter"
+msgstr "Enter"
 
 msgid "Enter link"
-msgstr ""
+msgstr "ປ້ອນລິງ"
 
 msgid ""
 "Error getting related resources. Please contact your system administrator if"
 " you have any questions."
 msgstr ""
+"ເກີດຂໍ້ຜິດພາດໃນການເອີ້ນຂໍ້ມູນຊັບພະຍາກອນທີ່ກ່ຽວຂ້ອງ. "
+"ກະລຸນາຕິດຕໍ່ຜູ້ເບິ່ງແຍງລະບົບຂອງທ່ານ ຖ້າທ່ານມີຄຳຖາມ."
 
-msgid "External documentation for {name}"
-msgstr ""
+#. TRANSLATORS: Escape key on keyboard
+msgid "Escape"
+msgstr "Escape"
+
+msgid "External documentation"
+msgstr "ເອກະສານພາຍນອກ"
+
+msgid "Failed to add the item to the project"
+msgstr "ບໍ່ສາມາດເພີ່ມລາຍການໃສ່ໂຄງການໄດ້"
+
+msgid "Failed to create a project"
+msgstr "ບໍ່ສາມາດສ້າງໂຄງການໄດ້"
+
+msgid "Failed to rename the project"
+msgstr "ບໍ່ສາມາດປ່ຽນຊື່ໂຄງການໄດ້"
 
 msgid "Favorite"
-msgstr ""
+msgstr "ລາຍການທີ່ມັກ"
+
+#. TRANSLATORS: A color name for RGB(201, 136, 121)
+msgid "Feldspar"
+msgstr "Feldspar"
 
 msgid "Flags"
-msgstr ""
+msgstr "ທຸງ"
 
 msgid "Food & Drink"
-msgstr ""
+msgstr "ອາຫານ ແລະ ເຄື່ອງດື່ມ"
 
 msgid "Frequently used"
-msgstr ""
-
-msgid "Global"
-msgstr ""
+msgstr "ໃຊ້ງານເລື້ອຍໆ"
 
 msgid "Go back to the list"
-msgstr ""
+msgstr "ກັບໄປທີ່ລາຍການ"
+
+msgid "Gold"
+msgstr "ສີຄຳ"
+
+msgid "Hide details"
+msgstr "ເຊື່ອງລາຍລະອຽດ"
 
 msgid "Hide password"
-msgstr ""
+msgstr "ເຊື່ອງລະຫັດຜ່ານ"
 
-msgid "Load more \"{options}\"\""
-msgstr ""
+msgid "Increment hours"
+msgstr "ເພີ່ມຊົ່ວໂມງ"
 
-msgid "Message limit of {count} characters reached"
-msgstr ""
+msgid "Increment minutes"
+msgstr "ເພີ່ມນາທີ"
+
+msgid "Increment seconds"
+msgstr "ເພີ່ມວິນາທີ"
+
+msgid "invisible"
+msgstr "ບໍ່ສະແດງ"
+
+msgid "Keyboard navigation help"
+msgstr "ການຊ່ວຍເຫຼືອການນຳທາງດ້ວຍຄີບອດ"
+
+msgid "Keyboard shortcuts"
+msgstr "ທາງລັດຄີບອດ"
+
+msgid "Light skin tone"
+msgstr "ໂຕນສີຜິວອ່ອນ"
+
+msgid "Load more \"{options}\""
+msgstr "ໂຫຼດ “{options}” ເພີ່ມເຕີມ"
+
+#. TRANSLATORS: The button is in a loading state
+msgid "Loading …"
+msgstr "ກຳລັງໂຫຼດ…"
+
+#. TRANSLATORS: A color name for RGB(45, 115, 190)
+msgid "Mariner"
+msgstr "Mariner"
+
+msgid "Medium dark skin tone"
+msgstr "ໂຕນສີຜິວເຂັ້ມປານກາງ"
+
+msgid "Medium light skin tone"
+msgstr "ໂຕນສີຜິວອ່ອນປານກາງ"
+
+msgid "Medium skin tone"
+msgstr "ໂຕນສີຜິວປານກາງ"
+
+msgid "Message limit of %n character reached"
+msgid_plural "Message limit of %n characters reached"
+msgstr[0] "ຮອດຂີດຈຳກັດຂໍ້ຄວາມ %n ໂຕອັກສອນແລ້ວ"
+
+msgid "Month picker"
+msgstr "ໂຕເລືອກເດືອນ"
+
+msgid "Month picker overlay"
+msgstr "ໜ້າຕ່າງໂຕເລືອກເດືອນ"
 
 msgid "More items …"
-msgstr ""
+msgstr "ລາຍການເພີ່ມເຕີມ…"
 
 msgid "More options"
-msgstr ""
+msgstr "ຕົວເລືອກເພີ່ມເຕີມ"
+
+msgid "Neutral skin color"
+msgstr "ສີຜິວເປັນກາງ"
 
 msgid "Next"
-msgstr ""
+msgstr "ຕໍ່ໄປ"
+
+msgid "Next month"
+msgstr "ເດືອນໜ້າ"
+
+msgid "Next year"
+msgstr "ປີໜ້າ"
+
+msgid "Nextcloud blue"
+msgstr "ສີຟ້າ Nextcloud"
+
+msgid "No color"
+msgstr "ບໍ່ມີສີ"
 
 msgid "No emoji found"
-msgstr ""
+msgstr "ບໍ່ພົບອີໂມຈິ"
 
 msgid "No link provider found"
-msgstr ""
+msgstr "ບໍ່ພົບຜູ້ໃຫ້ບໍລິການລິງ"
 
 msgid "No results"
-msgstr ""
+msgstr "ບໍ່ມີຜົນລັບ"
+
+msgid "Now"
+msgstr "ຕອນນີ້"
 
 msgid "Objects"
-msgstr ""
+msgstr "ວັດຖຸ"
 
-msgid "Open contact menu"
-msgstr ""
+msgid "offline"
+msgstr "ອອບໄລນ໌"
+
+#. TRANSLATORS: A color name for RGB(165, 184, 114)
+msgid "Olivine"
+msgstr "Olivine"
+
+msgid "online"
+msgstr "ອອນໄລນ໌"
+
+msgid "Open hours overlay"
+msgstr "ເປີດໜ້າຕ່າງເລືອກຊົ່ວໂມງ"
 
 msgid "Open link to \"{resourceName}\""
-msgstr ""
+msgstr "ເປີດລິງໄປທີ່ “{resourceName}”"
 
 msgid "Open menu"
-msgstr ""
+msgstr "ເປີດເມນູ"
+
+msgid "Open minutes overlay"
+msgstr "ເປີດໜ້າຕ່າງເລືອກນາທີ"
+
+msgid "Open months overlay"
+msgstr "ເປີດໜ້າຕ່າງເລືອກເດືອນ"
 
 msgid "Open navigation"
-msgstr ""
+msgstr "ເປີດການນຳທາງ"
 
-msgid "Open settings menu"
-msgstr ""
+msgid "Open seconds overlay"
+msgstr "ເປີດໜ້າຕ່າງເລືອກວິນາທີ"
+
+msgid "Open sidebar"
+msgstr "ເປີດແຖບດ້ານຂ້າງ"
+
+msgid "Open time picker"
+msgstr "ເປີດໂຕເລືອກເວລາ"
+
+msgid "Open years overlay"
+msgstr "ເປີດໜ້າຕ່າງເລືອກປີ"
+
+msgid "Options"
+msgstr "ຕົວເລືອກ"
 
 msgid "Password is secure"
-msgstr ""
+msgstr "ລະຫັດຜ່ານປອດໄພ"
 
 msgid "Pause slideshow"
-msgstr ""
+msgstr "ຢຸດສະໄລ້ໂຊຊົ່ວຄາວ"
 
 msgid "People & Body"
-msgstr ""
+msgstr "ຄົນ ແລະ ຮ່າງກາຍ"
 
-msgid "Pick a date"
-msgstr ""
-
-msgid "Pick a date and a time"
-msgstr ""
-
-msgid "Pick a month"
-msgstr ""
-
-msgid "Pick a time"
-msgstr ""
-
-msgid "Pick a week"
-msgstr ""
-
-msgid "Pick a year"
-msgstr ""
+msgid "Pick"
+msgstr "ເລືອກ"
 
 msgid "Pick an emoji"
-msgstr ""
+msgstr "ເລືອກອີໂມຈິ"
 
-msgid "Please select a time zone:"
-msgstr ""
+msgid "Please choose a date"
+msgstr "ກະລຸນາເລືອກວັນທີ"
 
 msgid "Previous"
-msgstr ""
+msgstr "ກ່ອນໜ້າ"
+
+msgid "Previous month"
+msgstr "ເດືອນກ່ອນ"
+
+msgid "Previous year"
+msgstr "ປີກ່ອນ"
 
 msgid "Provider icon"
-msgstr ""
+msgstr "ໄອຄອນຜູ້ໃຫ້ບໍລິການ"
+
+msgid "Purple"
+msgstr "ສີມ່ວງ"
 
 msgid "Raw link {options}"
-msgstr ""
+msgstr "ລິງດິບ {options}"
 
 msgid "Related resources"
-msgstr ""
+msgstr "ຊັບພະຍາກອນທີ່ກ່ຽວຂ້ອງ"
+
+msgid "Related team resources"
+msgstr "ຊັບພະຍາກອນຂອງທີມທີ່ກ່ຽວຂ້ອງ"
+
+msgid "Rename project"
+msgstr "ປ່ຽນຊື່ໂຄງການ"
+
+#. TRANSLATORS: A color name for RGB(191, 103, 139)
+msgid "Rosy brown"
+msgstr "Rosy brown"
+
+msgid "Save changes"
+msgstr "ບັນທຶກການປ່ຽນແປງ"
 
 msgid "Search"
-msgstr ""
+msgstr "ຄົ້ນຫາ"
+
+msgid "Search …"
+msgstr "ຄົ້ນຫາ…"
 
 msgid "Search emoji"
-msgstr ""
+msgstr "ຄົ້ນຫາອີໂມຈິ"
+
+msgid "Search for timezone"
+msgstr "ຄົ້ນຫາເຂດເວລາ"
 
 msgid "Search results"
-msgstr ""
+msgstr "ຜົນການຄົ້ນຫາ"
 
 #. FOR TRANSLATORS: If possible in your language an even shorter version of 'a
 #. few seconds ago'
 msgid "sec. ago"
-msgstr ""
+msgstr "ວິ. ກ່ອນ"
 
 #. FOR TRANSLATORS: Shorter version of 'a few seconds ago'
 msgid "seconds ago"
-msgstr ""
+msgstr "ວິນາທີກ່ອນ"
 
 msgid "Select a tag"
-msgstr ""
+msgstr "ເລືອກແທັກ"
+
+msgid "Select date"
+msgstr "ເລືອກວັນທີ"
+
+msgid "Select date and time"
+msgstr "ເລືອກວັນທີ ແລະ ເວລາ"
+
+msgid "Select month"
+msgstr "ເລືອກເດືອນ"
 
 msgid "Select provider"
-msgstr ""
+msgstr "ເລືອກຜູ້ໃຫ້ບໍລິການ"
+
+msgid "Select time"
+msgstr "ເລືອກເວລາ"
+
+msgid "Select time range"
+msgstr "ເລືອກຊ່ວງເວລາ"
+
+msgid "Select week"
+msgstr "ເລືອກອາທິດ"
+
+msgid "Select year"
+msgstr "ເລືອກປີ"
+
+msgid "Selected"
+msgstr "ເລືອກແລ້ວ"
 
 msgid "Settings"
-msgstr ""
+msgstr "ການຕັ້ງຄ່າ"
 
 msgid "Settings navigation"
-msgstr ""
+msgstr "ການນຳທາງການຕັ້ງຄ່າ"
+
+#. TRANSLATORS: Shift key on keyboard
+msgid "Shift"
+msgstr "Shift"
+
+msgid "Show details"
+msgstr "ສະແດງລາຍລະອຽດ"
 
 msgid "Show password"
-msgstr ""
+msgstr "ສະແດງລະຫັດຜ່ານ"
+
+msgid "Skin tone"
+msgstr "ໂຕນສີຜິວ"
+
+msgid "Skip to app navigation"
+msgstr "ຂ້າມໄປທີ່ການນຳທາງຂອງແອັບ"
+
+msgid "Skip to main content"
+msgstr "ຂ້າມໄປທີ່ເນື້ອຫາຫຼັກ"
 
 msgid "Smart Picker"
-msgstr ""
+msgstr "ໂຕເລືອກອັດສະລິຍະ"
 
 msgid "Smileys & Emotion"
-msgstr ""
+msgstr "ໜ້າຍິ້ມ ແລະ ອາລົມ"
+
+#. TRANSLATORS: Space key on keyboard
+msgid "Space"
+msgstr "Space"
 
 msgid "Start slideshow"
-msgstr ""
+msgstr "ເລີ່ມສະໄລ້ໂຊ"
 
 msgid "Start typing to search"
-msgstr ""
+msgstr "ເລີ່ມພິມເພື່ອຄົ້ນຫາ"
 
 msgid "Submit"
-msgstr ""
+msgstr "ສົ່ງ"
+
+msgid "Switch AM/PM mode"
+msgstr "ສະຫຼັບໂໝດ AM/PM"
 
 msgid "Symbols"
-msgstr ""
+msgstr "ສັນຍາລັກ"
+
+#. TRANSLATORS: Tab key on keyboard
+msgid "Tab"
+msgstr "Tab"
+
+msgid "Time picker"
+msgstr "ໂຕເລືອກເວລາ"
+
+msgid "Timezone"
+msgstr "ເຂດເວລາ"
+
+msgid "Toggle overlay"
+msgstr "ສະຫຼັບໜ້າຕ່າງ"
 
 msgid "Travel & Places"
-msgstr ""
+msgstr "ການເດີນທາງ ແລະ ສະຖານທີ່"
+
+msgid "Type to search for existing projects"
+msgstr "ພິມເພື່ອຄົ້ນຫາໂຄງການທີ່ມີຢູ່"
 
 msgid "Type to search time zone"
-msgstr ""
+msgstr "ພິມເພື່ອຄົ້ນຫາເຂດເວລາ"
 
 msgid "Unable to search the group"
-msgstr ""
+msgstr "ບໍ່ສາມາດຄົ້ນຫາກຸ່ມໄດ້"
 
 msgid "Undo changes"
-msgstr ""
+msgstr "ຍ້ອນຄືນການປ່ຽນແປງ"
 
-msgid ""
-"Write message, use \"@\" to mention someone, use \":\" for emoji "
-"autocompletion …"
-msgstr ""
+msgid "User status: {status}"
+msgstr "ສະຖານະຜູ້ໃຊ້: {status}"
+
+msgid "View team"
+msgstr "ເບິ່ງທີມ"
+
+msgid "W"
+msgstr "ອ"
+
+#. TRANSLATORS: A color name for RGB(211, 169, 103)
+msgid "Whiskey"
+msgstr "Whiskey"
+
+msgid "White"
+msgstr "ສີຂາວ"
+
+msgid "Write a message …"
+msgstr "ຂຽນຂໍ້ຄວາມ…"
+
+msgid "Year picker"
+msgstr "ໂຕເລືອກປີ"
+
+msgid "Year picker overlay"
+msgstr "ໜ້າຕ່າງໂຕເລືອກປີ"
