@@ -6,87 +6,155 @@
 <script setup lang="ts">
 import type { Slot } from 'vue'
 
-import { provide, useCssModule } from 'vue'
-import { NC_FORM_BOX_CONTEXT_KEY } from './useNcFormBox.ts'
+import { computed, provide, reactive, toRef, useCssModule } from 'vue'
+import { logger } from '../../utils/logger.ts'
+import { NC_FORM_BOX_CONTEXT_KEY, useNcFormBox } from './useNcFormBox.ts'
 
-defineProps<{
-	/**
-	 * Display the group as a row instead of a column
-	 */
+const { row } = defineProps<{
+	/** Display the group as a row instead of a column */
 	row?: boolean
 }>()
 
 defineSlots<{
-	/**
-	 * Grouped content
-	 */
+	/** Grouped content */
 	default?: Slot<{
-		/**
-		 * Class to add on a custom item to apply the border radius effect
-		 */
+		/** Class to add on a custom item to apply the border radius effect */
 		itemClass: string
 	}>
 }>()
 
 const style = useCssModule()
+const { isInFormBox, isInFormBoxRow } = useNcFormBox()
+const isNestedRow = computed(() => isInFormBox && row)
 
-provide(NC_FORM_BOX_CONTEXT_KEY, {
+// The check is not reactive, but having a reactive row prop is not expected
+if (isInFormBoxRow || (isInFormBox && !row)) {
+	logger.warn('[NcFormBox] Nested NcFormBox is only supported for nesting row boxes inside boxes.')
+}
+
+const containerClasses = {
+	col: style.formBox_col,
+	row: style.formBox_row,
+	nestedRow: style.formBox_nestedRow,
+}
+
+const itemClasses = {
+	col: style.formBox__item,
+	row: style.formBox__rowItem,
+	nestedRow: style.formBox__nestedItem,
+}
+
+const formBoxType = computed(() => isNestedRow.value ? 'nestedRow' : (row ? 'row' : 'col'))
+const containerClass = computed(() => containerClasses[formBoxType.value])
+const itemClass = computed(() => itemClasses[formBoxType.value])
+
+provide(NC_FORM_BOX_CONTEXT_KEY, reactive({
 	isInFormBox: true,
-	formBoxItemClass: style.ncFormBox__item,
-})
+	isInFormBoxRow: toRef(() => row),
+	formBoxItemClass: itemClass,
+}))
 </script>
 
 <template>
-	<div :class="[$style.ncFormBox, row ? $style.ncFormBox_row : $style.ncFormBox_col]">
-		<slot :item-class="$style.ncFormBox__item" />
+	<div :class="[$style.formBox, containerClass]">
+		<slot :item-class />
 	</div>
 </template>
 
 <style lang="scss" module>
-.ncFormBox {
+.formBox {
 	display: flex;
-	flex-direction: column;
 	gap: calc(1 * var(--default-grid-baseline));
-
-	&.ncFormBox_row {
-		flex-direction: row;
-	}
 }
 
-.ncFormBox__item {
+.formBox_col {
+	flex-direction: column;
+}
+
+.formBox_row,
+.formBox_nestedRow {
+	flex-direction: row;
+}
+
+.formBox__rowItem,
+.formBox__nestedItem {
+	flex: 1 1;
+}
+
+.formBox__item,
+.formBox__rowItem,
+.formBox__nestedItem {
 	border-radius: var(--border-radius-small) !important;
 }
 
-.ncFormBox_col {
-	flex-direction: column;
-
-	.ncFormBox__item {
-		&:first-child {
-			border-start-start-radius: var(--border-radius-element) !important;
-			border-start-end-radius: var(--border-radius-element) !important;
-		}
-
-		&:last-child {
-			border-end-start-radius: var(--border-radius-element) !important;
-			border-end-end-radius: var(--border-radius-element) !important;
-		}
+/*
+╭────────╮
+│ item   │
+└────────┘
+┌────────┐
+│ item   │
+└────────┘
+┌────────┐
+│ item   │
+╰────────╯
+*/
+.formBox__item {
+	&:first-child {
+		border-start-start-radius: var(--border-radius-element) !important;
+		border-start-end-radius: var(--border-radius-element) !important;
+	}
+	&:last-child {
+		border-end-start-radius: var(--border-radius-element) !important;
+		border-end-end-radius: var(--border-radius-element) !important;
 	}
 }
 
-.ncFormBox_row {
-	flex-direction: row;
+/*
+ ╭─────────┐ ┌─────────┐ ┌─────────╮
+ │ rowItem │ │ rowItem │ │ rowItem │
+ ╰─────────┘ └─────────┘ └─────────╯
+*/
+.formBox__rowItem {
+	&:first-child {
+		border-start-start-radius: var(--border-radius-element) !important;
+		border-end-start-radius: var(--border-radius-element) !important;
+	}
+	&:last-child {
+		border-start-end-radius: var(--border-radius-element) !important;
+		border-end-end-radius: var(--border-radius-element) !important;
+	}
+}
 
-	.ncFormBox__item {
-		flex: 1 1;
-
-		&:first-child {
-			border-start-start-radius: var(--border-radius-element) !important;
-			border-end-start-radius: var(--border-radius-element) !important;
+/*
+           ╭────────────┐ ┌────────────┐ ┌────────────╮
+nestedRow: │ nestedItem │ │ nestedItem │ │ nestedItem │
+           └────────────┘ └────────────┘ └────────────┘
+           ┌────────────┐ ┌────────────┐ ┌────────────┐
+nestedRow: │ nestedItem │ │ nestedItem │ │ nestedItem │
+           └────────────┘ └────────────┘ └────────────┘
+           ┌────────────┐ ┌────────────┐ ┌────────────┐
+nestedRow: │ nestedItem │ │ nestedItem │ │ nestedItem │
+           ╰────────────┘ └────────────┘ └────────────╯
+*/
+.formBox_nestedRow {
+	&:first-child {
+		.formBox__nestedItem {
+			&:first-child {
+				border-start-start-radius: var(--border-radius-element) !important;
+			}
+			&:last-child {
+				border-start-end-radius: var(--border-radius-element) !important;
+			}
 		}
-
-		&:last-child {
-			border-end-end-radius: var(--border-radius-element) !important;
-			border-start-end-radius: var(--border-radius-element) !important;
+	}
+	&:last-child {
+		.formBox__nestedItem {
+			&:first-child {
+				border-end-start-radius: var(--border-radius-element) !important;
+			}
+			&:last-child {
+				border-end-end-radius: var(--border-radius-element) !important;
+			}
 		}
 	}
 }
@@ -177,7 +245,9 @@ export default {
 
 ### Advanced usage
 
-Scoped slot prop `itemClass` can be used to apply the same border radius effect to custom components.
+#### Scoped slot
+
+Scoped slot prop `itemClass` can be used to apply the same item class with the border radius effect to unsupported components.
 Create an issue if you need a composable to inject the class into a custom component.
 
 ```vue
@@ -201,5 +271,47 @@ Create an issue if you need a composable to inject the class into a custom compo
 	margin: 0 !important;
 }
 </style>
+```
+
+#### Row box
+
+Currently it is only used internally by other components like `NcRadioGroup`, but `row` prop can be used to display the items in a row instead of a column.
+
+```vue
+<template>
+	<NcFormBox row>
+		<NcButton wide>Button</NcButton>
+		<NcButton wide>Button</NcButton>
+		<NcButton wide>Button</NcButton>
+	</NcFormBox>
+</template>
+```
+
+#### Nested form box
+
+Components with nested form boxes (like split buttons) are still under development, but nesting a row box inside the column boxes is already supported.
+
+```vue
+<template>
+	<NcFormBox>
+		<NcFormBox row>
+			<NcButton wide>Button</NcButton>
+			<NcButton wide>Button</NcButton>
+			<NcButton wide>Button</NcButton>
+		</NcFormBox>
+
+		<NcFormBox row>
+			<NcButton wide>Button</NcButton>
+			<NcButton wide>Button</NcButton>
+			<NcButton wide>Button</NcButton>
+		</NcFormBox>
+
+		<NcFormBox row>
+			<NcButton wide>Button</NcButton>
+			<NcButton wide>Button</NcButton>
+			<NcButton wide>Button</NcButton>
+		</NcFormBox>
+	</NcFormBox>
+</template>
 ```
 </docs>
