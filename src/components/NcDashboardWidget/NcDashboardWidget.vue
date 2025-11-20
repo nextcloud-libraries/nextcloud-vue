@@ -94,8 +94,8 @@ export default {
 const myItems = [
 	{
 		id: '1',
-		targetUrl: 'https://target.org',
-		avatarUrl: 'https://avatar.url/img.png',
+		targetUrl: 'https://example.tld',
+		avatarUrl: 'https://example.tld/img.png',
 		avatarUsername: 'Robert',
 		avatarIsNoUser: true,
 		overlayIconUrl: '/svg/core/actions/sound?color=000',
@@ -104,8 +104,8 @@ const myItems = [
 	},
 	{
 		id: '2',
-		targetUrl: 'https://other-target.org',
-		avatarUrl: 'https://other-avatar.url/img.png',
+		targetUrl: 'https://example.tld',
+		avatarUrl: 'https://example.tld/img.jpg',
 		overlayIconUrl: '/svg/core/actions/add?color=000',
 		mainText: 'Second item text',
 		subText: 'Second item subtext',

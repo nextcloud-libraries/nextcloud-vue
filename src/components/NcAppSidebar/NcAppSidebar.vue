@@ -24,34 +24,34 @@ Using `v-show` directly will result in usability issues due to internal focus tr
 		subname="last edited 3 weeks ago">
 		<NcAppSidebarTab name="Search" id="search-tab">
 			<template #icon>
-				<Magnify :size="20" />
+				<IconMagnify :size="20" />
 			</template>
 			Search tab content
 		</NcAppSidebarTab>
 		<NcAppSidebarTab name="Settings" id="settings-tab">
 			<template #icon>
-				<Cog :size="20" />
+				<IconCogOutline :size="20" />
 			</template>
 			Settings tab content
 		</NcAppSidebarTab>
 		<NcAppSidebarTab name="Sharing" id="share-tab">
 			<template #icon>
-				<ShareVariant :size="20" />
+				<IconShareVariantOutline :size="20" />
 			</template>
 			Sharing tab content
 		</NcAppSidebarTab>
 	</NcAppSidebar>
 </template>
 <script>
-	import Magnify from 'vue-material-design-icons/Magnify.vue'
-	import Cog from 'vue-material-design-icons/Cog.vue'
-	import ShareVariant from 'vue-material-design-icons/ShareVariant.vue'
+	import IconMagnify from 'vue-material-design-icons/Magnify.vue'
+	import IconCogOutline from 'vue-material-design-icons/CogOutline.vue'
+	import IconShareVariantOutline from 'vue-material-design-icons/ShareVariantOutline.vue'
 
 	export default {
 		components: {
-			Magnify,
-			Cog,
-			ShareVariant,
+			IconMagnify,
+			IconCogOutline,
+			IconShareVariantOutline,
 		},
 		data() {
 			return {
@@ -76,7 +76,7 @@ Single tab is rendered without navigation.
 			subname="last edited 3 weeks ago">
 			<NcAppSidebarTab name="Settings" id="settings-tab">
 				<template #icon>
-					<Cog :size="20" />
+					<IconCogOutline :size="20" />
 				</template>
 				Single tab content
 			</NcAppSidebarTab>
@@ -84,11 +84,11 @@ Single tab is rendered without navigation.
 	</div>
 </template>
 <script>
-import Cog from 'vue-material-design-icons/Cog.vue'
+import IconCogOutline from 'vue-material-design-icons/CogOutline.vue'
 
 export default {
 	components: {
-		Cog,
+		IconCogOutline,
 	},
 	data() {
 		return {
@@ -112,19 +112,19 @@ export default {
 			subname="last edited 3 weeks ago">
 			<NcAppSidebarTab v-if="showTabs[0]" name="Search" id="search-tab">
 				<template #icon>
-					<Magnify :size="20" />
+					<IconMagnify :size="20" />
 				</template>
 				Search tab content
 			</NcAppSidebarTab>
 			<NcAppSidebarTab v-if="showTabs[1]" name="Settings" id="settings-tab">
 				<template #icon>
-					<Cog :size="20" />
+					<IconCogOutline :size="20" />
 				</template>
 				Settings
 			</NcAppSidebarTab>
 			<NcAppSidebarTab v-if="showTabs[2]" name="Sharing" id="share-tab">
 				<template #icon>
-					<ShareVariant :size="20" />
+					<IconShareVariantOutline :size="20" />
 				</template>
 				Sharing tab content
 			</NcAppSidebarTab>
@@ -132,15 +132,15 @@ export default {
 	</div>
 </template>
 <script>
-import Magnify from 'vue-material-design-icons/Magnify.vue'
-import Cog from 'vue-material-design-icons/Cog.vue'
-import ShareVariant from 'vue-material-design-icons/ShareVariant.vue'
+import IconMagnify from 'vue-material-design-icons/Magnify.vue'
+import IconCogOutline from 'vue-material-design-icons/CogOutline.vue'
+import IconShareVariantOutline from 'vue-material-design-icons/ShareVariantOutline.vue'
 
 export default {
 	components: {
-		Magnify,
-		Cog,
-		ShareVariant,
+		IconMagnify,
+		IconCogOutline,
+		IconShareVariantOutline,
 	},
 	data() {
 		return {
@@ -160,34 +160,34 @@ export default {
 		subname="last edited 3 weeks ago">
 		<NcAppSidebarTab name="Search" id="search-tab" :order="3">
 			<template #icon>
-				<Magnify :size="20" />
+				<IconMagnify :size="20" />
 			</template>
 			Search tab content
 		</NcAppSidebarTab>
 		<NcAppSidebarTab name="Settings" id="settings-tab" :order="2">
 			<template #icon>
-				<Cog :size="20" />
+				<IconCogOutline :size="20" />
 			</template>
 			Settings tab content
 		</NcAppSidebarTab>
 		<NcAppSidebarTab name="Sharing" id="share-tab" :order="1">
 			<template #icon>
-				<ShareVariant :size="20" />
+				<IconShareVariantOutline :size="20" />
 			</template>
 			Sharing tab content
 		</NcAppSidebarTab>
 	</NcAppSidebar>
 </template>
 <script>
-import Magnify from 'vue-material-design-icons/Magnify.vue'
-import Cog from 'vue-material-design-icons/Cog.vue'
-import ShareVariant from 'vue-material-design-icons/ShareVariant.vue'
+import IconMagnify from 'vue-material-design-icons/Magnify.vue'
+import IconCogOutline from 'vue-material-design-icons/CogOutline.vue'
+import IconShareVariantOutline from 'vue-material-design-icons/ShareVariantOutline.vue'
 
 export default {
 	components: {
-		Magnify,
-		Cog,
-		ShareVariant,
+		IconMagnify,
+		IconCogOutline,
+		IconShareVariantOutline,
 	},
 }
 </script>
@@ -205,19 +205,19 @@ export default {
 			:active.sync="active">
 			<NcAppSidebarTab name="Search" id="search-tab">
 				<template #icon>
-					<Magnify :size="20" />
+					<IconMagnify :size="20" />
 				</template>
 				Search tab content
 			</NcAppSidebarTab>
 			<NcAppSidebarTab name="Settings" id="settings-tab">
 				<template #icon>
-					<Cog :size="20" />
+					<IconCogOutline :size="20" />
 				</template>
 				Settings
 			</NcAppSidebarTab>
 			<NcAppSidebarTab name="Sharing" id="share-tab">
 				<template #icon>
-					<ShareVariant :size="20" />
+					<IconShareVariantOutline :size="20" />
 				</template>
 				Sharing tab content
 			</NcAppSidebarTab>
@@ -225,15 +225,15 @@ export default {
 	</div>
 </template>
 <script>
-import Magnify from 'vue-material-design-icons/Magnify.vue'
-import Cog from 'vue-material-design-icons/Cog.vue'
-import ShareVariant from 'vue-material-design-icons/ShareVariant.vue'
+import IconMagnify from 'vue-material-design-icons/Magnify.vue'
+import IconCogOutline from 'vue-material-design-icons/CogOutline.vue'
+import IconShareVariantOutline from 'vue-material-design-icons/ShareVariantOutline.vue'
 
 export default {
 	components: {
-		Magnify,
-		Cog,
-		ShareVariant,
+		IconMagnify,
+		IconCogOutline,
+		IconShareVariantOutline,
 	},
 	data() {
 		return {
@@ -345,17 +345,17 @@ A working alternative would be using an icon together with an `aria-label`:
 			:empty="true">
 			<NcEmptyContent name="Content not found.">
 				<template #icon>
-					<Magnify :size="20" />
+					<IconMagnify :size="20" />
 				</template>
 			</NcEmptyContent>
 		</NcAppSidebar>
 	</template>
 	<script>
-	import Magnify from 'vue-material-design-icons/Magnify.vue'
+	import IconMagnify from 'vue-material-design-icons/Magnify.vue'
 
 	export default {
 		components: {
-			Magnify,
+			IconMagnify,
 		},
 	}
 	</script>
@@ -389,7 +389,7 @@ Note: the built-in toggle button is only available then NcAppSidebar is used in 
 			subname="last edited 3 weeks ago">
 			<NcAppSidebarTab name="Settings" id="settings-tab">
 				<template #icon>
-					<Cog :size="20" />
+					<IconCogOutline :size="20" />
 				</template>
 				Single tab content
 			</NcAppSidebarTab>
@@ -398,11 +398,11 @@ Note: the built-in toggle button is only available then NcAppSidebar is used in 
 </template>
 
 <script>
-import Cog from 'vue-material-design-icons/Cog.vue'
+import IconCogOutline from 'vue-material-design-icons/CogOutline.vue'
 
 export default {
 	components: {
-		Cog,
+		IconCogOutline,
 	},
 	data() {
 		return {
@@ -470,7 +470,7 @@ If the sidebar should be shown conditionally without any explicit toggle button,
 			@close="showSidebar = false">
 			<NcAppSidebarTab name="Settings" id="settings-tab">
 				<template #icon>
-					<Cog :size="20" />
+					<IconCogOutline :size="20" />
 				</template>
 				Single tab content
 			</NcAppSidebarTab>
@@ -479,11 +479,11 @@ If the sidebar should be shown conditionally without any explicit toggle button,
 </template>
 
 <script>
-import Cog from 'vue-material-design-icons/Cog.vue'
+import IconCogOutline from 'vue-material-design-icons/CogOutline.vue'
 
 export default {
 	components: {
-		Cog,
+		IconCogOutline,
 	},
 	data() {
 		return {

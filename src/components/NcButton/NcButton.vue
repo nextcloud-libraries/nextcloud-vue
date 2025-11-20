@@ -39,7 +39,7 @@ It can be used with one or multiple actions.
 			:size="size"
 			variant="tertiary-no-background">
 			<template v-if="style.indexOf('icon') !== -1" #icon>
-				<Video
+				<IconVideoOutline
 					:size="20" />
 			</template>
 			<template v-if="style.indexOf('text') !== -1">Example text</template>
@@ -50,7 +50,7 @@ It can be used with one or multiple actions.
 			:size="size"
 			variant="tertiary">
 			<template v-if="style.indexOf('icon') !== -1" #icon>
-				<Video
+				<IconVideoOutline
 					:size="20" />
 			</template>
 			<template v-if="style.indexOf('text') !== -1">Example text</template>
@@ -60,7 +60,7 @@ It can be used with one or multiple actions.
 			:disabled="disabled"
 			:size="size">
 			<template v-if="style.indexOf('icon') !== -1" #icon>
-				<Video
+				<IconVideoOutline
 					:size="20" />
 			</template>
 			<template v-if="style.indexOf('text') !== -1">Example text</template>
@@ -71,7 +71,7 @@ It can be used with one or multiple actions.
 			:size="size"
 			variant="primary">
 			<template v-if="style.indexOf('icon') !== -1" #icon>
-				<Video
+				<IconVideo
 					:size="20" />
 			</template>
 			<template v-if="style.indexOf('text') !== -1">Example text</template>
@@ -86,7 +86,7 @@ It can be used with one or multiple actions.
 		:wide="true"
 		text="Example text">
 		<template #icon>
-			<Video
+			<IconVideoOutline
 				:size="20" />
 		</template>
 		Example text
@@ -104,7 +104,7 @@ It can be used with one or multiple actions.
 			:size="size"
 			variant="success">
 			<template #icon>
-				<Video
+				<IconVideoOutline
 					:size="20" />
 			</template>
 			Example text
@@ -114,7 +114,7 @@ It can be used with one or multiple actions.
 			:size="size"
 			variant="warning">
 			<template #icon>
-				<Video
+				<IconVideoOutline
 					:size="20" />
 			</template>
 			Example text
@@ -124,7 +124,7 @@ It can be used with one or multiple actions.
 			:size="size"
 			variant="error">
 			<template #icon>
-				<Video
+				<IconVideoOutline
 					:size="20" />
 			</template>
 			Example text
@@ -135,11 +135,13 @@ It can be used with one or multiple actions.
 
 </template>
 <script>
-import Video from 'vue-material-design-icons/Video.vue'
+import IconVideo from 'vue-material-design-icons/Video.vue'
+import IconVideoOutline from 'vue-material-design-icons/VideoOutline.vue'
 
 export default {
 	components: {
-		Video,
+		IconVideo,
+		IconVideoOutline,
 	},
 	data() {
 		return {

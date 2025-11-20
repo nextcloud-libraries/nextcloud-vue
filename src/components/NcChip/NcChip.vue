@@ -9,26 +9,26 @@
 <template>
 	<div style="display: flex; gap: 8px; flex-wrap: wrap;">
 		<NcChip text="Notes.txt" />
-		<NcChip text="Files" :icon-path="mdiFile" />
-		<NcChip text="Color" :icon-path="mdiPalette" variant="tertiary" />
+		<NcChip text="Files" :icon-path="mdiFileOutline" />
+		<NcChip text="Color" :icon-path="mdiPaletteOutline" variant="tertiary" />
 		<NcChip text="Current time" :icon-path="mdiClock" no-close variant="primary" />
 		<NcChip text="Canceled" :icon-path="mdiCancel" variant="error" no-close />
-		<NcChip text="Open" :icon-path="mdiCircle" variant="success" no-close />
+		<NcChip text="Open" :icon-path="mdiCircleOutline" variant="success" no-close />
 		<NcChip text="Due tomorrow" :icon-path="mdiAlertCircleOutline" variant="warning" no-close />
 	</div>
 </template>
 <script>
-import { mdiClock, mdiFile, mdiPalette, mdiCancel, mdiCircle, mdiAlertCircleOutline } from '@mdi/js'
+import { mdiClock, mdiFileOutline, mdiPaletteOutline, mdiCancel, mdiCircleOutline, mdiAlertCircleOutline } from '@mdi/js'
 
 export default {
 	setup() {
 		return {
 			mdiAlertCircleOutline,
 			mdiCancel,
-			mdiCircle,
+			mdiCircleOutline,
 			mdiClock,
-			mdiFile,
-			mdiPalette,
+			mdiFileOutline,
+			mdiPaletteOutline,
 		}
 	}
 }
