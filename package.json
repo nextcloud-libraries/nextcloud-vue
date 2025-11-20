@@ -196,7 +196,7 @@
     "packageManager": [
       {
         "name": "npm",
-        "version": "^11.3.0"
+        "version": ">=11.3.0 <=11.6.2"
       }
     ],
     "runtime": {
