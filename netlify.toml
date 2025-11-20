@@ -3,4 +3,4 @@
 
 [build.environment]
 	NODE_VERSION = "24"
-	NPM_VERSION = "11"
+	NPM_VERSION = "11.6.2"
