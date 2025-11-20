@@ -441,6 +441,7 @@ import type { RouteLocationRaw } from 'vue-router'
 import { computed, inject } from 'vue'
 import { routerKey } from 'vue-router'
 import { isLegacy } from '../../utils/legacy.ts'
+import { useNcFormBox } from '../NcFormBox/useNcFormBox.ts'
 
 export type ButtonAlignment = 'start'
 	| 'start-reverse'
@@ -608,6 +609,8 @@ defineSlots<{
 	icon?: Slot
 }>()
 
+const { formBoxItemClass } = useNcFormBox()
+
 const hasVueRouterContext = inject(routerKey, null) !== null
 
 const tag = computed(() => {
@@ -697,6 +700,7 @@ function onClick(event: MouseEvent) {
 				'button-vue--reverse': isReverseAligned,
 				'button-vue--legacy': isLegacy,
 			},
+			formBoxItemClass,
 		]"
 		:aria-label
 		v-bind="attrs"
