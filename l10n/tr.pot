@@ -133,6 +133,12 @@ msgstr "Değişiklikleri onayla"
 msgid "Connect items to a project to make them easier to find"
 msgstr "Ögeleri daha kolay bulmak için bir proje ile ilişkilendirin"
 
+msgid "Copied"
+msgstr "Kopyalandı"
+
+msgid "Copy to clipboard"
+msgstr "Panoya kopyalandı"
+
 #. TRANSLATORS: Ctrl key on keyboard (Windows/Linux)
 msgid "Ctrl"
 msgstr "Ctrl"
