@@ -6,7 +6,7 @@
 // Markdown guide: https://www.markdownguide.org/basic-syntax/
 // Reference tests: https://github.com/nextcloud-deps/CDMarkdownKit/tree/master/CDMarkdownKitTests
 
-import { mount } from 'cypress/vue2'
+import { mount } from '@cypress/vue2'
 import NcRichText from '../../src/components/NcRichText/NcRichText.vue'
 
 describe('NcRichText', () => {
