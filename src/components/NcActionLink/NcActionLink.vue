@@ -22,7 +22,7 @@ This component is made to be used inside of the [NcActions](#NcActions) componen
 			<NcActionLink href="https://www.gnu.org/licenses/gpl.odt"
 				  download="AGPL License text.odt">
 				<template #icon>
-					<Download :size="20" />
+					<DownloadOutline :size="20" />
 				</template>
 				Download AGPL license text
 			</NcActionLink>
@@ -38,7 +38,7 @@ This component is made to be used inside of the [NcActions](#NcActions) componen
 			<NcActionLink href="https://www.gnu.org/licenses/gpl.odt"
 				  download="AGPL License text.odt">
 				<template #icon>
-					<Download :size="20" />
+					<DownloadOutline :size="20" />
 				</template>
 				Download AGPL license text
 			</NcActionLink>
@@ -46,12 +46,12 @@ This component is made to be used inside of the [NcActions](#NcActions) componen
 	</div>
 </template>
 <script>
-import Download from 'vue-material-design-icons/Download.vue'
+import DownloadOutline from 'vue-material-design-icons/DownloadOutline.vue'
 import OpenInNew from 'vue-material-design-icons/OpenInNew.vue'
 
 export default {
 	components: {
-		Download,
+		DownloadOutline,
 		OpenInNew,
 	},
 }
