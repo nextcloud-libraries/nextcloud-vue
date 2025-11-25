@@ -14,18 +14,18 @@ https://www.w3.org/TR/wai-aria-practices/examples/menu-button/menu-button-action
 	<NcActions>
 		<NcActionButton @click="actionDelete">
 			<template #icon>
-				<DeleteOutline :size="20" />
+				<IconDeleteOutline :size="20" />
 			</template>
 			Delete
 		</NcActionButton>
 	</NcActions>
 </template>
 <script>
-import DeleteOutline from 'vue-material-design-icons/DeleteOutline.vue'
+import IconDeleteOutline from 'vue-material-design-icons/DeleteOutline.vue'
 
 export default {
 	components: {
-		DeleteOutline,
+		IconDeleteOutline,
 	},
 	methods: {
 		actionDelete() {
@@ -43,34 +43,34 @@ export default {
 	<NcActions>
 		<NcActionButton @click="showMessage('Edit')">
 			<template #icon>
-				<PencilOutline :size="20" />
+				<IconPencilOutline :size="20" />
 			</template>
 			Edit
 		</NcActionButton>
 		<NcActionButton @click="showMessage('Delete')">
 			<template #icon>
-				<DeleteOutline :size="20" />
+				<IconDeleteOutline :size="20" />
 			</template>
 			Delete
 		</NcActionButton>
 		<NcActionLink href="https://nextcloud.com">
 			<template #icon>
-				<OpenInNew :size="20" />
+				<IconOpenInNew :size="20" />
 			</template>
 			Link
 		</NcActionLink>
 	</NcActions>
 </template>
 <script>
-import DeleteOutline from 'vue-material-design-icons/DeleteOutline.vue'
-import OpenInNew from 'vue-material-design-icons/OpenInNew.vue'
-import PencilOutline from 'vue-material-design-icons/PencilOutline.vue'
+import IconDeleteOutline from 'vue-material-design-icons/DeleteOutline.vue'
+import IconOpenInNew from 'vue-material-design-icons/OpenInNew.vue'
+import IconPencilOutline from 'vue-material-design-icons/PencilOutline.vue'
 
 export default {
 	components: {
-		DeleteOutline,
-		OpenInNew,
-		PencilOutline,
+		IconDeleteOutline,
+		IconOpenInNew,
+		IconPencilOutline,
 	},
 	methods: {
 		showMessage(msg) {
@@ -88,42 +88,42 @@ export default {
 	<NcActions :inline="2">
 		<NcActionButton @click="showMessage('Add')">
 			<template #icon>
-				<Plus :size="20" />
+				<IconPlus :size="20" />
 			</template>
 			Add
 		</NcActionButton>
 		<NcActionButton @click="showMessage('Edit')">
 			<template #icon>
-				<PencilOutline :size="20" />
+				<IconPencilOutline :size="20" />
 			</template>
 			Edit
 		</NcActionButton>
 		<NcActionButton @click="showMessage('Delete')">
 			<template #icon>
-				<DeleteOutline :size="20" />
+				<IconDeleteOutline :size="20" />
 			</template>
 			Delete
 		</NcActionButton>
 		<NcActionLink href="https://nextcloud.com">
 			<template #icon>
-				<OpenInNew :size="20" />
+				<IconOpenInNew :size="20" />
 			</template>
 			Link
 		</NcActionLink>
 	</NcActions>
 </template>
 <script>
-import Plus from 'vue-material-design-icons/Plus.vue'
-import DeleteOutline from 'vue-material-design-icons/DeleteOutline.vue'
-import OpenInNew from 'vue-material-design-icons/OpenInNew.vue'
-import PencilOutline from 'vue-material-design-icons/PencilOutline.vue'
+import IconPlus from 'vue-material-design-icons/Plus.vue'
+import IconDeleteOutline from 'vue-material-design-icons/DeleteOutline.vue'
+import IconOpenInNew from 'vue-material-design-icons/OpenInNew.vue'
+import IconPencilOutline from 'vue-material-design-icons/PencilOutline.vue'
 
 export default {
 	components: {
-		DeleteOutline,
-		OpenInNew,
-		PencilOutline,
-		Plus,
+		IconDeleteOutline,
+		IconOpenInNew,
+		IconPencilOutline,
+		IconPlus,
 	},
 	methods: {
 		showMessage(msg) {
@@ -141,41 +141,41 @@ export default {
 	<NcActions :force-name="true" :inline="2">
 		<NcActionButton @click="showMessage('Add')">
 			<template #icon>
-				<Plus :size="20" />
+				<IconPlus :size="20" />
 			</template>
 			Add
 		</NcActionButton>
 		<NcActionButton @click="showMessage('Edit')">
 			<template #icon>
-				<PencilOutline :size="20" />
+				<IconPencilOutline :size="20" />
 			</template>
 			Edit
 		</NcActionButton>
 		<NcActionButton @click="showMessage('Delete')">
 			<template #icon>
-				<DeleteOutline :size="20" />
+				<IconDeleteOutline :size="20" />
 			</template>
 			Delete
 		</NcActionButton>
 		<NcActionLink href="https://nextcloud.com">
 			<template #icon>
-				<OpenInNew :size="20" />
+				<IconOpenInNew :size="20" />
 			</template>
 			Link
 		</NcActionLink>
 	</NcActions>
 </template>
 <script>
-import Plus from 'vue-material-design-icons/Plus.vue'
-import DeleteOutline from 'vue-material-design-icons/DeleteOutline.vue'
-import OpenInNew from 'vue-material-design-icons/OpenInNew.vue'
-import PencilOutline from 'vue-material-design-icons/PencilOutline.vue'
+import IconPlus from 'vue-material-design-icons/Plus.vue'
+import IconDeleteOutline from 'vue-material-design-icons/DeleteOutline.vue'
+import IconOpenInNew from 'vue-material-design-icons/OpenInNew.vue'
+import IconPencilOutline from 'vue-material-design-icons/PencilOutline.vue'
 export default {
 	components: {
-		DeleteOutline,
-		OpenInNew,
-		PencilOutline,
-		Plus,
+		IconDeleteOutline,
+		IconOpenInNew,
+		IconPencilOutline,
+		IconPlus,
 	},
 	methods: {
 		showMessage(msg) {
@@ -192,38 +192,38 @@ export default {
 <template>
 	<NcActions>
 		<template #icon>
-			<PencilOutline :size="20" />
+			<IconPencilOutline :size="20" />
 		</template>
 		<NcActionButton @click="showMessage('Edit')">
 			<template #icon>
-				<PencilOutline :size="20" />
+				<IconPencilOutline :size="20" />
 			</template>
 			Edit
 		</NcActionButton>
 		<NcActionButton @click="showMessage('Delete')">
 			<template #icon>
-				<DeleteOutline :size="20" />
+				<IconDeleteOutline :size="20" />
 			</template>
 			Delete
 		</NcActionButton>
 		<NcActionLink href="https://nextcloud.com">
 			<template #icon>
-				<OpenInNew :size="20" />
+				<IconOpenInNew :size="20" />
 			</template>
 			Link
 		</NcActionLink>
 	</NcActions>
 </template>
 <script>
-import DeleteOutline from 'vue-material-design-icons/DeleteOutline.vue'
-import OpenInNew from 'vue-material-design-icons/OpenInNew.vue'
-import PencilOutline from 'vue-material-design-icons/PencilOutline.vue'
+import IconDeleteOutline from 'vue-material-design-icons/DeleteOutline.vue'
+import IconOpenInNew from 'vue-material-design-icons/OpenInNew.vue'
+import IconPencilOutline from 'vue-material-design-icons/PencilOutline.vue'
 
 export default {
 	components: {
-		DeleteOutline,
-		OpenInNew,
-		PencilOutline,
+		IconDeleteOutline,
+		IconOpenInNew,
+		IconPencilOutline,
 	},
 	methods: {
 		showMessage(msg) {
@@ -240,46 +240,46 @@ export default {
 <template>
 	<NcActions menu-name="Object management">
 		<template #icon>
-			<PencilOutline :size="20" />
+			<IconPencilOutline :size="20" />
 		</template>
 		<NcActionButton>
 			<template #icon>
-				<PencilOutline :size="20" />
+				<IconPencilOutline :size="20" />
 			</template>
 			Rename
 		</NcActionButton>
 		<NcActionButton>
 			<template #icon>
-				<DeleteOutline :size="20" />
+				<IconDeleteOutline :size="20" />
 			</template>
 			Delete
 		</NcActionButton>
 		<NcActionButton>
 			<template #icon>
-				<ArrowRight :size="20" />
+				<IconArrowRight :size="20" />
 			</template>
 			Validate
 		</NcActionButton>
 		<NcActionButton>
 			<template #icon>
-				<DownloadOutline :size="20" />
+				<IconDownloadOutline :size="20" />
 			</template>
 			Download
 		</NcActionButton>
 	</NcActions>
 </template>
 <script>
-import ArrowRight from 'vue-material-design-icons/ArrowRight.vue'
-import DeleteOutline from 'vue-material-design-icons/DeleteOutline.vue'
-import DownloadOutline from 'vue-material-design-icons/DownloadOutline.vue'
-import PencilOutline from 'vue-material-design-icons/PencilOutline.vue'
+import IconArrowRight from 'vue-material-design-icons/ArrowRight.vue'
+import IconDeleteOutline from 'vue-material-design-icons/DeleteOutline.vue'
+import IconDownloadOutline from 'vue-material-design-icons/DownloadOutline.vue'
+import IconPencilOutline from 'vue-material-design-icons/PencilOutline.vue'
 
 export default {
 	components: {
-		ArrowRight,
-		DeleteOutline,
-		DownloadOutline,
-		PencilOutline,
+		IconArrowRight,
+		IconDeleteOutline,
+		IconDownloadOutline,
+		IconPencilOutline,
 	},
 }
 </script>
@@ -291,26 +291,26 @@ export default {
 	<NcActions :primary="true">
 		<NcActionButton>
 			<template #icon>
-				<PencilOutline :size="20" />
+				<IconPencilOutline :size="20" />
 			</template>
 			Edit
 		</NcActionButton>
 		<NcActionButton>
 			<template #icon>
-				<DeleteOutline :size="20" />
+				<IconDeleteOutline :size="20" />
 			</template>
 			Delete
 		</NcActionButton>
 	</NcActions>
 </template>
 <script>
-import DeleteOutline from 'vue-material-design-icons/DeleteOutline.vue'
-import PencilOutline from 'vue-material-design-icons/PencilOutline.vue'
+import IconDeleteOutline from 'vue-material-design-icons/DeleteOutline.vue'
+import IconPencilOutline from 'vue-material-design-icons/PencilOutline.vue'
 
 export default {
 	components: {
-		DeleteOutline,
-		PencilOutline,
+		IconDeleteOutline,
+		IconPencilOutline,
 	},
 }
 </script>
@@ -320,48 +320,48 @@ export default {
 <template>
 	<NcActions :primary="true" menu-name="Object management">
 		<template #icon>
-			<Plus :size="20" />
+			<IconPlus :size="20" />
 		</template>
 		<NcActionButton>
 			<template #icon>
-				<PencilOutline :size="20" />
+				<IconPencilOutline :size="20" />
 			</template>
 			Rename
 		</NcActionButton>
 		<NcActionButton>
 			<template #icon>
-				<DeleteOutline :size="20" />
+				<IconDeleteOutline :size="20" />
 			</template>
 			Delete
 		</NcActionButton>
 		<NcActionButton>
 			<template #icon>
-				<ArrowRight :size="20" />
+				<IconArrowRight :size="20" />
 			</template>
 			Validate
 		</NcActionButton>
 		<NcActionButton>
 			<template #icon>
-				<DownloadOutline :size="20" />
+				<IconDownloadOutline :size="20" />
 			</template>
 			Download
 		</NcActionButton>
 	</NcActions>
 </template>
 <script>
-import ArrowRight from 'vue-material-design-icons/ArrowRight.vue'
-import DeleteOutline from 'vue-material-design-icons/DeleteOutline.vue'
-import DownloadOutline from 'vue-material-design-icons/DownloadOutline.vue'
-import PencilOutline from 'vue-material-design-icons/PencilOutline.vue'
-import Plus from 'vue-material-design-icons/Plus.vue'
+import IconArrowRight from 'vue-material-design-icons/ArrowRight.vue'
+import IconDeleteOutline from 'vue-material-design-icons/DeleteOutline.vue'
+import IconDownloadOutline from 'vue-material-design-icons/DownloadOutline.vue'
+import IconPencilOutline from 'vue-material-design-icons/PencilOutline.vue'
+import IconPlus from 'vue-material-design-icons/Plus.vue'
 
 export default {
 	components: {
-		ArrowRight,
-		DeleteOutline,
-		DownloadOutline,
-		PencilOutline,
-		Plus,
+		IconArrowRight,
+		IconDeleteOutline,
+		IconDownloadOutline,
+		IconPencilOutline,
+		IconPlus,
 	},
 }
 </script>
@@ -376,17 +376,17 @@ It can be used with one or multiple actions.
 		<NcButton @click="toggled = !toggled">Toggle multiple action</NcButton>
 		<NcActions>
 			<template #icon>
-				<DotsHorizontalCircleOutline :size="20" />
+				<IconDotsHorizontalCircleOutline :size="20" />
 			</template>
 			<NcActionButton>
 				<template #icon>
-					<MicrophoneOff :size="20" />
+					<IconMicrophoneOff :size="20" />
 				</template>
 				Mute
 			</NcActionButton>
 			<NcActionButton v-if="toggled">
 				<template #icon>
-					<DeleteOutline :size="20" />
+					<IconDeleteOutline :size="20" />
 				</template>
 				Delete
 			</NcActionButton>
@@ -394,15 +394,15 @@ It can be used with one or multiple actions.
 	</div>
 </template>
 <script>
-import DeleteOutline from 'vue-material-design-icons/DeleteOutline.vue'
-import DotsHorizontalCircleOutline from 'vue-material-design-icons/DotsHorizontalCircleOutline.vue'
-import MicrophoneOff from 'vue-material-design-icons/MicrophoneOff.vue'
+import IconDeleteOutline from 'vue-material-design-icons/DeleteOutline.vue'
+import IconDotsHorizontalCircleOutline from 'vue-material-design-icons/DotsHorizontalCircleOutline.vue'
+import IconMicrophoneOff from 'vue-material-design-icons/MicrophoneOff.vue'
 
 export default {
 	components: {
-		DeleteOutline,
-		DotsHorizontalCircleOutline,
-		MicrophoneOff,
+		IconDeleteOutline,
+		IconDotsHorizontalCircleOutline,
+		IconMicrophoneOff,
 	},
 	data() {
 		return {
@@ -419,26 +419,26 @@ export default {
 	<NcActions :primary="true">
 		<NcActionButton>
 			<template #icon>
-				<Magnify :size="20" />
+				<IconMagnify :size="20" />
 			</template>
 			Search
 		</NcActionButton>
 		<NcActionButton>
 			<template #icon>
-				<DeleteOutline :size="20" />
+				<IconDeleteOutline :size="20" />
 			</template>
 			Delete
 		</NcActionButton>
 	</NcActions>
 </template>
 <script>
-import DeleteOutline from 'vue-material-design-icons/DeleteOutline.vue'
-import Magnify from 'vue-material-design-icons/Magnify.vue'
+import IconDeleteOutline from 'vue-material-design-icons/DeleteOutline.vue'
+import IconMagnify from 'vue-material-design-icons/Magnify.vue'
 
 export default {
 	components: {
-		DeleteOutline,
-		Magnify,
+		IconDeleteOutline,
+		IconMagnify,
 	},
 }
 </script>
@@ -451,20 +451,20 @@ export default {
 	<div>
 		<NcActions :variant="current">
 			<template #icon>
-				<SelectColor :size="20" />
+				<IconSelectColor :size="20" />
 			</template>
 
 			<NcActionButton v-if="current" close-after-click @click="define()">
 				<template #icon>
-					<DeleteOutline :size="20" />
+					<IconDeleteOutline :size="20" />
 				</template>
 				Remove
 			</NcActionButton>
 
 			<NcActionButton v-for="row in variants" close-after-click @click="define(row)" :key="`type-icon--${row}`">
 				<template #icon>
-					<CheckboxMarkedCircleOutline v-if="row === current" :size="20" />
-					<SelectColor v-else :size="20" />
+					<IconCheckboxMarkedCircleOutline v-if="row === current" :size="20" />
+					<IconSelectColor v-else :size="20" />
 				</template>
 				{{ row }}
 			</NcActionButton>
@@ -473,15 +473,15 @@ export default {
 		<NcActions :variant="current" menu-name="Choose a variant">
 			<NcActionButton v-if="current" close-after-click @click="define()">
 				<template #icon>
-					<DeleteOutline :size="20" />
+					<IconDeleteOutline :size="20" />
 				</template>
 				Remove
 			</NcActionButton>
 
 			<NcActionButton v-for="row in variants" close-after-click @click="define(row)" :key="`type-text--${row}`">
 				<template #icon>
-					<CheckboxMarkedCircleOutline v-if="row === current" :size="20" />
-					<SelectColor v-else :size="20" />
+					<IconCheckboxMarkedCircleOutline v-if="row === current" :size="20" />
+					<IconSelectColor v-else :size="20" />
 				</template>
 				{{ row }}
 			</NcActionButton>
@@ -489,20 +489,20 @@ export default {
 
 		<NcActions :variant="current"  menu-name="Choose a variant">
 			<template #icon>
-				<SelectColor :size="20" />
+				<IconSelectColor :size="20" />
 			</template>
 
 			<NcActionButton v-if="current" close-after-click @click="define()">
 				<template #icon>
-					<DeleteOutline :size="20" />
+					<IconDeleteOutline :size="20" />
 				</template>
 				Remove
 			</NcActionButton>
 
 			<NcActionButton v-for="row in variants" close-after-click @click="define(row)" :key="`type-icon-text--${row}`">
 				<template #icon>
-					<CheckboxMarkedCircleOutline v-if="row === current" :size="20" />
-					<SelectColor v-else :size="20" />
+					<IconCheckboxMarkedCircleOutline v-if="row === current" :size="20" />
+					<IconSelectColor v-else :size="20" />
 				</template>
 				{{ row }}
 			</NcActionButton>
@@ -511,17 +511,17 @@ export default {
 </template>
 
 <script>
-import DeleteOutline from 'vue-material-design-icons/DeleteOutline.vue'
-import PaletteOutline from 'vue-material-design-icons/PaletteOutline.vue'
-import SelectColor from 'vue-material-design-icons/SelectColor.vue'
-import CheckboxMarkedCircleOutline from 'vue-material-design-icons/CheckboxMarkedCircleOutline.vue'
+import IconDeleteOutline from 'vue-material-design-icons/DeleteOutline.vue'
+import IconPaletteOutline from 'vue-material-design-icons/PaletteOutline.vue'
+import IconSelectColor from 'vue-material-design-icons/SelectColor.vue'
+import IconCheckboxMarkedCircleOutline from 'vue-material-design-icons/CheckboxMarkedCircleOutline.vue'
 
 export default {
 	components: {
-		DeleteOutline,
-		PaletteOutline,
-		SelectColor,
-		CheckboxMarkedCircleOutline,
+		IconDeleteOutline,
+		IconPaletteOutline,
+		IconSelectColor,
+		IconCheckboxMarkedCircleOutline,
 	},
 	data() {
 		return {
@@ -558,33 +558,33 @@ export default {
 				<NcActionButtonGroup>
 					<NcActionButton>
 						<template #icon>
-							<StarOutline :size="20" />
+							<IconStarOutline :size="20" />
 						</template>
 						Favorite
 					</NcActionButton>
 					<NcActionButton>
 						<template #icon>
-							<EmailUnread :size="20" />
+							<IconEmail :size="20" />
 						</template>
 						Unread
 					</NcActionButton>
 					<NcActionButton>
 						<template #icon>
-							<BookmarkOutline :size="20" />
+							<IconBookmarkOutline :size="20" />
 						</template>
 						Important
 					</NcActionButton>
 				</NcActionButtonGroup>
 				<NcActionText>
 					<template #icon>
-						<ClockOutlineIcon :size="20" />
+						<IconClockOutline :size="20" />
 					</template>
 					{{ new Date().toLocaleDateString('en-US') }}
 				</NcActionText>
 				<NcActionSeparator />
 				<NcActionButton>
 					<template #icon>
-						<AlertOctagonIcon :size="20" />
+						<IconAlertOctagonOutline :size="20" />
 					</template>
 					Mark as spam
 				</NcActionButton>
@@ -593,13 +593,13 @@ export default {
 				</NcActionCheckbox>
 				<NcActionButton>
 					<template #icon>
-						<OpenInNewIcon :size="20" />
+						<IconOpenInNew :size="20" />
 					</template>
 					Move thread
 				</NcActionButton>
 				<NcActionLink href="#">
 					<template #icon>
-						<DownloadIcon :size="20" />
+						<IconDownloadOutline :size="20" />
 					</template>
 					Download message
 				</NcActionLink>
@@ -608,41 +608,41 @@ export default {
 		<p>
 			<NcActions aria-label="Text settings" variant="tertiary">
 				<template #icon>
-					<FormatTitle :size="20" />
+					<IconFormatTitle :size="20" />
 				</template>
 				<NcActionButtonGroup name="Alignment">
 					<NcActionButton aria-label="Left">
 						<template #icon>
-							<FormatAlignLeft :size="20" />
+							<IconFormatAlignLeft :size="20" />
 						</template>
 					</NcActionButton>
 					<NcActionButton aria-label="Center">
 						<template #icon>
-							<FormatAlignCenter :size="20" />
+							<IconFormatAlignCenter :size="20" />
 						</template>
 					</NcActionButton>
 					<NcActionButton aria-label="Right">
 						<template #icon>
-							<FormatAlignRight :size="20" />
+							<IconFormatAlignRight :size="20" />
 						</template>
 					</NcActionButton>
 				</NcActionButtonGroup>
 				<NcActionSeparator />
 				<NcActionCheckbox :checked.sync="checked.bold" value="bold">
 					<template #icon>
-						<FormatBold :size="20" />
+						<IconFormatBold :size="20" />
 					</template>
 					Bold
 				</NcActionCheckbox>
 				<NcActionCheckbox :checked.sync="checked.italic" value="italic">
 					<template #icon>
-						<FormatItalic :size="20" />
+						<IconFormatItalic :size="20" />
 					</template>
 					Italic
 				</NcActionCheckbox>
 				<NcActionCheckbox :checked.sync="checked.underline" value="underline">
 					<template #icon>
-						<FormatUnderline :size="20" />
+						<IconFormatUnderline :size="20" />
 					</template>
 					Underline
 				</NcActionCheckbox>
@@ -684,12 +684,12 @@ export default {
 			<NcActions aria-label="Group management">
 				<NcActionInput trailing-button-label="Submit" label="Rename group">
 					<template #icon>
-						<PencilOutline :size="20" />
+						<IconPencilOutline :size="20" />
 					</template>
 				</NcActionInput>
 				<NcActionButton>
 					<template #icon>
-						<DeleteOutline :size="20" />
+						<IconDeleteOutline :size="20" />
 					</template>
 					Remove group
 				</NcActionButton>
@@ -713,52 +713,52 @@ export default {
 
 <script>
 // Common icons
-import PencilOutline from 'vue-material-design-icons/PencilOutline.vue'
-import DeleteOutline from 'vue-material-design-icons/DeleteOutline.vue'
+import IconPencilOutline from 'vue-material-design-icons/PencilOutline.vue'
+import IconDeleteOutline from 'vue-material-design-icons/DeleteOutline.vue'
 
 // Email icons
-import StarOutline from 'vue-material-design-icons/StarOutline.vue'
-import EmailUnread from 'vue-material-design-icons/Email.vue'
-import BookmarkOutline from 'vue-material-design-icons/BookmarkOutline.vue'
-import ClockOutlineIcon from 'vue-material-design-icons/ClockOutline.vue'
-import AlertOctagonIcon from 'vue-material-design-icons/AlertOctagonOutline.vue'
-import CheckIcon from 'vue-material-design-icons/Check.vue'
-import OpenInNewIcon from 'vue-material-design-icons/OpenInNew.vue'
-import DownloadIcon from 'vue-material-design-icons/DownloadOutline.vue'
+import IconStarOutline from 'vue-material-design-icons/StarOutline.vue'
+import IconEmail from 'vue-material-design-icons/Email.vue'
+import IconBookmarkOutline from 'vue-material-design-icons/BookmarkOutline.vue'
+import IconClockOutline from 'vue-material-design-icons/ClockOutline.vue'
+import IconAlertOctagonOutline from 'vue-material-design-icons/AlertOctagonOutline.vue'
+import IconCheck from 'vue-material-design-icons/Check.vue'
+import IconOpenInNew from 'vue-material-design-icons/OpenInNew.vue'
+import IconDownloadOutline from 'vue-material-design-icons/DownloadOutline.vue'
 
 // Formatting icons
-import FormatTitle from 'vue-material-design-icons/FormatTitle.vue'
-import FormatAlignLeft from 'vue-material-design-icons/FormatAlignLeft.vue'
-import FormatAlignCenter from 'vue-material-design-icons/FormatAlignCenter.vue'
-import FormatAlignRight from 'vue-material-design-icons/FormatAlignRight.vue'
-import FormatBold from 'vue-material-design-icons/FormatBold.vue'
-import FormatItalic from 'vue-material-design-icons/FormatItalic.vue'
-import FormatUnderline from 'vue-material-design-icons/FormatUnderline.vue'
+import IconFormatTitle from 'vue-material-design-icons/FormatTitle.vue'
+import IconFormatAlignLeft from 'vue-material-design-icons/FormatAlignLeft.vue'
+import IconFormatAlignCenter from 'vue-material-design-icons/FormatAlignCenter.vue'
+import IconFormatAlignRight from 'vue-material-design-icons/FormatAlignRight.vue'
+import IconFormatBold from 'vue-material-design-icons/FormatBold.vue'
+import IconFormatItalic from 'vue-material-design-icons/FormatItalic.vue'
+import IconFormatUnderline from 'vue-material-design-icons/FormatUnderline.vue'
 
 export default {
 	components: {
 		// Common icons
-		PencilOutline,
-		DeleteOutline,
+		IconPencilOutline,
+		IconDeleteOutline,
 
 		// Email icons
-		StarOutline,
-		EmailUnread,
-		BookmarkOutline,
-		ClockOutlineIcon,
-		AlertOctagonIcon,
-		CheckIcon,
-		OpenInNewIcon,
-		DownloadIcon,
+		IconStarOutline,
+		IconEmail,
+		IconBookmarkOutline,
+		IconClockOutline,
+		IconAlertOctagonOutline,
+		IconCheck,
+		IconOpenInNew,
+		IconDownloadOutline,
 
 		// Formatting icons
-		FormatTitle,
-		FormatAlignLeft,
-		FormatAlignCenter,
-		FormatAlignRight,
-		FormatBold,
-		FormatItalic,
-		FormatUnderline,
+		IconFormatTitle,
+		IconFormatAlignLeft,
+		IconFormatAlignCenter,
+		IconFormatAlignRight,
+		IconFormatBold,
+		IconFormatItalic,
+		IconFormatUnderline,
 	},
 
 	data() {
@@ -817,7 +817,7 @@ Although it works when actions are not direct children but wrapped in custom com
 				<NcActions>
 					<NcActionButton>
 						<template #icon>
-							<AccountOutline :size="20" />
+							<IconAccountOutline :size="20" />
 						</template>
 						Button
 					</NcActionButton>
@@ -837,7 +837,7 @@ Although it works when actions are not direct children but wrapped in custom com
 				<NcActions :inline="2">
 					<NcActionButton v-for="i in 4">
 						<template #icon>
-							<AccountOutline :size="20" />
+							<IconAccountOutline :size="20" />
 						</template>
 						Button
 					</NcActionButton>
@@ -857,7 +857,7 @@ Although it works when actions are not direct children but wrapped in custom com
 				<NcActions>
 					<NcActionButton v-for="i in 4">
 						<template #icon>
-							<AccountOutline :size="20" />
+							<IconAccountOutline :size="20" />
 						</template>
 						Button
 					</NcActionButton>
@@ -872,7 +872,7 @@ import Account from 'vue-material-design-icons/Account.vue'
 
 export default {
 	components: {
-		AccountOutline,
+		IconAccountOutline,
 
 		MyUserActionButton: {
 			name: 'MyUserActionButton',

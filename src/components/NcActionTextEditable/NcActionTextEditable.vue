@@ -12,27 +12,27 @@ All undocumented attributes will be bound to the textarea. e.g. `maxlength`
 	<NcActions>
 		<NcActionTextEditable v-model="text1">
 			<template #icon>
-				<PencilOutline :size="20" />
+				<IconPencilOutline :size="20" />
 			</template>
 		</NcActionTextEditable>
 		<NcActionTextEditable v-model="text2" disabled>
 			<template #icon>
-				<PencilOutline :size="20" />
+				<IconPencilOutline :size="20" />
 			</template>
 		</NcActionTextEditable>
 		<NcActionTextEditable name="text3" v-model="text3">
 			<template #icon>
-				<PencilOutline :size="20" />
+				<IconPencilOutline :size="20" />
 			</template>
 		</NcActionTextEditable>
 	</NcActions>
 </template>
 <script>
-import PencilOutline from 'vue-material-design-icons/PencilOutline'
+import IconPencilOutline from 'vue-material-design-icons/PencilOutline.vue'
 
 export default {
 	components: {
-		PencilOutline,
+		IconPencilOutline,
 	},
 
 	data() {
