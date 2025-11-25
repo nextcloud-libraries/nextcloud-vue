@@ -16,29 +16,29 @@ For the `NcSelect` component, all events will be passed through. Please see the 
 		<NcActions>
 			<NcActionInput v-model="text" :label-outside="true" label="Label outside the input">
 				<template #icon>
-					<Pencil :size="20" />
+					<PencilOutline :size="20" />
 				</template>
 			</NcActionInput>
 			<NcActionInput v-model="text" :show-trailing-button="false" label="Input without trailing button">
 				<template #icon>
-					<Pencil :size="20" />
+					<PencilOutline :size="20" />
 				</template>
 			</NcActionInput>
 			<NcActionInput v-model="text" label="Input with placeholder">
 				<template #icon>
-					<Pencil :size="20" />
+					<PencilOutline :size="20" />
 				</template>
 				This is the placeholder
 			</NcActionInput>
 			<NcActionInput type="password" v-model="text" label="Password with visible label">
 				<template #icon>
-					<Key :size="20" />
+					<KeyOutline :size="20" />
 				</template>
 				Password placeholder
 			</NcActionInput>
 			<NcActionInput type="password" v-model="text" :show-trailing-button="false">
 				<template #icon>
-					<Key :size="20" />
+					<KeyOutline :size="20" />
 				</template>
 				Password placeholder
 			</NcActionInput>
@@ -50,7 +50,7 @@ For the `NcSelect` component, all events will be passed through. Please see the 
 			</NcActionInput>
 			<NcActionInput label="Visible label" v-model="text">
 				<template #icon>
-					<Pencil :size="20" />
+					<PencilOutline :size="20" />
 				</template>
 				Input with visible label
 			</NcActionInput>
@@ -61,13 +61,13 @@ For the `NcSelect` component, all events will be passed through. Please see the 
 			</NcActionInput>
 			<NcActionInput type="date" isNativePicker v-model="date">
 				<template #icon>
-					<Pencil :size="20" />
+					<PencilOutline :size="20" />
 				</template>
 				Please pick a date
 			</NcActionInput>
 			<NcActionInput type="date" v-model="date">
 				<template #icon>
-					<Pencil :size="20" />
+					<PencilOutline :size="20" />
 				</template>
 				Please pick a date
 			</NcActionInput>
@@ -76,7 +76,7 @@ For the `NcSelect` component, all events will be passed through. Please see the 
 				input-label="Fruit selection"
 				:options="['Apple', 'Banana', 'Cherry']">
 				<template #icon>
-					<Pencil :size="20" />
+					<PencilOutline :size="20" />
 				</template>
 				Please pick a fruit
 			</NcActionInput>
@@ -89,7 +89,7 @@ For the `NcSelect` component, all events will be passed through. Please see the 
 				:multiple="true"
 				:options="[{label:'Apple', id: 'apple'}, {label:'Banana', id: 'banana'}, {label:'Cherry', id: 'cherry'}]">
 				<template #icon>
-					<Pencil :size="20" />
+					<PencilOutline :size="20" />
 				</template>
 				Please pick a fruit object
 			</NcActionInput>
@@ -98,15 +98,15 @@ For the `NcSelect` component, all events will be passed through. Please see the 
 	<script>
 	import Close from 'vue-material-design-icons/Close'
 	import Eyedropper from 'vue-material-design-icons/Eyedropper'
-	import Key from 'vue-material-design-icons/Key'
-	import Pencil from 'vue-material-design-icons/Pencil'
+	import KeyOutline from 'vue-material-design-icons/KeyOutline'
+	import PencilOutline from 'vue-material-design-icons/PencilOutline'
 
 	export default {
 		components: {
 			Close,
 			Eyedropper,
-			Key,
-			Pencil,
+			KeyOutline,
+			PencilOutline,
 		},
 		data() {
 			return {

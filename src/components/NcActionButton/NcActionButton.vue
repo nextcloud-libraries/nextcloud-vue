@@ -11,13 +11,13 @@ This component is made to be used inside of the [NcActions](#NcActions) componen
 		<NcActions>
 			<NcActionButton @click="showMessage('Delete')">
 				<template #icon>
-					<Delete :size="20" />
+					<DeleteOutline :size="20" />
 				</template>
 				Delete
 			</NcActionButton>
 			<NcActionButton :close-after-click="true" @click="showMessage('Delete and close menu')">
 				<template #icon>
-					<Delete :size="20" />
+					<DeleteOutline :size="20" />
 				</template>
 				Delete and close
 			</NcActionButton>
@@ -29,19 +29,19 @@ This component is made to be used inside of the [NcActions](#NcActions) componen
 			</NcActionButton>
 			<NcActionButton :disabled="true" @click="showMessage('Disabled')">
 				<template #icon>
-					<Delete :size="20" />
+					<DeleteOutline :size="20" />
 				</template>
 				Disabled button
 			</NcActionButton>
 		</NcActions>
 	</template>
 	<script>
-	import Delete from 'vue-material-design-icons/Delete.vue'
+	import DeleteOutline from 'vue-material-design-icons/DeleteOutline.vue'
 	import Plus from 'vue-material-design-icons/Plus.vue'
 
 	export default {
 		components: {
-			Delete,
+			DeleteOutline,
 			Plus,
 		},
 		methods: {
@@ -68,27 +68,27 @@ For the same purpose, but in a more compact way, `description` prop can be used.
 			</NcActionButton>
 			<NcActionButton name="Long button" @click="showMessage('Delete')">
 				<template #icon>
-					<Delete :size="20" />
+					<DeleteOutline :size="20" />
 				</template>
 				This button is associated with a very long text.\nAnd with new lines too.
 			</NcActionButton>
 			<NcActionButton description="Subline description for the button" @click="showMessage('Edit')">
 				<template #icon>
-					<Pencil :size="20" />
+					<PencilOutline :size="20" />
 				</template>
 				Edit
 			</NcActionButton>
 		</NcActions>
 	</template>
 	<script>
-	import Delete from 'vue-material-design-icons/Delete.vue'
-	import Pencil from 'vue-material-design-icons/Pencil.vue'
+	import DeleteOutline from 'vue-material-design-icons/DeleteOutline.vue'
+	import PencilOutline from 'vue-material-design-icons/PencilOutline.vue'
 	import Plus from 'vue-material-design-icons/Plus.vue'
 
 	export default {
 		components: {
-			Delete,
-			Pencil,
+			DeleteOutline,
+			PencilOutline,
 			Plus,
 		},
 		methods: {
@@ -138,26 +138,26 @@ You can also use a custom icon, for example from the vue-material-design-icons l
 	<NcActions>
 		<NcActionButton>
 			<template #icon>
-				<HandBackLeft :size="20" />
+				<HandBackLeftOutline :size="20" />
 			</template>
 			Raise left hand
 		</NcActionButton>
 		<NcActionButton>
 			<template #icon>
-				<HandBackRight :size="20" />
+				<HandBackRightOutline :size="20" />
 			</template>
 			Raise right hand
 		</NcActionButton>
 	</NcActions>
 </template>
 <script>
-import HandBackLeft from 'vue-material-design-icons/HandBackLeft.vue'
-import HandBackRight from 'vue-material-design-icons/HandBackRight.vue'
+import HandBackLeftOutline from 'vue-material-design-icons/HandBackLeftOutline.vue'
+import HandBackRightOutline from 'vue-material-design-icons/HandBackRightOutline.vue'
 
 export default {
 	components: {
-		HandBackLeft,
-		HandBackRight,
+		HandBackLeftOutline,
+		HandBackRightOutline,
 	},
 }
 </script>
@@ -203,7 +203,7 @@ This also allows tri-state behavior (`true`, `false`, `null`) in which case `ari
 	<NcActions>
 		<NcActionButton v-model="handRaised" type="checkbox">
 			<template #icon>
-				<HandBackLeft :size="20" />
+				<HandBackLeftOutline :size="20" />
 			</template>
 			Raise hand
 		</NcActionButton>
@@ -216,12 +216,12 @@ This also allows tri-state behavior (`true`, `false`, `null`) in which case `ari
 	</NcActions>
 </template>
 <script>
-import HandBackLeft from 'vue-material-design-icons/HandBackLeft.vue'
+import HandBackLeftOutline from 'vue-material-design-icons/HandBackLeftOutline.vue'
 import Fullscreen from 'vue-material-design-icons/Fullscreen.vue'
 
 export default {
 	components: {
-		HandBackLeft,
+		HandBackLeftOutline,
 		Fullscreen,
 	},
 	data() {
@@ -254,7 +254,7 @@ Note: unlike native radio buttons, `NcActionButton` are not grouped by name, so 
 			</NcActionButton>
 			<NcActionButton v-model="payment" type="radio" value="card">
 				<template #icon>
-					<CreditCard :size="20" />
+					<CreditCardOutline :size="20" />
 				</template>
 				Pay by card
 			</NcActionButton>
@@ -286,7 +286,7 @@ Note: unlike native radio buttons, `NcActionButton` are not grouped by name, so 
 </template>
 <script>
 import Cash from 'vue-material-design-icons/Cash.vue'
-import CreditCard from 'vue-material-design-icons/CreditCard.vue'
+import CreditCardOutline from 'vue-material-design-icons/CreditCardOutline.vue'
 import FormatAlignLeft from 'vue-material-design-icons/FormatAlignLeft.vue'
 import FormatAlignCenter from 'vue-material-design-icons/FormatAlignCenter.vue'
 import FormatAlignRight from 'vue-material-design-icons/FormatAlignRight.vue'
@@ -294,7 +294,7 @@ import FormatAlignRight from 'vue-material-design-icons/FormatAlignRight.vue'
 export default {
 	components: {
 		Cash,
-		CreditCard,
+		CreditCardOutline,
 		FormatAlignLeft,
 		FormatAlignCenter,
 		FormatAlignRight,
