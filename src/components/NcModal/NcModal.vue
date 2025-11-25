@@ -188,7 +188,7 @@ defineSlots<{
 }>()
 
 const modalId = createElementId()
-const maskElement = useTemplateRef<HTMLDivElement>('mask')
+const maskElement = useTemplateRef('mask')
 
 const internalShow = ref(true)
 const showModal = computed(() => props.show ?? internalShow.value)
@@ -232,7 +232,7 @@ onUnmounted(stopSwipe)
 useHotKey('Escape', () => {
 	const trapStack = getTrapStack()
 	// Only close the most recent focus trap modal
-	if (trapStack.length === 0 || trapStack[trapStack.length - 1] === focusTrap) {
+	if (trapStack.at(-1) === focusTrap) {
 		close()
 	}
 })
