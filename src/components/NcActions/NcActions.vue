@@ -14,18 +14,18 @@ https://www.w3.org/TR/wai-aria-practices/examples/menu-button/menu-button-action
 	<NcActions>
 		<NcActionButton @click="actionDelete">
 			<template #icon>
-				<IconDeleteOutline :size="20" />
+				<IconTrashCanOutline :size="20" />
 			</template>
 			Delete
 		</NcActionButton>
 	</NcActions>
 </template>
 <script>
-import IconDeleteOutline from 'vue-material-design-icons/DeleteOutline.vue'
+import IconTrashCanOutline from 'vue-material-design-icons/TrashCanOutline.vue'
 
 export default {
 	components: {
-		IconDeleteOutline,
+		IconTrashCanOutline,
 	},
 	methods: {
 		actionDelete() {
@@ -49,7 +49,7 @@ export default {
 		</NcActionButton>
 		<NcActionButton @click="showMessage('Delete')">
 			<template #icon>
-				<IconDeleteOutline :size="20" />
+				<IconTrashCanOutline :size="20" />
 			</template>
 			Delete
 		</NcActionButton>
@@ -62,13 +62,13 @@ export default {
 	</NcActions>
 </template>
 <script>
-import IconDeleteOutline from 'vue-material-design-icons/DeleteOutline.vue'
+import IconTrashCanOutline from 'vue-material-design-icons/TrashCanOutline.vue'
 import IconOpenInNew from 'vue-material-design-icons/OpenInNew.vue'
 import IconPencilOutline from 'vue-material-design-icons/PencilOutline.vue'
 
 export default {
 	components: {
-		IconDeleteOutline,
+		IconTrashCanOutline,
 		IconOpenInNew,
 		IconPencilOutline,
 	},
@@ -100,7 +100,7 @@ export default {
 		</NcActionButton>
 		<NcActionButton @click="showMessage('Delete')">
 			<template #icon>
-				<IconDeleteOutline :size="20" />
+				<IconTrashCanOutline :size="20" />
 			</template>
 			Delete
 		</NcActionButton>
@@ -114,13 +114,13 @@ export default {
 </template>
 <script>
 import IconPlus from 'vue-material-design-icons/Plus.vue'
-import IconDeleteOutline from 'vue-material-design-icons/DeleteOutline.vue'
+import IconTrashCanOutline from 'vue-material-design-icons/TrashCanOutline.vue'
 import IconOpenInNew from 'vue-material-design-icons/OpenInNew.vue'
 import IconPencilOutline from 'vue-material-design-icons/PencilOutline.vue'
 
 export default {
 	components: {
-		IconDeleteOutline,
+		IconTrashCanOutline,
 		IconOpenInNew,
 		IconPencilOutline,
 		IconPlus,
@@ -153,7 +153,7 @@ export default {
 		</NcActionButton>
 		<NcActionButton @click="showMessage('Delete')">
 			<template #icon>
-				<IconDeleteOutline :size="20" />
+				<IconTrashCanOutline :size="20" />
 			</template>
 			Delete
 		</NcActionButton>
@@ -167,12 +167,12 @@ export default {
 </template>
 <script>
 import IconPlus from 'vue-material-design-icons/Plus.vue'
-import IconDeleteOutline from 'vue-material-design-icons/DeleteOutline.vue'
+import IconTrashCanOutline from 'vue-material-design-icons/TrashCanOutline.vue'
 import IconOpenInNew from 'vue-material-design-icons/OpenInNew.vue'
 import IconPencilOutline from 'vue-material-design-icons/PencilOutline.vue'
 export default {
 	components: {
-		IconDeleteOutline,
+		IconTrashCanOutline,
 		IconOpenInNew,
 		IconPencilOutline,
 		IconPlus,
@@ -202,7 +202,7 @@ export default {
 		</NcActionButton>
 		<NcActionButton @click="showMessage('Delete')">
 			<template #icon>
-				<IconDeleteOutline :size="20" />
+				<IconTrashCanOutline :size="20" />
 			</template>
 			Delete
 		</NcActionButton>
@@ -215,13 +215,13 @@ export default {
 	</NcActions>
 </template>
 <script>
-import IconDeleteOutline from 'vue-material-design-icons/DeleteOutline.vue'
+import IconTrashCanOutline from 'vue-material-design-icons/TrashCanOutline.vue'
 import IconOpenInNew from 'vue-material-design-icons/OpenInNew.vue'
 import IconPencilOutline from 'vue-material-design-icons/PencilOutline.vue'
 
 export default {
 	components: {
-		IconDeleteOutline,
+		IconTrashCanOutline,
 		IconOpenInNew,
 		IconPencilOutline,
 	},
@@ -250,7 +250,7 @@ export default {
 		</NcActionButton>
 		<NcActionButton>
 			<template #icon>
-				<IconDeleteOutline :size="20" />
+				<IconTrashCanOutline :size="20" />
 			</template>
 			Delete
 		</NcActionButton>
@@ -262,7 +262,7 @@ export default {
 		</NcActionButton>
 		<NcActionButton>
 			<template #icon>
-				<IconDownloadOutline :size="20" />
+				<IconTrayArrowDown :size="20" />
 			</template>
 			Download
 		</NcActionButton>
@@ -270,15 +270,15 @@ export default {
 </template>
 <script>
 import IconArrowRight from 'vue-material-design-icons/ArrowRight.vue'
-import IconDeleteOutline from 'vue-material-design-icons/DeleteOutline.vue'
-import IconDownloadOutline from 'vue-material-design-icons/DownloadOutline.vue'
+import IconTrashCanOutline from 'vue-material-design-icons/TrashCanOutline.vue'
+import IconTrayArrowDown from 'vue-material-design-icons/TrayArrowDown.vue'
 import IconPencilOutline from 'vue-material-design-icons/PencilOutline.vue'
 
 export default {
 	components: {
 		IconArrowRight,
-		IconDeleteOutline,
-		IconDownloadOutline,
+		IconTrashCanOutline,
+		IconTrayArrowDown,
 		IconPencilOutline,
 	},
 }
@@ -297,19 +297,19 @@ export default {
 		</NcActionButton>
 		<NcActionButton>
 			<template #icon>
-				<IconDeleteOutline :size="20" />
+				<IconTrashCanOutline :size="20" />
 			</template>
 			Delete
 		</NcActionButton>
 	</NcActions>
 </template>
 <script>
-import IconDeleteOutline from 'vue-material-design-icons/DeleteOutline.vue'
+import IconTrashCanOutline from 'vue-material-design-icons/TrashCanOutline.vue'
 import IconPencilOutline from 'vue-material-design-icons/PencilOutline.vue'
 
 export default {
 	components: {
-		IconDeleteOutline,
+		IconTrashCanOutline,
 		IconPencilOutline,
 	},
 }
@@ -330,7 +330,7 @@ export default {
 		</NcActionButton>
 		<NcActionButton>
 			<template #icon>
-				<IconDeleteOutline :size="20" />
+				<IconTrashCanOutline :size="20" />
 			</template>
 			Delete
 		</NcActionButton>
@@ -342,7 +342,7 @@ export default {
 		</NcActionButton>
 		<NcActionButton>
 			<template #icon>
-				<IconDownloadOutline :size="20" />
+				<IconTrayArrowDown :size="20" />
 			</template>
 			Download
 		</NcActionButton>
@@ -350,16 +350,16 @@ export default {
 </template>
 <script>
 import IconArrowRight from 'vue-material-design-icons/ArrowRight.vue'
-import IconDeleteOutline from 'vue-material-design-icons/DeleteOutline.vue'
-import IconDownloadOutline from 'vue-material-design-icons/DownloadOutline.vue'
+import IconTrashCanOutline from 'vue-material-design-icons/TrashCanOutline.vue'
+import IconTrayArrowDown from 'vue-material-design-icons/TrayArrowDown.vue'
 import IconPencilOutline from 'vue-material-design-icons/PencilOutline.vue'
 import IconPlus from 'vue-material-design-icons/Plus.vue'
 
 export default {
 	components: {
 		IconArrowRight,
-		IconDeleteOutline,
-		IconDownloadOutline,
+		IconTrashCanOutline,
+		IconTrayArrowDown,
 		IconPencilOutline,
 		IconPlus,
 	},
@@ -386,7 +386,7 @@ It can be used with one or multiple actions.
 			</NcActionButton>
 			<NcActionButton v-if="toggled">
 				<template #icon>
-					<IconDeleteOutline :size="20" />
+					<IconTrashCanOutline :size="20" />
 				</template>
 				Delete
 			</NcActionButton>
@@ -394,13 +394,13 @@ It can be used with one or multiple actions.
 	</div>
 </template>
 <script>
-import IconDeleteOutline from 'vue-material-design-icons/DeleteOutline.vue'
+import IconTrashCanOutline from 'vue-material-design-icons/TrashCanOutline.vue'
 import IconDotsHorizontalCircleOutline from 'vue-material-design-icons/DotsHorizontalCircleOutline.vue'
 import IconMicrophoneOff from 'vue-material-design-icons/MicrophoneOff.vue'
 
 export default {
 	components: {
-		IconDeleteOutline,
+		IconTrashCanOutline,
 		IconDotsHorizontalCircleOutline,
 		IconMicrophoneOff,
 	},
@@ -425,19 +425,19 @@ export default {
 		</NcActionButton>
 		<NcActionButton>
 			<template #icon>
-				<IconDeleteOutline :size="20" />
+				<IconTrashCanOutline :size="20" />
 			</template>
 			Delete
 		</NcActionButton>
 	</NcActions>
 </template>
 <script>
-import IconDeleteOutline from 'vue-material-design-icons/DeleteOutline.vue'
+import IconTrashCanOutline from 'vue-material-design-icons/TrashCanOutline.vue'
 import IconMagnify from 'vue-material-design-icons/Magnify.vue'
 
 export default {
 	components: {
-		IconDeleteOutline,
+		IconTrashCanOutline,
 		IconMagnify,
 	},
 }
@@ -456,7 +456,7 @@ export default {
 
 			<NcActionButton v-if="current" close-after-click @click="define()">
 				<template #icon>
-					<IconDeleteOutline :size="20" />
+					<IconTrashCanOutline :size="20" />
 				</template>
 				Remove
 			</NcActionButton>
@@ -473,7 +473,7 @@ export default {
 		<NcActions :variant="current" menu-name="Choose a variant">
 			<NcActionButton v-if="current" close-after-click @click="define()">
 				<template #icon>
-					<IconDeleteOutline :size="20" />
+					<IconTrashCanOutline :size="20" />
 				</template>
 				Remove
 			</NcActionButton>
@@ -494,7 +494,7 @@ export default {
 
 			<NcActionButton v-if="current" close-after-click @click="define()">
 				<template #icon>
-					<IconDeleteOutline :size="20" />
+					<IconTrashCanOutline :size="20" />
 				</template>
 				Remove
 			</NcActionButton>
@@ -511,14 +511,14 @@ export default {
 </template>
 
 <script>
-import IconDeleteOutline from 'vue-material-design-icons/DeleteOutline.vue'
+import IconTrashCanOutline from 'vue-material-design-icons/TrashCanOutline.vue'
 import IconPaletteOutline from 'vue-material-design-icons/PaletteOutline.vue'
 import IconSelectColor from 'vue-material-design-icons/SelectColor.vue'
 import IconCheckboxMarkedCircleOutline from 'vue-material-design-icons/CheckboxMarkedCircleOutline.vue'
 
 export default {
 	components: {
-		IconDeleteOutline,
+		IconTrashCanOutline,
 		IconPaletteOutline,
 		IconSelectColor,
 		IconCheckboxMarkedCircleOutline,
@@ -599,7 +599,7 @@ export default {
 				</NcActionButton>
 				<NcActionLink href="#">
 					<template #icon>
-						<IconDownloadOutline :size="20" />
+						<IconTrayArrowDown :size="20" />
 					</template>
 					Download message
 				</NcActionLink>
@@ -689,7 +689,7 @@ export default {
 				</NcActionInput>
 				<NcActionButton>
 					<template #icon>
-						<IconDeleteOutline :size="20" />
+						<IconTrashCanOutline :size="20" />
 					</template>
 					Remove group
 				</NcActionButton>
@@ -714,7 +714,7 @@ export default {
 <script>
 // Common icons
 import IconPencilOutline from 'vue-material-design-icons/PencilOutline.vue'
-import IconDeleteOutline from 'vue-material-design-icons/DeleteOutline.vue'
+import IconTrashCanOutline from 'vue-material-design-icons/TrashCanOutline.vue'
 
 // Email icons
 import IconStarOutline from 'vue-material-design-icons/StarOutline.vue'
@@ -724,7 +724,7 @@ import IconClockOutline from 'vue-material-design-icons/ClockOutline.vue'
 import IconAlertOctagonOutline from 'vue-material-design-icons/AlertOctagonOutline.vue'
 import IconCheck from 'vue-material-design-icons/Check.vue'
 import IconOpenInNew from 'vue-material-design-icons/OpenInNew.vue'
-import IconDownloadOutline from 'vue-material-design-icons/DownloadOutline.vue'
+import IconTrayArrowDown from 'vue-material-design-icons/TrayArrowDown.vue'
 
 // Formatting icons
 import IconFormatTitle from 'vue-material-design-icons/FormatTitle.vue'
@@ -739,7 +739,7 @@ export default {
 	components: {
 		// Common icons
 		IconPencilOutline,
-		IconDeleteOutline,
+		IconTrashCanOutline,
 
 		// Email icons
 		IconStarOutline,
@@ -749,7 +749,7 @@ export default {
 		IconAlertOctagonOutline,
 		IconCheck,
 		IconOpenInNew,
-		IconDownloadOutline,
+		IconTrayArrowDown,
 
 		// Formatting icons
 		IconFormatTitle,
