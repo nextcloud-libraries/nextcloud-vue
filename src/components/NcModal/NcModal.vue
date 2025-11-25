@@ -21,10 +21,12 @@ import { createElementId } from '../../utils/createElementId.ts'
 import { getTrapStack } from '../../utils/focusTrap.ts'
 import { isRtl } from '../../utils/rtl.ts'
 
+defineOptions({ inheritAttrs: false })
+
 /**
  * The show-state of the modal.
  */
-const showModal = defineModel<boolean>('show')
+const showModal = defineModel<boolean>('show', { default: true })
 
 const props = withDefaults(defineProps<{
 	/**
@@ -399,6 +401,7 @@ function clearFocusTrap() {
 			@before-leave="clearFocusTrap">
 			<div
 				v-show="showModal"
+				v-bind="$attrs"
 				ref="mask"
 				class="modal-mask"
 				:class="{
