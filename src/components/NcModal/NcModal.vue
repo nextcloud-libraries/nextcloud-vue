@@ -21,6 +21,11 @@ import { createElementId } from '../../utils/createElementId.ts'
 import { getTrapStack } from '../../utils/focusTrap.ts'
 import { isRtl } from '../../utils/rtl.ts'
 
+/**
+ * The show-state of the modal.
+ */
+const showModal = defineModel<boolean>('show')
+
 const props = withDefaults(defineProps<{
 	/**
 	 * Name to be shown with the modal
@@ -121,11 +126,6 @@ const props = withDefaults(defineProps<{
 	inlineActions?: number
 
 	/**
-	 * The current open property of the modal
-	 */
-	show?: boolean | undefined
-
-	/**
 	 * Id of the element that labels the dialog (the name)
 	 * Not needed if the `name` prop is set, but if no name is set you need to provide the ID of an element to label the dialog for accessibility.
 	 */
@@ -143,7 +143,6 @@ const props = withDefaults(defineProps<{
 	slideshowDelay: 5000,
 	size: 'normal',
 	name: '',
-	show: undefined,
 	setReturnFocus: undefined,
 })
 
@@ -189,9 +188,6 @@ defineSlots<{
 
 const modalId = createElementId()
 const maskElement = useTemplateRef('mask')
-
-const internalShow = ref(true)
-const showModal = computed(() => props.show ?? internalShow.value)
 
 // Set up the focus trap
 let focusTrap: FocusTrap | undefined
@@ -334,9 +330,7 @@ function close(event?: Event) {
 		return
 	}
 
-	// We set internalShow here, so the out transitions properly run before the component is destroyed
-	internalShow.value = false
-	emit('update:show', false)
+	showModal.value = false
 
 	// delay closing for animation
 	setTimeout(() => {
