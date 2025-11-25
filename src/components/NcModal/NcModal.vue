@@ -991,10 +991,17 @@ export default {
 <template>
 	<div>
 		<NcButton @click="showModal">Show Modal</NcButton>
-		<NcModal v-if="modal" @close="closeModal" size="small" class="emoji-modal">
-			<NcEmojiPicker container=".emoji-modal" @select="select">
-				<NcButton>Select emoji {{ emoji }}</NcButton>
-			</NcEmojiPicker>
+		<NcModal
+			v-model:show="modal"
+			class="emoji-modal"
+			name="Modal with popover"
+			size="small"
+			@close="closeModal">
+			<div class="emoji-modal__content">
+				<NcEmojiPicker container=".emoji-modal" @select="select">
+					<NcButton>Select emoji {{ emoji }}</NcButton>
+				</NcEmojiPicker>
+			</div>
 		</NcModal>
 	</div>
 </template>
@@ -1020,9 +1027,10 @@ export default {
 }
 </script>
 <style scoped>
-.modal__content {
-	margin: 50px;
-	text-align: center;
+.emoji-modal__content {
+	display: flex;
+	justify-content: center;
+	margin: 20px 0px 100px;
 }
 </style>
 ```
