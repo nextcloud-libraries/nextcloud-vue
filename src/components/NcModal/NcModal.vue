@@ -11,7 +11,7 @@ import type { Slot } from 'vue'
 import { mdiChevronLeft, mdiChevronRight, mdiClose, mdiPause, mdiPlay } from '@mdi/js'
 import { useIntervalFn, useSwipe } from '@vueuse/core'
 import { createFocusTrap } from 'focus-trap'
-import { computed, nextTick, onMounted, onUnmounted, ref, toRef, useTemplateRef, warn as VueWarn, watch, watchEffect } from 'vue'
+import { computed, nextTick, onMounted, onUnmounted, ref, toRef, useTemplateRef, warn, watch, watchEffect } from 'vue'
 import NcActions from '../NcActions/NcActions.vue'
 import NcButton from '../NcButton/NcButton.vue'
 import NcIconSvgWrapper from '../NcIconSvgWrapper/NcIconSvgWrapper.vue'
@@ -245,7 +245,7 @@ useHotKey(['ArrowLeft', 'ArrowRight'], (event) => {
 		return
 	}
 
-	if (event.key === 'ArrowLeft' || isRtl) {
+	if ((event.key === 'ArrowLeft') !== isRtl) {
 		previousSlide()
 	} else {
 		nextSlide()
@@ -255,7 +255,7 @@ useHotKey(['ArrowLeft', 'ArrowRight'], (event) => {
 // for developers we should add a warning if used with invalid props combination
 onMounted(() => {
 	if (!props.name && !props.labelId) {
-		VueWarn('[NcModal] You need either set the name or set a `labelId` for accessibility.')
+		warn('[NcModal] You need either set the name or set a `labelId` for accessibility.')
 	}
 })
 
@@ -302,9 +302,13 @@ function previousSlide(event?: Event) {
  */
 function handleSwipe(e: TouchEvent, direction: UseSwipeDirection) {
 	if (!props.disableSwipe) {
-		if (direction === 'left' || (direction === 'right' && isRtl)) {
+		if (direction !== 'left' && direction !== 'right') {
+			return
+		}
+
+		if ((direction === 'left') !== isRtl) {
 			nextSlide(e)
-		} else if (direction === 'right') {
+		} else {
 			previousSlide(e)
 		}
 	}
