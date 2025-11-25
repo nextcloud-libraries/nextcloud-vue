@@ -11,13 +11,13 @@ This component is made to be used inside of the [NcActions](#NcActions) componen
 		<NcActions>
 			<NcActionButton @click="showMessage('Delete')">
 				<template #icon>
-					<IconDeleteOutline :size="20" />
+					<IconTrashCanOutline :size="20" />
 				</template>
 				Delete
 			</NcActionButton>
 			<NcActionButton :close-after-click="true" @click="showMessage('Delete and close menu')">
 				<template #icon>
-					<IconDeleteOutline :size="20" />
+					<IconTrashCanOutline :size="20" />
 				</template>
 				Delete and close
 			</NcActionButton>
@@ -29,19 +29,19 @@ This component is made to be used inside of the [NcActions](#NcActions) componen
 			</NcActionButton>
 			<NcActionButton :disabled="true" @click="showMessage('Disabled')">
 				<template #icon>
-					<IconDeleteOutline :size="20" />
+					<IconTrashCanOutline :size="20" />
 				</template>
 				Disabled button
 			</NcActionButton>
 		</NcActions>
 	</template>
 	<script>
-	import IconDeleteOutline from 'vue-material-design-icons/DeleteOutline.vue'
+	import IconTrashCanOutline from 'vue-material-design-icons/TrashCanOutline.vue'
 	import IconPlus from 'vue-material-design-icons/Plus.vue'
 
 	export default {
 		components: {
-			IconDeleteOutline,
+			IconTrashCanOutline,
 			IconPlus,
 		},
 		methods: {
@@ -68,7 +68,7 @@ For the same purpose, but in a more compact way, `description` prop can be used.
 			</NcActionButton>
 			<NcActionButton name="Long button" @click="showMessage('Delete')">
 				<template #icon>
-					<IconDeleteOutline :size="20" />
+					<IconTrashCanOutline :size="20" />
 				</template>
 				This button is associated with a very long text.\nAnd with new lines too.
 			</NcActionButton>
@@ -81,13 +81,13 @@ For the same purpose, but in a more compact way, `description` prop can be used.
 		</NcActions>
 	</template>
 	<script>
-	import IconDeleteOutline from 'vue-material-design-icons/DeleteOutline.vue'
+	import IconTrashCanOutline from 'vue-material-design-icons/TrashCanOutline.vue'
 	import IconPencilOutline from 'vue-material-design-icons/PencilOutline.vue'
 	import IconPlus from 'vue-material-design-icons/Plus.vue'
 
 	export default {
 		components: {
-			IconDeleteOutline,
+			IconTrashCanOutline,
 			IconPencilOutline,
 			IconPlus,
 		},
