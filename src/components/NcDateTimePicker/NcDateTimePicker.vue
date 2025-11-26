@@ -166,13 +166,7 @@ export default {
 </docs>
 
 <script setup lang="ts">
-import type {
-	// The accepted model value
-	ModelValue as LibraryModelValue,
-	// The emitted object for time picker
-	TimeObj as LibraryTimeObject,
-	VueDatePickerProps,
-} from '@vuepic/vue-datepicker'
+import type { Locale } from 'date-fns'
 
 import {
 	mdiCalendarBlank,
@@ -189,14 +183,20 @@ import {
 	getDayNamesMin,
 	getFirstDay,
 } from '@nextcloud/l10n'
-import VueDatePicker from '@vuepic/vue-datepicker'
+import { VueDatePicker } from '@vuepic/vue-datepicker'
 import { computed, useTemplateRef } from 'vue'
+import { ref } from 'vue'
+import { watch } from 'vue'
 import NcIconSvgWrapper from '../NcIconSvgWrapper/NcIconSvgWrapper.vue'
 import NcTimezonePicker from '../NcTimezonePicker/NcTimezonePicker.vue'
 import { t } from '../../l10n.ts'
+import { loadDateFnsLocale } from '../../utils/date-fns.ts'
 import NcButton from '../NcButton/index.ts'
 
-type LibraryFormatOptions = VueDatePickerProps['format']
+type VueDatePickerProps = InstanceType<typeof VueDatePicker>['$props']
+type LibraryFormatOptions = NonNullable<VueDatePickerProps['formats']>['input']
+type LibraryModelValue = VueDatePickerProps['modelValue']
+type LibraryTimeObject = NonNullable<VueDatePickerProps['minTime']>
 
 /**
  * The preselected IANA time zone ID for the time zone picker,
@@ -332,6 +332,11 @@ const emit = defineEmits<{
 const targetElement = useTemplateRef('target')
 const pickerInstance = useTemplateRef('picker')
 
+const localeObject = ref<Locale>()
+watch(() => props.locale, async () => {
+	localeObject.value = await loadDateFnsLocale(props.locale)
+}, { immediate: true })
+
 /**
  * Mapping of the model-value prop to the format expected by the library.
  * We do not directly pass the prop and adjust the interface to not transparently wrap the library.
@@ -359,7 +364,7 @@ const value = computed<LibraryModelValue>(() => {
 			hours: time.getHours(),
 			minutes: time.getMinutes(),
 			seconds: time.getSeconds(),
-		} satisfies LibraryTimeObject
+		}
 	} else if (props.type === 'time-range') {
 		const time = [props.modelValue].flat()
 		if (time.length !== 2) {
@@ -373,7 +378,7 @@ const value = computed<LibraryModelValue>(() => {
 			hours: date.getHours(),
 			minutes: date.getMinutes(),
 			seconds: date.getSeconds(),
-		} as LibraryTimeObject))
+		}))
 	} else if (props.type.endsWith('-range')) {
 		if (props.modelValue === undefined) {
 			const start = new Date()
@@ -446,7 +451,7 @@ const realFormat = computed<LibraryFormatOptions>(() => {
 	return undefined
 })
 
-const pickerType = computed(() => ({
+const pickerType = computed<Partial<VueDatePickerProps>>(() => ({
 	timePicker: props.type === 'time' || props.type === 'time-range',
 	yearPicker: props.type === 'year',
 	monthPicker: props.type === 'month',
@@ -457,10 +462,13 @@ const pickerType = computed(() => ({
 		// but its not covered by our component interface (props / events) documentation so just disabled for now.
 		partialRange: false,
 	},
-	enableTimePicker: !(props.type === 'date' || props.type === 'date-range'),
-	flow: props.type === 'datetime'
-		? ['calendar', 'time'] as ['calendar', 'time']
-		: undefined,
+	timeConfig: {
+		enableTimePicker: !(props.type === 'date' || props.type === 'date-range'),
+	},
+	...(props.type === 'datetime'
+		? { flow: { steps: ['calendar', 'time'] as ['calendar', 'time'] } }
+		: {}
+	),
 }))
 
 /**
@@ -469,7 +477,7 @@ const pickerType = computed(() => ({
  * @param value The value emitted from the underlying library
  */
 function onUpdateModelValue(value: LibraryModelValue): void {
-	if (value === null) {
+	if (value === null || value === undefined) {
 		return emit('update:modelValue', null)
 	}
 
@@ -508,18 +516,27 @@ function onUpdateModelValue(value: LibraryModelValue): void {
  */
 function formatLibraryTime(time: LibraryTimeObject): Date {
 	const date = new Date()
-	date.setHours(time.hours)
-	date.setMinutes(time.minutes)
-	date.setSeconds(time.seconds)
+	date.setHours(toNumber(time.hours))
+	date.setMinutes(toNumber(time.minutes))
+	if (time.seconds) {
+		date.setSeconds(toNumber(time.seconds))
+	}
 	return date
+
+	/**
+	 * @param value - The value to convert to a number
+	 */
+	function toNumber(value: string | number): number {
+		return typeof value === 'number' ? value : Number.parseInt(value)
+	}
 }
 
 // Localization
 
 const weekStart = getFirstDay()
 
+// day names must be ordered based on week start
 const dayNames = [...getDayNamesMin()]
-// see https://github.com/Vuepic/vue-datepicker/issues/1159
 for (let i = 0; i < weekStart; i++) {
 	dayNames.push(dayNames.shift() as string)
 }
@@ -594,24 +611,25 @@ function cancelSelection() {
 		<VueDatePicker
 			ref="picker"
 			:aria-labels
+			:action-row="{
+				selectBtnLabel: t('Pick'),
+				cancelBtnLabel: t('Cancel'),
+				nowBtnLabel: t('Now'),
+			}"
 			:auto-apply="!confirm"
 			class="vue-date-time-picker"
 			:class="{ 'vue-date-time-picker--clearable': clearable }"
-			:cancel-text="t('Cancel')"
-			:clearable
 			:day-names
 			:placeholder="placeholder ?? placeholderFallback"
-			:format="realFormat"
-			:locale
+			:formats="{ input: realFormat }"
+			:input-attrs="{ clearable }"
+			:locale="localeObject"
 			:minutes-increment="minuteStep"
 			:model-value="value"
-			:now-button-label="t('Now')"
-			:select-text="t('Pick')"
 			six-weeks="fair"
 			:teleport="appendToBody ? (targetElement || undefined) : false"
 			text-input
-			:week-num-name
-			:week-numbers="showWeekNumber ? { type: 'iso' } : undefined"
+			:week-numbers="showWeekNumber ? { type: 'iso', label: weekNumName } : undefined"
 			:week-start
 			v-bind="pickerType"
 			@update:model-value="onUpdateModelValue">
@@ -763,7 +781,7 @@ function cancelSelection() {
 
 	// make the bottom page toggle stand out better
 	:deep(.dp__btn.dp__button.dp__button_bottom) {
-		color: var(--color-primary-element-light);
+		color: var(--color-primary-element-light-text);
 		background-color: var(--color-primary-element-light);
 	}
 
