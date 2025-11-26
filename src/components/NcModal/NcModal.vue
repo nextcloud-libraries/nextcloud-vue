@@ -233,7 +233,7 @@ useHotKey('Escape', () => {
 	if (trapStack.at(-1) === focusTrap) {
 		close()
 	}
-})
+}, { allowInModal: true })
 
 useHotKey(['ArrowLeft', 'ArrowRight'], (event) => {
 	// Ignore arrow navigation, if there is a current focus outside the modal.
@@ -248,7 +248,7 @@ useHotKey(['ArrowLeft', 'ArrowRight'], (event) => {
 	} else {
 		nextSlide()
 	}
-})
+}, { allowInModal: true })
 
 // for developers we should add a warning if used with invalid props combination
 onMounted(() => {

@@ -19,6 +19,7 @@ describe('useHotKey', () => {
 
 	afterEach(() => {
 		mockCallback.mockReset()
+		document.body.innerHTML = ''
 	})
 
 	it('should register listener and invoke callback', () => {
@@ -37,6 +38,30 @@ describe('useHotKey', () => {
 		stop()
 
 		expect(mockCallback).not.toHaveBeenCalled()
+	})
+
+	it('should not invoke callback by default, when a modal is shown', () => {
+		const modal = document.createElement('div')
+		modal.className = 'modal-mask'
+		document.body.appendChild(modal)
+
+		const stop = useHotKey(true, mockCallback)
+		triggerKeyDown({ key: 'a', code: 'KeyA' })
+		stop()
+
+		expect(mockCallback).not.toHaveBeenCalled()
+	})
+
+	it('should invoke callback if modals are allowed, when a modal is shown', () => {
+		const modal = document.createElement('div')
+		modal.className = 'modal-mask'
+		document.body.appendChild(modal)
+
+		const stop = useHotKey(true, mockCallback, { allowInModal: true })
+		triggerKeyDown({ key: 'a', code: 'KeyA' })
+		stop()
+
+		expect(mockCallback).toHaveBeenCalled()
 	})
 
 	describe('options', () => {

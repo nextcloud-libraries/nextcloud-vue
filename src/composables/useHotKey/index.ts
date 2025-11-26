@@ -39,6 +39,14 @@ export interface UseHotKeyOptions {
 	 * Undefined will be handled the same as `false` and will only run the callback if the 'alt' key is NOT pressed.
 	 */
 	alt?: boolean
+
+	/**
+	 * Allow hot key to trigger even if a modal/dialog is open.
+	 * By default this is disabled to not trigger hot keys in apps if they are overlaid by a modal/dialog.
+	 *
+	 * @default false
+	 */
+	allowInModal?: boolean
 }
 
 /**
@@ -47,10 +55,11 @@ export interface UseHotKeyOptions {
  *
  * @todo Discuss if we should abort on another interactive elements (button, a, e.t.c)
  *
- * @param event keyboard event
+ * @param event - The keyboard event
+ * @param options - The hot key options
  * @return Whether it should prevent callback
  */
-function shouldIgnoreEvent(event: KeyboardEvent): boolean {
+function shouldIgnoreEvent(event: KeyboardEvent, options: UseHotKeyOptions): boolean {
 	if (!(event.target instanceof HTMLElement)
 		|| event.target instanceof HTMLInputElement
 		|| event.target instanceof HTMLTextAreaElement
@@ -58,6 +67,11 @@ function shouldIgnoreEvent(event: KeyboardEvent): boolean {
 		|| event.target.isContentEditable) {
 		return true
 	}
+
+	if (options.allowInModal) {
+		return false
+	}
+
 	/** Abort if any modal/dialog opened */
 	return document.getElementsByClassName('modal-mask').length !== 0
 }
@@ -90,7 +104,7 @@ function eventHandler(callback: KeyboardEventHandler, options: UseHotKeyOptions)
 			 * option should be explicitly defined
 			 */
 			return
-		} else if (shouldIgnoreEvent(event)) {
+		} else if (shouldIgnoreEvent(event, options)) {
 			// Keyboard shortcuts are disabled, because active element assumes input
 			return
 		}
