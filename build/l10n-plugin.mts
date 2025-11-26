@@ -46,13 +46,13 @@ export default (dir: string) => {
 			this.info('[l10n] Building translation chunks for components')
 			// This will split translations in a map like "using file(s)" => {locale, translations}
 			for (const locale in allTranslations) {
-				const currentTranslations = allTranslations[locale]
+				const currentTranslations = allTranslations[locale]!
 				for (const [usage, msgIds] of Object.entries(context)) {
 					if (!(usage in translations)) {
 						translations[usage] = []
 					}
 					// split the translations by usage in components
-					translations[usage].push({
+					translations[usage]!.push({
 						l: locale,
 						// We simply filter those translations whos msg IDs are used by current context
 						// eslint-disable-next-line @typescript-eslint/no-unused-vars
@@ -93,7 +93,7 @@ export default (dir: string) => {
 			const match = id.match(/\0l10nwrapper\?source=(.+)/)
 			if (match) {
 				// In case this is the wrapper module we provide a module that imports only the required translations and exports t and n functions
-				const source = decodeURIComponent(match[1])
+				const source = decodeURIComponent(match[1]!)
 				// filter function to check the paths (files that use this translation) includes the current source
 				const filterByPath = (paths: string) => paths.split(':').some((path) => source.endsWith(path))
 				// All translations that need to be imported for the current source

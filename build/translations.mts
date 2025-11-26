@@ -45,7 +45,7 @@ async function parseFile(fileName: string) {
 	const po = await readFile(fileName)
 
 	// compress translations
-	const json = Object.fromEntries(Object.entries(poParser.parse(po).translations[''])
+	const json = Object.fromEntries(Object.entries(poParser.parse(po).translations['']!)
 		// Remove the meta data entry
 		.filter(([key]) => key !== '')
 		// Remove not translated string to save space
