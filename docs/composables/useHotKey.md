@@ -22,13 +22,15 @@ where:
   See [KeyboardEvent.key Value column](https://developer.mozilla.org/en-US/docs/Web/API/UI_Events/Keyboard_event_key_values) for possible values
 - `callback`: a function to be called when the key is pressed. Before called, it will be checked whether keyboard shortcuts are disabled, or interactive element is currently focused, or whether options should be applied
 - `options`: options to be applied to the shortcut:
-  - `push`: whether the event should be triggered on both keydown and keyup (default: `false`)
-  - `prevent`: prevents the default action of the event (default: `false`)
-  - `stop`: prevents propagation of the event in the capturing and bubbling phases (default: `false`)
   - `ctrl`: whether the Ctrl key (Cmd key on MacOS) should be pressed (default: `false`)
   - `alt`: whether the Alt key should be pressed (default: `false`)
   - `shift`: whether the Shift key should be pressed (should be explicitly defined as `true`|`false` if needed)
+  - `push`: whether the event should be triggered on both keydown and keyup (default: `false`)
+  - `prevent`: prevents the default action of the event (default: `false`)
+  - `stop`: prevents propagation of the event in the capturing and bubbling phases (default: `false`)
   - `caseSensitive`: whether specific case should be listened, e.g. only 'd' and not 'D' (default: `false`)
+  - `allowInModal`: whether key strokes should also be handled while a modal is shown (default: `false`)
+    By default this is disabled to not trigger hotkeys of an app while the app is overlaid by a modal.
 - `stopCallback`: a callback to stop listening to the event
 
 ### Playground
