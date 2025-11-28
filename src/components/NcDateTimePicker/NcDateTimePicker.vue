@@ -656,7 +656,7 @@ function cancelSelection() {
 					v-model="timezoneId"
 					class="vue-date-time-picker__timezone"
 					:append-to-body="false"
-					:input-label="t('Timezone')" />
+					:input-label="t('Time zone')" />
 			</template>
 		</VueDatePicker>
 		<Teleport to="body" :disabled="!appendToBody">

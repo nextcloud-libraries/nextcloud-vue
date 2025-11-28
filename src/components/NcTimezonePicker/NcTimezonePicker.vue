@@ -100,7 +100,7 @@ function filterBy(option: ITimezone, label: string, search: string): boolean {
 <template>
 	<NcSelect
 		v-model="modelValue"
-		:aria-label-combobox="t('Search for timezone')"
+		:aria-label-combobox="t('Search for time zone')"
 		:clearable="false"
 		:filter-by
 		:multiple="false"
