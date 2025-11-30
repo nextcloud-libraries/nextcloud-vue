@@ -22,10 +22,10 @@ import type { VueClassType } from '../../utils/VueTypes.ts'
 
 import { mdiAlertCircleOutline, mdiCheck } from '@mdi/js'
 import { computed, useAttrs, useTemplateRef, warn } from 'vue'
+import NcButton from '../NcButton/NcButton.vue'
+import NcIconSvgWrapper from '../NcIconSvgWrapper/NcIconSvgWrapper.vue'
 import { createElementId } from '../../utils/createElementId.ts'
 import { isLegacy } from '../../utils/legacy.ts'
-import NcButton from '../NcButton/index.ts'
-import NcIconSvgWrapper from '../NcIconSvgWrapper/index.ts'
 
 export interface NcInputFieldProps {
 	/**
@@ -308,12 +308,11 @@ function handleInput(event: Event) {
 </template>
 
 <style lang="scss" scoped>
+@use '../../assets/input-border.scss' as border;
 
 .input-field {
 	--input-border-color: var(--color-border-maxcontrast);
 	--input-border-radius: var(--border-radius-element);
-	// Used e.g. if border width differs between focused and unfocused we need to compensate to prevent jumping
-	--input-border-width-offset: calc(var(--border-width-input-focused, 2px) - var(--border-width-input, 2px));
 	// The padding before the input can start (leading button or border)
 	--input-padding-start: var(--border-radius-element);
 	// The padding where the input has to end (trailing button or border)
@@ -347,23 +346,15 @@ function handleInput(event: Event) {
 
 	&__main-wrapper {
 		height: var(--default-clickable-area);
-		padding: var(--border-width-input, 2px);
+		padding: var(--border-width-input-focused, 2px);
 		position: relative;
-
-		&:not(:has([disabled])):has(input:focus),
-		&:not(:has([disabled])):has(input:active) {
-			padding: 0;
-		}
 	}
 
 	&__input {
+		@include border.inputBorder('.input-field--legacy', var(--input-border-color));
 		background-color: var(--color-main-background);
 		color: var(--color-main-text);
-		border: none;
 		border-radius: var(--input-border-radius);
-		box-shadow:
-			0 -1px var(--input-border-color),
-			0 0 0 1px color-mix(in srgb, var(--input-border-color), 65% transparent);
 
 		cursor: pointer;
 		-webkit-appearance: textfield !important;
@@ -373,11 +364,11 @@ function handleInput(event: Event) {
 		font-size: var(--default-font-size);
 		text-overflow: ellipsis;
 
+		padding-block: 0;
+		padding-inline: var(--input-padding-start) var(--input-padding-end);
 		height: 100% !important;
 		min-height: unset;
 		width: 100%;
-		padding-block: var(--input-border-width-offset);
-		padding-inline: calc(var(--input-padding-start) + var(--input-border-width-offset)) calc(var(--input-padding-end) + var(--input-border-width-offset));
 
 		&::placeholder {
 			color: var(--color-text-maxcontrast);
@@ -397,17 +388,9 @@ function handleInput(event: Event) {
 			display: none;
 		}
 
-		&:hover:not([disabled]) {
-			box-shadow: 0 0 0 1px var(--input-border-color);;
-		}
-
 		&:active:not([disabled]),
 		&:focus:not([disabled]) {
 			--input-border-color: var(--color-main-text);
-			// Reset padding offset when focused
-			--input-border-width-offset: 0px;
-			border: var(--border-width-input-focused, 2px) solid var(--input-border-color);
-			box-shadow: 0 0 0 2px var(--color-main-background) !important;
 		}
 
 		&:focus + .input-field__label,
@@ -541,24 +524,6 @@ function handleInput(event: Event) {
 		}
 		.input-field__helper-text-message__icon {
 			color: var(--color-border-success, var(--color-success));
-		}
-	}
-
-	&--legacy {
-		.input-field__input {
-			box-shadow: 0 0 0 1px var(--input-border-color) inset;
-		}
-
-		.input-field__main-wrapper:hover:not(:has([disabled])) {
-			padding: 0;
-
-			.input-field__input {
-				--input-border-color: var(--color-main-text);
-				// Reset padding offset when focused
-				--input-border-width-offset: 0px;
-				border: var(--border-width-input-focused, 2px) solid var(--input-border-color);
-				box-shadow: 0 0 0 2px var(--color-main-background) !important;
-			}
 		}
 	}
 }
