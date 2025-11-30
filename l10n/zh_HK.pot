@@ -65,6 +65,9 @@ msgstr "返回"
 msgid "Back to provider selection"
 msgstr "回到提供者選擇"
 
+msgid "Black"
+msgstr "黑色"
+
 #. TRANSLATORS: A color name for RGB(91, 100, 179)
 msgid "Blue Violet"
 msgstr "藍紫色"
@@ -129,6 +132,12 @@ msgstr "確認更改"
 
 msgid "Connect items to a project to make them easier to find"
 msgstr "將項目連接到方案中，以便更容易找到。"
+
+msgid "Copied"
+msgstr "已被複製"
+
+msgid "Copy to clipboard"
+msgstr "複製到剪貼簿"
 
 #. TRANSLATORS: Ctrl key on keyboard (Windows/Linux)
 msgid "Ctrl"
@@ -249,6 +258,9 @@ msgstr "隐藏的"
 msgid "Keyboard navigation help"
 msgstr "鍵盤導航幫助"
 
+msgid "Keyboard shortcuts"
+msgstr "鍵盤快速鍵"
+
 msgid "Light skin tone"
 msgstr "淺膚色"
 
@@ -302,6 +314,9 @@ msgstr "明年"
 
 msgid "Nextcloud blue"
 msgstr "Nextcloud 藍色"
+
+msgid "No color"
+msgstr "無顏色"
 
 msgid "No emoji found"
 msgstr "未找到表情符號"
@@ -557,6 +572,9 @@ msgstr "週"
 #. TRANSLATORS: A color name for RGB(211, 169, 103)
 msgid "Whiskey"
 msgstr "威士忌"
+
+msgid "White"
+msgstr "白色"
 
 msgid "Write a message …"
 msgstr "編寫訊息 …"
