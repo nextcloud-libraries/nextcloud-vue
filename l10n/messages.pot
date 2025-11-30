@@ -427,7 +427,7 @@ msgstr ""
 msgid "Search emoji"
 msgstr ""
 
-msgid "Search for timezone"
+msgid "Search for time zone"
 msgstr ""
 
 msgid "Search results"
@@ -528,7 +528,7 @@ msgstr ""
 msgid "Time picker"
 msgstr ""
 
-msgid "Timezone"
+msgid "Time zone"
 msgstr ""
 
 msgid "Toggle overlay"
