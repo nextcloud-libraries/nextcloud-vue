@@ -315,20 +315,20 @@ Just set the `pinned` prop.
 		class="app-navigation-entry-wrapper">
 		<component
 			:is="isRouterLink ? 'router-link' : 'NcVNodes'"
-			v-slot="{ href: routerLinkHref, navigate, isActive }"
+			v-slot="{ href: routerLinkHref, navigate, isActive, isExactActive }"
 			v-bind="{ ...isRouterLink && { custom: true, to } }">
 			<div
 				class="app-navigation-entry"
 				:class="{
 					'app-navigation-entry--editing': editingActive,
 					'app-navigation-entry--deleted': undo,
-					active: (to && isActive) || active,
+					active: isActiveLink(isActive, isExactActive),
 				}">
 				<!-- Icon and name -->
 				<a
 					v-if="!undo"
 					class="app-navigation-entry-link"
-					:aria-current="active || (to && isActive) ? 'page' : undefined"
+					:aria-current="isActiveLink(isActive, isExactActive) ? 'page' : undefined"
 					:aria-description="ariaDescription"
 					:aria-expanded="!!$slots.default ? opened.toString() : undefined"
 					:href="href || routerLinkHref || '#'"
@@ -346,7 +346,7 @@ Just set the `pinned` prop.
 						:class="{ [icon]: icon }">
 						<NcLoadingIcon v-if="loading" />
 						<!-- @slot Slot for the optional leading icon. This slots get the `active`-slot attribute passed which is based on the vue-routers active route or the `active` prop. -->
-						<slot v-else name="icon" :active="active || (to && isActive)" />
+						<slot v-else name="icon" :active="isActiveLink(isActive, isExactActive)" />
 					</div>
 					<span class="app-navigation-entry__name" :class="{ 'hidden-visually': editingActive }">
 						{{ name }}
@@ -356,7 +356,7 @@ Just set the `pinned` prop.
 							ref="editingInput"
 							v-model="editingValue"
 							:placeholder="editPlaceholder !== '' ? editPlaceholder : name"
-							:primary="(to && isActive) || active"
+							:primary="isActiveLink(isActive, isExactActive)"
 							@cancel="cancelEditing"
 							@confirm="handleEditingDone" />
 					</div>
@@ -391,7 +391,7 @@ Just set the `pinned` prop.
 						:open="menuOpen"
 						:force-menu="forceMenu"
 						:default-icon="menuIcon"
-						:variant="(to && isActive) || active ? 'tertiary-on-primary' : 'tertiary'"
+						:variant="isActiveLink(isActive, isExactActive) ? 'tertiary-on-primary' : 'tertiary'"
 						@update:open="onMenuToggle">
 						<template #icon>
 							<!-- @slot Slot for the custom menu icon -->
@@ -420,7 +420,7 @@ Just set the `pinned` prop.
 				</div>
 				<NcAppNavigationIconCollapsible
 					v-if="allowCollapse && !!$slots.default"
-					:active="(to && isActive) || active"
+					:active="isActiveLink(isActive, isExactActive)"
 					:open="opened"
 					@click.prevent.stop="toggleCollapse" />
 
@@ -469,6 +469,15 @@ export default {
 		 * When using vue-router and the `to` property this is set automatically.
 		 */
 		active: {
+			type: Boolean,
+			default: false,
+		},
+
+		/**
+		 * Pass in `true` if you want the matching behaviour to be
+		 * non-inclusive using vue-router's active state `isExactActive`
+		 */
+		exact: {
 			type: Boolean,
 			default: false,
 		},
@@ -813,6 +822,26 @@ export default {
 		isExternal(href) {
 			// Match any protocol
 			return href && href.match(/[a-z]+:\/\//i)
+		},
+
+		/**
+		 * Determines whether the navigation item should be marked as active.
+		 *
+		 * When using vue-router, the active state is derived from the router's `isActive`
+		 * or `isExactActive` values. The `exact` prop decides which state to use.
+		 *
+		 * When not using vue-router, the component falls back to the `active` prop
+		 * provided by the parent component.
+		 *
+		 * @param {boolean} isActive - The router-provided active state for partial matches
+		 * @param {boolean} isExactActive - The router-provided active state for exact matches
+		 * @return {boolean} True if the navigation item should be rendered in active state
+		 */
+		isActiveLink(isActive, isExactActive) {
+			if (this.to) {
+				return this.exact ? isExactActive : isActive
+			}
+			return this.active
 		},
 	},
 }
