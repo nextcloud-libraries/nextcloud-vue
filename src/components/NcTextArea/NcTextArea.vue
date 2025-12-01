@@ -163,13 +163,12 @@ defineExpose({
 	select,
 })
 
+const attrs = useAttrs()
+
 /**
  * The native text area component instance
  */
 const textAreaElement = useTemplateRef('input')
-
-// needs to be a getter as attrs are not reactive
-const attrs = useAttrs()
 
 const internalPlaceholder = computed(() => props.placeholder || (isLegacy ? props.label : undefined))
 
@@ -285,6 +284,8 @@ function select() {
 </template>
 
 <style lang="scss" scoped>
+@use '../../assets/input-border.scss' as border;
+
 .textarea {
 	--input-border-color: var(--color-border-maxcontrast);
 	--input-border-width-offset: calc(var(--border-width-input-focused, 2px) - var(--border-width-input, 2px));
@@ -301,19 +302,14 @@ function select() {
 
 	&__main-wrapper {
 		height: calc(var(--default-clickable-area) * 2);
-		padding: var(--border-width-input, 2px);
+		padding: var(--border-width-input-focused, 2px);
 		position: relative;
-
-		&:not(:has([disabled])):has(textarea:focus),
-		&:not(:has([disabled])):has(textarea:active) {
-			padding: 0;
-		}
 	}
 
 	&__input {
 		margin: 0;
-		padding-block: calc(10px + var(--input-border-width-offset));
-		padding-inline: calc(12px - var(--border-width-input, 2px) + var(--input-border-width-offset)); // align with label 8px margin label + 4px padding label - 2px border input
+		padding-block: var(--border-radius-element);
+		padding-inline: 10px; // align with label 8px margin label + 4px padding label - 2px border input
 		width: 100%;
 		font-size: var(--default-font-size);
 		text-overflow: ellipsis;
@@ -321,22 +317,12 @@ function select() {
 
 		background-color: var(--color-main-background);
 		color: var(--color-main-text);
-		// we use box shadow to create a border as this allows use to have a nice gradient
-		border: none;
-		border-radius: var(--border-radius-element);
-		box-shadow:
-			0 -1px var(--input-border-color),
-			0 0 0 1px color-mix(in srgb, var(--input-border-color), 65% transparent);
+		@include border.inputBorder('.textarea--legacy', var(--input-border-color));
 
-		&:hover:not([disabled]) {
-			box-shadow: 0 0 0 1px var(--input-border-color);
-		}
 		&:active:not([disabled]),
 		&:focus:not([disabled]) {
 			--input-border-width-offset: 0px;
 			--input-border-color: var(--color-main-text);
-			border: var(--border-width-input-focused, 2px) solid var(--input-border-color);
-			box-shadow: 0 0 0 2px var(--color-main-background) !important;
 		}
 
 		// Hide placeholder while not focussed -> show label instead (only if internal label is used)
@@ -418,25 +404,6 @@ function select() {
 
 		&--success {
 			color: var(--color-success-text);
-		}
-	}
-
-	// for Nextcloud 31 and older we need the old design with only one color
-	&--legacy {
-		.textarea__input {
-			box-shadow: 0 0 0 1px var(--input-border-color);
-		}
-
-		.textarea__main-wrapper:hover:not(:has([disabled])) {
-			padding: 0;
-
-			.textarea__input {
-				--input-border-color: var(--color-main-text);
-				// Reset padding offset when focused
-				--input-border-width-offset: 0px;
-				border: var(--border-width-input-focused, 2px) solid var(--input-border-color);
-				box-shadow: 0 0 0 2px var(--color-main-background) !important;
-			}
 		}
 	}
 }
