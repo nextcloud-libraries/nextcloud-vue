@@ -2,6 +2,9 @@ msgid ""
 msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 
+msgid "{applicationName} settings"
+msgstr ""
+
 msgid "{tag} (invisible)"
 msgstr ""
 

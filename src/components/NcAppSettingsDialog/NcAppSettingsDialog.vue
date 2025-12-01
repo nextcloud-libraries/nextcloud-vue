@@ -13,6 +13,7 @@ import NcVNodes from '../NcVNodes/NcVNodes.vue'
 import NcAppSettingsDialogVersion from './NcAppSettingsDialogVersion.vue'
 import { useIsMobile } from '../../composables/useIsMobile/index.ts'
 import { t } from '../../l10n.ts'
+import { getLocalizedAppName } from '../../utils/appName.ts'
 import { APP_SETTINGS_LEGACY_DESIGN_KEY, APP_SETTINGS_REGISTRATION_KEY } from './useAppSettingsDialog.ts'
 
 export interface IAppSettingsSection {
@@ -40,6 +41,8 @@ const props = withDefaults(defineProps<{
 
 	/**
 	 * Name of the settings
+	 *
+	 * @default '{applicationName} settings'
 	 */
 	name?: string
 
@@ -61,7 +64,7 @@ const props = withDefaults(defineProps<{
 	noVersion?: boolean
 }>(), {
 	container: 'body',
-	name: '',
+	name: t('{applicationName} settings', { applicationName: getLocalizedAppName() }),
 	additionalTrapElements: () => [],
 	legacy: false,
 	noVersion: false,
