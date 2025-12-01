@@ -150,7 +150,7 @@
     "remark-gfm": "^4.0.1",
     "resolve-url-loader": "^5.0.0",
     "sass": "^1.94.2",
-    "stylelint": "^16.26.0",
+    "stylelint": "^16.26.1",
     "ts-node": "^10.9.2",
     "typescript": "^5.9.3",
     "url-loader": "^4.1.1",
