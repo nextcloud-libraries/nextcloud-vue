@@ -73,6 +73,7 @@ import debounce from 'debounce'
 import { ref } from 'vue'
 import NcCollectionListItem from './NcCollectionListItem.vue'
 import { t } from '../../l10n.ts'
+import { logger } from '../../utils/logger.ts'
 import NcAvatar from '../NcAvatar/index.js'
 import NcSelect from '../NcSelect/index.js'
 import { searchService } from './service.ts'
@@ -246,7 +247,7 @@ export default {
 						this.setError(t('Failed to create a project'), e)
 					})
 				}).catch((e) => {
-					loger.error('[NcCollectionList] No resource selected', e)
+					logger.error('[NcCollectionList] No resource selected', e)
 				})
 			}
 
