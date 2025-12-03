@@ -3,9 +3,22 @@
  * SPDX-License-Identifier: AGPL-3.0-or-later
  */
 
+import type { MockedFunction } from 'vitest'
+
+import { getCanonicalLocale } from '@nextcloud/l10n'
 import { mount } from '@vue/test-utils'
-import { describe, expect, it } from 'vitest'
+import { afterEach, describe, expect, it, vi } from 'vitest'
 import NcCounterBubble from '../../../../src/components/NcCounterBubble/NcCounterBubble.vue'
+
+vi.mock('@nextcloud/l10n', async () => {
+	const actual = await vi.importActual('@nextcloud/l10n')
+	return {
+		...actual,
+		getCanonicalLocale: vi.fn(() => 'en'),
+	}
+})
+
+const getCanonicalLocaleMock = getCanonicalLocale as unknown as MockedFunction<typeof getCanonicalLocale>
 
 describe('NcCounterBubble', () => {
 	describe('displaying count', () => {
@@ -16,15 +29,40 @@ describe('NcCounterBubble', () => {
 	})
 
 	describe('with humanization', () => {
-		it('should render count 1020 with humanization as "1K"', () => {
-			const wrapper = mount(NcCounterBubble, { props: { count: 1042 } })
-			expect(wrapper.text()).toBe('1K')
-			expect(wrapper.attributes('title')).toBe('1042')
+		afterEach(() => {
+			vi.restoreAllMocks()
 		})
 
 		it('should render count 12 without humanization and without title', () => {
 			const wrapper = mount(NcCounterBubble, { propsData: { count: 12 } })
 			expect(wrapper.text()).toBe('12')
+			expect(wrapper.attributes('title')).toBeUndefined()
+		})
+
+		it('should render count 1042 with humanization as "1K" in English', () => {
+			const wrapper = mount(NcCounterBubble, { props: { count: 1042 } })
+			expect(wrapper.text()).toBe('1K')
+			expect(wrapper.attributes('title')).toBe('1042')
+		})
+
+		it('should render count 12000 with humanization as "1.2万" in Chinese', () => {
+			getCanonicalLocaleMock.mockReturnValue('zh')
+			const wrapper = mount(NcCounterBubble, { props: { count: 12_000 } })
+			expect(wrapper.text()).toBe('1.2万')
+			expect(wrapper.attributes('title')).toBe('12000')
+		})
+
+		it('should render count 1042 with humanization as "1K" in German', () => {
+			getCanonicalLocaleMock.mockReturnValue('de')
+			const wrapper = mount(NcCounterBubble, { props: { count: 1042 } })
+			expect(wrapper.text()).toBe('1K')
+			expect(wrapper.attributes('title')).toBe('1042')
+		})
+
+		it('should render count 1042 with humanization as "1042" in Italian', () => {
+			getCanonicalLocaleMock.mockReturnValue('it')
+			const wrapper = mount(NcCounterBubble, { props: { count: 1042 } })
+			expect(wrapper.text()).toBe('1042')
 			expect(wrapper.attributes('title')).toBeUndefined()
 		})
 
