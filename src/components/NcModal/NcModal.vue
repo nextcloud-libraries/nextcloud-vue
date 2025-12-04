@@ -16,6 +16,7 @@ import NcActions from '../NcActions/NcActions.vue'
 import NcButton from '../NcButton/NcButton.vue'
 import NcIconSvgWrapper from '../NcIconSvgWrapper/NcIconSvgWrapper.vue'
 import { useHotKey } from '../../composables/index.ts'
+import { useScopeIdAttrs } from '../../composables/useScopeIdAttrs.ts'
 import { t } from '../../l10n.ts'
 import { createElementId } from '../../utils/createElementId.ts'
 import { getTrapStack } from '../../utils/focusTrap.ts'
@@ -187,6 +188,8 @@ defineSlots<{
 	 */
 	default?: Slot
 }>()
+
+const scopeIdAttrs = useScopeIdAttrs()
 
 const modalId = createElementId()
 const maskElement = useTemplateRef('mask')
@@ -401,7 +404,7 @@ function clearFocusTrap() {
 			@before-leave="clearFocusTrap">
 			<div
 				v-show="showModal"
-				v-bind="$attrs"
+				v-bind="{ ...$attrs, ...scopeIdAttrs }"
 				ref="mask"
 				class="modal-mask"
 				:class="{
