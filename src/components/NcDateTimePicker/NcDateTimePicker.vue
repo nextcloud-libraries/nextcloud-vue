@@ -660,7 +660,7 @@ function cancelSelection() {
 			</template>
 		</VueDatePicker>
 		<Teleport to="body" :disabled="!appendToBody">
-			<div ref="target" class="vue-date-time-picker__wrapper" />
+			<div ref="target" class="vue-date-time-picker__wrapper vue-date-time-picker__wrapper--teleport" />
 		</Teleport>
 	</div>
 </template>
@@ -709,6 +709,11 @@ function cancelSelection() {
 	// plain @import does not work as this will scope all styles imported.
 	:deep() {
 		@include meta.load-css('@vuepic/vue-datepicker/dist/main.css');
+	}
+
+	// When rendered as part of NcActionInput, should be lifted above the NcPopover (99999 < 100000)
+	&.vue-date-time-picker__wrapper--teleport :deep(.dp--menu-wrapper) {
+		z-index: 100001;
 	}
 
 	.vue-date-time-picker--clearable :deep(.dp__input) {

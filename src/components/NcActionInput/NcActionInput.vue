@@ -167,6 +167,7 @@ For the `NcSelect` component, all events will be passed through. Please see the 
 							:type="datePickerType"
 							:input-class="['mx-input', { focusable: isFocusable }]"
 							class="action-input__datetimepicker"
+							append-to-body
 							v-bind="$attrs"
 							@update:model-value="onUpdateModelValue" />
 
