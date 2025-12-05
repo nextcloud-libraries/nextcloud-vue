@@ -59,7 +59,7 @@ For the `NcSelect` component, all events will be passed through. Please see the 
 					<Close :size="20" />
 				</template>
 			</NcActionInput>
-			<NcActionInput type="date" isNativePicker v-model="date">
+			<NcActionInput type="date" label="Native date picker" isNativePicker v-model="date">
 				<template #icon>
 					<Pencil :size="20" />
 				</template>
@@ -150,7 +150,7 @@ For the `NcSelect` component, all events will be passed through. Please see the 
 				@submit.prevent="onSubmit">
 				<div class="action-input__container">
 					<label
-						v-if="label && labelOutside"
+						v-if="label && labelOutside && !isNativePicker"
 						class="action-input__text-label"
 						:class="{ 'action-input__text-label--hidden': !labelOutside }"
 						:for="inputId">
@@ -176,6 +176,7 @@ For the `NcSelect` component, all events will be passed through. Please see the 
 							v-else-if="isNativePicker"
 							:id="idNativeDateTimePicker"
 							:value="model"
+							:label="label"
 							:type="nativeDatePickerType"
 							:input-class="{ focusable: isFocusable }"
 							class="action-input__datetimepicker"
