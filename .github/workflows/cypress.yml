@@ -30,7 +30,7 @@ jobs:
     name: Runner ${{ matrix.containers }}
 
     steps:
-      - uses: actions/checkout@v6.0.0
+      - uses: actions/checkout@v6.0.1
 
       - name: Read package.json node and npm engines version
         uses: skjnldsv/read-package-engines-version-actions@v3
