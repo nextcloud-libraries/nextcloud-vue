@@ -69,9 +69,9 @@ import type { RouteLocation } from 'vue-router'
 
 import { computed, warn, watch } from 'vue'
 import { RouterLink } from 'vue-router'
+import NcAvatar from '../NcAvatar/NcAvatar.vue'
+import NcPopover from '../NcPopover/NcPopover.vue'
 import NcUserBubbleDiv from './NcUserBubbleDiv.vue'
-import NcAvatar from '../NcAvatar/index.js'
-import NcPopover from '../NcPopover/index.js'
 
 /**
  * Default popover state. Requires the UserBubble
