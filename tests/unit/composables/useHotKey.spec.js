@@ -40,16 +40,31 @@ describe('useHotKey', () => {
 		expect(mockCallback).not.toHaveBeenCalled()
 	})
 
-	it('should not invoke callback by default, when a modal is shown', () => {
+	it('should not invoke callback by default, when a modal is shown', async () => {
 		const modal = document.createElement('div')
 		modal.className = 'modal-mask'
 		document.body.appendChild(modal)
+		modal.checkVisibility = () => true
 
 		const stop = useHotKey(true, mockCallback)
 		triggerKeyDown({ key: 'a', code: 'KeyA' })
 		stop()
 
 		expect(mockCallback).not.toHaveBeenCalled()
+	})
+
+	it('should invoke callback by default, when a modal present but hidden', async () => {
+		const modal = document.createElement('div')
+		modal.className = 'modal-mask'
+		modal.style.display = 'none'
+		document.body.appendChild(modal)
+		modal.checkVisibility = () => false
+
+		const stop = useHotKey(true, mockCallback)
+		triggerKeyDown({ key: 'a', code: 'KeyA' })
+		stop()
+
+		expect(mockCallback).toHaveBeenCalled()
 	})
 
 	it('should invoke callback if modals are allowed, when a modal is shown', () => {

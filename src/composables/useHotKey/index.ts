@@ -72,8 +72,11 @@ function shouldIgnoreEvent(event: KeyboardEvent, options: UseHotKeyOptions): boo
 		return false
 	}
 
-	/** Abort if any modal/dialog opened */
-	return document.getElementsByClassName('modal-mask').length !== 0
+	/** Abort if any modal/dialog is opened AND visible */
+	return Array.prototype.filter.call(
+		document.getElementsByClassName('modal-mask'),
+		(el) => el.checkVisibility(),
+	).length > 0
 }
 
 type KeyboardEventHandler = (event: KeyboardEvent) => void
