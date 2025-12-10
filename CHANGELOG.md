@@ -5,6 +5,26 @@
 
 # Changelog
 
+## [v8.35.0](https://github.com/nextcloud-libraries/nextcloud-vue/tree/v8.35.0) (2025-12-10)
+### 🚀 Enhancements
+* [stable8] feat(NcAppSettingsDialog): add version on the bottom and `noVersion` prop to disable it  [\#7850](https://github.com/nextcloud-libraries/nextcloud-vue/pull/7850) \([ShGKme](https://github.com/ShGKme)\)
+* [stable8] fix(NcActions): introduce 'size' prop [\#7852](https://github.com/nextcloud-libraries/nextcloud-vue/pull/7852) \([backportbot[bot]](https://github.com/backportbot[bot])\)
+* [stable8] feat(NcRichText): add 'Copy to clipboard' button for code blocks [\#7877](https://github.com/nextcloud-libraries/nextcloud-vue/pull/7877) \([backportbot[bot]](https://github.com/backportbot[bot])\)
+
+### 🐛 Fixed bugs
+* [stable8] fix(NcPasswordField): respect `checkPasswordStrength` for input validation [\#7846](https://github.com/nextcloud-libraries/nextcloud-vue/pull/7846) \([Antreesy](https://github.com/Antreesy)\)
+* [stable8] fix(NcFormBoxSwitch): use passive model to sync checkbox and icon [\#7851](https://github.com/nextcloud-libraries/nextcloud-vue/pull/7851) \([ShGKme](https://github.com/ShGKme)\)
+* [stable8] fix(NcFormBox): use default text color in items [\#7857](https://github.com/nextcloud-libraries/nextcloud-vue/pull/7857) \([backportbot[bot]](https://github.com/backportbot[bot])\)
+* [stable8] fix(NcAppSettingsDialog): set `box-sizing: border-box` for the new design [\#7888](https://github.com/nextcloud-libraries/nextcloud-vue/pull/7888) \([ShGKme](https://github.com/ShGKme)\)
+* [stable8] fix(NcAvatar): do no request avatar image if icon slot provided [\#7896](https://github.com/nextcloud-libraries/nextcloud-vue/pull/7896) \([backportbot[bot]](https://github.com/backportbot[bot])\)
+* [stable8] fix(useHotKey): do not prevent hotkeys on hidden modal/dialog [\#7971](https://github.com/nextcloud-libraries/nextcloud-vue/pull/7971) \([skjnldsv](https://github.com/skjnldsv)\)
+
+### Other Changes
+* [stable8] ci(dependabot): Use auto merge instead of deprecated option [\#7836](https://github.com/nextcloud-libraries/nextcloud-vue/pull/7836) \([backportbot[bot]](https://github.com/backportbot[bot])\)
+* [stable8] docs: Move to more outline icons [\#7861](https://github.com/nextcloud-libraries/nextcloud-vue/pull/7861) \([backportbot[bot]](https://github.com/backportbot[bot])\)
+* [stable8] docs: Move more icons to outline [\#7864](https://github.com/nextcloud-libraries/nextcloud-vue/pull/7864) \([backportbot[bot]](https://github.com/backportbot[bot])\)
+* [stable8] chore(package): npm >=11.3.0 <=11.6.2 [\#7899](https://github.com/nextcloud-libraries/nextcloud-vue/pull/7899) \([backportbot[bot]](https://github.com/backportbot[bot])\)
+
 ## [v8.34.0](https://github.com/nextcloud-libraries/nextcloud-vue/tree/v8.34.0) (2025-11-07)
 ### 📝 Notes
 * `NcAppSettingsSectionShortcuts` has been renamed to `NcAppSettingsShortcutsSection` but still available by the previous name
