@@ -325,6 +325,7 @@ export default {
 	<VueSelect
 		class="select"
 		:class="{
+			'select--legacy': isLegacy,
 			'select--no-wrap': noWrap,
 			'user-select': userSelect,
 		}"
@@ -414,12 +415,13 @@ import { VueSelect } from '@nextcloud/vue-select'
 import Vue from 'vue'
 import ChevronDown from 'vue-material-design-icons/ChevronDown.vue'
 import Close from 'vue-material-design-icons/Close.vue'
+import NcEllipsisedOption from '../NcEllipsisedOption/NcEllipsisedOption.vue'
+import NcListItemIcon from '../NcListItemIcon/NcListItemIcon.vue'
+import NcLoadingIcon from '../NcLoadingIcon/NcLoadingIcon.vue'
 import { useModelMigration } from '../../composables/useModelMigration.ts'
 import { t } from '../../l10n.js'
 import GenRandomId from '../../utils/GenRandomId.js'
-import NcEllipsisedOption from '../NcEllipsisedOption/index.js'
-import NcListItemIcon from '../NcListItemIcon/index.js'
-import NcLoadingIcon from '../NcLoadingIcon/index.js'
+import { isLegacy32 as isLegacy } from '../../utils/legacy.ts'
 
 import '@nextcloud/vue-select/dist/vue-select.css'
 
@@ -860,6 +862,7 @@ export default {
 		return {
 			avatarSize,
 			model,
+			isLegacy,
 		}
 	},
 
@@ -1013,6 +1016,8 @@ export default {
 </script>
 
 <style lang="scss">
+@use '../../assets/input-border.scss' as border;
+
 body {
 	/**
 	 * Set custom vue-select CSS variables.
@@ -1082,7 +1087,7 @@ body {
 
 .v-select.select {
 	/* Override default vue-select styles */
-	min-height: var(--default-clickable-area);
+	min-height: calc(var(--default-clickable-area) - 2 * var(--border-width-input));
 	min-width: 260px;
 	margin: 0 0 var(--default-grid-baseline);
 
@@ -1127,7 +1132,7 @@ body {
 	.vs__dropdown-toggle {
 		position: relative;
 		max-height: 100px;
-		padding: 0;
+		padding: var(--border-width-input);
 		overflow-y: auto;
 	}
 
@@ -1141,15 +1146,22 @@ body {
 	}
 
 	&.vs--open .vs__dropdown-toggle {
-		border-width: var(--border-width-input-focused);
-		outline: 2px solid var(--color-main-background);
 		border-color: var(--color-main-text);
 		border-bottom-color: transparent;
+		border-bottom-left-radius: 0;
+		border-bottom-right-radius: 0;
+		border-style: solid;
+		border-width: var(--border-width-input-focused);
+		outline: 2px solid var(--color-main-background);
+		padding: 0;
 	}
 
-	&:not(.vs--disabled, .vs--open) .vs__dropdown-toggle:hover {
-		outline: 2px solid var(--color-main-background);
-		border-color: var(--color-main-text);
+	&:not(.vs--disabled, .vs--open) {
+		.vs__dropdown-toggle:active,
+		.vs__dropdown-toggle:focus-within {
+			outline: 2px solid var(--color-main-background);
+			border-color: var(--color-main-text);
+		}
 	}
 
 	&.vs--disabled {
@@ -1216,6 +1228,10 @@ body {
 	}
 }
 
+.vs__dropdown-toggle {
+	@include border.inputLikeBorder('.select--legacy', var(--vs-border-color));
+}
+
 .vs__dropdown-menu {
 	border-width: var(--border-width-input-focused) !important;
 	border-color: var(--color-main-text) !important;
@@ -1228,7 +1244,7 @@ body {
 	padding: 4px !important;
 
 	&--floating {
-		/* Fallback styles overidden by programmatically set inline styles */
+		/* Fallback styles overridden by programmatically set inline styles */
 		width: max-content;
 		position: absolute;
 		top: 0;
