@@ -7,6 +7,24 @@
 
 All notable changes to this project will be documented in this file.
 
+## [v9.3.1](https://github.com/nextcloud-libraries/nextcloud-vue/tree/v9.3.1) (2025-12-10)
+[Full Changelog](https://github.com/nextcloud-libraries/nextcloud-vue/compare/v9.3.0...v9.3.1)
+
+### 🚀 Enhancements
+* feat(useHotKey): add new option `allowInModal` [\#7514](https://github.com/nextcloud-libraries/nextcloud-vue/pull/7514) \([susnux](https://github.com/susnux)\)
+
+### 🐛 Fixed bugs
+* fix(NcFormBox): add NcButton to supported components [\#7886](https://github.com/nextcloud-libraries/nextcloud-vue/pull/7886) \([ShGKme](https://github.com/ShGKme)\)
+* fix: adjust input border styles for dark theme and NcSelect [\#7501](https://github.com/nextcloud-libraries/nextcloud-vue/pull/7501) \([susnux](https://github.com/susnux)\)
+* fix: logger is not defined [\#7944](https://github.com/nextcloud-libraries/nextcloud-vue/pull/7944) \([ShGKme](https://github.com/ShGKme)\)
+* fix(useHotKey): do not prevent hotkeys on hidden modal/dialog [\#7966](https://github.com/nextcloud-libraries/nextcloud-vue/pull/7966) \([skjnldsv](https://github.com/skjnldsv)\)
+
+### Other Changes
+* refactor(NcModal): migrate to Typescript and script-setup [\#7514](https://github.com/nextcloud-libraries/nextcloud-vue/pull/7514) \([susnux](https://github.com/susnux)\)
+* chore(NcActions): outline icons in docs [\#7920](https://github.com/nextcloud-libraries/nextcloud-vue/pull/7920) \([ShGKme](https://github.com/ShGKme)\)
+* refactor: fix Typescript issues in build files [\#7922](https://github.com/nextcloud-libraries/nextcloud-vue/pull/7922) \([susnux](https://github.com/susnux)\)
+* refactor(useHotKey): modal visibility check using Array.from [\#7972](https://github.com/nextcloud-libraries/nextcloud-vue/pull/7972) \([skjnldsv](https://github.com/skjnldsv)\)
+
 ## [v9.3.0](https://github.com/nextcloud-libraries/nextcloud-vue/tree/v9.3.0) (2025-11-20)
 [Full Changelog](https://github.com/nextcloud-libraries/nextcloud-vue/compare/v9.2.0...v9.3.0)
 
