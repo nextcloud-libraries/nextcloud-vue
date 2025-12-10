@@ -40,7 +40,7 @@ describe('useHotKey', () => {
 		expect(mockCallback).not.toHaveBeenCalled()
 	})
 
-	it('should not invoke callback by default, when a modal is shown', async () => {
+	it('should not invoke callback by default, when a modal is shown', () => {
 		const modal = document.createElement('div')
 		modal.className = 'modal-mask'
 		document.body.appendChild(modal)
@@ -53,7 +53,7 @@ describe('useHotKey', () => {
 		expect(mockCallback).not.toHaveBeenCalled()
 	})
 
-	it('should invoke callback by default, when a modal present but hidden', async () => {
+	it('should invoke callback by default, when a modal present but hidden', () => {
 		const modal = document.createElement('div')
 		modal.className = 'modal-mask'
 		modal.style.display = 'none'
