@@ -58,8 +58,11 @@ function shouldIgnoreEvent(event: KeyboardEvent): boolean {
 		|| event.target.isContentEditable) {
 		return true
 	}
-	/** Abort if any modal/dialog opened */
-	return document.getElementsByClassName('modal-mask').length !== 0
+
+	/** Abort if any modal/dialog is opened AND visible */
+	return Array.from(document.getElementsByClassName('modal-mask'))
+		.filter((el) => el.checkVisibility())
+		.length > 0
 }
 
 type KeyboardEventHandler = (event: KeyboardEvent) => void
