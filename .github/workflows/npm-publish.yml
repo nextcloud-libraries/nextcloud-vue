@@ -13,8 +13,8 @@ on:
     types: [published]
 
 permissions:
+  id-token: write  # Required for OIDC
   contents: read
-  packages: write
 
 jobs:
   publish:
