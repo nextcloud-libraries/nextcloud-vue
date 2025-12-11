@@ -287,15 +287,14 @@ export default {
 	watch: {
 		shown(value) {
 			this.internalShown = value
+			if (this.internalShown) {
+				this.checkTriggerA11y()
+			}
 		},
 
 		internalShown(value) {
 			this.$emit('update:shown', value)
 		},
-	},
-
-	mounted() {
-		this.checkTriggerA11y()
 	},
 
 	beforeDestroy() {
