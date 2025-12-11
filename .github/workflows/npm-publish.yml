@@ -13,13 +13,14 @@ on:
     types: [published]
 
 permissions:
+  id-token: write  # Required for OIDC
   contents: read
-  packages: write
 
 jobs:
   publish:
     runs-on: ubuntu-latest
     name: Build and publish to npm
+    environment: npm-publish
 
     steps:
       - name: Checkout
@@ -35,6 +36,7 @@ jobs:
         uses: actions/setup-node@395ad3262231945c25e8478fd5baf05154b1d79f # v6.1.0
         with:
           node-version: ${{ steps.versions.outputs.node-version }}
+          registry-url: https://registry.npmjs.org
 
       - name: Set up npm
         run: npm i -g 'npm@${{ steps.versions.outputs.package-manager-version }}'
@@ -54,7 +56,7 @@ jobs:
         env:
           CYPRESS_INSTALL_BINARY: 0
         run: |
-          npm ci
+          npm ci --ignore-scripts
           npm run build --if-present
 
       - name: Fetch latest tag
@@ -73,8 +75,6 @@ jobs:
 
       - name: Publish
         run: |
-          npm config set //registry.npmjs.org/:_authToken=$NODE_AUTH_TOKEN
           npm publish --tag $RELEASE_GROUP
         env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
           RELEASE_GROUP: ${{ (contains(github.ref, 'rc') || contains(github.ref, 'beta') || contains(github.ref, 'alpha')) && 'next' || ((steps.latest-tag.outputs.LATEST_TAG != github.event.release.tag_name) && 'stable' || 'latest') }}
