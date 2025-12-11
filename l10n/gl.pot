@@ -440,7 +440,7 @@ msgstr "Buscar…"
 msgid "Search emoji"
 msgstr "Buscar «emoji»"
 
-msgid "Search for timezone"
+msgid "Search for time zone"
 msgstr "Buscar por fuso horario"
 
 msgid "Search results"
@@ -542,7 +542,7 @@ msgstr "Tab"
 msgid "Time picker"
 msgstr "Selector de hora"
 
-msgid "Timezone"
+msgid "Time zone"
 msgstr "Fuso horario"
 
 msgid "Toggle overlay"
