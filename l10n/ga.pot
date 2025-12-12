@@ -444,7 +444,7 @@ msgstr "Cuardaigh …"
 msgid "Search emoji"
 msgstr "Cuardaigh emoji"
 
-msgid "Search for timezone"
+msgid "Search for time zone"
 msgstr "Cuardaigh crios ama"
 
 msgid "Search results"
@@ -546,7 +546,7 @@ msgstr "Táb"
 msgid "Time picker"
 msgstr "Roghnóir ama"
 
-msgid "Timezone"
+msgid "Time zone"
 msgstr "Crios ama"
 
 msgid "Toggle overlay"
