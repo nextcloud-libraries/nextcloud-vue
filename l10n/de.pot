@@ -2,13 +2,13 @@
 # Translators:
 # Martin Wilichowski, 2025
 # Ferdinand Thiessen, 2025
-# Mario Siegmann <mario_siegmann@web.de>, 2025
 # Joas Schilling, 2025
 # Mark Ziegler <mark.ziegler@rakekniven.de>, 2025
+# Mario Siegmann <mario_siegmann@web.de>, 2025
 # 
 msgid ""
 msgstr ""
-"Last-Translator: Mark Ziegler <mark.ziegler@rakekniven.de>, 2025\n"
+"Last-Translator: Mario Siegmann <mario_siegmann@web.de>, 2025\n"
 "Language-Team: German (https://app.transifex.com/nextcloud/teams/64236/de/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Language: de\n"
@@ -445,7 +445,7 @@ msgstr "Suche …"
 msgid "Search emoji"
 msgstr "Emoji suchen"
 
-msgid "Search for timezone"
+msgid "Search for time zone"
 msgstr "Nach Zeitzone suchen"
 
 msgid "Search results"
@@ -547,7 +547,7 @@ msgstr "Tab"
 msgid "Time picker"
 msgstr "Zeitauswahl"
 
-msgid "Timezone"
+msgid "Time zone"
 msgstr "Zeitzone"
 
 msgid "Toggle overlay"
