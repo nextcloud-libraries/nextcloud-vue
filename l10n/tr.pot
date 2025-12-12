@@ -440,7 +440,7 @@ msgstr "Ara…"
 msgid "Search emoji"
 msgstr "Emoji ara"
 
-msgid "Search for timezone"
+msgid "Search for time zone"
 msgstr "Saat dilimi ara"
 
 msgid "Search results"
@@ -542,7 +542,7 @@ msgstr "Tab"
 msgid "Time picker"
 msgstr "Saat seçici"
 
-msgid "Timezone"
+msgid "Time zone"
 msgstr "Saat dilimi"
 
 msgid "Toggle overlay"
