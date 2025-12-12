@@ -440,7 +440,7 @@ msgstr "Otsi …"
 msgid "Search emoji"
 msgstr "Otsi emojit"
 
-msgid "Search for timezone"
+msgid "Search for time zone"
 msgstr "Otsi ajavööndit"
 
 msgid "Search results"
@@ -542,7 +542,7 @@ msgstr "Tabulaator"
 msgid "Time picker"
 msgstr "Ajavalija"
 
-msgid "Timezone"
+msgid "Time zone"
 msgstr "Ajavöönd"
 
 msgid "Toggle overlay"
