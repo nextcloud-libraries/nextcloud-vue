@@ -163,6 +163,66 @@ export default {
 }
 </script>
 ```
+
+### Restricting to a specific time range
+
+You can optionally restring the selectable time range, for example from 08:00 on Monday to 20:00 on Sunday.
+
+```vue
+<template>
+	<div>
+		<NcDateTimePicker
+			v-model="selected"
+			type="datetime"
+			:min="min"
+			:max="max" />
+		<p>Selected: {{ selected }}</p>
+	</div>
+</template>
+<script>
+export default {
+	data() {
+		const now = new Date()
+		const day = now.getDay()
+		const daysSinceMonday = (day + 6) % 7
+
+		const startOfWeek = new Date(now)
+		startOfWeek.setDate(now.getDate() - daysSinceMonday)
+		startOfWeek.setHours(8, 0, 0, 0)
+
+		const endOfWeek = new Date(startOfWeek)
+		endOfWeek.setDate(startOfWeek.getDate() + 6)
+		endOfWeek.setHours(20, 0, 0, 0)
+
+		return {
+			selected: null,
+			min: startOfWeek,
+			max: endOfWeek,
+		}
+	},
+}
+</script>
+```
+
+### Inline calendar
+
+Renders the calendar inline (without the text input) inside your parent component.
+
+```vue
+<template>
+	<div>
+		<NcDateTimePicker v-model="date" inline />
+		<p>Selected: {{ date }}</p>
+	</div>
+</template>
+<script>
+export default {
+	data() {
+		return { date: new Date() }
+	},
+}
+</script>
+```
 </docs>
 
 <script setup lang="ts">
@@ -260,6 +320,16 @@ const props = withDefaults(defineProps<{
 	locale?: string
 
 	/**
+	 * The maximum date that can be selected.
+	 */
+	max?: Date
+
+	/**
+	 * The minimum date that can be selected.
+	 */
+	min?: Date
+
+	/**
 	 * Default increment step for minutes in the time picker.
 	 *
 	 * @default 10
@@ -306,17 +376,27 @@ const props = withDefaults(defineProps<{
 	 * @default 'date'
 	 */
 	type?: 'date' | 'datetime' | 'time' | 'week' | 'month' | 'year' | 'date-range' | 'time-range' | 'datetime-range'
+
+	/**
+	 * Render the calendar inline (no input field).
+	 *
+	 * @default false
+	 */
+	inline?: boolean
 }>(), {
 	ariaLabel: t('Datepicker input'),
 	ariaLabelMenu: t('Datepicker menu'),
 	format: undefined,
 	locale: getCanonicalLocale(),
+	max: undefined,
+	min: undefined,
 	minuteStep: 10,
 	timezoneId: 'UTC',
 	modelValue: null,
 	// set by fallbackPlaceholder
 	placeholder: undefined,
 	type: 'date',
+	inline: false,
 })
 
 const emit = defineEmits<{
@@ -327,6 +407,10 @@ const emit = defineEmits<{
 	 */
 	'update:modelValue': [Date | [Date, Date] | null]
 	'update:timezoneId': [string]
+	/**
+	 * Input blur
+	 */
+	blur: []
 }>()
 
 const targetElement = useTemplateRef('target')
@@ -463,6 +547,10 @@ const pickerType = computed(() => ({
 		: undefined,
 }))
 
+// Convert min/max Date into VueDatePicker's time object shape
+const minTime = computed(() => props.min && { hours: props.min.getHours(), minutes: props.min.getMinutes(), seconds: props.min.getSeconds() })
+const maxTime = computed(() => props.max && { hours: props.max.getHours(), minutes: props.max.getMinutes(), seconds: props.max.getSeconds() })
+
 /**
  * Called on model value update of the library.
  *
@@ -587,6 +675,20 @@ function selectDate() {
 function cancelSelection() {
 	pickerInstance.value!.closeMenu()
 }
+
+/**
+ * Check if two dates are on the same day.
+ *
+ * @param a
+ * @param b
+ */
+function sameDay(a: Date, b: Date): boolean {
+	return (
+		a.getFullYear() === b.getFullYear()
+		&& a.getMonth() === b.getMonth()
+		&& a.getDate() === b.getDate()
+	)
+}
 </script>
 
 <template>
@@ -603,18 +705,24 @@ function cancelSelection() {
 			:placeholder="placeholder ?? placeholderFallback"
 			:format="realFormat"
 			:locale
+			:min-date="min"
+			:max-date="max"
+			:min-time="min ? sameDay(min, value as Date) ? minTime : undefined : undefined"
+			:max-time="max ? sameDay(max, value as Date) ? maxTime : undefined : undefined"
 			:minutes-increment="minuteStep"
 			:model-value="value"
 			:now-button-label="t('Now')"
 			:select-text="t('Pick')"
 			six-weeks="fair"
+			:inline
 			:teleport="appendToBody ? (targetElement || undefined) : false"
 			text-input
 			:week-num-name
 			:week-numbers="showWeekNumber ? { type: 'iso' } : undefined"
 			:week-start
 			v-bind="pickerType"
-			@update:model-value="onUpdateModelValue">
+			@update:model-value="onUpdateModelValue"
+			@blur="emit('blur')">
 			<template #action-buttons>
 				<NcButton size="small" variant="tertiary" @click="cancelSelection">
 					{{ t('Cancel') }}
