@@ -68,7 +68,7 @@ jobs:
           npm_package_name: ${{ env.APP_NAME }}
 
       - name: Upload snapshots
-        uses: actions/upload-artifact@v5
+        uses: actions/upload-artifact@v6
         if: always()
         with:
           name: snapshots-${{ matrix.containers }}
