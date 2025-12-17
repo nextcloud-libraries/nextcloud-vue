@@ -53,7 +53,7 @@ import { NcButton, useHotKey } from '@nextcloud/vue'
 3. Make the changes
 4. Check the change in Vue-Styleguidist and/or Nextcloud apps
    - Do not forget to `lint` and `test` your changes
-   - If possible, add tests for your changes
+   - If possible, add tests and documentation for your changes
 5. Commit and push your changes, create a Pull Request
    - Make sure to follow the [Conventional Commits](https://www.conventionalcommits.org) in commit messages, and PR titles, for example:\
      `fix(NcButton): correct layout on Safari`
@@ -69,17 +69,50 @@ More information on how to contribute: [https://nextcloud.com/contribute/](https
 
 ### 🧑‍💻 Development setup
 
-If you want to work on improving the components it’s best to run the latest code and link it to your local Nextcloud installation:
+First, install dependencies with `npm`:
 
-1. Install the dependencies with `npm ci`
-2. Build the components every time you do changes: `npm run build`
-    - To make development build: `npm run dev`
-    - To watch for changes and rebuild automatically: `npm run watch`
-    - To watch for changes and rebuild development build: `npm run dev:watch`
-3. Connect it to your local Nextcloud development setup:
-    - In this repository do `npm link`
-    - In the repository of an app do `npm link @nextcloud/vue` (you need to re-link any time you do `npm ci` in the app)
-4. Then build the app with: `npm run build` (or watch for changes with `npm run watch`)
+```sh
+npm ci
+```
+
+#### 🐸 Development with Styleguidist
+
+The simplest way to develop and debug `@nextcloud/vue` is to use our live documentation via [`vue-styleguidist`](https://vue-styleguidist.github.io). 
+
+Run the development server with component documentation and playground:
+```sh
+npm run styleguide
+```
+
+You can also test if the design still works with a legacy Nextcloud version by setting `NEXTCLOUD_LEGACY` ENV variable.
+
+```sh
+NEXTCLOUD_LEGACY=y npm run styleguide
+```
+
+#### ☁️ Development with Nextcloud apps
+
+To test or debug `@nextcloud/vue` in Nextcloud app you need to [pack](https://docs.npmjs.com/cli/v11/commands/npm-pack) the library and **install** it in the app.
+
+1. In `nextcloud-vue`:
+   1. Build the library with:
+      - `npm run dev` for development build
+      - `npm run build` for production build
+   2. Pack with `npm pack`
+2. In the Nextcloud app:
+   1. Install the packed file by path to the file, for example:
+      ```sh
+      npm install --no-save ../../../nextcloud-vue-9.3.1.tgz
+      ```
+   2. Rebuild the app or run it in `watch` mode
+   3. To remove the linked package, reinstall dependencies with `npm ci`
+3. Repeat every time you do a change in `@nextcloud/vue`
+4. Do not commit the created `.tgz` file
+
+> [!WARNING]
+> Do not use `npm link`
+>
+> While it is a simple and popular way to connect a local npm package to another package, it doesn't have proper dependency resolution which leads to issues. Adding a package via `npm pack` does exactly the same as installing a published package.
 
 ### 🌐 Translations
 
@@ -104,14 +137,7 @@ Our awesome translation community will then be notified and a bot will sync tran
 npm run l10n:extract
 ```
 
-### 🐸 Styleguidist
-
-When developing new components or extending components, make sure to also have some bits of related documentation like examples, where applicable. To test components and the documentation in that context, you can run `npm run styleguide` to run a local server that serves the style guide with all the components.
-
-You can also test if the design still works with a legacy Nextcloud version.
-To do so just run `NEXTCLOUD_LEGACY=y npm run styleguide`.
-
-#### Using vue-devtools in Firefox
+### Using vue-devtools in Firefox
 
 If you want to use [vue-devtools](https://github.com/vuejs/vue-devtools) in Firefox, you need to:
 
