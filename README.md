@@ -137,32 +137,6 @@ Our awesome translation community will then be notified and a bot will sync tran
 npm run l10n:extract
 ```
 
-### Using vue-devtools in Firefox
-
-If you want to use [vue-devtools](https://github.com/vuejs/vue-devtools) in Firefox, you need to:
-
-* Either enable the [HMR Enabler](https://github.com/nextcloud/hmr_enabler) app …
-* … or patch your nextcloud instance as follows:
-
-```diff
-diff --git a/lib/public/AppFramework/Http/ContentSecurityPolicy.php b/lib/public/AppFramework/Http/ContentSecurityPolicy.php
-index 0e3a6a705d..416b8b0fb9 100644
---- a/lib/public/AppFramework/Http/ContentSecurityPolicy.php
-+++ b/lib/public/AppFramework/Http/ContentSecurityPolicy.php
-@@ -41,9 +41,9 @@ namespace OCP\AppFramework\Http;
-  */
- class ContentSecurityPolicy extends EmptyContentSecurityPolicy {
-        /** @var bool Whether inline JS snippets are allowed */
--       protected $inlineScriptAllowed = false;
-+       protected $inlineScriptAllowed = true;
-        /** @var bool Whether eval in JS scripts is allowed */
--       protected $evalScriptAllowed = false;
-+       protected $evalScriptAllowed = true;
-        /** @var bool Whether strict-dynamic should be set */
-        protected $strictDynamicAllowed = false;
-        /** @var array Domains from which scripts can get loaded */
-```
-
 ## 📤 Releasing a new version
 
 - Pull the latest changes from `main` or `stableX`
