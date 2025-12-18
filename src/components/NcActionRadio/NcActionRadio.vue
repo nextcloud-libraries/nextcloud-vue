@@ -45,35 +45,39 @@ So that only one of each name set can be selected at the same time.
 
 <template>
 	<li class="action" :class="{ 'action--disabled': disabled }" :role="isInSemanticMenu && 'presentation'">
-		<span class="action-radio" role="menuitemradio" :aria-checked="ariaChecked">
-			<input
-				:id="id"
-				ref="radio"
-				v-model="model"
-				class="radio action-radio__radio"
-				:class="{ focusable: isFocusable }"
-				:disabled="disabled"
-				:name="name"
-				:value="value"
-				type="radio"
-				@keydown.enter.exact.prevent="toggleInput"
-				@change="onChange">
-			<label ref="label" :for="id" class="action-radio__label">{{ text }}</label>
-
-			<!-- fake slot to gather inner text -->
-			<slot v-if="false" />
-		</span>
+		<label class="action-radio" :role="isInSemanticMenu && 'menuitemradio'" :aria-checked="isInSemanticMenu && checked.toString()">
+			<span class="action-radio__icon">
+				<input
+					:id
+					v-model="model"
+					type="radio"
+					class="action-radio__input"
+					:class="{ focusable: !disabled }"
+					:value
+					:name
+					:disabled
+					@change="$emit('change', $event)">
+				<NcIconSvgWrapper :path="checked ? mdiRadioboxMarked : mdiRadioboxBlank" :size="20" />
+			</span>
+			<span class="action-radio__text">{{ text }}</span>
+		</label>
 	</li>
 </template>
 
 <script>
+import { mdiRadioboxBlank, mdiRadioboxMarked } from '@mdi/js'
 import { useModel } from 'vue'
+import NcIconSvgWrapper from '../NcIconSvgWrapper/NcIconSvgWrapper.vue'
 import ActionGlobalMixin from '../../mixins/actionGlobal.js'
 import { createElementId } from '../../utils/createElementId.ts'
 import { NC_ACTIONS_IS_SEMANTIC_MENU } from '../NcActions/useNcActions.ts'
 
 export default {
 	name: 'NcActionRadio',
+
+	components: {
+		NcIconSvgWrapper,
+	},
 
 	mixins: [ActionGlobalMixin],
 
@@ -137,45 +141,14 @@ export default {
 	setup(props) {
 		return {
 			model: useModel(props, 'modelValue'),
+			mdiRadioboxBlank,
+			mdiRadioboxMarked,
 		}
 	},
 
 	computed: {
-		/**
-		 * determines if the action is focusable
-		 *
-		 * @return {boolean} is the action focusable ?
-		 */
-		isFocusable() {
-			return !this.disabled
-		},
-
-		/**
-		 * aria-checked attribute for role="menuitemcheckbox"
-		 *
-		 * @return {'true'|'false'|undefined} aria-checked value if needed
-		 */
-		ariaChecked() {
-			if (this.isInSemanticMenu) {
-				return this.modelValue === this.value ? 'true' : 'false'
-			}
-			return undefined
-		},
-	},
-
-	methods: {
-		toggleInput(/* event */) {
-			// by clicking we also trigger the change event
-			this.$refs.label.click()
-		},
-
-		onChange(event) {
-			/**
-			 * Emitted when the radio state is changed
-			 *
-			 * @type {Event}
-			 */
-			this.$emit('change', event)
+		checked() {
+			return this.model === this.value
 		},
 	},
 }
@@ -185,56 +158,24 @@ export default {
 @use '../../assets/action.scss' as *;
 @include action-active;
 @include action--disabled;
+@include action-item('radio');
 
-.action-radio {
-	display: flex;
-	align-items: flex-start;
-
-	width: 100%;
-	height: auto;
-	margin: 0;
-	padding: 0;
-
-	cursor: pointer;
-	white-space: nowrap;
-
-	color: var(--color-main-text);
-	border: 0;
-	border-radius: 0; // otherwise Safari will cut the border-radius area
-	background-color: transparent;
-	box-shadow: none;
-
-	font-weight: normal;
-	line-height: var(--default-clickable-area);
-
-	/* checkbox/radio fixes */
-	&__radio {
-		position: absolute;
-		inset-inline-start: 0 !important;
-		z-index: -1;
-		opacity: 0;
-	}
-
-	&__label {
-		display: flex;
-		align-items: center; // align radio to text
-
-		width: 100%;
-		padding: 0 !important;
-		padding-inline-end: $icon-margin !important;
-
-		// (34 -14) / 2 = 10 same as ncactioncheckbox
-		&::before {
-			margin: calc((var(--default-clickable-area) - 14px) / 2) !important;
-		}
-	}
-
-	&--disabled {
-		&,
-		.action-radio__label {
-			cursor: pointer;
-		}
-	}
+.action:has(:focus-visible) {
+	outline: 2px solid currentColor;
 }
 
+.action-radio {
+	&__icon {
+		color: var(--color-primary-element);
+	}
+
+	&__input {
+		width: 20px;
+		height: 20px;
+		margin: auto;
+		position: absolute;
+		z-index: -1;
+		opacity: 0 !important;
+	}
+}
 </style>
