@@ -68,6 +68,9 @@ msgstr "Назад"
 msgid "Back to provider selection"
 msgstr "Вернуться к выбору провайдера"
 
+msgid "Black"
+msgstr "Черный"
+
 #. TRANSLATORS: A color name for RGB(91, 100, 179)
 msgid "Blue Violet"
 msgstr "Синий фиолет"
@@ -132,6 +135,12 @@ msgstr "Подтвердить изменения"
 
 msgid "Connect items to a project to make them easier to find"
 msgstr "Подключайте элементы к проекту, чтобы их было легче найти"
+
+msgid "Copied"
+msgstr "Скопировано"
+
+msgid "Copy to clipboard"
+msgstr "Скопировать в буфер"
 
 #. TRANSLATORS: Ctrl key on keyboard (Windows/Linux)
 msgid "Ctrl"
@@ -254,6 +263,9 @@ msgstr "невидимый"
 msgid "Keyboard navigation help"
 msgstr "Справка по навигации с помощью клавиатуры"
 
+msgid "Keyboard shortcuts"
+msgstr "Комбинации клавиш"
+
 msgid "Light skin tone"
 msgstr "Светлый оттенок"
 
@@ -310,6 +322,9 @@ msgstr "Следующий год"
 
 msgid "Nextcloud blue"
 msgstr "Nextcloud голубой"
+
+msgid "No color"
+msgstr "Без цвета"
 
 msgid "No emoji found"
 msgstr "Эмодзи не найдено"
@@ -430,7 +445,7 @@ msgstr "Поиск …"
 msgid "Search emoji"
 msgstr "Поиск эмодзи"
 
-msgid "Search for timezone"
+msgid "Search for time zone"
 msgstr "Поиск часового пояса"
 
 msgid "Search results"
@@ -532,7 +547,7 @@ msgstr "Tab"
 msgid "Time picker"
 msgstr "Выбор времени"
 
-msgid "Timezone"
+msgid "Time zone"
 msgstr "Часовой пояс"
 
 msgid "Toggle overlay"
@@ -565,6 +580,9 @@ msgstr "Н"
 #. TRANSLATORS: A color name for RGB(211, 169, 103)
 msgid "Whiskey"
 msgstr "Виски"
+
+msgid "White"
+msgstr "Белый"
 
 msgid "Write a message …"
 msgstr "Напишите сообщение …"
