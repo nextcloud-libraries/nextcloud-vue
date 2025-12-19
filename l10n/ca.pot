@@ -281,3 +281,6 @@ msgid ""
 msgstr ""
 "Escriu missatge, fes servir \"@\" per esmentar algú, fes servir \":\" per "
 "autocompletar emojis..."
+
+msgid "More items …"
+msgstr "Més artícles..."

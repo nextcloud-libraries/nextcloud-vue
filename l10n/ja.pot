@@ -436,3 +436,70 @@ msgstr "ウイスキー"
 
 msgid "Write a message …"
 msgstr "メッセージを書く ..."
+
+#. TRANSLATORS: Alt key on keyboard (Windows/Linux)
+msgid "Alt"
+msgstr "Alt"
+
+msgid "Black"
+msgstr "黒"
+
+msgid "Copied"
+msgstr "コピーされました"
+
+msgid "Copy to clipboard"
+msgstr "クリップボードにコピー"
+
+#. TRANSLATORS: Ctrl key on keyboard (Windows/Linux)
+msgid "Ctrl"
+msgstr "Ctrl"
+
+#. TRANSLATORS: Delete key on keyboard
+msgid "Delete"
+msgstr "Delete"
+
+#. TRANSLATORS: Enter key on keyboard
+msgid "Enter"
+msgstr "Enter"
+
+#. TRANSLATORS: Escape key on keyboard
+msgid "Escape"
+msgstr "Escape"
+
+msgid "Keyboard shortcuts"
+msgstr "キーボードショートカット"
+
+#. TRANSLATORS: The button is in a loading state
+msgid "Loading …"
+msgstr "読み込み中 …"
+
+msgid "Message limit of %n character reached"
+msgid_plural "Message limit of %n characters reached"
+msgstr[0] "メッセージの%n文字の制限に達しました"
+
+msgid "More items …"
+msgstr "他のアイテム　…"
+
+msgid "No color"
+msgstr "色なし"
+
+msgid "Search …"
+msgstr "検索…"
+
+#. TRANSLATORS: Shift key on keyboard
+msgid "Shift"
+msgstr "Shift"
+
+#. TRANSLATORS: Space key on keyboard
+msgid "Space"
+msgstr "Space"
+
+#. TRANSLATORS: Tab key on keyboard
+msgid "Tab"
+msgstr "Tab"
+
+msgid "White"
+msgstr "白"
+
+msgid "Write a message …"
+msgstr "メッセージを書く ..."

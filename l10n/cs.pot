@@ -435,3 +435,73 @@ msgstr "Whisky"
 
 msgid "Write a message …"
 msgstr "Napsat zprávu…"
+
+#. TRANSLATORS: Alt key on keyboard (Windows/Linux)
+msgid "Alt"
+msgstr "Alt"
+
+msgid "Black"
+msgstr "Černá"
+
+msgid "Copied"
+msgstr "Zkopírováno"
+
+msgid "Copy to clipboard"
+msgstr "Zkopírovat do schránky"
+
+#. TRANSLATORS: Ctrl key on keyboard (Windows/Linux)
+msgid "Ctrl"
+msgstr "Ctrl"
+
+#. TRANSLATORS: Delete key on keyboard
+msgid "Delete"
+msgstr "Delete"
+
+#. TRANSLATORS: Enter key on keyboard
+msgid "Enter"
+msgstr "Enter"
+
+#. TRANSLATORS: Escape key on keyboard
+msgid "Escape"
+msgstr "Esc"
+
+msgid "Keyboard shortcuts"
+msgstr "Klávesové zkratky"
+
+#. TRANSLATORS: The button is in a loading state
+msgid "Loading …"
+msgstr "Načítání …"
+
+msgid "Message limit of %n character reached"
+msgid_plural "Message limit of %n characters reached"
+msgstr[0] "Dosaženo limitu počtu %n znaku zprávy"
+msgstr[1] "Dosaženo limitu počtu %n znaků zprávy"
+msgstr[2] "Dosaženo limitu počtu %n znaků zprávy"
+msgstr[3] "Dosaženo limitu počtu %n znaků zprávy"
+
+msgid "More items …"
+msgstr "Další položky …"
+
+msgid "No color"
+msgstr "Žádná barva"
+
+msgid "Search …"
+msgstr "Hledat …"
+
+#. TRANSLATORS: Shift key on keyboard
+msgid "Shift"
+msgstr "Shift"
+
+#. TRANSLATORS: Space key on keyboard
+msgid "Space"
+msgstr "Mezerník"
+
+#. TRANSLATORS: Tab key on keyboard
+msgid "Tab"
+msgstr "Tab"
+
+msgid "White"
+msgstr "Bílá"
+
+msgid "Write a message …"
+msgstr "Napište zprávu …"

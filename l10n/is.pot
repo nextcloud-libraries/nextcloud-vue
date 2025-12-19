@@ -436,3 +436,13 @@ msgstr "Viský"
 
 msgid "Write a message …"
 msgstr "Skrifaðu skilaboð …"
+
+#. TRANSLATORS: The button is in a loading state
+msgid "Loading …"
+msgstr "Hleð inn …"
+
+msgid "More items …"
+msgstr "Fleiri atriði …"
+
+msgid "Write a message …"
+msgstr "Skrifaðu skilaboð …"

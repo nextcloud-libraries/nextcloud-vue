@@ -436,3 +436,74 @@ msgstr "Fuisce"
 
 msgid "Write a message …"
 msgstr "Scríobh teachtaireacht…"
+
+#. TRANSLATORS: Alt key on keyboard (Windows/Linux)
+msgid "Alt"
+msgstr "Alt"
+
+msgid "Black"
+msgstr "Dubh"
+
+msgid "Copied"
+msgstr "Cóipeáilte"
+
+msgid "Copy to clipboard"
+msgstr "Cóipeáil chuig an ghearrthaisce"
+
+#. TRANSLATORS: Ctrl key on keyboard (Windows/Linux)
+msgid "Ctrl"
+msgstr "Ctrl"
+
+#. TRANSLATORS: Delete key on keyboard
+msgid "Delete"
+msgstr "Scrios"
+
+#. TRANSLATORS: Enter key on keyboard
+msgid "Enter"
+msgstr "Iontráil"
+
+#. TRANSLATORS: Escape key on keyboard
+msgid "Escape"
+msgstr "Éalú"
+
+msgid "Keyboard shortcuts"
+msgstr "Aicearraí méarchláir"
+
+#. TRANSLATORS: The button is in a loading state
+msgid "Loading …"
+msgstr "Ag lódáil …"
+
+msgid "Message limit of %n character reached"
+msgid_plural "Message limit of %n characters reached"
+msgstr[0] "Sroicheadh ​​teorainn teachtaireachta de %n carachtar"
+msgstr[1] "Sroicheadh ​​teorainn teachtaireachta de %n carachtar"
+msgstr[2] "Sroicheadh ​​teorainn teachtaireachta de %n carachtar"
+msgstr[3] "Sroicheadh ​​teorainn teachtaireachta de %n carachtar"
+msgstr[4] "Sroicheadh ​​teorainn teachtaireachta de %n carachtar"
+
+msgid "More items …"
+msgstr "Tuilleadh míreanna …"
+
+msgid "No color"
+msgstr "Gan dath"
+
+msgid "Search …"
+msgstr "Cuardaigh …"
+
+#. TRANSLATORS: Shift key on keyboard
+msgid "Shift"
+msgstr "Shift"
+
+#. TRANSLATORS: Space key on keyboard
+msgid "Space"
+msgstr "Spás"
+
+#. TRANSLATORS: Tab key on keyboard
+msgid "Tab"
+msgstr "Táb"
+
+msgid "White"
+msgstr "Bán"
+
+msgid "Write a message …"
+msgstr "Scríobh teachtaireacht …"

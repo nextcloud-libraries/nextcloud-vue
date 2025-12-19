@@ -438,3 +438,19 @@ msgstr "Whiskey"
 
 msgid "Write a message …"
 msgstr "Escreva uma mensagem..."
+
+#. TRANSLATORS: The button is in a loading state
+msgid "Loading …"
+msgstr "A carregar..."
+
+msgid "Message limit of %n character reached"
+msgid_plural "Message limit of %n characters reached"
+msgstr[0] "Limite de mensagem de %n carácter atingido"
+msgstr[1] "Limite de mensagem de %n caracteres atingido"
+msgstr[2] "Limite de mensagem de %n caracteres atingido"
+
+msgid "More items …"
+msgstr "Mais itens…"
+
+msgid "Write a message …"
+msgstr "Escreva uma mensagem..."

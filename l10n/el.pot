@@ -437,3 +437,62 @@ msgstr "Ουίσκι"
 
 msgid "Write a message …"
 msgstr "Γράψτε ένα μήνυμα …"
+
+#. TRANSLATORS: Alt key on keyboard (Windows/Linux)
+msgid "Alt"
+msgstr "Alt"
+
+msgid "Black"
+msgstr "Μαύρο"
+
+#. TRANSLATORS: Ctrl key on keyboard (Windows/Linux)
+msgid "Ctrl"
+msgstr "Ctrl"
+
+#. TRANSLATORS: Delete key on keyboard
+msgid "Delete"
+msgstr "Delete"
+
+#. TRANSLATORS: Enter key on keyboard
+msgid "Enter"
+msgstr "Enter"
+
+#. TRANSLATORS: Escape key on keyboard
+msgid "Escape"
+msgstr "Escape"
+
+#. TRANSLATORS: The button is in a loading state
+msgid "Loading …"
+msgstr "Φόρτωση  …"
+
+msgid "Message limit of %n character reached"
+msgid_plural "Message limit of %n characters reached"
+msgstr[0] "Έφτασε το όριο μηνύματος των %n χαρακτήρων"
+msgstr[1] "Έφτασε το όριο μηνύματος των %n χαρακτήρων"
+
+msgid "More items …"
+msgstr "Περισσότερα στοιχεία …"
+
+msgid "No color"
+msgstr "Χωρίς χρώμα"
+
+msgid "Search …"
+msgstr "Αναζήτηση …"
+
+#. TRANSLATORS: Shift key on keyboard
+msgid "Shift"
+msgstr "Shift"
+
+#. TRANSLATORS: Space key on keyboard
+msgid "Space"
+msgstr "Space"
+
+#. TRANSLATORS: Tab key on keyboard
+msgid "Tab"
+msgstr "Tab"
+
+msgid "White"
+msgstr "Λευκό"
+
+msgid "Write a message …"
+msgstr "Γράψτε ένα μήνυμα …"

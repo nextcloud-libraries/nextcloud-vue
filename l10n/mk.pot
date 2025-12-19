@@ -279,3 +279,225 @@ msgid ""
 "Write message, use \"@\" to mention someone, use \":\" for emoji "
 "autocompletion …"
 msgstr ""
+
+msgid "A color with a HEX value {hex}"
+msgstr "Боја со HEX вредност {hex}"
+
+#. TRANSLATORS: A color name for RGB(110, 166, 143)
+msgid "Acapulco"
+msgstr "Акапулко"
+
+msgid "Add to a project"
+msgstr "Додај во проект"
+
+#. TRANSLATORS: Alt key on keyboard (Windows/Linux)
+msgid "Alt"
+msgstr "Alt"
+
+#. TRANSLATORS: User status if the user is currently away from keyboard
+msgid "away"
+msgstr "оддалечен"
+
+msgid "Black"
+msgstr "Црно"
+
+#. TRANSLATORS: A color name for RGB(91, 100, 179)
+msgid "Blue Violet"
+msgstr "Сино Виолетова"
+
+#. TRANSLATORS: A color name for RGB(55, 148, 172)
+msgid "Boston Blue"
+msgstr "Бостон Сина"
+
+msgid "busy"
+msgstr "зафатен"
+
+msgid "Clear selected"
+msgstr "Исчисти означени"
+
+msgid "Color picker"
+msgstr "Избор на боја"
+
+msgid "Connect items to a project to make them easier to find"
+msgstr "Поврзете ги елементите со проект за да биде полесно да се најдат"
+
+#. TRANSLATORS: Ctrl key on keyboard (Windows/Linux)
+msgid "Ctrl"
+msgstr "Ctrl"
+
+msgid "Dark skin tone"
+msgstr "Темна боја на кожа"
+
+#. TRANSLATORS: Delete key on keyboard
+msgid "Delete"
+msgstr "Избриши"
+
+#. TRANSLATORS: A color name for RGB(136, 85, 168)
+msgid "Deluge"
+msgstr "Делуџ"
+
+msgid "Deselect {option}"
+msgstr "Откажи избор на {option}"
+
+msgid "do not disturb"
+msgstr "не вознемирувај"
+
+msgid "Emoji picker"
+msgstr "Избор на emoji"
+
+msgid "Enable interactive view"
+msgstr "Овозможи интерактивен приказ"
+
+#. TRANSLATORS: Enter key on keyboard
+msgid "Enter"
+msgstr "Ентер"
+
+#. TRANSLATORS: Escape key on keyboard
+msgid "Escape"
+msgstr "Esc"
+
+msgid "Failed to add the item to the project"
+msgstr "Неуспешно додавање на елементот во проектот"
+
+msgid "Failed to create a project"
+msgstr "Неуспешно креирање на проект"
+
+msgid "Failed to rename the project"
+msgstr "Неуспешно преименување на проектот"
+
+#. TRANSLATORS: A color name for RGB(201, 136, 121)
+msgid "Feldspar"
+msgstr "Фелдспар"
+
+msgid "Gold"
+msgstr "Златна"
+
+msgid "Hide details"
+msgstr "Сокриј детали"
+
+msgid "invisible"
+msgstr "невидливо"
+
+msgid "Keyboard navigation help"
+msgstr "Навигација со тастатура"
+
+msgid "Light skin tone"
+msgstr "Светла кожа"
+
+msgid "Load more \"{options}\""
+msgstr "Вчитај повеќе \"{options}\""
+
+#. TRANSLATORS: The button is in a loading state
+msgid "Loading …"
+msgstr "Вчитување …"
+
+#. TRANSLATORS: A color name for RGB(45, 115, 190)
+msgid "Mariner"
+msgstr "Маринер"
+
+msgid "Medium dark skin tone"
+msgstr "Средно темна кожа"
+
+msgid "Medium light skin tone"
+msgstr "Средно светла кожа"
+
+msgid "Medium skin tone"
+msgstr "Средна кожа"
+
+msgid "Message limit of %n character reached"
+msgid_plural "Message limit of %n characters reached"
+msgstr[0] "Достигнат е лимит од %n карактер"
+msgstr[1] "Достигнат е лимит од %n карактери за порака"
+
+msgid "More items …"
+msgstr "Повеќе елементи …"
+
+msgid "Neutral skin color"
+msgstr "Неутрална боја на кожа"
+
+msgid "Nextcloud blue"
+msgstr "Nextcloud сина"
+
+msgid "No color"
+msgstr "Без боја"
+
+msgid "offline"
+msgstr "офлајн"
+
+#. TRANSLATORS: A color name for RGB(165, 184, 114)
+msgid "Olivine"
+msgstr "Оливин"
+
+msgid "online"
+msgstr "онлајн"
+
+msgid "Open sidebar"
+msgstr "Отвори странична лента"
+
+msgid "Options"
+msgstr "Опции"
+
+msgid "Purple"
+msgstr "Виолетова"
+
+msgid "Related team resources"
+msgstr "Поврзани ресурси на тимот"
+
+msgid "Rename project"
+msgstr "Преименувај проект"
+
+#. TRANSLATORS: A color name for RGB(191, 103, 139)
+msgid "Rosy brown"
+msgstr "Розево-кафеава"
+
+msgid "Save changes"
+msgstr "Зачувај промени"
+
+msgid "Search …"
+msgstr "Барај…"
+
+msgid "Selected"
+msgstr "Избрано"
+
+#. TRANSLATORS: Shift key on keyboard
+msgid "Shift"
+msgstr "Shift"
+
+msgid "Show details"
+msgstr "Прикажи детали"
+
+msgid "Skin tone"
+msgstr "Боја на кожа"
+
+msgid "Skip to app navigation"
+msgstr "Прескокни на навигација на апликацијата"
+
+msgid "Skip to main content"
+msgstr "Прескокни на главна содржина"
+
+#. TRANSLATORS: Space key on keyboard
+msgid "Space"
+msgstr "Празно место"
+
+#. TRANSLATORS: Tab key on keyboard
+msgid "Tab"
+msgstr "Tab"
+
+msgid "Type to search for existing projects"
+msgstr "Пишувај за пребарување постоечки проекти"
+
+msgid "User status: {status}"
+msgstr "Статус: {status}"
+
+msgid "View team"
+msgstr "Прикажи тим"
+
+#. TRANSLATORS: A color name for RGB(211, 169, 103)
+msgid "Whiskey"
+msgstr "Виски"
+
+msgid "White"
+msgstr "Бела"
+
+msgid "Write a message …"
+msgstr "Напиши порака …"

@@ -277,3 +277,233 @@ msgid ""
 "Write message, use \"@\" to mention someone, use \":\" for emoji "
 "autocompletion …"
 msgstr ""
+
+msgid "A color with a HEX value {hex}"
+msgstr "ສີທີ່ມີຄ່າ HEX {hex}"
+
+#. TRANSLATORS: A color name for RGB(110, 166, 143)
+msgid "Acapulco"
+msgstr "Acapulco"
+
+msgid "Add to a project"
+msgstr "ເພີ່ມໃສ່ໂຄງການ"
+
+#. TRANSLATORS: Alt key on keyboard (Windows/Linux)
+msgid "Alt"
+msgstr "Alt"
+
+#. TRANSLATORS: User status if the user is currently away from keyboard
+msgid "away"
+msgstr "ບໍ່ຢູ່"
+
+msgid "Black"
+msgstr "ສີດຳ"
+
+#. TRANSLATORS: A color name for RGB(91, 100, 179)
+msgid "Blue Violet"
+msgstr "Blue Violet"
+
+#. TRANSLATORS: A color name for RGB(55, 148, 172)
+msgid "Boston Blue"
+msgstr "Boston Blue"
+
+msgid "busy"
+msgstr "ບໍ່ວ່າງ"
+
+msgid "Clear selected"
+msgstr "ລຶບສິ່ງທີ່ເລືອກ"
+
+msgid "Color picker"
+msgstr "ໂຕເລືອກສີ"
+
+msgid "Connect items to a project to make them easier to find"
+msgstr "ເຊື່ອມຕໍ່ລາຍການຕ່າງໆໃສ່ໂຄງການ ເພື່ອເຮັດໃຫ້ຊອກຫາງ່າຍຂຶ້ນ"
+
+msgid "Copied"
+msgstr "ສຳເນົາແລ້ວ"
+
+msgid "Copy to clipboard"
+msgstr "ສຳເນົາໃສ່ຄລິບບອດ"
+
+#. TRANSLATORS: Ctrl key on keyboard (Windows/Linux)
+msgid "Ctrl"
+msgstr "Ctrl"
+
+msgid "Dark skin tone"
+msgstr "ໂຕນສີຜິວເຂັ້ມ"
+
+#. TRANSLATORS: Delete key on keyboard
+msgid "Delete"
+msgstr "ລຶບ"
+
+#. TRANSLATORS: A color name for RGB(136, 85, 168)
+msgid "Deluge"
+msgstr "Deluge"
+
+msgid "Deselect {option}"
+msgstr "ຍົກເລີກການເລືອກ {option}"
+
+msgid "do not disturb"
+msgstr "ຫ້າມລົບກວນ"
+
+msgid "Emoji picker"
+msgstr "ໂຕເລືອກອີໂມຈິ"
+
+msgid "Enable interactive view"
+msgstr "ເປີດໃຊ້ງານມຸມມອງໂຕ້ຕອບ"
+
+#. TRANSLATORS: Enter key on keyboard
+msgid "Enter"
+msgstr "Enter"
+
+#. TRANSLATORS: Escape key on keyboard
+msgid "Escape"
+msgstr "Escape"
+
+msgid "Failed to add the item to the project"
+msgstr "ບໍ່ສາມາດເພີ່ມລາຍການໃສ່ໂຄງການໄດ້"
+
+msgid "Failed to create a project"
+msgstr "ບໍ່ສາມາດສ້າງໂຄງການໄດ້"
+
+msgid "Failed to rename the project"
+msgstr "ບໍ່ສາມາດປ່ຽນຊື່ໂຄງການໄດ້"
+
+#. TRANSLATORS: A color name for RGB(201, 136, 121)
+msgid "Feldspar"
+msgstr "Feldspar"
+
+msgid "Gold"
+msgstr "ສີຄຳ"
+
+msgid "Hide details"
+msgstr "ເຊື່ອງລາຍລະອຽດ"
+
+msgid "invisible"
+msgstr "ບໍ່ສະແດງ"
+
+msgid "Keyboard navigation help"
+msgstr "ການຊ່ວຍເຫຼືອການນຳທາງດ້ວຍຄີບອດ"
+
+msgid "Keyboard shortcuts"
+msgstr "ທາງລັດຄີບອດ"
+
+msgid "Light skin tone"
+msgstr "ໂຕນສີຜິວອ່ອນ"
+
+msgid "Load more \"{options}\""
+msgstr "ໂຫຼດ “{options}” ເພີ່ມເຕີມ"
+
+#. TRANSLATORS: The button is in a loading state
+msgid "Loading …"
+msgstr "ກຳລັງໂຫຼດ…"
+
+#. TRANSLATORS: A color name for RGB(45, 115, 190)
+msgid "Mariner"
+msgstr "Mariner"
+
+msgid "Medium dark skin tone"
+msgstr "ໂຕນສີຜິວເຂັ້ມປານກາງ"
+
+msgid "Medium light skin tone"
+msgstr "ໂຕນສີຜິວອ່ອນປານກາງ"
+
+msgid "Medium skin tone"
+msgstr "ໂຕນສີຜິວປານກາງ"
+
+msgid "Message limit of %n character reached"
+msgid_plural "Message limit of %n characters reached"
+msgstr[0] "ຮອດຂີດຈຳກັດຂໍ້ຄວາມ %n ໂຕອັກສອນແລ້ວ"
+
+msgid "More items …"
+msgstr "ລາຍການເພີ່ມເຕີມ…"
+
+msgid "Neutral skin color"
+msgstr "ສີຜິວເປັນກາງ"
+
+msgid "Nextcloud blue"
+msgstr "ສີຟ້າ Nextcloud"
+
+msgid "No color"
+msgstr "ບໍ່ມີສີ"
+
+msgid "offline"
+msgstr "ອອບໄລນ໌"
+
+#. TRANSLATORS: A color name for RGB(165, 184, 114)
+msgid "Olivine"
+msgstr "Olivine"
+
+msgid "online"
+msgstr "ອອນໄລນ໌"
+
+msgid "Open sidebar"
+msgstr "ເປີດແຖບດ້ານຂ້າງ"
+
+msgid "Options"
+msgstr "ຕົວເລືອກ"
+
+msgid "Purple"
+msgstr "ສີມ່ວງ"
+
+msgid "Related team resources"
+msgstr "ຊັບພະຍາກອນຂອງທີມທີ່ກ່ຽວຂ້ອງ"
+
+msgid "Rename project"
+msgstr "ປ່ຽນຊື່ໂຄງການ"
+
+#. TRANSLATORS: A color name for RGB(191, 103, 139)
+msgid "Rosy brown"
+msgstr "Rosy brown"
+
+msgid "Save changes"
+msgstr "ບັນທຶກການປ່ຽນແປງ"
+
+msgid "Search …"
+msgstr "ຄົ້ນຫາ…"
+
+msgid "Selected"
+msgstr "ເລືອກແລ້ວ"
+
+#. TRANSLATORS: Shift key on keyboard
+msgid "Shift"
+msgstr "Shift"
+
+msgid "Show details"
+msgstr "ສະແດງລາຍລະອຽດ"
+
+msgid "Skin tone"
+msgstr "ໂຕນສີຜິວ"
+
+msgid "Skip to app navigation"
+msgstr "ຂ້າມໄປທີ່ການນຳທາງຂອງແອັບ"
+
+msgid "Skip to main content"
+msgstr "ຂ້າມໄປທີ່ເນື້ອຫາຫຼັກ"
+
+#. TRANSLATORS: Space key on keyboard
+msgid "Space"
+msgstr "Space"
+
+#. TRANSLATORS: Tab key on keyboard
+msgid "Tab"
+msgstr "Tab"
+
+msgid "Type to search for existing projects"
+msgstr "ພິມເພື່ອຄົ້ນຫາໂຄງການທີ່ມີຢູ່"
+
+msgid "User status: {status}"
+msgstr "ສະຖານະຜູ້ໃຊ້: {status}"
+
+msgid "View team"
+msgstr "ເບິ່ງທີມ"
+
+#. TRANSLATORS: A color name for RGB(211, 169, 103)
+msgid "Whiskey"
+msgstr "Whiskey"
+
+msgid "White"
+msgstr "ສີຂາວ"
+
+msgid "Write a message …"
+msgstr "ຂຽນຂໍ້ຄວາມ…"

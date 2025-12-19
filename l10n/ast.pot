@@ -404,3 +404,9 @@ msgstr "Whiskey"
 
 msgid "Write a message …"
 msgstr "Escribi un mensaxe…"
+
+msgid "More items …"
+msgstr "Más elementos…"
+
+msgid "Write a message …"
+msgstr "Escribi un mensaxe…"

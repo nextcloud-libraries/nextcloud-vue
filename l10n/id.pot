@@ -321,3 +321,9 @@ msgstr "Status pengguna: {status}"
 
 msgid "Write a message …"
 msgstr "Tulis pesan ..."
+
+msgid "More items …"
+msgstr "Item lainnya…"
+
+msgid "Write a message …"
+msgstr "Tulis pesan ..."

@@ -436,3 +436,71 @@ msgstr "Viski"
 
 msgid "Write a message …"
 msgstr "Bir ileti yazın…"
+
+#. TRANSLATORS: Alt key on keyboard (Windows/Linux)
+msgid "Alt"
+msgstr "Alt"
+
+msgid "Black"
+msgstr "Siyah"
+
+msgid "Copied"
+msgstr "Kopyalandı"
+
+msgid "Copy to clipboard"
+msgstr "Panoya kopyalandı"
+
+#. TRANSLATORS: Ctrl key on keyboard (Windows/Linux)
+msgid "Ctrl"
+msgstr "Ctrl"
+
+#. TRANSLATORS: Delete key on keyboard
+msgid "Delete"
+msgstr "Delete"
+
+#. TRANSLATORS: Enter key on keyboard
+msgid "Enter"
+msgstr "Enter"
+
+#. TRANSLATORS: Escape key on keyboard
+msgid "Escape"
+msgstr "Escape"
+
+msgid "Keyboard shortcuts"
+msgstr "Klavye kısayolları"
+
+#. TRANSLATORS: The button is in a loading state
+msgid "Loading …"
+msgstr "Yükleniyor…"
+
+msgid "Message limit of %n character reached"
+msgid_plural "Message limit of %n characters reached"
+msgstr[0] "İleti için %n karakter sayısı sınırına ulaşıldı"
+msgstr[1] "İleti için %n karakter sayısı sınırına ulaşıldı"
+
+msgid "More items …"
+msgstr "Diğer ögeler…"
+
+msgid "No color"
+msgstr "Renk yok"
+
+msgid "Search …"
+msgstr "Ara…"
+
+#. TRANSLATORS: Shift key on keyboard
+msgid "Shift"
+msgstr "Shift"
+
+#. TRANSLATORS: Space key on keyboard
+msgid "Space"
+msgstr "Space"
+
+#. TRANSLATORS: Tab key on keyboard
+msgid "Tab"
+msgstr "Tab"
+
+msgid "White"
+msgstr "Beyaz"
+
+msgid "Write a message …"
+msgstr "Bir ileti yazın…"

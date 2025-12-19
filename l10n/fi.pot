@@ -436,3 +436,13 @@ msgstr "Viski"
 
 msgid "Write a message …"
 msgstr "Kirjoita viesti…"
+
+#. TRANSLATORS: The button is in a loading state
+msgid "Loading …"
+msgstr "Ladataan ..."
+
+msgid "More items …"
+msgstr "Lisää kohteita…"
+
+msgid "Write a message …"
+msgstr "Kirjoita viesti…"

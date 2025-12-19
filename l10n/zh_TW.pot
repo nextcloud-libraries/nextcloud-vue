@@ -279,3 +279,170 @@ msgstr "還原變更"
 
 msgid "Write a message …"
 msgstr "編寫訊息……"
+
+msgid "A color with a HEX value {hex}"
+msgstr "HEX 值為 {hex} 的顏色"
+
+#. TRANSLATORS: A color name for RGB(110, 166, 143)
+msgid "Acapulco"
+msgstr "Acapulco"
+
+msgid "Add to a project"
+msgstr "新增至專案中"
+
+#. TRANSLATORS: User status if the user is currently away from keyboard
+msgid "away"
+msgstr "離開"
+
+#. TRANSLATORS: A color name for RGB(91, 100, 179)
+msgid "Blue Violet"
+msgstr "藍紫色"
+
+#. TRANSLATORS: A color name for RGB(55, 148, 172)
+msgid "Boston Blue"
+msgstr "波士頓藍"
+
+msgid "busy"
+msgstr "忙碌"
+
+msgid "Clear selected"
+msgstr "清除選定項目"
+
+msgid "Color picker"
+msgstr "色彩挑選器"
+
+msgid "Connect items to a project to make them easier to find"
+msgstr "將項目連結至專案中以方便尋找"
+
+msgid "Dark skin tone"
+msgstr "深膚色"
+
+#. TRANSLATORS: A color name for RGB(136, 85, 168)
+msgid "Deluge"
+msgstr "Deluge"
+
+msgid "Deselect {option}"
+msgstr "取消選取 {option}"
+
+msgid "do not disturb"
+msgstr "請勿打擾"
+
+msgid "Emoji picker"
+msgstr "表情符號挑選器"
+
+msgid "Enable interactive view"
+msgstr "啟用互動檢視"
+
+msgid "Failed to add the item to the project"
+msgstr "新增項目至專案失敗"
+
+msgid "Failed to create a project"
+msgstr "建立專案失敗"
+
+msgid "Failed to rename the project"
+msgstr "重新命名專案失敗"
+
+#. TRANSLATORS: A color name for RGB(201, 136, 121)
+msgid "Feldspar"
+msgstr "長石"
+
+msgid "Gold"
+msgstr "金色"
+
+msgid "Hide details"
+msgstr "隱藏詳細資料"
+
+msgid "invisible"
+msgstr "不可見"
+
+msgid "Keyboard navigation help"
+msgstr "鍵盤導航說明"
+
+msgid "Light skin tone"
+msgstr "淺膚色"
+
+#. TRANSLATORS: The button is in a loading state
+msgid "Loading …"
+msgstr "正在載入……"
+
+#. TRANSLATORS: A color name for RGB(45, 115, 190)
+msgid "Mariner"
+msgstr "海軍藍"
+
+msgid "Medium dark skin tone"
+msgstr "中等深膚色"
+
+msgid "Medium light skin tone"
+msgstr "中等淺膚色"
+
+msgid "Medium skin tone"
+msgstr "中等膚色"
+
+msgid "More items …"
+msgstr "更多項目……"
+
+msgid "Neutral skin color"
+msgstr "中性膚色"
+
+msgid "Nextcloud blue"
+msgstr "Nextcloud 藍色"
+
+msgid "offline"
+msgstr "離線"
+
+#. TRANSLATORS: A color name for RGB(165, 184, 114)
+msgid "Olivine"
+msgstr "橄欖石色"
+
+msgid "online"
+msgstr "線上"
+
+msgid "Open sidebar"
+msgstr "開啟側邊欄"
+
+msgid "Options"
+msgstr "選項"
+
+msgid "Purple"
+msgstr "紫色"
+
+msgid "Related team resources"
+msgstr "相關團隊資源"
+
+msgid "Rename project"
+msgstr "重新命名專案"
+
+#. TRANSLATORS: A color name for RGB(191, 103, 139)
+msgid "Rosy brown"
+msgstr "玫瑰棕色"
+
+msgid "Save changes"
+msgstr "儲存變更"
+
+msgid "Show details"
+msgstr "顯示詳細資訊"
+
+msgid "Skin tone"
+msgstr "膚色"
+
+msgid "Skip to app navigation"
+msgstr "略過應用程式導覽"
+
+msgid "Skip to main content"
+msgstr "跳至主要內容"
+
+msgid "Type to search for existing projects"
+msgstr "輸入以搜尋既有專案"
+
+msgid "User status: {status}"
+msgstr "使用者狀態：{status}"
+
+msgid "View team"
+msgstr "檢視團隊"
+
+#. TRANSLATORS: A color name for RGB(211, 169, 103)
+msgid "Whiskey"
+msgstr "威士忌"
+
+msgid "Write a message …"
+msgstr "編寫訊息……"

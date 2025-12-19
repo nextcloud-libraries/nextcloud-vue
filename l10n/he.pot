@@ -279,3 +279,9 @@ msgstr "ביטול שינויים"
 
 msgid "Write a message …"
 msgstr ""
+
+msgid "More items …"
+msgstr "פריטים נוספים…"
+
+msgid "Write a message …"
+msgstr ""

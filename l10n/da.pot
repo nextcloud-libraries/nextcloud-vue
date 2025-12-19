@@ -438,3 +438,62 @@ msgstr "Whiskey"
 
 msgid "Write a message …"
 msgstr "Skriv en besked ..."
+
+#. TRANSLATORS: Alt key on keyboard (Windows/Linux)
+msgid "Alt"
+msgstr "Alt"
+
+msgid "Black"
+msgstr "Sort"
+
+#. TRANSLATORS: Ctrl key on keyboard (Windows/Linux)
+msgid "Ctrl"
+msgstr "Ctrl"
+
+#. TRANSLATORS: Delete key on keyboard
+msgid "Delete"
+msgstr "Slet"
+
+#. TRANSLATORS: Enter key on keyboard
+msgid "Enter"
+msgstr "Indtast"
+
+#. TRANSLATORS: Escape key on keyboard
+msgid "Escape"
+msgstr "Afbrud"
+
+#. TRANSLATORS: The button is in a loading state
+msgid "Loading …"
+msgstr "Indlæser ..."
+
+msgid "Message limit of %n character reached"
+msgid_plural "Message limit of %n characters reached"
+msgstr[0] "Beskedgrænsen på %n tegn er nået"
+msgstr[1] "Beskedgrænsen på %n tegn er nået"
+
+msgid "More items …"
+msgstr "Flere elementer ..."
+
+msgid "No color"
+msgstr "Ingen farve"
+
+msgid "Search …"
+msgstr "Søg ..."
+
+#. TRANSLATORS: Shift key on keyboard
+msgid "Shift"
+msgstr "Skift"
+
+#. TRANSLATORS: Space key on keyboard
+msgid "Space"
+msgstr "Mellemrum"
+
+#. TRANSLATORS: Tab key on keyboard
+msgid "Tab"
+msgstr "Faneblad"
+
+msgid "White"
+msgstr "Hvid"
+
+msgid "Write a message …"
+msgstr "Skriv en besked ..."

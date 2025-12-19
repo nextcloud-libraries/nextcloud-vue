@@ -438,3 +438,13 @@ msgstr "نبيذي"
 
 msgid "Write a message …"
 msgstr "أكتب رسالة ..."
+
+#. TRANSLATORS: The button is in a loading state
+msgid "Loading …"
+msgstr "التحميل جارٍ ..."
+
+msgid "More items …"
+msgstr "عناصر أخرى ..."
+
+msgid "Write a message …"
+msgstr "أكتب رسالة ..."

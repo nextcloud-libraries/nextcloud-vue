@@ -278,3 +278,6 @@ msgid ""
 "Write message, use \"@\" to mention someone, use \":\" for emoji "
 "autocompletion …"
 msgstr ""
+
+msgid "More items …"
+msgstr ""
