@@ -392,3 +392,9 @@ msgstr "Whisky"
 
 msgid "Write a message …"
 msgstr "Napsat zprávu…"
+
+msgid "More items …"
+msgstr "Další položky…"
+
+msgid "Write a message …"
+msgstr "Napsat zprávu…"

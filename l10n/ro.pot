@@ -321,3 +321,9 @@ msgstr "Status utilizator: {status}"
 
 msgid "Write a message …"
 msgstr "Scrieți un mesaj ..."
+
+msgid "More items …"
+msgstr "Mai multe articole ..."
+
+msgid "Write a message …"
+msgstr "Scrieți un mesaj ..."

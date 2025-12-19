@@ -436,3 +436,9 @@ msgstr "Whiskey"
 
 msgid "Write a message …"
 msgstr "Escriba un mensaje ..."
+
+msgid "More items …"
+msgstr "Más Elementos ..."
+
+msgid "Write a message …"
+msgstr "Escriba un mensaje ..."

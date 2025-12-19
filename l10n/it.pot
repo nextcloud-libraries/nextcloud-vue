@@ -322,3 +322,9 @@ msgstr "Stato dell'utente: {status}"
 
 msgid "Write a message …"
 msgstr "Scrivi un messaggio ..."
+
+msgid "More items …"
+msgstr "Più elementi ..."
+
+msgid "Write a message …"
+msgstr "Scrivi un messaggio ..."

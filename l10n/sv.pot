@@ -437,3 +437,13 @@ msgstr "Whisky"
 
 msgid "Write a message …"
 msgstr "Skriv ett meddelande …"
+
+#. TRANSLATORS: The button is in a loading state
+msgid "Loading …"
+msgstr "Laddar ..."
+
+msgid "More items …"
+msgstr "Fler objekt …"
+
+msgid "Write a message …"
+msgstr "Skriv ett meddelande …"

@@ -434,3 +434,70 @@ msgstr "威士忌"
 
 msgid "Write a message …"
 msgstr "編寫訊息 …"
+
+#. TRANSLATORS: Alt key on keyboard (Windows/Linux)
+msgid "Alt"
+msgstr "Alt"
+
+msgid "Black"
+msgstr "黑色"
+
+msgid "Copied"
+msgstr "已被複製"
+
+msgid "Copy to clipboard"
+msgstr "複製到剪貼簿"
+
+#. TRANSLATORS: Ctrl key on keyboard (Windows/Linux)
+msgid "Ctrl"
+msgstr "Ctrl"
+
+#. TRANSLATORS: Delete key on keyboard
+msgid "Delete"
+msgstr "Delete"
+
+#. TRANSLATORS: Enter key on keyboard
+msgid "Enter"
+msgstr "Enter"
+
+#. TRANSLATORS: Escape key on keyboard
+msgid "Escape"
+msgstr "Escape"
+
+msgid "Keyboard shortcuts"
+msgstr "鍵盤快速鍵"
+
+#. TRANSLATORS: The button is in a loading state
+msgid "Loading …"
+msgstr "加載中 …"
+
+msgid "Message limit of %n character reached"
+msgid_plural "Message limit of %n characters reached"
+msgstr[0] "已達到訊息最多 %n 字元限制"
+
+msgid "More items …"
+msgstr "更多項目 …"
+
+msgid "No color"
+msgstr "無顏色"
+
+msgid "Search …"
+msgstr "搜尋 …"
+
+#. TRANSLATORS: Shift key on keyboard
+msgid "Shift"
+msgstr "Shift"
+
+#. TRANSLATORS: Space key on keyboard
+msgid "Space"
+msgstr "Space"
+
+#. TRANSLATORS: Tab key on keyboard
+msgid "Tab"
+msgstr "Tab"
+
+msgid "White"
+msgstr "白色"
+
+msgid "Write a message …"
+msgstr "編寫訊息 …"

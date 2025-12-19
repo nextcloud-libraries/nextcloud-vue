@@ -440,3 +440,72 @@ msgstr "Uísque"
 
 msgid "Write a message …"
 msgstr "Escreve uma mensagem …"
+
+#. TRANSLATORS: Alt key on keyboard (Windows/Linux)
+msgid "Alt"
+msgstr "Alt"
+
+msgid "Black"
+msgstr "Preto"
+
+msgid "Copied"
+msgstr "Copiado"
+
+msgid "Copy to clipboard"
+msgstr "Copiar para a área de transferência"
+
+#. TRANSLATORS: Ctrl key on keyboard (Windows/Linux)
+msgid "Ctrl"
+msgstr "Ctrl"
+
+#. TRANSLATORS: Delete key on keyboard
+msgid "Delete"
+msgstr "Excluir"
+
+#. TRANSLATORS: Enter key on keyboard
+msgid "Enter"
+msgstr "Enter"
+
+#. TRANSLATORS: Escape key on keyboard
+msgid "Escape"
+msgstr "Escape"
+
+msgid "Keyboard shortcuts"
+msgstr "Atalhos de teclado"
+
+#. TRANSLATORS: The button is in a loading state
+msgid "Loading …"
+msgstr "Carregando …"
+
+msgid "Message limit of %n character reached"
+msgid_plural "Message limit of %n characters reached"
+msgstr[0] "Limite de mensagem de %n caractere atingido"
+msgstr[1] "Limite de mensagem de %n de caracteres atingido"
+msgstr[2] "Limite de mensagem de %n caracteres atingido"
+
+msgid "More items …"
+msgstr "Mais itens …"
+
+msgid "No color"
+msgstr "Sem cor"
+
+msgid "Search …"
+msgstr "Pesquisar …"
+
+#. TRANSLATORS: Shift key on keyboard
+msgid "Shift"
+msgstr "Shift"
+
+#. TRANSLATORS: Space key on keyboard
+msgid "Space"
+msgstr "Barra de espaço"
+
+#. TRANSLATORS: Tab key on keyboard
+msgid "Tab"
+msgstr "Tab"
+
+msgid "White"
+msgstr "Branco"
+
+msgid "Write a message …"
+msgstr "Escreva uma mensagem …"

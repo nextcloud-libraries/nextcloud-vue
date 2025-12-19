@@ -441,3 +441,73 @@ msgstr "Виски"
 
 msgid "Write a message …"
 msgstr "Напиши сообщение …"
+
+#. TRANSLATORS: Alt key on keyboard (Windows/Linux)
+msgid "Alt"
+msgstr "Alt"
+
+msgid "Black"
+msgstr "Черный"
+
+msgid "Copied"
+msgstr "Скопировано"
+
+msgid "Copy to clipboard"
+msgstr "Скопировать в буфер"
+
+#. TRANSLATORS: Ctrl key on keyboard (Windows/Linux)
+msgid "Ctrl"
+msgstr "Ctrl"
+
+#. TRANSLATORS: Delete key on keyboard
+msgid "Delete"
+msgstr "Delete"
+
+#. TRANSLATORS: Enter key on keyboard
+msgid "Enter"
+msgstr "Enter"
+
+#. TRANSLATORS: Escape key on keyboard
+msgid "Escape"
+msgstr "Escape"
+
+msgid "Keyboard shortcuts"
+msgstr "Комбинации клавиш"
+
+#. TRANSLATORS: The button is in a loading state
+msgid "Loading …"
+msgstr "Загрузка …"
+
+msgid "Message limit of %n character reached"
+msgid_plural "Message limit of %n characters reached"
+msgstr[0] "Достигнут лимит в %n символ"
+msgstr[1] "Достигнут лимит в %n символа"
+msgstr[2] "Достигнут лимит в %n символов"
+msgstr[3] "Достигнут лимит в %n символов"
+
+msgid "More items …"
+msgstr "Больше элементов …"
+
+msgid "No color"
+msgstr "Без цвета"
+
+msgid "Search …"
+msgstr "Поиск …"
+
+#. TRANSLATORS: Shift key on keyboard
+msgid "Shift"
+msgstr "Shift"
+
+#. TRANSLATORS: Space key on keyboard
+msgid "Space"
+msgstr "Пробел"
+
+#. TRANSLATORS: Tab key on keyboard
+msgid "Tab"
+msgstr "Tab"
+
+msgid "White"
+msgstr "Белый"
+
+msgid "Write a message …"
+msgstr "Напишите сообщение …"

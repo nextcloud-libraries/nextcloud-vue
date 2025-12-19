@@ -434,3 +434,17 @@ msgstr "위스키"
 
 msgid "Write a message …"
 msgstr "메시지 작성..."
+
+#. TRANSLATORS: The button is in a loading state
+msgid "Loading …"
+msgstr "불러오는 중..."
+
+msgid "Message limit of %n character reached"
+msgid_plural "Message limit of %n characters reached"
+msgstr[0] "메시지 제한 %n자에 도달"
+
+msgid "More items …"
+msgstr "항목 더 보기..."
+
+msgid "Write a message …"
+msgstr "메시지 작성..."

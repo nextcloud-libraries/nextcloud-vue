@@ -436,3 +436,13 @@ msgstr "威士忌"
 
 msgid "Write a message …"
 msgstr "编写信息 ..."
+
+#. TRANSLATORS: The button is in a loading state
+msgid "Loading …"
+msgstr "加载中..."
+
+msgid "More items …"
+msgstr "更多项目…"
+
+msgid "Write a message …"
+msgstr "编写信息 ..."

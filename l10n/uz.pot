@@ -436,3 +436,61 @@ msgstr "Whiskey"
 
 msgid "Write a message …"
 msgstr "Xabar yozish…"
+
+#. TRANSLATORS: Alt key on keyboard (Windows/Linux)
+msgid "Alt"
+msgstr "Alt"
+
+msgid "Black"
+msgstr "Qora"
+
+#. TRANSLATORS: Ctrl key on keyboard (Windows/Linux)
+msgid "Ctrl"
+msgstr "Ctrl"
+
+#. TRANSLATORS: Delete key on keyboard
+msgid "Delete"
+msgstr "O'chirish"
+
+#. TRANSLATORS: Enter key on keyboard
+msgid "Enter"
+msgstr "Kirish"
+
+#. TRANSLATORS: Escape key on keyboard
+msgid "Escape"
+msgstr "Orqaga"
+
+#. TRANSLATORS: The button is in a loading state
+msgid "Loading …"
+msgstr "Yuklanmoqda..."
+
+msgid "Message limit of %n character reached"
+msgid_plural "Message limit of %n characters reached"
+msgstr[0] " %n  ta belgidan iborat xabar chegarasiga yetdi"
+
+msgid "More items …"
+msgstr "Yana elementlar..."
+
+msgid "No color"
+msgstr "Rangsiz"
+
+msgid "Search …"
+msgstr "Izlash..."
+
+#. TRANSLATORS: Shift key on keyboard
+msgid "Shift"
+msgstr "Yuqorigi"
+
+#. TRANSLATORS: Space key on keyboard
+msgid "Space"
+msgstr "Bo'shliq"
+
+#. TRANSLATORS: Tab key on keyboard
+msgid "Tab"
+msgstr "Tab"
+
+msgid "White"
+msgstr "Oq"
+
+msgid "Write a message …"
+msgstr "Xabar yozish..."

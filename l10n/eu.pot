@@ -281,3 +281,9 @@ msgstr "Aldaketak desegin"
 
 msgid "Write a message …"
 msgstr "Idatzi mezu bat…"
+
+msgid "More items …"
+msgstr "Elementu gehiago …"
+
+msgid "Write a message …"
+msgstr "Idatzi mezu bat…"

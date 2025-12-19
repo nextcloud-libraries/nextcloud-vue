@@ -436,3 +436,63 @@ msgstr "Виски"
 
 msgid "Write a message …"
 msgstr "Напишите поруку…"
+
+#. TRANSLATORS: Alt key on keyboard (Windows/Linux)
+msgid "Alt"
+msgstr "Alt"
+
+msgid "Black"
+msgstr "Црно"
+
+#. TRANSLATORS: Ctrl key on keyboard (Windows/Linux)
+msgid "Ctrl"
+msgstr "Ctrl"
+
+#. TRANSLATORS: Delete key on keyboard
+msgid "Delete"
+msgstr "Обриши"
+
+#. TRANSLATORS: Enter key on keyboard
+msgid "Enter"
+msgstr "Enter"
+
+#. TRANSLATORS: Escape key on keyboard
+msgid "Escape"
+msgstr "Escape"
+
+#. TRANSLATORS: The button is in a loading state
+msgid "Loading …"
+msgstr "Учитава се…"
+
+msgid "Message limit of %n character reached"
+msgid_plural "Message limit of %n characters reached"
+msgstr[0] "Достигнуто је ограничење величине поруке од %n карактер"
+msgstr[1] "Достигнуто је ограничење величине поруке од %n карактера"
+msgstr[2] "Достигнуто је ограничење величине поруке од %n карактера"
+
+msgid "More items …"
+msgstr "Још ставки..."
+
+msgid "No color"
+msgstr "Без боје"
+
+msgid "Search …"
+msgstr "Претражи…"
+
+#. TRANSLATORS: Shift key on keyboard
+msgid "Shift"
+msgstr "Shift"
+
+#. TRANSLATORS: Space key on keyboard
+msgid "Space"
+msgstr "Space"
+
+#. TRANSLATORS: Tab key on keyboard
+msgid "Tab"
+msgstr "Tab"
+
+msgid "White"
+msgstr "Бело"
+
+msgid "Write a message …"
+msgstr "Напишите поруку…"

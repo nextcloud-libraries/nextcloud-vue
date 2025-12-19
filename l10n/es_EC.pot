@@ -281,3 +281,9 @@ msgstr "Deshacer cambios"
 
 msgid "Write a message …"
 msgstr ""
+
+msgid "More items …"
+msgstr "Más elementos..."
+
+msgid "Write a message …"
+msgstr ""

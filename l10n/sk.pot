@@ -436,3 +436,13 @@ msgstr "Whisky"
 
 msgid "Write a message …"
 msgstr "Napíšte správu…"
+
+#. TRANSLATORS: The button is in a loading state
+msgid "Loading …"
+msgstr "Nahrávam ..."
+
+msgid "More items …"
+msgstr "Viac položiek..."
+
+msgid "Write a message …"
+msgstr "Napíšte správu…"

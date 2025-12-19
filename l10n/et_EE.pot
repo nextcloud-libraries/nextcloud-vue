@@ -436,3 +436,71 @@ msgstr "Viskikarva kollakaspruun"
 
 msgid "Write a message …"
 msgstr "Kirjuta sõnum…"
+
+#. TRANSLATORS: Alt key on keyboard (Windows/Linux)
+msgid "Alt"
+msgstr "Alt"
+
+msgid "Black"
+msgstr "Must"
+
+msgid "Copied"
+msgstr "Kopeeritud"
+
+msgid "Copy to clipboard"
+msgstr "Kopeeri lõikelauale"
+
+#. TRANSLATORS: Ctrl key on keyboard (Windows/Linux)
+msgid "Ctrl"
+msgstr "Ctrl"
+
+#. TRANSLATORS: Delete key on keyboard
+msgid "Delete"
+msgstr "Kustutusklahv"
+
+#. TRANSLATORS: Enter key on keyboard
+msgid "Enter"
+msgstr "Sisestusklahv"
+
+#. TRANSLATORS: Escape key on keyboard
+msgid "Escape"
+msgstr "Esc-klahv"
+
+msgid "Keyboard shortcuts"
+msgstr "Klahvistiku kiirklahvid"
+
+#. TRANSLATORS: The button is in a loading state
+msgid "Loading …"
+msgstr "Laadin …"
+
+msgid "Message limit of %n character reached"
+msgid_plural "Message limit of %n characters reached"
+msgstr[0] "Sõnumi piirarv %n tähemärk on käes"
+msgstr[1] "Sõnumi piirarv %n tähemärki on käes"
+
+msgid "More items …"
+msgstr "Vaata veel …"
+
+msgid "No color"
+msgstr "Värv puudub"
+
+msgid "Search …"
+msgstr "Otsi …"
+
+#. TRANSLATORS: Shift key on keyboard
+msgid "Shift"
+msgstr "Shift"
+
+#. TRANSLATORS: Space key on keyboard
+msgid "Space"
+msgstr "Tühikuklahv"
+
+#. TRANSLATORS: Tab key on keyboard
+msgid "Tab"
+msgstr "Tabulaator"
+
+msgid "White"
+msgstr "Valge"
+
+msgid "Write a message …"
+msgstr "Koosta sõnum …"

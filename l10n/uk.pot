@@ -436,3 +436,20 @@ msgstr "Кола"
 
 msgid "Write a message …"
 msgstr "Написати повідомлення ..."
+
+#. TRANSLATORS: The button is in a loading state
+msgid "Loading …"
+msgstr "Завантаження …"
+
+msgid "Message limit of %n character reached"
+msgid_plural "Message limit of %n characters reached"
+msgstr[0] "Досягнуто обмеження на довжину повідомлення у %n символ."
+msgstr[1] "Досягнуто обмеження на довжину повідомлення у %n символи."
+msgstr[2] "Досягнуто обмеження на довжину повідомлення у%n символів."
+msgstr[3] "Досягнуто обмеження на довжину повідомлення у %n символів."
+
+msgid "More items …"
+msgstr "Більше …"
+
+msgid "Write a message …"
+msgstr "Створити повідомлення …"

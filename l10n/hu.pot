@@ -280,3 +280,6 @@ msgid ""
 msgstr ""
 "Írjon egy üzenetet, használja a „@”-ot valaki megemlítéséhet, illetve a "
 "„:”-ot az emodzsik automatikus kiegészítéséhez…"
+
+msgid "More items …"
+msgstr "További elemek..."

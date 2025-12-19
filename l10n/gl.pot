@@ -436,3 +436,71 @@ msgstr "Whisky"
 
 msgid "Write a message …"
 msgstr "Escribir unha mensaxe…"
+
+#. TRANSLATORS: Alt key on keyboard (Windows/Linux)
+msgid "Alt"
+msgstr "Alt"
+
+msgid "Black"
+msgstr "Negro"
+
+msgid "Copied"
+msgstr "Copiado"
+
+msgid "Copy to clipboard"
+msgstr "Copiar ao portapapeis"
+
+#. TRANSLATORS: Ctrl key on keyboard (Windows/Linux)
+msgid "Ctrl"
+msgstr "Ctrl"
+
+#. TRANSLATORS: Delete key on keyboard
+msgid "Delete"
+msgstr "Eliminar"
+
+#. TRANSLATORS: Enter key on keyboard
+msgid "Enter"
+msgstr "Intro"
+
+#. TRANSLATORS: Escape key on keyboard
+msgid "Escape"
+msgstr "Escape"
+
+msgid "Keyboard shortcuts"
+msgstr "Atallos de teclado"
+
+#. TRANSLATORS: The button is in a loading state
+msgid "Loading …"
+msgstr "Cargando…"
+
+msgid "Message limit of %n character reached"
+msgid_plural "Message limit of %n characters reached"
+msgstr[0] "Acadouse o límite de %n caracter por mensaxe"
+msgstr[1] "Acadouse o límite de %n caracteres por mensaxe"
+
+msgid "More items …"
+msgstr "Máis elementos…"
+
+msgid "No color"
+msgstr "Sen cor"
+
+msgid "Search …"
+msgstr "Buscar…"
+
+#. TRANSLATORS: Shift key on keyboard
+msgid "Shift"
+msgstr "Maiús."
+
+#. TRANSLATORS: Space key on keyboard
+msgid "Space"
+msgstr "Espazo"
+
+#. TRANSLATORS: Tab key on keyboard
+msgid "Tab"
+msgstr "Tab"
+
+msgid "White"
+msgstr "Branco"
+
+msgid "Write a message …"
+msgstr "Escribir unha mensaxe…"

@@ -437,3 +437,13 @@ msgstr "ویسکی"
 
 msgid "Write a message …"
 msgstr "یک پیام بنویسید ..."
+
+#. TRANSLATORS: The button is in a loading state
+msgid "Loading …"
+msgstr "در حال بارگذاری ..."
+
+msgid "More items …"
+msgstr "موارد بیشتر ..."
+
+msgid "Write a message …"
+msgstr "یک پیام بنویسید ..."
