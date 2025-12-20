@@ -166,17 +166,51 @@ export default {
 
 ### Restricting to a specific time range
 
-You can optionally restring the selectable time range, for example from 08:00 on Monday to 20:00 on Sunday.
+You can optionally restrict the selectable time range, for example from 08:00 on Monday to 20:00 on Sunday of the current week.
+This example shows how the `min` and `max` properties are applied to different picker types.
 
 ```vue
 <template>
 	<div>
+		<h4>Date and time</h4>
 		<NcDateTimePicker
-			v-model="selected"
+			v-model="selectedDatetime"
 			type="datetime"
 			:min="min"
 			:max="max" />
-		<p>Selected: {{ selected }}</p>
+		<p>Selected: {{ selectedDatetime }}</p>
+
+		<h4>Date range</h4>
+		<NcDateTimePicker
+			v-model="selectedDateRange"
+			type="date-range"
+			:min="min"
+			:max="max" />
+		<p>Selected: {{ selectedDateRange }}</p>
+
+		<h4>Date and time range</h4>
+		<NcDateTimePicker
+			v-model="selectedDatetimeRange"
+			type="datetime-range"
+			:min="min"
+			:max="max" />
+		<p>Selected: {{ selectedDatetimeRange }}</p>
+
+		<h4>Time range</h4>
+		<NcDateTimePicker
+			v-model="selectedTimeRange"
+			type="time-range"
+			:min="min"
+			:max="max" />
+		<p>Selected: {{ selectedTimeRange }}</p>
+
+		<h4>Time</h4>
+		<NcDateTimePicker
+			v-model="selectedTime"
+			type="time"
+			:min="min"
+			:max="max" />
+		<p>Selected: {{ selectedTime }}</p>
 	</div>
 </template>
 <script>
@@ -195,7 +229,11 @@ export default {
 		endOfWeek.setHours(20, 0, 0, 0)
 
 		return {
-			selected: null,
+			selectedDatetime: null,
+			selectedDateRange: null,
+			selectedDatetimeRange: null,
+			selectedTimeRange: null,
+			selectedTime: null,
 			min: startOfWeek,
 			max: endOfWeek,
 		}
@@ -677,6 +715,41 @@ function cancelSelection() {
 }
 
 /**
+ *
+ */
+function calcMinMaxTime() {
+	if (props.type === 'datetime') {
+		return {
+			minDate: props.min,
+			maxDate: props.max,
+			minTime: props.min && value.value ? sameDay(props.min, value.value as Date) ? minTime.value : undefined : undefined,
+			maxTime: props.max && value.value ? sameDay(props.max, value.value as Date) ? maxTime.value : undefined : undefined,
+		}
+	}
+
+	if (props.type === 'datetime-range') {
+		return {
+			minDate: props.min,
+			maxDate: props.max,
+			minTime: props.min && value.value ? sameDay(props.min, value.value[0] as Date) ? minTime.value : undefined : undefined,
+			maxTime: props.max && value.value ? sameDay(props.max, value.value[1] as Date) ? maxTime.value : undefined : undefined,
+		}
+	}
+
+	if (props.type === 'time' || props.type === 'time-range') {
+		return {
+			minTime: props.min ? minTime.value : undefined,
+			maxTime: props.max ? maxTime.value : undefined,
+		}
+	}
+
+	return {
+		minDate: props.min,
+		maxDate: props.max,
+	}
+}
+
+/**
  * Check if two dates are on the same day.
  *
  * @param a
@@ -705,10 +778,10 @@ function sameDay(a: Date, b: Date): boolean {
 			:placeholder="placeholder ?? placeholderFallback"
 			:format="realFormat"
 			:locale
-			:min-date="min"
-			:max-date="max"
-			:min-time="min ? sameDay(min, value as Date) ? minTime : undefined : undefined"
-			:max-time="max ? sameDay(max, value as Date) ? maxTime : undefined : undefined"
+			:min-date="calcMinMaxTime().minDate"
+			:max-date="calcMinMaxTime().maxDate"
+			:min-time="calcMinMaxTime().minTime as LibraryTimeObject"
+			:max-time="calcMinMaxTime().maxTime as LibraryTimeObject"
 			:minutes-increment="minuteStep"
 			:model-value="value"
 			:now-button-label="t('Now')"
