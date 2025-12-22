@@ -442,7 +442,7 @@ msgstr "Hledat …"
 msgid "Search emoji"
 msgstr "Hledat emoji"
 
-msgid "Search for timezone"
+msgid "Search for time zone"
 msgstr "Vyhledat časové pásmo"
 
 msgid "Search results"
@@ -544,7 +544,7 @@ msgstr "Tab"
 msgid "Time picker"
 msgstr "Výběr času"
 
-msgid "Timezone"
+msgid "Time zone"
 msgstr "Časové pásmo"
 
 msgid "Toggle overlay"
