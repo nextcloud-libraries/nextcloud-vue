@@ -717,13 +717,13 @@ function cancelSelection() {
 /**
  *
  */
-function calcMinMaxTime() {
+const calcMinMaxTime = computed(() => {
 	if (props.type === 'datetime') {
 		return {
 			minDate: props.min,
 			maxDate: props.max,
-			minTime: props.min && value.value ? sameDay(props.min, value.value as Date) ? minTime.value : undefined : undefined,
-			maxTime: props.max && value.value ? sameDay(props.max, value.value as Date) ? maxTime.value : undefined : undefined,
+			minTime: props.min && value.value && sameDay(props.min, value.value as Date) ? minTime.value : undefined,
+			maxTime: props.max && value.value && sameDay(props.max, value.value as Date) ? maxTime.value : undefined,
 		}
 	}
 
@@ -731,8 +731,8 @@ function calcMinMaxTime() {
 		return {
 			minDate: props.min,
 			maxDate: props.max,
-			minTime: props.min && value.value ? sameDay(props.min, value.value[0] as Date) ? minTime.value : undefined : undefined,
-			maxTime: props.max && value.value ? sameDay(props.max, value.value[1] as Date) ? maxTime.value : undefined : undefined,
+			minTime: props.min && value.value ? (sameDay(props.min, value.value[0] as Date) ? minTime.value : undefined) : undefined,
+			maxTime: props.max && value.value ? (sameDay(props.max, value.value[1] as Date) ? maxTime.value : undefined) : undefined,
 		}
 	}
 
@@ -747,7 +747,7 @@ function calcMinMaxTime() {
 		minDate: props.min,
 		maxDate: props.max,
 	}
-}
+})
 
 /**
  * Check if two dates are on the same day.
@@ -778,10 +778,10 @@ function sameDay(a: Date, b: Date): boolean {
 			:placeholder="placeholder ?? placeholderFallback"
 			:format="realFormat"
 			:locale
-			:min-date="calcMinMaxTime().minDate"
-			:max-date="calcMinMaxTime().maxDate"
-			:min-time="calcMinMaxTime().minTime as LibraryTimeObject"
-			:max-time="calcMinMaxTime().maxTime as LibraryTimeObject"
+			:min-date="calcMinMaxTime.minDate"
+			:max-date="calcMinMaxTime.maxDate"
+			:min-time="calcMinMaxTime.minTime as LibraryTimeObject"
+			:max-time="calcMinMaxTime.maxTime as LibraryTimeObject"
 			:minutes-increment="minuteStep"
 			:model-value="value"
 			:now-button-label="t('Now')"
