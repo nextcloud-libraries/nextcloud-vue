@@ -1,14 +1,16 @@
-# 
+#
 # Translators:
+# Joas Schilling, 2025
 # Aindriú Mac Giolla Eoin, 2025
-# 
+#
 msgid ""
 msgstr ""
 "Last-Translator: Aindriú Mac Giolla Eoin, 2025\n"
 "Language-Team: Irish (https://app.transifex.com/nextcloud/teams/64236/ga/)\n"
-"Content-Type: text/plain; charset=UTF-8\n"
 "Language: ga\n"
-"Plural-Forms: nplurals=5; plural=(n==1 ? 0 : n==2 ? 1 : n<7 ? 2 : n<11 ? 3 : 4);\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Plural-Forms: nplurals=5; plural=(n==1 ? 0 : n==2 ? 1 : n<7 ? 2 : n<11 ? 3 : "
+"4);\n"
 
 msgid "{tag} (invisible)"
 msgstr "{tag} (dofheicthe)"
@@ -35,6 +37,10 @@ msgstr "Gníomhaíochtaí"
 msgid "Add to a project"
 msgstr "Cuir le tionscadal"
 
+#. TRANSLATORS: Alt key on keyboard (Windows/Linux)
+msgid "Alt"
+msgstr "Alt"
+
 msgid "Animals & Nature"
 msgstr "Ainmhithe & Dúlra"
 
@@ -59,6 +65,9 @@ msgstr "Ar ais"
 
 msgid "Back to provider selection"
 msgstr "Ar ais go roghnú soláthróra"
+
+msgid "Black"
+msgstr "Dubh"
 
 #. TRANSLATORS: A color name for RGB(91, 100, 179)
 msgid "Blue Violet"
@@ -114,11 +123,25 @@ msgid "Connect items to a project to make them easier to find"
 msgstr ""
 "Ceangail míreanna le tionscadal chun iad a dhéanamh níos éasca iad a aimsiú"
 
+msgid "Copied"
+msgstr "Cóipeáilte"
+
+msgid "Copy to clipboard"
+msgstr "Cóipeáil chuig an ghearrthaisce"
+
+#. TRANSLATORS: Ctrl key on keyboard (Windows/Linux)
+msgid "Ctrl"
+msgstr "Ctrl"
+
 msgid "Custom"
 msgstr "Saincheaptha"
 
 msgid "Dark skin tone"
 msgstr "Ton craiceann dorcha"
+
+#. TRANSLATORS: Delete key on keyboard
+msgid "Delete"
+msgstr "Scrios"
 
 #. TRANSLATORS: A color name for RGB(136, 85, 168)
 msgid "Deluge"
@@ -139,15 +162,23 @@ msgstr "Roghnóir Emoji"
 msgid "Enable interactive view"
 msgstr "Cumasaigh amharc idirghníomhach"
 
+#. TRANSLATORS: Enter key on keyboard
+msgid "Enter"
+msgstr "Iontráil"
+
 msgid "Enter link"
 msgstr "Cuir isteach nasc"
 
 msgid ""
-"Error getting related resources. Please contact your system administrator if"
-" you have any questions."
+"Error getting related resources. Please contact your system administrator if "
+"you have any questions."
 msgstr ""
 "Earráid agus acmhainní gaolmhara á bhfáil. Déan teagmháil le riarthóir do "
 "chórais má tá aon cheist agat."
+
+#. TRANSLATORS: Escape key on keyboard
+msgid "Escape"
+msgstr "Éalú"
 
 msgid "External documentation for {name}"
 msgstr "Doiciméadúchán seachtrach le haghaidh {name}"
@@ -198,6 +229,9 @@ msgstr "dofheicthe"
 msgid "Keyboard navigation help"
 msgstr "Cabhair le nascleanúint méarchláir"
 
+msgid "Keyboard shortcuts"
+msgstr "Aicearraí méarchláir"
+
 msgid "Light skin tone"
 msgstr "Ton craiceann éadrom"
 
@@ -205,8 +239,8 @@ msgid "Load more \"{options}\""
 msgstr "Luchtaigh tuilleadh \"{options}\""
 
 #. TRANSLATORS: The button is in a loading state
-msgid "Loading …"
-msgstr "Á lódáil…"
+msgid "Loading …"
+msgstr "Ag lódáil …"
 
 #. TRANSLATORS: A color name for RGB(45, 115, 190)
 msgid "Mariner"
@@ -221,11 +255,16 @@ msgstr "Ton craiceann meánach éadrom"
 msgid "Medium skin tone"
 msgstr "Ton craiceann meánach"
 
-msgid "Message limit of {count} characters reached"
-msgstr "Teorainn teachtaireachta de {count} carachtar bainte amach"
+msgid "Message limit of %n character reached"
+msgid_plural "Message limit of %n characters reached"
+msgstr[0] "Sroicheadh ​​teorainn teachtaireachta de %n carachtar"
+msgstr[1] "Sroicheadh ​​teorainn teachtaireachta de %n carachtar"
+msgstr[2] "Sroicheadh ​​teorainn teachtaireachta de %n carachtar"
+msgstr[3] "Sroicheadh ​​teorainn teachtaireachta de %n carachtar"
+msgstr[4] "Sroicheadh ​​teorainn teachtaireachta de %n carachtar"
 
-msgid "More items …"
-msgstr "Tuilleadh earraí…"
+msgid "More items …"
+msgstr "Tuilleadh míreanna …"
 
 msgid "More options"
 msgstr "Tuilleadh roghanna"
@@ -238,6 +277,9 @@ msgstr "Ar aghaidh"
 
 msgid "Nextcloud blue"
 msgstr "Nextcloud gorm"
+
+msgid "No color"
+msgstr "Gan dath"
 
 msgid "No emoji found"
 msgstr "Níor aimsíodh emoji"
@@ -340,6 +382,9 @@ msgstr "Sabháil na hathruithe"
 msgid "Search"
 msgstr "Cuardach"
 
+msgid "Search …"
+msgstr "Cuardaigh …"
+
 msgid "Search emoji"
 msgstr "Cuardaigh emoji"
 
@@ -349,11 +394,7 @@ msgstr "Cuardaigh crios ama"
 msgid "Search results"
 msgstr "Torthaí cuardaigh"
 
-msgid "Search…"
-msgstr "Cuardaigh…"
-
-#. FOR TRANSLATORS: If possible in your language an even shorter version of 'a
-#. few seconds ago'
+#. FOR TRANSLATORS: If possible in your language an even shorter version of 'a few seconds ago'
 msgid "sec. ago"
 msgstr "soic. ó shin"
 
@@ -363,6 +404,9 @@ msgstr "soicind ó shin"
 
 msgid "Select a tag"
 msgstr "Roghnaigh clib"
+
+msgid "Select account"
+msgstr ""
 
 msgid "Select provider"
 msgstr "Roghnaigh soláthraí"
@@ -375,6 +419,10 @@ msgstr "Socruithe"
 
 msgid "Settings navigation"
 msgstr "Nascleanúint socruithe"
+
+#. TRANSLATORS: Shift key on keyboard
+msgid "Shift"
+msgstr "Shift"
 
 msgid "Show details"
 msgstr "Taispeáin sonraí"
@@ -397,6 +445,10 @@ msgstr "Roghnóir Cliste"
 msgid "Smileys & Emotion"
 msgstr "Smileys & Mothúchán"
 
+#. TRANSLATORS: Space key on keyboard
+msgid "Space"
+msgstr "Spás"
+
 msgid "Start slideshow"
 msgstr "Tosaigh taispeántas sleamhnán"
 
@@ -408,6 +460,10 @@ msgstr "Cuir isteach"
 
 msgid "Symbols"
 msgstr "Siombailí"
+
+#. TRANSLATORS: Tab key on keyboard
+msgid "Tab"
+msgstr "Táb"
 
 msgid "Travel & Places"
 msgstr "Taisteal & Áiteanna"
@@ -434,76 +490,9 @@ msgstr "Féach ar an bhfoireann"
 msgid "Whiskey"
 msgstr "Fuisce"
 
-msgid "Write a message …"
-msgstr "Scríobh teachtaireacht…"
-
-#. TRANSLATORS: Alt key on keyboard (Windows/Linux)
-msgid "Alt"
-msgstr "Alt"
-
-msgid "Black"
-msgstr "Dubh"
-
-msgid "Copied"
-msgstr "Cóipeáilte"
-
-msgid "Copy to clipboard"
-msgstr "Cóipeáil chuig an ghearrthaisce"
-
-#. TRANSLATORS: Ctrl key on keyboard (Windows/Linux)
-msgid "Ctrl"
-msgstr "Ctrl"
-
-#. TRANSLATORS: Delete key on keyboard
-msgid "Delete"
-msgstr "Scrios"
-
-#. TRANSLATORS: Enter key on keyboard
-msgid "Enter"
-msgstr "Iontráil"
-
-#. TRANSLATORS: Escape key on keyboard
-msgid "Escape"
-msgstr "Éalú"
-
-msgid "Keyboard shortcuts"
-msgstr "Aicearraí méarchláir"
-
-#. TRANSLATORS: The button is in a loading state
-msgid "Loading …"
-msgstr "Ag lódáil …"
-
-msgid "Message limit of %n character reached"
-msgid_plural "Message limit of %n characters reached"
-msgstr[0] "Sroicheadh ​​teorainn teachtaireachta de %n carachtar"
-msgstr[1] "Sroicheadh ​​teorainn teachtaireachta de %n carachtar"
-msgstr[2] "Sroicheadh ​​teorainn teachtaireachta de %n carachtar"
-msgstr[3] "Sroicheadh ​​teorainn teachtaireachta de %n carachtar"
-msgstr[4] "Sroicheadh ​​teorainn teachtaireachta de %n carachtar"
-
-msgid "More items …"
-msgstr "Tuilleadh míreanna …"
-
-msgid "No color"
-msgstr "Gan dath"
-
-msgid "Search …"
-msgstr "Cuardaigh …"
-
-#. TRANSLATORS: Shift key on keyboard
-msgid "Shift"
-msgstr "Shift"
-
-#. TRANSLATORS: Space key on keyboard
-msgid "Space"
-msgstr "Spás"
-
-#. TRANSLATORS: Tab key on keyboard
-msgid "Tab"
-msgstr "Táb"
-
 msgid "White"
 msgstr "Bán"
 
 msgid "Write a message …"
 msgstr "Scríobh teachtaireacht …"
+

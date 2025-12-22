@@ -1,15 +1,17 @@
-# 
+#
 # Translators:
 # Stanislav Prekop <prekop3@gmail.com>, 2024
 # Tomas Rusnak <linkermail@gmail.com>, 2025
-# 
+#
 msgid ""
 msgstr ""
 "Last-Translator: Tomas Rusnak <linkermail@gmail.com>, 2025\n"
-"Language-Team: Slovak (Slovakia) (https://app.transifex.com/nextcloud/teams/64236/sk_SK/)\n"
-"Content-Type: text/plain; charset=UTF-8\n"
+"Language-Team: Slovak (Slovakia) (https://app.transifex.com/nextcloud/"
+"teams/64236/sk_SK/)\n"
 "Language: sk_SK\n"
-"Plural-Forms: nplurals=4; plural=(n % 1 == 0 && n == 1 ? 0 : n % 1 == 0 && n >= 2 && n <= 4 ? 1 : n % 1 != 0 ? 2: 3);\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Plural-Forms: nplurals=4; plural=(n % 1 == 0 && n == 1 ? 0 : n % 1 == 0 && n "
+">= 2 && n <= 4 ? 1 : n % 1 != 0 ? 2: 3);\n"
 
 msgid "{tag} (invisible)"
 msgstr "{tag} (neviditeľný)"
@@ -36,6 +38,10 @@ msgstr "Aktivity"
 msgid "Add to a project"
 msgstr "Pridať do projektu"
 
+#. TRANSLATORS: Alt key on keyboard (Windows/Linux)
+msgid "Alt"
+msgstr ""
+
 msgid "Animals & Nature"
 msgstr "Zvieratá a príroda"
 
@@ -60,6 +66,9 @@ msgstr "Späť"
 
 msgid "Back to provider selection"
 msgstr "Späť na výber poskytovateľa"
+
+msgid "Black"
+msgstr ""
 
 #. TRANSLATORS: A color name for RGB(91, 100, 179)
 msgid "Blue Violet"
@@ -114,11 +123,25 @@ msgstr "Potvrdiť zmeny"
 msgid "Connect items to a project to make them easier to find"
 msgstr "Pridať položky do projektu pre jednoduchšie vyhľadávanie"
 
+msgid "Copied"
+msgstr ""
+
+msgid "Copy to clipboard"
+msgstr ""
+
+#. TRANSLATORS: Ctrl key on keyboard (Windows/Linux)
+msgid "Ctrl"
+msgstr ""
+
 msgid "Custom"
 msgstr "Vlastné"
 
 msgid "Dark skin tone"
 msgstr "Tmavý vzhľad"
+
+#. TRANSLATORS: Delete key on keyboard
+msgid "Delete"
+msgstr ""
 
 #. TRANSLATORS: A color name for RGB(136, 85, 168)
 msgid "Deluge"
@@ -139,15 +162,23 @@ msgstr "Výber emodži"
 msgid "Enable interactive view"
 msgstr "Povoliť interaktívny pohľad"
 
+#. TRANSLATORS: Enter key on keyboard
+msgid "Enter"
+msgstr ""
+
 msgid "Enter link"
 msgstr "Vložiť link"
 
 msgid ""
-"Error getting related resources. Please contact your system administrator if"
-" you have any questions."
+"Error getting related resources. Please contact your system administrator if "
+"you have any questions."
 msgstr ""
-"Chyba pri získavaní súvisiacich zdrojov. V prípade otázok kontaktujte prosím"
-" svojho systemového administrátora."
+"Chyba pri získavaní súvisiacich zdrojov. V prípade otázok kontaktujte prosím "
+"svojho systemového administrátora."
+
+#. TRANSLATORS: Escape key on keyboard
+msgid "Escape"
+msgstr ""
 
 msgid "External documentation for {name}"
 msgstr "Externá dokumentácia pre {name}"
@@ -198,6 +229,9 @@ msgstr "neviditeľný"
 msgid "Keyboard navigation help"
 msgstr "Pomoc pri navigácii pomocou klávesnice"
 
+msgid "Keyboard shortcuts"
+msgstr ""
+
 msgid "Light skin tone"
 msgstr "Svetlý vzhľad"
 
@@ -205,7 +239,7 @@ msgid "Load more \"{options}\""
 msgstr "Načítať viac \"{options}\""
 
 #. TRANSLATORS: The button is in a loading state
-msgid "Loading …"
+msgid "Loading …"
 msgstr "Nahrávam ..."
 
 #. TRANSLATORS: A color name for RGB(45, 115, 190)
@@ -221,10 +255,14 @@ msgstr "Stredne svetlý vzhľad"
 msgid "Medium skin tone"
 msgstr "Stredný vzhľad"
 
-msgid "Message limit of {count} characters reached"
-msgstr "Limit správy na {count} znakov dosiahnutý"
+msgid "Message limit of %n character reached"
+msgid_plural "Message limit of %n characters reached"
+msgstr[0] ""
+msgstr[1] ""
+msgstr[2] ""
+msgstr[3] ""
 
-msgid "More items …"
+msgid "More items …"
 msgstr "Viac položiek..."
 
 msgid "More options"
@@ -238,6 +276,9 @@ msgstr "Ďalej"
 
 msgid "Nextcloud blue"
 msgstr "Nextcloud modrá"
+
+msgid "No color"
+msgstr ""
 
 msgid "No emoji found"
 msgstr "Nenašli sa žiadne emodži"
@@ -340,6 +381,9 @@ msgstr "Uložiť zmeny"
 msgid "Search"
 msgstr "Hľadať"
 
+msgid "Search …"
+msgstr ""
+
 msgid "Search emoji"
 msgstr "Vyhľadať emoji"
 
@@ -349,11 +393,7 @@ msgstr "Vyhľadať časové pásmo"
 msgid "Search results"
 msgstr "Výsledky vyhľadávania"
 
-msgid "Search…"
-msgstr "Vyhľadať..."
-
-#. FOR TRANSLATORS: If possible in your language an even shorter version of 'a
-#. few seconds ago'
+#. FOR TRANSLATORS: If possible in your language an even shorter version of 'a few seconds ago'
 msgid "sec. ago"
 msgstr "pred pár sekundami"
 
@@ -363,6 +403,9 @@ msgstr "pred sekundami"
 
 msgid "Select a tag"
 msgstr "Vybrať štítok"
+
+msgid "Select account"
+msgstr ""
 
 msgid "Select provider"
 msgstr "Vybrať poskytovateľa"
@@ -375,6 +418,10 @@ msgstr "Nastavenia"
 
 msgid "Settings navigation"
 msgstr "Navigácia v nastaveniach"
+
+#. TRANSLATORS: Shift key on keyboard
+msgid "Shift"
+msgstr ""
 
 msgid "Show details"
 msgstr "Zobraziť detaily"
@@ -397,6 +444,10 @@ msgstr "Inteligentný výber"
 msgid "Smileys & Emotion"
 msgstr "Smajlíky a emócie"
 
+#. TRANSLATORS: Space key on keyboard
+msgid "Space"
+msgstr ""
+
 msgid "Start slideshow"
 msgstr "Začať prezentáciu"
 
@@ -408,6 +459,10 @@ msgstr "Odoslať"
 
 msgid "Symbols"
 msgstr "Symboly"
+
+#. TRANSLATORS: Tab key on keyboard
+msgid "Tab"
+msgstr ""
 
 msgid "Travel & Places"
 msgstr "Cestovanie a miesta"
@@ -434,15 +489,9 @@ msgstr "Zobraziť tím"
 msgid "Whiskey"
 msgstr "Whisky"
 
-msgid "Write a message …"
-msgstr "Napíšte správu…"
-
-#. TRANSLATORS: The button is in a loading state
-msgid "Loading …"
-msgstr "Nahrávam ..."
-
-msgid "More items …"
-msgstr "Viac položiek..."
+msgid "White"
+msgstr ""
 
 msgid "Write a message …"
 msgstr "Napíšte správu…"
+

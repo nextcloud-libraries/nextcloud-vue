@@ -1,17 +1,16 @@
-# 
+#
 # Translators:
-# Hamza, 2024
-# Ali <alimahwer@yahoo.com>, 2024
-# abu.s3ud, 2024
-# John Molakvoæ <skjnldsv@protonmail.com>, 2024
-# 
+# Joas Schilling, 2025
+# Ali <alimahwer@yahoo.com>, 2025
+#
 msgid ""
 msgstr ""
-"Last-Translator: John Molakvoæ <skjnldsv@protonmail.com>, 2024\n"
+"Last-Translator: Ali <alimahwer@yahoo.com>, 2025\n"
 "Language-Team: Arabic (https://app.transifex.com/nextcloud/teams/64236/ar/)\n"
-"Content-Type: text/plain; charset=UTF-8\n"
 "Language: ar\n"
-"Plural-Forms: nplurals=6; plural=n==0 ? 0 : n==1 ? 1 : n==2 ? 2 : n%100>=3 && n%100<=10 ? 3 : n%100>=11 && n%100<=99 ? 4 : 5;\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Plural-Forms: nplurals=6; plural=n==0 ? 0 : n==1 ? 1 : n==2 ? 2 : n%100>=3 "
+"&& n%100<=10 ? 3 : n%100>=11 && n%100<=99 ? 4 : 5;\n"
 
 msgid "{tag} (invisible)"
 msgstr "{tag} (غير مرئي)"
@@ -38,6 +37,10 @@ msgstr "سجل الأنشطة"
 msgid "Add to a project"
 msgstr "أضف إلى مشروع"
 
+#. TRANSLATORS: Alt key on keyboard (Windows/Linux)
+msgid "Alt"
+msgstr ""
+
 msgid "Animals & Nature"
 msgstr "الحيوانات والطبيعة"
 
@@ -62,6 +65,9 @@ msgstr "عودة"
 
 msgid "Back to provider selection"
 msgstr "عودة إلى اختيار المزوّد"
+
+msgid "Black"
+msgstr ""
 
 #. TRANSLATORS: A color name for RGB(91, 100, 179)
 msgid "Blue Violet"
@@ -116,11 +122,25 @@ msgstr "تأكيد التغييرات"
 msgid "Connect items to a project to make them easier to find"
 msgstr "ربط عناصر بمشروع لتسهيل العثور عليها"
 
+msgid "Copied"
+msgstr ""
+
+msgid "Copy to clipboard"
+msgstr ""
+
+#. TRANSLATORS: Ctrl key on keyboard (Windows/Linux)
+msgid "Ctrl"
+msgstr ""
+
 msgid "Custom"
 msgstr "مُخصَّص"
 
 msgid "Dark skin tone"
 msgstr "أسمر البُشرة"
+
+#. TRANSLATORS: Delete key on keyboard
+msgid "Delete"
+msgstr ""
 
 #. TRANSLATORS: A color name for RGB(136, 85, 168)
 msgid "Deluge"
@@ -141,15 +161,23 @@ msgstr "لاقط الإيموجي"
 msgid "Enable interactive view"
 msgstr "تمكين المنظور التفاعلي"
 
+#. TRANSLATORS: Enter key on keyboard
+msgid "Enter"
+msgstr ""
+
 msgid "Enter link"
 msgstr "أدخِل الرابط"
 
 msgid ""
-"Error getting related resources. Please contact your system administrator if"
-" you have any questions."
+"Error getting related resources. Please contact your system administrator if "
+"you have any questions."
 msgstr ""
 "خطأ في الحصول على الموارد ذات الصلة. يرجى الاتصال بمشرف النظام عندك إذا كان "
 "لديك أيّ أسئلة."
+
+#. TRANSLATORS: Escape key on keyboard
+msgid "Escape"
+msgstr ""
 
 msgid "External documentation for {name}"
 msgstr "التوثيق الخارجي لـ {name}"
@@ -200,6 +228,9 @@ msgstr "غير مرئي"
 msgid "Keyboard navigation help"
 msgstr "مساعدة في التنقل باستعمال لوحة المفاتيح"
 
+msgid "Keyboard shortcuts"
+msgstr ""
+
 msgid "Light skin tone"
 msgstr "فاتح البُشرة"
 
@@ -207,7 +238,7 @@ msgid "Load more \"{options}\""
 msgstr "تحميل المزيد من \"{options}\" "
 
 #. TRANSLATORS: The button is in a loading state
-msgid "Loading …"
+msgid "Loading …"
 msgstr "التحميل جارٍ ..."
 
 #. TRANSLATORS: A color name for RGB(45, 115, 190)
@@ -223,10 +254,16 @@ msgstr "بشرة متوسطة البياض"
 msgid "Medium skin tone"
 msgstr "بشرة وسطية اللون"
 
-msgid "Message limit of {count} characters reached"
-msgstr "تمّ الوصول إلى الحد الأقصى لعدد الأحرف في الرسالة: {count} حرف"
+msgid "Message limit of %n character reached"
+msgid_plural "Message limit of %n characters reached"
+msgstr[0] ""
+msgstr[1] ""
+msgstr[2] ""
+msgstr[3] ""
+msgstr[4] ""
+msgstr[5] ""
 
-msgid "More items …"
+msgid "More items …"
 msgstr "عناصر أخرى ..."
 
 msgid "More options"
@@ -240,6 +277,9 @@ msgstr "التالي"
 
 msgid "Nextcloud blue"
 msgstr "أزرق نكست كلاود"
+
+msgid "No color"
+msgstr ""
 
 msgid "No emoji found"
 msgstr "لم يتم العثور على أي إيموجي emoji"
@@ -342,6 +382,9 @@ msgstr "حفظ التغييرات"
 msgid "Search"
 msgstr "بحث"
 
+msgid "Search …"
+msgstr ""
+
 msgid "Search emoji"
 msgstr "البحث عن إيموجي emoji"
 
@@ -351,11 +394,7 @@ msgstr "البحث عن منطقة زمنية"
 msgid "Search results"
 msgstr "نتائج البحث"
 
-msgid "Search…"
-msgstr "بحث ..."
-
-#. FOR TRANSLATORS: If possible in your language an even shorter version of 'a
-#. few seconds ago'
+#. FOR TRANSLATORS: If possible in your language an even shorter version of 'a few seconds ago'
 msgid "sec. ago"
 msgstr "ثانية مضت"
 
@@ -365,6 +404,9 @@ msgstr "ثوانٍ مضت"
 
 msgid "Select a tag"
 msgstr "اختر وسم"
+
+msgid "Select account"
+msgstr ""
 
 msgid "Select provider"
 msgstr "اختر مزود"
@@ -377,6 +419,10 @@ msgstr "الإعدادات"
 
 msgid "Settings navigation"
 msgstr "إعدادات التّصفُّح"
+
+#. TRANSLATORS: Shift key on keyboard
+msgid "Shift"
+msgstr ""
 
 msgid "Show details"
 msgstr "أظهِر التفاصيل"
@@ -399,6 +445,10 @@ msgstr "اللاقط الذكي smart picker"
 msgid "Smileys & Emotion"
 msgstr "وجوهٌ ضاحكة و مشاعر"
 
+#. TRANSLATORS: Space key on keyboard
+msgid "Space"
+msgstr ""
+
 msgid "Start slideshow"
 msgstr "إبدإ العرض"
 
@@ -410,6 +460,10 @@ msgstr "إرسال"
 
 msgid "Symbols"
 msgstr "رموز"
+
+#. TRANSLATORS: Tab key on keyboard
+msgid "Tab"
+msgstr ""
 
 msgid "Travel & Places"
 msgstr "سفر و أماكن"
@@ -436,15 +490,9 @@ msgstr "عرض الفريق"
 msgid "Whiskey"
 msgstr "نبيذي"
 
-msgid "Write a message …"
-msgstr "أكتب رسالة ..."
-
-#. TRANSLATORS: The button is in a loading state
-msgid "Loading …"
-msgstr "التحميل جارٍ ..."
-
-msgid "More items …"
-msgstr "عناصر أخرى ..."
+msgid "White"
+msgstr ""
 
 msgid "Write a message …"
 msgstr "أكتب رسالة ..."
+

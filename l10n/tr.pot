@@ -1,21 +1,22 @@
-# 
+#
 # Translators:
-# John Molakvoæ <skjnldsv@protonmail.com>, 2023
-# Kaya Zeren <kayazeren@gmail.com>, 2024
-# 
+# Joas Schilling, 2025
+# Kaya Zeren <kayazeren@gmail.com>, 2025
+#
 msgid ""
 msgstr ""
-"Last-Translator: Kaya Zeren <kayazeren@gmail.com>, 2024\n"
-"Language-Team: Turkish (https://app.transifex.com/nextcloud/teams/64236/tr/)\n"
-"Content-Type: text/plain; charset=UTF-8\n"
+"Last-Translator: Kaya Zeren <kayazeren@gmail.com>, 2025\n"
+"Language-Team: Turkish (https://app.transifex.com/nextcloud/teams/64236/"
+"tr/)\n"
 "Language: tr\n"
+"Content-Type: text/plain; charset=UTF-8\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
 msgid "{tag} (invisible)"
 msgstr "{tag} (görünmez)"
 
 msgid "{tag} (restricted)"
-msgstr "{tag} (kısıtlı)"
+msgstr "{tag} (kısıtlanmış)"
 
 msgid "A color with a HEX value {hex}"
 msgstr "{hex} onaltılık değeri ile bir renk "
@@ -36,8 +37,12 @@ msgstr "Etkinlikler"
 msgid "Add to a project"
 msgstr "Bir projeye ekle"
 
+#. TRANSLATORS: Alt key on keyboard (Windows/Linux)
+msgid "Alt"
+msgstr "Alt"
+
 msgid "Animals & Nature"
-msgstr "Hayvanlar ve Doğa"
+msgstr "Hayvanlar ve doğa"
 
 msgid "Any link"
 msgstr "Herhangi bir bağlantı"
@@ -59,7 +64,10 @@ msgid "Back"
 msgstr "Geri"
 
 msgid "Back to provider selection"
-msgstr "Sağlayıcı seçimine dön"
+msgstr "Hizmet sağlayıcı seçimine dön"
+
+msgid "Black"
+msgstr "Siyah"
 
 #. TRANSLATORS: A color name for RGB(91, 100, 179)
 msgid "Blue Violet"
@@ -70,7 +78,7 @@ msgid "Boston Blue"
 msgstr "Boston mavisi"
 
 msgid "busy"
-msgstr "meşgul"
+msgstr "Meşgul"
 
 msgid "Cancel changes"
 msgstr "Değişiklikleri iptal et"
@@ -114,11 +122,25 @@ msgstr "Değişiklikleri onayla"
 msgid "Connect items to a project to make them easier to find"
 msgstr "Ögeleri daha kolay bulmak için bir proje ile ilişkilendirin"
 
+msgid "Copied"
+msgstr "Kopyalandı"
+
+msgid "Copy to clipboard"
+msgstr "Panoya kopyalandı"
+
+#. TRANSLATORS: Ctrl key on keyboard (Windows/Linux)
+msgid "Ctrl"
+msgstr "Ctrl"
+
 msgid "Custom"
 msgstr "Özel"
 
 msgid "Dark skin tone"
 msgstr "Koyu deri rengi"
+
+#. TRANSLATORS: Delete key on keyboard
+msgid "Delete"
+msgstr "Delete"
 
 #. TRANSLATORS: A color name for RGB(136, 85, 168)
 msgid "Deluge"
@@ -139,15 +161,23 @@ msgstr "Emoji seçici"
 msgid "Enable interactive view"
 msgstr "Etkileşimli görünümü aç"
 
+#. TRANSLATORS: Enter key on keyboard
+msgid "Enter"
+msgstr "Enter"
+
 msgid "Enter link"
 msgstr "Bağlantıyı yazın"
 
 msgid ""
-"Error getting related resources. Please contact your system administrator if"
-" you have any questions."
+"Error getting related resources. Please contact your system administrator if "
+"you have any questions."
 msgstr ""
-"İlgili kaynaklara ulaşılırken sorun çıktı. Herhangi bir sorunuz varsa lütfen"
-" sistem yöneticiniz ile görüşün "
+"İlgili kaynaklara ulaşılırken sorun çıktı. Herhangi bir sorunuz varsa lütfen "
+"sistem yöneticiniz ile görüşün "
+
+#. TRANSLATORS: Escape key on keyboard
+msgid "Escape"
+msgstr "Escape"
 
 msgid "External documentation for {name}"
 msgstr "{name} için dış belgeler"
@@ -198,6 +228,9 @@ msgstr "görünmez"
 msgid "Keyboard navigation help"
 msgstr "Klavye ile gezinme yardımı"
 
+msgid "Keyboard shortcuts"
+msgstr "Klavye kısayolları"
+
 msgid "Light skin tone"
 msgstr "Açık deri rengi"
 
@@ -205,7 +238,7 @@ msgid "Load more \"{options}\""
 msgstr "Diğer \"{options}\""
 
 #. TRANSLATORS: The button is in a loading state
-msgid "Loading …"
+msgid "Loading …"
 msgstr "Yükleniyor…"
 
 #. TRANSLATORS: A color name for RGB(45, 115, 190)
@@ -221,10 +254,12 @@ msgstr "Orta açık deri rengi"
 msgid "Medium skin tone"
 msgstr "Orta deri rengi"
 
-msgid "Message limit of {count} characters reached"
-msgstr "{count} karakter ileti sınırına ulaşıldı"
+msgid "Message limit of %n character reached"
+msgid_plural "Message limit of %n characters reached"
+msgstr[0] "İleti için %n karakter sayısı sınırına ulaşıldı"
+msgstr[1] "İleti için %n karakter sayısı sınırına ulaşıldı"
 
-msgid "More items …"
+msgid "More items …"
 msgstr "Diğer ögeler…"
 
 msgid "More options"
@@ -239,11 +274,14 @@ msgstr "Sonraki"
 msgid "Nextcloud blue"
 msgstr "Nextcloud mavi"
 
+msgid "No color"
+msgstr "Renk yok"
+
 msgid "No emoji found"
 msgstr "Herhangi bir emoji bulunamadı"
 
 msgid "No link provider found"
-msgstr "Bağlantı sağlayıcısı bulunamadı"
+msgstr "Bağlantı hizmeti sağlayıcısı bulunamadı"
 
 msgid "No results"
 msgstr "Herhangi bir sonuç bulunamadı"
@@ -262,7 +300,7 @@ msgid "online"
 msgstr "Çevrim içi"
 
 msgid "Open link to \"{resourceName}\""
-msgstr "{resourceName} bağlantısını aç"
+msgstr "Bağlantıyı \"{resourceName}\" üzerine aç"
 
 msgid "Open menu"
 msgstr "Menüyü aç"
@@ -313,7 +351,7 @@ msgid "Previous"
 msgstr "Önceki"
 
 msgid "Provider icon"
-msgstr "Sağlayıcı simgesi"
+msgstr "Hizmet sağlayıcı simgesi"
 
 msgid "Purple"
 msgstr "Mor"
@@ -338,7 +376,10 @@ msgid "Save changes"
 msgstr "Değişiklikleri kaydet"
 
 msgid "Search"
-msgstr "Arama"
+msgstr "Ara"
+
+msgid "Search …"
+msgstr "Ara…"
 
 msgid "Search emoji"
 msgstr "Emoji ara"
@@ -349,11 +390,7 @@ msgstr "Saat dilimi ara"
 msgid "Search results"
 msgstr "Arama sonuçları"
 
-msgid "Search…"
-msgstr "Ara…"
-
-#. FOR TRANSLATORS: If possible in your language an even shorter version of 'a
-#. few seconds ago'
+#. FOR TRANSLATORS: If possible in your language an even shorter version of 'a few seconds ago'
 msgid "sec. ago"
 msgstr "sn. önce"
 
@@ -364,8 +401,11 @@ msgstr "saniye önce"
 msgid "Select a tag"
 msgstr "Bir etiket seçin"
 
+msgid "Select account"
+msgstr ""
+
 msgid "Select provider"
-msgstr "Sağlayıcı seçin"
+msgstr "Hizmet sağlayıcı seçin"
 
 msgid "Selected"
 msgstr "Seçilmiş"
@@ -375,6 +415,10 @@ msgstr "Ayarlar"
 
 msgid "Settings navigation"
 msgstr "Gezinme ayarları"
+
+#. TRANSLATORS: Shift key on keyboard
+msgid "Shift"
+msgstr "Shift"
 
 msgid "Show details"
 msgstr "Ayrıntıları görüntüle"
@@ -397,6 +441,10 @@ msgstr "Akıllı seçim"
 msgid "Smileys & Emotion"
 msgstr "İfadeler ve duygular"
 
+#. TRANSLATORS: Space key on keyboard
+msgid "Space"
+msgstr "Space"
+
 msgid "Start slideshow"
 msgstr "Slayt sunumunu başlat"
 
@@ -408,6 +456,10 @@ msgstr "Gönder"
 
 msgid "Symbols"
 msgstr "Simgeler"
+
+#. TRANSLATORS: Tab key on keyboard
+msgid "Tab"
+msgstr "Tab"
 
 msgid "Travel & Places"
 msgstr "Gezi ve yerler"
@@ -434,73 +486,9 @@ msgstr "Takımı görüntüle"
 msgid "Whiskey"
 msgstr "Viski"
 
-msgid "Write a message …"
-msgstr "Bir ileti yazın…"
-
-#. TRANSLATORS: Alt key on keyboard (Windows/Linux)
-msgid "Alt"
-msgstr "Alt"
-
-msgid "Black"
-msgstr "Siyah"
-
-msgid "Copied"
-msgstr "Kopyalandı"
-
-msgid "Copy to clipboard"
-msgstr "Panoya kopyalandı"
-
-#. TRANSLATORS: Ctrl key on keyboard (Windows/Linux)
-msgid "Ctrl"
-msgstr "Ctrl"
-
-#. TRANSLATORS: Delete key on keyboard
-msgid "Delete"
-msgstr "Delete"
-
-#. TRANSLATORS: Enter key on keyboard
-msgid "Enter"
-msgstr "Enter"
-
-#. TRANSLATORS: Escape key on keyboard
-msgid "Escape"
-msgstr "Escape"
-
-msgid "Keyboard shortcuts"
-msgstr "Klavye kısayolları"
-
-#. TRANSLATORS: The button is in a loading state
-msgid "Loading …"
-msgstr "Yükleniyor…"
-
-msgid "Message limit of %n character reached"
-msgid_plural "Message limit of %n characters reached"
-msgstr[0] "İleti için %n karakter sayısı sınırına ulaşıldı"
-msgstr[1] "İleti için %n karakter sayısı sınırına ulaşıldı"
-
-msgid "More items …"
-msgstr "Diğer ögeler…"
-
-msgid "No color"
-msgstr "Renk yok"
-
-msgid "Search …"
-msgstr "Ara…"
-
-#. TRANSLATORS: Shift key on keyboard
-msgid "Shift"
-msgstr "Shift"
-
-#. TRANSLATORS: Space key on keyboard
-msgid "Space"
-msgstr "Space"
-
-#. TRANSLATORS: Tab key on keyboard
-msgid "Tab"
-msgstr "Tab"
-
 msgid "White"
 msgstr "Beyaz"
 
 msgid "Write a message …"
 msgstr "Bir ileti yazın…"
+

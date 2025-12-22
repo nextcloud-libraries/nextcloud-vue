@@ -1,16 +1,15 @@
-# 
+#
 # Translators:
-# Joas Schilling, 2024
-# devi, 2024
-# kshimohata, 2024
-# John Molakvoæ <skjnldsv@protonmail.com>, 2024
-# 
+# Joas Schilling, 2025
+# kshimohata, 2025
+#
 msgid ""
 msgstr ""
-"Last-Translator: John Molakvoæ <skjnldsv@protonmail.com>, 2024\n"
-"Language-Team: Japanese (Japan) (https://app.transifex.com/nextcloud/teams/64236/ja_JP/)\n"
-"Content-Type: text/plain; charset=UTF-8\n"
+"Last-Translator: kshimohata, 2025\n"
+"Language-Team: Japanese (Japan) (https://app.transifex.com/nextcloud/"
+"teams/64236/ja_JP/)\n"
 "Language: ja_JP\n"
+"Content-Type: text/plain; charset=UTF-8\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 
 msgid "{tag} (invisible)"
@@ -38,6 +37,10 @@ msgstr "アクティビティ"
 msgid "Add to a project"
 msgstr "プロジェクトに追加する"
 
+#. TRANSLATORS: Alt key on keyboard (Windows/Linux)
+msgid "Alt"
+msgstr "Alt"
+
 msgid "Animals & Nature"
 msgstr "動物と自然"
 
@@ -62,6 +65,9 @@ msgstr "戻る"
 
 msgid "Back to provider selection"
 msgstr "プロバイダーの選択に戻る"
+
+msgid "Black"
+msgstr "黒"
 
 #. TRANSLATORS: A color name for RGB(91, 100, 179)
 msgid "Blue Violet"
@@ -116,11 +122,25 @@ msgstr "変更を承認"
 msgid "Connect items to a project to make them easier to find"
 msgstr "項目をプロジェクトに接続して検索しやすくする"
 
+msgid "Copied"
+msgstr "コピーされました"
+
+msgid "Copy to clipboard"
+msgstr "クリップボードにコピー"
+
+#. TRANSLATORS: Ctrl key on keyboard (Windows/Linux)
+msgid "Ctrl"
+msgstr "Ctrl"
+
 msgid "Custom"
 msgstr "カスタム"
 
 msgid "Dark skin tone"
 msgstr "暗い肌のトーン"
+
+#. TRANSLATORS: Delete key on keyboard
+msgid "Delete"
+msgstr "Delete"
 
 #. TRANSLATORS: A color name for RGB(136, 85, 168)
 msgid "Deluge"
@@ -141,13 +161,23 @@ msgstr "絵文字ピッカー"
 msgid "Enable interactive view"
 msgstr "インタラクティブ・ビューを有効にする"
 
+#. TRANSLATORS: Enter key on keyboard
+msgid "Enter"
+msgstr "Enter"
+
 msgid "Enter link"
 msgstr "リンクを入力する"
 
 msgid ""
-"Error getting related resources. Please contact your system administrator if"
-" you have any questions."
-msgstr "関連リソースの取得エラー。ご不明な点がございましたら、システム管理者にお問い合わせください。"
+"Error getting related resources. Please contact your system administrator if "
+"you have any questions."
+msgstr ""
+"関連リソースの取得エラー。ご不明な点がございましたら、システム管理者にお問い"
+"合わせください。"
+
+#. TRANSLATORS: Escape key on keyboard
+msgid "Escape"
+msgstr "Escape"
 
 msgid "External documentation for {name}"
 msgstr "{name} の外部ドキュメント"
@@ -198,6 +228,9 @@ msgstr "不可視"
 msgid "Keyboard navigation help"
 msgstr "キーボード・ナビゲーション・ヘルプ"
 
+msgid "Keyboard shortcuts"
+msgstr "キーボードショートカット"
+
 msgid "Light skin tone"
 msgstr "明るい肌のトーン"
 
@@ -205,7 +238,7 @@ msgid "Load more \"{options}\""
 msgstr "\"{options}\" をもっと読み込む"
 
 #. TRANSLATORS: The button is in a loading state
-msgid "Loading …"
+msgid "Loading …"
 msgstr "読み込み中 …"
 
 #. TRANSLATORS: A color name for RGB(45, 115, 190)
@@ -221,11 +254,12 @@ msgstr "やや明るい肌のトーン"
 msgid "Medium skin tone"
 msgstr "中間の肌のトーン"
 
-msgid "Message limit of {count} characters reached"
-msgstr "{count} 文字のメッセージ上限に達しています"
+msgid "Message limit of %n character reached"
+msgid_plural "Message limit of %n characters reached"
+msgstr[0] "メッセージの%n文字の制限に達しました"
 
-msgid "More items …"
-msgstr "他のアイテム"
+msgid "More items …"
+msgstr "他のアイテム　…"
 
 msgid "More options"
 msgstr "他のオプション"
@@ -238,6 +272,9 @@ msgstr "次"
 
 msgid "Nextcloud blue"
 msgstr "ネクストクラウド・ブルー"
+
+msgid "No color"
+msgstr "色なし"
 
 msgid "No emoji found"
 msgstr "絵文字が見つかりません"
@@ -340,6 +377,9 @@ msgstr "変更を保存"
 msgid "Search"
 msgstr "検索"
 
+msgid "Search …"
+msgstr "検索…"
+
 msgid "Search emoji"
 msgstr "絵文字を検索"
 
@@ -349,11 +389,7 @@ msgstr "タイムゾーンを検索"
 msgid "Search results"
 msgstr "検索結果"
 
-msgid "Search…"
-msgstr "検索…"
-
-#. FOR TRANSLATORS: If possible in your language an even shorter version of 'a
-#. few seconds ago'
+#. FOR TRANSLATORS: If possible in your language an even shorter version of 'a few seconds ago'
 msgid "sec. ago"
 msgstr "秒前"
 
@@ -363,6 +399,9 @@ msgstr "数秒前"
 
 msgid "Select a tag"
 msgstr "タグを選択"
+
+msgid "Select account"
+msgstr ""
 
 msgid "Select provider"
 msgstr "プロバイダーを選択"
@@ -375,6 +414,10 @@ msgstr "設定"
 
 msgid "Settings navigation"
 msgstr "ナビゲーション設定"
+
+#. TRANSLATORS: Shift key on keyboard
+msgid "Shift"
+msgstr "Shift"
 
 msgid "Show details"
 msgstr "詳細の表示"
@@ -397,6 +440,10 @@ msgstr "スマートピッカー"
 msgid "Smileys & Emotion"
 msgstr "感情表現"
 
+#. TRANSLATORS: Space key on keyboard
+msgid "Space"
+msgstr "Space"
+
 msgid "Start slideshow"
 msgstr "スライドショーを開始"
 
@@ -408,6 +455,10 @@ msgstr "提出"
 
 msgid "Symbols"
 msgstr "記号"
+
+#. TRANSLATORS: Tab key on keyboard
+msgid "Tab"
+msgstr "Tab"
 
 msgid "Travel & Places"
 msgstr "旅行と場所"
@@ -434,72 +485,9 @@ msgstr "チームを表示"
 msgid "Whiskey"
 msgstr "ウイスキー"
 
-msgid "Write a message …"
-msgstr "メッセージを書く ..."
-
-#. TRANSLATORS: Alt key on keyboard (Windows/Linux)
-msgid "Alt"
-msgstr "Alt"
-
-msgid "Black"
-msgstr "黒"
-
-msgid "Copied"
-msgstr "コピーされました"
-
-msgid "Copy to clipboard"
-msgstr "クリップボードにコピー"
-
-#. TRANSLATORS: Ctrl key on keyboard (Windows/Linux)
-msgid "Ctrl"
-msgstr "Ctrl"
-
-#. TRANSLATORS: Delete key on keyboard
-msgid "Delete"
-msgstr "Delete"
-
-#. TRANSLATORS: Enter key on keyboard
-msgid "Enter"
-msgstr "Enter"
-
-#. TRANSLATORS: Escape key on keyboard
-msgid "Escape"
-msgstr "Escape"
-
-msgid "Keyboard shortcuts"
-msgstr "キーボードショートカット"
-
-#. TRANSLATORS: The button is in a loading state
-msgid "Loading …"
-msgstr "読み込み中 …"
-
-msgid "Message limit of %n character reached"
-msgid_plural "Message limit of %n characters reached"
-msgstr[0] "メッセージの%n文字の制限に達しました"
-
-msgid "More items …"
-msgstr "他のアイテム　…"
-
-msgid "No color"
-msgstr "色なし"
-
-msgid "Search …"
-msgstr "検索…"
-
-#. TRANSLATORS: Shift key on keyboard
-msgid "Shift"
-msgstr "Shift"
-
-#. TRANSLATORS: Space key on keyboard
-msgid "Space"
-msgstr "Space"
-
-#. TRANSLATORS: Tab key on keyboard
-msgid "Tab"
-msgstr "Tab"
-
 msgid "White"
 msgstr "白"
 
 msgid "Write a message …"
 msgstr "メッセージを書く ..."
+

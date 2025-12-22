@@ -1,16 +1,17 @@
-# 
+#
 # Translators:
 # John Molakvoæ <skjnldsv@protonmail.com>, 2023
 # TUCAOEVER, 2024
 # Gloryandel, 2024
 # Ame chan, 2024
-# 
+#
 msgid ""
 msgstr ""
 "Last-Translator: Ame chan, 2024\n"
-"Language-Team: Chinese (China) (https://app.transifex.com/nextcloud/teams/64236/zh_CN/)\n"
-"Content-Type: text/plain; charset=UTF-8\n"
+"Language-Team: Chinese (China) (https://app.transifex.com/nextcloud/"
+"teams/64236/zh_CN/)\n"
 "Language: zh_CN\n"
+"Content-Type: text/plain; charset=UTF-8\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 
 msgid "{tag} (invisible)"
@@ -38,6 +39,10 @@ msgstr "活动"
 msgid "Add to a project"
 msgstr "添加至一个项目"
 
+#. TRANSLATORS: Alt key on keyboard (Windows/Linux)
+msgid "Alt"
+msgstr ""
+
 msgid "Animals & Nature"
 msgstr "动物 & 自然"
 
@@ -62,6 +67,9 @@ msgstr "返回"
 
 msgid "Back to provider selection"
 msgstr "返回至提供者选择列表"
+
+msgid "Black"
+msgstr ""
 
 #. TRANSLATORS: A color name for RGB(91, 100, 179)
 msgid "Blue Violet"
@@ -116,11 +124,25 @@ msgstr "确认更改"
 msgid "Connect items to a project to make them easier to find"
 msgstr "将条目连接至一个项目以易于查找"
 
+msgid "Copied"
+msgstr ""
+
+msgid "Copy to clipboard"
+msgstr ""
+
+#. TRANSLATORS: Ctrl key on keyboard (Windows/Linux)
+msgid "Ctrl"
+msgstr ""
+
 msgid "Custom"
 msgstr "自定义"
 
 msgid "Dark skin tone"
 msgstr "深色皮肤"
+
+#. TRANSLATORS: Delete key on keyboard
+msgid "Delete"
+msgstr ""
 
 #. TRANSLATORS: A color name for RGB(136, 85, 168)
 msgid "Deluge"
@@ -141,13 +163,21 @@ msgstr "表情拾取器"
 msgid "Enable interactive view"
 msgstr "启用交互视窗"
 
+#. TRANSLATORS: Enter key on keyboard
+msgid "Enter"
+msgstr ""
+
 msgid "Enter link"
 msgstr "输入链接"
 
 msgid ""
-"Error getting related resources. Please contact your system administrator if"
-" you have any questions."
+"Error getting related resources. Please contact your system administrator if "
+"you have any questions."
 msgstr "获取相关资源出现错误。如果你有任何问题，请联系系统管理员。"
+
+#. TRANSLATORS: Escape key on keyboard
+msgid "Escape"
+msgstr ""
 
 msgid "External documentation for {name}"
 msgstr "{name} 的外部文档"
@@ -198,6 +228,9 @@ msgstr "隐藏的"
 msgid "Keyboard navigation help"
 msgstr "键盘导航栏帮助"
 
+msgid "Keyboard shortcuts"
+msgstr ""
+
 msgid "Light skin tone"
 msgstr "浅色皮肤"
 
@@ -205,7 +238,7 @@ msgid "Load more \"{options}\""
 msgstr "加载更多 “{options}”"
 
 #. TRANSLATORS: The button is in a loading state
-msgid "Loading …"
+msgid "Loading …"
 msgstr "加载中..."
 
 #. TRANSLATORS: A color name for RGB(45, 115, 190)
@@ -221,10 +254,11 @@ msgstr "中等浅色皮肤"
 msgid "Medium skin tone"
 msgstr "中等皮肤"
 
-msgid "Message limit of {count} characters reached"
-msgstr "已达到 {count} 个字符的消息限制"
+msgid "Message limit of %n character reached"
+msgid_plural "Message limit of %n characters reached"
+msgstr[0] ""
 
-msgid "More items …"
+msgid "More items …"
 msgstr "更多项目…"
 
 msgid "More options"
@@ -238,6 +272,9 @@ msgstr "下一个"
 
 msgid "Nextcloud blue"
 msgstr "Nextcloud 蓝"
+
+msgid "No color"
+msgstr ""
 
 msgid "No emoji found"
 msgstr "表情未找到"
@@ -340,6 +377,9 @@ msgstr "保存修改"
 msgid "Search"
 msgstr "搜索"
 
+msgid "Search …"
+msgstr ""
+
 msgid "Search emoji"
 msgstr "搜索表情"
 
@@ -349,11 +389,7 @@ msgstr "搜索时区"
 msgid "Search results"
 msgstr "搜索结果"
 
-msgid "Search…"
-msgstr "搜索..."
-
-#. FOR TRANSLATORS: If possible in your language an even shorter version of 'a
-#. few seconds ago'
+#. FOR TRANSLATORS: If possible in your language an even shorter version of 'a few seconds ago'
 msgid "sec. ago"
 msgstr "几秒前"
 
@@ -363,6 +399,9 @@ msgstr "几秒前"
 
 msgid "Select a tag"
 msgstr "选择一个标签"
+
+msgid "Select account"
+msgstr ""
 
 msgid "Select provider"
 msgstr "选择提供者"
@@ -375,6 +414,10 @@ msgstr "设置"
 
 msgid "Settings navigation"
 msgstr "设置向导"
+
+#. TRANSLATORS: Shift key on keyboard
+msgid "Shift"
+msgstr ""
 
 msgid "Show details"
 msgstr "显示细节"
@@ -397,6 +440,10 @@ msgstr "智能拾取器"
 msgid "Smileys & Emotion"
 msgstr "笑脸 & 情感"
 
+#. TRANSLATORS: Space key on keyboard
+msgid "Space"
+msgstr ""
+
 msgid "Start slideshow"
 msgstr "开始幻灯片"
 
@@ -408,6 +455,10 @@ msgstr "提交"
 
 msgid "Symbols"
 msgstr "符号"
+
+#. TRANSLATORS: Tab key on keyboard
+msgid "Tab"
+msgstr ""
 
 msgid "Travel & Places"
 msgstr "旅游 & 地点"
@@ -434,15 +485,9 @@ msgstr "查看团队"
 msgid "Whiskey"
 msgstr "威士忌"
 
-msgid "Write a message …"
-msgstr "编写信息 ..."
-
-#. TRANSLATORS: The button is in a loading state
-msgid "Loading …"
-msgstr "加载中..."
-
-msgid "More items …"
-msgstr "更多项目…"
+msgid "White"
+msgstr ""
 
 msgid "Write a message …"
 msgstr "编写信息 ..."
+
