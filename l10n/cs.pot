@@ -1,14 +1,17 @@
-# 
+#
 # Translators:
-# Pavel Borecki <pavel.borecki@gmail.com>, 2024
-# 
+# Joas Schilling, 2025
+# Pavel Borecki <pavel.borecki@gmail.com>, 2025
+#
 msgid ""
 msgstr ""
-"Last-Translator: Pavel Borecki <pavel.borecki@gmail.com>, 2024\n"
-"Language-Team: Czech (Czech Republic) (https://app.transifex.com/nextcloud/teams/64236/cs_CZ/)\n"
-"Content-Type: text/plain; charset=UTF-8\n"
+"Last-Translator: Pavel Borecki <pavel.borecki@gmail.com>, 2025\n"
+"Language-Team: Czech (Czech Republic) (https://app.transifex.com/nextcloud/"
+"teams/64236/cs_CZ/)\n"
 "Language: cs_CZ\n"
-"Plural-Forms: nplurals=4; plural=(n == 1 && n % 1 == 0) ? 0 : (n >= 2 && n <= 4 && n % 1 == 0) ? 1: (n % 1 != 0 ) ? 2 : 3;\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Plural-Forms: nplurals=4; plural=(n == 1 && n % 1 == 0) ? 0 : (n >= 2 && n "
+"<= 4 && n % 1 == 0) ? 1: (n % 1 != 0 ) ? 2 : 3;\n"
 
 msgid "{tag} (invisible)"
 msgstr "{tag} (neviditelné)"
@@ -35,6 +38,10 @@ msgstr "Aktivity"
 msgid "Add to a project"
 msgstr "Přidat do projektu"
 
+#. TRANSLATORS: Alt key on keyboard (Windows/Linux)
+msgid "Alt"
+msgstr "Alt"
+
 msgid "Animals & Nature"
 msgstr "Zvířata a příroda"
 
@@ -59,6 +66,9 @@ msgstr "Zpět"
 
 msgid "Back to provider selection"
 msgstr "Zpět na výběr poskytovatele"
+
+msgid "Black"
+msgstr "Černá"
 
 #. TRANSLATORS: A color name for RGB(91, 100, 179)
 msgid "Blue Violet"
@@ -113,11 +123,25 @@ msgstr "Potvrdit změny"
 msgid "Connect items to a project to make them easier to find"
 msgstr "Připojte položky k projektu, čímž budou snáze dohledatelné"
 
+msgid "Copied"
+msgstr "Zkopírováno"
+
+msgid "Copy to clipboard"
+msgstr "Zkopírovat do schránky"
+
+#. TRANSLATORS: Ctrl key on keyboard (Windows/Linux)
+msgid "Ctrl"
+msgstr "Ctrl"
+
 msgid "Custom"
 msgstr "Uživatelsky určené"
 
 msgid "Dark skin tone"
 msgstr "Tmavý tělový tón"
+
+#. TRANSLATORS: Delete key on keyboard
+msgid "Delete"
+msgstr "Delete"
 
 #. TRANSLATORS: A color name for RGB(136, 85, 168)
 msgid "Deluge"
@@ -138,15 +162,23 @@ msgstr "Výběr emotikon"
 msgid "Enable interactive view"
 msgstr "Zapnout interaktivní zobrazení"
 
+#. TRANSLATORS: Enter key on keyboard
+msgid "Enter"
+msgstr "Enter"
+
 msgid "Enter link"
 msgstr "Zadat odkaz"
 
 msgid ""
-"Error getting related resources. Please contact your system administrator if"
-" you have any questions."
+"Error getting related resources. Please contact your system administrator if "
+"you have any questions."
 msgstr ""
 "Chyba při získávání souvisejících prostředků. Pokud máte jakékoli dotazy, "
 "obraťte se na správce vámi využívaného systému."
+
+#. TRANSLATORS: Escape key on keyboard
+msgid "Escape"
+msgstr "Esc"
 
 msgid "External documentation for {name}"
 msgstr "Externí dokumentace pro {name}"
@@ -197,6 +229,9 @@ msgstr "neviditelné"
 msgid "Keyboard navigation help"
 msgstr "Nápověda pro pohyb pomocí klávesnice"
 
+msgid "Keyboard shortcuts"
+msgstr "Klávesové zkratky"
+
 msgid "Light skin tone"
 msgstr "Světlý tělový tón"
 
@@ -204,8 +239,8 @@ msgid "Load more \"{options}\""
 msgstr "Načíst další „{options}“"
 
 #. TRANSLATORS: The button is in a loading state
-msgid "Loading …"
-msgstr "Načítání…"
+msgid "Loading …"
+msgstr "Načítání …"
 
 #. TRANSLATORS: A color name for RGB(45, 115, 190)
 msgid "Mariner"
@@ -220,23 +255,30 @@ msgstr "Středně světlý tělový tón"
 msgid "Medium skin tone"
 msgstr "Střední tělový tón"
 
-msgid "Message limit of {count} characters reached"
-msgstr "Dosaženo limitu počtu ({count}) znaků zprávy"
+msgid "Message limit of %n character reached"
+msgid_plural "Message limit of %n characters reached"
+msgstr[0] "Dosaženo limitu počtu %n znaku zprávy"
+msgstr[1] "Dosaženo limitu počtu %n znaků zprávy"
+msgstr[2] "Dosaženo limitu počtu %n znaků zprávy"
+msgstr[3] "Dosaženo limitu počtu %n znaků zprávy"
 
-msgid "More items …"
-msgstr "Další položky…"
+msgid "More items …"
+msgstr "Další položky …"
 
 msgid "More options"
 msgstr "Další volby"
 
 msgid "Neutral skin color"
-msgstr "Neutřální tělová barva"
+msgstr "Neutrální tělová barva"
 
 msgid "Next"
 msgstr "Následující"
 
 msgid "Nextcloud blue"
 msgstr "Nextcloud modrá"
+
+msgid "No color"
+msgstr "Žádná barva"
 
 msgid "No emoji found"
 msgstr "Nenalezeno žádné emoji"
@@ -339,6 +381,9 @@ msgstr "Uložit změny"
 msgid "Search"
 msgstr "Hledat"
 
+msgid "Search …"
+msgstr "Hledat …"
+
 msgid "Search emoji"
 msgstr "Hledat emoji"
 
@@ -348,11 +393,7 @@ msgstr "Vyhledat časové pásmo"
 msgid "Search results"
 msgstr "Výsledky hledání"
 
-msgid "Search…"
-msgstr "Hledat…"
-
-#. FOR TRANSLATORS: If possible in your language an even shorter version of 'a
-#. few seconds ago'
+#. FOR TRANSLATORS: If possible in your language an even shorter version of 'a few seconds ago'
 msgid "sec. ago"
 msgstr "sek. před"
 
@@ -362,6 +403,9 @@ msgstr "sekund předtím"
 
 msgid "Select a tag"
 msgstr "Vybrat štítek"
+
+msgid "Select account"
+msgstr ""
 
 msgid "Select provider"
 msgstr "Vybrat poskytovatele"
@@ -374,6 +418,10 @@ msgstr "Nastavení"
 
 msgid "Settings navigation"
 msgstr "Pohyb po nastavení"
+
+#. TRANSLATORS: Shift key on keyboard
+msgid "Shift"
+msgstr "Shift"
 
 msgid "Show details"
 msgstr "Zobrazit podrobnosti"
@@ -396,6 +444,10 @@ msgstr "Inteligentní výběr"
 msgid "Smileys & Emotion"
 msgstr "Úsměvy a emoce"
 
+#. TRANSLATORS: Space key on keyboard
+msgid "Space"
+msgstr "Mezerník"
+
 msgid "Start slideshow"
 msgstr "Spustit prezentaci"
 
@@ -407,6 +459,10 @@ msgstr "Odeslat"
 
 msgid "Symbols"
 msgstr "Symboly"
+
+#. TRANSLATORS: Tab key on keyboard
+msgid "Tab"
+msgstr "Tab"
 
 msgid "Travel & Places"
 msgstr "Cestování a místa"
@@ -433,75 +489,9 @@ msgstr "Zobrazit kolektiv"
 msgid "Whiskey"
 msgstr "Whisky"
 
-msgid "Write a message …"
-msgstr "Napsat zprávu…"
-
-#. TRANSLATORS: Alt key on keyboard (Windows/Linux)
-msgid "Alt"
-msgstr "Alt"
-
-msgid "Black"
-msgstr "Černá"
-
-msgid "Copied"
-msgstr "Zkopírováno"
-
-msgid "Copy to clipboard"
-msgstr "Zkopírovat do schránky"
-
-#. TRANSLATORS: Ctrl key on keyboard (Windows/Linux)
-msgid "Ctrl"
-msgstr "Ctrl"
-
-#. TRANSLATORS: Delete key on keyboard
-msgid "Delete"
-msgstr "Delete"
-
-#. TRANSLATORS: Enter key on keyboard
-msgid "Enter"
-msgstr "Enter"
-
-#. TRANSLATORS: Escape key on keyboard
-msgid "Escape"
-msgstr "Esc"
-
-msgid "Keyboard shortcuts"
-msgstr "Klávesové zkratky"
-
-#. TRANSLATORS: The button is in a loading state
-msgid "Loading …"
-msgstr "Načítání …"
-
-msgid "Message limit of %n character reached"
-msgid_plural "Message limit of %n characters reached"
-msgstr[0] "Dosaženo limitu počtu %n znaku zprávy"
-msgstr[1] "Dosaženo limitu počtu %n znaků zprávy"
-msgstr[2] "Dosaženo limitu počtu %n znaků zprávy"
-msgstr[3] "Dosaženo limitu počtu %n znaků zprávy"
-
-msgid "More items …"
-msgstr "Další položky …"
-
-msgid "No color"
-msgstr "Žádná barva"
-
-msgid "Search …"
-msgstr "Hledat …"
-
-#. TRANSLATORS: Shift key on keyboard
-msgid "Shift"
-msgstr "Shift"
-
-#. TRANSLATORS: Space key on keyboard
-msgid "Space"
-msgstr "Mezerník"
-
-#. TRANSLATORS: Tab key on keyboard
-msgid "Tab"
-msgstr "Tab"
-
 msgid "White"
 msgstr "Bílá"
 
 msgid "Write a message …"
 msgstr "Napište zprávu …"
+
