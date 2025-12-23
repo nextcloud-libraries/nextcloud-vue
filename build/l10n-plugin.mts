@@ -48,9 +48,7 @@ export default (dir: string) => {
 			for (const locale in allTranslations) {
 				const currentTranslations = allTranslations[locale]!
 				for (const [usage, msgIds] of Object.entries(context)) {
-					if (!(usage in translations)) {
-						translations[usage] = []
-					}
+					translations[usage] ??= []
 					// split the translations by usage in components
 					translations[usage]!.push({
 						l: locale,
@@ -78,8 +76,9 @@ export default (dir: string) => {
 				return null
 			} else if (source.endsWith('l10n.ts') && importer && !importer.includes('node_modules')) {
 				if (dirname(resolve(dirname(importer), source)).split('/').at(-1) === 'src') {
+					const [path] = importer.split('?', 2)
 					// return our wrapper for handling the import
-					return `\0l10nwrapper?source=${encodeURIComponent(importer)}`
+					return `\0l10nwrapper?source=${encodeURIComponent(path!)}`
 				}
 			}
 		},
@@ -105,7 +104,9 @@ export default (dir: string) => {
 				return `import {t,n,register,${imports.join(',')}} from '\0l10n';register(${imports.join(',')});export {t,n};`
 			} else if (id === '\0l10n') {
 				// exports are all chunked translations
-				const exports = Object.entries(nameMap).map(([usage, id]) => `export const ${id} = ${JSON.stringify(translations[usage])}`).join(';\n')
+				const exports = Object.entries(nameMap)
+					.map(([usage, id]) => `export const ${id} = ${JSON.stringify(translations[usage])}`)
+					.join(';\n')
 				return `${l10nRegistrationCode}\n${exports}`
 			}
 		},
