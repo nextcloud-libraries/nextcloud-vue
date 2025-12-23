@@ -1,14 +1,15 @@
-# 
+#
 # Translators:
 # John Molakvoæ <skjnldsv@protonmail.com>, 2023
-# 
+#
 msgid ""
 msgstr ""
 "Last-Translator: John Molakvoæ <skjnldsv@protonmail.com>, 2023\n"
 "Language-Team: Hebrew (https://app.transifex.com/nextcloud/teams/64236/he/)\n"
-"Content-Type: text/plain; charset=UTF-8\n"
 "Language: he\n"
-"Plural-Forms: nplurals=4; plural=(n == 1 && n % 1 == 0) ? 0 : (n == 2 && n % 1 == 0) ? 1: (n % 10 == 0 && n % 1 == 0 && n > 10) ? 2 : 3;\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Plural-Forms: nplurals=4; plural=(n == 1 && n % 1 == 0) ? 0 : (n == 2 && n % "
+"1 == 0) ? 1: (n % 10 == 0 && n % 1 == 0 && n > 10) ? 2 : 3;\n"
 
 msgid "{tag} (invisible)"
 msgstr "{tag} (נסתר)"
@@ -16,17 +17,28 @@ msgstr "{tag} (נסתר)"
 msgid "{tag} (restricted)"
 msgstr "{tag} (מוגבל)"
 
+msgid "A color with a HEX value {hex}"
+msgstr ""
+
 msgid "a few seconds ago"
 msgstr "לפני מספר שניות"
+
+#. TRANSLATORS: A color name for RGB(110, 166, 143)
+msgid "Acapulco"
+msgstr ""
 
 msgid "Actions"
 msgstr "פעולות"
 
-msgid "Actions for item with name \"{name}\""
-msgstr "פעולות לפריט בשם „{name}”"
-
 msgid "Activities"
 msgstr "פעילויות"
+
+msgid "Add to a project"
+msgstr ""
+
+#. TRANSLATORS: Alt key on keyboard (Windows/Linux)
+msgid "Alt"
+msgstr ""
 
 msgid "Animals & Nature"
 msgstr "חיות וטבע"
@@ -43,11 +55,29 @@ msgstr "תמונה ייצוגית של {displayName}"
 msgid "Avatar of {displayName}, {status}"
 msgstr "תמונה ייצוגית של {displayName}, {status}"
 
+#. TRANSLATORS: User status if the user is currently away from keyboard
+msgid "away"
+msgstr ""
+
 msgid "Back"
 msgstr "חזרה"
 
 msgid "Back to provider selection"
 msgstr "חזרה לבחירת ספק"
+
+msgid "Black"
+msgstr ""
+
+#. TRANSLATORS: A color name for RGB(91, 100, 179)
+msgid "Blue Violet"
+msgstr ""
+
+#. TRANSLATORS: A color name for RGB(55, 148, 172)
+msgid "Boston Blue"
+msgstr ""
+
+msgid "busy"
+msgstr ""
 
 msgid "Cancel changes"
 msgstr "ביטול שינויים"
@@ -61,14 +91,14 @@ msgstr "בחירה"
 msgid "Clear search"
 msgstr "פינוי חיפוש"
 
+msgid "Clear selected"
+msgstr ""
+
 msgid "Clear text"
 msgstr "פינוי טקסט"
 
 msgid "Close"
 msgstr "סגירה"
-
-msgid "Close modal"
-msgstr "סגירת החלונית"
 
 msgid "Close navigation"
 msgstr "סגירת הניווט"
@@ -82,29 +112,89 @@ msgstr "סגירת הבורר החכם"
 msgid "Collapse menu"
 msgstr "צמצום התפריט"
 
+msgid "Color picker"
+msgstr ""
+
 msgid "Confirm changes"
 msgstr "אישור השינויים"
+
+msgid "Connect items to a project to make them easier to find"
+msgstr ""
+
+msgid "Copied"
+msgstr ""
+
+msgid "Copy to clipboard"
+msgstr ""
+
+#. TRANSLATORS: Ctrl key on keyboard (Windows/Linux)
+msgid "Ctrl"
+msgstr ""
 
 msgid "Custom"
 msgstr "בהתאמה אישית"
 
+msgid "Dark skin tone"
+msgstr ""
+
+#. TRANSLATORS: Delete key on keyboard
+msgid "Delete"
+msgstr ""
+
+#. TRANSLATORS: A color name for RGB(136, 85, 168)
+msgid "Deluge"
+msgstr ""
+
+msgid "Deselect {option}"
+msgstr ""
+
+msgid "do not disturb"
+msgstr ""
+
 msgid "Edit item"
 msgstr "עריכת פריט"
+
+msgid "Emoji picker"
+msgstr ""
+
+msgid "Enable interactive view"
+msgstr ""
+
+#. TRANSLATORS: Enter key on keyboard
+msgid "Enter"
+msgstr ""
 
 msgid "Enter link"
 msgstr "מילוי קישור"
 
 msgid ""
-"Error getting related resources. Please contact your system administrator if"
-" you have any questions."
+"Error getting related resources. Please contact your system administrator if "
+"you have any questions."
 msgstr ""
 "שגיאה בקבלת המשאבים הקשורים. נא ליצור קשר עם הנהלת המערכת אם יש לך שאלות."
+
+#. TRANSLATORS: Escape key on keyboard
+msgid "Escape"
+msgstr ""
 
 msgid "External documentation for {name}"
 msgstr "תיעוד חיצוני עבור {name}"
 
+msgid "Failed to add the item to the project"
+msgstr ""
+
+msgid "Failed to create a project"
+msgstr ""
+
+msgid "Failed to rename the project"
+msgstr ""
+
 msgid "Favorite"
 msgstr "למועדפים"
+
+#. TRANSLATORS: A color name for RGB(201, 136, 121)
+msgid "Feldspar"
+msgstr ""
 
 msgid "Flags"
 msgstr "דגלים"
@@ -121,23 +211,71 @@ msgstr "כללי"
 msgid "Go back to the list"
 msgstr "חזרה לרשימה"
 
+msgid "Gold"
+msgstr ""
+
+msgid "Hide details"
+msgstr ""
+
 msgid "Hide password"
 msgstr "הסתרת סיסמה"
+
+msgid "invisible"
+msgstr ""
+
+msgid "Keyboard navigation help"
+msgstr ""
+
+msgid "Keyboard shortcuts"
+msgstr ""
+
+msgid "Light skin tone"
+msgstr ""
 
 msgid "Load more \"{options}\""
 msgstr ""
 
-msgid "Message limit of {count} characters reached"
-msgstr "הגעת למגבלה של {count} תווים"
+#. TRANSLATORS: The button is in a loading state
+msgid "Loading …"
+msgstr ""
 
-msgid "More items …"
+#. TRANSLATORS: A color name for RGB(45, 115, 190)
+msgid "Mariner"
+msgstr ""
+
+msgid "Medium dark skin tone"
+msgstr ""
+
+msgid "Medium light skin tone"
+msgstr ""
+
+msgid "Medium skin tone"
+msgstr ""
+
+msgid "Message limit of %n character reached"
+msgid_plural "Message limit of %n characters reached"
+msgstr[0] ""
+msgstr[1] ""
+msgstr[2] ""
+msgstr[3] ""
+
+msgid "More items …"
 msgstr "פריטים נוספים…"
 
 msgid "More options"
 msgstr "אפשרויות נוספות"
 
+msgid "Neutral skin color"
+msgstr ""
+
 msgid "Next"
 msgstr "הבא"
+
+msgid "Nextcloud blue"
+msgstr ""
+
+msgid "No color"
+msgstr ""
 
 msgid "No emoji found"
 msgstr "לא נמצא אמוג׳י"
@@ -151,8 +289,15 @@ msgstr "אין תוצאות"
 msgid "Objects"
 msgstr "חפצים"
 
-msgid "Open contact menu"
-msgstr "פתיחת תפריט קשר"
+msgid "offline"
+msgstr ""
+
+#. TRANSLATORS: A color name for RGB(165, 184, 114)
+msgid "Olivine"
+msgstr ""
+
+msgid "online"
+msgstr ""
 
 msgid "Open link to \"{resourceName}\""
 msgstr "פתיחת קישור אל „{resourceName}”"
@@ -160,11 +305,14 @@ msgstr "פתיחת קישור אל „{resourceName}”"
 msgid "Open menu"
 msgstr "פתיחת תפריט"
 
-msgid "Open navigation"
-msgstr "פתיחת ניווט"
+msgid "Open navigation {shortcut}"
+msgstr ""
 
-msgid "Open settings menu"
-msgstr "פתיחת תפריט הגדרות"
+msgid "Open sidebar"
+msgstr ""
+
+msgid "Options"
+msgstr ""
 
 msgid "Password is secure"
 msgstr "הסיסמה מאובטחת"
@@ -205,23 +353,44 @@ msgstr "הקודם"
 msgid "Provider icon"
 msgstr "סמל ספק"
 
+msgid "Purple"
+msgstr ""
+
 msgid "Raw link {options}"
 msgstr "קישור גולמי {options}"
 
 msgid "Related resources"
 msgstr "משאבים קשורים"
 
+msgid "Related team resources"
+msgstr ""
+
+msgid "Rename project"
+msgstr ""
+
+#. TRANSLATORS: A color name for RGB(191, 103, 139)
+msgid "Rosy brown"
+msgstr ""
+
+msgid "Save changes"
+msgstr ""
+
 msgid "Search"
 msgstr "חיפוש"
+
+msgid "Search …"
+msgstr ""
 
 msgid "Search emoji"
 msgstr "חיפוש אמוג׳י"
 
+msgid "Search for time zone"
+msgstr ""
+
 msgid "Search results"
 msgstr "תוצאות חיפוש"
 
-#. FOR TRANSLATORS: If possible in your language an even shorter version of 'a
-#. few seconds ago'
+#. FOR TRANSLATORS: If possible in your language an even shorter version of 'a few seconds ago'
 msgid "sec. ago"
 msgstr "לפני מספר שניות"
 
@@ -231,6 +400,9 @@ msgstr "לפני מס׳ שניות"
 
 msgid "Select a tag"
 msgstr "בחירת תגית"
+
+msgid "Select account"
+msgstr ""
 
 msgid "Select provider"
 msgstr "בחירת ספק"
@@ -244,14 +416,34 @@ msgstr "הגדרות"
 msgid "Settings navigation"
 msgstr "ניווט בהגדרות"
 
+#. TRANSLATORS: Shift key on keyboard
+msgid "Shift"
+msgstr ""
+
+msgid "Show details"
+msgstr ""
+
 msgid "Show password"
 msgstr "הצגת סיסמה"
+
+msgid "Skin tone"
+msgstr ""
+
+msgid "Skip to app navigation"
+msgstr ""
+
+msgid "Skip to main content"
+msgstr ""
 
 msgid "Smart Picker"
 msgstr "בורר חכם"
 
 msgid "Smileys & Emotion"
 msgstr "חייכנים ורגשונים"
+
+#. TRANSLATORS: Space key on keyboard
+msgid "Space"
+msgstr ""
 
 msgid "Start slideshow"
 msgstr "התחלת המצגת"
@@ -265,8 +457,15 @@ msgstr "הגשה"
 msgid "Symbols"
 msgstr "סמלים"
 
+#. TRANSLATORS: Tab key on keyboard
+msgid "Tab"
+msgstr ""
+
 msgid "Travel & Places"
 msgstr "טיולים ומקומות"
+
+msgid "Type to search for existing projects"
+msgstr ""
 
 msgid "Type to search time zone"
 msgstr "יש להקליד כדי לחפש אזור זמן"
@@ -277,11 +476,19 @@ msgstr "לא ניתן לחפש בקבוצה"
 msgid "Undo changes"
 msgstr "ביטול שינויים"
 
-msgid "Write a message …"
+msgid "User status: {status}"
 msgstr ""
 
-msgid "More items …"
-msgstr "פריטים נוספים…"
+msgid "View team"
+msgstr ""
+
+#. TRANSLATORS: A color name for RGB(211, 169, 103)
+msgid "Whiskey"
+msgstr ""
+
+msgid "White"
+msgstr ""
 
 msgid "Write a message …"
 msgstr ""
+
