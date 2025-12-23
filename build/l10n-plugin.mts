@@ -104,7 +104,9 @@ export default (dir: string) => {
 				return `import {t,n,register,${imports.join(',')}} from '\0l10n';register(${imports.join(',')});export {t,n};`
 			} else if (id === '\0l10n') {
 				// exports are all chunked translations
-				const exports = Object.entries(nameMap).map(([usage, id]) => `export const ${id} = ${JSON.stringify(translations[usage])}`).join(';\n')
+				const exports = Object.entries(nameMap)
+					.map(([usage, id]) => `export const ${id} = ${JSON.stringify(translations[usage])}`)
+					.join(';\n')
 				return `${l10nRegistrationCode}\n${exports}`
 			}
 		},
