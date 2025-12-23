@@ -28,17 +28,25 @@ extractor.createHtmlParser([
 ])
 	.parseFilesGlob('./src/**/*.vue')
 
+const messages = extractor.getMessages()
+
 /**
  * remove references to avoid conflicts but save them for code splitting
  *
  * @type {Record<string,string[]>}
  */
-export const context = extractor.getMessages().map((msg) => {
-	const localContext = [msg.text ?? '', [...new Set(msg.references.map((ref) => ref.split(':')[0] ?? ''))].sort().join(':')]
+export const context = messages.map((msg) => {
+	// mapping of translation ID -> filename(s) [id, filename1:filename2:...]
+	const idUsage = [
+		msg.text ?? '',
+		// get the reference file names only (split off line number), remove duplicates and sort them
+		[...new Set(msg.references.map((ref) => ref.split(':')[0] ?? ''))].sort().join(':'),
+	]
+	// remove reference to avoid conflicts on transifex
 	msg.references = []
-	return localContext
-}).reduce((p, [id, usage]) => {
-	const localContext = { ...(Array.isArray(p) ? {} : p) }
+	return idUsage
+}).reduce((localContext, [id, usage]) => {
+	// add translation bundles to their usage context (filenames -> [ids])
 	if (usage in localContext) {
 		localContext[usage].push(id)
 		return localContext
@@ -46,7 +54,7 @@ export const context = extractor.getMessages().map((msg) => {
 		localContext[usage] = [id]
 	}
 	return localContext
-})
+}, {})
 
 extractor.savePotFile('./l10n/messages.pot')
 
