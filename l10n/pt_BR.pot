@@ -443,7 +443,7 @@ msgstr "Pesquisar …"
 msgid "Search emoji"
 msgstr "Pesquisar emoji"
 
-msgid "Search for timezone"
+msgid "Search for time zone"
 msgstr "Pesquisar fuso horário"
 
 msgid "Search results"
@@ -545,7 +545,7 @@ msgstr "Tab"
 msgid "Time picker"
 msgstr "Seletor de tempo"
 
-msgid "Timezone"
+msgid "Time zone"
 msgstr "Fuso horário"
 
 msgid "Toggle overlay"
