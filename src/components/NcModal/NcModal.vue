@@ -1136,7 +1136,7 @@ export default {
 
 	// We allow 90% max-height, but we need to ensure the header does not overlap the modal
 	// as the modal is centered, we need the space on top and bottom
-	$max-modal-height: min(90%, calc(100% - 2 * var(--header-height)));
+	$max-modal-height: min(90%, calc(100% - 2 * var(--header-height) - 2 * var(--body-container-margin)));
 
 	// Sizing
 	&--small {
