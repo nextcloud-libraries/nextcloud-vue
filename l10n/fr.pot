@@ -6,10 +6,13 @@
 # Pascal Prugna, 2025
 # Charles Taborin, 2025
 # Caro Leviia, 2025
+# Erik DaSilva, 2025
+# Jérôme HERBINET, 2025
+# William Méauzoone, 2025
 # 
 msgid ""
 msgstr ""
-"Last-Translator: Caro Leviia, 2025\n"
+"Last-Translator: William Méauzoone, 2025\n"
 "Language-Team: French (https://app.transifex.com/nextcloud/teams/64236/fr/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Language: fr\n"
@@ -69,6 +72,9 @@ msgstr "Retour"
 
 msgid "Back to provider selection"
 msgstr "Revenir à la sélection du fournisseur"
+
+msgid "Black"
+msgstr "Noir"
 
 #. TRANSLATORS: A color name for RGB(91, 100, 179)
 msgid "Blue Violet"
@@ -134,6 +140,12 @@ msgstr "Confirmer les modifications"
 
 msgid "Connect items to a project to make them easier to find"
 msgstr "Connectez des éléments à un projet pour les retrouver plus facilement"
+
+msgid "Copied"
+msgstr "Copié"
+
+msgid "Copy to clipboard"
+msgstr "Copier dans le presse-papiers"
 
 #. TRANSLATORS: Ctrl key on keyboard (Windows/Linux)
 msgid "Ctrl"
@@ -256,6 +268,9 @@ msgstr "invisible"
 msgid "Keyboard navigation help"
 msgstr "Aide à la navigation du clavier"
 
+msgid "Keyboard shortcuts"
+msgstr "Raccourcis clavier"
+
 msgid "Light skin tone"
 msgstr "Teint de peau clair"
 
@@ -311,6 +326,9 @@ msgstr "Année prochaine"
 
 msgid "Nextcloud blue"
 msgstr "Bleu Nextcloud"
+
+msgid "No color"
+msgstr "Sans couleur"
 
 msgid "No emoji found"
 msgstr "Pas d’émoji trouvé"
@@ -431,8 +449,8 @@ msgstr "Rechercher…"
 msgid "Search emoji"
 msgstr "Rechercher un emoji"
 
-msgid "Search for timezone"
-msgstr "Rechercher un fuseau horaire"
+msgid "Search for time zone"
+msgstr "Rechercher le fuseau horaire"
 
 msgid "Search results"
 msgstr "Résultats de recherche"
@@ -533,7 +551,7 @@ msgstr "Tab"
 msgid "Time picker"
 msgstr "Sélecteur de temps"
 
-msgid "Timezone"
+msgid "Time zone"
 msgstr "Fuseau horaire"
 
 msgid "Toggle overlay"
@@ -567,8 +585,11 @@ msgstr "W"
 msgid "Whiskey"
 msgstr "Whiskey"
 
+msgid "White"
+msgstr "Blanc"
+
 msgid "Write a message …"
-msgstr "Ecrire un message..."
+msgstr "Écrire un message…"
 
 msgid "Year picker"
 msgstr "Sélecteur d'année"
