@@ -32,6 +32,11 @@
 				:checked="isChecked"
 				:loading="loading">
 				<NcLoadingIcon v-if="loading" />
+				<NcIconToggleSwitch
+					v-else-if="isSwitchType"
+					:checked="isChecked"
+					:size="iconSize"
+					inline />
 				<component
 					:is="checkboxRadioIconElement"
 					v-else-if="!buttonVariant"
@@ -61,8 +66,7 @@ import CheckboxMarked from 'vue-material-design-icons/CheckboxMarked.vue'
 import MinusBox from 'vue-material-design-icons/MinusBox.vue'
 import RadioboxBlank from 'vue-material-design-icons/RadioboxBlank.vue'
 import RadioboxMarked from 'vue-material-design-icons/RadioboxMarked.vue'
-import ToggleSwitch from 'vue-material-design-icons/ToggleSwitch.vue'
-import ToggleSwitchOff from 'vue-material-design-icons/ToggleSwitchOff.vue'
+import NcIconToggleSwitch from '../NcIconToggleSwitch/NcIconToggleSwitch.vue'
 import NcLoadingIcon from '../NcLoadingIcon/index.js'
 
 export const TYPE_CHECKBOX = 'checkbox'
@@ -75,6 +79,7 @@ export default {
 
 	components: {
 		NcLoadingIcon,
+		NcIconToggleSwitch,
 	},
 
 	props: {
@@ -175,6 +180,10 @@ export default {
 			return this.type === TYPE_BUTTON
 		},
 
+		isSwitchType() {
+			return this.type === TYPE_SWITCH
+		},
+
 		/**
 		 * Returns the proper Material icon depending on the select case
 		 *
@@ -186,14 +195,6 @@ export default {
 					return RadioboxMarked
 				}
 				return RadioboxBlank
-			}
-
-			// Switch
-			if (this.type === TYPE_SWITCH) {
-				if (this.isChecked) {
-					return ToggleSwitch
-				}
-				return ToggleSwitchOff
 			}
 
 			// Checkbox
@@ -240,6 +241,7 @@ export default {
 	&-radio:not(&--button-variant) &__icon,
 	&-switch:not(&--button-variant) &__icon {
 		margin-block: calc((var(--default-clickable-area) - 2 * var(--default-grid-baseline) - var(--icon-height)) / 2) auto;
+		line-height: 0;
 	}
 
 	&-checkbox:not(&--button-variant) &__icon--has-description,

@@ -13,11 +13,10 @@ export default {
 </script>
 
 <script setup lang="ts">
-import { mdiToggleSwitch, mdiToggleSwitchOff } from '@mdi/js'
 import { useVModel } from '@vueuse/core'
 import { watch } from 'vue'
 import NcFormBoxItem from '../NcFormBox/NcFormBoxItem.vue'
-import NcIconSvgWrapper from '../NcIconSvgWrapper/NcIconSvgWrapper.vue'
+import NcIconToggleSwitch from '../NcIconToggleSwitch/NcIconToggleSwitch.vue'
 import { createElementId } from '../../utils/createElementId.ts'
 
 const props = withDefaults(defineProps<{
@@ -85,11 +84,7 @@ watch(model, () => {
 				role="switch"
 				:aria-describedby="descriptionId"
 				:disabled="disabled">
-			<NcIconSvgWrapper
-				:path="model ? mdiToggleSwitch : mdiToggleSwitchOff"
-				:class="$style.formBoxSwitch__icon"
-				:size="34 /* --default-clickable-area */"
-				inline />
+			<NcIconToggleSwitch :checked="modelValue" inline />
 		</template>
 	</NcFormBoxItem>
 </template>
@@ -107,14 +102,6 @@ input.formBoxSwitch__input {
 	/* Override server styles */
 	height: auto;
 	cursor: inherit;
-}
-
-.formBoxSwitch__icon {
-	color: var(--color-text-maxcontrast);
-}
-
-input:checked + .formBoxSwitch__icon {
-	color: var(--color-primary-element);
 }
 </style>
 
