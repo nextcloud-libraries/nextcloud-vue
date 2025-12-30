@@ -206,6 +206,7 @@ module.exports = async () => {
 					'src/components/NcTextArea/*.vue',
 					'src/components/NcUserBubble/NcUserBubbleDiv.vue',
 					'src/components/NcFormBox/NcFormBoxItem.vue',
+					'src/components/NcIconToggleSwitch/NcIconToggleSwitch.vue',
 				],
 				sections: [
 					{
