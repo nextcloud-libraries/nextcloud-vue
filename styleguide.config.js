@@ -211,6 +211,7 @@ module.exports = async () => {
 					'src/components/NcTextArea/*.vue',
 					'src/components/NcPopover/NcPopoverTriggerProvider.vue',
 					'src/components/NcFormBox/NcFormBoxItem.vue',
+					'src/components/NcIconToggleSwitch/NcIconToggleSwitch.vue',
 				],
 				sections: [
 					{
