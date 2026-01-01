@@ -97,7 +97,7 @@
     "emoji-mart-vue-fast": "^15.0.5",
     "escape-html": "^1.0.3",
     "floating-vue": "^5.2.2",
-    "focus-trap": "^7.7.0",
+    "focus-trap": "^7.7.1",
     "linkifyjs": "^4.3.2",
     "p-queue": "^9.0.1",
     "rehype-external-links": "^3.0.0",
