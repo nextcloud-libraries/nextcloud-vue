@@ -1,14 +1,15 @@
-# 
+#
 # Translators:
 # Empty Slot Filler, 2023
 # Linerly <linerly@proton.me>, 2023
-# 
+#
 msgid ""
 msgstr ""
 "Last-Translator: Linerly <linerly@proton.me>, 2023\n"
-"Language-Team: Indonesian (https://app.transifex.com/nextcloud/teams/64236/id/)\n"
-"Content-Type: text/plain; charset=UTF-8\n"
+"Language-Team: Indonesian (https://app.transifex.com/nextcloud/teams/64236/"
+"id/)\n"
 "Language: id\n"
+"Content-Type: text/plain; charset=UTF-8\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 
 msgid "{tag} (invisible)"
@@ -23,14 +24,22 @@ msgstr "Warna dengan nilai HEX {hex}"
 msgid "a few seconds ago"
 msgstr "beberapa detik yang lalu"
 
+#. TRANSLATORS: A color name for RGB(110, 166, 143)
+msgid "Acapulco"
+msgstr ""
+
 msgid "Actions"
 msgstr "Tindakan"
 
-msgid "Actions for item with name \"{name}\""
-msgstr "Tindakan untuk item dengan nama \"{name}\""
-
 msgid "Activities"
 msgstr "Aktivitas"
+
+msgid "Add to a project"
+msgstr ""
+
+#. TRANSLATORS: Alt key on keyboard (Windows/Linux)
+msgid "Alt"
+msgstr ""
 
 msgid "Animals & Nature"
 msgstr "Satwa dan Alam"
@@ -39,8 +48,7 @@ msgid "Any link"
 msgstr "Semua tautan"
 
 msgid "Anything shared with the same group of people will show up here"
-msgstr ""
-"Apa pun yang dibagikan dengan grup orang yang sama akan muncul di sini"
+msgstr "Apa pun yang dibagikan dengan grup orang yang sama akan muncul di sini"
 
 msgid "Avatar of {displayName}"
 msgstr "Avatar {displayName}"
@@ -48,6 +56,7 @@ msgstr "Avatar {displayName}"
 msgid "Avatar of {displayName}, {status}"
 msgstr "Avatar {displayName}, {status}"
 
+#. TRANSLATORS: User status if the user is currently away from keyboard
 msgid "away"
 msgstr "tidak tersedia"
 
@@ -56,6 +65,20 @@ msgstr "Kembali"
 
 msgid "Back to provider selection"
 msgstr "Kembali ke pemilihan penyedia"
+
+msgid "Black"
+msgstr ""
+
+#. TRANSLATORS: A color name for RGB(91, 100, 179)
+msgid "Blue Violet"
+msgstr ""
+
+#. TRANSLATORS: A color name for RGB(55, 148, 172)
+msgid "Boston Blue"
+msgstr ""
+
+msgid "busy"
+msgstr ""
 
 msgid "Cancel changes"
 msgstr "Batalkan perubahan"
@@ -90,11 +113,38 @@ msgstr "Tutup Pemilih Cerdas"
 msgid "Collapse menu"
 msgstr "Ciutkan menu"
 
+msgid "Color picker"
+msgstr ""
+
 msgid "Confirm changes"
 msgstr "Konfirmasikan perubahan"
 
+msgid "Connect items to a project to make them easier to find"
+msgstr ""
+
+msgid "Copied"
+msgstr ""
+
+msgid "Copy to clipboard"
+msgstr ""
+
+#. TRANSLATORS: Ctrl key on keyboard (Windows/Linux)
+msgid "Ctrl"
+msgstr ""
+
 msgid "Custom"
 msgstr "Khusus"
+
+msgid "Dark skin tone"
+msgstr ""
+
+#. TRANSLATORS: Delete key on keyboard
+msgid "Delete"
+msgstr ""
+
+#. TRANSLATORS: A color name for RGB(136, 85, 168)
+msgid "Deluge"
+msgstr ""
 
 msgid "Deselect {option}"
 msgstr "Batalkan pemilihan {option}"
@@ -105,21 +155,48 @@ msgstr "jangan ganggu"
 msgid "Edit item"
 msgstr "Edit item"
 
+msgid "Emoji picker"
+msgstr ""
+
+msgid "Enable interactive view"
+msgstr ""
+
+#. TRANSLATORS: Enter key on keyboard
+msgid "Enter"
+msgstr ""
+
 msgid "Enter link"
 msgstr "Masukkan tautan"
 
 msgid ""
-"Error getting related resources. Please contact your system administrator if"
-" you have any questions."
+"Error getting related resources. Please contact your system administrator if "
+"you have any questions."
 msgstr ""
 "Kesalahan saat mengambil sumber daya terkait. Hubungi administrator sistem "
 "Anda jika ada pertanyaan."
 
+#. TRANSLATORS: Escape key on keyboard
+msgid "Escape"
+msgstr ""
+
 msgid "External documentation for {name}"
 msgstr "Dokumentasi eksternal untuk {name}"
 
+msgid "Failed to add the item to the project"
+msgstr ""
+
+msgid "Failed to create a project"
+msgstr ""
+
+msgid "Failed to rename the project"
+msgstr ""
+
 msgid "Favorite"
 msgstr "Favorit"
+
+#. TRANSLATORS: A color name for RGB(201, 136, 121)
+msgid "Feldspar"
+msgstr ""
 
 msgid "Flags"
 msgstr "Tanda"
@@ -139,26 +216,65 @@ msgstr "Kembali ke daftar"
 msgid "Gold"
 msgstr "Emas"
 
+msgid "Hide details"
+msgstr ""
+
 msgid "Hide password"
 msgstr "Sembunyikan sandi"
+
+msgid "invisible"
+msgstr ""
+
+msgid "Keyboard navigation help"
+msgstr ""
+
+msgid "Keyboard shortcuts"
+msgstr ""
+
+msgid "Light skin tone"
+msgstr ""
 
 msgid "Load more \"{options}\""
 msgstr "Muat \"{options}\" lainnya"
 
-msgid "Message limit of {count} characters reached"
-msgstr "Batas jumlah karakter pesan ({count} karakter) tercapai"
+#. TRANSLATORS: The button is in a loading state
+msgid "Loading …"
+msgstr ""
 
-msgid "More items …"
+#. TRANSLATORS: A color name for RGB(45, 115, 190)
+msgid "Mariner"
+msgstr ""
+
+msgid "Medium dark skin tone"
+msgstr ""
+
+msgid "Medium light skin tone"
+msgstr ""
+
+msgid "Medium skin tone"
+msgstr ""
+
+msgid "Message limit of %n character reached"
+msgid_plural "Message limit of %n characters reached"
+msgstr[0] ""
+
+msgid "More items …"
 msgstr "Item lainnya…"
 
 msgid "More options"
 msgstr "Opsi lainnya"
+
+msgid "Neutral skin color"
+msgstr ""
 
 msgid "Next"
 msgstr "Selanjutnya"
 
 msgid "Nextcloud blue"
 msgstr "Biru Nextcloud"
+
+msgid "No color"
+msgstr ""
 
 msgid "No emoji found"
 msgstr "Tidak ada emoji yang ditemukan"
@@ -175,11 +291,12 @@ msgstr "Objek"
 msgid "offline"
 msgstr "luring"
 
+#. TRANSLATORS: A color name for RGB(165, 184, 114)
+msgid "Olivine"
+msgstr ""
+
 msgid "online"
 msgstr "daring"
-
-msgid "Open contact menu"
-msgstr "Buka menu kontak"
 
 msgid "Open link to \"{resourceName}\""
 msgstr "Buka tautan ke \"{resourceName}\""
@@ -187,11 +304,14 @@ msgstr "Buka tautan ke \"{resourceName}\""
 msgid "Open menu"
 msgstr "Buka menu"
 
-msgid "Open navigation"
-msgstr "Buka navigasi"
+msgid "Open navigation {shortcut}"
+msgstr ""
 
-msgid "Open settings menu"
-msgstr "Buka menu pengaturan"
+msgid "Open sidebar"
+msgstr ""
+
+msgid "Options"
+msgstr ""
 
 msgid "Password is secure"
 msgstr "Kata sandi sudah aman"
@@ -241,17 +361,27 @@ msgstr "Tautan mentah {options}"
 msgid "Related resources"
 msgstr "Sumber daya terkait"
 
+msgid "Related team resources"
+msgstr ""
+
+msgid "Rename project"
+msgstr ""
+
+#. TRANSLATORS: A color name for RGB(191, 103, 139)
+msgid "Rosy brown"
+msgstr ""
+
 msgid "Save changes"
 msgstr "Simpan perubahan"
 
 msgid "Search"
 msgstr "Cari"
 
+msgid "Search …"
+msgstr ""
+
 msgid "Search emoji"
 msgstr "Cari emoji"
-
-msgid "Search for options"
-msgstr "Cari opsi"
 
 msgid "Search for time zone"
 msgstr "Cari zona waktu"
@@ -259,8 +389,7 @@ msgstr "Cari zona waktu"
 msgid "Search results"
 msgstr "Hasil pencarian"
 
-#. FOR TRANSLATORS: If possible in your language an even shorter version of 'a
-#. few seconds ago'
+#. FOR TRANSLATORS: If possible in your language an even shorter version of 'a few seconds ago'
 msgid "sec. ago"
 msgstr "dtk. yang lalu"
 
@@ -270,6 +399,9 @@ msgstr "beberapa detik lalu"
 
 msgid "Select a tag"
 msgstr "Pilih tag"
+
+msgid "Select account"
+msgstr ""
 
 msgid "Select provider"
 msgstr "Pilih penyedia"
@@ -283,14 +415,34 @@ msgstr "Pengaturan"
 msgid "Settings navigation"
 msgstr "Navigasi pengaturan"
 
+#. TRANSLATORS: Shift key on keyboard
+msgid "Shift"
+msgstr ""
+
+msgid "Show details"
+msgstr ""
+
 msgid "Show password"
 msgstr "Tampilkan sandi"
+
+msgid "Skin tone"
+msgstr ""
+
+msgid "Skip to app navigation"
+msgstr ""
+
+msgid "Skip to main content"
+msgstr ""
 
 msgid "Smart Picker"
 msgstr "Pemilih Cerdas"
 
 msgid "Smileys & Emotion"
 msgstr "Senyuman & Perasaan"
+
+#. TRANSLATORS: Space key on keyboard
+msgid "Space"
+msgstr ""
 
 msgid "Start slideshow"
 msgstr "Mulai salindia"
@@ -304,8 +456,15 @@ msgstr "Kirimkan"
 msgid "Symbols"
 msgstr "Simbol"
 
+#. TRANSLATORS: Tab key on keyboard
+msgid "Tab"
+msgstr ""
+
 msgid "Travel & Places"
 msgstr "Perjalanan & Tempat"
+
+msgid "Type to search for existing projects"
+msgstr ""
 
 msgid "Type to search time zone"
 msgstr "Ketik untuk mencari zona waktu"
@@ -319,11 +478,16 @@ msgstr "Urungkan perubahan"
 msgid "User status: {status}"
 msgstr "Status pengguna: {status}"
 
-msgid "Write a message …"
-msgstr "Tulis pesan ..."
+msgid "View team"
+msgstr ""
 
-msgid "More items …"
-msgstr "Item lainnya…"
+#. TRANSLATORS: A color name for RGB(211, 169, 103)
+msgid "Whiskey"
+msgstr ""
+
+msgid "White"
+msgstr ""
 
 msgid "Write a message …"
 msgstr "Tulis pesan ..."
+

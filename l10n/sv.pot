@@ -1,15 +1,16 @@
-# 
+#
 # Translators:
 # Magnus Höglund, 2024
 # John Molakvoæ <skjnldsv@protonmail.com>, 2024
 # Martin H <pilino+transifex@posteo.de>, 2025
-# 
+#
 msgid ""
 msgstr ""
 "Last-Translator: Martin H <pilino+transifex@posteo.de>, 2025\n"
-"Language-Team: Swedish (https://app.transifex.com/nextcloud/teams/64236/sv/)\n"
-"Content-Type: text/plain; charset=UTF-8\n"
+"Language-Team: Swedish (https://app.transifex.com/nextcloud/teams/64236/"
+"sv/)\n"
 "Language: sv\n"
+"Content-Type: text/plain; charset=UTF-8\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 msgid "{tag} (invisible)"
@@ -37,6 +38,10 @@ msgstr "Aktiviteter"
 msgid "Add to a project"
 msgstr "Lägg till i ett projekt"
 
+#. TRANSLATORS: Alt key on keyboard (Windows/Linux)
+msgid "Alt"
+msgstr ""
+
 msgid "Animals & Nature"
 msgstr "Djur & Natur"
 
@@ -61,6 +66,9 @@ msgstr "Tillbaka"
 
 msgid "Back to provider selection"
 msgstr "Tillbaka till leverantörsval"
+
+msgid "Black"
+msgstr ""
 
 #. TRANSLATORS: A color name for RGB(91, 100, 179)
 msgid "Blue Violet"
@@ -115,11 +123,25 @@ msgstr "Bekräfta ändringar"
 msgid "Connect items to a project to make them easier to find"
 msgstr "Anslut objekt till ett projekt för att göra dem lättare att hitta"
 
+msgid "Copied"
+msgstr ""
+
+msgid "Copy to clipboard"
+msgstr ""
+
+#. TRANSLATORS: Ctrl key on keyboard (Windows/Linux)
+msgid "Ctrl"
+msgstr ""
+
 msgid "Custom"
 msgstr "Anpassad"
 
 msgid "Dark skin tone"
 msgstr "Mörk hudton"
+
+#. TRANSLATORS: Delete key on keyboard
+msgid "Delete"
+msgstr ""
 
 #. TRANSLATORS: A color name for RGB(136, 85, 168)
 msgid "Deluge"
@@ -140,15 +162,23 @@ msgstr "Emoji-väljare"
 msgid "Enable interactive view"
 msgstr "Aktivera interaktiv vy"
 
+#. TRANSLATORS: Enter key on keyboard
+msgid "Enter"
+msgstr ""
+
 msgid "Enter link"
 msgstr "Ange länk"
 
 msgid ""
-"Error getting related resources. Please contact your system administrator if"
-" you have any questions."
+"Error getting related resources. Please contact your system administrator if "
+"you have any questions."
 msgstr ""
 "Det gick inte att hämta relaterade resurser. Kontakta din "
 "systemadministratör om du har några frågor."
+
+#. TRANSLATORS: Escape key on keyboard
+msgid "Escape"
+msgstr ""
 
 msgid "External documentation for {name}"
 msgstr "Extern dokumentation för {name}"
@@ -199,6 +229,9 @@ msgstr "osynlig"
 msgid "Keyboard navigation help"
 msgstr "Hjälp med tangentbordsnavigering"
 
+msgid "Keyboard shortcuts"
+msgstr ""
+
 msgid "Light skin tone"
 msgstr "Ljus hudton"
 
@@ -206,7 +239,7 @@ msgid "Load more \"{options}\""
 msgstr "Ladda fler \"{options}\""
 
 #. TRANSLATORS: The button is in a loading state
-msgid "Loading …"
+msgid "Loading …"
 msgstr "Laddar ..."
 
 #. TRANSLATORS: A color name for RGB(45, 115, 190)
@@ -222,11 +255,13 @@ msgstr "Medium ljus hudton"
 msgid "Medium skin tone"
 msgstr "Medium hudton"
 
-msgid "Message limit of {count} characters reached"
-msgstr "Meddelandebegränsning {count} tecken har uppnåtts"
+msgid "Message limit of %n character reached"
+msgid_plural "Message limit of %n characters reached"
+msgstr[0] ""
+msgstr[1] ""
 
-msgid "More items …"
-msgstr "Fler objekt …"
+msgid "More items …"
+msgstr "Fler objekt …"
 
 msgid "More options"
 msgstr "Fler alternativ"
@@ -239,6 +274,9 @@ msgstr "Nästa"
 
 msgid "Nextcloud blue"
 msgstr "Nextcloud-blå"
+
+msgid "No color"
+msgstr ""
 
 msgid "No emoji found"
 msgstr "Hittade inga emojis"
@@ -341,6 +379,9 @@ msgstr "Spara ändringar"
 msgid "Search"
 msgstr "Sök"
 
+msgid "Search …"
+msgstr ""
+
 msgid "Search emoji"
 msgstr "Sök emoji"
 
@@ -350,11 +391,7 @@ msgstr "Sök efter tidszon"
 msgid "Search results"
 msgstr "Sökresultat"
 
-msgid "Search…"
-msgstr "Sök..."
-
-#. FOR TRANSLATORS: If possible in your language an even shorter version of 'a
-#. few seconds ago'
+#. FOR TRANSLATORS: If possible in your language an even shorter version of 'a few seconds ago'
 msgid "sec. ago"
 msgstr "sek. sedan"
 
@@ -364,6 +401,9 @@ msgstr "sekunder sedan"
 
 msgid "Select a tag"
 msgstr "Välj en tag"
+
+msgid "Select account"
+msgstr ""
 
 msgid "Select provider"
 msgstr "Välj leverantör"
@@ -376,6 +416,10 @@ msgstr "Inställningar"
 
 msgid "Settings navigation"
 msgstr "Inställningsmeny"
+
+#. TRANSLATORS: Shift key on keyboard
+msgid "Shift"
+msgstr ""
 
 msgid "Show details"
 msgstr "Visa detaljer"
@@ -398,6 +442,10 @@ msgstr "Smart Picker"
 msgid "Smileys & Emotion"
 msgstr "Selfies & Känslor"
 
+#. TRANSLATORS: Space key on keyboard
+msgid "Space"
+msgstr ""
+
 msgid "Start slideshow"
 msgstr "Starta bildspelet"
 
@@ -409,6 +457,10 @@ msgstr "Skicka"
 
 msgid "Symbols"
 msgstr "Symboler"
+
+#. TRANSLATORS: Tab key on keyboard
+msgid "Tab"
+msgstr ""
 
 msgid "Travel & Places"
 msgstr "Resor & Sevärdigheter"
@@ -435,15 +487,9 @@ msgstr "Visa team"
 msgid "Whiskey"
 msgstr "Whisky"
 
-msgid "Write a message …"
-msgstr "Skriv ett meddelande …"
-
-#. TRANSLATORS: The button is in a loading state
-msgid "Loading …"
-msgstr "Laddar ..."
-
-msgid "More items …"
-msgstr "Fler objekt …"
+msgid "White"
+msgstr ""
 
 msgid "Write a message …"
 msgstr "Skriv ett meddelande …"
+
