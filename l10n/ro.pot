@@ -1,15 +1,17 @@
-# 
+#
 # Translators:
 # John Molakvoæ <skjnldsv@protonmail.com>, 2023
 # Liviu Milies, 2023
-# 
+#
 msgid ""
 msgstr ""
 "Last-Translator: Liviu Milies, 2023\n"
-"Language-Team: Romanian (https://app.transifex.com/nextcloud/teams/64236/ro/)\n"
-"Content-Type: text/plain; charset=UTF-8\n"
+"Language-Team: Romanian (https://app.transifex.com/nextcloud/teams/64236/"
+"ro/)\n"
 "Language: ro\n"
-"Plural-Forms: nplurals=3; plural=(n==1?0:(((n%100>19)||((n%100==0)&&(n!=0)))?2:1));\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Plural-Forms: nplurals=3; plural=(n==1?0:(((n%100>19)||((n%100==0)&&(n!=0)))?"
+"2:1));\n"
 
 msgid "{tag} (invisible)"
 msgstr "{tag} (invizibil)"
@@ -23,14 +25,22 @@ msgstr "O culoare în HEX value {hex}"
 msgid "a few seconds ago"
 msgstr "acum câteva secunde"
 
+#. TRANSLATORS: A color name for RGB(110, 166, 143)
+msgid "Acapulco"
+msgstr ""
+
 msgid "Actions"
 msgstr "Acțiuni"
 
-msgid "Actions for item with name \"{name}\""
-msgstr "Acțiuni pentru elementul cu numele \"{name}\""
-
 msgid "Activities"
 msgstr "Activități"
+
+msgid "Add to a project"
+msgstr ""
+
+#. TRANSLATORS: Alt key on keyboard (Windows/Linux)
+msgid "Alt"
+msgstr ""
 
 msgid "Animals & Nature"
 msgstr "Animale și natură"
@@ -48,6 +58,7 @@ msgstr "Avatarul lui {displayName}"
 msgid "Avatar of {displayName}, {status}"
 msgstr "Avatarul lui {displayName}, {status}"
 
+#. TRANSLATORS: User status if the user is currently away from keyboard
 msgid "away"
 msgstr "plecat"
 
@@ -56,6 +67,20 @@ msgstr "Înapoi"
 
 msgid "Back to provider selection"
 msgstr "Înapoi la selecția providerului"
+
+msgid "Black"
+msgstr ""
+
+#. TRANSLATORS: A color name for RGB(91, 100, 179)
+msgid "Blue Violet"
+msgstr ""
+
+#. TRANSLATORS: A color name for RGB(55, 148, 172)
+msgid "Boston Blue"
+msgstr ""
+
+msgid "busy"
+msgstr ""
 
 msgid "Cancel changes"
 msgstr "Anulează modificările"
@@ -90,11 +115,38 @@ msgstr "Închide Smart Picker"
 msgid "Collapse menu"
 msgstr "Restrânge meniul"
 
+msgid "Color picker"
+msgstr ""
+
 msgid "Confirm changes"
 msgstr "Confirmați modificările"
 
+msgid "Connect items to a project to make them easier to find"
+msgstr ""
+
+msgid "Copied"
+msgstr ""
+
+msgid "Copy to clipboard"
+msgstr ""
+
+#. TRANSLATORS: Ctrl key on keyboard (Windows/Linux)
+msgid "Ctrl"
+msgstr ""
+
 msgid "Custom"
 msgstr "Personalizat"
+
+msgid "Dark skin tone"
+msgstr ""
+
+#. TRANSLATORS: Delete key on keyboard
+msgid "Delete"
+msgstr ""
+
+#. TRANSLATORS: A color name for RGB(136, 85, 168)
+msgid "Deluge"
+msgstr ""
 
 msgid "Deselect {option}"
 msgstr "Deselctează {option}"
@@ -105,21 +157,48 @@ msgstr "nu deranjați"
 msgid "Edit item"
 msgstr "Editați elementul"
 
+msgid "Emoji picker"
+msgstr ""
+
+msgid "Enable interactive view"
+msgstr ""
+
+#. TRANSLATORS: Enter key on keyboard
+msgid "Enter"
+msgstr ""
+
 msgid "Enter link"
 msgstr "Introduceți link-ul"
 
 msgid ""
-"Error getting related resources. Please contact your system administrator if"
-" you have any questions."
+"Error getting related resources. Please contact your system administrator if "
+"you have any questions."
 msgstr ""
 "Eroare la preluarea resurselor adiționale. Vă rugăm să contactați "
 "administratorul pentru întrebări."
 
+#. TRANSLATORS: Escape key on keyboard
+msgid "Escape"
+msgstr ""
+
 msgid "External documentation for {name}"
 msgstr "Documentație externă pentru {name}"
 
+msgid "Failed to add the item to the project"
+msgstr ""
+
+msgid "Failed to create a project"
+msgstr ""
+
+msgid "Failed to rename the project"
+msgstr ""
+
 msgid "Favorite"
 msgstr "Favorit"
+
+#. TRANSLATORS: A color name for RGB(201, 136, 121)
+msgid "Feldspar"
+msgstr ""
 
 msgid "Flags"
 msgstr "Marcaje"
@@ -139,26 +218,67 @@ msgstr "Întoarceți-vă la listă"
 msgid "Gold"
 msgstr "Aur"
 
+msgid "Hide details"
+msgstr ""
+
 msgid "Hide password"
 msgstr "Ascunde parola"
+
+msgid "invisible"
+msgstr ""
+
+msgid "Keyboard navigation help"
+msgstr ""
+
+msgid "Keyboard shortcuts"
+msgstr ""
+
+msgid "Light skin tone"
+msgstr ""
 
 msgid "Load more \"{options}\""
 msgstr "Încarcă mai multe \"{options}\""
 
-msgid "Message limit of {count} characters reached"
-msgstr "Limita mesajului de {count} caractere a fost atinsă"
+#. TRANSLATORS: The button is in a loading state
+msgid "Loading …"
+msgstr ""
 
-msgid "More items …"
+#. TRANSLATORS: A color name for RGB(45, 115, 190)
+msgid "Mariner"
+msgstr ""
+
+msgid "Medium dark skin tone"
+msgstr ""
+
+msgid "Medium light skin tone"
+msgstr ""
+
+msgid "Medium skin tone"
+msgstr ""
+
+msgid "Message limit of %n character reached"
+msgid_plural "Message limit of %n characters reached"
+msgstr[0] ""
+msgstr[1] ""
+msgstr[2] ""
+
+msgid "More items …"
 msgstr "Mai multe articole ..."
 
 msgid "More options"
 msgstr "Mai multe opțiuni"
+
+msgid "Neutral skin color"
+msgstr ""
 
 msgid "Next"
 msgstr "Următorul"
 
 msgid "Nextcloud blue"
 msgstr "Nextcloud albastru"
+
+msgid "No color"
+msgstr ""
 
 msgid "No emoji found"
 msgstr "Nu s-a găsit niciun emoji"
@@ -175,11 +295,12 @@ msgstr "Obiecte"
 msgid "offline"
 msgstr "deconectat"
 
+#. TRANSLATORS: A color name for RGB(165, 184, 114)
+msgid "Olivine"
+msgstr ""
+
 msgid "online"
 msgstr "online"
-
-msgid "Open contact menu"
-msgstr "Deschide meniul contacte"
 
 msgid "Open link to \"{resourceName}\""
 msgstr "Deschide linkul la  \"{resourceName}\""
@@ -187,11 +308,14 @@ msgstr "Deschide linkul la  \"{resourceName}\""
 msgid "Open menu"
 msgstr "Deschide meniul"
 
-msgid "Open navigation"
-msgstr "Deschideți navigația"
+msgid "Open navigation {shortcut}"
+msgstr ""
 
-msgid "Open settings menu"
-msgstr "Deschide meniul pentru setări"
+msgid "Open sidebar"
+msgstr ""
+
+msgid "Options"
+msgstr ""
 
 msgid "Password is secure"
 msgstr "Parola este sigură"
@@ -241,17 +365,27 @@ msgstr "Link brut {options}"
 msgid "Related resources"
 msgstr "Resurse legate"
 
+msgid "Related team resources"
+msgstr ""
+
+msgid "Rename project"
+msgstr ""
+
+#. TRANSLATORS: A color name for RGB(191, 103, 139)
+msgid "Rosy brown"
+msgstr ""
+
 msgid "Save changes"
 msgstr "Salvează modificările"
 
 msgid "Search"
 msgstr "Căutare"
 
+msgid "Search …"
+msgstr ""
+
 msgid "Search emoji"
 msgstr "Căutare emoji"
-
-msgid "Search for options"
-msgstr "Căutare opțiuni"
 
 msgid "Search for time zone"
 msgstr "Căutare zonă de timp"
@@ -259,8 +393,7 @@ msgstr "Căutare zonă de timp"
 msgid "Search results"
 msgstr "Rezultatele căutării"
 
-#. FOR TRANSLATORS: If possible in your language an even shorter version of 'a
-#. few seconds ago'
+#. FOR TRANSLATORS: If possible in your language an even shorter version of 'a few seconds ago'
 msgid "sec. ago"
 msgstr "sec. în urmă"
 
@@ -270,6 +403,9 @@ msgstr "secunde în urmă"
 
 msgid "Select a tag"
 msgstr "Selectați o etichetă"
+
+msgid "Select account"
+msgstr ""
 
 msgid "Select provider"
 msgstr "Selectați providerul"
@@ -283,14 +419,34 @@ msgstr "Setări"
 msgid "Settings navigation"
 msgstr "Navigare setări"
 
+#. TRANSLATORS: Shift key on keyboard
+msgid "Shift"
+msgstr ""
+
+msgid "Show details"
+msgstr ""
+
 msgid "Show password"
 msgstr "Arată parola"
+
+msgid "Skin tone"
+msgstr ""
+
+msgid "Skip to app navigation"
+msgstr ""
+
+msgid "Skip to main content"
+msgstr ""
 
 msgid "Smart Picker"
 msgstr "Smart Picker"
 
 msgid "Smileys & Emotion"
 msgstr "Zâmbete și emoții"
+
+#. TRANSLATORS: Space key on keyboard
+msgid "Space"
+msgstr ""
 
 msgid "Start slideshow"
 msgstr "Începeți prezentarea de diapozitive"
@@ -304,8 +460,15 @@ msgstr "Trimiteți"
 msgid "Symbols"
 msgstr "Simboluri"
 
+#. TRANSLATORS: Tab key on keyboard
+msgid "Tab"
+msgstr ""
+
 msgid "Travel & Places"
 msgstr "Călătorii și locuri"
+
+msgid "Type to search for existing projects"
+msgstr ""
 
 msgid "Type to search time zone"
 msgstr "Tastați pentru a căuta fusul orar"
@@ -319,11 +482,16 @@ msgstr "Anularea modificărilor"
 msgid "User status: {status}"
 msgstr "Status utilizator: {status}"
 
-msgid "Write a message …"
-msgstr "Scrieți un mesaj ..."
+msgid "View team"
+msgstr ""
 
-msgid "More items …"
-msgstr "Mai multe articole ..."
+#. TRANSLATORS: A color name for RGB(211, 169, 103)
+msgid "Whiskey"
+msgstr ""
+
+msgid "White"
+msgstr ""
 
 msgid "Write a message …"
 msgstr "Scrieți un mesaj ..."
+

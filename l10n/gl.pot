@@ -1,14 +1,15 @@
-# 
+#
 # Translators:
-# John Molakvoæ <skjnldsv@protonmail.com>, 2023
+# Joas Schilling, 2025
 # Miguel Anxo Bouzada <mbouzada@gmail.com>, 2025
-# 
+#
 msgid ""
 msgstr ""
 "Last-Translator: Miguel Anxo Bouzada <mbouzada@gmail.com>, 2025\n"
-"Language-Team: Galician (https://app.transifex.com/nextcloud/teams/64236/gl/)\n"
-"Content-Type: text/plain; charset=UTF-8\n"
+"Language-Team: Galician (https://app.transifex.com/nextcloud/teams/64236/"
+"gl/)\n"
 "Language: gl\n"
+"Content-Type: text/plain; charset=UTF-8\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 msgid "{tag} (invisible)"
@@ -36,6 +37,10 @@ msgstr "Actividades"
 msgid "Add to a project"
 msgstr "Engadir a un proxecto"
 
+#. TRANSLATORS: Alt key on keyboard (Windows/Linux)
+msgid "Alt"
+msgstr "Alt"
+
 msgid "Animals & Nature"
 msgstr "Animais e natureza"
 
@@ -60,6 +65,9 @@ msgstr "Atrás"
 
 msgid "Back to provider selection"
 msgstr "Volver á selección do provedor"
+
+msgid "Black"
+msgstr "Negro"
 
 #. TRANSLATORS: A color name for RGB(91, 100, 179)
 msgid "Blue Violet"
@@ -114,18 +122,32 @@ msgstr "Confirma os cambios"
 msgid "Connect items to a project to make them easier to find"
 msgstr "Conectar elementos a un proxecto para facelos máis doados de atopar"
 
+msgid "Copied"
+msgstr "Copiado"
+
+msgid "Copy to clipboard"
+msgstr "Copiar ao portapapeis"
+
+#. TRANSLATORS: Ctrl key on keyboard (Windows/Linux)
+msgid "Ctrl"
+msgstr "Ctrl"
+
 msgid "Custom"
 msgstr "Personalizado"
 
 msgid "Dark skin tone"
 msgstr "Ton de pel escuro"
 
+#. TRANSLATORS: Delete key on keyboard
+msgid "Delete"
+msgstr "Eliminar"
+
 #. TRANSLATORS: A color name for RGB(136, 85, 168)
 msgid "Deluge"
-msgstr "Diluvio"
+msgstr "Dioivo"
 
 msgid "Deselect {option}"
-msgstr "Desmarcar {opción}"
+msgstr "Desmarcar {option}"
 
 msgid "do not disturb"
 msgstr "non molestar"
@@ -139,15 +161,23 @@ msgstr "Selector de «emojis»"
 msgid "Enable interactive view"
 msgstr "Activar a vista interactiva"
 
+#. TRANSLATORS: Enter key on keyboard
+msgid "Enter"
+msgstr "Intro"
+
 msgid "Enter link"
 msgstr "Introducir a ligazón"
 
 msgid ""
-"Error getting related resources. Please contact your system administrator if"
-" you have any questions."
+"Error getting related resources. Please contact your system administrator if "
+"you have any questions."
 msgstr ""
-"Produciuse un erro ao obter os recursos relacionados. Póñase en contacto coa"
-" administración do seu sistema se ten algunha dúbida."
+"Produciuse un erro ao obter os recursos relacionados. Póñase en contacto coa "
+"administración do seu sistema se ten algunha dúbida."
+
+#. TRANSLATORS: Escape key on keyboard
+msgid "Escape"
+msgstr "Escape"
 
 msgid "External documentation for {name}"
 msgstr "Documentación externa para {name}"
@@ -198,6 +228,9 @@ msgstr "invisíbel"
 msgid "Keyboard navigation help"
 msgstr "Axuda á navegación co teclado"
 
+msgid "Keyboard shortcuts"
+msgstr "Atallos de teclado"
+
 msgid "Light skin tone"
 msgstr "Ton de pel claro"
 
@@ -205,7 +238,7 @@ msgid "Load more \"{options}\""
 msgstr "Cargar máis «{options}»"
 
 #. TRANSLATORS: The button is in a loading state
-msgid "Loading …"
+msgid "Loading …"
 msgstr "Cargando…"
 
 #. TRANSLATORS: A color name for RGB(45, 115, 190)
@@ -221,10 +254,12 @@ msgstr "Ton de pel medio claro"
 msgid "Medium skin tone"
 msgstr "Ton de pel medio"
 
-msgid "Message limit of {count} characters reached"
-msgstr "Acadouse o límite de {count} caracteres por mensaxe"
+msgid "Message limit of %n character reached"
+msgid_plural "Message limit of %n characters reached"
+msgstr[0] "Acadouse o límite de %n caracter por mensaxe"
+msgstr[1] "Acadouse o límite de %n caracteres por mensaxe"
 
-msgid "More items …"
+msgid "More items …"
 msgstr "Máis elementos…"
 
 msgid "More options"
@@ -237,7 +272,10 @@ msgid "Next"
 msgstr "Seguinte"
 
 msgid "Nextcloud blue"
-msgstr "Nextcloud azul"
+msgstr "Azul Nextcloud"
+
+msgid "No color"
+msgstr "Sen cor"
 
 msgid "No emoji found"
 msgstr "Non se atopou ningún «emoji»"
@@ -340,6 +378,9 @@ msgstr "Gardar os cambios"
 msgid "Search"
 msgstr "Buscar"
 
+msgid "Search …"
+msgstr "Buscar…"
+
 msgid "Search emoji"
 msgstr "Buscar «emoji»"
 
@@ -349,11 +390,7 @@ msgstr "Buscar por fuso horario"
 msgid "Search results"
 msgstr "Resultados da busca"
 
-msgid "Search…"
-msgstr "Buscar…"
-
-#. FOR TRANSLATORS: If possible in your language an even shorter version of 'a
-#. few seconds ago'
+#. FOR TRANSLATORS: If possible in your language an even shorter version of 'a few seconds ago'
 msgid "sec. ago"
 msgstr "segs. atrás"
 
@@ -364,8 +401,11 @@ msgstr "segundos atrás"
 msgid "Select a tag"
 msgstr "Seleccione unha etiqueta"
 
+msgid "Select account"
+msgstr ""
+
 msgid "Select provider"
-msgstr "Seleccionar provedor"
+msgstr "Seleccione o provedor"
 
 msgid "Selected"
 msgstr "Seleccionado"
@@ -375,6 +415,10 @@ msgstr "Axustes"
 
 msgid "Settings navigation"
 msgstr "Navegación polos axustes"
+
+#. TRANSLATORS: Shift key on keyboard
+msgid "Shift"
+msgstr "Maiús."
 
 msgid "Show details"
 msgstr "Amosar os detalles"
@@ -397,6 +441,10 @@ msgstr "Selector intelixente"
 msgid "Smileys & Emotion"
 msgstr "Sorrisos e emocións"
 
+#. TRANSLATORS: Space key on keyboard
+msgid "Space"
+msgstr "Espazo"
+
 msgid "Start slideshow"
 msgstr "Iniciar o diaporama"
 
@@ -408,6 +456,10 @@ msgstr "Enviar"
 
 msgid "Symbols"
 msgstr "Símbolos"
+
+#. TRANSLATORS: Tab key on keyboard
+msgid "Tab"
+msgstr "Tab"
 
 msgid "Travel & Places"
 msgstr "Viaxes e lugares"
@@ -434,73 +486,9 @@ msgstr "Ver o equipo"
 msgid "Whiskey"
 msgstr "Whisky"
 
-msgid "Write a message …"
-msgstr "Escribir unha mensaxe…"
-
-#. TRANSLATORS: Alt key on keyboard (Windows/Linux)
-msgid "Alt"
-msgstr "Alt"
-
-msgid "Black"
-msgstr "Negro"
-
-msgid "Copied"
-msgstr "Copiado"
-
-msgid "Copy to clipboard"
-msgstr "Copiar ao portapapeis"
-
-#. TRANSLATORS: Ctrl key on keyboard (Windows/Linux)
-msgid "Ctrl"
-msgstr "Ctrl"
-
-#. TRANSLATORS: Delete key on keyboard
-msgid "Delete"
-msgstr "Eliminar"
-
-#. TRANSLATORS: Enter key on keyboard
-msgid "Enter"
-msgstr "Intro"
-
-#. TRANSLATORS: Escape key on keyboard
-msgid "Escape"
-msgstr "Escape"
-
-msgid "Keyboard shortcuts"
-msgstr "Atallos de teclado"
-
-#. TRANSLATORS: The button is in a loading state
-msgid "Loading …"
-msgstr "Cargando…"
-
-msgid "Message limit of %n character reached"
-msgid_plural "Message limit of %n characters reached"
-msgstr[0] "Acadouse o límite de %n caracter por mensaxe"
-msgstr[1] "Acadouse o límite de %n caracteres por mensaxe"
-
-msgid "More items …"
-msgstr "Máis elementos…"
-
-msgid "No color"
-msgstr "Sen cor"
-
-msgid "Search …"
-msgstr "Buscar…"
-
-#. TRANSLATORS: Shift key on keyboard
-msgid "Shift"
-msgstr "Maiús."
-
-#. TRANSLATORS: Space key on keyboard
-msgid "Space"
-msgstr "Espazo"
-
-#. TRANSLATORS: Tab key on keyboard
-msgid "Tab"
-msgstr "Tab"
-
 msgid "White"
 msgstr "Branco"
 
 msgid "Write a message …"
 msgstr "Escribir unha mensaxe…"
+

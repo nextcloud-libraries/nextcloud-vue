@@ -1,14 +1,15 @@
-# 
+#
 # Translators:
 # thingumy, 2024
 # Jiri Grönroos <jiri.gronroos@iki.fi>, 2025
-# 
+#
 msgid ""
 msgstr ""
 "Last-Translator: Jiri Grönroos <jiri.gronroos@iki.fi>, 2025\n"
-"Language-Team: Finnish (Finland) (https://app.transifex.com/nextcloud/teams/64236/fi_FI/)\n"
-"Content-Type: text/plain; charset=UTF-8\n"
+"Language-Team: Finnish (Finland) (https://app.transifex.com/nextcloud/"
+"teams/64236/fi_FI/)\n"
 "Language: fi_FI\n"
+"Content-Type: text/plain; charset=UTF-8\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 msgid "{tag} (invisible)"
@@ -36,6 +37,10 @@ msgstr "Aktiviteetit"
 msgid "Add to a project"
 msgstr "Lisää projektiin"
 
+#. TRANSLATORS: Alt key on keyboard (Windows/Linux)
+msgid "Alt"
+msgstr ""
+
 msgid "Animals & Nature"
 msgstr "Eläimet & luonto"
 
@@ -60,6 +65,9 @@ msgstr "Takaisin"
 
 msgid "Back to provider selection"
 msgstr "Takaisin toimittajavalintaan"
+
+msgid "Black"
+msgstr ""
 
 #. TRANSLATORS: A color name for RGB(91, 100, 179)
 msgid "Blue Violet"
@@ -114,11 +122,25 @@ msgstr "Vahvista muutokset"
 msgid "Connect items to a project to make them easier to find"
 msgstr "Yhdistä kohteet projektiin, jotta ne olisivat helpompia löytää"
 
+msgid "Copied"
+msgstr ""
+
+msgid "Copy to clipboard"
+msgstr ""
+
+#. TRANSLATORS: Ctrl key on keyboard (Windows/Linux)
+msgid "Ctrl"
+msgstr ""
+
 msgid "Custom"
 msgstr "Mukautettu"
 
 msgid "Dark skin tone"
 msgstr "Tumma ihonväri"
+
+#. TRANSLATORS: Delete key on keyboard
+msgid "Delete"
+msgstr ""
 
 #. TRANSLATORS: A color name for RGB(136, 85, 168)
 msgid "Deluge"
@@ -139,15 +161,23 @@ msgstr "Emojivalitsin"
 msgid "Enable interactive view"
 msgstr "Näytä vuorovaikutteinen näkymä"
 
+#. TRANSLATORS: Enter key on keyboard
+msgid "Enter"
+msgstr ""
+
 msgid "Enter link"
 msgstr "Kirjoita linkki"
 
 msgid ""
-"Error getting related resources. Please contact your system administrator if"
-" you have any questions."
+"Error getting related resources. Please contact your system administrator if "
+"you have any questions."
 msgstr ""
 "Virhe resurssien haussa. Ota yhteyttä järjestelmän ylläpitäjään, mikäli "
 "sinulla on kysyttävää."
+
+#. TRANSLATORS: Escape key on keyboard
+msgid "Escape"
+msgstr ""
 
 msgid "External documentation for {name}"
 msgstr "Ulkoinen dokumentaatio {name}lle"
@@ -198,6 +228,9 @@ msgstr "näkymätön"
 msgid "Keyboard navigation help"
 msgstr "Näppäimistönavigoinnin ohje"
 
+msgid "Keyboard shortcuts"
+msgstr ""
+
 msgid "Light skin tone"
 msgstr "Vaalea ihonväri"
 
@@ -205,7 +238,7 @@ msgid "Load more \"{options}\""
 msgstr "Lataa lisää \"{options}\""
 
 #. TRANSLATORS: The button is in a loading state
-msgid "Loading …"
+msgid "Loading …"
 msgstr "Ladataan ..."
 
 #. TRANSLATORS: A color name for RGB(45, 115, 190)
@@ -221,10 +254,12 @@ msgstr "Keskivaalea ihonväri"
 msgid "Medium skin tone"
 msgstr "Keskimääräinen ihonväri"
 
-msgid "Message limit of {count} characters reached"
-msgstr "Viestin {count}merkin raja saavutettu"
+msgid "Message limit of %n character reached"
+msgid_plural "Message limit of %n characters reached"
+msgstr[0] ""
+msgstr[1] ""
 
-msgid "More items …"
+msgid "More items …"
 msgstr "Lisää kohteita…"
 
 msgid "More options"
@@ -238,6 +273,9 @@ msgstr "Seuraava"
 
 msgid "Nextcloud blue"
 msgstr "Nextcloudin sininen"
+
+msgid "No color"
+msgstr ""
 
 msgid "No emoji found"
 msgstr "Emojia ei löytynyt"
@@ -340,6 +378,9 @@ msgstr "Tallenna muutokset"
 msgid "Search"
 msgstr "Etsi"
 
+msgid "Search …"
+msgstr ""
+
 msgid "Search emoji"
 msgstr "Etsi emojia"
 
@@ -349,11 +390,7 @@ msgstr "Etsi aikavyöhykettä"
 msgid "Search results"
 msgstr "Hakutulokset"
 
-msgid "Search…"
-msgstr "Hae..."
-
-#. FOR TRANSLATORS: If possible in your language an even shorter version of 'a
-#. few seconds ago'
+#. FOR TRANSLATORS: If possible in your language an even shorter version of 'a few seconds ago'
 msgid "sec. ago"
 msgstr "sek. sitten"
 
@@ -363,6 +400,9 @@ msgstr "sekunteja sitten"
 
 msgid "Select a tag"
 msgstr "Valitse tunniste"
+
+msgid "Select account"
+msgstr ""
 
 msgid "Select provider"
 msgstr "Valitse tarjoaja"
@@ -375,6 +415,10 @@ msgstr "Asetukset"
 
 msgid "Settings navigation"
 msgstr "Asetusten navigointi"
+
+#. TRANSLATORS: Shift key on keyboard
+msgid "Shift"
+msgstr ""
 
 msgid "Show details"
 msgstr "Näytä yksityiskohdat"
@@ -397,6 +441,10 @@ msgstr "Älykäs valitsin"
 msgid "Smileys & Emotion"
 msgstr "Hymiöt & tunteet"
 
+#. TRANSLATORS: Space key on keyboard
+msgid "Space"
+msgstr ""
+
 msgid "Start slideshow"
 msgstr "Aloita diaesitys"
 
@@ -408,6 +456,10 @@ msgstr "Lähetä"
 
 msgid "Symbols"
 msgstr "Symbolit"
+
+#. TRANSLATORS: Tab key on keyboard
+msgid "Tab"
+msgstr ""
 
 msgid "Travel & Places"
 msgstr "Matkustus & kohteet"
@@ -434,15 +486,9 @@ msgstr "Näytä tiimi"
 msgid "Whiskey"
 msgstr "Viski"
 
-msgid "Write a message …"
-msgstr "Kirjoita viesti…"
-
-#. TRANSLATORS: The button is in a loading state
-msgid "Loading …"
-msgstr "Ladataan ..."
-
-msgid "More items …"
-msgstr "Lisää kohteita…"
+msgid "White"
+msgstr ""
 
 msgid "Write a message …"
 msgstr "Kirjoita viesti…"
+

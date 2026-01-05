@@ -1,14 +1,15 @@
-# 
+#
 # Translators:
-# Mait R, 2023
+# Joas Schilling, 2025
 # Priit Jõerüüt <transifex@joeruut.com>, 2025
-# 
+#
 msgid ""
 msgstr ""
 "Last-Translator: Priit Jõerüüt <transifex@joeruut.com>, 2025\n"
-"Language-Team: Estonian (Estonia) (https://app.transifex.com/nextcloud/teams/64236/et_EE/)\n"
-"Content-Type: text/plain; charset=UTF-8\n"
+"Language-Team: Estonian (Estonia) (https://app.transifex.com/nextcloud/"
+"teams/64236/et_EE/)\n"
 "Language: et_EE\n"
+"Content-Type: text/plain; charset=UTF-8\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 msgid "{tag} (invisible)"
@@ -36,6 +37,10 @@ msgstr "Tegevused"
 msgid "Add to a project"
 msgstr "Lisa projekti"
 
+#. TRANSLATORS: Alt key on keyboard (Windows/Linux)
+msgid "Alt"
+msgstr "Alt"
+
 msgid "Animals & Nature"
 msgstr "Loomad ja loodus"
 
@@ -43,7 +48,7 @@ msgid "Any link"
 msgstr "Mistahes link"
 
 msgid "Anything shared with the same group of people will show up here"
-msgstr "Kõik, mida jagatakse sama grupi inimestega, kuvatakse siin."
+msgstr "Siin kuvatakse kõik, mida jagatakse sama kasutajagrupiga"
 
 msgid "Avatar of {displayName}"
 msgstr "Avatar {displayName}"
@@ -60,6 +65,9 @@ msgstr "Tagasi"
 
 msgid "Back to provider selection"
 msgstr "Tagasi teenusepakkuja valiku juurde"
+
+msgid "Black"
+msgstr "Must"
 
 #. TRANSLATORS: A color name for RGB(91, 100, 179)
 msgid "Blue Violet"
@@ -114,11 +122,25 @@ msgstr "Kinnitage muudatused"
 msgid "Connect items to a project to make them easier to find"
 msgstr "Selleks, et objekte oleks lihtsam leida, seo nad projektiga"
 
+msgid "Copied"
+msgstr "Kopeeritud"
+
+msgid "Copy to clipboard"
+msgstr "Kopeeri lõikelauale"
+
+#. TRANSLATORS: Ctrl key on keyboard (Windows/Linux)
+msgid "Ctrl"
+msgstr "Ctrl"
+
 msgid "Custom"
 msgstr "Kohanda"
 
 msgid "Dark skin tone"
 msgstr "Kesta tume toon"
+
+#. TRANSLATORS: Delete key on keyboard
+msgid "Delete"
+msgstr "Kustutusklahv"
 
 #. TRANSLATORS: A color name for RGB(136, 85, 168)
 msgid "Deluge"
@@ -139,15 +161,23 @@ msgstr "Emojide valija"
 msgid "Enable interactive view"
 msgstr "Lülita interaktiivne vaade sisse"
 
+#. TRANSLATORS: Enter key on keyboard
+msgid "Enter"
+msgstr "Sisestusklahv"
+
 msgid "Enter link"
 msgstr "Sisesta link"
 
 msgid ""
-"Error getting related resources. Please contact your system administrator if"
-" you have any questions."
+"Error getting related resources. Please contact your system administrator if "
+"you have any questions."
 msgstr ""
 "Viga seotud ressursside saamisel. Küsimuste korral võtke ühendust oma "
 "süsteemiadministraatoriga."
+
+#. TRANSLATORS: Escape key on keyboard
+msgid "Escape"
+msgstr "Esc-klahv"
 
 msgid "External documentation for {name}"
 msgstr "Väline dokumentatsioon {nimi}"
@@ -198,15 +228,18 @@ msgstr "nähtamatu"
 msgid "Keyboard navigation help"
 msgstr "Klahvistiku kasutuse abiteave"
 
+msgid "Keyboard shortcuts"
+msgstr "Klahvistiku kiirklahvid"
+
 msgid "Light skin tone"
 msgstr "Kesta hele toon"
 
 msgid "Load more \"{options}\""
-msgstr "Laadi rohkem \"{valikud}\""
+msgstr "Laadi veel „{options}“"
 
 #. TRANSLATORS: The button is in a loading state
-msgid "Loading …"
-msgstr "Laadin…"
+msgid "Loading …"
+msgstr "Laadin …"
 
 #. TRANSLATORS: A color name for RGB(45, 115, 190)
 msgid "Mariner"
@@ -221,11 +254,13 @@ msgstr "Kesta keskmiselt hele toon"
 msgid "Medium skin tone"
 msgstr "Kesta keskmine toon"
 
-msgid "Message limit of {count} characters reached"
-msgstr "Sõnumi piiratud arv {count} tähemärke on saavutatud"
+msgid "Message limit of %n character reached"
+msgid_plural "Message limit of %n characters reached"
+msgstr[0] "Sõnumi piirarv %n tähemärk on käes"
+msgstr[1] "Sõnumi piirarv %n tähemärki on käes"
 
-msgid "More items …"
-msgstr "Rohkem objekte ..."
+msgid "More items …"
+msgstr "Vaata veel …"
 
 msgid "More options"
 msgstr "Rohkem valikuid"
@@ -238,6 +273,9 @@ msgstr "Edasi"
 
 msgid "Nextcloud blue"
 msgstr "Nextcloudi sinine"
+
+msgid "No color"
+msgstr "Värv puudub"
 
 msgid "No emoji found"
 msgstr "Emojit ei leitud"
@@ -262,7 +300,7 @@ msgid "online"
 msgstr "võrgus"
 
 msgid "Open link to \"{resourceName}\""
-msgstr "Ava link \"{resourceName}\""
+msgstr "Ava link „{resourceName}“"
 
 msgid "Open menu"
 msgstr "Ava menüü"
@@ -319,7 +357,7 @@ msgid "Purple"
 msgstr "Purpurpunane"
 
 msgid "Raw link {options}"
-msgstr "Raw link {valikud}"
+msgstr "Töötlemata link: {options}"
 
 msgid "Related resources"
 msgstr "Seotud ressursid"
@@ -340,6 +378,9 @@ msgstr "Salvesta muudatused"
 msgid "Search"
 msgstr "Otsing"
 
+msgid "Search …"
+msgstr "Otsi …"
+
 msgid "Search emoji"
 msgstr "Otsi emojit"
 
@@ -349,11 +390,7 @@ msgstr "Otsi ajavööndit"
 msgid "Search results"
 msgstr "Otsi tulemustest"
 
-msgid "Search…"
-msgstr "Otsi…"
-
-#. FOR TRANSLATORS: If possible in your language an even shorter version of 'a
-#. few seconds ago'
+#. FOR TRANSLATORS: If possible in your language an even shorter version of 'a few seconds ago'
 msgid "sec. ago"
 msgstr "sek. tagasi"
 
@@ -363,6 +400,9 @@ msgstr "sekundit tagasi"
 
 msgid "Select a tag"
 msgstr "Vali silt"
+
+msgid "Select account"
+msgstr ""
 
 msgid "Select provider"
 msgstr "Vali teenuspakkuja"
@@ -375,6 +415,10 @@ msgstr "Seadistused"
 
 msgid "Settings navigation"
 msgstr "Seadistuste navigatsioon"
+
+#. TRANSLATORS: Shift key on keyboard
+msgid "Shift"
+msgstr "Shift"
 
 msgid "Show details"
 msgstr "Näita üksikasju"
@@ -397,6 +441,10 @@ msgstr "Nutikas valija"
 msgid "Smileys & Emotion"
 msgstr "Smailid ja emotsioonid"
 
+#. TRANSLATORS: Space key on keyboard
+msgid "Space"
+msgstr "Tühikuklahv"
+
 msgid "Start slideshow"
 msgstr "Alusta slaidiesitust"
 
@@ -408,6 +456,10 @@ msgstr "Saada"
 
 msgid "Symbols"
 msgstr "Sümbolid"
+
+#. TRANSLATORS: Tab key on keyboard
+msgid "Tab"
+msgstr "Tabulaator"
 
 msgid "Travel & Places"
 msgstr "Reisimine ja kohad"
@@ -434,73 +486,9 @@ msgstr "Vaata tiimi"
 msgid "Whiskey"
 msgstr "Viskikarva kollakaspruun"
 
-msgid "Write a message …"
-msgstr "Kirjuta sõnum…"
-
-#. TRANSLATORS: Alt key on keyboard (Windows/Linux)
-msgid "Alt"
-msgstr "Alt"
-
-msgid "Black"
-msgstr "Must"
-
-msgid "Copied"
-msgstr "Kopeeritud"
-
-msgid "Copy to clipboard"
-msgstr "Kopeeri lõikelauale"
-
-#. TRANSLATORS: Ctrl key on keyboard (Windows/Linux)
-msgid "Ctrl"
-msgstr "Ctrl"
-
-#. TRANSLATORS: Delete key on keyboard
-msgid "Delete"
-msgstr "Kustutusklahv"
-
-#. TRANSLATORS: Enter key on keyboard
-msgid "Enter"
-msgstr "Sisestusklahv"
-
-#. TRANSLATORS: Escape key on keyboard
-msgid "Escape"
-msgstr "Esc-klahv"
-
-msgid "Keyboard shortcuts"
-msgstr "Klahvistiku kiirklahvid"
-
-#. TRANSLATORS: The button is in a loading state
-msgid "Loading …"
-msgstr "Laadin …"
-
-msgid "Message limit of %n character reached"
-msgid_plural "Message limit of %n characters reached"
-msgstr[0] "Sõnumi piirarv %n tähemärk on käes"
-msgstr[1] "Sõnumi piirarv %n tähemärki on käes"
-
-msgid "More items …"
-msgstr "Vaata veel …"
-
-msgid "No color"
-msgstr "Värv puudub"
-
-msgid "Search …"
-msgstr "Otsi …"
-
-#. TRANSLATORS: Shift key on keyboard
-msgid "Shift"
-msgstr "Shift"
-
-#. TRANSLATORS: Space key on keyboard
-msgid "Space"
-msgstr "Tühikuklahv"
-
-#. TRANSLATORS: Tab key on keyboard
-msgid "Tab"
-msgstr "Tabulaator"
-
 msgid "White"
 msgstr "Valge"
 
 msgid "Write a message …"
 msgstr "Koosta sõnum …"
+

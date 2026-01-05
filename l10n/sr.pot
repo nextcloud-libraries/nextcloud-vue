@@ -1,15 +1,17 @@
-# 
+#
 # Translators:
-# John Molakvoæ <skjnldsv@protonmail.com>, 2023
-# Иван Пешић, 2024
-# 
+# Joas Schilling, 2025
+# Иван Пешић, 2025
+#
 msgid ""
 msgstr ""
-"Last-Translator: Иван Пешић, 2024\n"
-"Language-Team: Serbian (https://app.transifex.com/nextcloud/teams/64236/sr/)\n"
-"Content-Type: text/plain; charset=UTF-8\n"
+"Last-Translator: Иван Пешић, 2025\n"
+"Language-Team: Serbian (https://app.transifex.com/nextcloud/teams/64236/"
+"sr/)\n"
 "Language: sr\n"
-"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
+"n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 
 msgid "{tag} (invisible)"
 msgstr "{tag} (невидљиво)"
@@ -36,6 +38,10 @@ msgstr "Активности"
 msgid "Add to a project"
 msgstr "Додај у пројекат"
 
+#. TRANSLATORS: Alt key on keyboard (Windows/Linux)
+msgid "Alt"
+msgstr "Alt"
+
 msgid "Animals & Nature"
 msgstr "Животиње и природа"
 
@@ -60,6 +66,9 @@ msgstr "Назад"
 
 msgid "Back to provider selection"
 msgstr "Назад на избор пружаоца"
+
+msgid "Black"
+msgstr "Црно"
 
 #. TRANSLATORS: A color name for RGB(91, 100, 179)
 msgid "Blue Violet"
@@ -114,11 +123,25 @@ msgstr "Потврдите измене"
 msgid "Connect items to a project to make them easier to find"
 msgstr "Повезује ставке у пројекат како би се лакше пронашле"
 
+msgid "Copied"
+msgstr ""
+
+msgid "Copy to clipboard"
+msgstr ""
+
+#. TRANSLATORS: Ctrl key on keyboard (Windows/Linux)
+msgid "Ctrl"
+msgstr "Ctrl"
+
 msgid "Custom"
 msgstr "Произвољно"
 
 msgid "Dark skin tone"
 msgstr "Тамни тен коже"
+
+#. TRANSLATORS: Delete key on keyboard
+msgid "Delete"
+msgstr "Обриши"
 
 #. TRANSLATORS: A color name for RGB(136, 85, 168)
 msgid "Deluge"
@@ -139,15 +162,23 @@ msgstr "Бирач емођија"
 msgid "Enable interactive view"
 msgstr "Укључи интерактивни приказ"
 
+#. TRANSLATORS: Enter key on keyboard
+msgid "Enter"
+msgstr "Enter"
+
 msgid "Enter link"
 msgstr "Унесите линк"
 
 msgid ""
-"Error getting related resources. Please contact your system administrator if"
-" you have any questions."
+"Error getting related resources. Please contact your system administrator if "
+"you have any questions."
 msgstr ""
 "Грешка код прибављања везаних ресурса. Молимо вас да се обратите "
 "администратору ако имате питања."
+
+#. TRANSLATORS: Escape key on keyboard
+msgid "Escape"
+msgstr "Escape"
 
 msgid "External documentation for {name}"
 msgstr "Спољна документација за {name}"
@@ -198,6 +229,9 @@ msgstr "невидљиво"
 msgid "Keyboard navigation help"
 msgstr "Помоћ за навигацију тастатуром"
 
+msgid "Keyboard shortcuts"
+msgstr ""
+
 msgid "Light skin tone"
 msgstr "Светли тен коже"
 
@@ -205,7 +239,7 @@ msgid "Load more \"{options}\""
 msgstr "Учитај још „{options}”"
 
 #. TRANSLATORS: The button is in a loading state
-msgid "Loading …"
+msgid "Loading …"
 msgstr "Учитава се…"
 
 #. TRANSLATORS: A color name for RGB(45, 115, 190)
@@ -221,10 +255,13 @@ msgstr "Средње светли тен коже"
 msgid "Medium skin tone"
 msgstr "Средњи тен коже"
 
-msgid "Message limit of {count} characters reached"
-msgstr "Достигнуто је ограничење величине поруке од {count} карактера"
+msgid "Message limit of %n character reached"
+msgid_plural "Message limit of %n characters reached"
+msgstr[0] "Достигнуто је ограничење величине поруке од %n карактер"
+msgstr[1] "Достигнуто је ограничење величине поруке од %n карактера"
+msgstr[2] "Достигнуто је ограничење величине поруке од %n карактера"
 
-msgid "More items …"
+msgid "More items …"
 msgstr "Још ставки..."
 
 msgid "More options"
@@ -238,6 +275,9 @@ msgstr "Следеће"
 
 msgid "Nextcloud blue"
 msgstr "Nextcloud плава"
+
+msgid "No color"
+msgstr "Без боје"
 
 msgid "No emoji found"
 msgstr "Није пронађен ниједан емођи"
@@ -340,6 +380,9 @@ msgstr "Сачувај измене"
 msgid "Search"
 msgstr "Претражи"
 
+msgid "Search …"
+msgstr "Претражи…"
+
 msgid "Search emoji"
 msgstr "Претражи емођи"
 
@@ -349,11 +392,7 @@ msgstr "Претрага временске зоне"
 msgid "Search results"
 msgstr "Резултати претраге"
 
-msgid "Search…"
-msgstr "Претражи…"
-
-#. FOR TRANSLATORS: If possible in your language an even shorter version of 'a
-#. few seconds ago'
+#. FOR TRANSLATORS: If possible in your language an even shorter version of 'a few seconds ago'
 msgid "sec. ago"
 msgstr "сек. раније"
 
@@ -363,6 +402,9 @@ msgstr "секунди раније"
 
 msgid "Select a tag"
 msgstr "Изаберите ознаку"
+
+msgid "Select account"
+msgstr ""
 
 msgid "Select provider"
 msgstr "Изаберите пружаоца"
@@ -375,6 +417,10 @@ msgstr "Поставке"
 
 msgid "Settings navigation"
 msgstr "Кретање по подешавањима"
+
+#. TRANSLATORS: Shift key on keyboard
+msgid "Shift"
+msgstr "Shift"
 
 msgid "Show details"
 msgstr "Прикажи детаље"
@@ -397,6 +443,10 @@ msgstr "Паметни бирач"
 msgid "Smileys & Emotion"
 msgstr "Смајлији и емоције"
 
+#. TRANSLATORS: Space key on keyboard
+msgid "Space"
+msgstr "Space"
+
 msgid "Start slideshow"
 msgstr "Покрени слајд шоу"
 
@@ -408,6 +458,10 @@ msgstr "Поднеси"
 
 msgid "Symbols"
 msgstr "Симболи"
+
+#. TRANSLATORS: Tab key on keyboard
+msgid "Tab"
+msgstr "Tab"
 
 msgid "Travel & Places"
 msgstr "Путовање и места"
@@ -434,65 +488,9 @@ msgstr "Прикажи тим"
 msgid "Whiskey"
 msgstr "Виски"
 
-msgid "Write a message …"
-msgstr "Напишите поруку…"
-
-#. TRANSLATORS: Alt key on keyboard (Windows/Linux)
-msgid "Alt"
-msgstr "Alt"
-
-msgid "Black"
-msgstr "Црно"
-
-#. TRANSLATORS: Ctrl key on keyboard (Windows/Linux)
-msgid "Ctrl"
-msgstr "Ctrl"
-
-#. TRANSLATORS: Delete key on keyboard
-msgid "Delete"
-msgstr "Обриши"
-
-#. TRANSLATORS: Enter key on keyboard
-msgid "Enter"
-msgstr "Enter"
-
-#. TRANSLATORS: Escape key on keyboard
-msgid "Escape"
-msgstr "Escape"
-
-#. TRANSLATORS: The button is in a loading state
-msgid "Loading …"
-msgstr "Учитава се…"
-
-msgid "Message limit of %n character reached"
-msgid_plural "Message limit of %n characters reached"
-msgstr[0] "Достигнуто је ограничење величине поруке од %n карактер"
-msgstr[1] "Достигнуто је ограничење величине поруке од %n карактера"
-msgstr[2] "Достигнуто је ограничење величине поруке од %n карактера"
-
-msgid "More items …"
-msgstr "Још ставки..."
-
-msgid "No color"
-msgstr "Без боје"
-
-msgid "Search …"
-msgstr "Претражи…"
-
-#. TRANSLATORS: Shift key on keyboard
-msgid "Shift"
-msgstr "Shift"
-
-#. TRANSLATORS: Space key on keyboard
-msgid "Space"
-msgstr "Space"
-
-#. TRANSLATORS: Tab key on keyboard
-msgid "Tab"
-msgstr "Tab"
-
 msgid "White"
 msgstr "Бело"
 
 msgid "Write a message …"
 msgstr "Напишите поруку…"
+

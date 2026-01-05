@@ -1,14 +1,15 @@
-# 
+#
 # Translators:
 # John Molakvoæ <skjnldsv@protonmail.com>, 2023
 # Sveinn í Felli <sv1@fellsnet.is>, 2025
-# 
+#
 msgid ""
 msgstr ""
 "Last-Translator: Sveinn í Felli <sv1@fellsnet.is>, 2025\n"
-"Language-Team: Icelandic (https://app.transifex.com/nextcloud/teams/64236/is/)\n"
-"Content-Type: text/plain; charset=UTF-8\n"
+"Language-Team: Icelandic (https://app.transifex.com/nextcloud/teams/64236/"
+"is/)\n"
 "Language: is\n"
+"Content-Type: text/plain; charset=UTF-8\n"
 "Plural-Forms: nplurals=2; plural=(n % 10 != 1 || n % 100 == 11);\n"
 
 msgid "{tag} (invisible)"
@@ -36,6 +37,10 @@ msgstr "Aðgerðir"
 msgid "Add to a project"
 msgstr "Bæta við verkefni"
 
+#. TRANSLATORS: Alt key on keyboard (Windows/Linux)
+msgid "Alt"
+msgstr ""
+
 msgid "Animals & Nature"
 msgstr "Dýr og náttúra"
 
@@ -60,6 +65,9 @@ msgstr "Til baka"
 
 msgid "Back to provider selection"
 msgstr "Til baka í val á þjónustuveitu"
+
+msgid "Black"
+msgstr ""
 
 #. TRANSLATORS: A color name for RGB(91, 100, 179)
 msgid "Blue Violet"
@@ -114,11 +122,25 @@ msgstr "Staðfesta breytingar"
 msgid "Connect items to a project to make them easier to find"
 msgstr "Tengdu atriði við verkefni til að gera einfaldara að finna þau"
 
+msgid "Copied"
+msgstr ""
+
+msgid "Copy to clipboard"
+msgstr ""
+
+#. TRANSLATORS: Ctrl key on keyboard (Windows/Linux)
+msgid "Ctrl"
+msgstr ""
+
 msgid "Custom"
 msgstr "Sérsniðið"
 
 msgid "Dark skin tone"
 msgstr "Dökkur húðlitur"
+
+#. TRANSLATORS: Delete key on keyboard
+msgid "Delete"
+msgstr ""
 
 #. TRANSLATORS: A color name for RGB(136, 85, 168)
 msgid "Deluge"
@@ -139,15 +161,23 @@ msgstr "Emoji-táknmyndaval"
 msgid "Enable interactive view"
 msgstr "Virkja gagnvirka sýn"
 
+#. TRANSLATORS: Enter key on keyboard
+msgid "Enter"
+msgstr ""
+
 msgid "Enter link"
 msgstr "Settu inn tengil"
 
 msgid ""
-"Error getting related resources. Please contact your system administrator if"
-" you have any questions."
+"Error getting related resources. Please contact your system administrator if "
+"you have any questions."
 msgstr ""
 "Villa við að sækja tengd tilföng. Hafðu samband við kerfisstjórann þinn ef "
 "þú ert með einhverjar spurningar."
+
+#. TRANSLATORS: Escape key on keyboard
+msgid "Escape"
+msgstr ""
 
 msgid "External documentation for {name}"
 msgstr "Utanaðkomandi leiðbeiningar fyrir {name}"
@@ -198,6 +228,9 @@ msgstr "ósýnilegt"
 msgid "Keyboard navigation help"
 msgstr "Aðstoð við rötun á lyklaborði"
 
+msgid "Keyboard shortcuts"
+msgstr ""
+
 msgid "Light skin tone"
 msgstr "Ljós húðlitur"
 
@@ -205,8 +238,8 @@ msgid "Load more \"{options}\""
 msgstr "Hlaða inn fleiri \"{options}\""
 
 #. TRANSLATORS: The button is in a loading state
-msgid "Loading …"
-msgstr "Hleð inn …"
+msgid "Loading …"
+msgstr "Hleð inn …"
 
 #. TRANSLATORS: A color name for RGB(45, 115, 190)
 msgid "Mariner"
@@ -221,11 +254,13 @@ msgstr "Meðalljós húðlitur"
 msgid "Medium skin tone"
 msgstr "Meðaltónn húðar"
 
-msgid "Message limit of {count} characters reached"
-msgstr "Takmörkum {count} stafa náð"
+msgid "Message limit of %n character reached"
+msgid_plural "Message limit of %n characters reached"
+msgstr[0] ""
+msgstr[1] ""
 
-msgid "More items …"
-msgstr "Fleiri atriði …"
+msgid "More items …"
+msgstr "Fleiri atriði …"
 
 msgid "More options"
 msgstr "Fleiri valkostir"
@@ -238,6 +273,9 @@ msgstr "Næsta"
 
 msgid "Nextcloud blue"
 msgstr "Nextcloud blátt"
+
+msgid "No color"
+msgstr ""
 
 msgid "No emoji found"
 msgstr "Ekkert tjáningartákn fannst"
@@ -340,6 +378,9 @@ msgstr "Vista breytingar"
 msgid "Search"
 msgstr "Leita"
 
+msgid "Search …"
+msgstr ""
+
 msgid "Search emoji"
 msgstr "Leita að tjáningartákni"
 
@@ -349,11 +390,7 @@ msgstr "Leita að tímabelti"
 msgid "Search results"
 msgstr "Leitarniðurstöður"
 
-msgid "Search…"
-msgstr "Leita…"
-
-#. FOR TRANSLATORS: If possible in your language an even shorter version of 'a
-#. few seconds ago'
+#. FOR TRANSLATORS: If possible in your language an even shorter version of 'a few seconds ago'
 msgid "sec. ago"
 msgstr "sek. síðan"
 
@@ -363,6 +400,9 @@ msgstr "sekúndum síðan"
 
 msgid "Select a tag"
 msgstr "Veldu merki"
+
+msgid "Select account"
+msgstr ""
 
 msgid "Select provider"
 msgstr "Veldu þjónustuveitu"
@@ -375,6 +415,10 @@ msgstr "Stillingar"
 
 msgid "Settings navigation"
 msgstr "Flakk um stillingar"
+
+#. TRANSLATORS: Shift key on keyboard
+msgid "Shift"
+msgstr ""
 
 msgid "Show details"
 msgstr "Birta nánari upplýsingar"
@@ -397,6 +441,10 @@ msgstr "Snjall-veljari"
 msgid "Smileys & Emotion"
 msgstr "Broskallar og tilfinningar"
 
+#. TRANSLATORS: Space key on keyboard
+msgid "Space"
+msgstr ""
+
 msgid "Start slideshow"
 msgstr "Byrja skyggnusýningu"
 
@@ -408,6 +456,10 @@ msgstr "Senda inn"
 
 msgid "Symbols"
 msgstr "Tákn"
+
+#. TRANSLATORS: Tab key on keyboard
+msgid "Tab"
+msgstr ""
 
 msgid "Travel & Places"
 msgstr "Staðir og ferðalög"
@@ -434,15 +486,9 @@ msgstr "Skoða teymi"
 msgid "Whiskey"
 msgstr "Viský"
 
-msgid "Write a message …"
-msgstr "Skrifaðu skilaboð …"
-
-#. TRANSLATORS: The button is in a loading state
-msgid "Loading …"
-msgstr "Hleð inn …"
-
-msgid "More items …"
-msgstr "Fleiri atriði …"
+msgid "White"
+msgstr ""
 
 msgid "Write a message …"
 msgstr "Skrifaðu skilaboð …"
+

@@ -1,14 +1,15 @@
-# 
+#
 # Translators:
 # John Molakvoæ <skjnldsv@protonmail.com>, 2024
 # Roger Knutsen, 2024
-# 
+#
 msgid ""
 msgstr ""
 "Last-Translator: Roger Knutsen, 2024\n"
-"Language-Team: Norwegian Bokmål (Norway) (https://app.transifex.com/nextcloud/teams/64236/nb_NO/)\n"
-"Content-Type: text/plain; charset=UTF-8\n"
+"Language-Team: Norwegian Bokmål (Norway) (https://app.transifex.com/"
+"nextcloud/teams/64236/nb_NO/)\n"
 "Language: nb_NO\n"
+"Content-Type: text/plain; charset=UTF-8\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 msgid "{tag} (invisible)"
@@ -36,6 +37,10 @@ msgstr "Aktiviteter"
 msgid "Add to a project"
 msgstr "Legge til i et prosjekt"
 
+#. TRANSLATORS: Alt key on keyboard (Windows/Linux)
+msgid "Alt"
+msgstr ""
+
 msgid "Animals & Nature"
 msgstr "Dyr og natur"
 
@@ -60,6 +65,9 @@ msgstr "Tilbake"
 
 msgid "Back to provider selection"
 msgstr "Tilbake til leverandørvalg"
+
+msgid "Black"
+msgstr ""
 
 #. TRANSLATORS: A color name for RGB(91, 100, 179)
 msgid "Blue Violet"
@@ -114,11 +122,25 @@ msgstr "Bekreft endringer"
 msgid "Connect items to a project to make them easier to find"
 msgstr "Koble elementer til et prosjekt for å gjøre det enklere å finne dem"
 
+msgid "Copied"
+msgstr ""
+
+msgid "Copy to clipboard"
+msgstr ""
+
+#. TRANSLATORS: Ctrl key on keyboard (Windows/Linux)
+msgid "Ctrl"
+msgstr ""
+
 msgid "Custom"
 msgstr "Tilpasset"
 
 msgid "Dark skin tone"
 msgstr "Mørk hudtone"
+
+#. TRANSLATORS: Delete key on keyboard
+msgid "Delete"
+msgstr ""
 
 #. TRANSLATORS: A color name for RGB(136, 85, 168)
 msgid "Deluge"
@@ -139,15 +161,23 @@ msgstr "Emoji-velger"
 msgid "Enable interactive view"
 msgstr "Aktiver interaktiv visning"
 
+#. TRANSLATORS: Enter key on keyboard
+msgid "Enter"
+msgstr ""
+
 msgid "Enter link"
 msgstr "Skriv inn lenken"
 
 msgid ""
-"Error getting related resources. Please contact your system administrator if"
-" you have any questions."
+"Error getting related resources. Please contact your system administrator if "
+"you have any questions."
 msgstr ""
-"Feil ved henting av relaterte ressurser. Kontakt systemansvarlig hvis du har"
-" spørsmål."
+"Feil ved henting av relaterte ressurser. Kontakt systemansvarlig hvis du har "
+"spørsmål."
+
+#. TRANSLATORS: Escape key on keyboard
+msgid "Escape"
+msgstr ""
 
 msgid "External documentation for {name}"
 msgstr "Ekstern dokumentasjon for {name}"
@@ -198,6 +228,9 @@ msgstr "usynlig"
 msgid "Keyboard navigation help"
 msgstr "Hjelp for tastaturnavigering"
 
+msgid "Keyboard shortcuts"
+msgstr ""
+
 msgid "Light skin tone"
 msgstr "Lys hudtone"
 
@@ -205,7 +238,7 @@ msgid "Load more \"{options}\""
 msgstr "Last inn flere \"{options}\""
 
 #. TRANSLATORS: The button is in a loading state
-msgid "Loading …"
+msgid "Loading …"
 msgstr "Laster inn..."
 
 #. TRANSLATORS: A color name for RGB(45, 115, 190)
@@ -221,10 +254,12 @@ msgstr "Middels lys hudtone"
 msgid "Medium skin tone"
 msgstr "Middels hudtone"
 
-msgid "Message limit of {count} characters reached"
-msgstr "Karakter begrensing {count} nådd i melding"
+msgid "Message limit of %n character reached"
+msgid_plural "Message limit of %n characters reached"
+msgstr[0] ""
+msgstr[1] ""
 
-msgid "More items …"
+msgid "More items …"
 msgstr "Flere gjenstander..."
 
 msgid "More options"
@@ -238,6 +273,9 @@ msgstr "Neste"
 
 msgid "Nextcloud blue"
 msgstr "Nextcloud-blå"
+
+msgid "No color"
+msgstr ""
 
 msgid "No emoji found"
 msgstr "Fant ingen emoji"
@@ -267,8 +305,8 @@ msgstr "Åpne lenken til \"{resourceName}\""
 msgid "Open menu"
 msgstr "Åpne meny"
 
-msgid "Open navigation"
-msgstr "Åpne navigasjon"
+msgid "Open navigation {shortcut}"
+msgstr ""
 
 msgid "Open sidebar"
 msgstr "Åpne sidefelt"
@@ -340,6 +378,9 @@ msgstr "Lagre endringer"
 msgid "Search"
 msgstr "Søk"
 
+msgid "Search …"
+msgstr ""
+
 msgid "Search emoji"
 msgstr "Søk emoji"
 
@@ -349,11 +390,7 @@ msgstr "Søk etter tidssone"
 msgid "Search results"
 msgstr "Søkeresultater"
 
-msgid "Search…"
-msgstr "Søk..."
-
-#. FOR TRANSLATORS: If possible in your language an even shorter version of 'a
-#. few seconds ago'
+#. FOR TRANSLATORS: If possible in your language an even shorter version of 'a few seconds ago'
 msgid "sec. ago"
 msgstr "sek. siden"
 
@@ -363,6 +400,9 @@ msgstr "sekunder siden"
 
 msgid "Select a tag"
 msgstr "Velg en merkelapp"
+
+msgid "Select account"
+msgstr ""
 
 msgid "Select provider"
 msgstr "Velg leverandør"
@@ -375,6 +415,10 @@ msgstr "Innstillinger"
 
 msgid "Settings navigation"
 msgstr "Navigasjonsinstillinger"
+
+#. TRANSLATORS: Shift key on keyboard
+msgid "Shift"
+msgstr ""
 
 msgid "Show details"
 msgstr "Vis detaljer"
@@ -397,6 +441,10 @@ msgstr "Smart Velger"
 msgid "Smileys & Emotion"
 msgstr "Smilefjes og følelser"
 
+#. TRANSLATORS: Space key on keyboard
+msgid "Space"
+msgstr ""
+
 msgid "Start slideshow"
 msgstr "Start lysbildefremvisning"
 
@@ -408,6 +456,10 @@ msgstr "Send"
 
 msgid "Symbols"
 msgstr "Symboler"
+
+#. TRANSLATORS: Tab key on keyboard
+msgid "Tab"
+msgstr ""
 
 msgid "Travel & Places"
 msgstr "Reise og steder"
@@ -434,15 +486,9 @@ msgstr "Se lag"
 msgid "Whiskey"
 msgstr "Whiskey"
 
-msgid "Write a message …"
-msgstr "Skriv en melding..."
-
-#. TRANSLATORS: The button is in a loading state
-msgid "Loading …"
-msgstr "Laster inn..."
-
-msgid "More items …"
-msgstr "Flere gjenstander..."
+msgid "White"
+msgstr ""
 
 msgid "Write a message …"
 msgstr "Skriv en melding..."
+

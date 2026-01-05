@@ -1,15 +1,15 @@
-# 
+#
 # Translators:
-# John Molakvoæ <skjnldsv@protonmail.com>, 2023
-# otterbash <mixalis.tsokaris@gmail.com>, 2023
+# Joas Schilling, 2025
 # Efstathios Iosifidis <iefstathios@gmail.com>, 2025
-# 
+# Γιάννος, 2025
+#
 msgid ""
 msgstr ""
-"Last-Translator: Efstathios Iosifidis <iefstathios@gmail.com>, 2025\n"
+"Last-Translator: Γιάννος, 2025\n"
 "Language-Team: Greek (https://app.transifex.com/nextcloud/teams/64236/el/)\n"
-"Content-Type: text/plain; charset=UTF-8\n"
 "Language: el\n"
+"Content-Type: text/plain; charset=UTF-8\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 msgid "{tag} (invisible)"
@@ -37,6 +37,10 @@ msgstr "Δραστηριότητες"
 msgid "Add to a project"
 msgstr "Προσθήκη σε ένα έργο"
 
+#. TRANSLATORS: Alt key on keyboard (Windows/Linux)
+msgid "Alt"
+msgstr "Alt"
+
 msgid "Animals & Nature"
 msgstr "Ζώα & Φύση"
 
@@ -61,6 +65,9 @@ msgstr "Επιστροφή"
 
 msgid "Back to provider selection"
 msgstr "Επιστροφή στην επιλογή παρόχου"
+
+msgid "Black"
+msgstr "Μαύρο"
 
 #. TRANSLATORS: A color name for RGB(91, 100, 179)
 msgid "Blue Violet"
@@ -115,11 +122,25 @@ msgstr "Επιβεβαίωση αλλαγών"
 msgid "Connect items to a project to make them easier to find"
 msgstr "Συνδέστε αντικείμενα σε ένα έργο για να τα βρίσκετε πιο εύκολα"
 
+msgid "Copied"
+msgstr ""
+
+msgid "Copy to clipboard"
+msgstr ""
+
+#. TRANSLATORS: Ctrl key on keyboard (Windows/Linux)
+msgid "Ctrl"
+msgstr "Ctrl"
+
 msgid "Custom"
 msgstr "Προσαρμογή"
 
 msgid "Dark skin tone"
 msgstr "Σκούρο θέμα"
+
+#. TRANSLATORS: Delete key on keyboard
+msgid "Delete"
+msgstr "Delete"
 
 #. TRANSLATORS: A color name for RGB(136, 85, 168)
 msgid "Deluge"
@@ -140,15 +161,23 @@ msgstr "Επιλογέας emoji"
 msgid "Enable interactive view"
 msgstr "Ενεργοποίηση διαδραστικής προβολής"
 
+#. TRANSLATORS: Enter key on keyboard
+msgid "Enter"
+msgstr "Enter"
+
 msgid "Enter link"
 msgstr "Εισάγετε σύνδεσμο"
 
 msgid ""
-"Error getting related resources. Please contact your system administrator if"
-" you have any questions."
+"Error getting related resources. Please contact your system administrator if "
+"you have any questions."
 msgstr ""
 "Σφάλμα λήψης σχετικών πόρων. Παρακαλούμε επικοινωνήστε με τον διαχειριστή "
 "του συστήματός σας εάν έχετε οποιεσδήποτε ερωτήσεις."
+
+#. TRANSLATORS: Escape key on keyboard
+msgid "Escape"
+msgstr "Escape"
 
 msgid "External documentation for {name}"
 msgstr "Εξωτερική τεκμηρίωση για {name}"
@@ -199,6 +228,9 @@ msgstr "αόρατο"
 msgid "Keyboard navigation help"
 msgstr "Βοήθεια πλοήγησης με πληκτρολόγιο"
 
+msgid "Keyboard shortcuts"
+msgstr ""
+
 msgid "Light skin tone"
 msgstr "Ανοιχτό θέμα"
 
@@ -206,8 +238,8 @@ msgid "Load more \"{options}\""
 msgstr "Φόρτωση περισσότερων \"{options}\""
 
 #. TRANSLATORS: The button is in a loading state
-msgid "Loading …"
-msgstr "Φόρτωση …"
+msgid "Loading …"
+msgstr "Φόρτωση  …"
 
 #. TRANSLATORS: A color name for RGB(45, 115, 190)
 msgid "Mariner"
@@ -222,11 +254,13 @@ msgstr "Μέτριο ανοιχτό θέμα"
 msgid "Medium skin tone"
 msgstr "Μέτριος τόνος θέματος"
 
-msgid "Message limit of {count} characters reached"
-msgstr "Συμπληρώθηκε το όριο των {count} χαρακτήρων του μηνύματος"
+msgid "Message limit of %n character reached"
+msgid_plural "Message limit of %n characters reached"
+msgstr[0] "Έφτασε το όριο μηνύματος των %n χαρακτήρων"
+msgstr[1] "Έφτασε το όριο μηνύματος των %n χαρακτήρων"
 
-msgid "More items …"
-msgstr "Περισσότερα στοιχεία …"
+msgid "More items …"
+msgstr "Περισσότερα στοιχεία …"
 
 msgid "More options"
 msgstr "Περισσότερες επιλογές"
@@ -239,6 +273,9 @@ msgstr "Επόμενο"
 
 msgid "Nextcloud blue"
 msgstr "Μπλε Nextcloud"
+
+msgid "No color"
+msgstr "Χωρίς χρώμα"
 
 msgid "No emoji found"
 msgstr "Δεν βρέθηκε emoji"
@@ -341,6 +378,9 @@ msgstr "Αποθήκευση αλλαγών"
 msgid "Search"
 msgstr "Αναζήτηση"
 
+msgid "Search …"
+msgstr "Αναζήτηση …"
+
 msgid "Search emoji"
 msgstr "Αναζήτηση emoji"
 
@@ -350,11 +390,7 @@ msgstr "Αναζήτηση ζώνης ώρας"
 msgid "Search results"
 msgstr "Αποτελέσματα αναζήτησης"
 
-msgid "Search…"
-msgstr "Αναζήτηση…"
-
-#. FOR TRANSLATORS: If possible in your language an even shorter version of 'a
-#. few seconds ago'
+#. FOR TRANSLATORS: If possible in your language an even shorter version of 'a few seconds ago'
 msgid "sec. ago"
 msgstr "δευτ. πριν"
 
@@ -364,6 +400,9 @@ msgstr "δευτερόλεπτα πριν"
 
 msgid "Select a tag"
 msgstr "Επιλογή ετικέτας"
+
+msgid "Select account"
+msgstr ""
 
 msgid "Select provider"
 msgstr "Επιλογή παρόχου"
@@ -376,6 +415,10 @@ msgstr "Ρυθμίσεις"
 
 msgid "Settings navigation"
 msgstr "Πλοήγηση ρυθμίσεων"
+
+#. TRANSLATORS: Shift key on keyboard
+msgid "Shift"
+msgstr "Shift"
 
 msgid "Show details"
 msgstr "Εμφάνιση λεπτομερειών"
@@ -398,6 +441,10 @@ msgstr "Έξυπνη Επιλογή"
 msgid "Smileys & Emotion"
 msgstr "Φατσούλες & Συναίσθημα"
 
+#. TRANSLATORS: Space key on keyboard
+msgid "Space"
+msgstr "Space"
+
 msgid "Start slideshow"
 msgstr "Έναρξη προβολής διαφανειών"
 
@@ -409,6 +456,10 @@ msgstr "Υποβολή"
 
 msgid "Symbols"
 msgstr "Σύμβολα"
+
+#. TRANSLATORS: Tab key on keyboard
+msgid "Tab"
+msgstr "Tab"
 
 msgid "Travel & Places"
 msgstr "Ταξίδια & Τοποθεσίες"
@@ -435,64 +486,9 @@ msgstr "Προβολή ομάδας"
 msgid "Whiskey"
 msgstr "Ουίσκι"
 
-msgid "Write a message …"
-msgstr "Γράψτε ένα μήνυμα …"
-
-#. TRANSLATORS: Alt key on keyboard (Windows/Linux)
-msgid "Alt"
-msgstr "Alt"
-
-msgid "Black"
-msgstr "Μαύρο"
-
-#. TRANSLATORS: Ctrl key on keyboard (Windows/Linux)
-msgid "Ctrl"
-msgstr "Ctrl"
-
-#. TRANSLATORS: Delete key on keyboard
-msgid "Delete"
-msgstr "Delete"
-
-#. TRANSLATORS: Enter key on keyboard
-msgid "Enter"
-msgstr "Enter"
-
-#. TRANSLATORS: Escape key on keyboard
-msgid "Escape"
-msgstr "Escape"
-
-#. TRANSLATORS: The button is in a loading state
-msgid "Loading …"
-msgstr "Φόρτωση  …"
-
-msgid "Message limit of %n character reached"
-msgid_plural "Message limit of %n characters reached"
-msgstr[0] "Έφτασε το όριο μηνύματος των %n χαρακτήρων"
-msgstr[1] "Έφτασε το όριο μηνύματος των %n χαρακτήρων"
-
-msgid "More items …"
-msgstr "Περισσότερα στοιχεία …"
-
-msgid "No color"
-msgstr "Χωρίς χρώμα"
-
-msgid "Search …"
-msgstr "Αναζήτηση …"
-
-#. TRANSLATORS: Shift key on keyboard
-msgid "Shift"
-msgstr "Shift"
-
-#. TRANSLATORS: Space key on keyboard
-msgid "Space"
-msgstr "Space"
-
-#. TRANSLATORS: Tab key on keyboard
-msgid "Tab"
-msgstr "Tab"
-
 msgid "White"
 msgstr "Λευκό"
 
 msgid "Write a message …"
 msgstr "Γράψτε ένα μήνυμα …"
+
