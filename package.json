@@ -99,7 +99,7 @@
     "floating-vue": "^5.2.2",
     "focus-trap": "^7.7.1",
     "linkifyjs": "^4.3.2",
-    "p-queue": "^9.0.1",
+    "p-queue": "^9.1.0",
     "rehype-external-links": "^3.0.0",
     "rehype-highlight": "^7.0.2",
     "rehype-react": "^8.0.0",
