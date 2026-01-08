@@ -7,6 +7,18 @@
 
 All notable changes to this project will be documented in this file.
 
+## [v9.3.2](https://github.com/nextcloud-libraries/nextcloud-vue/tree/v9.3.2) (2026-01-08)
+[Full Changelog](https://github.com/nextcloud-libraries/nextcloud-vue/compare/v9.3.1...v9.3.2)
+
+### 🐛 Fixed bugs
+* build: fix translations in Vue modules [\#8037](https://github.com/nextcloud-libraries/nextcloud-vue/pull/8037) \([susnux](https://github.com/susnux)\)
+* fix(NcModal): adjust max height of the modal [\#8042](https://github.com/nextcloud-libraries/nextcloud-vue/pull/8042) \([kra-mo](https://github.com/kra-mo)\)
+* fix: animate toggle switch icon [\#8045](https://github.com/nextcloud-libraries/nextcloud-vue/pull/8045) \([ShGKme](https://github.com/ShGKme)\)
+
+### Other Changes
+* chore(README): recommend using `npm pack` and styleguidist instead of `npm link` [\#8018](https://github.com/nextcloud-libraries/nextcloud-vue/pull/8018) \([ShGKme](https://github.com/ShGKme)\)
+* chore(README): remove Firefox note [\#8019](https://github.com/nextcloud-libraries/nextcloud-vue/pull/8019) \([ShGKme](https://github.com/ShGKme)\)
+
 ## [v9.3.1](https://github.com/nextcloud-libraries/nextcloud-vue/tree/v9.3.1) (2025-12-10)
 [Full Changelog](https://github.com/nextcloud-libraries/nextcloud-vue/compare/v9.3.0...v9.3.1)
 
