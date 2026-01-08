@@ -22,6 +22,10 @@ updates:
         patterns:
           - "vitest"
           - "@vitest/*"
+    ignore:
+      - dependency-name: "focus-trap"
+        # ignore versions > 7.6.6 until https://github.com/focus-trap/focus-trap/issues/1729 is resolved
+        versions: [ "^7.7.0" ]
 
   - package-ecosystem: github-actions
     directory: "/"
@@ -60,3 +64,6 @@ updates:
       - dependency-name: "*"
         # ignore all major updates
         update-types: ["version-update:semver-major"]
+      - dependency-name: "focus-trap"
+        # ignore versions > 7.6.6 until https://github.com/focus-trap/focus-trap/issues/1729 is resolved
+        versions: [ "^7.7.0" ]
