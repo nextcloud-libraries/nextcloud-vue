@@ -5,6 +5,14 @@
 
 # Changelog
 
+## [v8.35.1](https://github.com/nextcloud-libraries/nextcloud-vue/tree/v8.35.1) (2026-01-08)
+### 🐛 Fixed bugs
+* [stable8] fix(NcActionInput): use internal label of NcDateTimePickerNative [\#7979](https://github.com/nextcloud-libraries/nextcloud-vue/pull/7979) \([backportbot[bot]](https://github.com/backportbot[bot])\)
+* [stable8] fix(NcPopover): Don't warn on hidden button elements [\#7975](https://github.com/nextcloud-libraries/nextcloud-vue/pull/7975) \([mejo-](https://github.com/mejo-)\)
+* [stable8] build: fix translations in Vue modules [\#8038](https://github.com/nextcloud-libraries/nextcloud-vue/pull/8038) \([backportbot[bot]](https://github.com/backportbot[bot])\)
+* [stable8] fix(NcModal): Adjust max height of the modal [\#8046](https://github.com/nextcloud-libraries/nextcloud-vue/pull/8046) \([backportbot[bot]](https://github.com/backportbot[bot])\)
+* [stable8] fix: animate toggle switch icon [\#8047](https://github.com/nextcloud-libraries/nextcloud-vue/pull/8047) \([backportbot[bot]](https://github.com/backportbot[bot])\)
+
 ## [v8.35.0](https://github.com/nextcloud-libraries/nextcloud-vue/tree/v8.35.0) (2025-12-10)
 ### 🚀 Enhancements
 * [stable8] feat(NcAppSettingsDialog): add version on the bottom and `noVersion` prop to disable it  [\#7850](https://github.com/nextcloud-libraries/nextcloud-vue/pull/7850) \([ShGKme](https://github.com/ShGKme)\)
@@ -111,10 +119,10 @@ it is no longer used by Nextcloud or Nextcloud apps and not recommended to be us
 * fix(NcReferenceWidget): harden checks for reference = null [\#7493](https://github.com/nextcloud-libraries/nextcloud-vue/pull/7493)
 * fix(NcRadioGroup): fieldsets always need a label for accessibility [\#7495](https://github.com/nextcloud-libraries/nextcloud-vue/pull/7495)
 * fix(NcAvatar): make min status size visually accessible [\#7480](https://github.com/nextcloud-libraries/nextcloud-vue/pull/7480)
-* fix(NcAppNavigationItem): ensure to pass boolean where needed [\#7491](https://github.com/nextcloud-libraries/nextcloud-vue/pull/7491) 
+* fix(NcAppNavigationItem): ensure to pass boolean where needed [\#7491](https://github.com/nextcloud-libraries/nextcloud-vue/pull/7491)
 
 ### Other Changes
-* chore(NcCheckboxRadioSwitch): deprecate button variant in favor of `NcRadioGroup` [\#7492](https://github.com/nextcloud-libraries/nextcloud-vue/pull/7492) 
+* chore(NcCheckboxRadioSwitch): deprecate button variant in favor of `NcRadioGroup` [\#7492](https://github.com/nextcloud-libraries/nextcloud-vue/pull/7492)
 * chore: deprecate `NcSettingsInputText` component [\#7488](https://github.com/nextcloud-libraries/nextcloud-vue/pull/7488)
 * chore: migrate to ESLint 9 and @nextcloud/eslint-config 9 [\#7418](https://github.com/nextcloud-libraries/nextcloud-vue/pull/7418) \([ShGKme](https://github.com/ShGKme)\)
 * chore(lint): fix [\#7425](https://github.com/nextcloud-libraries/nextcloud-vue/pull/7425) \([ShGKme](https://github.com/ShGKme)\)
