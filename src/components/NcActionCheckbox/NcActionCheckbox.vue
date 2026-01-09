@@ -9,10 +9,10 @@ This component is made to be used inside of the [NcActions](#NcActions) componen
 ```vue
 <template>
 	<NcActions>
-		<NcActionCheckbox @change="alert('(un)checked !')">First choice</NcActionCheckbox>
-		<NcActionCheckbox v-model="checkboxValue" value="second" @change="alert('(un)checked !')">Second choice (v-model)</NcActionCheckbox>
-		<NcActionCheckbox :model-value="checkboxValue" @change="alert('(un)checked !')">Third choice (checked)</NcActionCheckbox>
-		<NcActionCheckbox :disabled="true" @change="alert('(un)checked !')">Fourth choice (disabled)</NcActionCheckbox>
+		<NcActionCheckbox @change="log('(un)checked !')">First choice</NcActionCheckbox>
+		<NcActionCheckbox value="second" @change="log('(un)checked !')">Second choice</NcActionCheckbox>
+		<NcActionCheckbox v-model="checkboxValue" @change="log('(un)checked !')">Third choice (checked)</NcActionCheckbox>
+		<NcActionCheckbox :disabled="true" @change="log('(un)checked !')">Second choice (disabled)</NcActionCheckbox>
 	</NcActions>
 </template>
 
@@ -20,15 +20,13 @@ This component is made to be used inside of the [NcActions](#NcActions) componen
 export default {
 	data() {
 		return {
-			checkboxValue: false,
+			checkboxValue: true,
 		}
 	},
 
 	methods: {
-		alert(message) {
-			alert(message)
-		}
-	}
+		log: console.log,
+	},
 }
 </script>
 ```
@@ -36,33 +34,38 @@ export default {
 
 <template>
 	<li class="action" :class="{ 'action--disabled': disabled }" :role="isInSemanticMenu && 'presentation'">
-		<span class="action-checkbox" :role="isInSemanticMenu && 'menuitemcheckbox'" :aria-checked="ariaChecked">
-			<input
-				:id="id"
-				ref="checkbox"
-				:disabled="disabled"
-				:checked="model"
-				:value="value"
-				:class="{ focusable: isFocusable }"
-				type="checkbox"
-				class="checkbox action-checkbox__checkbox"
-				@keydown.enter.exact.prevent="checkInput"
-				@change="onChange">
-			<label ref="label" :for="id" class="action-checkbox__label">{{ text }}</label>
-
-			<!-- fake slot to gather inner text -->
-			<slot v-if="false" />
-		</span>
+		<label class="action-checkbox" :role="isInSemanticMenu && 'menuitemcheckbox'" :aria-checked="isInSemanticMenu && localModel.toString()">
+			<span class="action-checkbox__icon">
+				<input
+					:id="id"
+					v-model="localModel"
+					type="checkbox"
+					class="action-checkbox__input"
+					:class="{ focusable: !disabled }"
+					:value="value"
+					:disabled="disabled"
+					@change="onChange">
+				<NcIconSvgWrapper :path="localModel ? mdiCheckboxMarked : mdiCheckboxBlankOutline" :size="20" />
+			</span>
+			<span class="action-checkbox__text">{{ text }}</span>
+		</label>
 	</li>
 </template>
 
 <script>
+import { mdiCheckboxBlankOutline, mdiCheckboxMarked } from '@mdi/js'
+import { ref, watch } from 'vue'
+import NcIconSvgWrapper from '../NcIconSvgWrapper/NcIconSvgWrapper.vue'
 import { useModelMigration } from '../../composables/useModelMigration.ts'
 import ActionGlobalMixin from '../../mixins/actionGlobal.js'
 import GenRandomId from '../../utils/GenRandomId.js'
 
 export default {
 	name: 'NcActionCheckbox',
+
+	components: {
+		NcIconSvgWrapper,
+	},
 
 	mixins: [ActionGlobalMixin],
 
@@ -125,8 +128,11 @@ export default {
 	},
 
 	emits: [
+		/** Native change event */
 		'change',
+		/** Checkbox is checked */
 		'check',
+		/** Checkbox is unchecked */
 		'uncheck',
 		/**
 		 * Removed in v9 - use `update:modelValue` (`v-model`) instead
@@ -146,63 +152,25 @@ export default {
 
 	setup() {
 		const model = useModelMigration('checked', 'update:checked')
+
+		// For backward compatibility to support using without v-model binding (passive model)
+		const localModel = ref(model.value)
+		watch(model, (newValue) => (localModel.value = newValue), { flush: 'sync' })
+		watch(localModel, (newValue) => (model.value = newValue), { flush: 'sync' })
+
 		return {
-			model,
+			localModel,
+			mdiCheckboxBlankOutline,
+			mdiCheckboxMarked,
 		}
 	},
 
-	computed: {
-		/**
-		 * determines if the action is focusable
-		 *
-		 * @return {boolean} is the action focusable ?
-		 */
-		isFocusable() {
-			return !this.disabled
-		},
-
-		/**
-		 * aria-checked attribute for role="menuitemcheckbox"
-		 *
-		 * @return {'true'|'false'|undefined} aria-checked value if needed
-		 */
-		ariaChecked() {
-			if (this.isInSemanticMenu) {
-				return this.model ? 'true' : 'false'
-			}
-			return undefined
-		},
-	},
-
 	methods: {
-		checkInput() {
-			// by clicking we also trigger the change event
-			this.$refs.label.click()
-		},
-
 		onChange(event) {
-			this.model = this.$refs.checkbox.checked
-
-			/**
-			 * Emitted when the checkbox state is changed
-			 *
-			 * @type {Event}
-			 */
 			this.$emit('change', event)
-
-			if (this.$refs.checkbox.checked) {
-				/**
-				 * Emitted when the checkbox is checked
-				 *
-				 * @type {Event}
-				 */
+			if (event.target.checked) {
 				this.$emit('check')
 			} else {
-				/**
-				 * Emitted when the checkbox is unchecked
-				 *
-				 * @type {Event}
-				 */
 				this.$emit('uncheck')
 			}
 		},
@@ -214,56 +182,24 @@ export default {
 @use '../../assets/action.scss' as *;
 @include action-active;
 @include action--disabled;
+@include action-item('checkbox');
 
-.action-checkbox {
-	display: flex;
-	align-items: flex-start;
-
-	width: 100%;
-	height: auto;
-	margin: 0;
-	padding: 0;
-
-	cursor: pointer;
-	white-space: nowrap;
-
-	color: var(--color-main-text);
-	border: 0;
-	border-radius: 0; // otherwise Safari will cut the border-radius area
-	background-color: transparent;
-	box-shadow: none;
-
-	font-weight: normal;
-	line-height: var(--default-clickable-area);
-
-	/* checkbox/radio fixes */
-	&__checkbox {
-		position: absolute;
-		inset-inline-start: 0 !important;
-		z-index: -1;
-		opacity: 0;
-	}
-
-	&__label {
-		display: flex;
-		align-items: center; // align checkbox to text
-
-		width: 100%;
-		padding: 0 !important;
-		padding-inline-end: $icon-margin !important;
-
-		&::before {
-			margin-block: 0 !important;
-			margin-inline: calc((var(--default-clickable-area) - 14px) / 2) !important;
-		}
-	}
-
-	&--disabled {
-		&,
-		.action-checkbox__label {
-			cursor: pointer;
-		}
-	}
+.action:has(:focus-visible) {
+	outline: 2px solid currentColor;
 }
 
+.action-checkbox {
+	&__icon {
+		color: var(--color-primary-element);
+	}
+
+	&__input {
+		width: 20px;
+		height: 20px;
+		margin: auto;
+		position: absolute;
+		z-index: -1;
+		opacity: 0 !important;
+	}
+}
 </style>
