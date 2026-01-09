@@ -7,6 +7,15 @@
 
 All notable changes to this project will be documented in this file.
 
+## [v9.3.3](https://github.com/nextcloud-libraries/nextcloud-vue/tree/v9.3.3) (2026-01-09)
+[Full Changelog](https://github.com/nextcloud-libraries/nextcloud-vue/compare/v9.3.2...v9.3.3)
+
+### 🐛 Fixed bugs
+* fix(NcActions): migrate to custom icons in Checkbox and Radio actions [\#8020](https://github.com/nextcloud-libraries/nextcloud-vue/pull/8020) \([ShGKme](https://github.com/ShGKme)\)
+
+### Other Changes
+* deps: pin focus-trap library to v7.6.6 [\#8061](https://github.com/nextcloud-libraries/nextcloud-vue/pull/8061) \([Antreesy](https://github.com/Antreesy)\)
+
 ## [v9.3.2](https://github.com/nextcloud-libraries/nextcloud-vue/tree/v9.3.2) (2026-01-08)
 [Full Changelog](https://github.com/nextcloud-libraries/nextcloud-vue/compare/v9.3.1...v9.3.2)
 
