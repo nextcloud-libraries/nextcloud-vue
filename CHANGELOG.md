@@ -5,7 +5,14 @@
 
 # Changelog
 
+## [v8.35.2](https://github.com/nextcloud-libraries/nextcloud-vue/tree/v8.35.2) (2026-01-09)
+[Full Changelog](https://github.com/nextcloud-libraries/nextcloud-vue/compare/v8.35.1...v8.35.2)
+
+### Other Changes
+* [stable8] chore(deps): pin focus-trap library to v7.6.6 [\#8062](https://github.com/nextcloud-libraries/nextcloud-vue/pull/8062) \([Antreesy](https://github.com/Antreesy)\)
+
 ## [v8.35.1](https://github.com/nextcloud-libraries/nextcloud-vue/tree/v8.35.1) (2026-01-08)
+[Full Changelog](https://github.com/nextcloud-libraries/nextcloud-vue/compare/v8.35.0...v8.35.1)
 ### 🐛 Fixed bugs
 * [stable8] fix(NcActionInput): use internal label of NcDateTimePickerNative [\#7979](https://github.com/nextcloud-libraries/nextcloud-vue/pull/7979) \([backportbot[bot]](https://github.com/backportbot[bot])\)
 * [stable8] fix(NcPopover): Don't warn on hidden button elements [\#7975](https://github.com/nextcloud-libraries/nextcloud-vue/pull/7975) \([mejo-](https://github.com/mejo-)\)
@@ -14,6 +21,7 @@
 * [stable8] fix: animate toggle switch icon [\#8047](https://github.com/nextcloud-libraries/nextcloud-vue/pull/8047) \([backportbot[bot]](https://github.com/backportbot[bot])\)
 
 ## [v8.35.0](https://github.com/nextcloud-libraries/nextcloud-vue/tree/v8.35.0) (2025-12-10)
+[Full Changelog](https://github.com/nextcloud-libraries/nextcloud-vue/compare/v8.34.0...v8.35.0)
 ### 🚀 Enhancements
 * [stable8] feat(NcAppSettingsDialog): add version on the bottom and `noVersion` prop to disable it  [\#7850](https://github.com/nextcloud-libraries/nextcloud-vue/pull/7850) \([ShGKme](https://github.com/ShGKme)\)
 * [stable8] fix(NcActions): introduce 'size' prop [\#7852](https://github.com/nextcloud-libraries/nextcloud-vue/pull/7852) \([backportbot[bot]](https://github.com/backportbot[bot])\)
@@ -34,6 +42,7 @@
 * [stable8] chore(package): npm >=11.3.0 <=11.6.2 [\#7899](https://github.com/nextcloud-libraries/nextcloud-vue/pull/7899) \([backportbot[bot]](https://github.com/backportbot[bot])\)
 
 ## [v8.34.0](https://github.com/nextcloud-libraries/nextcloud-vue/tree/v8.34.0) (2025-11-07)
+[Full Changelog](https://github.com/nextcloud-libraries/nextcloud-vue/compare/v8.33.0...v8.34.0)
 ### 📝 Notes
 * `NcAppSettingsSectionShortcuts` has been renamed to `NcAppSettingsShortcutsSection` but still available by the previous name
 
@@ -69,6 +78,7 @@
 * chore(docs): optionally set docs server port via VUE_STYLEGUIDIST_PORT [\#7806](https://github.com/nextcloud-libraries/nextcloud-vue/pull/7806) \([backportbot[bot]](https://github.com/backportbot[bot])\)
 
 ## [v8.33.0](https://github.com/nextcloud-libraries/nextcloud-vue/tree/v8.33.0) (2025-10-22)
+[Full Changelog](https://github.com/nextcloud-libraries/nextcloud-vue/compare/v8.32.0...v8.33.0)
 ### 🚀 Enhancements
 * feat(NcChip): add error, success and warning variants [\#7653](https://github.com/nextcloud-libraries/nextcloud-vue/pull/7653) \([backportbot[bot]](https://github.com/backportbot[bot])\)
 * feat(NcAppSettingsSection): add `order` prop, ensure intended order in navigation list [\#7656](https://github.com/nextcloud-libraries/nextcloud-vue/pull/7656) \([backportbot[bot]](https://github.com/backportbot[bot])\)
@@ -86,6 +96,7 @@
 * refactor(NcAppSettingsSection): migrate to `<script setup lang="ts">` [\#7654](https://github.com/nextcloud-libraries/nextcloud-vue/pull/7654) \([backportbot[bot]](https://github.com/backportbot[bot])\)
 
 ## [v8.32.0](https://github.com/nextcloud-libraries/nextcloud-vue/tree/v8.32.0) (2025-10-06)
+[Full Changelog](https://github.com/nextcloud-libraries/nextcloud-vue/compare/v8.31.0...v8.32.0)
 ### 🚀 Enhancements
 * feat(NcColorPicker): allow to clear selected value [\#7531](https://github.com/nextcloud-libraries/nextcloud-vue/pull/7531)
 * feat(NcModal): add new `closeButtonOutside` prop and deprecated `closeButtonContained` [\#7553](https://github.com/nextcloud-libraries/nextcloud-vue/pull/7553) \([Antreesy](https://github.com/Antreesy)\)
@@ -103,6 +114,7 @@
 * refactor(NcAppSettingsDialog): migrate to Typescript and script-setup [\#7517](https://github.com/nextcloud-libraries/nextcloud-vue/pull/7517)
 
 ## [v8.31.0](https://github.com/nextcloud-libraries/nextcloud-vue/tree/v8.31.0) (2025-09-11)
+[Full Changelog](https://github.com/nextcloud-libraries/nextcloud-vue/compare/v8.30.0...v8.31.0)
 ### 📝 Notes
 The `NcSettingsInputText` component was deprecated,
 it is no longer used by Nextcloud or Nextcloud apps and not recommended to be used for design reasons.
@@ -131,6 +143,7 @@ it is no longer used by Nextcloud or Nextcloud apps and not recommended to be us
 
 
 ## [v8.30.0](https://github.com/nextcloud-libraries/nextcloud-vue/tree/v8.30.0) (2025-09-01)
+[Full Changelog](https://github.com/nextcloud-libraries/nextcloud-vue/compare/v8.29.2...v8.30.0)
 ### 🚀 Enhancements
 * feat(NcPopover): auto return focus to trigger button on close [#5155](https://github.com/nextcloud-libraries/nextcloud-vue/pull/5155) ([ShGKme](https://github.com/ShGKme))
 * feat(NcAssistant*): provide components for consistent integrations design [#7413](https://github.com/nextcloud-libraries/nextcloud-vue/pull/7413)
@@ -141,6 +154,7 @@ it is no longer used by Nextcloud or Nextcloud apps and not recommended to be us
 
 
 ## [v8.29.2](https://github.com/nextcloud-libraries/nextcloud-vue/tree/v8.29.2) (2025-08-28)
+[Full Changelog](https://github.com/nextcloud-libraries/nextcloud-vue/compare/v8.29.1...v8.29.2)
 ### 🐛 Fixed bugs
 * fix(NcUserStatusIcon): legacy 32 check [#7320](https://github.com/nextcloud-libraries/nextcloud-vue/pull/7320) ([skjnldsv](https://github.com/skjnldsv))
 * fix(NcDateTimePicker): lost styles in docs [#7344](https://github.com/nextcloud-libraries/nextcloud-vue/pull/7344) ([ShGKme](https://github.com/ShGKme))
@@ -162,6 +176,7 @@ it is no longer used by Nextcloud or Nextcloud apps and not recommended to be us
 * fix(NcUserStatusIcon): adjust scoped names for style variables [#7400](https://github.com/nextcloud-libraries/nextcloud-vue/pull/7400)
 
 ## [v8.29.1](https://github.com/nextcloud-libraries/nextcloud-vue/tree/v8.29.1) (2025-08-19)
+[Full Changelog](https://github.com/nextcloud-libraries/nextcloud-vue/compare/v8.29.0...v8.29.1)
 ### 🐛 Fixed bugs
 * fix(NcButton): ensure correct padding [#7305](https://github.com/nextcloud-libraries/nextcloud-vue/pull/7305) ([susnux](https://github.com/susnux))
 * fix(NcCheckboxRadioSwitch): ensure component has correct box sizing [#7306](https://github.com/nextcloud-libraries/nextcloud-vue/pull/7306) ([susnux](https://github.com/susnux))
@@ -169,6 +184,7 @@ it is no longer used by Nextcloud or Nextcloud apps and not recommended to be us
 * fix: adjust color variables to work with Nextcloud 32+ [#7312](https://github.com/nextcloud-libraries/nextcloud-vue/pull/7312)
 
 ## [v8.29.0](https://github.com/nextcloud-libraries/nextcloud-vue/tree/v8.29.0) (2025-08-18)
+[Full Changelog](https://github.com/nextcloud-libraries/nextcloud-vue/compare/v8.28.0...v8.29.0)
 
 ### 📝 Notes
 #### `NcColorPicker`
