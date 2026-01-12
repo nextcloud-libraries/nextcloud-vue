@@ -3,10 +3,11 @@
 # Joas Schilling, 2025
 # Paul de Wit, 2025
 # Stephan Paternotte <stephan@paternottes.net>, 2025
+# Ik Jij, 2026
 # 
 msgid ""
 msgstr ""
-"Last-Translator: Stephan Paternotte <stephan@paternottes.net>, 2025\n"
+"Last-Translator: Ik Jij, 2026\n"
 "Language-Team: Dutch (https://app.transifex.com/nextcloud/teams/64236/nl/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Language: nl\n"
@@ -135,6 +136,12 @@ msgstr "Wijzigingen bevestigen"
 msgid "Connect items to a project to make them easier to find"
 msgstr "Items aan een project koppelen om ze eenvoudiger te vinden"
 
+msgid "Copied"
+msgstr "Gekopieerd"
+
+msgid "Copy to clipboard"
+msgstr "Kopieer naar klembord"
+
 #. TRANSLATORS: Ctrl key on keyboard (Windows/Linux)
 msgid "Ctrl"
 msgstr "Ctrl"
@@ -255,6 +262,9 @@ msgstr "Onzichtbaar"
 
 msgid "Keyboard navigation help"
 msgstr "Hulp voor toetsenbordnavigatie"
+
+msgid "Keyboard shortcuts"
+msgstr "Toetsenbord sneltoetsen"
 
 msgid "Light skin tone"
 msgstr "Lichte huidskleur"
@@ -433,8 +443,8 @@ msgstr "Zoeken …"
 msgid "Search emoji"
 msgstr "Emoji zoeken"
 
-msgid "Search for timezone"
-msgstr "Tijdzone zoeken"
+msgid "Search for time zone"
+msgstr "Zoeken naar tijdzone"
 
 msgid "Search results"
 msgstr "Zoekresultaten"
@@ -535,7 +545,7 @@ msgstr "Tab"
 msgid "Time picker"
 msgstr "Tijdkiezer"
 
-msgid "Timezone"
+msgid "Time zone"
 msgstr "Tijdzone"
 
 msgid "Toggle overlay"

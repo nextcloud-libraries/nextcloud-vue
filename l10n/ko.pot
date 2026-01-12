@@ -3,10 +3,11 @@
 # Joas Schilling, 2025
 # Hyogeol Lee, 2025
 # 이상오, 2025
+# OHORA YOON, 2026
 # 
 msgid ""
 msgstr ""
-"Last-Translator: 이상오, 2025\n"
+"Last-Translator: OHORA YOON, 2026\n"
 "Language-Team: Korean (https://app.transifex.com/nextcloud/teams/64236/ko/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Language: ko\n"
@@ -37,6 +38,10 @@ msgstr "활동"
 msgid "Add to a project"
 msgstr "프로젝트에 추가"
 
+#. TRANSLATORS: Alt key on keyboard (Windows/Linux)
+msgid "Alt"
+msgstr "Alt"
+
 msgid "Animals & Nature"
 msgstr "동물 & 자연"
 
@@ -61,6 +66,9 @@ msgstr "뒤로"
 
 msgid "Back to provider selection"
 msgstr "제공자 선택으로 돌아가기"
+
+msgid "Black"
+msgstr "검정"
 
 #. TRANSLATORS: A color name for RGB(91, 100, 179)
 msgid "Blue Violet"
@@ -127,6 +135,16 @@ msgstr "변경 사항 확인"
 msgid "Connect items to a project to make them easier to find"
 msgstr "항목을 더 쉽게 찾을 수 있도록 프로젝트에 연결하세요."
 
+msgid "Copied"
+msgstr "복사됨"
+
+msgid "Copy to clipboard"
+msgstr "클립보드로 복사"
+
+#. TRANSLATORS: Ctrl key on keyboard (Windows/Linux)
+msgid "Ctrl"
+msgstr "Ctrl"
+
 msgid "Custom"
 msgstr "맞춤 설정"
 
@@ -148,6 +166,10 @@ msgstr "분 감소"
 msgid "Decrement seconds"
 msgstr "초 감소"
 
+#. TRANSLATORS: Delete key on keyboard
+msgid "Delete"
+msgstr "Delete"
+
 #. TRANSLATORS: A color name for RGB(136, 85, 168)
 msgid "Deluge"
 msgstr "폭우"
@@ -167,6 +189,10 @@ msgstr "이모지 선택기"
 msgid "Enable interactive view"
 msgstr "대화형 보기 활성화"
 
+#. TRANSLATORS: Enter key on keyboard
+msgid "Enter"
+msgstr "Enter"
+
 msgid "Enter link"
 msgstr "링크 입력"
 
@@ -175,8 +201,12 @@ msgid ""
 " you have any questions."
 msgstr "관련 리소스를 가져오는 중 오류가 발생했습니다. 궁금한 것이 있는 경우 시스템 관리자에게 연락해 주세요."
 
-msgid "External documentation for {name}"
-msgstr "{name}의 외부 문서"
+#. TRANSLATORS: Escape key on keyboard
+msgid "Escape"
+msgstr "Escape"
+
+msgid "External documentation"
+msgstr "외부 문서"
 
 msgid "Failed to add the item to the project"
 msgstr "항목을 프로젝트에 추가하는 데 실패함"
@@ -202,10 +232,6 @@ msgstr "음식 & 음료"
 
 msgid "Frequently used"
 msgstr "자주 쓰임"
-
-#. TRANSLATORS: This refers to global timezones in the timezone picker
-msgid "Global"
-msgstr "글로벌"
 
 msgid "Go back to the list"
 msgstr "목록으로 돌아가기"
@@ -234,6 +260,9 @@ msgstr "보이지 않음"
 msgid "Keyboard navigation help"
 msgstr "키보드 탐색 도움말"
 
+msgid "Keyboard shortcuts"
+msgstr "키보드 바로가기"
+
 msgid "Light skin tone"
 msgstr "밝은 피부 톤"
 
@@ -242,7 +271,7 @@ msgstr "\"{options}\" 더 불러오기"
 
 #. TRANSLATORS: The button is in a loading state
 msgid "Loading …"
-msgstr "불러오는 중..."
+msgstr "로딩 중 ..."
 
 #. TRANSLATORS: A color name for RGB(45, 115, 190)
 msgid "Mariner"
@@ -268,7 +297,7 @@ msgid "Month picker overlay"
 msgstr "월 선택기 오버레이"
 
 msgid "More items …"
-msgstr "항목 더 보기..."
+msgstr "더 많은 아이템 ..."
 
 msgid "More options"
 msgstr "옵션 더 보기"
@@ -287,6 +316,9 @@ msgstr "다음 해"
 
 msgid "Nextcloud blue"
 msgstr "Nextcloud 파랑"
+
+msgid "No color"
+msgstr "색 없음"
 
 msgid "No emoji found"
 msgstr "이모지 없음"
@@ -361,6 +393,9 @@ msgstr "선택"
 msgid "Pick an emoji"
 msgstr "이모지 선택"
 
+msgid "Please choose a date"
+msgstr "날짜를 선택해주세요"
+
 msgid "Previous"
 msgstr "이전"
 
@@ -398,17 +433,17 @@ msgstr "변경 사항 저장"
 msgid "Search"
 msgstr "검색"
 
+msgid "Search …"
+msgstr "찾는 중 ..."
+
 msgid "Search emoji"
 msgstr "이모지 검색"
 
-msgid "Search for timezone"
-msgstr "시간대 검색"
+msgid "Search for time zone"
+msgstr "시간대 찾기"
 
 msgid "Search results"
 msgstr "검색 결과"
-
-msgid "Search…"
-msgstr "검색..."
 
 #. FOR TRANSLATORS: If possible in your language an even shorter version of 'a
 #. few seconds ago'
@@ -455,6 +490,10 @@ msgstr "선택"
 msgid "Settings navigation"
 msgstr "세팅 탐색"
 
+#. TRANSLATORS: Shift key on keyboard
+msgid "Shift"
+msgstr "Shift"
+
 msgid "Show details"
 msgstr "세부 사항 보기"
 
@@ -476,6 +515,10 @@ msgstr "스마트 선택기"
 msgid "Smileys & Emotion"
 msgstr "스마일리 & 이모티콘"
 
+#. TRANSLATORS: Space key on keyboard
+msgid "Space"
+msgstr "Space"
+
 msgid "Start slideshow"
 msgstr "슬라이드쇼 시작"
 
@@ -491,10 +534,14 @@ msgstr "AM/PM 모드 전환"
 msgid "Symbols"
 msgstr "기호"
 
+#. TRANSLATORS: Tab key on keyboard
+msgid "Tab"
+msgstr "Tab"
+
 msgid "Time picker"
 msgstr "시간 선택기"
 
-msgid "Timezone"
+msgid "Time zone"
 msgstr "시간대"
 
 msgid "Toggle overlay"
@@ -528,8 +575,11 @@ msgstr "W"
 msgid "Whiskey"
 msgstr "위스키"
 
+msgid "White"
+msgstr "하양"
+
 msgid "Write a message …"
-msgstr "메시지 작성..."
+msgstr "메시지 쓰는 중 ..."
 
 msgid "Year picker"
 msgstr "년도 선택기"
