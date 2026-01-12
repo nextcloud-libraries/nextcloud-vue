@@ -104,7 +104,6 @@
     "@nextcloud/logger": "^3.0.3",
     "@nextcloud/router": "^3.1.0",
     "@nextcloud/sharing": "^0.3.0",
-    "@nextcloud/timezones": "^0.2.0",
     "@nextcloud/vue-select": "^3.26.0",
     "@vueuse/components": "^11.0.0",
     "@vueuse/core": "^11.0.0",
