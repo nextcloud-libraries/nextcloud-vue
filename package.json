@@ -120,7 +120,7 @@
     "vue-select": "^4.0.0-beta.6"
   },
   "devDependencies": {
-    "@babel/plugin-syntax-import-assertions": "^7.27.1",
+    "@babel/plugin-syntax-import-assertions": "^7.28.6",
     "@babel/plugin-transform-typescript": "^7.28.0",
     "@babel/preset-typescript": "^7.28.5",
     "@fontsource/roboto": "^5.2.9",
