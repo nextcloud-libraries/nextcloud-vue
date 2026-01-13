@@ -121,7 +121,7 @@
   },
   "devDependencies": {
     "@babel/plugin-syntax-import-assertions": "^7.28.6",
-    "@babel/plugin-transform-typescript": "^7.28.0",
+    "@babel/plugin-transform-typescript": "^7.28.6",
     "@babel/preset-typescript": "^7.28.5",
     "@fontsource/roboto": "^5.2.9",
     "@mdi/js": "^7.4.47",
