@@ -181,7 +181,7 @@ import { t } from '../../l10n.js'
 import GenRandomId from '../../utils/GenRandomId.js'
 import { logger } from '../../utils/logger.ts'
 import NcPopover from '../NcPopover/index.js'
-import NcTimezonePicker from '../NcTimezonePicker/index.js'
+import NcTimezonePicker from '../NcTimezonePicker/index.ts'
 
 import './index.scss'
 

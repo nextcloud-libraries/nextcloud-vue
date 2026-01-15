@@ -193,9 +193,6 @@ msgstr ""
 msgid "Frequently used"
 msgstr ""
 
-msgid "Global"
-msgstr ""
-
 msgid "Go back to the list"
 msgstr ""
 
@@ -370,7 +367,7 @@ msgstr ""
 msgid "Search emoji"
 msgstr ""
 
-msgid "Search for time zone"
+msgid "Search for timezone"
 msgstr ""
 
 msgid "Search results"

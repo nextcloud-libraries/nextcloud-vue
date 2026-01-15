@@ -9,13 +9,14 @@
 <template>
 	<span>
 		<NcTimezonePicker v-model="tz" />
+		{{ tz }}
 	</span>
 </template>
 <script>
 export default {
 	data() {
 		return {
-			tz: 'Hawaiian Standard Time',
+			tz: 'Europe/Berlin',
 		}
 	},
 }
@@ -23,192 +24,116 @@ export default {
 ```
 </docs>
 
+<script setup lang="ts">
+import { computed } from 'vue'
+import { useModelMigration } from '../../composables/useModelMigration.ts'
+import { t } from '../../l10n.js'
+import { createElementId } from '../../utils/createElementId.ts'
+import NcSelect from '../NcSelect/index.js'
+import { getTimezones } from './timezoneUtils.ts'
+
+type ITimezone = {
+	/**
+	 * Time zone ID in IANA format, e.g. "Europe/Berlin", or "floating" for a time independent of timezone, or a custom timezone ID
+	 */
+	timezoneId: string
+	/**
+	 * Localized label of the timezone, e.g. "Central European Standard Time"
+	 */
+	label: string
+	/**
+	 * Continent the timezone if any, e.g. "Europe" (not localized)
+	 */
+	continent: string
+}
+
+const props = withDefaults(defineProps<{
+	/**
+	 * An array of additional timezones to include with the standard database. Useful if there is a custom timezone, e.g. read from user data
+	 */
+	additionalTimezones?: ITimezone[]
+	/**
+	 * Removed in v9 - use `modelValue` (`v-model`) instead
+	 *
+	 * @deprecated
+	 */
+	value?: string
+	/**
+	 * The selected timezone. Use v-model for two-way binding. The default timezone is floating, which means a time independent of timezone. See https://icalendar.org/CalDAV-Access-RFC-4791/7-3-date-and-floating-time.html for details.
+	 */
+	modelValue?: string
+	/**
+	 * ID of the inner vue-select element, can be used for labels like: `vs-${uid}__combobox`
+	 */
+	uid?: string
+}>(), {
+	additionalTimezones: () => [],
+	value: undefined,
+	modelValue: 'floating',
+	uid: createElementId(),
+})
+
+defineEmits<{
+	/**
+	 * Removed in v9 - use `update:modelValue` (`v-model`) instead
+	 *
+	 * @deprecated
+	 */
+	(event: 'input', value: string): void
+	/**
+	 * Two-way binding of the value prop. Use v-model="selectedTimezone" for two-way binding
+	 */
+	(event: 'update:modelValue', value: string): void
+	/** Same as update:modelValue for Vue 2 compatibility */
+	(event: 'update:model-value', value: string): void
+}>()
+
+/**
+ * The selected timezone.
+ * Use v-model for two-way binding.
+ * The default timezone is floating, which means a time independent of timezone. See https://icalendar.org/CalDAV-Access-RFC-4791/7-3-date-and-floating-time.html for details.
+ */
+const model = useModelMigration<string>('value', 'input')
+
+const formattedAdditionalTimezones = computed(() => {
+	return props.additionalTimezones.map(({ timezoneId, label }) => ({
+		timezoneId,
+		label,
+	}))
+})
+
+const options = computed(() => {
+	const timezones = getTimezones()
+	timezones.unshift(...formattedAdditionalTimezones.value)
+	return timezones
+})
+
+/**
+ * NcSelect's filterBy prop to search timezone by any option property
+ *
+ * @param option - The timezone option
+ * @param label - The label of the timezone
+ * @param search - The search string
+ */
+function filterBy(option: ITimezone, label: string, search: string): boolean {
+	const terms = search.trim().split(/\s+/)
+	const values = Object.values(option)
+	return terms.every((term) => {
+		return values.some((value) => value.toLowerCase().includes(term.toLowerCase()))
+	})
+}
+</script>
+
 <template>
 	<NcSelect
-		:aria-label-combobox="t('Search for time zone')"
+		v-model="model"
+		:aria-label-combobox="t('Search for timezone')"
 		:clearable="false"
 		:filter-by="filterBy"
 		:multiple="false"
 		:options="options"
-		:placeholder="placeholder"
-		:selectable="isSelectable"
+		:placeholder="t('Type to search time zone')"
 		:uid="uid"
-		:value="selectedTimezone"
-		label="label"
-		@option:selected="change" />
+		:reduce="(option) => option.timezoneId"
+		label="label" />
 </template>
-
-<script>
-import { useModelMigration } from '../../composables/useModelMigration.ts'
-import { t } from '../../l10n.js'
-import GenRandomId from '../../utils/GenRandomId.js'
-import NcSelect from '../NcSelect/index.js'
-import {
-	getReadableTimezoneName,
-	getSortedTimezoneList,
-} from './timezone.js'
-import getTimezoneManager from './timezoneDataProviderService.js'
-
-export default {
-	name: 'NcTimezonePicker',
-	components: {
-		NcSelect,
-	},
-
-	model: {
-		prop: 'modelValue',
-		event: 'update:modelValue',
-	},
-
-	props: {
-		/**
-		 * An array of additional timezones to include with the standard database. Useful if there is a custom timezone, e.g. read from user data
-		 */
-		additionalTimezones: {
-			type: Array,
-			default: () => [],
-		},
-
-		/**
-		 * Removed in v9 - use `modelValue` (`v-model`) instead
-		 *
-		 * @deprecated
-		 */
-		value: {
-			type: String,
-			default: undefined,
-		},
-
-		/**
-		 * The selected timezone. Use v-model for two-way binding. The default timezone is floating, which means a time independent of timezone. See https://icalendar.org/CalDAV-Access-RFC-4791/7-3-date-and-floating-time.html for details.
-		 */
-		modelValue: {
-			type: String,
-			default: 'floating',
-		},
-
-		/**
-		 * ID of the inner vue-select element, can be used for labels like: `vs-${uid}__combobox`
-		 */
-		uid: {
-			type: [String, Number],
-			default: () => `tz-${GenRandomId(5)}`,
-		},
-	},
-
-	emits: [
-		/**
-		 * Removed in v9 - use `update:modelValue` (`v-model`) instead
-		 *
-		 * @deprecated
-		 */
-		'input',
-		/**
-		 * Two-way binding of the value prop. Use v-model="selectedTimezone" for two-way binding
-		 */
-		'update:modelValue',
-		/** Same as update:modelValue for Vue 2 compatibility */
-		'update:model-value',
-	],
-
-	setup() {
-		const model = useModelMigration('value', 'input')
-		return {
-			model,
-		}
-	},
-
-	computed: {
-		placeholder() {
-			return t('Type to search time zone')
-		},
-
-		selectedTimezone() {
-			for (const additionalTimezone of this.additionalTimezones) {
-				if (additionalTimezone.timezoneId === this.model) {
-					return additionalTimezone
-				}
-			}
-
-			return {
-				label: getReadableTimezoneName(this.model),
-				timezoneId: this.model,
-			}
-		},
-
-		options() {
-			const timezoneManager = getTimezoneManager()
-			const timezoneList = getSortedTimezoneList(timezoneManager.listAllTimezones(), this.additionalTimezones)
-			/**
-			 * Since NcSelect does not support groups,
-			 * we create an object with the grouped timezones and continent labels.
-			 *
-			 * NOTE for now we are removing the grouping from the fields to fix an accessibility issue
-			 * in the future, other options can be introduced to better display the different areas
-			 */
-			let timezonesGrouped = []
-			Object.values(timezoneList).forEach((group) => {
-				// Add an entry as group label
-				// timezonesGrouped.push({
-				// label: group.continent,
-				// timezoneId: `tz-group__${group.continent}`,
-				// regions: group.regions,
-				// })
-				timezonesGrouped = timezonesGrouped.concat(group.regions)
-			})
-			return timezonesGrouped
-		},
-	},
-
-	methods: {
-		t,
-
-		change(newValue) {
-			if (!newValue) {
-				return
-			}
-
-			this.model = newValue.timezoneId
-		},
-
-		/**
-		 * Returns whether this is a continent label,
-		 * or an actual timezone. Continent labels are not selectable.
-		 *
-		 * @param {string} option The option
-		 * @return {boolean}
-		 */
-		isSelectable(option) {
-			return !option.timezoneId.startsWith('tz-group__')
-		},
-
-		/**
-		 * Function to filter the timezone list.
-		 * We search in the timezoneId, so both continent and region names can be matched.
-		 *
-		 * @param {object} option The timezone option
-		 * @param {string} label The label of the timezone
-		 * @param {string} search The search string
-		 * @return {boolean}
-		 */
-		filterBy(option, label, search) {
-			// We split the search term in case one searches "<continent> <region>".
-			const terms = search.trim().split(' ')
-
-			// For the continent labels, we have to check if one region matches every search term.
-			if (option.timezoneId.startsWith('tz-group__')) {
-				return option.regions.some((region) => {
-					return this.matchTimezoneId(region.timezoneId, terms)
-				})
-			}
-
-			// For a region, every search term must be found.
-			return this.matchTimezoneId(option.timezoneId, terms)
-		},
-
-		matchTimezoneId(timezoneId, terms) {
-			return terms.every((term) => timezoneId.toLowerCase().includes(term.toLowerCase()))
-		},
-	},
-}
-</script>
