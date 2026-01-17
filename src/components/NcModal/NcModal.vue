@@ -368,6 +368,11 @@ async function useFocusTrap() {
 	// wait until all children are mounted and available in the DOM before focusTrap can be added
 	await nextTick()
 
+	// ensuring the mask element is available before creating the focus trap
+	if (!maskElement.value) {
+		return
+	}
+
 	const options: FocusTrapOptions = {
 		allowOutsideClick: true,
 		fallbackFocus: maskElement.value!,
