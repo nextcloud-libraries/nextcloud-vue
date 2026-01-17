@@ -111,3 +111,31 @@ test('Close button is visible when content is scrolled', async ({ mount, page })
 	await expect(dialog.getByRole('button', { name: 'Close' })).toBeVisible()
 	await expect(dialog.getByRole('button', { name: 'Close' })).toBeInViewport()
 })
+
+test('Modal focus trap works correctly', async ({ mount, page }) => {
+	await mount(NcModal, {
+		props: {
+			show: true,
+			size: 'small',
+			name: 'Focus trap test modal',
+		},
+		slots: {
+			default: '<button>Test Button</button>',
+		},
+	})
+
+	const dialog = page.getByRole('dialog', { name: 'Focus trap test modal' })
+	await expect(dialog).toBeVisible()
+
+	const testButton = dialog.getByRole('button', { name: 'Test Button' })
+	const closeButton = dialog.getByRole('button', { name: 'Close' })
+
+	await testButton.focus()
+	await expect(testButton).toBeFocused()
+
+	await page.keyboard.press('Tab')
+	await expect(closeButton).toBeFocused()
+
+	await page.keyboard.press('Tab')
+	await expect(testButton).toBeFocused()
+})
