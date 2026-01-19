@@ -1,11 +1,11 @@
 # 
 # Translators:
-# Empty Slot Filler, 2023
-# Linerly <linerly@proton.me>, 2023
+# Joas Schilling, 2025
+# Arif Budiman <arifpedia@gmail.com>, 2026
 # 
 msgid ""
 msgstr ""
-"Last-Translator: Linerly <linerly@proton.me>, 2023\n"
+"Last-Translator: Arif Budiman <arifpedia@gmail.com>, 2026\n"
 "Language-Team: Indonesian (https://app.transifex.com/nextcloud/teams/64236/id/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Language: id\n"
@@ -23,14 +23,22 @@ msgstr "Warna dengan nilai HEX {hex}"
 msgid "a few seconds ago"
 msgstr "beberapa detik yang lalu"
 
+#. TRANSLATORS: A color name for RGB(110, 166, 143)
+msgid "Acapulco"
+msgstr "Acapulco"
+
 msgid "Actions"
 msgstr "Tindakan"
 
-msgid "Actions for item with name \"{name}\""
-msgstr "Tindakan untuk item dengan nama \"{name}\""
-
 msgid "Activities"
 msgstr "Aktivitas"
+
+msgid "Add to a project"
+msgstr "Tambahkan ke proyek"
+
+#. TRANSLATORS: Alt key on keyboard (Windows/Linux)
+msgid "Alt"
+msgstr "Alt"
 
 msgid "Animals & Nature"
 msgstr "Satwa dan Alam"
@@ -48,6 +56,7 @@ msgstr "Avatar {displayName}"
 msgid "Avatar of {displayName}, {status}"
 msgstr "Avatar {displayName}, {status}"
 
+#. TRANSLATORS: User status if the user is currently away from keyboard
 msgid "away"
 msgstr "tidak tersedia"
 
@@ -56,6 +65,26 @@ msgstr "Kembali"
 
 msgid "Back to provider selection"
 msgstr "Kembali ke pemilihan penyedia"
+
+msgid "Black"
+msgstr "Hitam"
+
+#. TRANSLATORS: A color name for RGB(91, 100, 179)
+msgid "Blue Violet"
+msgstr "Ungu kebiruan"
+
+#. TRANSLATORS: A color name for RGB(55, 148, 172)
+msgid "Boston Blue"
+msgstr "Biru Boston"
+
+msgid "busy"
+msgstr "sibuk"
+
+msgid "Calendar icon"
+msgstr "Ikon kalender"
+
+msgid "Cancel"
+msgstr "Batal"
 
 msgid "Cancel changes"
 msgstr "Batalkan perubahan"
@@ -75,6 +104,9 @@ msgstr "Hapus terpilih"
 msgid "Clear text"
 msgstr "Bersihkan teks"
 
+msgid "Clear value"
+msgstr "Hapus nilai"
+
 msgid "Close"
 msgstr "Tutup"
 
@@ -87,14 +119,59 @@ msgstr "Tutup bilah sisi"
 msgid "Close Smart Picker"
 msgstr "Tutup Pemilih Cerdas"
 
+msgid "Close time Picker"
+msgstr "Tutup pemilih waktu"
+
 msgid "Collapse menu"
 msgstr "Ciutkan menu"
+
+msgid "Color picker"
+msgstr "Pemilih warna"
 
 msgid "Confirm changes"
 msgstr "Konfirmasikan perubahan"
 
+msgid "Connect items to a project to make them easier to find"
+msgstr "Hubungkan item ke proyek agar lebih mudah ditemukan"
+
+msgid "Copied"
+msgstr "Disalin"
+
+msgid "Copy to clipboard"
+msgstr "Salin ke clipboard"
+
+#. TRANSLATORS: Ctrl key on keyboard (Windows/Linux)
+msgid "Ctrl"
+msgstr "Ctrl"
+
 msgid "Custom"
 msgstr "Khusus"
+
+msgid "Dark skin tone"
+msgstr "Warna kulit gelap"
+
+msgid "Datepicker input"
+msgstr "Input pemilih tanggal"
+
+msgid "Datepicker menu"
+msgstr "Menu pemilih tanggal"
+
+msgid "Decrement hours"
+msgstr "Kurangi jam"
+
+msgid "Decrement minutes"
+msgstr "Kurangi menit"
+
+msgid "Decrement seconds"
+msgstr "Kurangi detik"
+
+#. TRANSLATORS: Delete key on keyboard
+msgid "Delete"
+msgstr "Hapus"
+
+#. TRANSLATORS: A color name for RGB(136, 85, 168)
+msgid "Deluge"
+msgstr "Deluge"
 
 msgid "Deselect {option}"
 msgstr "Batalkan pemilihan {option}"
@@ -104,6 +181,16 @@ msgstr "jangan ganggu"
 
 msgid "Edit item"
 msgstr "Edit item"
+
+msgid "Emoji picker"
+msgstr "Pemilih emoji"
+
+msgid "Enable interactive view"
+msgstr "Aktifkan tampilan interaktif"
+
+#. TRANSLATORS: Enter key on keyboard
+msgid "Enter"
+msgstr "Enter"
 
 msgid "Enter link"
 msgstr "Masukkan tautan"
@@ -115,11 +202,28 @@ msgstr ""
 "Kesalahan saat mengambil sumber daya terkait. Hubungi administrator sistem "
 "Anda jika ada pertanyaan."
 
-msgid "External documentation for {name}"
-msgstr "Dokumentasi eksternal untuk {name}"
+#. TRANSLATORS: Escape key on keyboard
+msgid "Escape"
+msgstr "Escape"
+
+msgid "External documentation"
+msgstr "Dokumentasi eksternal"
+
+msgid "Failed to add the item to the project"
+msgstr "Gagal menambahkan item ke proyek"
+
+msgid "Failed to create a project"
+msgstr "Gagal membuat proyek"
+
+msgid "Failed to rename the project"
+msgstr "Gagal mengganti nama proyek"
 
 msgid "Favorite"
 msgstr "Favorit"
+
+#. TRANSLATORS: A color name for RGB(201, 136, 121)
+msgid "Feldspar"
+msgstr "Feldspar"
 
 msgid "Flags"
 msgstr "Tanda"
@@ -130,35 +234,92 @@ msgstr "Makanan dan Minuman"
 msgid "Frequently used"
 msgstr "Sering digunakan"
 
-msgid "Global"
-msgstr "Global"
-
 msgid "Go back to the list"
 msgstr "Kembali ke daftar"
 
 msgid "Gold"
 msgstr "Emas"
 
+msgid "Hide details"
+msgstr "Sembunyikan detail"
+
 msgid "Hide password"
 msgstr "Sembunyikan sandi"
+
+msgid "Increment hours"
+msgstr "Tambah jam"
+
+msgid "Increment minutes"
+msgstr "Tambah menit"
+
+msgid "Increment seconds"
+msgstr "Tambah detik"
+
+msgid "invisible"
+msgstr "tidak terlihat"
+
+msgid "Keyboard navigation help"
+msgstr "Bantuan navigasi keyboard"
+
+msgid "Keyboard shortcuts"
+msgstr "Shortcut keyboard"
+
+msgid "Light skin tone"
+msgstr "Warna kulit terang"
 
 msgid "Load more \"{options}\""
 msgstr "Muat \"{options}\" lainnya"
 
-msgid "Message limit of {count} characters reached"
-msgstr "Batas jumlah karakter pesan ({count} karakter) tercapai"
+#. TRANSLATORS: The button is in a loading state
+msgid "Loading …"
+msgstr "Memuat …"
+
+#. TRANSLATORS: A color name for RGB(45, 115, 190)
+msgid "Mariner"
+msgstr "Mariner"
+
+msgid "Medium dark skin tone"
+msgstr "Warna kulit sedang gelap"
+
+msgid "Medium light skin tone"
+msgstr "Warna kulit sedang terang"
+
+msgid "Medium skin tone"
+msgstr "Warna kulit sedang"
+
+msgid "Message limit of %n character reached"
+msgid_plural "Message limit of %n characters reached"
+msgstr[0] "Batas pesan %n karakter telah tercapai"
+
+msgid "Month picker"
+msgstr "Pemilih bulan"
+
+msgid "Month picker overlay"
+msgstr "Overlay pemilih bulan"
 
 msgid "More items …"
-msgstr "Item lainnya…"
+msgstr "Item lainnya …"
 
 msgid "More options"
 msgstr "Opsi lainnya"
 
+msgid "Neutral skin color"
+msgstr "Warna kulit netral"
+
 msgid "Next"
 msgstr "Selanjutnya"
 
+msgid "Next month"
+msgstr "Bulan berikutnya"
+
+msgid "Next year"
+msgstr "Tahun berikutnya"
+
 msgid "Nextcloud blue"
 msgstr "Biru Nextcloud"
+
+msgid "No color"
+msgstr "Tanpa warna"
 
 msgid "No emoji found"
 msgstr "Tidak ada emoji yang ditemukan"
@@ -169,17 +330,24 @@ msgstr "Tidak ada penyedia tautan yang ditemukan"
 msgid "No results"
 msgstr "Tidak ada hasil"
 
+msgid "Now"
+msgstr "Sekarang"
+
 msgid "Objects"
 msgstr "Objek"
 
 msgid "offline"
 msgstr "luring"
 
+#. TRANSLATORS: A color name for RGB(165, 184, 114)
+msgid "Olivine"
+msgstr "Olivine"
+
 msgid "online"
 msgstr "daring"
 
-msgid "Open contact menu"
-msgstr "Buka menu kontak"
+msgid "Open hours overlay"
+msgstr "Buka overlay jam"
 
 msgid "Open link to \"{resourceName}\""
 msgstr "Buka tautan ke \"{resourceName}\""
@@ -187,11 +355,29 @@ msgstr "Buka tautan ke \"{resourceName}\""
 msgid "Open menu"
 msgstr "Buka menu"
 
+msgid "Open minutes overlay"
+msgstr "Buka overlay menit"
+
+msgid "Open months overlay"
+msgstr "Buka overlay bulan"
+
 msgid "Open navigation"
 msgstr "Buka navigasi"
 
-msgid "Open settings menu"
-msgstr "Buka menu pengaturan"
+msgid "Open seconds overlay"
+msgstr "Buka overlay detik"
+
+msgid "Open sidebar"
+msgstr "Buka bilah sisi"
+
+msgid "Open time picker"
+msgstr "Buka pemilih waktu"
+
+msgid "Open years overlay"
+msgstr "Buka overlay tahun"
+
+msgid "Options"
+msgstr "Opsi"
 
 msgid "Password is secure"
 msgstr "Kata sandi sudah aman"
@@ -202,32 +388,23 @@ msgstr "Jeda tayangan slide"
 msgid "People & Body"
 msgstr "Orang & Badan"
 
-msgid "Pick a date"
-msgstr "Pilih tanggal"
-
-msgid "Pick a date and a time"
-msgstr "Pilih tanggal dan waktu"
-
-msgid "Pick a month"
-msgstr "Pilih bulan"
-
-msgid "Pick a time"
-msgstr "Pilih waktu"
-
-msgid "Pick a week"
-msgstr "Pilih pekan"
-
-msgid "Pick a year"
-msgstr "Pilih tahun"
+msgid "Pick"
+msgstr "Pilih"
 
 msgid "Pick an emoji"
 msgstr "Pilih emoji"
 
-msgid "Please select a time zone:"
-msgstr "Mohon pilih zona waktu"
+msgid "Please choose a date"
+msgstr "Silakan pilih tanggal"
 
 msgid "Previous"
 msgstr "Sebelumnya"
+
+msgid "Previous month"
+msgstr "Bulan sebelumnya"
+
+msgid "Previous year"
+msgstr "Tahun sebelumnya"
 
 msgid "Provider icon"
 msgstr "Ikon penyedia"
@@ -241,17 +418,27 @@ msgstr "Tautan mentah {options}"
 msgid "Related resources"
 msgstr "Sumber daya terkait"
 
+msgid "Related team resources"
+msgstr "Sumber daya team terkait"
+
+msgid "Rename project"
+msgstr "Ganti nama proyek"
+
+#. TRANSLATORS: A color name for RGB(191, 103, 139)
+msgid "Rosy brown"
+msgstr "Cokelat kemerahan"
+
 msgid "Save changes"
 msgstr "Simpan perubahan"
 
 msgid "Search"
 msgstr "Cari"
 
+msgid "Search …"
+msgstr "Cari …"
+
 msgid "Search emoji"
 msgstr "Cari emoji"
-
-msgid "Search for options"
-msgstr "Cari opsi"
 
 msgid "Search for time zone"
 msgstr "Cari zona waktu"
@@ -271,8 +458,29 @@ msgstr "beberapa detik lalu"
 msgid "Select a tag"
 msgstr "Pilih tag"
 
+msgid "Select date"
+msgstr "Pilih tanggal"
+
+msgid "Select date and time"
+msgstr "Pilih tanggal dan waktu"
+
+msgid "Select month"
+msgstr "Pilih bulan"
+
 msgid "Select provider"
 msgstr "Pilih penyedia"
+
+msgid "Select time"
+msgstr "Pilih waktu"
+
+msgid "Select time range"
+msgstr "Pilih rentang waktu"
+
+msgid "Select week"
+msgstr "Pilih minggu"
+
+msgid "Select year"
+msgstr "Pilih tahun"
 
 msgid "Selected"
 msgstr "Dipilih"
@@ -283,14 +491,34 @@ msgstr "Pengaturan"
 msgid "Settings navigation"
 msgstr "Navigasi pengaturan"
 
+#. TRANSLATORS: Shift key on keyboard
+msgid "Shift"
+msgstr "Shift"
+
+msgid "Show details"
+msgstr "Tampilkan detail"
+
 msgid "Show password"
 msgstr "Tampilkan sandi"
+
+msgid "Skin tone"
+msgstr "Warna kulit"
+
+msgid "Skip to app navigation"
+msgstr "Lewati ke navigasi aplikasi"
+
+msgid "Skip to main content"
+msgstr "Lewati ke konten utama"
 
 msgid "Smart Picker"
 msgstr "Pemilih Cerdas"
 
 msgid "Smileys & Emotion"
 msgstr "Senyuman & Perasaan"
+
+#. TRANSLATORS: Space key on keyboard
+msgid "Space"
+msgstr "Spasi"
 
 msgid "Start slideshow"
 msgstr "Mulai salindia"
@@ -301,11 +529,30 @@ msgstr "Ketik untuk mulai mencari"
 msgid "Submit"
 msgstr "Kirimkan"
 
+msgid "Switch AM/PM mode"
+msgstr "Ganti mode AM/PM"
+
 msgid "Symbols"
 msgstr "Simbol"
 
+#. TRANSLATORS: Tab key on keyboard
+msgid "Tab"
+msgstr "Tab"
+
+msgid "Time picker"
+msgstr "Pemilih waktu"
+
+msgid "Time zone"
+msgstr "Zona waktu"
+
+msgid "Toggle overlay"
+msgstr "Alihkan overlay"
+
 msgid "Travel & Places"
 msgstr "Perjalanan & Tempat"
+
+msgid "Type to search for existing projects"
+msgstr "Ketik untuk mencari proyek yang sudah ada"
 
 msgid "Type to search time zone"
 msgstr "Ketik untuk mencari zona waktu"
@@ -319,5 +566,24 @@ msgstr "Urungkan perubahan"
 msgid "User status: {status}"
 msgstr "Status pengguna: {status}"
 
+msgid "View team"
+msgstr "Lihat team"
+
+msgid "W"
+msgstr "W"
+
+#. TRANSLATORS: A color name for RGB(211, 169, 103)
+msgid "Whiskey"
+msgstr "Whiskey"
+
+msgid "White"
+msgstr "Putih"
+
 msgid "Write a message …"
-msgstr "Tulis pesan ..."
+msgstr "Tulis pesan …"
+
+msgid "Year picker"
+msgstr "Pemilih tahun"
+
+msgid "Year picker overlay"
+msgstr "Overlay pemilih tahun"
