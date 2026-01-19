@@ -22,7 +22,9 @@
 
 	// override with system theme
 	@media (prefers-color-scheme: dark) {
-		--input-border-box-shadow: var(--input-border-box-shadow-dark);
+		#{&} {
+			--input-border-box-shadow: var(--input-border-box-shadow-dark);
+		}
 	}
 
 	// override with nextcloud theme
