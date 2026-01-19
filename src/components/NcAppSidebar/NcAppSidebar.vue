@@ -1573,7 +1573,7 @@ $desc-height: $desc-name-height + $desc-subname-height;
 				flex-direction: row;
 
 				.app-sidebar-header__figure {
-					--figure-size: calc($desc-height + var(--app-sidebar-padding));
+					--figure-size: calc(#{$desc-height} + var(--app-sidebar-padding));
 					z-index: 2;
 					width: var(--figure-size);
 					height: var(--figure-size);
