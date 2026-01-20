@@ -37,15 +37,14 @@ describe('utils: colors', () => {
 			expect(color.color).toMatchInlineSnapshot('"#0b1621"')
 		})
 
-		it.each([
-			/* eslint-disable  @stylistic/no-multi-spaces, @stylistic/array-bracket-spacing */
-			[  0,   0,   0, '#000000'],
-			[255,   0,   0, '#ff0000'],
-			[  0, 255,   0, '#00ff00'],
-			[  1,   2,   0, '#010200'],
-			[512, 999, 256, '#ffffff'],
-			/* eslint-enabled  @stylistic/no-multi-spaces, @stylistic/array-bracket-spacing */
-		])('correctly generated color string', (r: number, g: number, b: number, expected: string) => {
+		it.each`
+		    r  |     g  |     b  | expected
+		  ${0} |   ${0} |   ${0} | ${'#000000'}
+		${255} |   ${0} |   ${0} | ${'#ff0000'}
+		  ${0} | ${255} |   ${0} | ${'#00ff00'}
+		  ${1} |   ${2} |   ${0} | ${'#010200'}
+		${512} | ${999} | ${256} | ${'#ffffff'}
+		`('correctly generated color string', ({ r, g, b, expected }) => {
 			expect(new Color(r, g, b).color).toBe(expected)
 		})
 	})
