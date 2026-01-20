@@ -12,7 +12,7 @@
 		<NcProviderList
 			v-if="mode === MODES.providerList"
 			ref="provider-list"
-			@select-provider="onProviderSelected"
+			@selectProvider="onProviderSelected"
 			@submit="submitLink"
 			@cancel="cancelProviderSelection" />
 		<NcRawLinkInput

@@ -369,7 +369,7 @@ function hexToRGB(hex: string): [number, number, number] {
 		v-model:shown="open"
 		:container="container"
 		popupRole="dialog"
-		@apply-hide="emit('closed')">
+		@applyHide="emit('closed')">
 		<template #trigger="slotProps">
 			<slot v-bind="slotProps" />
 		</template>
@@ -422,7 +422,7 @@ function hexToRGB(hex: string): [number, number, number] {
 						disableAlpha
 						:disableFields="!advancedFields"
 						:modelValue="currentColor ?? '#000000'"
-						@update:model-value="pickCustomColor" />
+						@update:modelValue="pickCustomColor" />
 				</Transition>
 				<div v-if="!paletteOnly" class="color-picker__navigation">
 					<NcButton

@@ -23,7 +23,7 @@
 			:resetOnOptionsChange="false"
 			:loading="searching"
 			@search="onSearchInput"
-			@update:model-value="onSelectResultSelected">
+			@update:modelValue="onSelectResultSelected">
 			<template #option="option">
 				<div v-if="option.isRawLink" class="custom-option">
 					<LinkVariantIcon class="option-simple-icon" :size="20" />

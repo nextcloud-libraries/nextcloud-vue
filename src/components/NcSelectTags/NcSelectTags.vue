@@ -119,7 +119,7 @@ export default {
 		:closeOnSelect="!multiple"
 		:modelValue="localValue"
 		@search="search = $event"
-		@update:model-value="handleInput">
+		@update:modelValue="handleInput">
 		<template #option="option">
 			<NcEllipsisedOption
 				:name="getOptionLabel(option)"

@@ -63,8 +63,8 @@ occ config:system:set --value true 'projects.enabled'
 			:key="collection.id"
 			:collection="collection"
 			:error="collectionsError[collection.id]"
-			@rename-collection="renameCollectionFromItem"
-			@remove-resource="removeResourceFromCollection" />
+			@renameCollection="renameCollectionFromItem"
+			@removeResource="removeResourceFromCollection" />
 	</ul>
 </template>
 

@@ -39,7 +39,7 @@
 				ref="referencePicker"
 				:initialProvider="initialProvider"
 				:focusOnCreate="focusOnCreate"
-				@provider-selected="onProviderSelect"
+				@providerSelected="onProviderSelect"
 				@submit="onSubmit"
 				@cancel="onCancel" />
 		</div>

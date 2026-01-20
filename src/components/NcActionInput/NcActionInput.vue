@@ -169,7 +169,7 @@ For the `NcSelect` component, all events will be passed through. Please see the 
 							class="action-input__datetimepicker"
 							appendToBody
 							v-bind="$attrs"
-							@update:model-value="onUpdateModelValue" />
+							@update:modelValue="onUpdateModelValue" />
 
 						<NcDateTimePickerNative
 							v-else-if="isNativePicker"
@@ -180,7 +180,7 @@ For the `NcSelect` component, all events will be passed through. Please see the 
 							:inputClass="{ focusable: isFocusable }"
 							class="action-input__datetimepicker"
 							v-bind="$attrs"
-							@update:model-value="onUpdateModelValue" />
+							@update:modelValue="onUpdateModelValue" />
 
 						<NcSelect
 							v-else-if="isMultiselectType"
@@ -191,7 +191,7 @@ For the `NcSelect` component, all events will be passed through. Please see the 
 							:inputClass="{ focusable: isFocusable }"
 							class="action-input__multi"
 							v-bind="$attrs"
-							@update:model-value="onUpdateModelValue" />
+							@update:modelValue="onUpdateModelValue" />
 
 						<NcPasswordField
 							v-else-if="type === 'password'"
@@ -204,7 +204,7 @@ For the `NcSelect` component, all events will be passed through. Please see the 
 							:inputClass="{ focusable: isFocusable }"
 							:showTrailingButton="showTrailingButton && !disabled"
 							v-bind="$attrs"
-							@update:model-value="onUpdateModelValue" />
+							@update:modelValue="onUpdateModelValue" />
 
 						<div v-else-if="type === 'color'" class="action-input__container">
 							<label
@@ -220,7 +220,7 @@ For the `NcSelect` component, all events will be passed through. Please see the 
 									:modelValue="modelValue"
 									class="colorpicker__trigger"
 									v-bind="$attrs"
-									@update:model-value="onUpdateModelValue"
+									@update:modelValue="onUpdateModelValue"
 									@submit="$refs.form.requestSubmit()">
 									<button
 										class="colorpicker__preview"
@@ -244,8 +244,8 @@ For the `NcSelect` component, all events will be passed through. Please see the 
 							:trailingButtonLabel="trailingButtonLabel"
 							:showTrailingButton="showTrailingButton && !disabled"
 							v-bind="$attrs"
-							@trailing-button-click="$refs.form.requestSubmit()"
-							@update:model-value="onUpdateModelValue" />
+							@trailingButtonClick="$refs.form.requestSubmit()"
+							@update:modelValue="onUpdateModelValue" />
 					</div>
 				</div>
 			</form>

@@ -44,7 +44,7 @@ section * {
 			:multiple="true"
 			:closeOnSelect="false"
 			:disabled="disabled"
-			@update:model-value="update"
+			@update:modelValue="update"
 			@search="onSearch" />
 		<div v-show="hasError" class="select-group-error">
 			{{ errorMessage }}

@@ -29,7 +29,7 @@
 				subname: 'olivia@example.org',
 			},
 		]"
-		@update:model-value="$emit('selected', $event)" />
+		@update:modelValue="$emit('selected', $event)" />
 </template>
 
 <script setup lang="ts">

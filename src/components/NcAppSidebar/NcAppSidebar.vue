@@ -739,8 +739,8 @@ If the sidebar should be shown conditionally without any explicit toggle button,
 	<transition
 		appear
 		name="slide-right"
-		@after-enter="onAfterEnter"
-		@after-leave="onAfterLeave">
+		@afterEnter="onAfterEnter"
+		@afterLeave="onAfterLeave">
 		<aside
 			v-show="open"
 			id="app-sidebar-vue"

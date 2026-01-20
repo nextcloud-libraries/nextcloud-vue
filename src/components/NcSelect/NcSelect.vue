@@ -330,7 +330,7 @@ export default {
 		}"
 		v-bind="propsToForward"
 		@search="search = $event"
-		@update:model-value="$emit('update:modelValue', $event)">
+		@update:modelValue="$emit('update:modelValue', $event)">
 		<template v-if="!labelOutside && inputLabel" #header>
 			<label
 				:for="inputId"

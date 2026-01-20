@@ -196,8 +196,8 @@ See: https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Attributes/
 		:hideTriggers
 		:showTriggers
 		@update:shown="internalShown = $event"
-		@apply-show="afterShow"
-		@apply-hide="afterHide">
+		@applyShow="afterShow"
+		@applyHide="afterHide">
 		<NcPopoverTriggerProvider v-slot="slotProps" :shown="internalShown" :popupRole="popupRole">
 			<!-- This will be the popover target (for the events and position) -->
 			<slot name="trigger" v-bind="slotProps" />

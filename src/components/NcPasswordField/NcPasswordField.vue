@@ -304,7 +304,7 @@ function select() {
 		:success="success || isValid === true"
 		:trailingButtonLabel="visible ? t('Hide password') : t('Show password')"
 		:type="visible || asText ? 'text' : 'password'"
-		@trailing-button-click="toggleVisibility">
+		@trailingButtonClick="toggleVisibility">
 		<template v-if="!!$slots.icon" #icon>
 			<!-- @slot Leading icon -->
 			<slot name="icon" />

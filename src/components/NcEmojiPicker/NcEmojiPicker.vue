@@ -113,8 +113,8 @@ This component allows the user to pick an emoji.
 		:container="container"
 		popupRole="dialog"
 		:noFocusTrap="true /* Handled manually to remove emoji buttons from TAB sequence */"
-		@after-show="afterShow"
-		@after-hide="afterHide">
+		@afterShow="afterShow"
+		@afterHide="afterHide">
 		<template #trigger="slotProps">
 			<slot v-bind="slotProps" />
 		</template>
@@ -156,14 +156,14 @@ This component allows the user to pick an emoji.
 							@keydown.down="callPickerArrowHandlerWithScrollFix('onArrowDown', $event)"
 							@keydown.up="callPickerArrowHandlerWithScrollFix('onArrowUp', $event)"
 							@keydown.enter="$refs.picker.onEnter($event)"
-							@trailing-button-click="clearSearch(); onSearch('');"
-							@update:model-value="onSearch(search)" />
+							@trailingButtonClick="clearSearch(); onSearch('');"
+							@update:modelValue="onSearch(search)" />
 						<NcColorPicker
 							paletteOnly
 							:container
 							:palette="skinTonePalette"
 							:modelValue="currentColor.color"
-							@update:model-value="onChangeSkinTone">
+							@update:modelValue="onChangeSkinTone">
 							<NcButton :aria-label="t('Skin tone')" variant="tertiary-no-background">
 								<template #icon>
 									<IconCircle :style="{ color: currentColor.color }" :title="currentColor.name" :size="20" />
