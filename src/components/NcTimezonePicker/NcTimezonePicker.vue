@@ -16,7 +16,7 @@
 export default {
 	data() {
 		return {
-			tz: 'Hawaiian Standard Time',
+			tz: 'Europe/Berlin',
 		}
 	},
 }
@@ -25,22 +25,27 @@ export default {
 </docs>
 
 <script setup lang="ts">
-import type {
-	IContinent,
-	IRegion,
-	ITimezone,
-} from '@nextcloud/timezones'
-
-import {
-	getReadableTimezoneName,
-	getSortedTimezoneList,
-} from '@nextcloud/timezones'
 import { computed } from 'vue'
 import { useModelMigration } from '../../composables/useModelMigration.ts'
 import { t } from '../../l10n.js'
 import { createElementId } from '../../utils/createElementId.ts'
 import NcSelect from '../NcSelect/index.js'
-import getTimezoneManager from './timezoneDataProviderService.ts'
+import { getTimezones } from './timezoneUtils.ts'
+
+type ITimezone = {
+	/**
+	 * Time zone ID in IANA format, e.g. "Europe/Berlin", or "floating" for a time independent of timezone, or a custom timezone ID
+	 */
+	timezoneId: string
+	/**
+	 * Localized label of the timezone, e.g. "Central European Standard Time"
+	 */
+	label: string
+	/**
+	 * Continent the timezone if any, e.g. "Europe" (not localized)
+	 */
+	continent: string
+}
 
 const props = withDefaults(defineProps<{
 	/**
@@ -90,109 +95,45 @@ defineEmits<{
  */
 const model = useModelMigration<string>('value', 'input')
 
-const selectedTimezone = computed({
-	set(timezone: IRegion) {
-		model.value = timezone.timezoneId
-	},
-	get(): IRegion {
-		for (const additionalTimezone of props.additionalTimezones) {
-			if (additionalTimezone.timezoneId === model.value) {
-				return {
-					cities: [],
-					...additionalTimezone,
-				}
-			}
-		}
-
-		return {
-			label: getReadableTimezoneName(model.value),
-			timezoneId: model.value,
-			cities: [],
-		}
-	},
+const formattedAdditionalTimezones = computed(() => {
+	return props.additionalTimezones.map(({ timezoneId, label }) => ({
+		timezoneId,
+		label,
+	}))
 })
 
 const options = computed(() => {
-	const timezoneManager = getTimezoneManager()
-	const timezoneList: IContinent[] = getSortedTimezoneList(
-		timezoneManager.listAllTimezones(),
-		props.additionalTimezones,
-		t('Global'), // TRANSLATORS: This refers to global timezones in the timezone picker
-	)
-	/**
-	 * Since NcSelect does not support groups,
-	 * we create an object with the grouped timezones and continent labels.
-	 *
-	 * NOTE for now we are removing the grouping from the fields to fix an accessibility issue
-	 * in the future, other options can be introduced to better display the different areas
-	 */
-	const timezonesGrouped: IRegion[] = []
-	for (const group of Object.values(timezoneList)) {
-		// Add an entry as group label
-		// const continent = `tz-group__${group.continent}`
-		// timezonesGrouped.push({
-		// label: group.continent,
-		// continent,
-		// timezoneId: continent,
-		// regions: group.regions,
-		// })
-		timezonesGrouped.push(...group.regions)
-	}
-	return timezonesGrouped
+	const timezones = getTimezones()
+	timezones.unshift(...formattedAdditionalTimezones.value)
+	return timezones
 })
 
 /**
- * Returns whether this is a continent label,
- * or an actual timezone. Continent labels are not selectable.
- *
- * @param option The option
- */
-function isSelectable(option: IRegion): boolean {
-	return !option.timezoneId.startsWith('tz-group__')
-}
-
-/**
- * Function to filter the timezone list.
- * We search in the timezoneId, so both continent and region names can be matched.
+ * NcSelect's filterBy prop to search timezone by any option property
  *
  * @param option - The timezone option
  * @param label - The label of the timezone
  * @param search - The search string
  */
-function filterBy(option: IContinent | IRegion, label: string, search: string): boolean {
-	// We split the search term in case one searches "<continent> <region>".
-	const terms = search.trim().split(' ')
-
-	// For the continent labels, we have to check if one region matches every search term.
-	if ('continent' in option) {
-		return option.regions.some((region) => {
-			return matchTimezoneId(region.timezoneId, terms)
-		})
-	}
-
-	// For a region, every search term must be found.
-	return matchTimezoneId(option.timezoneId, terms)
-}
-
-/**
- * @param timezoneId - The timezone id to check
- * @param terms - Terms to validate
- */
-function matchTimezoneId(timezoneId: string, terms: string[]): boolean {
-	return terms.every((term) => timezoneId.toLowerCase().includes(term.toLowerCase()))
+function filterBy(option: ITimezone, label: string, search: string): boolean {
+	const terms = search.trim().split(/\s+/)
+	const values = Object.values(option)
+	return terms.every((term) => {
+		return values.some((value) => value.toLowerCase().includes(term.toLowerCase()))
+	})
 }
 </script>
 
 <template>
 	<NcSelect
-		v-model="selectedTimezone"
+		v-model="model"
 		:aria-label-combobox="t('Search for time zone')"
 		:clearable="false"
 		:filter-by="filterBy"
 		:multiple="false"
 		:options="options"
 		:placeholder="t('Type to search time zone')"
-		:selectable="isSelectable"
 		:uid="uid"
+		:reduce="(option) => option.timezoneId"
 		label="label" />
 </template>
