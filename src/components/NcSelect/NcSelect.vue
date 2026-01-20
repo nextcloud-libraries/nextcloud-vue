@@ -350,7 +350,7 @@ export default {
 		<template #open-indicator="{ attributes }">
 			<ChevronDown
 				v-bind="attributes"
-				fill-color="var(--vs-controls-color)"
+				fillColor="var(--vs-controls-color)"
 				:style="{
 					cursor: !disabled ? 'pointer' : null,
 				}"
@@ -367,7 +367,7 @@ export default {
 		</template>
 		<template #selected-option="selectedOption">
 			<!-- @slot Customize how a selected option is rendered -->
-			<slot name="selected-option" :v-bind="selectedOption">
+			<slot name="selected-option" v-bind="selectedOption">
 				<NcEllipsisedOption
 					:name="String(selectedOption[localLabel])"
 					:search="search" />

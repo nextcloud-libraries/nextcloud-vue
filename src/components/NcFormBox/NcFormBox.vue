@@ -38,7 +38,7 @@ provide(NC_FORM_BOX_CONTEXT_KEY, {
 
 <template>
 	<div :class="[$style.ncFormBox, row ? $style.ncFormBox_row : $style.ncFormBox_col]">
-		<slot :item-class="$style.ncFormBox__item" />
+		<slot :itemClass="$style.ncFormBox__item" />
 	</div>
 </template>
 

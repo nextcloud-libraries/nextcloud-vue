@@ -6,8 +6,8 @@
 <template>
 	<NcSelectUsers
 		v-model="value"
-		input-label="My account"
-		input-class="cypress-search-input"
+		inputLabel="My account"
+		inputClass="cypress-search-input"
 		:multiple
 		:options="[
 			{

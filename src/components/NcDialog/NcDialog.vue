@@ -497,8 +497,7 @@ const modalProps = computed(() => ({
 	<NcModal
 		v-if="open"
 		class="dialog__modal"
-		:enable-slideshow="false"
-		disable-swipe
+		disableSwipe
 		v-bind="modalProps"
 		@close="handleClosed"
 		@update:show="handleClosing()">
@@ -518,7 +517,7 @@ const modalProps = computed(() => ({
 					:class="navigationClasses"
 					:aria-label="navigationAriaLabelAttr"
 					:aria-labelledby="navigationAriaLabelledbyAttr">
-					<slot name="navigation" :is-collapsed="isNavigationCollapsed" />
+					<slot name="navigation" :isCollapsed="isNavigationCollapsed" />
 				</nav>
 				<!-- Main dialog content -->
 				<div class="dialog__content" :class="contentClasses">

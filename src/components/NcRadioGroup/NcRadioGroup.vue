@@ -82,7 +82,7 @@ function onUpdate(value: string) {
 	<NcFormGroup
 		:label
 		:description
-		:hide-label="labelHidden || hideLabel">
+		:hideLabel="labelHidden || hideLabel">
 		<NcFormBox v-if="buttonVariant" row>
 			<slot />
 		</NcFormBox>

@@ -242,14 +242,14 @@ watch([() => props.displayName, () => props.user], () => {
 				<!-- NcAvatar -->
 				<NcAvatar
 					:url="isCustomAvatar && isAvatarUrl ? avatarImage : undefined"
-					:icon-class="isCustomAvatar && !isAvatarUrl ? avatarImage : undefined"
+					:iconClass="isCustomAvatar && !isAvatarUrl ? avatarImage : undefined"
 					:user="user"
-					:display-name="displayName"
+					:displayName="displayName"
 					:size="size - (margin * 2)"
 					:style="avatarStyle"
-					:disable-tooltip="true"
-					:disable-menu="true"
-					:hide-status="!showUserStatus"
+					disableTooltip
+					disableMenu
+					:hideStatus="!showUserStatus"
 					class="user-bubble__avatar" />
 
 				<!-- Name -->

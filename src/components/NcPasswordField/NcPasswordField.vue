@@ -298,11 +298,11 @@ function select() {
 		ref="inputField"
 		v-model="modelValue"
 		:error="error || isValid === false"
-		:helper-text="helperText || internalHelpMessage"
-		:input-class="[inputClass, { 'password-field__input--secure-text': !visible && asText }]"
+		:helperText="helperText || internalHelpMessage"
+		:inputClass="[inputClass, { 'password-field__input--secure-text': !visible && asText }]"
 		:minlength="minLengthWithPolicy"
 		:success="success || isValid === true"
-		:trailing-button-label="visible ? t('Hide password') : t('Show password')"
+		:trailingButtonLabel="visible ? t('Hide password') : t('Show password')"
 		:type="visible || asText ? 'text' : 'password'"
 		@trailing-button-click="toggleVisibility">
 		<template v-if="!!$slots.icon" #icon>

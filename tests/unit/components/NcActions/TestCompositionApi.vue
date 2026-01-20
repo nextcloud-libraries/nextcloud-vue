@@ -6,7 +6,7 @@
 <!-- Ensure NcActions work with Composition API components (nextcloud/nextcloud-vue#3719) -->
 
 <template>
-	<NcActions :force-menu="true">
+	<NcActions forceMenu>
 		<NcActionButton />
 	</NcActions>
 </template>

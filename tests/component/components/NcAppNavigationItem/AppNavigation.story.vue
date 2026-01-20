@@ -4,7 +4,7 @@
 -->
 
 <template>
-	<NcContent app-name="testing">
+	<NcContent appName="testing">
 		<NcAppNavigation aria-label="In-app navigation">
 			<template #list>
 				<NcAppNavigationItem name="Home" to="/" :editable="true" />

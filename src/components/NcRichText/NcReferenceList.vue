@@ -10,7 +10,7 @@
 			:key="reference.openGraphObject?.id"
 			:reference="reference"
 			:interactive="interactive"
-			:interactive-opt-in="interactiveOptIn" />
+			:interactiveOptIn="interactiveOptIn" />
 	</div>
 </template>
 

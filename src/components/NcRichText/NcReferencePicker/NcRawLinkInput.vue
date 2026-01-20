@@ -9,7 +9,7 @@
 			<NcTextField
 				ref="url-input"
 				v-model="inputValue"
-				:show-trailing-button="inputValue !== ''"
+				:showTrailingButton="inputValue !== ''"
 				:label="inputPlaceholder"
 				@trailing-button-click="onClear"
 				@update:model-value="onInput"

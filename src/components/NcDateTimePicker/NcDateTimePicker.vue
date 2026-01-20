@@ -715,7 +715,7 @@ function cancelSelection() {
 }
 
 /**
- *
+ * Calculate the min/max time restrictions based on the selected date(s) and provided min/max dates.
  */
 const calcMinMaxTime = computed(() => {
 	if (props.type === 'datetime') {
@@ -752,8 +752,8 @@ const calcMinMaxTime = computed(() => {
 /**
  * Check if two dates are on the same day.
  *
- * @param a
- * @param b
+ * @param a - First date
+ * @param b - Second date
  */
 function sameDay(a: Date, b: Date): boolean {
 	return (
@@ -769,32 +769,32 @@ function sameDay(a: Date, b: Date): boolean {
 		<VueDatePicker
 			ref="picker"
 			:aria-labels
-			:auto-apply="!confirm"
+			:autoApply="!confirm"
 			class="vue-date-time-picker"
 			:class="{ 'vue-date-time-picker--clearable': clearable }"
-			:cancel-text="t('Cancel')"
+			:cancelText="t('Cancel')"
 			:clearable
-			:day-names
+			:dayNames
 			:placeholder="placeholder ?? placeholderFallback"
 			:format="realFormat"
 			:locale
-			:min-date="calcMinMaxTime.minDate"
-			:max-date="calcMinMaxTime.maxDate"
-			:min-time="calcMinMaxTime.minTime as LibraryTimeObject"
-			:max-time="calcMinMaxTime.maxTime as LibraryTimeObject"
-			:minutes-increment="minuteStep"
-			:model-value="value"
-			:now-button-label="t('Now')"
-			:select-text="t('Pick')"
-			six-weeks="fair"
+			:minDate="calcMinMaxTime.minDate"
+			:maxDate="calcMinMaxTime.maxDate"
+			:minTime="calcMinMaxTime.minTime"
+			:maxTime="calcMinMaxTime.maxTime"
+			:minutesIncrement="minuteStep"
+			:modelValue="value"
+			:nowButtonLabel="t('Now')"
+			:selectText="t('Pick')"
+			sixWeeks="fair"
 			:inline
 			:teleport="appendToBody ? (targetElement || undefined) : false"
-			text-input
-			:week-num-name
-			:week-numbers="showWeekNumber ? { type: 'iso' } : undefined"
-			:week-start
+			textInput
+			:weekNumName
+			:weekNumbers="showWeekNumber ? { type: 'iso' } : undefined"
+			:weekStart
 			v-bind="pickerType"
-			@update:model-value="onUpdateModelValue"
+			@update:modelValue="onUpdateModelValue"
 			@blur="emit('blur')">
 			<template #action-buttons>
 				<NcButton size="small" variant="tertiary" @click="cancelSelection">
@@ -836,8 +836,8 @@ function sameDay(a: Date, b: Date): boolean {
 				<NcTimezonePicker
 					v-model="timezoneId"
 					class="vue-date-time-picker__timezone"
-					:append-to-body="false"
-					:input-label="t('Time zone')" />
+					:appendToBody="false"
+					:inputLabel="t('Time zone')" />
 			</template>
 		</VueDatePicker>
 		<Teleport to="body" :disabled="!appendToBody">

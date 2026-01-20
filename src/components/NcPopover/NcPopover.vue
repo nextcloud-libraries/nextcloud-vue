@@ -178,27 +178,27 @@ See: https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Attributes/
 	<Dropdown
 		ref="popover"
 		v-model:shown="internalShown"
-		:arrow-padding="10"
-		:auto-hide="!noCloseOnClickOutside && closeOnClickOutside"
+		:arrowPadding="10"
+		:autoHide="!noCloseOnClickOutside && closeOnClickOutside"
 		:boundary="boundary || undefined"
 		:container
 		:delay
 		:distance="10"
-		handle-resize
-		:no-auto-focus="true /* Handled by the focus trap */"
+		handleResize
+		:noAutoFocus="true /* Handled by the focus trap */"
 		:placement="internalPlacement"
-		:popper-class="[$style.ncPopover, popoverBaseClass]"
-		:popper-triggers
-		:popper-hide-triggers
-		:popper-show-triggers
+		:popperClass="[$style.ncPopover, popoverBaseClass]"
+		:popperTriggers
+		:popperHideTriggers
+		:popperShowTriggers
 		:theme
 		:triggers="internalTriggers"
-		:hide-triggers
-		:show-triggers
+		:hideTriggers
+		:showTriggers
 		@update:shown="internalShown = $event"
 		@apply-show="afterShow"
 		@apply-hide="afterHide">
-		<NcPopoverTriggerProvider v-slot="slotProps" :shown="internalShown" :popup-role="popupRole">
+		<NcPopoverTriggerProvider v-slot="slotProps" :shown="internalShown" :popupRole="popupRole">
 			<!-- This will be the popover target (for the events and position) -->
 			<slot name="trigger" v-bind="slotProps" />
 		</NcPopoverTriggerProvider>

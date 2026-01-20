@@ -70,11 +70,11 @@ const icon = computed(() => {
 <template>
 	<NcFormBoxItem
 		:tag
-		:item-classes="[
+		:itemClasses="[
 			'button-vue', /* Reset server's global HTML button styles */
 			$style.formBoxButton,
 		]"
-		:inverted-accent
+		:invertedAccent
 		v-bind="attrs"
 		tabindex="0"
 		@click="$emit('click', $event)">

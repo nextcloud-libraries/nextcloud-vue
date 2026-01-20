@@ -160,35 +160,35 @@ For the `NcSelect` component, all events will be passed through. Please see the 
 						<NcDateTimePicker
 							v-if="datePickerType"
 							ref="datetimepicker"
-							:model-value="modelValue"
+							:modelValue="modelValue"
 							style="z-index: 99999999999;"
 							:placeholder="text"
 							:disabled="disabled"
 							:type="datePickerType"
-							:input-class="['mx-input', { focusable: isFocusable }]"
+							:inputClass="['mx-input', { focusable: isFocusable }]"
 							class="action-input__datetimepicker"
-							append-to-body
+							appendToBody
 							v-bind="$attrs"
 							@update:model-value="onUpdateModelValue" />
 
 						<NcDateTimePickerNative
 							v-else-if="isNativePicker"
 							:id="idNativeDateTimePicker"
-							:model-value="modelValue"
+							:modelValue="modelValue"
 							:label="label"
 							:type="nativeDatePickerType"
-							:input-class="{ focusable: isFocusable }"
+							:inputClass="{ focusable: isFocusable }"
 							class="action-input__datetimepicker"
 							v-bind="$attrs"
 							@update:model-value="onUpdateModelValue" />
 
 						<NcSelect
 							v-else-if="isMultiselectType"
-							:model-value="modelValue"
+							:modelValue="modelValue"
 							:placeholder="text"
 							:disabled="disabled"
-							:append-to-body="false"
-							:input-class="{ focusable: isFocusable }"
+							:appendToBody="false"
+							:inputClass="{ focusable: isFocusable }"
 							class="action-input__multi"
 							v-bind="$attrs"
 							@update:model-value="onUpdateModelValue" />
@@ -196,13 +196,13 @@ For the `NcSelect` component, all events will be passed through. Please see the 
 						<NcPasswordField
 							v-else-if="type === 'password'"
 							:id="inputId"
-							:model-value="modelValue"
+							:modelValue="modelValue"
 							:label="label"
-							:label-outside="!label || labelOutside"
+							:labelOutside="!label || labelOutside"
 							:placeholder="text"
 							:disabled="disabled"
-							:input-class="{ focusable: isFocusable }"
-							:show-trailing-button="showTrailingButton && !disabled"
+							:inputClass="{ focusable: isFocusable }"
+							:showTrailingButton="showTrailingButton && !disabled"
 							v-bind="$attrs"
 							@update:model-value="onUpdateModelValue" />
 
@@ -217,7 +217,7 @@ For the `NcSelect` component, all events will be passed through. Please see the 
 							<div class="action-input__input-container">
 								<NcColorPicker
 									id="inputId"
-									:model-value="modelValue"
+									:modelValue="modelValue"
 									class="colorpicker__trigger"
 									v-bind="$attrs"
 									@update:model-value="onUpdateModelValue"
@@ -233,16 +233,16 @@ For the `NcSelect` component, all events will be passed through. Please see the 
 						<NcTextField
 							v-else
 							:id="inputId"
-							:model-value="modelValue"
+							:modelValue="modelValue"
 							:label="label"
-							:label-outside="!label || labelOutside"
+							:labelOutside="!label || labelOutside"
 							:placeholder="text"
 							:disabled="disabled"
-							:input-class="{ focusable: isFocusable }"
+							:inputClass="{ focusable: isFocusable }"
 							:type="type"
-							trailing-button-icon="arrowRight"
-							:trailing-button-label="trailingButtonLabel"
-							:show-trailing-button="showTrailingButton && !disabled"
+							trailingButtonIcon="arrowRight"
+							:trailingButtonLabel="trailingButtonLabel"
+							:showTrailingButton="showTrailingButton && !disabled"
 							v-bind="$attrs"
 							@trailing-button-click="$refs.form.requestSubmit()"
 							@update:model-value="onUpdateModelValue" />

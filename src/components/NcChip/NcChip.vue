@@ -101,11 +101,11 @@ export default {
 			v-if="canClose || hasActions()"
 			class="nc-chip__actions"
 			:container="actionsContainer"
-			:force-menu="!canClose"
+			:forceMenu="!canClose"
 			variant="tertiary-no-background">
 			<NcActionButton
 				v-if="canClose"
-				close-after-click
+				closeAfterClick
 				@click="emit('close')">
 				<template #icon>
 					<NcIconSvgWrapper :path="mdiClose" :size="20" />

@@ -127,8 +127,8 @@ export default {
 					<Pane
 						class="splitpanes__pane-list"
 						:size="listPaneSize || paneDefaults.list.size"
-						:min-size="paneDefaults.list.min"
-						:max-size="paneDefaults.list.max">
+						:minSize="paneDefaults.list.min"
+						:maxSize="paneDefaults.list.max">
 						<!-- @slot Provide a list to the app content -->
 						<slot name="list" />
 					</Pane>
@@ -136,8 +136,8 @@ export default {
 					<Pane
 						class="splitpanes__pane-details"
 						:size="detailsPaneSize"
-						:min-size="paneDefaults.details.min"
-						:max-size="paneDefaults.details.max">
+						:minSize="paneDefaults.details.min"
+						:maxSize="paneDefaults.details.max">
 						<!-- @slot Provide the main content to the app content -->
 						<slot />
 					</Pane>

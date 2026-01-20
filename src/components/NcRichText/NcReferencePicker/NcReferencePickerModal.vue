@@ -37,8 +37,8 @@
 			</h2>
 			<NcReferencePicker
 				ref="referencePicker"
-				:initial-provider="initialProvider"
-				:focus-on-create="focusOnCreate"
+				:initialProvider="initialProvider"
+				:focusOnCreate="focusOnCreate"
 				@provider-selected="onProviderSelect"
 				@submit="onSubmit"
 				@cancel="onCancel" />

@@ -5,7 +5,7 @@
 
 <template>
 	<li class="collection-list-item">
-		<NcAvatar :display-name="collection.name" allow-placeholder class="collection-avatar" />
+		<NcAvatar :displayName="collection.name" allowPlaceholder class="collection-avatar" />
 		<span
 			v-if="newName === null"
 			class="collection-item-name"

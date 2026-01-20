@@ -110,10 +110,10 @@ It might be used for list rendering or within the multiselect for example
 		:style="cssVars">
 		<NcAvatar
 			v-bind="$attrs"
-			:disable-menu="true"
-			:disable-tooltip="true"
-			:display-name="displayName || name"
-			:is-no-user="isNoUser"
+			disableMenu
+			disableTooltip
+			:displayName="displayName || name"
+			:isNoUser="isNoUser"
 			:size="avatarSize"
 			class="option__avatar" />
 		<div class="option__details">

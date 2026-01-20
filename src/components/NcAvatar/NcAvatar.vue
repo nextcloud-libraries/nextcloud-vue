@@ -228,8 +228,8 @@ export default {
 			v-model:open="contactsMenuOpenState"
 			:aria-label="avatarAriaLabel"
 			:container="menuContainer"
-			force-menu
-			manual-open
+			forceMenu
+			manualOpen
 			variant="tertiary-no-background"
 			@click="toggleMenu">
 			<component

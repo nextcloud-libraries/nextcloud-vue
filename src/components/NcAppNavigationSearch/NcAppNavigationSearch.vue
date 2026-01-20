@@ -131,10 +131,10 @@ export default {
 			v-model="model"
 			:aria-label="label"
 			class="app-navigation-search__input"
-			label-outside
+			labelOutside
 			:placeholder="placeholder ?? label"
-			show-trailing-button
-			:trailing-button-label="t('Clear search')"
+			showTrailingButton
+			:trailingButtonLabel="t('Clear search')"
 			type="search"
 			@trailing-button-click="onCloseSearch">
 			<template #trailing-button-icon>

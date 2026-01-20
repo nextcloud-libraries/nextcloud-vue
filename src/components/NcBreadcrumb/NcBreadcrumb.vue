@@ -43,9 +43,9 @@ Renders a button element when given no redirection props, otherwise, renders <a/
 			v-if="$slots.default"
 			ref="actions"
 			:container="actionsContainer"
-			:force-menu="forceMenu"
-			force-name
-			:menu-name="name"
+			:forceMenu="forceMenu"
+			forceName
+			:menuName="name"
 			:open="open"
 			:title
 			variant="tertiary"

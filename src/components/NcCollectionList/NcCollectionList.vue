@@ -43,7 +43,7 @@ occ config:system:set --value true 'projects.enabled'
 					<template #option="option">
 						<span class="option__wrapper">
 							<span v-if="option.class" :class="option.class" class="avatar" />
-							<NcAvatar v-else-if="option.method !== 2" allow-placeholder :display-name="option.title" />
+							<NcAvatar v-else-if="option.method !== 2" allowPlaceholder :displayName="option.title" />
 							<span class="option__title">{{ option.title }}</span>
 						</span>
 					</template>
