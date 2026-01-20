@@ -9,9 +9,11 @@ import { inject } from 'vue'
 
 export const NC_FORM_BOX_CONTEXT_KEY: InjectionKey<{
 	isInFormBox: false
+	isInFormBoxRow: false
 	formBoxItemClass: undefined
 } | {
 	isInFormBox: true
+	isInFormBoxRow: boolean
 	formBoxItemClass: string
 }> = Symbol.for('NcFormBox:context')
 
@@ -22,6 +24,7 @@ export const NC_FORM_BOX_CONTEXT_KEY: InjectionKey<{
 export function useNcFormBox() {
 	return inject(NC_FORM_BOX_CONTEXT_KEY, {
 		isInFormBox: false,
+		isInFormBoxRow: false,
 		formBoxItemClass: undefined,
 	})
 }
