@@ -21,14 +21,14 @@ This component is meant to be used inside a DashboardWidget component.
 			:class="{ 'item-list__entry--has-actions-menu': gotMenu }"
 			@click="onLinkClick">
 			<!-- @slot Slot for passing a user avatar. -->
-			<slot name="avatar" :avatar-url="avatarUrl" :avatar-username="avatarUsername">
+			<slot name="avatar" :avatarUrl="avatarUrl" :avatarUsername="avatarUsername">
 				<NcAvatar
 					class="item-avatar"
 					:size="44"
 					:url="avatarUrl"
 					:user="avatarUsername"
-					:is-no-user="avatarIsNoUser"
-					:hide-status="gotOverlayIcon" />
+					:isNoUser="avatarIsNoUser"
+					:hideStatus="gotOverlayIcon" />
 			</slot>
 			<img
 				v-if="overlayIconUrl"
@@ -43,14 +43,14 @@ This component is meant to be used inside a DashboardWidget component.
 					{{ subText }}
 				</span>
 			</div>
-			<NcActions v-if="gotMenu" :force-menu="forceMenu">
+			<NcActions v-if="gotMenu" :forceMenu="forceMenu">
 				<!-- @slot This slot can be used to provide actions for each dashboard widget item. -->
 				<slot name="actions">
 					<NcActionButton
 						v-for="(m, menuItemId) in itemMenu"
 						:key="menuItemId"
 						:icon="m.icon"
-						:close-after-click="true"
+						:closeAfterClick="true"
 						@click.prevent.stop="$emit(menuItemId, item)">
 						{{ m.text }}
 					</NcActionButton>

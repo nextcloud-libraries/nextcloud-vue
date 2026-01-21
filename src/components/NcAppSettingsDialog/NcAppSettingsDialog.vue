@@ -215,11 +215,11 @@ function unregisterSection(id: string) {
 	<NcDialog
 		v-if="open"
 		class="app-settings"
-		content-classes="app-settings__content"
-		navigation-classes="app-settings__navigation"
-		:additional-trap-elements
+		contentClasses="app-settings__content"
+		navigationClasses="app-settings__navigation"
+		:additionalTrapElements
 		:container
-		close-on-click-outside
+		closeOnClickOutside
 		:navigation-aria-label="t('Settings navigation')"
 		size="large"
 		:name

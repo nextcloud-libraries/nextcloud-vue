@@ -310,16 +310,16 @@ export default {
 		<NcCheckboxContent
 			:id="!isButtonType ? `${id}-label` : undefined"
 			class="checkbox-radio-switch__content"
-			icon-class="checkbox-radio-switch__icon"
-			text-class="checkbox-radio-switch__text"
+			iconClass="checkbox-radio-switch__icon"
+			textClass="checkbox-radio-switch__text"
 			:type="internalType"
 			:indeterminate="hasIndeterminate ? indeterminate : false"
-			:button-variant="buttonVariant"
-			:is-checked="isChecked"
+			:buttonVariant="buttonVariant"
+			:isChecked="isChecked"
 			:loading="loading"
-			:label-id="labelId"
-			:description-id="descriptionId"
-			:icon-size
+			:labelId="labelId"
+			:descriptionId="descriptionId"
+			:iconSize
 			@click="onToggle">
 			<template #icon>
 				<!-- @slot The checkbox/radio icon, you can use it for adding an icon to the button variant -->

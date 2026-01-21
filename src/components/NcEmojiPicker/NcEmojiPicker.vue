@@ -111,10 +111,10 @@ This component allows the user to pick an emoji.
 		ref="popover"
 		v-model:shown="open"
 		:container="container"
-		popup-role="dialog"
-		:no-focus-trap="true /* Handled manually to remove emoji buttons from TAB sequence */"
-		@after-show="afterShow"
-		@after-hide="afterHide">
+		popupRole="dialog"
+		:noFocusTrap="true /* Handled manually to remove emoji buttons from TAB sequence */"
+		@afterShow="afterShow"
+		@afterHide="afterHide">
 		<template #trigger="slotProps">
 			<slot v-bind="slotProps" />
 		</template>
@@ -126,12 +126,12 @@ This component allows the user to pick an emoji.
 				:emoji="previewFallbackEmoji"
 				:i18n
 				:native
-				:emoji-size="20"
-				:per-line="8"
-				:picker-styles="{ width: '320px' }"
-				:show-preview
+				:emojiSize="20"
+				:perLine="8"
+				:pickerStyles="{ width: '320px' }"
+				:showPreview
 				:skin="currentSkinTone"
-				:show-skin-tones="false"
+				:showSkinTones="false"
 				:title="previewFallbackName"
 				role="dialog"
 				aria-modal="true"
@@ -146,24 +146,24 @@ This component allows the user to pick an emoji.
 							v-model="search"
 							class="search"
 							:label="t('Search')"
-							:label-visible="true"
+							:labelVisible="true"
 							:placeholder="i18n.search"
-							trailing-button-icon="close"
-							:trailing-button-label="t('Clear search')"
-							:show-trailing-button="search !== ''"
+							trailingButtonIcon="close"
+							:trailingButtonLabel="t('Clear search')"
+							:showTrailingButton="search !== ''"
 							@keydown.left="callPickerArrowHandlerWithScrollFix('onArrowLeft', $event)"
 							@keydown.right="callPickerArrowHandlerWithScrollFix('onArrowRight', $event)"
 							@keydown.down="callPickerArrowHandlerWithScrollFix('onArrowDown', $event)"
 							@keydown.up="callPickerArrowHandlerWithScrollFix('onArrowUp', $event)"
 							@keydown.enter="$refs.picker.onEnter($event)"
-							@trailing-button-click="clearSearch(); onSearch('');"
-							@update:model-value="onSearch(search)" />
+							@trailingButtonClick="clearSearch(); onSearch('');"
+							@update:modelValue="onSearch(search)" />
 						<NcColorPicker
-							palette-only
+							paletteOnly
 							:container
 							:palette="skinTonePalette"
-							:model-value="currentColor.color"
-							@update:model-value="onChangeSkinTone">
+							:modelValue="currentColor.color"
+							@update:modelValue="onChangeSkinTone">
 							<NcButton :aria-label="t('Skin tone')" variant="tertiary-no-background">
 								<template #icon>
 									<IconCircle :style="{ color: currentColor.color }" :title="currentColor.name" :size="20" />

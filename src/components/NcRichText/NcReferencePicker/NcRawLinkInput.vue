@@ -9,10 +9,10 @@
 			<NcTextField
 				ref="url-input"
 				v-model="inputValue"
-				:show-trailing-button="inputValue !== ''"
+				:showTrailingButton="inputValue !== ''"
 				:label="inputPlaceholder"
-				@trailing-button-click="onClear"
-				@update:model-value="onInput"
+				@trailingButtonClick="onClear"
+				@update:modelValue="onInput"
 				@keyup.enter="onSubmit">
 				<NcLoadingIcon v-if="loading" :size="16" />
 				<LinkVariantIcon v-else :size="16" />

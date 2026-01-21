@@ -527,7 +527,7 @@ The `actions-icon` slot can be used to pass icon to the inner NcActions componen
 					<NcActions
 						ref="actions"
 						:primary="active ?? isActive"
-						:force-menu="forceMenu"
+						:forceMenu="forceMenu"
 						:aria-label="actionsAriaLabel"
 						@update:open="handleActionsUpdateOpen">
 						<template v-if="$slots['actions-icon']" #icon>

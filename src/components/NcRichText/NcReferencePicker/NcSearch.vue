@@ -9,21 +9,21 @@
 			ref="search-select"
 			v-model="selectedResult"
 			class="smart-picker-search--select"
-			input-id="search-select-input"
+			inputId="search-select-input"
 			label="name"
 			:placeholder="mySearchPlaceholder"
 			:options="options"
-			:append-to-body="false"
-			:close-on-select="false"
-			:clear-search-on-select="false"
-			:clear-search-on-blur="() => false"
-			:reset-focus-on-options-change="false"
+			:appendToBody="false"
+			:closeOnSelect="false"
+			:clearSearchOnSelect="false"
+			:clearSearchOnBlur="() => false"
+			:resetFocusOnOptionsChange="false"
 			:filterable="false"
 			:autoscroll="true"
-			:reset-on-options-change="false"
+			:resetOnOptionsChange="false"
 			:loading="searching"
 			@search="onSearchInput"
-			@update:model-value="onSelectResultSelected">
+			@update:modelValue="onSelectResultSelected">
 			<template #option="option">
 				<div v-if="option.isRawLink" class="custom-option">
 					<LinkVariantIcon class="option-simple-icon" :size="20" />

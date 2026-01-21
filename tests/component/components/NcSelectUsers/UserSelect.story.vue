@@ -6,8 +6,8 @@
 <template>
 	<NcSelectUsers
 		v-model="value"
-		input-label="My account"
-		input-class="cypress-search-input"
+		inputLabel="My account"
+		inputClass="cypress-search-input"
 		:multiple
 		:options="[
 			{
@@ -29,7 +29,7 @@
 				subname: 'olivia@example.org',
 			},
 		]"
-		@update:model-value="$emit('selected', $event)" />
+		@update:modelValue="$emit('selected', $event)" />
 </template>
 
 <script setup lang="ts">

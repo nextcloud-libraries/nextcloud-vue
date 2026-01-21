@@ -4,7 +4,7 @@
 -->
 
 <template>
-	<NcContent app-name="testing">
+	<NcContent appName="testing">
 		<NcAppContent>
 			App content
 		</NcAppContent>
@@ -12,7 +12,7 @@
 			:compact="compact"
 			name="Very long title that will certainly overflow the sidebar width"
 			:subname="subname ? 'Very long subtitle what will certainly overflow the sidebar width' : ''"
-			:name-editable="nameEditable">
+			:nameEditable="nameEditable">
 			<template v-if="header" #header>
 				<div style="background-color: gold; height: 100%; width: 100%" />
 			</template>

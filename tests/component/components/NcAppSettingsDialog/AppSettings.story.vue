@@ -4,7 +4,7 @@
 -->
 
 <template>
-	<NcAppSettingsDialog open name="Settings dialog" show-navigation>
+	<NcAppSettingsDialog open name="Settings dialog" showNavigation>
 		<NcAppSettingsSection id="first" name="First section">
 			First content
 		</NcAppSettingsSection>

@@ -227,10 +227,10 @@ function drawBlurHash() {
 <template>
 	<Transition
 		:css="src ? undefined : false"
-		:enter-active-class="$style.fadeTransition"
-		:leave-active-class="$style.fadeTransition"
-		:enter-class="$style.fadeTransitionActive"
-		:leave-to-class="$style.fadeTransitionActive">
+		:enterActiveClass="$style.fadeTransition"
+		:leaveActiveClass="$style.fadeTransition"
+		:enterClass="$style.fadeTransitionActive"
+		:leaveToClass="$style.fadeTransitionActive">
 		<canvas
 			v-if="!imageLoaded"
 			ref="canvas"

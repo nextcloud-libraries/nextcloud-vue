@@ -400,8 +400,8 @@ function clearFocusTrap() {
 		<transition
 			name="fade"
 			appear
-			@after-enter="useFocusTrap"
-			@before-leave="clearFocusTrap">
+			@afterEnter="useFocusTrap"
+			@beforeLeave="clearFocusTrap">
 			<div
 				v-show="showModal"
 				v-bind="{ ...$attrs, ...scopeIdAttrs }"

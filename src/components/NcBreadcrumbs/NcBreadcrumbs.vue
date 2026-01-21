@@ -544,7 +544,8 @@ export default {
 			 * which shows the hidden breadcrumbs.
 			 */
 			crumbs.splice(
-				Math.round(breadcrumbs.length / 2), 0,
+				Math.round(breadcrumbs.length / 2),
+				0,
 
 				// The Actions menu
 				// Use a breadcrumb component for the hidden breadcrumbs

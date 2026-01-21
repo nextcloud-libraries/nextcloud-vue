@@ -30,8 +30,8 @@ export default {
 <template>
 	<div>
 		<NcTeamResources
-			:provider-id="providerId"
-			:item-id="itemId" />
+			:providerId="providerId"
+			:itemId="itemId" />
 
 		<div v-if="appEnabled && isVisible" class="related-resources">
 			<div class="related-resources__header">

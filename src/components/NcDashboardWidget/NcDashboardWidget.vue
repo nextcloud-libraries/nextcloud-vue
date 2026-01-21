@@ -176,7 +176,7 @@ export default {
 				<slot name="default" :item="item">
 					<NcDashboardWidgetItem
 						v-bind="item"
-						:item-menu="itemMenu"
+						:itemMenu="itemMenu"
 						v-on="handlers" />
 				</slot>
 			</li>

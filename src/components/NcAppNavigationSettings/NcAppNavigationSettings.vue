@@ -74,10 +74,10 @@ onClickOutside(container, () => {
 			</NcButton>
 		</div>
 		<Transition
-			:enter-active-class="$style.animationActive"
-			:leave-active-class="$style.animationActive"
-			:enter-from-class="$style.animationStop"
-			:leave-to-class="$style.animationStop">
+			:enterActiveClass="$style.animationActive"
+			:leaveActiveClass="$style.animationActive"
+			:enterFromClass="$style.animationStop"
+			:leaveToClass="$style.animationStop">
 			<div
 				v-show="open"
 				:id="contentId"

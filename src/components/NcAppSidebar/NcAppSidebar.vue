@@ -739,8 +739,8 @@ If the sidebar should be shown conditionally without any explicit toggle button,
 	<transition
 		appear
 		name="slide-right"
-		@after-enter="onAfterEnter"
-		@after-leave="onAfterLeave">
+		@afterEnter="onAfterEnter"
+		@afterLeave="onAfterLeave">
 		<aside
 			v-show="open"
 			id="app-sidebar-vue"
@@ -869,7 +869,7 @@ If the sidebar should be shown conditionally without any explicit toggle button,
 									<NcActions
 										v-if="isSlotPopulated($slots['secondary-actions']?.())"
 										class="app-sidebar-header__menu"
-										:force-menu="forceMenu">
+										:forceMenu="forceMenu">
 										<slot name="secondary-actions" />
 									</NcActions>
 								</div>
@@ -915,7 +915,7 @@ If the sidebar should be shown conditionally without any explicit toggle button,
 				v-show="!loading"
 				ref="tabs"
 				:active="active"
-				:force-tabs="forceTabs"
+				:forceTabs="forceTabs"
 				@update:active="onUpdateActive">
 				<slot />
 			</NcAppSidebarTabs>

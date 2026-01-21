@@ -348,22 +348,22 @@ function filterBy(option: { subname?: string }, label: string, search: string) {
 		v-model="modelValue"
 		class="nc-select-users"
 		v-bind="$props"
-		:filter-by
+		:filterBy
 		label="displayName"
 		@search="search = $event">
 		<template #option="option">
 			<NcListItemIcon
 				v-bind="option"
-				:avatar-size="32"
+				:avatarSize="32"
 				:name="option.displayName"
 				:search />
 		</template>
 		<template #selected-option="selectedOption">
 			<NcListItemIcon
 				v-bind="selectedOption"
-				:avatar-size
+				:avatarSize
 				:name="selectedOption.displayName"
-				no-margin
+				noMargin
 				:search />
 		</template>
 	</NcSelect>

@@ -116,10 +116,10 @@ export default {
 	<NcSelect
 		v-bind="propsToForward"
 		:options="availableOptions"
-		:close-on-select="!multiple"
-		:model-value="localValue"
+		:closeOnSelect="!multiple"
+		:modelValue="localValue"
 		@search="search = $event"
-		@update:model-value="handleInput">
+		@update:modelValue="handleInput">
 		<template #option="option">
 			<NcEllipsisedOption
 				:name="getOptionLabel(option)"

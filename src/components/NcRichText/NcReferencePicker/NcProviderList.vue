@@ -9,16 +9,16 @@
 			ref="provider-select"
 			v-model="selectedProvider"
 			class="provider-list--select"
-			input-id="provider-select-input"
+			inputId="provider-select-input"
 			label="title"
 			:placeholder="multiselectPlaceholder"
 			:options="options"
-			:append-to-body="false"
-			:clear-search-on-select="true"
-			:clear-search-on-blur="() => false"
+			:appendToBody="false"
+			:clearSearchOnSelect="true"
+			:clearSearchOnBlur="() => false"
 			:filterable="false"
 			@search="onSearch"
-			@update:model-value="onProviderSelected">
+			@update:modelValue="onProviderSelected">
 			<template #option="option">
 				<div v-if="option.isLink" class="provider">
 					<LinkVariantIcon class="link-icon" :size="20" />

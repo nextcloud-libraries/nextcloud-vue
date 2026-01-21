@@ -368,8 +368,8 @@ function hexToRGB(hex: string): [number, number, number] {
 	<NcPopover
 		v-model:shown="open"
 		:container="container"
-		popup-role="dialog"
-		@apply-hide="emit('closed')">
+		popupRole="dialog"
+		@applyHide="emit('closed')">
 		<template #trigger="slotProps">
 			<slot v-bind="slotProps" />
 		</template>
@@ -419,10 +419,10 @@ function hexToRGB(hex: string): [number, number, number] {
 					<VueChrome
 						v-else
 						class="color-picker__advanced"
-						:disable-alpha="true"
-						:disable-fields="!advancedFields"
-						:model-value="currentColor ?? '#000000'"
-						@update:model-value="pickCustomColor" />
+						disableAlpha
+						:disableFields="!advancedFields"
+						:modelValue="currentColor ?? '#000000'"
+						@update:modelValue="pickCustomColor" />
 				</Transition>
 				<div v-if="!paletteOnly" class="color-picker__navigation">
 					<NcButton

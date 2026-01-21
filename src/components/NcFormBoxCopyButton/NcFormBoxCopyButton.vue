@@ -42,7 +42,7 @@ whenever(isCopied, () => emit('copy'))
 <template>
 	<NcFormBoxButton
 		:disabled
-		inverted-accent
+		invertedAccent
 		@click="copy">
 		<template v-if="$slots.default || label" #default>
 			<span class="hidden-visually">

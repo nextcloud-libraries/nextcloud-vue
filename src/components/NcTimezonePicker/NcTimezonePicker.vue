@@ -102,7 +102,7 @@ function filterBy(option: ITimezone, label: string, search: string): boolean {
 		v-model="modelValue"
 		:aria-label-combobox="t('Search for time zone')"
 		:clearable="false"
-		:filter-by
+		:filterBy
 		:multiple="false"
 		:options
 		:placeholder="t('Type to search time zone')"

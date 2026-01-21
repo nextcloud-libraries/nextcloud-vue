@@ -34,17 +34,17 @@ section * {
 	<div>
 		<label v-if="label" :for="id" class="hidden-visually">{{ label }}</label>
 		<NcSelect
-			:model-value="inputValue"
+			:modelValue="inputValue"
 			:options="groupsArray"
 			:placeholder="placeholder || label"
-			:filter-by="filterGroups"
-			:input-id="id"
+			:filterBy="filterGroups"
+			:inputId="id"
 			:limit="5"
 			label="displayname"
 			:multiple="true"
-			:close-on-select="false"
+			:closeOnSelect="false"
 			:disabled="disabled"
-			@update:model-value="update"
+			@update:modelValue="update"
 			@search="onSearch" />
 		<div v-show="hasError" class="select-group-error">
 			{{ errorMessage }}
