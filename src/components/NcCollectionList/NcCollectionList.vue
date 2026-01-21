@@ -254,7 +254,9 @@ export default {
 
 			if (selectedOption.method === METHOD_ADD_TO_COLLECTION) {
 				this.addResourceToCollection({
-					collectionId: selectedOption.collectionId, resourceType: this.type, resourceId: this.id,
+					collectionId: selectedOption.collectionId,
+					resourceType: this.type,
+					resourceId: this.id,
 				}).catch((e) => {
 					this.setError(t('Failed to add the item to the project'), e)
 				})
