@@ -196,8 +196,16 @@ const maskElement = useTemplateRef('mask')
 
 // Set up the focus trap
 let focusTrap: FocusTrap | undefined
-onMounted(() => useFocusTrap())
+
 onUnmounted(() => clearFocusTrap())
+
+// Watch for mask element to be available
+watch(maskElement, (el) => {
+	if (el) {
+		useFocusTrap()
+	}
+})
+
 watch(() => props.additionalTrapElements, (elements) => {
 	if (focusTrap) {
 		focusTrap.updateContainerElements([maskElement.value!, ...elements])
@@ -364,11 +372,11 @@ async function useFocusTrap() {
 	if (!showModal.value || focusTrap) {
 		return
 	}
-
 	// wait until all children are mounted and available in the DOM before focusTrap can be added
 	await nextTick()
 
-	// ensuring the mask element is available before creating the focus trap
+	// When called from @after-enter, the maskElement might not be available yet because of transition timing
+	// This gaurd ensures we only initialize the focus trap when the element is available
 	if (!maskElement.value) {
 		return
 	}
@@ -382,7 +390,6 @@ async function useFocusTrap() {
 		escapeDeactivates: false,
 		setReturnFocus: props.setReturnFocus,
 	}
-
 	// Init focus trap
 	focusTrap = createFocusTrap([maskElement.value!, ...props.additionalTrapElements], options)
 	focusTrap.activate()
