@@ -5,6 +5,18 @@
 
 # Changelog
 
+## [v8.35.3](https://github.com/nextcloud-libraries/nextcloud-vue/tree/v8.35.3) (2026-01-21)
+[Full Changelog](https://github.com/nextcloud-libraries/nextcloud-vue/compare/v8.35.2...v8.35.3)
+
+### 🐛 Fixed bugs
+* [stable8] fix(NcActions): migrate to custom icons in Checkbox and Radio actions [\#8060](https://github.com/nextcloud-libraries/nextcloud-vue/pull/8060) \([backportbot[bot]](https://github.com/backportbot[bot])\)
+* [stable8] perf(NcTimezonePicker): use Intl to reduce self-size from 206kb to 2kb [\#8076](https://github.com/nextcloud-libraries/nextcloud-vue/pull/8076) \([ShGKme](https://github.com/ShGKme)\)
+
+### Other Changes
+* [stable8] refactor(NcTimezonePicker): migrate component to Typescript [\#8075](https://github.com/nextcloud-libraries/nextcloud-vue/pull/8075) \([ShGKme](https://github.com/ShGKme)\)
+* [stable8] deps: revert pin for focus-trap library and bump to v7.8.0 [\#8073](https://github.com/nextcloud-libraries/nextcloud-vue/pull/8073) \([ShGKme](https://github.com/ShGKme)\)
+* [stable8] build: prevent style leaks from apps with different Vue version [\#8092](https://github.com/nextcloud-libraries/nextcloud-vue/pull/8092) \([ShGKme](https://github.com/ShGKme)\)
+
 ## [v8.35.2](https://github.com/nextcloud-libraries/nextcloud-vue/tree/v8.35.2) (2026-01-09)
 [Full Changelog](https://github.com/nextcloud-libraries/nextcloud-vue/compare/v8.35.1...v8.35.2)
 
