@@ -1386,7 +1386,7 @@ $top-buttons-spacing: $app-navigation-padding; // align with app navigation
 				flex-direction: row;
 
 				.app-sidebar-header__figure {
-					--figure-size: calc($desc-height + var(--app-sidebar-padding));
+					--figure-size: calc(#{$desc-height} + var(--app-sidebar-padding));
 					z-index: 2;
 					width: var(--figure-size);
 					height: var(--figure-size);
