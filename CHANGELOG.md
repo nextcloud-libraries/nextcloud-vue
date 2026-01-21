@@ -7,6 +7,16 @@
 
 All notable changes to this project will be documented in this file.
 
+## [v9.4.0](https://github.com/nextcloud-libraries/nextcloud-vue/tree/v9.4.0) (2026-01-21)
+[Full Changelog](https://github.com/nextcloud-libraries/nextcloud-vue/compare/v9.3.3...v9.4.0)
+
+### 🚀 Enhancements
+* feat(NcDateTimePicker): add range limit props and inline option [\#8009](https://github.com/nextcloud-libraries/nextcloud-vue/pull/8009) \([GVodyanov](https://github.com/GVodyanov)\)
+
+### Other Changes
+* deps: revert pin for focus-trap library and bump to v7.8.0 [\#8072](https://github.com/nextcloud-libraries/nextcloud-vue/pull/8072) \([ShGKme](https://github.com/ShGKme)\)
+* build: prevent style leaks from apps with different Vue version [\#8091](https://github.com/nextcloud-libraries/nextcloud-vue/pull/8091) \([ShGKme](https://github.com/ShGKme)\)
+
 ## [v9.3.3](https://github.com/nextcloud-libraries/nextcloud-vue/tree/v9.3.3) (2026-01-09)
 [Full Changelog](https://github.com/nextcloud-libraries/nextcloud-vue/compare/v9.3.2...v9.3.3)
 
