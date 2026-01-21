@@ -130,12 +130,12 @@ test('Modal focus trap works correctly', async ({ mount, page }) => {
 	const testButton = dialog.getByRole('button', { name: 'Test Button' })
 	const closeButton = dialog.getByRole('button', { name: 'Close' })
 
-	await testButton.focus()
-	await expect(testButton).toBeFocused()
-
 	await page.keyboard.press('Tab')
 	await expect(closeButton).toBeFocused()
 
 	await page.keyboard.press('Tab')
 	await expect(testButton).toBeFocused()
+
+	await page.keyboard.press('Tab')
+	await expect(closeButton).toBeFocused()
 })
