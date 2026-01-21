@@ -82,47 +82,45 @@ export const COLOR_WHITE = new Color(255, 255, 255, t('White'))
  * Like GenColor(4) but with labels
  */
 export const defaultPalette = [
-	/* eslint-disable @stylistic/function-call-argument-newline -- Allow to put translators comments */
 	COLOR_RED,
 	new Color(
-		191, 103, 139,
+		...[191, 103, 139],
 		t('Rosy brown'), // TRANSLATORS: A color name for RGB(191, 103, 139)
 	),
 	new Color(
-		201, 136, 121,
+		...[201, 136, 121],
 		t('Feldspar'), // TRANSLATORS: A color name for RGB(201, 136, 121)
 	),
 	new Color(
-		211, 169, 103,
+		...[211, 169, 103],
 		t('Whiskey'), // TRANSLATORS: A color name for RGB(211, 169, 103)
 	),
 	COLOR_YELLOW,
 	new Color(
-		165, 184, 114,
+		...[165, 184, 114],
 		t('Olivine'), // TRANSLATORS: A color name for RGB(165, 184, 114)
 	),
 	new Color(
-		110, 166, 143,
+		...[110, 166, 143],
 		t('Acapulco'), // TRANSLATORS: A color name for RGB(110, 166, 143)
 	),
 	new Color(
-		55, 148, 172,
+		...[55, 148, 172],
 		t('Boston Blue'), // TRANSLATORS: A color name for RGB(55, 148, 172)
 	),
 	COLOR_BLUE,
 	new Color(
-		45, 115, 190,
+		...[45, 115, 190],
 		t('Mariner'), // TRANSLATORS: A color name for RGB(45, 115, 190)
 	),
 	new Color(
-		91, 100, 179,
+		...[91, 100, 179],
 		t('Blue Violet'), // TRANSLATORS: A color name for RGB(91, 100, 179)
 	),
 	new Color(
-		136, 85, 168,
+		...[136, 85, 168],
 		t('Deluge'), // TRANSLATORS: A color name for RGB(136, 85, 168)
 	),
-	/* eslint-enable @stylistic/function-call-argument-newline */
 ]
 
 /**
