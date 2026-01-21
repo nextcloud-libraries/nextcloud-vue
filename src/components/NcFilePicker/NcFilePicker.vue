@@ -13,8 +13,35 @@ import IconUpload from 'vue-material-design-icons/Upload.vue'
 import NcActionButton from '../NcActionButton/NcActionButton.vue'
 import NcActionCaption from '../NcActionCaption/NcActionCaption.vue'
 import NcActions from '../NcActions/NcActions.vue'
+import NcIconSvgWrapper from '../NcIconSvgWrapper/NcIconSvgWrapper.vue'
 import NcLoadingIcon from '../NcLoadingIcon/NcLoadingIcon.vue'
 import { t } from '../../l10n.js'
+
+export interface FilePickerItem {
+	/**
+	 * SVG icon (as string) for the action
+	 */
+	iconSvg: string
+	/**
+	 * Label of the action
+	 */
+	label: string
+	/**
+	 * Callback when the action is clicked
+	 */
+	onClick: () => void
+}
+
+export interface FilePickerItemGroup {
+	/**
+	 * Caption for the action group
+	 */
+	caption: string
+	/**
+	 * Actions within this group
+	 */
+	actions: FilePickerItem[]
+}
 
 const props = withDefaults(defineProps<{
 	/**
@@ -26,6 +53,11 @@ const props = withDefaults(defineProps<{
 	 * Optional menu caption to be shown above the actions
 	 */
 	actionCaption?: string
+
+	/**
+	 * Additional actions to be shown within the picker menu
+	 */
+	actions?: FilePickerItem[] | FilePickerItemGroup[]
 
 	/**
 	 * Allow picking a directory
@@ -71,6 +103,7 @@ const props = withDefaults(defineProps<{
 	 */
 	variant?: 'primary' | 'secondary' | 'tertiary'
 }>(), {
+	actions: () => [],
 	accept: undefined,
 	actionCaption: '',
 	label: undefined,
@@ -82,11 +115,6 @@ const emit = defineEmits<{
 }>()
 
 defineSlots<{
-	/**
-	 * Custom NcAction* to be shown within the picker menu
-	 */
-	actions?: Slot
-
 	/**
 	 * Optional custom icon for the picker menu
 	 */
@@ -169,8 +197,8 @@ function reset() {
 		<NcActions
 			:aria-label="currentLabel"
 			:disabled="disabled || loading"
-			:menu-name="iconOnly ? undefined : currentLabel"
-			:force-name="!iconOnly"
+			:menuName="iconOnly ? undefined : currentLabel"
+			:forceName="!iconOnly"
 			:variant>
 			<template #icon>
 				<slot v-if="!loading" name="icon">
@@ -183,7 +211,7 @@ function reset() {
 
 			<NcActionButton
 				v-if="!directoryOnly"
-				close-after-click
+				closeAfterClick
 				@click="triggerPickFiles(false)">
 				<template #icon>
 					<IconUpload :size="20" />
@@ -194,7 +222,7 @@ function reset() {
 
 			<NcActionButton
 				v-if="canUploadFolders"
-				close-after-click
+				closeAfterClick
 				@click="triggerPickFiles(true)">
 				<template #icon>
 					<IconFolderUpload style="color: var(--color-primary-element)" :size="20" />
@@ -203,8 +231,23 @@ function reset() {
 				{{ !directoryOnly || $slots.actions ? t('Upload folder') : currentLabel }}
 			</NcActionButton>
 
-			<!-- App defined upload actions -->
-			<slot name="actions" />
+			<template v-for="group of actions">
+				<NcActionCaption
+					v-if="(group as FilePickerItemGroup).caption"
+					:key="(group as FilePickerItemGroup).caption"
+					:name="(group as FilePickerItemGroup).caption" />
+
+				<NcActionButton
+					v-for="action of (group as FilePickerItemGroup).actions ?? [group as FilePickerItem]"
+					:key="action.label"
+					closeAfterClick
+					@click="action.onClick">
+					<template #icon>
+						<NcIconSvgWrapper :svg="action.iconSvg" />
+					</template>
+					{{ action.label }}
+				</NcActionButton>
+			</template>
 		</NcActions>
 
 		<!-- Hidden files picker input - also hidden for accessibility as otherwise such users also loose the ability to pick files -->
