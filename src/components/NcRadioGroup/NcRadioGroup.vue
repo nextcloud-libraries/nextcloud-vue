@@ -159,7 +159,7 @@ The radio group also allows to create a button like styling together with the `N
 		<h4>With icons</h4>
 		<div style="max-width: 250px">
 			<NcRadioGroup v-model="alignment" label="Example alignment with icons" hide-label>
-				<NcRadioGroupButton aria-label="Start" value="start">
+				<NcRadioGroupButton aria-label="Start" value="start" disabled="true">
 					<template #icon>
 						<NcIconSvgWrapper directional :path="mdiAlignHorizontalLeft" />
 					</template>
