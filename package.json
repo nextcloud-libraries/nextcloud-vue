@@ -114,7 +114,7 @@
     "ts-md5": "^2.0.1",
     "unified": "^11.0.5",
     "unist-builder": "^4.0.0",
-    "unist-util-visit": "^5.0.0",
+    "unist-util-visit": "^5.1.0",
     "vue": "^3.5.18",
     "vue-router": "^4.6.4",
     "vue-select": "^4.0.0-beta.6"
