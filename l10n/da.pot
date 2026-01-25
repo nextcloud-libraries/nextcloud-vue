@@ -1,11 +1,11 @@
 # 
 # Translators:
 # Joas Schilling, 2025
-# Martin Bonde <Martin@maboni.dk>, 2025
+# Martin Bonde <Martin@maboni.dk>, 2026
 # 
 msgid ""
 msgstr ""
-"Last-Translator: Martin Bonde <Martin@maboni.dk>, 2025\n"
+"Last-Translator: Martin Bonde <Martin@maboni.dk>, 2026\n"
 "Language-Team: Danish (https://app.transifex.com/nextcloud/teams/64236/da/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Language: da\n"
@@ -133,6 +133,12 @@ msgstr "Bekræft ændringer"
 msgid "Connect items to a project to make them easier to find"
 msgstr "Forbind elementer til et projekt for at gøre dem nemmere at finde"
 
+msgid "Copied"
+msgstr "Kopieret"
+
+msgid "Copy to clipboard"
+msgstr "Kopiér til udklipsholderen"
+
 #. TRANSLATORS: Ctrl key on keyboard (Windows/Linux)
 msgid "Ctrl"
 msgstr "Ctrl"
@@ -253,6 +259,9 @@ msgstr "usynlig"
 
 msgid "Keyboard navigation help"
 msgstr "Hjælp til tastaturnavigation"
+
+msgid "Keyboard shortcuts"
+msgstr "Tastaturgenveje"
 
 msgid "Light skin tone"
 msgstr "Lys skin tone"
@@ -431,7 +440,7 @@ msgstr "Søg ..."
 msgid "Search emoji"
 msgstr "Søg emoji"
 
-msgid "Search for timezone"
+msgid "Search for time zone"
 msgstr "Søg efter tidszone"
 
 msgid "Search results"
@@ -533,7 +542,7 @@ msgstr "Faneblad"
 msgid "Time picker"
 msgstr "Tidsvælger"
 
-msgid "Timezone"
+msgid "Time zone"
 msgstr "Tidszone"
 
 msgid "Toggle overlay"
