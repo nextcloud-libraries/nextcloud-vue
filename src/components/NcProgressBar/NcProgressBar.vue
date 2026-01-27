@@ -24,7 +24,7 @@ This is a simple progress bar component.
 		<NcProgressBar :value="60" size="medium" />
 		<br />
 		Custom size (changes the progress bar height)
-		<NcProgressBar :value="55" :size="8" />
+		<NcProgressBar :value="55" :size="8" showValue />
 	</span>
 </template>
 ```
@@ -80,11 +80,17 @@ const props = withDefaults(defineProps<{
 	 * The color of the progress bar
 	 */
 	color?: string
+
+	/**
+	 * Show value at the end of progress bar (only for linear type)
+	 */
+	showValue?: boolean
 }>(), {
 	value: 0,
 	color: 'var(--color-primary-element)',
 	size: 'small',
 	type: 'linear',
+	showValue: false,
 })
 
 const normalizedProgress = computed(() => Math.max(0, Math.min(100, props.value)) / 100)
@@ -156,12 +162,15 @@ const clickableAreaSmall = Number.parseInt(window.getComputedStyle(document.body
 				:cy="circleCenterPosition" />
 		</svg>
 	</span>
-	<progress
-		v-else
-		class="progress-bar progress-bar--linear vue"
-		:class="{ 'progress-bar--error': error }"
-		:value
-		max="100" />
+	<div v-else class="progress-bar-container">
+		<progress
+			class="progress-bar progress-bar--linear vue"
+			:class="{ 'progress-bar--error': error }"
+			:value
+			max="100" />
+
+		<span v-if="showValue" class="progress-bar__value">{{ value }}%</span>
+	</div>
 </template>
 
 <style lang="scss" scoped>
@@ -208,6 +217,19 @@ const clickableAreaSmall = Number.parseInt(window.getComputedStyle(document.body
 		&::-webkit-progress-value {
 			background: var(--color-text-error, var(--color-error)) !important;
 		}
+	}
+
+	&-container {
+		display: flex;
+		align-items: center;
+		gap: calc(2 * var(--default-grid-baseline));
+	}
+
+	&__value {
+		font-size: var(--font-size-small, 13px);
+		font-variant-numeric: tabular-nums;
+		min-width: 4ch;
+		text-align: end;
 	}
 }
 
