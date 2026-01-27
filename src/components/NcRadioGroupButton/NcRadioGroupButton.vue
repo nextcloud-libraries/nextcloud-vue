@@ -55,6 +55,7 @@ function onUpdate() {
 	if (props.disabled) {
 		return
 	}
+
 	radioGroup!.value.onUpdate(props.value)
 }
 </script>
@@ -80,7 +81,7 @@ function onUpdate() {
 			class="hidden-visually"
 			:checked="isChecked"
 			type="radio"
-			:disabled="disabled"
+			:disabled
 			:value
 			@input="onUpdate">
 	</div>
@@ -123,7 +124,7 @@ function onUpdate() {
 		padding-inline-start: var(--radio-group-button--padding);
 	}
 
-	&:hover {
+	&:hover:not(.radioGroupButton_disabled) {
 		background-color: var(--radio-group-button--background-color-hover);
 	}
 
@@ -153,10 +154,6 @@ function onUpdate() {
 	cursor: default;
 	* {
 		cursor: default;
-	}
-
-	&:hover {
-		background-color: var(--radio-group-button--background-color);
 	}
 }
 
