@@ -75,6 +75,21 @@ export default defineConfig({
 						define: {
 							NEXTCLOUD_VERSION: '"32.0.0"',
 						},
+						optimizeDeps: {
+							include: [
+								'vue',
+								'@cypress/vue2',
+								'rehype-highlight',
+							],
+							force: true,
+						},
+						warmup: {
+							clientFiles: [
+								'cypress/support/component.ts',
+								'cypress/**/*.cy.ts',
+								'cypress/**/*.cy.js',
+							],
+						},
 						css: {
 							devSourcemap: true,
 							preprocessorOptions: {
