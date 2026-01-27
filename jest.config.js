@@ -64,6 +64,14 @@ module.exports = {
 		'/node_modules/(?!(' + ignorePatterns.join('|') + '))',
 	],
 
+	globals: {
+		'vue-jest': {
+			resources: {
+				scss: ['src/assets/variables.scss'],
+			},
+		},
+	},
+
 	moduleNameMapper: {
 		'\\.(css|scss)$': 'jest-transform-stub',
 		'\\?raw$': 'jest-raw-loader',
