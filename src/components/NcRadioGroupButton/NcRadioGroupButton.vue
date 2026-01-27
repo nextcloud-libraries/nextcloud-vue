@@ -26,6 +26,11 @@ const props = defineProps<{
 	 * The value that should be assigned to the `modelValue` of the `NcRadioGroup`.
 	 */
 	value: string
+
+	/**
+	 * Disabled state of the radio button
+	 */
+	disabled?: boolean
 }>()
 
 defineSlots<{
@@ -47,6 +52,10 @@ const isChecked = computed(() => radioGroup?.value.modelValue === props.value)
  * Handle updating the current model value
  */
 function onUpdate() {
+	if (props.disabled) {
+		return
+	}
+
 	radioGroup!.value.onUpdate(props.value)
 }
 </script>
@@ -55,6 +64,7 @@ function onUpdate() {
 	<div
 		:class="[{
 			[$style.radioGroupButton_active]: isChecked,
+			[$style.radioGroupButton_disabled]: disabled,
 		}, $style.radioGroupButton, formBoxItemClass]"
 		@click="onUpdate">
 		<div v-if="$slots.icon" :class="$style.radioGroupButton__icon">
@@ -71,6 +81,7 @@ function onUpdate() {
 			class="hidden-visually"
 			:checked="isChecked"
 			type="radio"
+			:disabled
 			:value
 			@input="onUpdate">
 	</div>
@@ -113,7 +124,7 @@ function onUpdate() {
 		padding-inline-start: var(--radio-group-button--padding);
 	}
 
-	&:hover {
+	&:hover:not(.radioGroupButton_disabled) {
 		background-color: var(--radio-group-button--background-color-hover);
 	}
 
@@ -133,6 +144,17 @@ function onUpdate() {
 
 .radioGroupButton__label {
 	font-weight: bold;
+}
+
+.radioGroupButton_disabled {
+	filter: saturate($opacity_normal);
+	opacity: $opacity_disabled;
+
+	// Reset the cursor
+	cursor: default;
+	* {
+		cursor: default;
+	}
 }
 
 .radioGroupButton__icon {
