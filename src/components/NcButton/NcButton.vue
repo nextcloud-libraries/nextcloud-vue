@@ -756,7 +756,6 @@ function onClick(event: MouseEvent) {
 	// Setup different button sizes
 	&--size-small {
 		--button-size: var(--clickable-area-small);
-		--button-radius: var(--border-radius-small); // make the border radius even smaller for small buttons
 	}
 
 	&--size-large {
