@@ -5,7 +5,7 @@
 
 import type { Component } from 'vue'
 
-import { mount } from 'cypress/vue2'
+import { mount } from '@cypress/vue2'
 import NcModal from '../../src/components/NcModal/NcModal.vue'
 
 describe('NcModal', () => {
