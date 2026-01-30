@@ -116,7 +116,7 @@
     "unist-builder": "^4.0.0",
     "unist-util-visit": "^5.1.0",
     "vue": "^3.5.18",
-    "vue-router": "^4.6.4",
+    "vue-router": "^5.0.0",
     "vue-select": "^4.0.0-beta.6"
   },
   "devDependencies": {
