@@ -555,7 +555,7 @@ msgid "Type to search for existing projects"
 msgstr "Upišite za pretraživanje postojećih projekata"
 
 msgid "Type to search time zone"
-msgstr "Upiši za pretraživanje vremenske zone"
+msgstr "Upišite za pretraživanje vremenske zone"
 
 msgid "Unable to search the group"
 msgstr "Nije moguće pretražiti grupu"
