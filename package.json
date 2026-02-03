@@ -106,6 +106,7 @@
     "remark-breaks": "^4.0.0",
     "remark-parse": "^11.0.0",
     "remark-rehype": "^11.1.2",
+    "remark-stringify": "^11.0.0",
     "remark-unlink-protocols": "^1.0.0",
     "splitpanes": "^4.0.4",
     "striptags": "^3.2.0",
