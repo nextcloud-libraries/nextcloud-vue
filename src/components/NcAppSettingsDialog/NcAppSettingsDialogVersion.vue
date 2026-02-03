@@ -5,12 +5,12 @@
 
 <script setup lang="ts">
 import { inject } from 'vue'
-import { APP_VERSION, getLocalizedAppName } from '../../utils/appName.ts'
+import { APP_VERSION, useLocalizedAppName } from '../../utils/appName.ts'
 import { APP_SETTINGS_LEGACY_DESIGN_KEY } from './useAppSettingsDialog.ts'
 
 const legacy = inject(APP_SETTINGS_LEGACY_DESIGN_KEY)!
 
-const localizedAppName = getLocalizedAppName()
+const localizedAppName = useLocalizedAppName()
 </script>
 
 <template>
