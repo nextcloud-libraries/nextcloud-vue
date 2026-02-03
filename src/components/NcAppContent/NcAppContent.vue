@@ -157,7 +157,7 @@ import { useSwipe } from '@vueuse/core'
 import { Pane, Splitpanes } from 'splitpanes'
 import NcAppContentDetailsToggle from './NcAppContentDetailsToggle.vue'
 import { useIsMobile } from '../../composables/useIsMobile/index.js'
-import { APP_NAME, getLocalizedAppName } from '../../utils/appName.ts'
+import { useAppName, useLocalizedAppName } from '../../utils/appName.ts'
 import { logger } from '../../utils/logger.ts'
 import { isRtl } from '../../utils/rtl.ts'
 
@@ -282,6 +282,8 @@ export default {
 
 	setup() {
 		return {
+			appName: useAppName(),
+			localizedAppName: useLocalizedAppName(),
 			isMobile: useIsMobile(),
 			isRtl,
 		}
@@ -307,7 +309,7 @@ export default {
 				// This will throw a ReferenceError when the global variable is missing
 				// In that case either you provide paneConfigKey or else it fallback
 				// to a global storage key
-				return `pane-list-size-${APP_NAME}`
+				return `pane-list-size-${this.appName}`
 			} catch {
 				logger.info('[NcAppContent]: falling back to global nextcloud pane config')
 				return 'pane-list-size-nextcloud'
@@ -356,7 +358,7 @@ export default {
 				}
 
 				if (entries.size > 0) {
-					entries.add(getLocalizedAppName())
+					entries.add(this.localizedAppName)
 				}
 			} else {
 				return null
