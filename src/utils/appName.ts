@@ -4,6 +4,7 @@
  */
 
 import { loadState } from '@nextcloud/initial-state'
+import { inject } from 'vue'
 import { logger } from './logger.ts'
 import { once } from './utils.ts'
 
@@ -24,9 +25,18 @@ try {
 export const APP_VERSION = realAppVersion
 
 /**
- * Get localized app name from the initial state
+ * Get the app name (the Nextcloud app id).
  */
-export const getLocalizedAppName = once(() => {
-	const activeApp = loadState<string>('core', 'active-app', APP_NAME)
-	return loadState<{ id: string, name: string }[]>('core', 'apps', []).find(({ id }) => id === activeApp)?.name ?? APP_NAME
+export function useAppName(): string {
+	return inject<string>('appName', APP_NAME)
+}
+
+/**
+ * Get the localized app name.
+ */
+export const useLocalizedAppName = once(() => {
+	const apps = loadState<{ id: string, name: string }[]>('core', 'apps', [])
+	const realAppName = useAppName()
+
+	return apps.find(({ id }) => id === realAppName)?.name ?? realAppName
 })
