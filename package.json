@@ -115,8 +115,6 @@
     "unified": "^11.0.5",
     "unist-builder": "^4.0.0",
     "unist-util-visit": "^5.1.0",
-    "vue": "^3.5.18",
-    "vue-router": "^5.0.1",
     "vue-select": "^4.0.0-beta.6"
   },
   "devDependencies": {
@@ -162,6 +160,10 @@
     "vue-tsc": "^3.2.4",
     "webpack": "^5.104.1",
     "webpack-merge": "^6.0.1"
+  },
+  "peerDependencies": {
+    "vue": "^3.5.27",
+    "vue-router": "^5.0.2"
   },
   "engines": {
     "node": "^20.11.0 || ^22 || ^24"
