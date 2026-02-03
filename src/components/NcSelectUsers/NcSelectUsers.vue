@@ -169,7 +169,7 @@ import { ref, watch } from 'vue'
 import NcListItemIcon from '../NcListItemIcon/index.js'
 import NcSelect from '../NcSelect/index.js'
 
-export interface IUserData {
+export interface NcSelectUsersModel {
 	id: string
 
 	/**
@@ -219,7 +219,7 @@ export interface IUserData {
  * If the `multiple` property is set then an array of users is emitted,
  * otherwise a single user data object will be emitted.
  */
-const modelValue = defineModel<IUserData | IUserData[]>('modelValue')
+const modelValue = defineModel<NcSelectUsersModel | NcSelectUsersModel[]>('modelValue')
 
 defineProps<{
 	/**
@@ -291,7 +291,7 @@ defineProps<{
 	/**
 	 * Array of users or similar object (e.g. groups or guest users).
 	 */
-	options: IUserData[]
+	options: NcSelectUsersModel[]
 
 	/**
 	 * Placeholder text.
