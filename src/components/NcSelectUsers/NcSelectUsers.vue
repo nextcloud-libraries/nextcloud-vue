@@ -164,12 +164,57 @@ export default {
 ```
 </docs>
 
-<script setup>
+<script setup lang="ts">
+import type { PropType } from 'vue'
+
 import { ref, watch } from 'vue'
 import NcListItemIcon from '../NcListItemIcon/NcListItemIcon.vue'
 import NcSelect from '../NcSelect/NcSelect.vue'
 import { t } from '../../l10n.js'
 import createElementId from '../../utils/GenRandomId.js'
+
+export interface NcSelectUsersModel {
+	id: string
+
+	/**
+	 * Main display name
+	 */
+	displayName: string
+
+	/**
+	 * The user id.
+	 * Will be used to fetch the user status if not disabled.
+	 */
+	user?: string
+
+	/**
+	 * The secondary displayname (e.g. the email address).
+	 */
+	subname?: string
+
+	/**
+	 * Optional icon to use as the avatar.
+	 * Setting this will disable the automatic avatar loading.
+	 */
+	iconSvg?: string
+
+	/**
+	 * Accessible name for the icon.
+	 */
+	iconName?: string
+
+	/**
+	 * If this is a guest user.
+	 * Needed as guest users have a different API endpoint for avatar loading.
+	 */
+	isGuest?: boolean
+
+	/**
+	 * Set if this is not a regular user.
+	 * This will disable user status and avatar loading.
+	 */
+	isNoUser?: boolean
+}
 
 const props = defineProps({
 	/**
@@ -191,12 +236,10 @@ const props = defineProps({
 	/**
 	 * Allows to customize the `aria-label` for the deselect-option button
 	 * The default is "Deselect " + optionLabel
-	 *
-	 * @type {(optionLabel: string) => string}
 	 */
 	ariaLabelDeselectOption: {
-		type: Function,
-		default: (optionLabel) => t('Deselect {option}', { option: optionLabel }),
+		type: Function as PropType<(optionLabel: string) => string>,
+		default: (optionLabel: string) => t('Deselect {option}', { option: optionLabel }),
 	},
 
 	/**
@@ -223,7 +266,7 @@ const props = defineProps({
 	 * option object unless this prop is set explicitly
 	 */
 	filterBy: {
-		type: Function,
+		type: Function as PropType<(option: NcSelectUsersModel, label: string, search: string) => boolean>,
 		default: null,
 	},
 
@@ -286,11 +329,9 @@ const props = defineProps({
 
 	/**
 	 * Array of users.
-	 *
-	 * @type {{displayName: string, user: string, subname?: string, iconSvg?: string, iconName?: string, isGuest?: boolean, isNoUser?: boolean}[]}
 	 */
 	options: {
-		type: Array,
+		type: Array as PropType<NcSelectUsersModel[]>,
 		default: () => [],
 	},
 
@@ -340,11 +381,11 @@ const avatarSize = clickableArea - 2 * gridBaseLine
 /**
  * Filter function to search users.
  *
- * @param {{subname: string}} option - The option to check
- * @param {string} label - The label of the option
- * @param {string} search - The current search string
+ * @param option - The option to check
+ * @param label - The label of the option
+ * @param search - The current search string
  */
-function localFilterBy(option, label, search) {
+function localFilterBy(option: NcSelectUsersModel, label: string, search: string) {
 	if (props.filterBy) {
 		return props.filterBy
 	}
@@ -361,7 +402,7 @@ function localFilterBy(option, label, search) {
 }
 </script>
 
-<script>
+<script lang="ts">
 /** For backward compatibility with Vue 2 */
 export default {
 	model: {
