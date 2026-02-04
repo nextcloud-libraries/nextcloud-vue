@@ -5,6 +5,18 @@
 
 # Changelog
 
+
+## [v8.36.0](https://github.com/nextcloud-libraries/nextcloud-vue/tree/v8.36.0) (2026-02-04)
+
+### 🚀 Enhancements
+* [stable8] feat(NcRadioGroupButton): add disabled state styling to NcRadioGroupButton  [\#8126](https://github.com/nextcloud-libraries/nextcloud-vue/pull/8126) \([backportbot[bot]](https://github.com/backportbot[bot])\)
+* [stable8] feat(NcListItem): emit dragstart event [\#8169](https://github.com/nextcloud-libraries/nextcloud-vue/pull/8169) \([mejo-](https://github.com/mejo-)\)
+* [stable8] feat(NcSelectUsers): export `NcSelectUsersModel` type [\#8159](https://github.com/nextcloud-libraries/nextcloud-vue/pull/8159) \([backportbot[bot]](https://github.com/backportbot[bot])\)
+
+### 🐛 Fixed bugs
+* [stable8] fix: use provided appName of `NcContent` if possible [\#8160](https://github.com/nextcloud-libraries/nextcloud-vue/pull/8160) \([backportbot[bot]](https://github.com/backportbot[bot])\)
+* [stable8] fix(NcInputField): Helper message `word-break` on Chrome [\#8166](https://github.com/nextcloud-libraries/nextcloud-vue/pull/8166) \([backportbot[bot]](https://github.com/backportbot[bot])\)
+
 ## [v8.35.3](https://github.com/nextcloud-libraries/nextcloud-vue/tree/v8.35.3) (2026-01-21)
 [Full Changelog](https://github.com/nextcloud-libraries/nextcloud-vue/compare/v8.35.2...v8.35.3)
 
