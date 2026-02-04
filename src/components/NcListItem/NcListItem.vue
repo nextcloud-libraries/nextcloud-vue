@@ -471,6 +471,7 @@ The `actions-icon` slot can be used to pass icon to the inner NcActions componen
 					@focus="showActions"
 					@focusout="handleBlur"
 					@click="onClick($event, navigate, routerLinkHref)"
+					@dragstart="$emit('dragstart', $event)"
 					@keydown.esc="hideActions">
 					<!-- @slot This slot is used for the NcAvatar or icon, the content of this slot must not be interactive -->
 					<slot name="icon" />
@@ -715,6 +716,7 @@ export default {
 
 	emits: [
 		'click',
+		'dragstart',
 		'update:menuOpen',
 	],
 
