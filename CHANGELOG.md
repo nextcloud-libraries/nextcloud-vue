@@ -7,6 +7,27 @@
 
 All notable changes to this project will be documented in this file.
 
+## [v9.5.0](https://github.com/nextcloud-libraries/nextcloud-vue/tree/v9.5.0) (2026-02-04)
+[Full Changelog](https://github.com/nextcloud-libraries/nextcloud-vue/compare/v9.4.0...v9.5.0)
+
+### 🚀 Enhancements
+* feat(NcRadioGroupButton): add disabled state styling to NcRadioGroupButton  [\#8118](https://github.com/nextcloud-libraries/nextcloud-vue/pull/8118) \([nikhil2297](https://github.com/nikhil2297)\)
+* feat(NcProgresBar): add `showValue` prop to show the progress value [\#8120](https://github.com/nextcloud-libraries/nextcloud-vue/pull/8120) \([nikhil2297](https://github.com/nikhil2297)\)
+* feat(NcSelectUsers): export `NcSelectUsersModel` type [\#8130](https://github.com/nextcloud-libraries/nextcloud-vue/pull/8130) \([susnux](https://github.com/susnux)\)
+* feat(NcListItem): emit dragstart event [\#8170](https://github.com/nextcloud-libraries/nextcloud-vue/pull/8170) \([backportbot[bot]](https://github.com/backportbot[bot])\)
+
+### 🐛 Fixed bugs
+* fix(NcButton): do not reduce border radius for small buttons [\#8129](https://github.com/nextcloud-libraries/nextcloud-vue/pull/8129) \([susnux](https://github.com/susnux)\)
+* fix: use provided appName of `NcContent` if possible [\#8157](https://github.com/nextcloud-libraries/nextcloud-vue/pull/8157) \([susnux](https://github.com/susnux)\)
+* fix(NcInputField): Helper message `word-break` on Chrome [\#8128](https://github.com/nextcloud-libraries/nextcloud-vue/pull/8128) \([artonge](https://github.com/artonge)\)
+
+### Other Changes
+* Updates for project Nextcloud vue library [\#8121](https://github.com/nextcloud-libraries/nextcloud-vue/pull/8121) \([transifex-integration[bot]](https://github.com/transifex-integration[bot])\)
+* Updates for project Nextcloud vue library [\#8145](https://github.com/nextcloud-libraries/nextcloud-vue/pull/8145) \([transifex-integration[bot]](https://github.com/transifex-integration[bot])\)
+
+## New Contributors
+* @nikhil2297 made their first contribution in https://github.com/nextcloud-libraries/nextcloud-vue/pull/8118
+
 ## [v9.4.0](https://github.com/nextcloud-libraries/nextcloud-vue/tree/v9.4.0) (2026-01-21)
 [Full Changelog](https://github.com/nextcloud-libraries/nextcloud-vue/compare/v9.3.3...v9.4.0)
 
