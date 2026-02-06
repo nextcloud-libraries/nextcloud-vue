@@ -301,7 +301,6 @@ function select() {
 	}
 
 	&__main-wrapper {
-		height: calc(var(--default-clickable-area) * 2);
 		padding: var(--border-width-input-focused, 2px);
 		position: relative;
 	}
@@ -314,6 +313,9 @@ function select() {
 		font-size: var(--default-font-size);
 		text-overflow: ellipsis;
 		cursor: pointer;
+		min-height: calc(var(--default-clickable-area) * 2);
+		min-width: calc(var(--default-clickable-area) * 2);
+		max-width: 100%;
 
 		background-color: var(--color-main-background);
 		color: var(--color-main-text);
