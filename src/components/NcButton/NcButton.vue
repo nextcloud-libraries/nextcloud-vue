@@ -792,7 +792,7 @@ function onClick(event: MouseEvent) {
 
 	// Back to the default color for this button when active
 	// TODO: add ripple effect
-	&:active {
+	&:active:not(:disabled) {
 		background-color: var(--color-primary-element-light);
 	}
 
