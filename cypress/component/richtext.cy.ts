@@ -78,7 +78,15 @@ describe('NcRichText', () => {
 				})
 
 				testCases.forEach((item) => {
-					cy.get(item.tag).should('have.text', item.output)
+					const sameTag = testCases.filter((i) => i.tag === item.tag)
+					if (sameTag.length > 1) {
+						cy.get(item.tag).should('have.length', sameTag.length)
+						cy.get(item.tag)
+							.eq(sameTag.indexOf(item))
+							.should('have.text', item.output)
+					} else {
+						cy.get(item.tag).should('have.text', item.output)
+					}
 				})
 			})
 
