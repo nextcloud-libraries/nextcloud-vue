@@ -72,15 +72,8 @@ export default defineConfig({
 				}
 				const config = await createAppConfig({}, {
 					inlineCSS: true,
-					replace: {
-						PRODUCTION: 'false',
-						SCOPE_VERSION,
-					},
 					config: {
 						plugins: [vueDocsPlugin],
-						define: {
-							NEXTCLOUD_VERSION: '"32.0.0"',
-						},
 						css: {
 							devSourcemap: true,
 							preprocessorOptions: {
@@ -96,8 +89,16 @@ export default defineConfig({
 					},
 				})({ mode: 'production', command: 'serve' })
 
-				config.plugins = config.plugins.filter((plugin) => plugin.name !== 'replace')
+				config.define = {
+					SCOPE_VERSION,
+					PRODUCTION: 'false',
+					NEXTCLOUD_VERSION: '"32.0.0"',
+					appName: '"nextcloud-vue"',
+					appVersion: '"1.0.0"',
+
+				}
 				delete config.build.rollupOptions.output.intro
+				config.plugins = config.plugins.filter((plugin) => plugin.name !== 'replace')
 
 				return config
 			},

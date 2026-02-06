@@ -25,7 +25,7 @@ jobs:
       fail-fast: false
       matrix:
         # run x copies of the current job in parallel
-        containers: [1, 2]
+        containers: [1, 2, 3]
 
     name: Runner ${{ matrix.containers }}
 
