@@ -98,7 +98,7 @@ msgid "Clear search"
 msgstr "Tühjenda otsing"
 
 msgid "Clear selected"
-msgstr "Tühjenad valik"
+msgstr "Tühjenda valik"
 
 msgid "Clear text"
 msgstr "Kustuta tekst"
