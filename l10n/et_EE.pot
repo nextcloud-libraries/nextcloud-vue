@@ -18,7 +18,7 @@ msgid "{tag} (restricted)"
 msgstr "{tag} (piiratud)"
 
 msgid "A color with a HEX value {hex}"
-msgstr "Värv hexi väärtusega {hex}"
+msgstr "Värv kuueteistkümnendarvuna {hex}"
 
 msgid "a few seconds ago"
 msgstr "mõni sekund tagasi"
