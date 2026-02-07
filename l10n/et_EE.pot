@@ -533,7 +533,7 @@ msgid "Start slideshow"
 msgstr "Alusta slaidiesitust"
 
 msgid "Start typing to search"
-msgstr "Alusta otsinguks sisestamist"
+msgstr "Otsimiseks kirjuta midagi"
 
 msgid "Submit"
 msgstr "Saada"
