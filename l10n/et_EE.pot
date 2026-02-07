@@ -50,10 +50,10 @@ msgid "Anything shared with the same group of people will show up here"
 msgstr "Siin kuvatakse kõik, mida jagatakse sama kasutajagrupiga"
 
 msgid "Avatar of {displayName}"
-msgstr "Avatar {displayName}"
+msgstr "Tunnuspilt: {displayName}"
 
 msgid "Avatar of {displayName}, {status}"
-msgstr "Avatar {displayName}, {status}"
+msgstr "Tunnuspilt: {displayName}, {status}"
 
 #. TRANSLATORS: User status if the user is currently away from keyboard
 msgid "away"
