@@ -498,7 +498,7 @@ msgid "Settings"
 msgstr "Seadistused"
 
 msgid "Settings navigation"
-msgstr "Seadistuste navigatsioon"
+msgstr "Liikumine seadistustes"
 
 #. TRANSLATORS: Shift key on keyboard
 msgid "Shift"
