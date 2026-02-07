@@ -5,6 +5,7 @@
 
 import { createAppConfig } from '@nextcloud/vite-config'
 import { defineConfig } from 'cypress'
+import cypressSplit from 'cypress-split'
 import { configureVisualRegression } from 'cypress-visual-regression'
 import { resolve } from 'path'
 import { fileURLToPath } from 'url'
@@ -29,7 +30,10 @@ export default defineConfig({
 	screenshotsFolder: './cypress/snapshots/actual',
 
 	component: {
-		setupNodeEvents(on) {
+		excludeSpecPattern: ['**/cypress/snapshots/**/*'],
+
+		setupNodeEvents(on, config) {
+			cypressSplit(on, config)
 			configureVisualRegression(on)
 
 			// Disable spell checking to prevent rendering differences
@@ -49,6 +53,8 @@ export default defineConfig({
 					return launchOptions
 				}
 			})
+
+			return config
 		},
 
 		devServer: {
@@ -66,15 +72,8 @@ export default defineConfig({
 				}
 				const config = await createAppConfig({}, {
 					inlineCSS: true,
-					replace: {
-						PRODUCTION: 'false',
-						SCOPE_VERSION,
-					},
 					config: {
 						plugins: [vueDocsPlugin],
-						define: {
-							NEXTCLOUD_VERSION: '"32.0.0"',
-						},
 						css: {
 							devSourcemap: true,
 							preprocessorOptions: {
@@ -89,6 +88,17 @@ export default defineConfig({
 						},
 					},
 				})({ mode: 'production', command: 'serve' })
+
+				config.define = {
+					SCOPE_VERSION,
+					PRODUCTION: 'false',
+					NEXTCLOUD_VERSION: '"32.0.0"',
+					appName: '"nextcloud-vue"',
+					appVersion: '"1.0.0"',
+
+				}
+				delete config.build.rollupOptions.output.intro
+				config.plugins = config.plugins.filter((plugin) => plugin.name !== 'replace')
 
 				return config
 			},
