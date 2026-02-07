@@ -5,11 +5,11 @@
 # Martin Wilichowski, 2025
 # Ferdinand Thiessen, 2025
 # Mark Ziegler <mark.ziegler@rakekniven.de>, 2025
-# Mario Siegmann <mario_siegmann@web.de>, 2025
+# Mario Siegmann <mario_siegmann@web.de>, 2026
 # 
 msgid ""
 msgstr ""
-"Last-Translator: Mario Siegmann <mario_siegmann@web.de>, 2025\n"
+"Last-Translator: Mario Siegmann <mario_siegmann@web.de>, 2026\n"
 "Language-Team: German (Germany) (https://app.transifex.com/nextcloud/teams/64236/de_DE/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Language: de_DE\n"
@@ -400,6 +400,15 @@ msgstr "Auswählen"
 msgid "Pick an emoji"
 msgstr "Ein Emoji auswählen"
 
+msgid "Pick file"
+msgstr "Datei auswählen"
+
+msgid "Pick files"
+msgstr "Dateien auswählen"
+
+msgid "Pick folder"
+msgstr "Ordner auswählen"
+
 msgid "Please choose a date"
 msgstr "Bitte ein Datum wählen"
 
@@ -568,6 +577,18 @@ msgstr "Die Gruppe kann nicht durchsucht werden"
 
 msgid "Undo changes"
 msgstr "Änderungen rückgängig machen"
+
+msgid "Upload file"
+msgstr "Datei hochladen"
+
+msgid "Upload files"
+msgstr "Dateien hochladen"
+
+msgid "Upload folder"
+msgstr "Ordner hochladen"
+
+msgid "Uploading …"
+msgstr "Wird hochgeladen …"
 
 msgid "User status: {status}"
 msgstr "Benutzerstatus: {status}"
