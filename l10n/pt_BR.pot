@@ -2,11 +2,11 @@
 # Translators:
 # Joas Schilling, 2025
 # Flávio Veras <flaviove@gmail.com>, 2025
-# F Bausch, 2025
+# F Bausch, 2026
 # 
 msgid ""
 msgstr ""
-"Last-Translator: F Bausch, 2025\n"
+"Last-Translator: F Bausch, 2026\n"
 "Language-Team: Portuguese (Brazil) (https://app.transifex.com/nextcloud/teams/64236/pt_BR/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Language: pt_BR\n"
@@ -397,6 +397,15 @@ msgstr "Escolher"
 msgid "Pick an emoji"
 msgstr "Escolha um emoji"
 
+msgid "Pick file"
+msgstr "Selecionar arquivo"
+
+msgid "Pick files"
+msgstr "Selecionar arquivos"
+
+msgid "Pick folder"
+msgstr "Selecionar pasta"
+
 msgid "Please choose a date"
 msgstr "Por favor, escolha uma data"
 
@@ -565,6 +574,18 @@ msgstr "Não foi possível pesquisar o grupo"
 
 msgid "Undo changes"
 msgstr "Desfazer modificações"
+
+msgid "Upload file"
+msgstr "Enviar arquivo"
+
+msgid "Upload files"
+msgstr "Enviar arquivos"
+
+msgid "Upload folder"
+msgstr "Enviar pasta"
+
+msgid "Uploading …"
+msgstr "Enviando …´"
 
 msgid "User status: {status}"
 msgstr "Status do usuário: {status}"
