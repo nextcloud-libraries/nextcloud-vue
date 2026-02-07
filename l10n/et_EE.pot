@@ -116,7 +116,7 @@ msgid "Close sidebar"
 msgstr "Sulge külgriba"
 
 msgid "Close Smart Picker"
-msgstr "Sulge nutikas valija"
+msgstr "Sulge nutivalija"
 
 msgid "Close time Picker"
 msgstr "Sulge ajavalija"
