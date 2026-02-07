@@ -564,7 +564,7 @@ msgid "Type to search for existing projects"
 msgstr "Olemasolevate projektide otsimiseks kirjuta"
 
 msgid "Type to search time zone"
-msgstr "Kirjuta, et otsida ajavööndit"
+msgstr "Ajavööndi otsimiseks kirjuta midagi"
 
 msgid "Unable to search the group"
 msgstr "Gruppi ei ole võimalik otsida"
