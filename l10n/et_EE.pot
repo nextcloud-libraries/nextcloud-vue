@@ -128,7 +128,7 @@ msgid "Color picker"
 msgstr "Värvivalija"
 
 msgid "Confirm changes"
-msgstr "Kinnitage muudatused"
+msgstr "Kinnita muudatused"
 
 msgid "Connect items to a project to make them easier to find"
 msgstr "Selleks, et objekte oleks lihtsam leida, seo nad projektiga"
