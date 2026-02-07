@@ -1,11 +1,11 @@
 # 
 # Translators:
 # Joas Schilling, 2025
-# Priit Jõerüüt <transifex@joeruut.com>, 2025
+# Priit Jõerüüt <transifex@joeruut.com>, 2026
 # 
 msgid ""
 msgstr ""
-"Last-Translator: Priit Jõerüüt <transifex@joeruut.com>, 2025\n"
+"Last-Translator: Priit Jõerüüt <transifex@joeruut.com>, 2026\n"
 "Language-Team: Estonian (Estonia) (https://app.transifex.com/nextcloud/teams/64236/et_EE/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Language: et_EE\n"
@@ -394,6 +394,15 @@ msgstr "Vali"
 msgid "Pick an emoji"
 msgstr "Vali emoji"
 
+msgid "Pick file"
+msgstr "Vali fail"
+
+msgid "Pick files"
+msgstr "Vali failid"
+
+msgid "Pick folder"
+msgstr "Vali kaust"
+
 msgid "Please choose a date"
 msgstr "Palun vali kuupäev"
 
@@ -562,6 +571,18 @@ msgstr "Gruppi ei ole võimalik otsida"
 
 msgid "Undo changes"
 msgstr "Pööra muudatused tagasi"
+
+msgid "Upload file"
+msgstr "Laadi fail üles"
+
+msgid "Upload files"
+msgstr "Laadi failid üles"
+
+msgid "Upload folder"
+msgstr "Laadi kaust üles"
+
+msgid "Uploading …"
+msgstr "Üleslaadimisel…"
 
 msgid "User status: {status}"
 msgstr "Kasutaja olek: {status}"
