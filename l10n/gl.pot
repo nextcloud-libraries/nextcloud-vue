@@ -1,11 +1,11 @@
 # 
 # Translators:
 # Joas Schilling, 2025
-# Miguel Anxo Bouzada <mbouzada@gmail.com>, 2025
+# Miguel Anxo Bouzada <mbouzada@gmail.com>, 2026
 # 
 msgid ""
 msgstr ""
-"Last-Translator: Miguel Anxo Bouzada <mbouzada@gmail.com>, 2025\n"
+"Last-Translator: Miguel Anxo Bouzada <mbouzada@gmail.com>, 2026\n"
 "Language-Team: Galician (https://app.transifex.com/nextcloud/teams/64236/gl/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Language: gl\n"
@@ -394,6 +394,15 @@ msgstr "Escoller"
 msgid "Pick an emoji"
 msgstr "Escolla un «emoji»"
 
+msgid "Pick file"
+msgstr "Escoller ficheiro"
+
+msgid "Pick files"
+msgstr "Escoller ficheiros"
+
+msgid "Pick folder"
+msgstr "Escoller cartafol"
+
 msgid "Please choose a date"
 msgstr "Escolla unha data"
 
@@ -562,6 +571,18 @@ msgstr "Non foi posíbel buscar o grupo"
 
 msgid "Undo changes"
 msgstr "Desfacer os cambios"
+
+msgid "Upload file"
+msgstr "Enviar ficheiro"
+
+msgid "Upload files"
+msgstr "Enviar ficheiros"
+
+msgid "Upload folder"
+msgstr "Enviar cartafol"
+
+msgid "Uploading …"
+msgstr "Enviando…"
 
 msgid "User status: {status}"
 msgstr "Estado do usuario: {status}"
