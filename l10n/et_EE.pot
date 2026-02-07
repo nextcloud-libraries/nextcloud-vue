@@ -1,11 +1,11 @@
 # 
 # Translators:
 # Joas Schilling, 2025
-# Priit Jõerüüt <transifex@joeruut.com>, 2025
+# Priit Jõerüüt <transifex@joeruut.com>, 2026
 # 
 msgid ""
 msgstr ""
-"Last-Translator: Priit Jõerüüt <transifex@joeruut.com>, 2025\n"
+"Last-Translator: Priit Jõerüüt <transifex@joeruut.com>, 2026\n"
 "Language-Team: Estonian (Estonia) (https://app.transifex.com/nextcloud/teams/64236/et_EE/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Language: et_EE\n"
@@ -18,7 +18,7 @@ msgid "{tag} (restricted)"
 msgstr "{tag} (piiratud)"
 
 msgid "A color with a HEX value {hex}"
-msgstr "Värv hexi väärtusega {hex}"
+msgstr "Värv kuueteistkümnendarvuna {hex}"
 
 msgid "a few seconds ago"
 msgstr "mõni sekund tagasi"
@@ -50,10 +50,10 @@ msgid "Anything shared with the same group of people will show up here"
 msgstr "Siin kuvatakse kõik, mida jagatakse sama kasutajagrupiga"
 
 msgid "Avatar of {displayName}"
-msgstr "Avatar {displayName}"
+msgstr "Tunnuspilt: {displayName}"
 
 msgid "Avatar of {displayName}, {status}"
-msgstr "Avatar {displayName}, {status}"
+msgstr "Tunnuspilt: {displayName}, {status}"
 
 #. TRANSLATORS: User status if the user is currently away from keyboard
 msgid "away"
@@ -98,7 +98,7 @@ msgid "Clear search"
 msgstr "Tühjenda otsing"
 
 msgid "Clear selected"
-msgstr "Tühjenad valik"
+msgstr "Tühjenda valik"
 
 msgid "Clear text"
 msgstr "Kustuta tekst"
@@ -116,19 +116,19 @@ msgid "Close sidebar"
 msgstr "Sulge külgriba"
 
 msgid "Close Smart Picker"
-msgstr "Sulge nutikas valija"
+msgstr "Sulge nutivalija"
 
 msgid "Close time Picker"
 msgstr "Sulge ajavalija"
 
 msgid "Collapse menu"
-msgstr "Menüü kokkuklappimine"
+msgstr "Ahenda menüü"
 
 msgid "Color picker"
 msgstr "Värvivalija"
 
 msgid "Confirm changes"
-msgstr "Kinnitage muudatused"
+msgstr "Kinnita muudatused"
 
 msgid "Connect items to a project to make them easier to find"
 msgstr "Selleks, et objekte oleks lihtsam leida, seo nad projektiga"
@@ -153,7 +153,7 @@ msgid "Datepicker input"
 msgstr "Kuupäevavalija sisend"
 
 msgid "Datepicker menu"
-msgstr "Kuupäevavalija sisend"
+msgstr "Kuupäevavalija menüü"
 
 msgid "Decrement hours"
 msgstr "Vähenda tunde"
@@ -199,7 +199,7 @@ msgid ""
 " you have any questions."
 msgstr ""
 "Viga seotud ressursside saamisel. Küsimuste korral võtke ühendust oma "
-"süsteemiadministraatoriga."
+"süsteemi haldajaga."
 
 #. TRANSLATORS: Escape key on keyboard
 msgid "Escape"
@@ -271,7 +271,7 @@ msgstr "Laadi veel „{options}“"
 
 #. TRANSLATORS: The button is in a loading state
 msgid "Loading …"
-msgstr "Laadin …"
+msgstr "Laadin…"
 
 #. TRANSLATORS: A color name for RGB(45, 115, 190)
 msgid "Mariner"
@@ -298,7 +298,7 @@ msgid "Month picker overlay"
 msgstr "Kuupäevavalija ülekatteaken"
 
 msgid "More items …"
-msgstr "Vaata veel …"
+msgstr "Vaata veel…"
 
 msgid "More options"
 msgstr "Rohkem valikuid"
@@ -394,6 +394,15 @@ msgstr "Vali"
 msgid "Pick an emoji"
 msgstr "Vali emoji"
 
+msgid "Pick file"
+msgstr "Vali fail"
+
+msgid "Pick files"
+msgstr "Vali failid"
+
+msgid "Pick folder"
+msgstr "Vali kaust"
+
 msgid "Please choose a date"
 msgstr "Palun vali kuupäev"
 
@@ -435,7 +444,7 @@ msgid "Search"
 msgstr "Otsing"
 
 msgid "Search …"
-msgstr "Otsi …"
+msgstr "Otsi…"
 
 msgid "Search emoji"
 msgstr "Otsi emojit"
@@ -489,7 +498,7 @@ msgid "Settings"
 msgstr "Seadistused"
 
 msgid "Settings navigation"
-msgstr "Seadistuste navigatsioon"
+msgstr "Liikumine seadistustes"
 
 #. TRANSLATORS: Shift key on keyboard
 msgid "Shift"
@@ -511,7 +520,7 @@ msgid "Skip to main content"
 msgstr "Suundu põhisisu juurde"
 
 msgid "Smart Picker"
-msgstr "Nutikas valija"
+msgstr "Nutivalija"
 
 msgid "Smileys & Emotion"
 msgstr "Smailid ja emotsioonid"
@@ -524,7 +533,7 @@ msgid "Start slideshow"
 msgstr "Alusta slaidiesitust"
 
 msgid "Start typing to search"
-msgstr "Alusta otsinguks sisestamist"
+msgstr "Otsimiseks kirjuta midagi"
 
 msgid "Submit"
 msgstr "Saada"
@@ -555,13 +564,25 @@ msgid "Type to search for existing projects"
 msgstr "Olemasolevate projektide otsimiseks kirjuta"
 
 msgid "Type to search time zone"
-msgstr "Kirjuta, et otsida ajavööndit"
+msgstr "Ajavööndi otsimiseks kirjuta midagi"
 
 msgid "Unable to search the group"
 msgstr "Gruppi ei ole võimalik otsida"
 
 msgid "Undo changes"
 msgstr "Pööra muudatused tagasi"
+
+msgid "Upload file"
+msgstr "Laadi fail üles"
+
+msgid "Upload files"
+msgstr "Laadi failid üles"
+
+msgid "Upload folder"
+msgstr "Laadi kaust üles"
+
+msgid "Uploading …"
+msgstr "Üleslaadimisel…"
 
 msgid "User status: {status}"
 msgstr "Kasutaja olek: {status}"
@@ -580,7 +601,7 @@ msgid "White"
 msgstr "Valge"
 
 msgid "Write a message …"
-msgstr "Koosta sõnum …"
+msgstr "Koosta sõnum…"
 
 msgid "Year picker"
 msgstr "Aastavalija"
