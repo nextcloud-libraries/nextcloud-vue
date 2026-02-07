@@ -153,7 +153,7 @@ msgid "Datepicker input"
 msgstr "Kuupäevavalija sisend"
 
 msgid "Datepicker menu"
-msgstr "Kuupäevavalija sisend"
+msgstr "Kuupäevavalija menüü"
 
 msgid "Decrement hours"
 msgstr "Vähenda tunde"
