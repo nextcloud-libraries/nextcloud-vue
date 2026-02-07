@@ -199,7 +199,7 @@ msgid ""
 " you have any questions."
 msgstr ""
 "Viga seotud ressursside saamisel. Küsimuste korral võtke ühendust oma "
-"süsteemiadministraatoriga."
+"süsteemi haldajaga."
 
 #. TRANSLATORS: Escape key on keyboard
 msgid "Escape"
