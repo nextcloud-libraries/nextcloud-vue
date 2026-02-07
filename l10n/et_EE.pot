@@ -520,7 +520,7 @@ msgid "Skip to main content"
 msgstr "Suundu põhisisu juurde"
 
 msgid "Smart Picker"
-msgstr "Nutikas valija"
+msgstr "Nutivalija"
 
 msgid "Smileys & Emotion"
 msgstr "Smailid ja emotsioonid"
