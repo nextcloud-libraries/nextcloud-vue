@@ -298,7 +298,7 @@ msgid "Month picker overlay"
 msgstr "Kuupäevavalija ülekatteaken"
 
 msgid "More items …"
-msgstr "Vaata veel …"
+msgstr "Vaata veel…"
 
 msgid "More options"
 msgstr "Rohkem valikuid"
@@ -601,7 +601,7 @@ msgid "White"
 msgstr "Valge"
 
 msgid "Write a message …"
-msgstr "Koosta sõnum …"
+msgstr "Koosta sõnum…"
 
 msgid "Year picker"
 msgstr "Aastavalija"
