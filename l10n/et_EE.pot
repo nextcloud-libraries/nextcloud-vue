@@ -271,7 +271,7 @@ msgstr "Laadi veel „{options}“"
 
 #. TRANSLATORS: The button is in a loading state
 msgid "Loading …"
-msgstr "Laadin …"
+msgstr "Laadin…"
 
 #. TRANSLATORS: A color name for RGB(45, 115, 190)
 msgid "Mariner"
@@ -444,7 +444,7 @@ msgid "Search"
 msgstr "Otsing"
 
 msgid "Search …"
-msgstr "Otsi …"
+msgstr "Otsi…"
 
 msgid "Search emoji"
 msgstr "Otsi emojit"
