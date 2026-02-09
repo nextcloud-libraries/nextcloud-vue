@@ -397,7 +397,7 @@ msgid "Pick an emoji"
 msgstr "Vybrat emoji"
 
 msgid "Pick file"
-msgstr "Vyberte soubor"
+msgstr "Vybrat soubor"
 
 msgid "Pick files"
 msgstr "Vybrat soubory"
