@@ -1,11 +1,11 @@
 # 
 # Translators:
 # Joas Schilling, 2025
-# Pavel Borecki <pavel.borecki@gmail.com>, 2025
+# Pavel Borecki <pavel.borecki@gmail.com>, 2026
 # 
 msgid ""
 msgstr ""
-"Last-Translator: Pavel Borecki <pavel.borecki@gmail.com>, 2025\n"
+"Last-Translator: Pavel Borecki <pavel.borecki@gmail.com>, 2026\n"
 "Language-Team: Czech (Czech Republic) (https://app.transifex.com/nextcloud/teams/64236/cs_CZ/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Language: cs_CZ\n"
@@ -396,6 +396,15 @@ msgstr "Vybrat"
 msgid "Pick an emoji"
 msgstr "Vybrat emoji"
 
+msgid "Pick file"
+msgstr "Vyberte soubor"
+
+msgid "Pick files"
+msgstr "Vybrat soubory"
+
+msgid "Pick folder"
+msgstr "Vybrat složku"
+
 msgid "Please choose a date"
 msgstr "Zvolte datum"
 
@@ -564,6 +573,18 @@ msgstr "Nedaří se hledat skupinu"
 
 msgid "Undo changes"
 msgstr "Vzít změny zpět"
+
+msgid "Upload file"
+msgstr "Nahrát soubor"
+
+msgid "Upload files"
+msgstr "Nahrát soubory"
+
+msgid "Upload folder"
+msgstr "Nahrát složku"
+
+msgid "Uploading …"
+msgstr "Nahrávání …"
 
 msgid "User status: {status}"
 msgstr "Stav uživatele: {status}"
