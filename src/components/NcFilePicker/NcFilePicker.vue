@@ -4,9 +4,7 @@
 -->
 
 <script setup lang="ts">
-import type { Slot } from 'vue'
-
-import { computed, nextTick, useTemplateRef } from 'vue'
+import { computed, nextTick, ref } from 'vue'
 import IconFolderUpload from 'vue-material-design-icons/FolderUpload.vue'
 import IconPlus from 'vue-material-design-icons/Plus.vue'
 import IconUpload from 'vue-material-design-icons/Upload.vue'
@@ -111,28 +109,15 @@ const props = withDefaults(defineProps<{
 })
 
 const emit = defineEmits<{
-	pick: [files: File[]]
-}>()
-
-defineSlots<{
-	/**
-	 * Optional custom icon for the picker menu
-	 */
-	icon?: Slot
-
-	/**
-	 * Optional content to be shown in the picker.
-	 * This can be used e.g. for a progress bar or similar.
-	 */
-	default?: Slot
+	(event: 'pick', files: File[]): void
 }>()
 
 defineExpose({
 	reset,
 })
 
-const formElement = useTemplateRef('form')
-const inputElement = useTemplateRef('input')
+const formElement = ref<HTMLFormElement | null>(null)
+const inputElement = ref<HTMLInputElement | null>(null)
 
 /**
  * The current label to be used as menu name and accessible name of the picker.
@@ -192,15 +177,16 @@ function reset() {
 
 <template>
 	<form
-		ref="form"
+		ref="formElement"
 		:class="$style.filePicker">
 		<NcActions
 			:aria-label="currentLabel"
 			:disabled="disabled || loading"
-			:menuName="iconOnly ? undefined : currentLabel"
-			:forceName="!iconOnly"
-			:variant>
+			:menu-name="iconOnly ? undefined : currentLabel"
+			:force-name="!iconOnly"
+			:variant="variant">
 			<template #icon>
+				<!-- @slot Optional custom icon for the picker menu -->
 				<slot v-if="!loading" name="icon">
 					<IconPlus :size="20" />
 				</slot>
@@ -211,7 +197,7 @@ function reset() {
 
 			<NcActionButton
 				v-if="!directoryOnly"
-				closeAfterClick
+				close-after-click
 				@click="triggerPickFiles(false)">
 				<template #icon>
 					<IconUpload :size="20" />
@@ -222,7 +208,7 @@ function reset() {
 
 			<NcActionButton
 				v-if="canUploadFolders"
-				closeAfterClick
+				close-after-click
 				@click="triggerPickFiles(true)">
 				<template #icon>
 					<IconFolderUpload style="color: var(--color-primary-element)" :size="20" />
@@ -240,7 +226,7 @@ function reset() {
 				<NcActionButton
 					v-for="action of (group as FilePickerItemGroup).actions ?? [group as FilePickerItem]"
 					:key="action.label"
-					closeAfterClick
+					close-after-click
 					@click="action.onClick">
 					<template #icon>
 						<NcIconSvgWrapper :svg="action.iconSvg" />
@@ -252,14 +238,15 @@ function reset() {
 
 		<!-- Hidden files picker input - also hidden for accessibility as otherwise such users also loose the ability to pick files -->
 		<input
-			ref="input"
+			ref="inputElement"
 			:accept="accept?.join(', ')"
 			aria-hidden="true"
 			class="hidden-visually"
-			:multiple
+			:multiple="multiple"
 			type="file"
 			@change="onPick">
 
+		<!-- @slot Optional content to be shown in the picker. This can be used e.g. for a progress bar or similar. -->
 		<slot />
 	</form>
 </template>
