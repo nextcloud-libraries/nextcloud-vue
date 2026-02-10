@@ -582,7 +582,7 @@ msgid "Upload folder"
 msgstr "Prenesi mapu"
 
 msgid "Uploading …"
-msgstr "Prijenos …"
+msgstr "Prijenos u tijeku …"
 
 msgid "User status: {status}"
 msgstr "Status korisnika: {status}"
