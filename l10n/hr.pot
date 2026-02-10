@@ -394,6 +394,15 @@ msgstr "Odaberi"
 msgid "Pick an emoji"
 msgstr "Odaberi emoji"
 
+msgid "Pick file"
+msgstr "Odaberi datoteku"
+
+msgid "Pick files"
+msgstr "Odaberi datoteke"
+
+msgid "Pick folder"
+msgstr "Odaberi mapu"
+
 msgid "Please choose a date"
 msgstr "Molimo odaberite datum"
 
@@ -562,6 +571,18 @@ msgstr "Nije moguće pretražiti grupu"
 
 msgid "Undo changes"
 msgstr "Poništi promjene"
+
+msgid "Upload file"
+msgstr "Prenesi datoteku"
+
+msgid "Upload files"
+msgstr "Prenesi datoteke"
+
+msgid "Upload folder"
+msgstr "Prenesi mapu"
+
+msgid "Uploading …"
+msgstr "Prijenos …"
 
 msgid "User status: {status}"
 msgstr "Status korisnika: {status}"
