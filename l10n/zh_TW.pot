@@ -442,7 +442,7 @@ msgid "Search"
 msgstr "搜尋"
 
 msgid "Search …"
-msgstr "搜尋 ..."
+msgstr "搜尋......"
 
 msgid "Search emoji"
 msgstr "搜尋表情符號"
