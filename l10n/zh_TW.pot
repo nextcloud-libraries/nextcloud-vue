@@ -580,7 +580,7 @@ msgid "Upload folder"
 msgstr "上傳資料夾"
 
 msgid "Uploading …"
-msgstr "上傳中 ..."
+msgstr "上傳中......"
 
 msgid "User status: {status}"
 msgstr "使用者狀態：{status}"
