@@ -1,11 +1,11 @@
 # 
 # Translators:
 # Joas Schilling, 2025
-# Aindriú Mac Giolla Eoin, 2025
+# Aindriú Mac Giolla Eoin, 2026
 # 
 msgid ""
 msgstr ""
-"Last-Translator: Aindriú Mac Giolla Eoin, 2025\n"
+"Last-Translator: Aindriú Mac Giolla Eoin, 2026\n"
 "Language-Team: Irish (https://app.transifex.com/nextcloud/teams/64236/ga/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Language: ga\n"
@@ -398,6 +398,15 @@ msgstr "Pioc"
 msgid "Pick an emoji"
 msgstr "Roghnaigh emoji"
 
+msgid "Pick file"
+msgstr "Roghnaigh comhad"
+
+msgid "Pick files"
+msgstr "Roghnaigh comhaid"
+
+msgid "Pick folder"
+msgstr "Roghnaigh fillteán"
+
 msgid "Please choose a date"
 msgstr "Roghnaigh dáta le do thoil"
 
@@ -566,6 +575,18 @@ msgstr "Ní féidir an grúpa a chuardach"
 
 msgid "Undo changes"
 msgstr "Cealaigh athruithe"
+
+msgid "Upload file"
+msgstr "Uaslódáil comhad"
+
+msgid "Upload files"
+msgstr "Uaslódáil comhaid"
+
+msgid "Upload folder"
+msgstr "Uaslódáil fillteán"
+
+msgid "Uploading …"
+msgstr "Ag uaslódáil …"
 
 msgid "User status: {status}"
 msgstr "Stádas úsáideora: {status}"

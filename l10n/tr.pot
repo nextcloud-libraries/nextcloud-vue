@@ -1,11 +1,11 @@
 # 
 # Translators:
 # Joas Schilling, 2025
-# Kaya Zeren <kayazeren@gmail.com>, 2025
+# Kaya Zeren <kayazeren@gmail.com>, 2026
 # 
 msgid ""
 msgstr ""
-"Last-Translator: Kaya Zeren <kayazeren@gmail.com>, 2025\n"
+"Last-Translator: Kaya Zeren <kayazeren@gmail.com>, 2026\n"
 "Language-Team: Turkish (https://app.transifex.com/nextcloud/teams/64236/tr/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Language: tr\n"
@@ -394,6 +394,15 @@ msgstr "Seçin"
 msgid "Pick an emoji"
 msgstr "Bir emoji seçin"
 
+msgid "Pick file"
+msgstr "Dosyayı seçin"
+
+msgid "Pick files"
+msgstr "Dosyaları seçin"
+
+msgid "Pick folder"
+msgstr "Klasörü seçin"
+
 msgid "Please choose a date"
 msgstr "Lütfen bir tarih seçin"
 
@@ -562,6 +571,18 @@ msgstr "Grupta arama yapılamadı"
 
 msgid "Undo changes"
 msgstr "Değişiklikleri geri al"
+
+msgid "Upload file"
+msgstr "Dosyayı yükle"
+
+msgid "Upload files"
+msgstr "Dosyaları yükle"
+
+msgid "Upload folder"
+msgstr "Klasörü yükle"
+
+msgid "Uploading …"
+msgstr "Yükleniyor…"
 
 msgid "User status: {status}"
 msgstr "Kullanıcı durumu: {status}"
