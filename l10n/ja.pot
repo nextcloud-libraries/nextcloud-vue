@@ -2,10 +2,11 @@
 # Translators:
 # Joas Schilling, 2025
 # kshimohata, 2025
+# Katsuhiro Shimohata, 2026
 # 
 msgid ""
 msgstr ""
-"Last-Translator: kshimohata, 2025\n"
+"Last-Translator: Katsuhiro Shimohata, 2026\n"
 "Language-Team: Japanese (Japan) (https://app.transifex.com/nextcloud/teams/64236/ja_JP/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Language: ja_JP\n"
@@ -391,6 +392,15 @@ msgstr "選択"
 msgid "Pick an emoji"
 msgstr "絵文字を選択"
 
+msgid "Pick file"
+msgstr "ファイルを選択してください"
+
+msgid "Pick files"
+msgstr "ファイルを選択してください"
+
+msgid "Pick folder"
+msgstr "フォルダーを選択してください"
+
 msgid "Please choose a date"
 msgstr "日付を選択してください"
 
@@ -437,7 +447,7 @@ msgstr "検索…"
 msgid "Search emoji"
 msgstr "絵文字を検索"
 
-msgid "Search for timezone"
+msgid "Search for time zone"
 msgstr "タイムゾーンを検索"
 
 msgid "Search results"
@@ -539,7 +549,7 @@ msgstr "Tab"
 msgid "Time picker"
 msgstr "時刻ピッカー"
 
-msgid "Timezone"
+msgid "Time zone"
 msgstr "タイムゾーン"
 
 msgid "Toggle overlay"
@@ -559,6 +569,18 @@ msgstr "グループを検索できません"
 
 msgid "Undo changes"
 msgstr "変更を取り消し"
+
+msgid "Upload file"
+msgstr "ファイルをアップロード"
+
+msgid "Upload files"
+msgstr "ファイルをアップロード"
+
+msgid "Upload folder"
+msgstr "フォルダーをアップロード"
+
+msgid "Uploading …"
+msgstr "アップロード中..."
 
 msgid "User status: {status}"
 msgstr "ユーザのステータス: {status}"
