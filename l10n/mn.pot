@@ -1,279 +1,608 @@
-# 
 # Translators:
-# Transifex Bot <>, 2023
+# Bilguuntei Demberel, 2026
 # 
 msgid ""
 msgstr ""
-"Last-Translator: Transifex Bot <>, 2023\n"
+"Last-Translator: Bilguuntei Demberel, 2026\n"
 "Language-Team: Mongolian (https://app.transifex.com/nextcloud/teams/64236/mn/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Language: mn\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 msgid "{tag} (invisible)"
-msgstr ""
+msgstr "{tag} (үл харагдах)"
 
 msgid "{tag} (restricted)"
-msgstr ""
+msgstr "{tag} (хязгаарлагдмал)"
+
+msgid "A color with a HEX value {hex}"
+msgstr "{hex} HEX утгатай өнгө"
 
 msgid "a few seconds ago"
-msgstr ""
+msgstr "хэдхэн секундын өмнө"
+
+#. TRANSLATORS: A color name for RGB(110, 166, 143)
+msgid "Acapulco"
+msgstr "Акапулько"
 
 msgid "Actions"
-msgstr ""
-
-msgid "Actions for item with name \"{name}\""
-msgstr ""
+msgstr "Үйлдлүүд"
 
 msgid "Activities"
-msgstr ""
+msgstr "Үйл ажиллагаа"
+
+msgid "Add to a project"
+msgstr "Төсөлд нэмэх"
+
+#. TRANSLATORS: Alt key on keyboard (Windows/Linux)
+msgid "Alt"
+msgstr "Alt"
 
 msgid "Animals & Nature"
-msgstr ""
+msgstr "Амьтан & Байгаль"
 
 msgid "Any link"
-msgstr ""
+msgstr "Аливаа холбоос"
 
 msgid "Anything shared with the same group of people will show up here"
-msgstr ""
+msgstr "Ижил бүлэг хүмүүстэй хуваалцсан бүх зүйл энд харагдана"
 
 msgid "Avatar of {displayName}"
-msgstr ""
+msgstr "{displayName}-ийн аватар"
 
 msgid "Avatar of {displayName}, {status}"
-msgstr ""
+msgstr "{displayName}-ийн аватар, {status}"
+
+#. TRANSLATORS: User status if the user is currently away from keyboard
+msgid "away"
+msgstr "хол байна"
 
 msgid "Back"
-msgstr ""
+msgstr "Буцах"
 
 msgid "Back to provider selection"
-msgstr ""
+msgstr "Үйлчилгээ үзүүлэгчийн сонголт руу буцах"
+
+msgid "Black"
+msgstr "Хар"
+
+#. TRANSLATORS: A color name for RGB(91, 100, 179)
+msgid "Blue Violet"
+msgstr "Цэнхэр ягаан"
+
+#. TRANSLATORS: A color name for RGB(55, 148, 172)
+msgid "Boston Blue"
+msgstr "Бостон цэнхэр"
+
+msgid "busy"
+msgstr "завгүй"
+
+msgid "Calendar icon"
+msgstr "Календарийн дүрс"
+
+msgid "Cancel"
+msgstr "Цуцлах"
 
 msgid "Cancel changes"
-msgstr ""
+msgstr "Өөрчлөлтийг цуцлах"
 
 msgid "Change name"
-msgstr ""
+msgstr "Нэр солих"
 
 msgid "Choose"
-msgstr ""
+msgstr "Сонгох"
 
 msgid "Clear search"
-msgstr ""
+msgstr "Хайлтыг цэвэрлэх"
+
+msgid "Clear selected"
+msgstr "Сонголтыг цэвэрлэх"
 
 msgid "Clear text"
-msgstr ""
+msgstr "Текстийг цэвэрлэх"
+
+msgid "Clear value"
+msgstr "Утгыг цэвэрлэх"
 
 msgid "Close"
-msgstr ""
-
-msgid "Close modal"
-msgstr ""
+msgstr "Хаах"
 
 msgid "Close navigation"
-msgstr ""
+msgstr "Навигацийг хаах"
 
 msgid "Close sidebar"
-msgstr ""
+msgstr "Хажуугийн самбарыг хаах"
 
 msgid "Close Smart Picker"
-msgstr ""
+msgstr "Ухаалаг сонгогчийг хаах"
+
+msgid "Close time Picker"
+msgstr "Цаг сонгогчийг хаах"
 
 msgid "Collapse menu"
-msgstr ""
+msgstr "Цэсийг хураах"
+
+msgid "Color picker"
+msgstr "Өнгө сонгогч"
 
 msgid "Confirm changes"
-msgstr ""
+msgstr "Өөрчлөлтийг баталгаажуулах"
+
+msgid "Connect items to a project to make them easier to find"
+msgstr "Хялбар олохын тулд зүйлсийг төсөлтэй холбоно уу"
+
+msgid "Copied"
+msgstr "Хуулагдлаа"
+
+msgid "Copy to clipboard"
+msgstr "Санах ой руу хуулах"
+
+#. TRANSLATORS: Ctrl key on keyboard (Windows/Linux)
+msgid "Ctrl"
+msgstr "Ctrl"
 
 msgid "Custom"
-msgstr ""
+msgstr "Тусгай"
+
+msgid "Dark skin tone"
+msgstr "Бараан арьсны өнгө"
+
+msgid "Datepicker input"
+msgstr "Огноо сонгогчийн оролт"
+
+msgid "Datepicker menu"
+msgstr "Огноо сонгогчийн цэс"
+
+msgid "Decrement hours"
+msgstr "Цагийг бууруулах"
+
+msgid "Decrement minutes"
+msgstr "Минутыг бууруулах"
+
+msgid "Decrement seconds"
+msgstr "Секундыг бууруулах"
+
+#. TRANSLATORS: Delete key on keyboard
+msgid "Delete"
+msgstr "Устгах"
+
+#. TRANSLATORS: A color name for RGB(136, 85, 168)
+msgid "Deluge"
+msgstr "Делюж"
+
+msgid "Deselect {option}"
+msgstr "{option}-г сонголтоос хасах"
+
+msgid "do not disturb"
+msgstr "бүү саад бол"
 
 msgid "Edit item"
-msgstr ""
+msgstr "Зүйлийг засварлах"
+
+msgid "Emoji picker"
+msgstr "Эможи сонгогч"
+
+msgid "Enable interactive view"
+msgstr "Интерактив харагдацыг идэвхжүүлэх"
+
+#. TRANSLATORS: Enter key on keyboard
+msgid "Enter"
+msgstr "Enter"
 
 msgid "Enter link"
-msgstr ""
+msgstr "Холбоос оруулах"
 
 msgid ""
 "Error getting related resources. Please contact your system administrator if"
 " you have any questions."
 msgstr ""
+"Холбогдох нөөцүүдийг авахад алдаа гарлаа. Асуулт байвал системийн "
+"администратортай холбогдоно уу."
 
-msgid "External documentation for {name}"
-msgstr ""
+#. TRANSLATORS: Escape key on keyboard
+msgid "Escape"
+msgstr "Escape"
+
+msgid "External documentation"
+msgstr "Гадаад баримт бичиг"
+
+msgid "Failed to add the item to the project"
+msgstr "Зүйлийг төсөлд нэмж чадсангүй"
+
+msgid "Failed to create a project"
+msgstr "Төсөл үүсгэж чадсангүй"
+
+msgid "Failed to rename the project"
+msgstr "Төслийн нэрийг солиж чадсангүй"
 
 msgid "Favorite"
-msgstr ""
+msgstr "Дуртай"
+
+#. TRANSLATORS: A color name for RGB(201, 136, 121)
+msgid "Feldspar"
+msgstr "Фельдспар"
 
 msgid "Flags"
-msgstr ""
+msgstr "Тугнууд"
 
 msgid "Food & Drink"
-msgstr ""
+msgstr "Хоол & Ундаа"
 
 msgid "Frequently used"
-msgstr ""
-
-msgid "Global"
-msgstr ""
+msgstr "Байнга хэрэглэдэг"
 
 msgid "Go back to the list"
-msgstr ""
+msgstr "Жагсаалт руу буцах"
+
+msgid "Gold"
+msgstr "Алтан"
+
+msgid "Hide details"
+msgstr "Дэлгэрэнгүйг нуух"
 
 msgid "Hide password"
-msgstr ""
+msgstr "Нууц үгийг нуух"
 
-msgid "Load more \"{options}\"\""
-msgstr ""
+msgid "Increment hours"
+msgstr "Цагийг нэмэгдүүлэх"
 
-msgid "Message limit of {count} characters reached"
-msgstr ""
+msgid "Increment minutes"
+msgstr "Минутыг нэмэгдүүлэх"
+
+msgid "Increment seconds"
+msgstr "Секундыг нэмэгдүүлэх"
+
+msgid "invisible"
+msgstr "үл харагдах"
+
+msgid "Keyboard navigation help"
+msgstr "Гарын навигацийн тусламж"
+
+msgid "Keyboard shortcuts"
+msgstr "Гарын товчлол"
+
+msgid "Light skin tone"
+msgstr "Цайвар арьсны өнгө"
+
+msgid "Load more \"{options}\""
+msgstr "Илүү ихийг ачаалах \"{options}\""
+
+#. TRANSLATORS: The button is in a loading state
+msgid "Loading …"
+msgstr "Ачаалж байна …"
+
+#. TRANSLATORS: A color name for RGB(45, 115, 190)
+msgid "Mariner"
+msgstr "Маринер"
+
+msgid "Medium dark skin tone"
+msgstr "Дунд бараан арьсны өнгө"
+
+msgid "Medium light skin tone"
+msgstr "Дунд цайвар арьсны өнгө"
+
+msgid "Medium skin tone"
+msgstr "Дунд арьсны өнгө"
+
+msgid "Message limit of %n character reached"
+msgid_plural "Message limit of %n characters reached"
+msgstr[0] "%n тэмдэгтийн зурвасын хязгаарт хүрлээ"
+msgstr[1] "%n тэмдэгтийн зурвасын хязгаарт хүрлээ"
+
+msgid "Month picker"
+msgstr "Сар сонгогч"
+
+msgid "Month picker overlay"
+msgstr "Сар сонгогчийн давхарга"
 
 msgid "More items …"
-msgstr ""
+msgstr "Илүү олон зүйлс …"
 
 msgid "More options"
-msgstr ""
+msgstr "Нэмэлт сонголтууд"
+
+msgid "Neutral skin color"
+msgstr "Саарал арьсны өнгө"
 
 msgid "Next"
-msgstr ""
+msgstr "Дараах"
+
+msgid "Next month"
+msgstr "Дараа сар"
+
+msgid "Next year"
+msgstr "Дараа жил"
+
+msgid "Nextcloud blue"
+msgstr "Nextcloud цэнхэр"
+
+msgid "No color"
+msgstr "Өнгөгүй"
 
 msgid "No emoji found"
-msgstr ""
+msgstr "Эможи олдсонгүй"
 
 msgid "No link provider found"
-msgstr ""
+msgstr "Холбоосын үйлчилгээ үзүүлэгч олдсонгүй"
 
 msgid "No results"
-msgstr ""
+msgstr "Үр дүн алга"
+
+msgid "Now"
+msgstr "Одоо"
 
 msgid "Objects"
-msgstr ""
+msgstr "Объектууд"
 
-msgid "Open contact menu"
-msgstr ""
+msgid "offline"
+msgstr "офлайн"
+
+#. TRANSLATORS: A color name for RGB(165, 184, 114)
+msgid "Olivine"
+msgstr "Оливин"
+
+msgid "online"
+msgstr "онлайн"
+
+msgid "Open hours overlay"
+msgstr "Цагийн давхаргыг нээх"
 
 msgid "Open link to \"{resourceName}\""
-msgstr ""
+msgstr "\"{resourceName}\" руу холбоос нээх"
 
 msgid "Open menu"
-msgstr ""
+msgstr "Цэсийг нээх"
+
+msgid "Open minutes overlay"
+msgstr "Минутын давхаргыг нээх"
+
+msgid "Open months overlay"
+msgstr "Сарын давхаргыг нээх"
 
 msgid "Open navigation"
-msgstr ""
+msgstr "Навигацийг нээх"
 
-msgid "Open settings menu"
-msgstr ""
+msgid "Open seconds overlay"
+msgstr "Секундын давхаргыг нээх"
+
+msgid "Open sidebar"
+msgstr "Хажуугийн самбарыг нээх"
+
+msgid "Open time picker"
+msgstr "Цаг сонгогчийг нээх"
+
+msgid "Open years overlay"
+msgstr "Жилийн давхаргыг нээх"
+
+msgid "Options"
+msgstr "Тохиргоо"
 
 msgid "Password is secure"
-msgstr ""
+msgstr "Нууц үг найдвартай байна"
 
 msgid "Pause slideshow"
-msgstr ""
+msgstr "Слайд шоуг түр зогсоох"
 
 msgid "People & Body"
-msgstr ""
+msgstr "Хүмүүс & Бие"
 
-msgid "Pick a date"
-msgstr ""
-
-msgid "Pick a date and a time"
-msgstr ""
-
-msgid "Pick a month"
-msgstr ""
-
-msgid "Pick a time"
-msgstr ""
-
-msgid "Pick a week"
-msgstr ""
-
-msgid "Pick a year"
-msgstr ""
+msgid "Pick"
+msgstr "Сонгох"
 
 msgid "Pick an emoji"
-msgstr ""
+msgstr "Эможи сонгох"
 
-msgid "Please select a time zone:"
-msgstr ""
+msgid "Pick file"
+msgstr "Файл сонгох"
+
+msgid "Pick files"
+msgstr "Файлууд сонгох"
+
+msgid "Pick folder"
+msgstr "Хавтас сонгох"
+
+msgid "Please choose a date"
+msgstr "Огноо сонгоно уу"
 
 msgid "Previous"
-msgstr ""
+msgstr "Өмнөх"
+
+msgid "Previous month"
+msgstr "Өмнөх сар"
+
+msgid "Previous year"
+msgstr "Өмнөх жил"
 
 msgid "Provider icon"
-msgstr ""
+msgstr "Үйлчилгээ үзүүлэгчийн дүрс"
+
+msgid "Purple"
+msgstr "Нил ягаан"
 
 msgid "Raw link {options}"
-msgstr ""
+msgstr "Түүхий холбоос {options}"
 
 msgid "Related resources"
-msgstr ""
+msgstr "Холбогдох нөөцүүд"
+
+msgid "Related team resources"
+msgstr "Багийн холбогдох нөөцүүд"
+
+msgid "Rename project"
+msgstr "Төслийн нэр солих"
+
+#. TRANSLATORS: A color name for RGB(191, 103, 139)
+msgid "Rosy brown"
+msgstr "Ягаан бор"
+
+msgid "Save changes"
+msgstr "Өөрчлөлтийг хадгалах"
 
 msgid "Search"
-msgstr ""
+msgstr "Хайх"
+
+msgid "Search …"
+msgstr "Хайх …"
 
 msgid "Search emoji"
-msgstr ""
+msgstr "Эможи хайх"
+
+msgid "Search for time zone"
+msgstr "Цагийн бүс хайх"
 
 msgid "Search results"
-msgstr ""
+msgstr "Хайлтын үр дүн"
 
 #. FOR TRANSLATORS: If possible in your language an even shorter version of 'a
 #. few seconds ago'
 msgid "sec. ago"
-msgstr ""
+msgstr "сек. өмнө"
 
 #. FOR TRANSLATORS: Shorter version of 'a few seconds ago'
 msgid "seconds ago"
-msgstr ""
+msgstr "секундын өмнө"
 
 msgid "Select a tag"
-msgstr ""
+msgstr "Шошго сонгох"
+
+msgid "Select date"
+msgstr "Огноо сонгох"
+
+msgid "Select date and time"
+msgstr "Огноо, цаг сонгох"
+
+msgid "Select month"
+msgstr "Сар сонгох"
 
 msgid "Select provider"
-msgstr ""
+msgstr "Үйлчилгээ үзүүлэгч сонгох"
+
+msgid "Select time"
+msgstr "Цаг сонгох"
+
+msgid "Select time range"
+msgstr "Цагийн хүрээ сонгох"
+
+msgid "Select week"
+msgstr "Долоо хоног сонгох"
+
+msgid "Select year"
+msgstr "Жил сонгох"
+
+msgid "Selected"
+msgstr "Сонгосон"
 
 msgid "Settings"
-msgstr ""
+msgstr "Тохиргоо"
 
 msgid "Settings navigation"
-msgstr ""
+msgstr "Тохиргооны навигаци"
+
+#. TRANSLATORS: Shift key on keyboard
+msgid "Shift"
+msgstr "Shift"
+
+msgid "Show details"
+msgstr "Дэлгэрэнгүйг харуулах"
 
 msgid "Show password"
-msgstr ""
+msgstr "Нууц үгийг харуулах"
+
+msgid "Skin tone"
+msgstr "Арьсны өнгө"
+
+msgid "Skip to app navigation"
+msgstr "Аппын навигаци руу алгасах"
+
+msgid "Skip to main content"
+msgstr "Үндсэн агуулга руу алгасах"
 
 msgid "Smart Picker"
-msgstr ""
+msgstr "Ухаалаг сонгогч"
 
 msgid "Smileys & Emotion"
-msgstr ""
+msgstr "Инээмсэглэл & Сэтгэл хөдлөл"
+
+#. TRANSLATORS: Space key on keyboard
+msgid "Space"
+msgstr "Space"
 
 msgid "Start slideshow"
-msgstr ""
+msgstr "Слайд шоуг эхлүүлэх"
 
 msgid "Start typing to search"
-msgstr ""
+msgstr "Хайхын тулд бичиж эхлэнэ үү"
 
 msgid "Submit"
-msgstr ""
+msgstr "Илгээх"
+
+msgid "Switch AM/PM mode"
+msgstr "ҮӨ/ҮХ горимыг солих"
 
 msgid "Symbols"
-msgstr ""
+msgstr "Тэмдэгтүүд"
+
+#. TRANSLATORS: Tab key on keyboard
+msgid "Tab"
+msgstr "Tab"
+
+msgid "Time picker"
+msgstr "Цаг сонгогч"
+
+msgid "Time zone"
+msgstr "Цагийн бүс"
+
+msgid "Toggle overlay"
+msgstr "Давхаргыг сэлгэх"
 
 msgid "Travel & Places"
-msgstr ""
+msgstr "Аялал & Газрууд"
+
+msgid "Type to search for existing projects"
+msgstr "Одоо байгаа төслүүдийг хайхын тулд бичнэ үү"
 
 msgid "Type to search time zone"
-msgstr ""
+msgstr "Цагийн бүс хайхын тулд бичнэ үү"
 
 msgid "Unable to search the group"
-msgstr ""
+msgstr "Бүлгийг хайж чадсангүй"
 
 msgid "Undo changes"
-msgstr ""
+msgstr "Өөрчлөлтийг буцаах"
 
-msgid ""
-"Write message, use \"@\" to mention someone, use \":\" for emoji "
-"autocompletion …"
-msgstr ""
+msgid "Upload file"
+msgstr "Файл байршуулах"
+
+msgid "Upload files"
+msgstr "Файлууд байршуулах"
+
+msgid "Upload folder"
+msgstr "Хавтас байршуулах"
+
+msgid "Uploading …"
+msgstr "Байршуулж байна …"
+
+msgid "User status: {status}"
+msgstr "Хэрэглэгчийн төлөв: {status}"
+
+msgid "View team"
+msgstr "Багийг харах"
+
+msgid "W"
+msgstr "Д"
+
+#. TRANSLATORS: A color name for RGB(211, 169, 103)
+msgid "Whiskey"
+msgstr "Виски"
+
+msgid "White"
+msgstr "Цагаан"
+
+msgid "Write a message …"
+msgstr "Зурвас бичих …"
+
+msgid "Year picker"
+msgstr "Жил сонгогч"
+
+msgid "Year picker overlay"
+msgstr "Жил сонгогчийн давхарга"
