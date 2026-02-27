@@ -242,7 +242,7 @@ export default {
 		 * Currently selected value
 		 */
 		modelValue: {
-			type: [Number, Array, Object],
+			type: [Number, Array, Object, null, undefined],
 			default: null,
 		},
 

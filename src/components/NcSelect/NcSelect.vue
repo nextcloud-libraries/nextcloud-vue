@@ -738,12 +738,12 @@ export default {
 		 *
 		 * The `v-model` directive may be used for two-way data binding
 		 *
-		 * @type {string | number | Record<string | number, any> | Array<any>}
+		 * @type {string | number | Record<string | number, any> | Array<any> | null | undefined}
 		 *
 		 * @see https://vue-select.org/api/props.html#value
 		 */
 		modelValue: {
-			type: [String, Number, Object, Array],
+			type: [String, Number, Object, Array, null, undefined],
 			default: null,
 		},
 
@@ -797,7 +797,7 @@ export default {
 				return null
 			}
 			// The <input> itself does not have any value so we set the `required` attribute conditionally
-			return this.modelValue === null || (Array.isArray(this.modelValue) && this.modelValue.length === 0)
+			return this.modelValue === null || this.modelValue === undefined || (Array.isArray(this.modelValue) && this.modelValue.length === 0)
 		},
 
 		localCalculatePosition() {
