@@ -268,7 +268,7 @@ export default {
 
 						<!-- Close modal -->
 						<NcButton
-							v-if="!noClose && canClose && closeButtonOutside && !closeButtonContained"
+							v-if="showCloseButton && isCloseButtonOutside"
 							:aria-label="closeButtonAriaLabel"
 							class="header-close"
 							variant="tertiary"
@@ -316,7 +316,7 @@ export default {
 						</div>
 						<!-- Close modal -->
 						<NcButton
-							v-if="!noClose && canClose && !closeButtonOutside && closeButtonContained"
+							v-if="showCloseButton && !isCloseButtonOutside"
 							:aria-label="closeButtonAriaLabel"
 							class="modal-container__close"
 							variant="tertiary"
@@ -357,13 +357,13 @@ import Vue from 'vue'
 import Close from 'vue-material-design-icons/Close.vue'
 import Pause from 'vue-material-design-icons/Pause.vue'
 import Play from 'vue-material-design-icons/Play.vue'
+import NcActions from '../NcActions/NcActions.vue'
+import NcButton from '../NcButton/NcButton.vue'
+import NcIconSvgWrapper from '../NcIconSvgWrapper/NcIconSvgWrapper.vue'
 import { t } from '../../l10n.js'
 import { getTrapStack } from '../../utils/focusTrap.ts'
 import GenRandomId from '../../utils/GenRandomId.js'
 import Timer from '../../utils/Timer.js'
-import NcActions from '../NcActions/index.js'
-import NcButton from '../NcButton/index.js'
-import NcIconSvgWrapper from '../NcIconSvgWrapper/index.js'
 
 export default {
 	name: 'NcModal',
@@ -685,6 +685,35 @@ export default {
 		nextButtonAriaLabel() {
 			return t('Next')
 		},
+
+		showCloseButton() {
+			if (this.noClose) {
+				return false
+			}
+			return this.canClose
+		},
+
+		isCloseButtonOutside() {
+			if (this.closeButtonOutside) {
+				return true
+			}
+			return !this.closeButtonContained
+		},
+
+		numHeaderActions() {
+			let actions = 0
+			if (this.hasNext && this.enableSlideshow) {
+				actions++
+			}
+			if (this.showCloseButton && this.isCloseButtonOutside) {
+				actions++
+			}
+			if (this.$scopedSlots.actions) {
+				actions++
+			}
+
+			return actions
+		},
 	},
 
 	watch: {
@@ -973,7 +1002,7 @@ export default {
 	// the circle animation loop
 	display: flex !important;
 	align-items: center;
-	justify-content: center;
+	justify-content: space-between;
 	width: 100%;
 	height: var(--header-height);
 	overflow: hidden;
@@ -983,7 +1012,7 @@ export default {
 		overflow-x: hidden;
 		box-sizing: border-box;
 		width: 100%;
-		padding: 0 calc(var(--default-clickable-area) * 3) 0 12px; // maximum actions is 3
+		padding-inline: 12px 0;
 		transition: padding ease 100ms;
 		white-space: nowrap;
 		text-overflow: ellipsis;
@@ -994,17 +1023,17 @@ export default {
 	// On wider screens the name can be centered
 	@media only screen and (min-width: $breakpoint-mobile) {
 		&__name {
-			padding-inline-start: calc(var(--default-clickable-area) * 3); // maximum actions is 3
+			// On wider screens the name is centered, so we need to compensate for the actions to make the name really centered
+			padding-inline-start: calc(var(--header-height) * v-bind('numHeaderActions'));
 			text-align: center;
 		}
 	}
 
 	.icons-menu {
-		position: absolute;
-		inset-inline-end: 0;
 		display: flex;
 		align-items: center;
 		justify-content: flex-end;
+		align-self: flex-end;
 
 		.header-close {
 			display: flex;
