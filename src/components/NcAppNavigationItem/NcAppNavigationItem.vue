@@ -791,16 +791,20 @@ export default {
 		 * @param {Event} e the keydown event
 		 */
 		handleTab(e) {
-			// If there is no actions menu, do nothing.
-			if (!this.$refs.actions) {
+			if (this.editingActive) {
 				return
 			}
-			if (this.focused) {
+
+			const actionsContainer = this.$el?.querySelector('.app-navigation-entry__utils')
+			if (!actionsContainer) {
+				return
+			}
+
+			const focusableElement = actionsContainer.querySelector('button')
+			if (this.focused && focusableElement) {
 				e.preventDefault()
-				this.$refs.actions.$refs.triggerButton.$el.focus()
+				focusableElement.focus()
 				this.focused = false
-			} else {
-				this.$refs.actions.$refs.triggerButton.$el.blur()
 			}
 		},
 
