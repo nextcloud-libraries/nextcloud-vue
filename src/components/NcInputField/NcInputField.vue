@@ -569,7 +569,7 @@ export default {
 		display: flex;
 		align-items: center;
 		color: var(--color-text-maxcontrast);
-		word-break: break-all;
+		overflow-wrap: anywhere;
 
 		&__icon {
 			margin-inline-end: 8px;
