@@ -4,6 +4,8 @@
 -->
 
 <script setup lang="ts">
+import type { NcIconName } from './types.d.ts'
+
 import { generateFilePath } from '@nextcloud/router'
 import { computed } from 'vue'
 
@@ -11,7 +13,7 @@ const props = withDefaults(defineProps<{
 	/**
 	 * The name of the icon to use.
 	 */
-	icon: string
+	icon: NcIconName
 
 	/**
 	 * If set the icon will be mirrored in right-to-left languages.
