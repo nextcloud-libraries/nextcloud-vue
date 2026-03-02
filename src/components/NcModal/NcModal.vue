@@ -11,7 +11,7 @@ import type { Slot } from 'vue'
 import { mdiChevronLeft, mdiChevronRight, mdiClose, mdiPause, mdiPlay } from '@mdi/js'
 import { useIntervalFn, useSwipe } from '@vueuse/core'
 import { createFocusTrap } from 'focus-trap'
-import { computed, nextTick, onMounted, onUnmounted, ref, toRef, useTemplateRef, warn, watch, watchEffect } from 'vue'
+import { computed, nextTick, onMounted, onUnmounted, ref, toRef, useSlots, useTemplateRef, warn, watch, watchEffect } from 'vue'
 import NcActions from '../NcActions/NcActions.vue'
 import NcButton from '../NcButton/NcButton.vue'
 import NcIconSvgWrapper from '../NcIconSvgWrapper/NcIconSvgWrapper.vue'
@@ -252,6 +252,22 @@ useHotKey(['ArrowLeft', 'ArrowRight'], (event) => {
 		nextSlide()
 	}
 }, { allowInModal: true })
+
+const slots = useSlots()
+const numHeaderActions = computed(() => {
+	let actions = 0
+	if (props.hasNext && props.enableSlideshow) {
+		actions++
+	}
+	if (!props.noClose && props.closeButtonOutside) {
+		actions++
+	}
+	if (slots.actions) {
+		actions++
+	}
+
+	return actions
+})
 
 // for developers we should add a warning if used with invalid props combination
 onMounted(() => {
@@ -585,7 +601,7 @@ function clearFocusTrap() {
 	// the circle animation loop
 	display: flex !important;
 	align-items: center;
-	justify-content: center;
+	justify-content: space-between;
 	width: 100%;
 	height: var(--header-height);
 	overflow: hidden;
@@ -594,7 +610,7 @@ function clearFocusTrap() {
 	&__name {
 		overflow-x: hidden;
 		width: 100%;
-		padding: 0 calc(var(--default-clickable-area) * 3) 0 12px; // maximum actions is 3
+		padding-inline: 12px 0;
 		transition: padding ease 100ms;
 		white-space: nowrap;
 		text-overflow: ellipsis;
@@ -605,17 +621,17 @@ function clearFocusTrap() {
 	// On wider screens the name can be centered
 	@media only screen and (min-width: $breakpoint-mobile) {
 		&__name {
-			padding-inline-start: calc(var(--default-clickable-area) * 3); // maximum actions is 3
+			// On wider screens the name is centered, so we need to compensate for the actions to make the name really centered
+			padding-inline-start: calc(var(--header-height) * v-bind('numHeaderActions'));
 			text-align: center;
 		}
 	}
 
 	.icons-menu {
-		position: absolute;
-		inset-inline-end: 0;
 		display: flex;
 		align-items: center;
 		justify-content: flex-end;
+		align-self: flex-end;
 
 		.header-close {
 			display: flex;
