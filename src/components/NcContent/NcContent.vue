@@ -112,6 +112,7 @@ export default {
 
 	provide() {
 		return {
+			appName: this.appName,
 			'NcContent:setHasAppNavigation': this.setAppNavigation,
 			'NcContent:selector': '#content-vue',
 		}
