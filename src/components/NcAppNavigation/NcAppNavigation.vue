@@ -214,7 +214,7 @@ onMounted(() => {
 	})
 
 	focusTrap = createFocusTrap(appNavigationContainerElement.value!, {
-		allowOutsideClick: true,
+		clickOutsideDeactivates: true,
 		fallbackFocus: appNavigationContainerElement.value!,
 		trapStack: getTrapStack(),
 		escapeDeactivates: false,
