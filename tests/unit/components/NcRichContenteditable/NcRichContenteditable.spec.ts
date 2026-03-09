@@ -37,7 +37,7 @@ function mountNcRichContenteditable({ props, attrs }: any = {}) {
 
 	const getCurrentValue = () => currentValue
 
-	const contentEditable = () => wrapper.find('[contenteditable="true"')
+	const contentEditable = () => wrapper.find('[contenteditable="plaintext-only"')
 
 	const inputValue = async (newValue) => {
 		contentEditable().element.innerHTML += newValue
