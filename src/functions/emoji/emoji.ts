@@ -77,6 +77,8 @@ export function emojiAddRecent(emojiOrEmojiData: EmojiData | string | null): voi
 			emojiIndex = new EmojiIndex(data)
 		}
 		emojiData = emojiIndex.findEmoji(emojiOrEmojiData) as EmojiData | null
+	} else {
+		emojiData = emojiOrEmojiData
 	}
 
 	if (emojiData && 'id' in emojiData) {
