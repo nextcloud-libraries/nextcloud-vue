@@ -10,7 +10,13 @@ import { resolve } from 'node:path'
 const projects = [
 	{
 		name: 'chromium',
-		use: { ...devices['Desktop Chrome'] },
+		use: {
+			...devices['Desktop Chrome'],
+			contextOptions: {
+				// chromium-specific permissions
+				permissions: ['clipboard-read', 'clipboard-write'],
+			},
+		},
 	},
 	{
 		name: 'firefox',
