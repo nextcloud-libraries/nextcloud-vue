@@ -14,6 +14,14 @@ const storage = getBuilder('nextcloud-vue').persist(true).build()
 let emojiIndex
 
 /**
+ * Object type returned by EmojiIndex
+ * (keep only required properties)
+ */
+type EmojiData = {
+	id: string
+}
+
+/**
  * Skin tones supported by Unicode Emojis (Fitzpatrick scale)
  * The numeric values align with `emoji-mart-vue`
  */
@@ -57,11 +65,23 @@ export function emojiSearch(query: string, maxResults: number = 10): object[] {
  * Add emoji to the list of recent emojis.
  * This list can be got from emojiSearch function and it is used in NcEmojiPicker.
  *
- * @param emojiData object with `id` property
- * @param emojiData.id the emoji ID from emoji index
+ * @param emojiOrEmojiData object with `id` property, or emoji string. When string provided, object is looked up in EmojiIndex
+ * @param emojiOrEmojiData.id the emoji ID from emoji index. Mandatory property to modify 'frequently' array
  */
-export function emojiAddRecent(emojiData: { id: string }): void {
-	frequently.add(emojiData)
+export function emojiAddRecent(emojiOrEmojiData: EmojiData | string | null): void {
+	let emojiData: EmojiData | null = null
+
+	if (typeof emojiOrEmojiData === 'string') {
+		// If this is the first call of function - initialize EmojiIndex
+		if (!emojiIndex) {
+			emojiIndex = new EmojiIndex(data)
+		}
+		emojiData = emojiIndex.findEmoji(emojiOrEmojiData) as EmojiData | null
+	}
+
+	if (emojiData && 'id' in emojiData) {
+		frequently.add(emojiData)
+	}
 }
 
 /**

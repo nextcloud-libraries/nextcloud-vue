@@ -66,7 +66,7 @@ declare function setCurrentSkinTone(skinTone: EmojiSkinTone): void
         <hr />
 
         <NcSelect v-model="selectedTone" :options="tones" input-label="Current Skin Tone" />
-        
+
         <hr />
 
         <p>
@@ -78,6 +78,7 @@ declare function setCurrentSkinTone(skinTone: EmojiSkinTone): void
         <hr />
 
         <NcButton @click="handleAddToRecent">Add 💙 to recent</NcButton>
+        <NcButton @click="handleAddToRecent2">Add ❤️ to recent</NcButton>
     </div>
 </template>
 
@@ -115,6 +116,11 @@ export default {
 
         handleAddToRecent() {
             emojiAddRecent({ id: 'blue_heart' })
+            this.manuallyUpdateRecent()
+        },
+
+        handleAddToRecent2() {
+            emojiAddRecent('❤️')
             this.manuallyUpdateRecent()
         },
 
