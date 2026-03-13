@@ -7,6 +7,22 @@
 
 All notable changes to this project will be documented in this file.
 
+## [v9.6.0](https://github.com/nextcloud-libraries/nextcloud-vue/tree/v9.6.0) (2026-03-13)
+### 🚀 Enhancements
+* feat(NcFilePicker): add picker component to select local files [\#7097](https://github.com/nextcloud-libraries/nextcloud-vue/pull/7097) \([susnux](https://github.com/susnux)\)
+* feat(emoji): extend 'emojiAddRecent' to allow pass emoji as an argument [\#8288](https://github.com/nextcloud-libraries/nextcloud-vue/pull/8288) \([Antreesy](https://github.com/Antreesy)\)
+### 🐛 Fixed bugs
+* fix(NcTextArea): area resize does not resize component [\#8175](https://github.com/nextcloud-libraries/nextcloud-vue/pull/8175)
+* fix(NcButton): remove active effect from disabled buttons [\#8176](https://github.com/nextcloud-libraries/nextcloud-vue/pull/8176) \([Antreesy](https://github.com/Antreesy)\)
+* fix(NcInputField): use `overflow-wrap: anywhere` instead of `word-break: break-all` for the helper text [\#8225](https://github.com/nextcloud-libraries/nextcloud-vue/pull/8225) \([Sector6759](https://github.com/Sector6759)\)
+* fix(NcModal): properly handle modal name size [\#8263](https://github.com/nextcloud-libraries/nextcloud-vue/pull/8263) \([susnux](https://github.com/susnux)\)
+* fix(NcRichContenteditable): restore native undo/redo events [\#8286](https://github.com/nextcloud-libraries/nextcloud-vue/pull/8286) \([Antreesy](https://github.com/Antreesy)\)
+* fix(NcAppContent): list is not scrollable on mobile [\#8292](https://github.com/nextcloud-libraries/nextcloud-vue/pull/8292)
+* fix(NcRichText): ignore links resolving in Markdown [\#8154](https://github.com/nextcloud-libraries/nextcloud-vue/pull/8154) \([Antreesy](https://github.com/Antreesy)\)
+### Other Changes
+* Updated translations
+* fix: add missing initialization to keep the old behaviour [\#8291](https://github.com/nextcloud-libraries/nextcloud-vue/pull/8291)
+
 ## [v9.5.0](https://github.com/nextcloud-libraries/nextcloud-vue/tree/v9.5.0) (2026-02-04)
 [Full Changelog](https://github.com/nextcloud-libraries/nextcloud-vue/compare/v9.4.0...v9.5.0)
 
