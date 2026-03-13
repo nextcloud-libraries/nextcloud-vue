@@ -109,7 +109,7 @@ export default {
 				}">
 				<NcAppContentDetailsToggle v-if="showDetails" @click.stop.prevent="hideDetails" />
 
-				<div v-show="!showDetails">
+				<div class="app-content-wrapper__list" v-show="!showDetails">
 					<slot name="list" />
 				</div>
 				<slot v-if="showDetails" />
@@ -543,5 +543,9 @@ export default {
 	:deep(.app-content-list) {
 		max-width: none;
 	}
+}
+
+.app-content-wrapper__list {
+	height: 100%;
 }
 </style>
