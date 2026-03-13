@@ -308,6 +308,7 @@ import breaks from 'remark-breaks'
 import remarkGfm from 'remark-gfm'
 import remarkParse from 'remark-parse'
 import remark2rehype from 'remark-rehype'
+import remarkStringify from 'remark-stringify'
 import remarkUnlinkProtocols from 'remark-unlink-protocols'
 import { unified } from 'unified'
 import { ref } from 'vue'
@@ -318,6 +319,7 @@ import NcRichTextCopyButton from './NcRichTextCopyButton.vue'
 import GenRandomId from '../../utils/GenRandomId.js'
 import { getRoute, remarkAutolink } from './autolink.js'
 import { prepareTextNode, remarkPlaceholder } from './placeholder.js'
+import { remarkStripCode } from './remarkStripCode.ts'
 import { remarkUnescape } from './remarkUnescape.js'
 
 /**
@@ -599,7 +601,7 @@ export default {
 					? h('div', { class: 'rich-text--reference-widget' }, [
 							h(NcReferenceList, {
 								props: {
-									text: this.text,
+									text: this.prepareReferenceSource(this.text),
 									referenceData: this.references,
 									interactive: this.referenceInteractive,
 									interactiveOptIn: this.referenceInteractiveOptIn,
@@ -608,6 +610,25 @@ export default {
 						])
 					: null,
 			])
+		},
+
+		/**
+		 * Strip content of inline code and code blocks for reference widgets
+		 * (e.g. ignore fenced links from being added as reference)
+		 *
+		 * @param {string} text - Content of the node
+		 */
+		prepareReferenceSource(text) {
+			if (!this.useMarkdown && !this.useExtendedMarkdown) {
+				return text
+			}
+
+			return unified()
+				.use(remarkParse)
+				.use(remarkStripCode)
+				.use(remarkStringify)
+				.processSync(text)
+				.value
 		},
 	},
 
