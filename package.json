@@ -124,6 +124,7 @@
     "remark-breaks": "^4.0.0",
     "remark-parse": "^11.0.0",
     "remark-rehype": "^11.0.0",
+    "remark-stringify": "^11.0.0",
     "remark-unlink-protocols": "^1.0.0",
     "splitpanes": "^2.4.1",
     "string-length": "^5.0.1",
