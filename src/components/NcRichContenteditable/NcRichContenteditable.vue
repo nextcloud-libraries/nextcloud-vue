@@ -19,6 +19,7 @@ Try mentioning user @Test01 or inserting emoji :smile
 		<NcRichContenteditable
 			label="Write a comment"
 			v-model="message"
+			:disabled="disabled"
 			:auto-complete="autoComplete"
 			:maxlength="100"
 			:user-data="userData"
@@ -27,11 +28,14 @@ Try mentioning user @Test01 or inserting emoji :smile
 
 		<NcRichContenteditable
 			v-model="message"
+			:disabled="!disabled"
 			:auto-complete="autoComplete"
 			:maxlength="400"
 			:multiline="true"
 			:user-data="userData"
 			@submit="onSubmit" />
+
+		<NcCheckboxRadioSwitch v-model="disabled" type="switch">Toggle disabled state</NcCheckboxRadioSwitch>
 
 		<h5>Output - raw</h5>
 		{{ JSON.stringify(message) }}
@@ -47,6 +51,7 @@ Try mentioning user @Test01 or inserting emoji :smile
 export default {
 	data() {
 		return {
+			disabled: false,
 			message: '**Lorem ipsum** dolor sit amet.',
 			// You need to provide this for the inline mention to understand what to display or not.
 			// Key should be a string with leading '@', like @Test02 or @"Test Offline"
@@ -250,7 +255,7 @@ export default {
 				'rich-contenteditable__input--overflow': isOverMaxlength,
 				'rich-contenteditable__input--disabled': disabled,
 			}"
-			:contenteditable="canEdit"
+			:contenteditable="contenteditableAttributeValue"
 			:aria-labelledby="label ? labelId : undefined"
 			:aria-placeholder="placeholder"
 			aria-multiline="true"
@@ -309,6 +314,8 @@ smilesCharacters.forEach((char) => {
 	textSmiles.push(':' + char)
 	textSmiles.push(':-' + char)
 })
+
+let isPlaintextOnlySupported = null
 
 export default {
 	name: 'NcRichContenteditable',
@@ -455,6 +462,19 @@ export default {
 	setup() {
 		const uid = GenRandomId(5)
 		const model = useModelMigration('value', 'update:value', true)
+
+		// Test whether browser supports 'plaintext-only' attribute
+		if (isPlaintextOnlySupported === null) {
+			try {
+				document.createElement('div').contentEditable = 'plaintext-only'
+				isPlaintextOnlySupported = true
+			} catch (error) {
+				// Keep fallback for unsupported browsers
+				logger.debug('[NcRichContenteditable] Unsupported attribute value:', { error })
+				isPlaintextOnlySupported = false
+			}
+		}
+
 		return {
 			model,
 			// Constants
@@ -522,12 +542,17 @@ export default {
 		},
 
 		/**
-		 * Edit is only allowed when contenteditableis true and disabled is false
+		 * Edit is only allowed when contenteditable is:
+		 * 'true' (all browsers since 2015)
+		 * 'plaintext-only' (most browsers since 2015, Firefox since 136+)
 		 *
-		 * @return {boolean}
+		 * @return {string}
 		 */
-		canEdit() {
-			return this.contenteditable && !this.disabled
+		contenteditableAttributeValue() {
+			if (this.contenteditable && !this.disabled) {
+				return isPlaintextOnlySupported ? 'plaintext-only' : 'true'
+			}
+			return 'false'
 		},
 
 		/**
@@ -577,9 +602,10 @@ export default {
 		// Update default value
 		this.updateContent(this.model)
 
-		// Removes the contenteditable attribute at first load if the prop is
-		// set to false.
-		this.$refs.contenteditable.contentEditable = this.canEdit
+		// Tribute.js library ensures that `el.contentEditable = true` when attaching to element.
+		// This overwrites the template binding.
+		// Set the contenteditable attribute to actual value afterward
+		this.$refs.contenteditable.contentEditable = this.contenteditableAttributeValue
 	},
 
 	beforeDestroy() {
@@ -782,32 +808,41 @@ export default {
 		 */
 		onPaste(event) {
 			// Either disabled or edit deactivated
-			if (!this.canEdit) {
+			if (!this.contenteditable || this.disabled) {
 				return
 			}
 
-			event.preventDefault()
-			const clipboardData = event.clipboardData
+			if (isPlaintextOnlySupported) {
+				this.$emit('paste', event)
+			} else {
+				/**
+				 * Fallback for unsupported browsers:
+				 * - patched 'paste' operation to insert only raw text
+				 * - issues with 'undo' and 'redo' operations
+				 */
+				event.preventDefault()
+				const clipboardData = event.clipboardData
 
-			/** The original paste event */
-			this.$emit('paste', event)
+				/** The original paste event */
+				this.$emit('paste', event)
 
-			// If we have a file or if we don't have any text, ignore
-			if (clipboardData.files.length !== 0
-				|| !Object.values(clipboardData.items).find((item) => item?.type.startsWith('text'))) {
-				return
+				// If we have a file or if we don't have any text, ignore
+				if (clipboardData.files.length !== 0
+					|| !Object.values(clipboardData.items).find((item) => item?.type.startsWith('text'))) {
+					return
+				}
+
+				const text = clipboardData.getData('text')
+				const selection = window.getSelection()
+
+				// Generate text and insert
+				const range = selection.getRangeAt(0)
+				range.deleteContents()
+				range.insertNode(document.createTextNode(text))
+
+				// Collapse the range to the end position
+				range.collapse(false)
 			}
-
-			const text = clipboardData.getData('text')
-			const selection = window.getSelection()
-
-			// Generate text and insert
-			const range = selection.getRangeAt(0)
-			range.deleteContents()
-			range.insertNode(document.createTextNode(text))
-
-			// Collapse the range to the end position
-			range.collapse(false)
 
 			// Propagate data
 			this.updateValue(this.$refs.contenteditable.innerHTML)
