@@ -19,6 +19,7 @@
 * fix(NcAppContent): list is not scrollable on mobile [\#8289](https://github.com/nextcloud-libraries/nextcloud-vue/pull/8289) \([JuliaKirschenheuter](https://github.com/JuliaKirschenheuter)\)
 * fix(NcRichContenteditable): restore native undo/redo events [\#8298](https://github.com/nextcloud-libraries/nextcloud-vue/pull/8298)
 * fix(NcAppContent): list is not scrollable on mobile [\#8292](https://github.com/nextcloud-libraries/nextcloud-vue/pull/8292)
+* fix(NcRichText): ignore links resolving in Markdown [\#8302](https://github.com/nextcloud-libraries/nextcloud-vue/pull/8302)
 
 ### Other Changes
 * test(cypress): adjust workflow and fix broken tests [\#8178](https://github.com/nextcloud-libraries/nextcloud-vue/pull/8178) \([susnux](https://github.com/susnux)\)
