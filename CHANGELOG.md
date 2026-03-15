@@ -5,6 +5,24 @@
 
 # Changelog
 
+## [v8.37.0](https://github.com/nextcloud-libraries/nextcloud-vue/tree/v8.37.0) (2026-03-13)
+### 🚀 Enhancements
+* feat(NcFilePicker): add picker component to select local files [\#8180](https://github.com/nextcloud-libraries/nextcloud-vue/pull/8180)
+* feat(emoji): extend 'emojiAddRecent' to allow pass emoji as an argument [\#8290](https://github.com/nextcloud-libraries/nextcloud-vue/pull/8290)
+
+### 🐛 Fixed bugs
+* fix(NcTextArea): area resize does not resize component [\#8161](https://github.com/nextcloud-libraries/nextcloud-vue/pull/8161) \([JuliaKirschenheuter](https://github.com/JuliaKirschenheuter)\)
+* fix(NcButton): remove active effect from disabled buttons [\#8177](https://github.com/nextcloud-libraries/nextcloud-vue/pull/8177)
+* fix(NcInputField): use `overflow-wrap: anywhere` instead of `word-break: break-all` for the helper text [\#8262](https://github.com/nextcloud-libraries/nextcloud-vue/pull/8262)
+* fix(NcModal): properly handle modal name size [\#8268](https://github.com/nextcloud-libraries/nextcloud-vue/pull/8268)
+* fix(NcContent): provide `appName` to children [\#8271](https://github.com/nextcloud-libraries/nextcloud-vue/pull/8271) \([susnux](https://github.com/susnux)\)
+* fix(NcAppContent): list is not scrollable on mobile [\#8289](https://github.com/nextcloud-libraries/nextcloud-vue/pull/8289) \([JuliaKirschenheuter](https://github.com/JuliaKirschenheuter)\)
+* fix(NcRichContenteditable): restore native undo/redo events [\#8298](https://github.com/nextcloud-libraries/nextcloud-vue/pull/8298)
+* fix(NcAppContent): list is not scrollable on mobile [\#8292](https://github.com/nextcloud-libraries/nextcloud-vue/pull/8292)
+* fix(NcRichText): ignore links resolving in Markdown [\#8302](https://github.com/nextcloud-libraries/nextcloud-vue/pull/8302)
+
+### Other Changes
+* test(cypress): adjust workflow and fix broken tests [\#8178](https://github.com/nextcloud-libraries/nextcloud-vue/pull/8178) \([susnux](https://github.com/susnux)\)
 
 ## [v8.36.0](https://github.com/nextcloud-libraries/nextcloud-vue/tree/v8.36.0) (2026-02-04)
 
