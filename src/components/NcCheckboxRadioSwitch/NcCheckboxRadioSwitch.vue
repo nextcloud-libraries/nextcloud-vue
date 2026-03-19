@@ -708,25 +708,12 @@ export default {
 				return
 			}
 
-			// Dispatch the checked values as an array if multiple, or single value otherwise
-			const values = this.getInputsSet()
-				.filter((input) => input.checked)
-				.map((input) => input.value)
-
-			if (values.includes(this.value)) {
-				this.internalModelValue = values.filter((v) => v !== this.value)
+			// Toggle this value in/out of the array
+			if (this.isChecked) {
+				this.internalModelValue = this.internalModelValue.filter((v) => v !== this.value)
 			} else {
-				this.internalModelValue = [...values, this.value]
+				this.internalModelValue = [...this.internalModelValue, this.value]
 			}
-		},
-
-		/**
-		 * Get the input set based on this name
-		 *
-		 * @return {Node[]}
-		 */
-		getInputsSet() {
-			return [...document.getElementsByName(this.name)]
 		},
 	},
 }
