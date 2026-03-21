@@ -9,7 +9,21 @@
 			v-if="reference && hasCustomWidget"
 			ref="customWidget"
 			class="widget-custom"
-			:class="{ 'full-width': hasFullWidth }" />
+			:class="{
+				'full-width': hasFullWidth,
+			}"
+			:style="customWidgetStyle">
+			<div ref="customWidgetContent" class="widget-custom__content" />
+			<div
+				v-if="isResizable"
+				class="widget-custom__resize-handle"
+				role="slider"
+				tabindex="0"
+				aria-orientation="vertical"
+				:aria-label="t('Resize widget height')"
+				@pointerdown.stop.prevent="startResize"
+				@keydown="onResizeKeydown" />
+		</div>
 
 		<component
 			:is="referenceWidgetLinkComponent"
@@ -42,10 +56,11 @@ import { nextTick, ref } from 'vue'
 import { RouterLink } from 'vue-router'
 import NcButton from '../../components/NcButton/index.js'
 import { t } from '../../l10n.js'
-import { destroyWidget, hasFullWidth, hasInteractiveView, isWidgetRegistered, renderWidget } from './../../functions/reference/widgets.ts'
+import { destroyWidget, hasFullWidth, hasInteractiveView, isResizable, isWidgetRegistered, renderWidget } from './../../functions/reference/widgets.ts'
 import { getRoute } from './autolink.js'
 
 const IDLE_TIMEOUT = 3 * 60 * 1000 // 3 minutes outside of viewport before widget is removed from the DOM
+const RESIZE_KEYBOARD_STEP = 10
 
 export default {
 	name: 'NcReferenceWidget',
@@ -96,6 +111,12 @@ export default {
 			showInteractive: false,
 			rendered: false,
 			idleTimeout: null,
+			isResizing: false,
+			resizedHeight: null,
+			resizeStartY: 0,
+			resizeStartHeight: 0,
+			resizeMinHeight: 100,
+			resizeMaxHeight: null,
 		}
 	},
 
@@ -108,8 +129,19 @@ export default {
 			return hasFullWidth(this.reference.richObjectType)
 		},
 
+		isResizable() {
+			return isResizable(this.reference.richObjectType)
+		},
+
 		hasCustomWidget() {
 			return isWidgetRegistered(this.reference.richObjectType)
+		},
+
+		customWidgetStyle() {
+			if (!this.resizedHeight) {
+				return null
+			}
+			return { height: `${this.resizedHeight}px !important` }
 		},
 
 		hasInteractiveView() {
@@ -197,6 +229,11 @@ export default {
 	},
 
 	beforeDestroy() {
+		if (this.idleTimeout) {
+			clearTimeout(this.idleTimeout)
+			this.idleTimout = null
+		}
+		this.stopResize()
 		this.destroyWidget()
 	},
 
@@ -209,7 +246,7 @@ export default {
 		},
 
 		renderWidget() {
-			if (!this.$refs.customWidget) {
+			if (!this.$refs.customWidgetContent) {
 				return
 			}
 
@@ -217,12 +254,12 @@ export default {
 				return
 			}
 
-			this.$refs.customWidget.innerHTML = ''
+			this.$refs.customWidgetContent.innerHTML = ''
 
 			// create a separate element so we can rerender on the ref again
 			const widget = document.createElement('div')
 			widget.style = 'width: 100%;'
-			this.$refs.customWidget.appendChild(widget)
+			this.$refs.customWidgetContent.appendChild(widget)
 			this.$nextTick(() => {
 				// Waiting for the ref to become available
 				renderWidget(widget, {
@@ -238,6 +275,86 @@ export default {
 				destroyWidget(this.reference.richObjectType, this.$el)
 				this.rendered = false
 			}
+		},
+
+		initResizeLimits() {
+			// Use min/max height from rendered widget element if set
+			const widgetEl = this.$refs.customWidgetContent?.firstElementChild
+			if (widgetEl) {
+				const computedStyle = window.getComputedStyle(widgetEl)
+				const parsedMin = parseFloat(computedStyle.minHeight)
+				const parsedMax = parseFloat(computedStyle.maxHeight)
+				this.resizeMinHeight = parsedMin > 0 ? parsedMin : 100
+				this.resizeMaxHeight = Number.isFinite(parsedMax) && parsedMax > 0 ? parsedMax : null
+			} else {
+				this.resizeMinHeight = 100
+				this.resizeMaxHeight = null
+			}
+		},
+
+		startResize(event) {
+			if (!this.isResizable || !this.$refs.customWidget) {
+				return
+			}
+
+			this.initResizeLimits()
+			this.isResizing = true
+			this.resizeStartY = event.clientY
+			this.resizeStartHeight = this.$refs.customWidget.getBoundingClientRect().height
+
+			window.addEventListener('pointermove', this.onResize)
+			window.addEventListener('pointerup', this.stopResize)
+		},
+
+		onResizeKeydown(event) {
+			if (!this.isResizable || !this.$refs.customWidget) {
+				return
+			}
+
+			if (!['ArrowDown', 'ArrowUp'].includes(event.key)) {
+				return
+			}
+
+			// Establish limits once per interaction
+			this.initResizeLimits()
+
+			const maxHeight = this.resizeMaxHeight ?? (window.innerHeight - 120)
+			const currentHeight = this.resizedHeight ?? this.resizeStartHeight
+
+			let next
+			switch (event.key) {
+				case 'ArrowDown':
+					next = currentHeight + RESIZE_KEYBOARD_STEP
+					break
+				case 'ArrowUp':
+					next = currentHeight - RESIZE_KEYBOARD_STEP
+					break
+				default:
+					return
+			}
+
+			event.preventDefault()
+			this.resizedHeight = Math.min(maxHeight, Math.max(this.resizeMinHeight, next))
+		},
+
+		onResize(event) {
+			if (!this.isResizing || !this.$refs.customWidget) {
+				return
+			}
+
+			const deltaY = event.clientY - this.resizeStartY
+			const maxHeight = this.resizeMaxHeight ?? (window.innerHeight - 120)
+			this.resizedHeight = Math.min(maxHeight, Math.max(this.resizeMinHeight, this.resizeStartHeight + deltaY))
+		},
+
+		stopResize() {
+			if (!this.isResizing) {
+				return
+			}
+
+			this.isResizing = false
+			window.removeEventListener('pointermove', this.onResize)
+			window.removeEventListener('pointerup', this.stopResize)
 		},
 	},
 }
@@ -259,11 +376,51 @@ export default {
 
 .widget-custom {
 	@include widget;
+	position: relative;
 
 	&.full-width {
 		width: var(--widget-full-width, 100%) !important;
 		inset-inline-start: calc( (var(--widget-full-width, 100%) - 100%) / 2 * -1);
 		position: relative;
+	}
+
+	&__content {
+		width: 100%;
+		display: flex;
+		flex-direction: column;
+	}
+
+	&__resize-handle {
+		position: absolute;
+		bottom: 0;
+		inset-inline-start: 0;
+		width: 100%;
+		height: calc(var(--default-grid-baseline) * 2);
+		border-top: 1px solid var(--color-border);
+		margin-top: -1px;
+		cursor: row-resize;
+		touch-action: none;
+
+		&::before, &::after {
+			content: '';
+			position: absolute;
+			top: 50%;
+			left: 50%;
+			background-color: var(--color-border);
+			margin-top: 1px;
+			transform: translateX(-50%);
+			width: 30px;
+			height: 1px;
+		}
+
+		&::before {
+			margin-top: -2px;
+		}
+
+		&:focus-visible {
+			outline: 2px solid var(--color-primary-element);
+			outline-offset: -4px;
+		}
 	}
 }
 
