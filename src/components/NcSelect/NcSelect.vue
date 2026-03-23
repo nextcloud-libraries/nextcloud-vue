@@ -331,18 +331,21 @@ export default {
 		v-bind="propsToForward"
 		@search="search = $event"
 		@update:modelValue="$emit('update:modelValue', $event)">
-		<template v-if="!labelOutside && inputLabel" #header>
+		<template #header>
 			<label
+				v-if="!labelOutside && inputLabel"
 				:for="inputId"
 				class="select__label">
 				{{ inputLabel }}
 			</label>
+			<span :id="selectedDescriptionId" class="hidden-visually">{{ selectedDescription }}</span>
 		</template>
 		<template #search="{ attributes, events }">
 			<input
 				class="vs__search"
 				:class="[inputClass]"
 				v-bind="attributes"
+				:aria-describedby="selectedDescriptionId"
 				:required="inputRequired"
 				dir="auto"
 				v-on="events">
@@ -364,6 +367,8 @@ export default {
 					:name="String(option[localLabel])"
 					:search="search" />
 			</slot>
+			<!-- Visually hidden marker so screen readers can identify the selected option -->
+			<span v-if="isOptionCurrentlySelected(option)" class="hidden-visually">{{ t(', selected') }}</span>
 		</template>
 		<template #selected-option="selectedOption">
 			<!-- @slot Customize how a selected option is rendered -->
@@ -778,10 +783,12 @@ export default {
 		const clickableArea = Number.parseInt(window.getComputedStyle(document.body).getPropertyValue('--default-clickable-area'))
 		const gridBaseLine = Number.parseInt(window.getComputedStyle(document.body).getPropertyValue('--default-grid-baseline'))
 		const avatarSize = clickableArea - 2 * gridBaseLine
+		const selectedDescriptionId = createElementId()
 
 		return {
 			avatarSize,
 			isLegacy,
+			selectedDescriptionId,
 		}
 	},
 
@@ -792,6 +799,22 @@ export default {
 	},
 
 	computed: {
+		/**
+		 * Set of label strings for the currently selected value(s).
+		 * Used for O(1) lookup in isOptionCurrentlySelected and joined for aria-describedby.
+		 */
+		selectedLabels() {
+			if (this.modelValue === null) {
+				return new Set()
+			}
+			const values = Array.isArray(this.modelValue) ? this.modelValue : [this.modelValue]
+			return new Set(values.map((v) => typeof v === 'object' ? String(v[this.localLabel]) : String(v)))
+		},
+
+		selectedDescription() {
+			return [...this.selectedLabels].join(', ')
+		},
+
 		inputRequired() {
 			if (!this.required) {
 				return null
@@ -900,6 +923,16 @@ export default {
 
 	methods: {
 		t,
+
+		/**
+		 * Returns true if the given option (as received from vue-select's #option slot)
+		 * is currently selected. Uses the selectedLabels computed Set for O(1) lookup.
+		 *
+		 * @param {object} option - normalized option from the #option slot
+		 */
+		isOptionCurrentlySelected(option) {
+			return this.selectedLabels.has(String(option[this.localLabel]))
+		},
 	},
 }
 </script>
