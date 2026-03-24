@@ -3,10 +3,18 @@
  * SPDX-License-Identifier: AGPL-3.0-or-later
  */
 
+import axios from '@nextcloud/axios'
 import { mount } from '@vue/test-utils'
 import { describe, expect, it, vi } from 'vitest'
 import { h } from 'vue'
+import NcReferenceList from '../../../../src/components/NcRichText/NcReferenceList.vue'
 import NcRichText from '../../../../src/components/NcRichText/NcRichText.vue'
+
+vi.mock('@nextcloud/axios', () => ({
+	default: {
+		get: vi.fn().mockResolvedValue({ data: { ocs: { data: { references: {} } } } }),
+	},
+}))
 
 describe('Foo', () => {
 	it('renders a message and responds correctly to props changes', async () => {
@@ -222,5 +230,19 @@ describe('Foo', () => {
 		expect(wrapper.find('code').classes()).toEqual(['language-js'])
 		await vi.dynamicImportSettled()
 		expect(wrapper.find('code').classes()).toEqual(['hljs', 'language-js'])
+	})
+
+	it('strips URL links from text source if wrapped in inline/code blocks Markdown', () => {
+		const testUrl = 'https://example.com/a_b'
+		const wrapper = mount(NcRichText, {
+			props: {
+				text: 'Inline `https://example.com/inline_b`\n```\nStripped text https://example.com/fenced_b\n```\n\nPlain ' + testUrl,
+				useMarkdown: true,
+				referenceLimit: 1,
+			},
+		})
+
+		expect(wrapper.findComponent(NcReferenceList).props('text').trim()).toBe('Inline Plain https://example.com/a_b')
+		expect(axios.get).toHaveBeenCalledWith(expect.stringContaining(encodeURIComponent(testUrl)))
 	})
 })
