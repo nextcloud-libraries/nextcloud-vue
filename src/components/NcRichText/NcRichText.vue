@@ -15,9 +15,13 @@ This component displays rich text with optional autolink or [Markdown support](h
 		<NcCheckboxRadioSwitch :checked.sync="autolink" type="checkbox">Autolink</NcCheckboxRadioSwitch>
 		<NcCheckboxRadioSwitch :checked.sync="useMarkdown" type="checkbox">Use Markdown</NcCheckboxRadioSwitch>
 
+		<br/>
+		Rich text:
+		<hr/>
 		<NcRichText
 			:class="{'plain-text': !useMarkdown }"
 			:text="text" :autolink="autolink" :arguments="args"
+			:reference-limit="1"
 			:use-markdown="useMarkdown" />
 	</div>
 </template>
