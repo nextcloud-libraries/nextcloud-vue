@@ -139,7 +139,7 @@
     "@types/node": "^24.12.0",
     "@vitest/coverage-v8": "^4.1.1",
     "@vue/test-utils": "^2.4.6",
-    "@vue/tsconfig": "^0.9.0",
+    "@vue/tsconfig": "^0.9.1",
     "babel-loader-exclude-node-modules-except": "^1.2.4",
     "core-js": "^3.49.0",
     "eslint": "^9.39.2",
