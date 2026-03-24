@@ -325,10 +325,10 @@ export default {
 
 	watch: {
 		model(newValue) {
-			if (this.checkPasswordStrength) {
-				if (passwordPolicy === null) {
-					return
-				}
+			// Reset internal validation state on value change
+			this.isValid = undefined
+			this.internalHelpMessage = ''
+			if (newValue && this.checkPasswordStrength) {
 				this.checkPassword(newValue)
 			}
 		},
