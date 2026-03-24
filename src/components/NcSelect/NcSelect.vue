@@ -365,10 +365,13 @@ export default {
 			<slot name="option" v-bind="option">
 				<NcEllipsisedOption
 					:name="String(option[localLabel])"
-					:search="search" />
+					:search="search"
+					:aria-hidden="isOptionCurrentlySelected(option) || undefined" />
 			</slot>
 			<!-- Visually hidden marker so screen readers can identify the selected option -->
-			<span v-if="isOptionCurrentlySelected(option)" class="hidden-visually">{{ t(', selected') }}</span>
+			<span v-if="isOptionCurrentlySelected(option)" class="hidden-visually">
+				{{ t('{option} (selected)', { option: String(option[localLabel]) }) }}
+			</span>
 		</template>
 		<template #selected-option="selectedOption">
 			<!-- @slot Customize how a selected option is rendered -->

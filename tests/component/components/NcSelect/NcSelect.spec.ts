@@ -14,9 +14,9 @@ test('selected option has visually-hidden selected marker in dropdown', async ({
 	await component.getByRole('searchbox').click()
 
 	// The selected option should contain ", selected" text (visually hidden)
-	await expect(page.getByRole('option', { name: 'Banana' })).toContainText(', selected')
+	await expect(page.getByRole('option', { name: 'Banana' })).toContainText('(selected)')
 	// Non-selected options should not
-	await expect(page.getByRole('option', { name: 'Cherry' })).not.toContainText(', selected')
+	await expect(page.getByRole('option', { name: 'Cherry' })).not.toContainText('(selected)')
 })
 
 test('selected marker stays on correct option during keyboard navigation', async ({ mount, page }) => {
@@ -29,9 +29,9 @@ test('selected marker stays on correct option during keyboard navigation', async
 	await page.keyboard.press('ArrowDown')
 
 	// Banana is still the selected value — marker stays
-	await expect(page.getByRole('option', { name: 'Banana' })).toContainText(', selected')
+	await expect(page.getByRole('option', { name: 'Banana' })).toContainText('(selected)')
 	// Cherry is only keyboard-focused, not selected — no marker
-	await expect(page.getByRole('option', { name: 'Cherry' })).not.toContainText(', selected')
+	await expect(page.getByRole('option', { name: 'Cherry' })).not.toContainText('(selected)')
 })
 
 test('selected marker updates after selecting a different option', async ({ mount, page }) => {
@@ -45,8 +45,8 @@ test('selected marker updates after selecting a different option', async ({ moun
 	// Re-open dropdown
 	await component.getByRole('searchbox').click()
 
-	await expect(page.getByRole('option', { name: 'Cherry' })).toContainText(', selected')
-	await expect(page.getByRole('option', { name: 'Banana' })).not.toContainText(', selected')
+	await expect(page.getByRole('option', { name: 'Cherry' })).toContainText('(selected)')
+	await expect(page.getByRole('option', { name: 'Banana' })).not.toContainText('(selected)')
 })
 
 test('multiple selected options have selected marker in dropdown', async ({ mount, page }) => {
@@ -56,9 +56,9 @@ test('multiple selected options have selected marker in dropdown', async ({ moun
 
 	await component.getByRole('searchbox').click()
 
-	await expect(page.getByRole('option', { name: 'Apple' })).toContainText(', selected')
-	await expect(page.getByRole('option', { name: 'Cherry' })).toContainText(', selected')
-	await expect(page.getByRole('option', { name: 'Banana' })).not.toContainText(', selected')
+	await expect(page.getByRole('option', { name: 'Apple' })).toContainText('(selected)')
+	await expect(page.getByRole('option', { name: 'Cherry' })).toContainText('(selected)')
+	await expect(page.getByRole('option', { name: 'Banana' })).not.toContainText('(selected)')
 })
 
 test('selected marker updates in keepOpen mode without closing dropdown', async ({ mount, page }) => {
@@ -69,8 +69,8 @@ test('selected marker updates in keepOpen mode without closing dropdown', async 
 	await component.getByRole('searchbox').click()
 	await page.getByRole('option', { name: 'Cherry' }).click()
 
-	await expect(page.getByRole('option', { name: 'Cherry' })).toContainText(', selected')
-	await expect(page.getByRole('option', { name: 'Apple' })).not.toContainText(', selected')
+	await expect(page.getByRole('option', { name: 'Cherry' })).toContainText('(selected)')
+	await expect(page.getByRole('option', { name: 'Apple' })).not.toContainText('(selected)')
 })
 
 test('search input describes the selected value', async ({ mount }) => {
