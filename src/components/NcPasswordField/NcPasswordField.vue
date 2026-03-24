@@ -153,8 +153,6 @@ const emit = defineEmits<{
 	invalid: []
 }>()
 
-watch(modelValue, debounce(checkPassword, 500))
-
 // public API
 defineExpose({
 	focus,
@@ -233,12 +231,19 @@ const minLengthWithPolicy = computed(() => {
 		?? undefined
 })
 
+watch(modelValue, () => {
+	// Reset internal validation state on value change, before debounced checkPassword() is called
+	isValid.value = undefined
+	internalHelpMessage.value = ''
+})
+watch(modelValue, debounce(checkPassword, 500))
+
 /**
  * Validate the entered password.
  * If available this method will use the password-policy app API to validate the password.
  */
 async function checkPassword() {
-	if (!props.checkPasswordStrength) {
+	if (!props.checkPasswordStrength || !modelValue.value) {
 		return
 	}
 
