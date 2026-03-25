@@ -28,7 +28,7 @@ const USER_GROUPS = [
  * @param {object} error Axios error
  */
 function mockRequests(error) {
-	const { request } = error
+	const { request, config } = error
 	let data = null
 
 	// Mock resolved link references for NcRichText
@@ -56,6 +56,22 @@ function mockRequests(error) {
 	const requestGroups = request.responseURL.match(/cloud\/groups\/details\?search=([^&]*)&limit=\d+$/)
 	if (requestGroups) {
 		data = { groups: USER_GROUPS.filter((e) => !requestGroups[1] || e.displayname.startsWith(requestGroups[1]) || e.id.startsWith(requestGroups[1])) }
+	}
+
+	const requestPasswordPolicy = request.responseURL.match(/apps\/password_policy\/api\/v1\/validate/)
+	if (requestPasswordPolicy) {
+		const payload = typeof config.data === 'string' ? JSON.parse(config.data) : config.data
+
+		if (payload.password.length < 12) {
+			data = {
+				passed: false,
+				reason: 'Password needs to be at least 12 characters long',
+			}
+		} else {
+			data = {
+				passed: true,
+			}
+		}
 	}
 
 	if (data) {
