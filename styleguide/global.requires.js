@@ -31,6 +31,27 @@ function mockRequests(error) {
 	const { request } = error
 	let data = null
 
+	// Mock resolved link references for NcRichText
+	const resolveReferences = request.responseURL.match(/references\/resolvePublic/)
+	if (resolveReferences) {
+		const referenceValue = new URL(request.responseURL).searchParams.get('reference')
+		data = {
+			references: {
+				[referenceValue]: {
+					richObjectType: 'open-graph',
+					openGraphObject: {
+						id: referenceValue,
+						name: 'Name for the resolved reference',
+						description: 'Description for the resolved reference',
+						thumb: 'favicon-touch.png',
+						link: referenceValue,
+					},
+					accessible: true,
+				},
+			},
+		}
+	}
+
 	// Mock requesting groups
 	const requestGroups = request.responseURL.match(/cloud\/groups\/details\?search=([^&]*)&limit=\d+$/)
 	if (requestGroups) {
