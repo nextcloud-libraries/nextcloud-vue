@@ -114,7 +114,7 @@ describe('NcCheckboxRadioSwitch', () => {
 
 		// Simulate keyboard spacebar: browser toggles input.checked BEFORE firing change
 		const input = wrapper.find('input')
-		const inputEl = input.element as HTMLInputElement
+		const inputEl = input.element
 		inputEl.checked = true // Browser would do this before firing change
 		await input.trigger('change')
 
@@ -138,7 +138,7 @@ describe('NcCheckboxRadioSwitch', () => {
 
 		// Simulate keyboard spacebar unchecking: browser sets checked=false before change
 		const input = wrapper.find('input')
-		const inputEl = input.element as HTMLInputElement
+		const inputEl = input.element
 		inputEl.checked = false
 		await input.trigger('change')
 
