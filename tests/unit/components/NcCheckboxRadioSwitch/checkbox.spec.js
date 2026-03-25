@@ -87,7 +87,7 @@ describe('NcCheckboxRadioSwitch', () => {
 
 	it('emits correct value on keyboard toggle for boolean checkbox', async () => {
 		const wrapper = mount(NcCheckboxRadioSwitch, {
-			props: {
+			propsData: {
 				modelValue: false,
 			},
 			slots: {
@@ -96,12 +96,12 @@ describe('NcCheckboxRadioSwitch', () => {
 		})
 
 		await wrapper.find('input').trigger('change')
-		expect(wrapper.emitted('update:modelValue')?.[0]).toEqual([true])
+		expect(wrapper.emitted('update:modelValue')[0]).toEqual([true])
 	})
 
 	it('emits correct value on keyboard toggle for checkbox group', async () => {
 		const wrapper = mount(NcCheckboxRadioSwitch, {
-			props: {
+			propsData: {
 				modelValue: ['a'],
 				value: 'b',
 				name: 'test-group',
@@ -118,14 +118,14 @@ describe('NcCheckboxRadioSwitch', () => {
 		inputEl.checked = true // Browser would do this before firing change
 		await input.trigger('change')
 
-		expect(wrapper.emitted('update:modelValue')?.[0]).toEqual([['a', 'b']])
+		expect(wrapper.emitted('update:modelValue')[0]).toEqual([['a', 'b']])
 
-		wrapper.unmount()
+		wrapper.destroy()
 	})
 
 	it('emits correct value on keyboard un-toggle for checkbox group', async () => {
 		const wrapper = mount(NcCheckboxRadioSwitch, {
-			props: {
+			propsData: {
 				modelValue: ['a', 'b'],
 				value: 'b',
 				name: 'test-group',
@@ -142,8 +142,8 @@ describe('NcCheckboxRadioSwitch', () => {
 		inputEl.checked = false
 		await input.trigger('change')
 
-		expect(wrapper.emitted('update:modelValue')?.[0]).toEqual([['a']])
+		expect(wrapper.emitted('update:modelValue')[0]).toEqual([['a']])
 
-		wrapper.unmount()
+		wrapper.destroy()
 	})
 })
