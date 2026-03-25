@@ -229,13 +229,16 @@ export default {
 	},
 
 	watch: {
-		isMobile() {
-			this.open = !this.isMobile
+		isMobile(value) {
+			this.open = !value
 			this.toggleFocusTrap()
 		},
 
-		open() {
+		open(value) {
 			this.toggleFocusTrap()
+			emit('navigation-toggled', {
+				open: value,
+			})
 		},
 	},
 
