@@ -19,7 +19,9 @@ General purpose password field component.
 			<NcPasswordField id="textField"
 				v-model="text2"
 				:label-outside="true"
-				placeholder="Min. 12 characters" />
+				placeholder="Min. 12 characters"
+				:success="true"
+				helper-text="Password is secure" />
 		</div>
 		<div class="external-label">
 			<label for="textField2">New password</label>
@@ -32,10 +34,9 @@ General purpose password field component.
 		</div>
 
 		<NcPasswordField v-model="text4"
-			label="Good new password"
-			:success="true"
-			placeholder="Min. 12 characters"
-			helper-text="Password is secure" />
+			label="Validate new password"
+			check-password-strength
+			placeholder="Min. 12 characters" />
 
 		<NcPasswordField v-model="text5"
 			:disabled="true"
@@ -51,7 +52,7 @@ export default {
 	data() {
 		return {
 			text1: '',
-			text2: '',
+			text2: 'FWZxt29XEoTQfnBEa',
 			text3: 'hunter',
 			text4: '',
 			text5: '',
@@ -324,10 +325,10 @@ export default {
 
 	watch: {
 		model(newValue) {
-			if (this.checkPasswordStrength) {
-				if (passwordPolicy === null) {
-					return
-				}
+			// Reset internal validation state on value change
+			this.isValid = undefined
+			this.internalHelpMessage = ''
+			if (newValue && this.checkPasswordStrength) {
 				this.checkPassword(newValue)
 			}
 		},
