@@ -84,4 +84,66 @@ describe('NcCheckboxRadioSwitch', () => {
 		expect(descriptionElement.exists()).toBe(true)
 		expect(descriptionElement.text()).toContain('My description')
 	})
+
+	it('emits correct value on keyboard toggle for boolean checkbox', async () => {
+		const wrapper = mount(NcCheckboxRadioSwitch, {
+			propsData: {
+				modelValue: false,
+			},
+			slots: {
+				default: 'Toggle me',
+			},
+		})
+
+		await wrapper.find('input').trigger('change')
+		expect(wrapper.emitted('update:modelValue')[0]).toEqual([true])
+	})
+
+	it('emits correct value on keyboard toggle for checkbox group', async () => {
+		const wrapper = mount(NcCheckboxRadioSwitch, {
+			propsData: {
+				modelValue: ['a'],
+				value: 'b',
+				name: 'test-group',
+			},
+			slots: {
+				default: 'Option B',
+			},
+			attachTo: document.body,
+		})
+
+		// Simulate keyboard spacebar: browser toggles input.checked BEFORE firing change
+		const input = wrapper.find('input')
+		const inputEl = input.element
+		inputEl.checked = true // Browser would do this before firing change
+		await input.trigger('change')
+
+		expect(wrapper.emitted('update:modelValue')[0]).toEqual([['a', 'b']])
+
+		wrapper.destroy()
+	})
+
+	it('emits correct value on keyboard un-toggle for checkbox group', async () => {
+		const wrapper = mount(NcCheckboxRadioSwitch, {
+			propsData: {
+				modelValue: ['a', 'b'],
+				value: 'b',
+				name: 'test-group',
+			},
+			slots: {
+				default: 'Option B',
+			},
+			attachTo: document.body,
+		})
+
+		// Simulate keyboard spacebar unchecking: browser sets checked=false before change
+		const input = wrapper.find('input')
+		const inputEl = input.element
+		inputEl.checked = false
+		await input.trigger('change')
+
+		expect(wrapper.emitted('update:modelValue')[0]).toEqual([['a']])
+
+		wrapper.destroy()
+	})
 })
