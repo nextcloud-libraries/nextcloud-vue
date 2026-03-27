@@ -197,12 +197,15 @@ watchEffect(() => {
 	}
 })
 
-watch(isMobile, () => {
-	open.value = !isMobile.value
+watch(isMobile, (value: boolean) => {
+	open.value = !value
 })
 
-watch(open, () => {
+watch(open, (value: boolean) => {
 	toggleFocusTrap()
+	emit('navigation-toggled', {
+		open: value,
+	})
 })
 
 onMounted(() => {
