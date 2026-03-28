@@ -1,11 +1,11 @@
-# 
 # Translators:
-# Joas Schilling, 2023
-# Transifex Bot <>, 2023
+# Joas Schilling, 2025
+# Moo, 2026
+# Modestas Girdzevicius <modestas.girdzevicius@gmail.com>, 2026
 # 
 msgid ""
 msgstr ""
-"Last-Translator: Transifex Bot <>, 2023\n"
+"Last-Translator: Modestas Girdzevicius <modestas.girdzevicius@gmail.com>, 2026\n"
 "Language-Team: Lithuanian (Lithuania) (https://app.transifex.com/nextcloud/teams/64236/lt_LT/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Language: lt_LT\n"
@@ -17,94 +17,213 @@ msgstr "{tag} (nematoma)"
 msgid "{tag} (restricted)"
 msgstr "{tag} (apribota)"
 
+msgid "A color with a HEX value {hex}"
+msgstr "Spalva, kurios HEX reikšmė yra {hex}"
+
 msgid "a few seconds ago"
-msgstr ""
+msgstr "prieš keletą sekundžių"
+
+#. TRANSLATORS: A color name for RGB(110, 166, 143)
+msgid "Acapulco"
+msgstr "\"Acapulco\""
 
 msgid "Actions"
 msgstr "Veiksmai"
 
-msgid "Actions for item with name \"{name}\""
-msgstr ""
-
 msgid "Activities"
 msgstr "Veiklos"
+
+msgid "Add to a project"
+msgstr "Pridėti prie projekto"
+
+#. TRANSLATORS: Alt key on keyboard (Windows/Linux)
+msgid "Alt"
+msgstr "Alt"
 
 msgid "Animals & Nature"
 msgstr "Gyvūnai ir gamta"
 
 msgid "Any link"
-msgstr ""
+msgstr "Bet kuri nuoroda"
 
 msgid "Anything shared with the same group of people will show up here"
 msgstr ""
+"Čia bus rodomi visi įrašai, kuriais pasidalinta su ta pačia žmonių grupe"
 
 msgid "Avatar of {displayName}"
-msgstr ""
+msgstr "{displayName} avataras"
 
 msgid "Avatar of {displayName}, {status}"
-msgstr ""
+msgstr "{displayName} avataras, {status}"
+
+#. TRANSLATORS: User status if the user is currently away from keyboard
+msgid "away"
+msgstr "pasišalinęs"
 
 msgid "Back"
-msgstr ""
+msgstr "Atgal"
 
 msgid "Back to provider selection"
-msgstr ""
+msgstr "Grįžti į teikėjo pasirinkimą"
+
+msgid "Black"
+msgstr "Juoda"
+
+#. TRANSLATORS: A color name for RGB(91, 100, 179)
+msgid "Blue Violet"
+msgstr "Mėlyna-violetinė"
+
+#. TRANSLATORS: A color name for RGB(55, 148, 172)
+msgid "Boston Blue"
+msgstr "\"Boston Blue\""
+
+msgid "busy"
+msgstr "užsiėmęs"
+
+msgid "Calendar icon"
+msgstr "Kalendoriaus piktograma"
+
+msgid "Cancel"
+msgstr "Atsisakyti"
 
 msgid "Cancel changes"
-msgstr ""
+msgstr "Atsisakyti pakeitimų"
 
 msgid "Change name"
-msgstr ""
+msgstr "Pakeisti vardą"
 
 msgid "Choose"
 msgstr "Pasirinkti"
 
 msgid "Clear search"
-msgstr ""
+msgstr "Išvalyti paiešką"
+
+msgid "Clear selected"
+msgstr "Išvalyti pasirinkimą"
 
 msgid "Clear text"
-msgstr ""
+msgstr "Išvalyti tekstą"
+
+msgid "Clear value"
+msgstr "Aiški vertė"
 
 msgid "Close"
 msgstr "Užverti"
 
-msgid "Close modal"
-msgstr ""
-
 msgid "Close navigation"
-msgstr ""
+msgstr "Užverti naršymą"
 
 msgid "Close sidebar"
-msgstr ""
+msgstr "Užverti šoninę juostą"
 
 msgid "Close Smart Picker"
-msgstr ""
+msgstr "Uždaryti „Smart Picker“"
+
+msgid "Close time Picker"
+msgstr "Uždaryti laiko pasirinkimo langą"
 
 msgid "Collapse menu"
-msgstr ""
+msgstr "Suskleisti meniu"
+
+msgid "Color picker"
+msgstr "Spalvos parinkiklis"
 
 msgid "Confirm changes"
-msgstr ""
+msgstr "Patvirtinti pakeitimus"
+
+msgid "Connect items to a project to make them easier to find"
+msgstr "Priskirkite elementus prie projekto, kad juos būtų lengviau rasti"
+
+msgid "Copied"
+msgstr "Nukopijuota"
+
+msgid "Copy to clipboard"
+msgstr "Kopijuoti į iškarpinę"
+
+#. TRANSLATORS: Ctrl key on keyboard (Windows/Linux)
+msgid "Ctrl"
+msgstr "Ctrl"
 
 msgid "Custom"
 msgstr "Tinkinti"
 
+msgid "Dark skin tone"
+msgstr "Tamsios odos atspalvis"
+
+msgid "Datepicker input"
+msgstr "Datos rinkiklio įvestis"
+
+msgid "Datepicker menu"
+msgstr "Datos rinkiklio meniu"
+
+msgid "Decrement hours"
+msgstr "Sumažinkite valandas"
+
+msgid "Decrement minutes"
+msgstr "Sumažinkite minutes"
+
+msgid "Decrement seconds"
+msgstr "Sumažinkite sekundes"
+
+#. TRANSLATORS: Delete key on keyboard
+msgid "Delete"
+msgstr "Ištrinti"
+
+#. TRANSLATORS: A color name for RGB(136, 85, 168)
+msgid "Deluge"
+msgstr "\"Deluge\""
+
+msgid "Deselect {option}"
+msgstr "Panaikinkite {option} pasirinkimą"
+
+msgid "do not disturb"
+msgstr "netrukdyti"
+
 msgid "Edit item"
-msgstr ""
+msgstr "Taisyti elementą"
+
+msgid "Emoji picker"
+msgstr "Šypsenėlių parinkiklis"
+
+msgid "Enable interactive view"
+msgstr "Įgalinti interaktyvų vaizdą"
+
+#. TRANSLATORS: Enter key on keyboard
+msgid "Enter"
+msgstr "Įvesti"
 
 msgid "Enter link"
-msgstr ""
+msgstr "Įvesti nuorodą"
 
 msgid ""
 "Error getting related resources. Please contact your system administrator if"
 " you have any questions."
 msgstr ""
+"Kilo klaida gaunant susijusius išteklius. Jei turite klausimų, kreipkitės į "
+"sistemos administratorių."
 
-msgid "External documentation for {name}"
-msgstr ""
+#. TRANSLATORS: Escape key on keyboard
+msgid "Escape"
+msgstr "Išeiti"
+
+msgid "External documentation"
+msgstr "Išorinė dokumentacija"
+
+msgid "Failed to add the item to the project"
+msgstr "Nepavyko pridėti elemento prie projekto"
+
+msgid "Failed to create a project"
+msgstr "Nepavyko sukurti projekto"
+
+msgid "Failed to rename the project"
+msgstr "Nepavyko pervadinti projekto"
 
 msgid "Favorite"
-msgstr ""
+msgstr "Mėgstamiausias"
+
+#. TRANSLATORS: A color name for RGB(201, 136, 121)
+msgid "Feldspar"
+msgstr "\"Feldspar\""
 
 msgid "Flags"
 msgstr "Vėliavos"
@@ -115,59 +234,156 @@ msgstr "Maistas ir gėrimai"
 msgid "Frequently used"
 msgstr "Dažniausiai naudoti"
 
-msgid "Global"
-msgstr ""
-
 msgid "Go back to the list"
-msgstr ""
+msgstr "Grįžti į sąrašą"
+
+msgid "Gold"
+msgstr "Auksas"
+
+msgid "Hide details"
+msgstr "Slėpti detales"
 
 msgid "Hide password"
-msgstr ""
+msgstr "Slėpti slaptažodį"
 
-msgid "Load more \"{options}\"\""
-msgstr ""
+msgid "Increment hours"
+msgstr "Padidinkite valandas"
 
-msgid "Message limit of {count} characters reached"
-msgstr "Pasiekta {count} simbolių žinutės riba"
+msgid "Increment minutes"
+msgstr "Padidinkite minutes"
+
+msgid "Increment seconds"
+msgstr "Padidinkite sekundes"
+
+msgid "invisible"
+msgstr "nematomas"
+
+msgid "Keyboard navigation help"
+msgstr "Klaviatūros navigacijos pagalba"
+
+msgid "Keyboard shortcuts"
+msgstr "Spartieji klavišai"
+
+msgid "Light skin tone"
+msgstr "Šviesus odos tonas"
+
+msgid "Load more \"{options}\""
+msgstr "Įkelti daugiau \"{options}\""
+
+#. TRANSLATORS: The button is in a loading state
+msgid "Loading …"
+msgstr "Įkeliama …"
+
+#. TRANSLATORS: A color name for RGB(45, 115, 190)
+msgid "Mariner"
+msgstr "\"Mariner\""
+
+msgid "Medium dark skin tone"
+msgstr "Vidutinio tamsumo odos tonas"
+
+msgid "Medium light skin tone"
+msgstr "Vidutinio šviesumo odos tonas"
+
+msgid "Medium skin tone"
+msgstr "Vidutinis odos tonas"
+
+msgid "Message limit of %n character reached"
+msgid_plural "Message limit of %n characters reached"
+msgstr[0] "Pasiektas %n pranešimo simbolio skaičiaus limitas"
+msgstr[1] "Pasiektas %n pranešimų simbolių skaičiaus limitas"
+msgstr[2] "Pasiektas %n pranešimo simbolių skaičių limitas"
+msgstr[3] "Pasiektas %n pranešimo simbolių skaičių limitas"
+
+msgid "Month picker"
+msgstr "Mėnesio pasirinkimas"
+
+msgid "Month picker overlay"
+msgstr "Mėnesio parinkiklio langas"
 
 msgid "More items …"
-msgstr ""
+msgstr "Daugiau elementų …"
 
 msgid "More options"
-msgstr ""
+msgstr "Daugiau parinkčių"
+
+msgid "Neutral skin color"
+msgstr "Neutrali odos spalva"
 
 msgid "Next"
 msgstr "Kitas"
+
+msgid "Next month"
+msgstr "Kitą mėnesį"
+
+msgid "Next year"
+msgstr "Kiti metai"
+
+msgid "Nextcloud blue"
+msgstr "\"Nextcloud\" mėlyna"
+
+msgid "No color"
+msgstr "Be spalvos"
 
 msgid "No emoji found"
 msgstr "Nerasta jaustukų"
 
 msgid "No link provider found"
-msgstr ""
+msgstr "Nerasta nuorodų teikėjo"
 
 msgid "No results"
 msgstr "Nėra rezultatų"
 
+msgid "Now"
+msgstr "Dabar"
+
 msgid "Objects"
 msgstr "Objektai"
 
-msgid "Open contact menu"
-msgstr ""
+msgid "offline"
+msgstr "neprisijungęs"
+
+#. TRANSLATORS: A color name for RGB(165, 184, 114)
+msgid "Olivine"
+msgstr "\"Olivine\""
+
+msgid "online"
+msgstr "prisijungęs"
+
+msgid "Open hours overlay"
+msgstr "Atidaryti valandų pasirinkimą"
 
 msgid "Open link to \"{resourceName}\""
-msgstr ""
+msgstr "Atidaryti nuorodą į „{resourceName}“"
 
 msgid "Open menu"
-msgstr ""
+msgstr "Atverti meniu"
+
+msgid "Open minutes overlay"
+msgstr "Atidaryti minučių pasirinkimą"
+
+msgid "Open months overlay"
+msgstr "Atidaryti mėnesių pasirinkimą"
 
 msgid "Open navigation"
-msgstr ""
+msgstr "Atverti naršymą"
 
-msgid "Open settings menu"
-msgstr ""
+msgid "Open seconds overlay"
+msgstr "Atidaryti sekundžių pasirinkimą"
+
+msgid "Open sidebar"
+msgstr "Atverti šoninę juostą"
+
+msgid "Open time picker"
+msgstr "Atverti laiko pasirinkimo langą"
+
+msgid "Open years overlay"
+msgstr "Atidaryti metų pasirinkimą"
+
+msgid "Options"
+msgstr "Parinktys"
 
 msgid "Password is secure"
-msgstr ""
+msgstr "Slaptažodis yra saugus"
 
 msgid "Pause slideshow"
 msgstr "Pristabdyti skaidrių rodymą"
@@ -175,47 +391,69 @@ msgstr "Pristabdyti skaidrių rodymą"
 msgid "People & Body"
 msgstr "Žmonės ir kūnas"
 
-msgid "Pick a date"
-msgstr ""
-
-msgid "Pick a date and a time"
-msgstr ""
-
-msgid "Pick a month"
-msgstr ""
-
-msgid "Pick a time"
-msgstr ""
-
-msgid "Pick a week"
-msgstr ""
-
-msgid "Pick a year"
-msgstr ""
+msgid "Pick"
+msgstr "Pasirinkti"
 
 msgid "Pick an emoji"
 msgstr "Pasirinkti jaustuką"
 
-msgid "Please select a time zone:"
-msgstr ""
+msgid "Pick file"
+msgstr "Pasirinkti failą"
+
+msgid "Pick files"
+msgstr "Pasirinkti failus"
+
+msgid "Pick folder"
+msgstr "Pasirinkti aplanką"
+
+msgid "Please choose a date"
+msgstr "Pasirinkite datą"
 
 msgid "Previous"
 msgstr "Ankstesnis"
 
+msgid "Previous month"
+msgstr "Ankstesnis mėnesis"
+
+msgid "Previous year"
+msgstr "Ankstesni metai"
+
 msgid "Provider icon"
-msgstr ""
+msgstr "Tiekėjo piktograma"
+
+msgid "Purple"
+msgstr "Violetinė"
 
 msgid "Raw link {options}"
-msgstr ""
+msgstr "Neapdorota nuoroda {options}"
 
 msgid "Related resources"
-msgstr ""
+msgstr "Susiję ištekliai"
+
+msgid "Related team resources"
+msgstr "Susiję komandos ištekliai"
+
+msgid "Rename project"
+msgstr "Pervadinti projektą"
+
+#. TRANSLATORS: A color name for RGB(191, 103, 139)
+msgid "Rosy brown"
+msgstr "Rožiniai rudas"
+
+msgid "Save changes"
+msgstr "Įrašyti pakeitimus"
 
 msgid "Search"
 msgstr "Ieškoti"
 
+msgid "Search …"
+msgstr "Ieškoti …"
+
 msgid "Search emoji"
-msgstr ""
+msgstr "Ieškoti šypsenėlių"
+
+msgid "Search for time zone"
+msgstr "Ieškoti laiko juostų"
 
 msgid "Search results"
 msgstr "Paieškos rezultatai"
@@ -223,17 +461,41 @@ msgstr "Paieškos rezultatai"
 #. FOR TRANSLATORS: If possible in your language an even shorter version of 'a
 #. few seconds ago'
 msgid "sec. ago"
-msgstr ""
+msgstr "prieš sek."
 
 #. FOR TRANSLATORS: Shorter version of 'a few seconds ago'
 msgid "seconds ago"
-msgstr ""
+msgstr "prieš sekundes"
 
 msgid "Select a tag"
-msgstr "Pasirinkti žymę"
+msgstr "Pasirinkti žymą"
+
+msgid "Select date"
+msgstr "Pasirinkti datą"
+
+msgid "Select date and time"
+msgstr "Pasirinkti datą ir laiką"
+
+msgid "Select month"
+msgstr "Pasirinkti mėnesį"
 
 msgid "Select provider"
-msgstr ""
+msgstr "Pasirinkti tiekėją"
+
+msgid "Select time"
+msgstr "Pasirinkti laiką"
+
+msgid "Select time range"
+msgstr "Pasirinkti laikotarpį"
+
+msgid "Select week"
+msgstr "Pasirinkti savaitę"
+
+msgid "Select year"
+msgstr "Pasirinkti metus"
+
+msgid "Selected"
+msgstr "Pasirinkta"
 
 msgid "Settings"
 msgstr "Nustatymai"
@@ -241,40 +503,111 @@ msgstr "Nustatymai"
 msgid "Settings navigation"
 msgstr "Naršymas nustatymuose"
 
+#. TRANSLATORS: Shift key on keyboard
+msgid "Shift"
+msgstr "\"Shift\""
+
+msgid "Show details"
+msgstr "Rodyti detales"
+
 msgid "Show password"
-msgstr ""
+msgstr "Rodyti slaptažodį"
+
+msgid "Skin tone"
+msgstr "Odos tonas"
+
+msgid "Skip to app navigation"
+msgstr "Pereiti prie programėlės naršymo"
+
+msgid "Skip to main content"
+msgstr "Pereiti prie pagrindinio turinio"
 
 msgid "Smart Picker"
-msgstr ""
+msgstr "\"Smart Picker\""
 
 msgid "Smileys & Emotion"
 msgstr "Šypsenos ir emocijos"
+
+#. TRANSLATORS: Space key on keyboard
+msgid "Space"
+msgstr "\"Space\""
 
 msgid "Start slideshow"
 msgstr "Pradėti skaidrių rodymą"
 
 msgid "Start typing to search"
-msgstr ""
+msgstr "Rašykite norėdami atlikti paiešką"
 
 msgid "Submit"
 msgstr "Pateikti"
 
+msgid "Switch AM/PM mode"
+msgstr "Perjungti AM/PM režimą"
+
 msgid "Symbols"
 msgstr "Simboliai"
+
+#. TRANSLATORS: Tab key on keyboard
+msgid "Tab"
+msgstr "\"Tab\""
+
+msgid "Time picker"
+msgstr "Laiko parinkiklis"
+
+msgid "Time zone"
+msgstr "Laiko juosta"
+
+msgid "Toggle overlay"
+msgstr "Perjungti pasirinkimo langą"
 
 msgid "Travel & Places"
 msgstr "Kelionės ir vietos"
 
+msgid "Type to search for existing projects"
+msgstr "Įveskite tekstą, kad surastumėte esamus projektus"
+
 msgid "Type to search time zone"
-msgstr ""
+msgstr "Įveskite, kad surastumėte laiko juostą"
 
 msgid "Unable to search the group"
 msgstr "Nepavyko atlikti paiešką grupėje"
 
 msgid "Undo changes"
-msgstr ""
+msgstr "Atšaukti pakeitimus"
 
-msgid ""
-"Write message, use \"@\" to mention someone, use \":\" for emoji "
-"autocompletion …"
-msgstr ""
+msgid "Upload file"
+msgstr "Įkelti failą"
+
+msgid "Upload files"
+msgstr "Įkelti failus"
+
+msgid "Upload folder"
+msgstr "Įkelti aplanką"
+
+msgid "Uploading …"
+msgstr "Įkeliama  ..."
+
+msgid "User status: {status}"
+msgstr "Naudotojo būsena: {status}"
+
+msgid "View team"
+msgstr "Peržiūrėti komandą"
+
+msgid "W"
+msgstr "\"W\""
+
+#. TRANSLATORS: A color name for RGB(211, 169, 103)
+msgid "Whiskey"
+msgstr "\"Whiskey\""
+
+msgid "White"
+msgstr "Balta"
+
+msgid "Write a message …"
+msgstr "Rašyti žinutę  …"
+
+msgid "Year picker"
+msgstr "Metų parinkiklis"
+
+msgid "Year picker overlay"
+msgstr "Metų pasirinkimo langas"
