@@ -1,4 +1,3 @@
-# 
 # Translators:
 # Joas Schilling, 2025
 # XYZ, 2025
@@ -9,10 +8,11 @@
 # Erik DaSilva, 2025
 # Jérôme HERBINET, 2025
 # William Méauzoone, 2025
+# Sp P, 2026
 # 
 msgid ""
 msgstr ""
-"Last-Translator: William Méauzoone, 2025\n"
+"Last-Translator: Sp P, 2026\n"
 "Language-Team: French (https://app.transifex.com/nextcloud/teams/64236/fr/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Language: fr\n"
@@ -403,6 +403,15 @@ msgstr "Choisir"
 msgid "Pick an emoji"
 msgstr "Choisissez un émoji"
 
+msgid "Pick file"
+msgstr "Choisir un fichier"
+
+msgid "Pick files"
+msgstr "Choisir des fichiers"
+
+msgid "Pick folder"
+msgstr "Choisir un dossier"
+
 msgid "Please choose a date"
 msgstr "Veuillez choisir une date"
 
@@ -571,6 +580,18 @@ msgstr "Impossible de chercher le groupe"
 
 msgid "Undo changes"
 msgstr "Annuler les changements"
+
+msgid "Upload file"
+msgstr "Téléverser un fichier"
+
+msgid "Upload files"
+msgstr "Téléverser des fichiers"
+
+msgid "Upload folder"
+msgstr "Téléverser un dossier"
+
+msgid "Uploading …"
+msgstr "Téléversement ..."
 
 msgid "User status: {status}"
 msgstr "Statut de l'utilisateur : {status}"
