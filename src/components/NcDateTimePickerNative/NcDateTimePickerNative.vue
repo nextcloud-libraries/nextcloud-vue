@@ -103,6 +103,10 @@ defineOptions({ inheritAttrs: false })
  * If your app needs to work in a specific timezone other than the
  * browser's local one (for example UTC or an IANA timezone), you
  * must convert the value yourself.
+ *
+ * For example, serializing the resulting `Date` with `toISOString()`
+ * will produce the corresponding UTC timestamp.
+ *
  * Pass null to clear the input field.
  */
 const modelValue = defineModel<Date | null>({ default: null })
