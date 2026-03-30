@@ -338,14 +338,12 @@ export default {
 				class="select__label">
 				{{ inputLabel }}
 			</label>
-			<span :id="selectedDescriptionId" class="hidden-visually">{{ selectedDescription }}</span>
 		</template>
 		<template #search="{ attributes, events }">
 			<input
 				class="vs__search"
 				:class="[inputClass]"
 				v-bind="attributes"
-				:aria-describedby="selectedDescriptionId"
 				:required="inputRequired"
 				dir="auto"
 				v-on="events">
@@ -365,13 +363,8 @@ export default {
 			<slot name="option" v-bind="option">
 				<NcEllipsisedOption
 					:name="String(option[localLabel])"
-					:search="search"
-					:aria-hidden="isOptionCurrentlySelected(option) || undefined" />
+					:search="search" />
 			</slot>
-			<!-- Visually hidden marker so screen readers can identify the selected option -->
-			<span v-if="isOptionCurrentlySelected(option)" class="hidden-visually">
-				{{ t('{option} (selected)', { option: String(option[localLabel]) }) }}
-			</span>
 		</template>
 		<template #selected-option="selectedOption">
 			<!-- @slot Customize how a selected option is rendered -->
@@ -403,8 +396,8 @@ import {
 	offset,
 	shift,
 } from '@floating-ui/dom'
+import { VueSelect } from '@nextcloud/vue-select'
 import { h, warn } from 'vue'
-import VueSelect from 'vue-select'
 import ChevronDown from 'vue-material-design-icons/ChevronDown.vue'
 import Close from 'vue-material-design-icons/Close.vue'
 import NcEllipsisedOption from '../NcEllipsisedOption/NcEllipsisedOption.vue'
@@ -413,10 +406,7 @@ import { t } from '../../l10n.ts'
 import { createElementId } from '../../utils/createElementId.ts'
 import { isLegacy } from '../../utils/legacy.ts'
 
-// TODO: Use @nextcloud/vue-select once a vue 3 version is available.
-// Until then, all @nextcloud/vue-select specific improvements won't be available.
-// E.g. the `limit` prop has no effect, currently.
-import 'vue-select/dist/vue-select.css'
+import '@nextcloud/vue-select/styles.css'
 
 export default {
 	name: 'NcSelect',
@@ -786,12 +776,10 @@ export default {
 		const clickableArea = Number.parseInt(window.getComputedStyle(document.body).getPropertyValue('--default-clickable-area'))
 		const gridBaseLine = Number.parseInt(window.getComputedStyle(document.body).getPropertyValue('--default-grid-baseline'))
 		const avatarSize = clickableArea - 2 * gridBaseLine
-		const selectedDescriptionId = createElementId()
 
 		return {
 			avatarSize,
 			isLegacy,
-			selectedDescriptionId,
 		}
 	},
 
@@ -802,22 +790,6 @@ export default {
 	},
 
 	computed: {
-		/**
-		 * Set of label strings for the currently selected value(s).
-		 * Used for O(1) lookup in isOptionCurrentlySelected and joined for aria-describedby.
-		 */
-		selectedLabels() {
-			if (this.modelValue === null) {
-				return new Set()
-			}
-			const values = Array.isArray(this.modelValue) ? this.modelValue : [this.modelValue]
-			return new Set(values.map((v) => typeof v === 'object' ? String(v[this.localLabel]) : String(v)))
-		},
-
-		selectedDescription() {
-			return [...this.selectedLabels].join(', ')
-		},
-
 		inputRequired() {
 			if (!this.required) {
 				return null
@@ -927,15 +899,6 @@ export default {
 	methods: {
 		t,
 
-		/**
-		 * Returns true if the given option (as received from vue-select's #option slot)
-		 * is currently selected. Uses the selectedLabels computed Set for O(1) lookup.
-		 *
-		 * @param {object} option - normalized option from the #option slot
-		 */
-		isOptionCurrentlySelected(option) {
-			return this.selectedLabels.has(String(option[this.localLabel]))
-		},
 	},
 }
 </script>
