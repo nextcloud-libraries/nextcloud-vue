@@ -267,7 +267,7 @@ msgid "Light skin tone"
 msgstr "Világos bőrtónus"
 
 msgid "Load more \"{options}\""
-msgstr "Több „{options}” betöltése"
+msgstr "További „{options}” betöltése"
 
 #. TRANSLATORS: The button is in a loading state
 msgid "Loading …"
