@@ -320,6 +320,7 @@ import { RouterLink } from 'vue-router'
 import NcCheckboxRadioSwitch from '../NcCheckboxRadioSwitch/NcCheckboxRadioSwitch.vue'
 import NcReferenceList from './NcReferenceList.vue'
 import NcRichTextCopyButton from './NcRichTextCopyButton.vue'
+import NcRichTextExternalLink from './NcRichTextExternalLink.vue'
 import GenRandomId from '../../utils/GenRandomId.js'
 import { getRoute, remarkAutolink } from './autolink.js'
 import { prepareTextNode, remarkPlaceholder } from './placeholder.js'
@@ -556,6 +557,7 @@ export default {
 							if (tag === 'a') {
 								const route = getRoute(this.$router, attrs.attrs.href)
 								if (route) {
+									// Resolved link to this app; render RouterLink
 									delete attrs.attrs.href
 									delete attrs.attrs.target
 
@@ -565,6 +567,18 @@ export default {
 											to: route,
 										},
 									}, children)
+								}
+
+								const isAllowedScheme = /^(https?:\/\/|tel:|mailto:)/.test(attrs.attrs.href)
+								if (isAllowedScheme) {
+									// External link; render normally, open in the new tab
+									attrs.attrs.href = attrs.attrs.href.trim()
+									return h(NcRichTextExternalLink, attrs, children)
+								} else {
+									// Unresolved relative link that does not belong to this app; render only children
+									delete attrs.attrs.href
+									delete attrs.attrs.target
+									return h('span', attrs, children)
 								}
 							}
 

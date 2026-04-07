@@ -7,6 +7,8 @@
 // Reference tests: https://github.com/nextcloud-deps/CDMarkdownKit/tree/master/CDMarkdownKitTests
 
 import { mount } from 'cypress/vue2'
+import Vue from 'vue'
+import VueRouter from 'vue-router'
 import NcRichText from '../../src/components/NcRichText/NcRichText.vue'
 
 describe('NcRichText', () => {
@@ -402,34 +404,56 @@ describe('NcRichText', () => {
 		})
 
 		describe('links', () => {
+			const TestRouteComponent = {
+				template: '<div />',
+			}
+
+			const mountRichText = (text: string) => {
+				Vue.use(VueRouter)
+				const routes = [{ path: '/world', component: TestRouteComponent }]
+				const router = new VueRouter({
+					mode: 'history',
+					routes,
+				})
+
+				mount(NcRichText, {
+					propsData: {
+						text,
+						useMarkdown: true,
+					},
+					extensions: {
+						plugins: [router],
+					},
+					router,
+				})
+			}
+
 			const testLink = (key: string, { text, href = text, name = text }) => {
 				it(key, () => {
-					mount(NcRichText, {
-						propsData: {
-							text,
-							useMarkdown: true,
-						},
-					})
+					mountRichText(text)
 					cy.get('a').should('have.text', name)
 					cy.get('a').invoke('attr', 'href').should('eq', href)
 				})
 			}
 
 			testLink('autolink', { text: 'https://autolink.me' })
-			testLink('relative link', { text: '[hello](world)', href: 'world', name: 'hello' })
+			testLink('relative link', { text: '[hello](/world)', href: '/world', name: 'hello' })
 			testLink('absolute link', { text: '[hello](https://nextcloud.com)', href: 'https://nextcloud.com', name: 'hello' })
 			testLink('tel link', { text: '[hello](tel:+49123456789)', href: 'tel:+49123456789', name: 'hello' })
+			testLink('mailto link', { text: '[hello](mailto:+49123456789)', href: 'mailto:+49123456789', name: 'hello' })
 
-			it('no link to unknown protocols', () => {
-				mount(NcRichText, {
-					propsData: {
-						text: '[link](other:proto)',
-						useMarkdown: true,
-					},
+			const testNoLink = (key: string, { text, name = text }) => {
+				it(key, () => {
+					mountRichText(text)
+
+					cy.get('body').should('contain', name)
+					cy.get('a').should('not.exist')
 				})
-				cy.get('body').should('contain', name)
-				cy.get('a').should('not.exist')
-			})
+			}
+			testNoLink('no link to unknown protocols', { text: '[hello](other:proto)', name: 'hello' })
+			testNoLink('no link to unresolved relative link (by router)', { text: '[hello](world)', name: 'hello' })
+			testNoLink('no link to relative parameters', { text: '[hello](?parameters=1)', name: 'hello' })
+			testNoLink('no link to relative anchor', { text: '[hello](#anchor)', name: 'hello' })
 		})
 
 		describe('multiline code', () => {
