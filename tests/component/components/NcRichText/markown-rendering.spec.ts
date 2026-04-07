@@ -420,6 +420,10 @@ test.describe('inline code', () => {
 })
 
 test.describe('links', () => {
+	const TestRouteComponent = {
+		template: '<div />',
+	}
+
 	const testLink = (key: string, { text, href = text, name = text }) => {
 		test(key, async ({ mount }) => {
 			const component = await mount(NcRichText, {
@@ -427,26 +431,39 @@ test.describe('links', () => {
 					text,
 					useExtendedMarkdown: true,
 				},
+				hooksConfig: {
+					routes: [{ path: '/world', component: TestRouteComponent }],
+				},
 			})
 			await expect(component.getByRole('link', { name }))
 				.toHaveAttribute('href', href)
 		})
 	}
 	testLink('autolink', { text: 'https://autolink.me' })
-	testLink('relative link', { text: '[hello](world)', href: 'world', name: 'hello' })
+	testLink('relative link', { text: '[hello](/world)', href: '/world', name: 'hello' })
 	testLink('absolute link', { text: '[hello](https://nextcloud.com)', href: 'https://nextcloud.com', name: 'hello' })
 	testLink('tel link', { text: '[hello](tel:+49123456789)', href: 'tel:+49123456789', name: 'hello' })
+	testLink('mailto link', { text: '[hello](mailto:+49123456789)', href: 'mailto:+49123456789', name: 'hello' })
 
-	test('no link to unknown protocols', async ({ mount }) => {
-		const component = await mount(NcRichText, {
-			props: {
-				text: '[link](other:proto)',
-				useExtendedMarkdown: true,
-			},
+	const testNoLink = (key: string, { text, name = text }) => {
+		test(key, async ({ mount }) => {
+			const component = await mount(NcRichText, {
+				props: {
+					text,
+					useExtendedMarkdown: true,
+				},
+				hooksConfig: {
+					routes: [{ path: '/world', component: TestRouteComponent }],
+				},
+			})
+			await expect(component).toContainText(name)
+			await expect(component.getByText(name)).not.toHaveRole('link')
 		})
-		await expect(component).toContainText('link')
-		await expect(component.getByText('link')).not.toHaveRole('link')
-	})
+	}
+	testNoLink('no link to unknown protocols', { text: '[hello](other:proto)', name: 'hello' })
+	testNoLink('no link to unresolved relative link (by router)', { text: '[hello](world)', name: 'hello' })
+	testNoLink('no link to relative parameters', { text: '[hello](?parameters=1)', name: 'hello' })
+	testNoLink('no link to relative anchor', { text: '[hello](#anchor)', name: 'hello' })
 })
 
 test.describe('multiline code', () => {
