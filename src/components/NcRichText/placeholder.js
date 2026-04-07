@@ -17,7 +17,7 @@ export function remarkPlaceholder() {
 		/**
 		 *
 		 * @param {object} node The node
-		 * @param {array} ancestors The parent nodes
+		 * @param {Array} ancestors The parent nodes
 		 */
 		function visitor(node, ancestors) {
 			const parent = ancestors.at(-1)
@@ -59,11 +59,9 @@ export function prepareTextNode({ h, context }, text) {
 				return entry
 			}
 			const { component, props } = entry
-			// do not override class of NcLink
-			const componentClass = component.name === 'NcLink' ? undefined : 'rich-text--component'
 			return h(component, {
 				props,
-				class: componentClass,
+				class: 'rich-text--component',
 			})
 		})
 	}
