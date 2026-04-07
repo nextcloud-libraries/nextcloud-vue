@@ -532,11 +532,9 @@ export default {
 						return entry
 					}
 					const { component, props } = entry
-					// do not override class of NcLink
-					const componentClass = component.name === 'NcLink' ? undefined : 'rich-text--component'
 					return h(component, {
 						...props,
-						class: componentClass,
+						class: 'rich-text--component',
 					})
 				})
 			}
@@ -683,13 +681,6 @@ export default {
 
 	.rich-text--fallback, .rich-text-component {
 		display: inline;
-	}
-
-	.rich-text--external-link {
-		text-decoration: underline;
-		&:after {
-			content: ' ↗';
-		}
 	}
 }
 
