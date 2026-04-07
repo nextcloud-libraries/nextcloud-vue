@@ -46,6 +46,11 @@ export function remarkAutolink({ autolink, useMarkdown, useExtendedMarkdown }) {
 		}
 
 		visit(tree, (node) => node.type === 'text', (node, index, parent) => {
+			// Do not autolink text already inside a link node
+			if (parent?.type === 'link' || parent?.type === 'linkReference') {
+				return
+			}
+
 			let parsed = parseUrl(node.value)
 			if (typeof parsed === 'string') {
 				parsed = [u('text', parsed)]
