@@ -381,11 +381,12 @@ export default {
 		},
 
 		/**
-		 * The containing element for the menu popover
+		 * The containing element or selector for the tribute (menu popover)
+		 * Defaults to `body` element
 		 */
 		menuContainer: {
-			type: Element,
-			default: () => document.body,
+			type: [String, Element, null],
+			default: null,
 		},
 
 		/**
@@ -722,13 +723,18 @@ export default {
 				})
 			}
 
+			// Resolve container for Tribute.js to be mounted to (default - `null`)
+			const menuContainer = (typeof this.menuContainer === 'string')
+				? document.querySelector(this.menuContainer)
+				: this.menuContainer
+
 			this.tribute = new Tribute({
 				collection: tributesCollection,
 				// FIXME: tributejs doesn't support allowSpaces as a collection option, only as a global one
 				// Requires to fork a library to allow spaces only in the middle of mentions ('@' trigger)
 				allowSpaces: false,
 				// Where to inject the menu popup
-				menuContainer: this.menuContainer,
+				menuContainer,
 			})
 			this.tribute.attach(this.$refs.contenteditable)
 		},
