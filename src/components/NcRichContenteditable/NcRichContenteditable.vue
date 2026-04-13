@@ -602,11 +602,6 @@ export default {
 
 		// Update default value
 		this.updateContent(this.model)
-
-		// Tribute.js library ensures that `el.contentEditable = true` when attaching to element.
-		// This overwrites the template binding.
-		// Set the contenteditable attribute to actual value afterward
-		this.$refs.contenteditable.contentEditable = this.contenteditableAttributeValue
 	},
 
 	beforeDestroy() {
@@ -737,6 +732,12 @@ export default {
 				menuContainer,
 			})
 			this.tribute.attach(this.$refs.contenteditable)
+
+			// Tribute.js library v5.1.3 ensures that `el.contentEditable = true` when attaching to element.
+			// This overwrites the template binding.
+			// Set the contenteditable attribute to actual value afterward
+			// TODO remove when Tribute.js library v5.1.4 is published on npm (or fork it)
+			this.$refs.contenteditable.contentEditable = this.contenteditableAttributeValue
 		},
 
 		getLink(item) {
