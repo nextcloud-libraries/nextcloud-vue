@@ -18,7 +18,7 @@ This should be used sparingly for accessibility.
 					type="radio"
 					value="l">
 					<template #icon>
-						<AlignLeft :size="20" />
+						<IconAlignHorizontalLeft :size="20" />
 					</template>
 				</NcActionButton>
 				<NcActionButton aria-label="Align center"
@@ -26,7 +26,7 @@ This should be used sparingly for accessibility.
 					type="radio"
 					value="c">
 					<template #icon>
-						<AlignCenter :size="20" />
+						<IconAlignHorizontalCenter :size="20" />
 					</template>
 				</NcActionButton>
 				<NcActionButton aria-label="Align right"
@@ -34,14 +34,14 @@ This should be used sparingly for accessibility.
 					type="radio"
 					value="r">
 					<template #icon>
-						<AlignRight :size="20" />
+						<IconAlignHorizontalRight :size="20" />
 					</template>
 				</NcActionButton>
 			</NcActionButtonGroup>
 			<NcActionButton :close-after-click="true"
 				@click="showMessage('Some other action')">
 				<template #icon>
-					<Plus :size="20" />
+					<IconPlus :size="20" />
 				</template>
 				Some other action
 			</NcActionButton>
@@ -49,17 +49,17 @@ This should be used sparingly for accessibility.
 	</div>
 </template>
 <script>
-import AlignLeft from 'vue-material-design-icons/AlignHorizontalLeft'
-import AlignRight from 'vue-material-design-icons/AlignHorizontalRight'
-import AlignCenter from 'vue-material-design-icons/AlignHorizontalCenter'
-import Plus from 'vue-material-design-icons/Plus'
+import IconAlignHorizontalLeft from 'vue-material-design-icons/AlignHorizontalLeft.vue'
+import IconAlignHorizontalRight from 'vue-material-design-icons/AlignHorizontalRight.vue'
+import IconAlignHorizontalCenter from 'vue-material-design-icons/AlignHorizontalCenter.vue'
+import IconPlus from 'vue-material-design-icons/Plus.vue'
 
 export default {
 	components: {
-		AlignLeft,
-		AlignRight,
-		AlignCenter,
-		Plus,
+		IconAlignHorizontalLeft,
+		IconAlignHorizontalRight,
+		IconAlignHorizontalCenter,
+		IconPlus,
 	},
 	data() {
 		return { alignment: 'l' }
