@@ -15,9 +15,13 @@ This component displays rich text with optional autolink or [Markdown support](h
 		<NcCheckboxRadioSwitch :checked.sync="autolink" type="checkbox">Autolink</NcCheckboxRadioSwitch>
 		<NcCheckboxRadioSwitch :checked.sync="useMarkdown" type="checkbox">Use Markdown</NcCheckboxRadioSwitch>
 
+		<br/>
+		Rich text:
+		<hr/>
 		<NcRichText
 			:class="{'plain-text': !useMarkdown }"
 			:text="text" :autolink="autolink" :arguments="args"
+			:reference-limit="1"
 			:use-markdown="useMarkdown" />
 	</div>
 </template>
@@ -302,13 +306,13 @@ See [NcRichContenteditable](#/Components/NcRichContenteditable) documentation fo
 </docs>
 
 <script>
+import { toString } from 'mdast-util-to-string'
 import rehypeExternalLinks from 'rehype-external-links'
 import rehype2react from 'rehype-react'
 import breaks from 'remark-breaks'
 import remarkGfm from 'remark-gfm'
 import remarkParse from 'remark-parse'
 import remark2rehype from 'remark-rehype'
-import remarkStringify from 'remark-stringify'
 import remarkUnlinkProtocols from 'remark-unlink-protocols'
 import { unified } from 'unified'
 import { ref } from 'vue'
@@ -623,10 +627,12 @@ export default {
 				return text
 			}
 
-			return unified()
+			const processor = unified()
+			processor.compiler = (tree) => toString(tree)
+
+			return processor
 				.use(remarkParse)
 				.use(remarkStripCode)
-				.use(remarkStringify)
 				.processSync(text)
 				.value
 		},
