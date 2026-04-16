@@ -71,6 +71,7 @@ import NcButton from '../NcButton/NcButton.vue'
 import NcIconSvgWrapper from '../NcIconSvgWrapper/NcIconSvgWrapper.vue'
 import { useIsMobile } from '../../composables/useIsMobile/index.js'
 import { t } from '../../l10n.ts'
+import { isLegacy34 } from '../../utils/legacy.ts'
 import { CONTENT_SELECTOR_KEY, HAS_APP_NAVIGATION_KEY } from './constants.ts'
 import contentSvg from './content-selected.svg?raw'
 import navigationSvg from './navigation-selected.svg?raw'
@@ -145,7 +146,10 @@ function setAppNavigation(value: boolean): void {
 </script>
 
 <template>
-	<div id="content-vue" class="content" :class="`app-${appName.toLowerCase()}`">
+	<div
+		id="content-vue"
+		class="content"
+		:class="[`app-${appName.toLowerCase()}`, { 'content--legacy': isLegacy34 }]">
 		<Teleport to="#skip-actions">
 			<div class="vue-skip-actions__container">
 				<div class="vue-skip-actions__headline">
@@ -189,6 +193,15 @@ function setAppNavigation(value: boolean): void {
 	height: 100vh;
 	padding: var(--body-container-margin)!important;
 	backdrop-filter: brightness(50%);
+}
+
+// New design (NC34+): divider only when an open navigation is present.
+@media only screen and (min-width: $breakpoint-mobile) {
+	.content:not(.content--legacy) .app-navigation:not(.app-navigation--closed):not(.app-navigation--close) ~ .app-content {
+		border-inline-start: 1px solid var(--color-border);
+		border-start-start-radius: var(--body-container-radius);
+		border-end-start-radius: var(--body-container-radius);
+	}
 }
 </style>
 
@@ -235,6 +248,14 @@ function setAppNavigation(value: boolean): void {
 	height: var(--body-height);
 	overflow: hidden;
 	padding: 0;
+
+	// New design (NC34+): wrapper carries the frosted chrome so nav and
+	// AppContent rounded-edge cutouts share one surface.
+	&:not(&--legacy) {
+		background-color: var(--color-main-background-blur, var(--color-main-background));
+		backdrop-filter: var(--filter-background-blur, none);
+		-webkit-backdrop-filter: var(--filter-background-blur, none);
+	}
 
 	&:not(.with-sidebar--full) {
 		position: fixed;
