@@ -1,12 +1,11 @@
-# 
 # Translators:
-# Magnus Höglund, 2024
-# John Molakvoæ <skjnldsv@protonmail.com>, 2024
-# Martin H <pilino+transifex@posteo.de>, 2025
+# Joas Schilling, 2025
+# Johan Bernhardsson <johan@kafit.se>, 2025
+# Magnus Höglund, 2026
 # 
 msgid ""
 msgstr ""
-"Last-Translator: Martin H <pilino+transifex@posteo.de>, 2025\n"
+"Last-Translator: Magnus Höglund, 2026\n"
 "Language-Team: Swedish (https://app.transifex.com/nextcloud/teams/64236/sv/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Language: sv\n"
@@ -37,6 +36,10 @@ msgstr "Aktiviteter"
 msgid "Add to a project"
 msgstr "Lägg till i ett projekt"
 
+#. TRANSLATORS: Alt key on keyboard (Windows/Linux)
+msgid "Alt"
+msgstr "Alt"
+
 msgid "Animals & Nature"
 msgstr "Djur & Natur"
 
@@ -62,6 +65,9 @@ msgstr "Tillbaka"
 msgid "Back to provider selection"
 msgstr "Tillbaka till leverantörsval"
 
+msgid "Black"
+msgstr "Svart"
+
 #. TRANSLATORS: A color name for RGB(91, 100, 179)
 msgid "Blue Violet"
 msgstr "Blåviolett"
@@ -72,6 +78,12 @@ msgstr "Bostonblå"
 
 msgid "busy"
 msgstr "upptagen"
+
+msgid "Calendar icon"
+msgstr "Kalenderikon"
+
+msgid "Cancel"
+msgstr "Avbryt"
 
 msgid "Cancel changes"
 msgstr "Avbryt ändringar"
@@ -91,6 +103,9 @@ msgstr "Rensa val"
 msgid "Clear text"
 msgstr "Ta bort text"
 
+msgid "Clear value"
+msgstr "Rensa värde"
+
 msgid "Close"
 msgstr "Stäng"
 
@@ -102,6 +117,9 @@ msgstr "Stäng sidofältet"
 
 msgid "Close Smart Picker"
 msgstr "Stäng Smart Picker"
+
+msgid "Close time Picker"
+msgstr "Stäng tidsväljaren"
 
 msgid "Collapse menu"
 msgstr "Dölj menyn"
@@ -115,11 +133,40 @@ msgstr "Bekräfta ändringar"
 msgid "Connect items to a project to make them easier to find"
 msgstr "Anslut objekt till ett projekt för att göra dem lättare att hitta"
 
+msgid "Copied"
+msgstr "Kopierad"
+
+msgid "Copy to clipboard"
+msgstr "Kopiera till urklipp"
+
+#. TRANSLATORS: Ctrl key on keyboard (Windows/Linux)
+msgid "Ctrl"
+msgstr "Ctrl"
+
 msgid "Custom"
 msgstr "Anpassad"
 
 msgid "Dark skin tone"
 msgstr "Mörk hudton"
+
+msgid "Datepicker input"
+msgstr "Inmatning för datumväljare"
+
+msgid "Datepicker menu"
+msgstr "Datumväljarmeny"
+
+msgid "Decrement hours"
+msgstr "Minska timmar"
+
+msgid "Decrement minutes"
+msgstr "Minska minuter"
+
+msgid "Decrement seconds"
+msgstr "Minska sekunder"
+
+#. TRANSLATORS: Delete key on keyboard
+msgid "Delete"
+msgstr "Delete"
 
 #. TRANSLATORS: A color name for RGB(136, 85, 168)
 msgid "Deluge"
@@ -140,6 +187,10 @@ msgstr "Emoji-väljare"
 msgid "Enable interactive view"
 msgstr "Aktivera interaktiv vy"
 
+#. TRANSLATORS: Enter key on keyboard
+msgid "Enter"
+msgstr "Enter"
+
 msgid "Enter link"
 msgstr "Ange länk"
 
@@ -150,8 +201,12 @@ msgstr ""
 "Det gick inte att hämta relaterade resurser. Kontakta din "
 "systemadministratör om du har några frågor."
 
-msgid "External documentation for {name}"
-msgstr "Extern dokumentation för {name}"
+#. TRANSLATORS: Escape key on keyboard
+msgid "Escape"
+msgstr "Escape"
+
+msgid "External documentation"
+msgstr "Extern dokumentation"
 
 msgid "Failed to add the item to the project"
 msgstr "Det gick inte att lägga till objektet i projektet"
@@ -167,7 +222,7 @@ msgstr "Favorit"
 
 #. TRANSLATORS: A color name for RGB(201, 136, 121)
 msgid "Feldspar"
-msgstr "Feldspat"
+msgstr "Fältspat"
 
 msgid "Flags"
 msgstr "Flaggor"
@@ -177,9 +232,6 @@ msgstr "Mat & Dryck"
 
 msgid "Frequently used"
 msgstr "Används ofta"
-
-msgid "Global"
-msgstr "Global"
 
 msgid "Go back to the list"
 msgstr "Gå tillbaka till listan"
@@ -193,11 +245,23 @@ msgstr "Göm detaljer"
 msgid "Hide password"
 msgstr "Göm lösenordet"
 
+msgid "Increment hours"
+msgstr "Öka timmar"
+
+msgid "Increment minutes"
+msgstr "Öka minuter"
+
+msgid "Increment seconds"
+msgstr "Öka sekunder"
+
 msgid "invisible"
 msgstr "osynlig"
 
 msgid "Keyboard navigation help"
 msgstr "Hjälp med tangentbordsnavigering"
+
+msgid "Keyboard shortcuts"
+msgstr "Tangentbordsgenvägar"
 
 msgid "Light skin tone"
 msgstr "Ljus hudton"
@@ -207,7 +271,7 @@ msgstr "Ladda fler \"{options}\""
 
 #. TRANSLATORS: The button is in a loading state
 msgid "Loading …"
-msgstr "Laddar ..."
+msgstr "Laddar …"
 
 #. TRANSLATORS: A color name for RGB(45, 115, 190)
 msgid "Mariner"
@@ -222,8 +286,16 @@ msgstr "Medium ljus hudton"
 msgid "Medium skin tone"
 msgstr "Medium hudton"
 
-msgid "Message limit of {count} characters reached"
-msgstr "Meddelandebegränsning {count} tecken har uppnåtts"
+msgid "Message limit of %n character reached"
+msgid_plural "Message limit of %n characters reached"
+msgstr[0] "Meddelandebegränsning på %n tecken har uppnåtts"
+msgstr[1] "Meddelandebegränsning på %n tecken har uppnåtts"
+
+msgid "Month picker"
+msgstr "Månadsväljare"
+
+msgid "Month picker overlay"
+msgstr "Månadsväljarens panel"
 
 msgid "More items …"
 msgstr "Fler objekt …"
@@ -237,8 +309,17 @@ msgstr "Neutral hudfärg"
 msgid "Next"
 msgstr "Nästa"
 
+msgid "Next month"
+msgstr "Nästa månad"
+
+msgid "Next year"
+msgstr "Nästa år"
+
 msgid "Nextcloud blue"
 msgstr "Nextcloud-blå"
+
+msgid "No color"
+msgstr "Ingen färg"
 
 msgid "No emoji found"
 msgstr "Hittade inga emojis"
@@ -248,6 +329,9 @@ msgstr "Ingen länkleverantör hittades"
 
 msgid "No results"
 msgstr "Inga resultat"
+
+msgid "Now"
+msgstr "Nu"
 
 msgid "Objects"
 msgstr "Objekt"
@@ -262,17 +346,35 @@ msgstr "Olivin"
 msgid "online"
 msgstr "online"
 
+msgid "Open hours overlay"
+msgstr "Öppna timmespanel"
+
 msgid "Open link to \"{resourceName}\""
 msgstr "Öppna länken till \"{resourceName}\""
 
 msgid "Open menu"
 msgstr "Öppna menyn"
 
-msgid "Open navigation {shortcut}"
-msgstr "Öppna navigering {shortcut}"
+msgid "Open minutes overlay"
+msgstr "Öppna minutpanel"
+
+msgid "Open months overlay"
+msgstr "Öppna månadspanel"
+
+msgid "Open navigation"
+msgstr "Öppna navigering"
+
+msgid "Open seconds overlay"
+msgstr "Öppna sekundpanel"
 
 msgid "Open sidebar"
 msgstr "Öppna sidofältet"
+
+msgid "Open time picker"
+msgstr "Öppna tidsväljaren"
+
+msgid "Open years overlay"
+msgstr "Öppna årspanel"
 
 msgid "Options"
 msgstr "Alternativ"
@@ -286,32 +388,32 @@ msgstr "Pausa bildspelet"
 msgid "People & Body"
 msgstr "Kropp & Själ"
 
-msgid "Pick a date"
-msgstr "Välj datum"
-
-msgid "Pick a date and a time"
-msgstr "Välj datum och tid"
-
-msgid "Pick a month"
-msgstr "Välj månad"
-
-msgid "Pick a time"
-msgstr "Välj tid"
-
-msgid "Pick a week"
-msgstr "Välj vecka"
-
-msgid "Pick a year"
-msgstr "Välj år"
+msgid "Pick"
+msgstr "Välj"
 
 msgid "Pick an emoji"
 msgstr "Välj en emoji"
 
-msgid "Please select a time zone:"
-msgstr "Välj tidszon:"
+msgid "Pick file"
+msgstr "Välj fil"
+
+msgid "Pick files"
+msgstr "Välj filer"
+
+msgid "Pick folder"
+msgstr "Välj mapp"
+
+msgid "Please choose a date"
+msgstr "Välj ett datum"
 
 msgid "Previous"
 msgstr "Föregående"
+
+msgid "Previous month"
+msgstr "Föregående månad"
+
+msgid "Previous year"
+msgstr "Föregående år"
 
 msgid "Provider icon"
 msgstr "Leverantörsikon"
@@ -341,6 +443,9 @@ msgstr "Spara ändringar"
 msgid "Search"
 msgstr "Sök"
 
+msgid "Search …"
+msgstr "Sök …"
+
 msgid "Search emoji"
 msgstr "Sök emoji"
 
@@ -349,9 +454,6 @@ msgstr "Sök efter tidszon"
 
 msgid "Search results"
 msgstr "Sökresultat"
-
-msgid "Search…"
-msgstr "Sök..."
 
 #. FOR TRANSLATORS: If possible in your language an even shorter version of 'a
 #. few seconds ago'
@@ -365,8 +467,29 @@ msgstr "sekunder sedan"
 msgid "Select a tag"
 msgstr "Välj en tag"
 
+msgid "Select date"
+msgstr "Välj datum"
+
+msgid "Select date and time"
+msgstr "Välj datum och tid"
+
+msgid "Select month"
+msgstr "Välj månad"
+
 msgid "Select provider"
 msgstr "Välj leverantör"
+
+msgid "Select time"
+msgstr "Välj tid"
+
+msgid "Select time range"
+msgstr "Välj tidsintervall"
+
+msgid "Select week"
+msgstr "Välj vecka"
+
+msgid "Select year"
+msgstr "Välj år"
 
 msgid "Selected"
 msgstr "Vald"
@@ -377,11 +500,15 @@ msgstr "Inställningar"
 msgid "Settings navigation"
 msgstr "Inställningsmeny"
 
+#. TRANSLATORS: Shift key on keyboard
+msgid "Shift"
+msgstr "Shift"
+
 msgid "Show details"
 msgstr "Visa detaljer"
 
 msgid "Show password"
-msgstr "Visa lössenordet"
+msgstr "Visa lösenordet"
 
 msgid "Skin tone"
 msgstr "Hudton"
@@ -396,7 +523,11 @@ msgid "Smart Picker"
 msgstr "Smart Picker"
 
 msgid "Smileys & Emotion"
-msgstr "Selfies & Känslor"
+msgstr "Smileys & Känslor"
+
+#. TRANSLATORS: Space key on keyboard
+msgid "Space"
+msgstr "Space"
 
 msgid "Start slideshow"
 msgstr "Starta bildspelet"
@@ -407,8 +538,24 @@ msgstr "Börja skriva för att söka"
 msgid "Submit"
 msgstr "Skicka"
 
+msgid "Switch AM/PM mode"
+msgstr "Växla mellan AM/PM-läge"
+
 msgid "Symbols"
 msgstr "Symboler"
+
+#. TRANSLATORS: Tab key on keyboard
+msgid "Tab"
+msgstr "Tab"
+
+msgid "Time picker"
+msgstr "Tidsväljare"
+
+msgid "Time zone"
+msgstr "Tidszon"
+
+msgid "Toggle overlay"
+msgstr "Växla panel"
 
 msgid "Travel & Places"
 msgstr "Resor & Sevärdigheter"
@@ -425,15 +572,39 @@ msgstr "Kunde inte söka i gruppen"
 msgid "Undo changes"
 msgstr "Ångra ändringar"
 
+msgid "Upload file"
+msgstr "Ladda upp fil"
+
+msgid "Upload files"
+msgstr "Ladda upp filer"
+
+msgid "Upload folder"
+msgstr "Ladda upp mapp"
+
+msgid "Uploading …"
+msgstr "Laddar upp …"
+
 msgid "User status: {status}"
 msgstr "Användarstatus: {status}"
 
 msgid "View team"
 msgstr "Visa team"
 
+msgid "W"
+msgstr "V"
+
 #. TRANSLATORS: A color name for RGB(211, 169, 103)
 msgid "Whiskey"
 msgstr "Whisky"
 
+msgid "White"
+msgstr "Vit"
+
 msgid "Write a message …"
 msgstr "Skriv ett meddelande …"
+
+msgid "Year picker"
+msgstr "Årsväljare"
+
+msgid "Year picker overlay"
+msgstr "Årsväljarens panel"
