@@ -33,7 +33,7 @@ interface AvatarUrlOptions {
  */
 export function getAvatarUrl(user: string, options?: AvatarUrlOptions): string {
 	// backend only supports 64 and 512px
-	// so we only requrest the needed size for better caching of the request.
+	// so we only request the needed size for better caching of the request.
 	const size = (options?.size || 64) <= 64
 		? 64
 		: 512
@@ -45,7 +45,7 @@ export function getAvatarUrl(user: string, options?: AvatarUrlOptions): string {
 		? '/dark'
 		: ''
 
-	return generateUrl(`/avatar${guestUrl}/{user}/{size}${themeUrl}`, {
+	return generateUrl(`/avatar${guestUrl}/{user}/{size}${themeUrl}?guestFallback=true`, {
 		user,
 		size,
 	})

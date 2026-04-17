@@ -150,7 +150,7 @@ describe('NcAvatar.vue', () => {
 			await nextTick()
 
 			expect(wrapper.find('img').exists()).toBeTruthy()
-			expect(wrapper.find('img').attributes('src')).toMatch(/avatar\/user1\/64$/)
+			expect(wrapper.find('img').attributes('src')).toMatch(/avatar\/user1\/64\?guestFallback=true$/)
 		})
 
 		it('should render image with avatar url pointing to a user', async () => {
