@@ -13,6 +13,7 @@
 			v-if="hasMultipleTabs || showForSingleTab"
 			role="tablist"
 			class="app-sidebar-tabs__nav"
+			:class="{ 'app-sidebar-tabs__nav--legacy': isLegacy34 }"
 			@keydown.left.exact.prevent.stop="focusPreviousTab"
 			@keydown.right.exact.prevent.stop="focusNextTab"
 			@keydown.tab.exact.prevent.stop="focusActiveTabContent"
@@ -44,6 +45,7 @@
 <script>
 import { getCanonicalLocale } from '@nextcloud/l10n'
 import NcAppSidebarTabsButton from './NcAppSidebarTabsButton.vue'
+import { isLegacy34 } from '../../utils/legacy.ts'
 
 export default {
 	name: 'NcAppSidebarTabs',
@@ -93,6 +95,7 @@ export default {
 			 * Local active (open) tab's ID. It allows to use component without v-model:active
 			 */
 			activeTab: props.active,
+			isLegacy34,
 		}
 	},
 
@@ -255,6 +258,11 @@ export default {
 		justify-content: stretch;
 		margin: 10px 8px 0 8px;
 		border-bottom: 1px solid var(--color-border);
+
+		&:not(&--legacy) {
+			gap: var(--default-grid-baseline);
+			padding-block-end: var(--default-grid-baseline);
+		}
 	}
 
 	&__tab {
