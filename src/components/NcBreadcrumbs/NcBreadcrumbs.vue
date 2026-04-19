@@ -551,8 +551,7 @@ export default {
 		})
 
 		// The array of all created VNodes
-		let crumbs = []
-
+		let crumbs
 		if (!this.hiddenIndices.length) {
 			// We don't hide any breadcrumbs.
 			crumbs = breadcrumbs

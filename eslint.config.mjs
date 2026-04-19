@@ -22,7 +22,7 @@ export default defineConfig([
 		files: ['**/*.vue'],
 		rules: {
 			// we are that library - we provide the deprecations...
-			'@nextcloud/vue/no-deprecated-props': 'off',
+			'@nextcloud/no-deprecated-library-props': 'off',
 		},
 	},
 
