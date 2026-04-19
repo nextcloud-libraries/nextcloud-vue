@@ -176,8 +176,8 @@ export default {
 		},
 
 		url() {
-			let providerId = null
-			let itemId = null
+			let providerId
+			let itemId
 
 			if (this.isFiles) {
 				providerId = 'files'
