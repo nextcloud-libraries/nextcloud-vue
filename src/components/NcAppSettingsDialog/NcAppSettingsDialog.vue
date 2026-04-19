@@ -494,10 +494,10 @@ In case of dynamic/conditional sections rendering explicit `order` prop must be 
 
 ```vue
 <script>
-import { mdiPlus, mdiDomain, mdiDockLeft, mdiDockBottom, mdiListBoxOutline, mdiPencilOutline, mdiTrashCanOutline, mdiMedalOutline, mdiEmailOutline } from '@mdi/js'
+import { mdiArrowRight, mdiPlus, mdiDomain, mdiDockLeft, mdiDockBottom, mdiListBoxOutline, mdiPencilOutline, mdiTrashCanOutline, mdiMedalOutline, mdiEmailOutline } from '@mdi/js'
 export default {
 	setup() {
-		return { mdiPlus, mdiDomain, mdiDockLeft, mdiDockBottom, mdiListBoxOutline, mdiPencilOutline, mdiTrashCanOutline, mdiMedalOutline, mdiEmailOutline }
+		return { mdiArrowRight, mdiPlus, mdiDomain, mdiDockLeft, mdiDockBottom, mdiListBoxOutline, mdiPencilOutline, mdiTrashCanOutline, mdiMedalOutline, mdiEmailOutline }
 	},
 	data() {
 		return {
@@ -519,10 +519,18 @@ export default {
 				<NcButton wide>Set as default mail app</NcButton>
 
 				<NcFormGroup label="Account settings">
-					<NcFormBox v-slot="{ itemClass }">
-						<NcFormBoxButton href="#">user@example.com</NcFormBoxButton>
-						<NcFormBoxButton href="#">sales@example.com</NcFormBoxButton>
-						<NcButton :class="itemClass" wide>
+					<NcFormBox>
+						<NcFormBoxButton label="user@example.com">
+							<template #icon>
+								<NcIconSvgWrapper :path="mdiArrowRight" inline />
+							</template>
+						</NcFormBoxButton>
+						<NcFormBoxButton label="sales@example.com">
+							<template #icon>
+								<NcIconSvgWrapper :path="mdiArrowRight" inline />
+							</template>
+						</NcFormBoxButton>
+						<NcButton wide>
 							<template #icon>
 								<NcIconSvgWrapper :path="mdiPlus" />
 							</template>
