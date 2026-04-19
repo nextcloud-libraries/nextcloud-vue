@@ -28,6 +28,15 @@ export default async (env) => {
 				'node_modules/**',
 				'docs/**',
 			],
+			// @nextcloud/vue-select's ESM bundle imports its own CSS inline
+			// (`import './assets/*.css'` at the top of dist/index.mjs). Routing
+			// it through Vite's transform pipeline lets the CSS import be
+			// handled instead of reaching Node's native ESM loader.
+			server: {
+				deps: {
+					inline: ['@nextcloud/vue-select'],
+				},
+			},
 		},
 	})
 }

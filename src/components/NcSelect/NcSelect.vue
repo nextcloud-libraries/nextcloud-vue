@@ -395,8 +395,8 @@ import {
 	offset,
 	shift,
 } from '@floating-ui/dom'
+import { VueSelect } from '@nextcloud/vue-select'
 import { h, warn } from 'vue'
-import VueSelect from 'vue-select'
 import ChevronDown from 'vue-material-design-icons/ChevronDown.vue'
 import Close from 'vue-material-design-icons/Close.vue'
 import NcEllipsisedOption from '../NcEllipsisedOption/NcEllipsisedOption.vue'
@@ -404,11 +404,6 @@ import NcLoadingIcon from '../NcLoadingIcon/NcLoadingIcon.vue'
 import { t } from '../../l10n.ts'
 import { createElementId } from '../../utils/createElementId.ts'
 import { isLegacy } from '../../utils/legacy.ts'
-
-// TODO: Use @nextcloud/vue-select once a vue 3 version is available.
-// Until then, all @nextcloud/vue-select specific improvements won't be available.
-// E.g. the `limit` prop has no effect, currently.
-import 'vue-select/dist/vue-select.css'
 
 export default {
 	name: 'NcSelect',
