@@ -249,6 +249,13 @@ export default {
 
 		this.focusTrap = createFocusTrap(this.$refs.appNavigationContainer, {
 			allowOutsideClick: true,
+			clickOutsideDeactivates: () => {
+				if (this.isMobile) {
+					this.focusTrap.deactivate({ returnFocus: false })
+					this.toggleNavigation(false)
+				}
+				return false
+			},
 			fallbackFocus: this.$refs.appNavigationContainer,
 			trapStack: getTrapStack(),
 			escapeDeactivates: false,
