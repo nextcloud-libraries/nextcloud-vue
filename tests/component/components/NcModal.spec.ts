@@ -130,12 +130,14 @@ test('Modal focus trap works correctly', async ({ mount, page }) => {
 	const testButton = dialog.getByRole('button', { name: 'Test Button' })
 	const closeButton = dialog.getByRole('button', { name: 'Close' })
 
-	await page.keyboard.press('Tab')
-	await expect(closeButton).toBeFocused()
-
-	await page.keyboard.press('Tab')
+	// first content child is focused by default
 	await expect(testButton).toBeFocused()
 
+	// tab should move focus to the close button
 	await page.keyboard.press('Tab')
 	await expect(closeButton).toBeFocused()
+
+	// due to focus-trap its now back to the first focusable element
+	await page.keyboard.press('Tab')
+	await expect(testButton).toBeFocused()
 })
