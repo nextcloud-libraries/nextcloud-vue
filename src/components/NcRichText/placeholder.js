@@ -4,7 +4,7 @@
  */
 
 import { u } from 'unist-builder'
-import { visit } from 'unist-util-visit'
+import { visitParents } from 'unist-util-visit-parents'
 import { parseUrl } from './autolink.js'
 
 /**
@@ -12,15 +12,17 @@ import { parseUrl } from './autolink.js'
  */
 export function remarkPlaceholder() {
 	return function(ast) {
-		visit(ast, (node) => node.type === 'text', visitor)
+		visitParents(ast, (node) => node.type === 'text', visitor)
 
 		/**
 		 *
 		 * @param {object} node The node
-		 * @param {number} index The index of the node
-		 * @param {object} parent The parent node
+		 * @param {array} ancestors The parent nodes
 		 */
-		function visitor(node, index, parent) {
+		function visitor(node, ancestors) {
+			const parent = ancestors.at(-1)
+			const index = parent.children.indexOf(node)
+
 			const placeholders = node.value.split(/(\{[a-z\-_.0-9]+\})/ig)
 				.map((entry) => {
 					const matches = entry.match(/^\{([a-z\-_.0-9]+)\}$/i)

@@ -5,7 +5,7 @@
 
 import { getBaseUrl, getRootUrl } from '@nextcloud/router'
 import { u } from 'unist-builder'
-import { SKIP, visit } from 'unist-util-visit'
+import { SKIP, visitParents } from 'unist-util-visit-parents'
 import { logger } from '../../utils/logger.ts'
 import { URL_PATTERN_AUTOLINK } from './helpers.js'
 
@@ -45,11 +45,14 @@ export function remarkAutolink({ autolink, useMarkdown, useExtendedMarkdown }) {
 			return
 		}
 
-		visit(tree, (node) => node.type === 'text', (node, index, parent) => {
+		visitParents(tree, (node) => node.type === 'text', (node, ancestors) => {
 			// Do not autolink text already inside a link node
-			if (parent?.type === 'link' || parent?.type === 'linkReference') {
+			if (ancestors.some((ancestor) => ancestor.type === 'link' || ancestor.type === 'linkReference')) {
 				return
 			}
+
+			const parent = ancestors.at(-1)
+			const index = parent.children.indexOf(node) ?? 0
 
 			let parsed = parseUrl(node.value)
 			parsed = parsed.map((n) => {
