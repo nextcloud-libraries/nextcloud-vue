@@ -192,6 +192,37 @@ describe('Foo', () => {
 		expect(wrapper.find('em').text()).toEqual('to')
 	})
 
+	it('does not autolink markdown link text that is already inside a link', async () => {
+		const wrapper = mount(NcRichText, {
+			props: {
+				text: '[https://example-nested.org](https://example.com)',
+				autolink: true,
+				useMarkdown: true,
+			},
+		})
+
+		const links = wrapper.findAll('a')
+		expect(links).toHaveLength(1)
+		expect(links[0].attributes('href')).toEqual('https://example.com')
+		expect(links[0].text()).toEqual('https://example-nested.org')
+	})
+
+	it('does not autolink deeply nested markdown link text that is already inside a link', async () => {
+		const wrapper = mount(NcRichText, {
+			props: {
+				text: '[**https://example-nested.org**](https://example.com)',
+				autolink: true,
+				useMarkdown: true,
+			},
+		})
+
+		const links = wrapper.findAll('a')
+		expect(links).toHaveLength(1)
+		expect(links[0].attributes('href')).toEqual('https://example.com')
+		expect(links[0].text()).toEqual('https://example-nested.org')
+		expect(wrapper.find('strong').text()).toEqual('https://example-nested.org')
+	})
+
 	it('formats markdown is disabled', async () => {
 		const wrapper = mount(NcRichText, {
 			props: {
