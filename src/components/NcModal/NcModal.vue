@@ -194,10 +194,11 @@ const scopeIdAttrs = useScopeIdAttrs()
 const modalId = createElementId()
 const maskElement = useTemplateRef('mask')
 
-// Set up the focus trap
+// Set up the focus trap (handled by transition event listeners)
 let focusTrap: FocusTrap | undefined
-onMounted(() => useFocusTrap())
+// Ensure focus trap is cleared when the component is unmounted
 onUnmounted(() => clearFocusTrap())
+// and update the focus trap container elements when props change
 watch(() => props.additionalTrapElements, (elements) => {
 	if (focusTrap) {
 		focusTrap.updateContainerElements([maskElement.value!, ...elements])
@@ -375,9 +376,8 @@ function handleClickModalWrapper(event: MouseEvent) {
  * Add focus trap for accessibility.
  */
 async function useFocusTrap() {
-	// Don't do anything if the modal is hidden,
-	// or we have a focus trap already
-	if (!showModal.value || focusTrap) {
+	// Don't do anything if we have a focus trap already
+	if (focusTrap) {
 		return
 	}
 
@@ -393,7 +393,6 @@ async function useFocusTrap() {
 		escapeDeactivates: false,
 		setReturnFocus: props.setReturnFocus,
 	}
-
 	// Init focus trap
 	focusTrap = createFocusTrap([maskElement.value!, ...props.additionalTrapElements], options)
 	focusTrap.activate()
