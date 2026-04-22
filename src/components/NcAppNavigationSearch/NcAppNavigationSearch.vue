@@ -133,7 +133,7 @@ export default {
 			class="app-navigation-search__input"
 			labelOutside
 			:placeholder="placeholder ?? label"
-			showTrailingButton
+			:showTrailingButton="model.length > 0"
 			:trailingButtonLabel="t('Clear search')"
 			type="search"
 			@trailingButtonClick="onCloseSearch">
@@ -229,6 +229,10 @@ function onCloseSearch() {
 	display: flex;
 	gap: var(--app-navigation-padding);
 	padding: var(--app-navigation-padding);
+
+	&__input {
+		--input-padding-end: calc(var(--default-clickable-area) - var(--default-grid-baseline));
+	}
 
 	&--has-actions &__input {
 		flex-grow: 1;
