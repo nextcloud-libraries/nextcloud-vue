@@ -578,7 +578,7 @@ msgid "Upload files"
 msgstr "Fayllarni yuklash"
 
 msgid "Upload folder"
-msgstr "Yuklash papkasi"
+msgstr "Yuklash jildi"
 
 msgid "Uploading …"
 msgstr "Yuklanmoqda…"
