@@ -1,11 +1,10 @@
-# 
 # Translators:
 # Joas Schilling, 2025
-# Khurshid Ibatov <x.ibatov@dtsj.uz>, 2025
+# Khurshid Ibatov <x.ibatov@dtsj.uz>, 2026
 # 
 msgid ""
 msgstr ""
-"Last-Translator: Khurshid Ibatov <x.ibatov@dtsj.uz>, 2025\n"
+"Last-Translator: Khurshid Ibatov <x.ibatov@dtsj.uz>, 2026\n"
 "Language-Team: Uzbek (https://app.transifex.com/nextcloud/teams/64236/uz/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Language: uz\n"
@@ -134,6 +133,12 @@ msgstr "O'zgarishlarni tasdiqlang"
 msgid "Connect items to a project to make them easier to find"
 msgstr "Elementlarni topishni osonlashtirish uchun ularni loyihaga ulang"
 
+msgid "Copied"
+msgstr "Nusxalandi"
+
+msgid "Copy to clipboard"
+msgstr "Buferga nusxalash"
+
 #. TRANSLATORS: Ctrl key on keyboard (Windows/Linux)
 msgid "Ctrl"
 msgstr "Ctrl"
@@ -254,6 +259,9 @@ msgstr "ko'rinmas"
 
 msgid "Keyboard navigation help"
 msgstr "Klaviatura navigatsiyasi yordami"
+
+msgid "Keyboard shortcuts"
+msgstr "Klaviatura yorliqlari"
 
 msgid "Light skin tone"
 msgstr "Yorug` rangdagi qoplama"
@@ -385,6 +393,15 @@ msgstr "Tanlash"
 msgid "Pick an emoji"
 msgstr "Emojini tanlang"
 
+msgid "Pick file"
+msgstr "Faylni tanlang"
+
+msgid "Pick files"
+msgstr "Fayllarni tanlang"
+
+msgid "Pick folder"
+msgstr "Jildni tanlang"
+
 msgid "Please choose a date"
 msgstr "Iltimos, sanani tanlang"
 
@@ -431,8 +448,8 @@ msgstr "Izlash..."
 msgid "Search emoji"
 msgstr "Emoji qidirish"
 
-msgid "Search for timezone"
-msgstr "Vaqt mintaqasini qidiring"
+msgid "Search for time zone"
+msgstr "Vaqt mintaqasini qidirish"
 
 msgid "Search results"
 msgstr "Qidiruv natijalari"
@@ -533,7 +550,7 @@ msgstr "Tab"
 msgid "Time picker"
 msgstr "Vaqtni tanlovchi"
 
-msgid "Timezone"
+msgid "Time zone"
 msgstr "Vaqt mintaqasi"
 
 msgid "Toggle overlay"
@@ -553,6 +570,18 @@ msgstr "Guruhni qidirish imkonsiz"
 
 msgid "Undo changes"
 msgstr "O'zgarishlarni bekor qilish"
+
+msgid "Upload file"
+msgstr "Faylni yuklash"
+
+msgid "Upload files"
+msgstr "Fayllarni yuklash"
+
+msgid "Upload folder"
+msgstr "Yuklash papkasi"
+
+msgid "Uploading …"
+msgstr "Yuklanmoqda…"
 
 msgid "User status: {status}"
 msgstr "Foydalanuvchi holati: {status}"
