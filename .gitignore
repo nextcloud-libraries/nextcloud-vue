@@ -20,6 +20,9 @@ yarn-error.log*
 
 .marginalia
 
+# npm pack output
+nextcloud-vue-*.tgz
+
 # Unit test / coverage reports
 coverage
 
