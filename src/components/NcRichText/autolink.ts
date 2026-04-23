@@ -3,11 +3,12 @@
  * SPDX-License-Identifier: AGPL-3.0-or-later
  */
 
+import type { Node, Parent } from 'unist'
 import type { Router } from 'vue-router'
 
 import { getBaseUrl, getRootUrl } from '@nextcloud/router'
 import { u } from 'unist-builder'
-import { SKIP, visit } from 'unist-util-visit'
+import { SKIP, visitParents } from 'unist-util-visit-parents'
 import { defineComponent, h } from 'vue'
 import { logger } from '../../utils/logger.ts'
 import { URL_PATTERN_AUTOLINK } from './helpers.js'
@@ -45,13 +46,19 @@ export function remarkAutolink({ autolink, useMarkdown, useExtendedMarkdown }) {
 			return
 		}
 
-		visit(tree, (node) => node.type === 'text', (node, index, parent) => {
-			let parsed = parseUrl(node.value)
-			if (typeof parsed === 'string') {
-				parsed = [u('text', parsed)]
-			} else {
-				parsed = parsed
-					.map((n) => {
+		visitParents(tree, (node) => node.type === 'text', (node, ancestors: Parent[]) => {
+			// Do not autolink text already inside a link node
+			if (ancestors.some((ancestor) => ancestor.type === 'link' || ancestor.type === 'linkReference')) {
+				return
+			}
+
+			const parent = ancestors.at(-1)
+			const index = parent!.children.indexOf(node) ?? 0
+
+			const parsed = parseUrl(node.value)
+			const parsedNodes: Node[] = (typeof parsed === 'string')
+				? [u('text', parsed)]
+				: parsed.map((n) => {
 						if (typeof n === 'string') {
 							return u('text', n)
 						}
@@ -60,12 +67,11 @@ export function remarkAutolink({ autolink, useMarkdown, useExtendedMarkdown }) {
 							url: n.props.href,
 						}, [u('text', n.props.href)])
 					})
-					.filter((x) => x)
-					.flat()
-			}
+						.filter((x) => x)
+						.flat()
 
-			parent.children.splice(index, 1, ...parsed)
-			return [SKIP, (index ?? 0) + parsed.length]
+			parent!.children.splice(index, 1, ...parsedNodes)
+			return [SKIP, index + parsedNodes.length]
 		})
 	}
 }

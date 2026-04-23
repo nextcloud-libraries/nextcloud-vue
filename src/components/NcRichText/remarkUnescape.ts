@@ -7,7 +7,7 @@ import type { Plugin } from 'unified'
 import type { Node, Parent } from 'unist'
 import type { TextNode } from './helpers.ts'
 
-import { SKIP, visit } from 'unist-util-visit'
+import { SKIP, visitParents } from 'unist-util-visit-parents'
 
 /**
  * Check if the given node is a literal and specifically a text node
@@ -20,7 +20,10 @@ function isTextNode(node: Node): node is TextNode {
 
 export const remarkUnescape: Plugin = function() {
 	return function(tree: Node) {
-		visit(tree, isTextNode, (node: TextNode, index?: number, parent?: Parent) => {
+		visitParents(tree, isTextNode, (node: TextNode, ancestors: Parent[]) => {
+			const parent = ancestors.at(-1)
+			const index = parent!.children.indexOf(node)
+
 			parent!.children.splice(index!, 1, {
 				...node,
 				value: node.value.replace(/&lt;/gmi, '<').replace(/&gt;/gmi, '>'),
