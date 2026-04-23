@@ -320,6 +320,7 @@ import { RouterLink } from 'vue-router'
 import NcCheckboxRadioSwitch from '../NcCheckboxRadioSwitch/NcCheckboxRadioSwitch.vue'
 import NcReferenceList from './NcReferenceList.vue'
 import NcRichTextCopyButton from './NcRichTextCopyButton.vue'
+import NcRichTextExternalLink from './NcRichTextExternalLink.vue'
 import { createElementId } from '../../utils/createElementId.ts'
 import { getRoute, parseUrl, remarkAutolink } from './autolink.ts'
 import { remarkPlaceholder } from './remarkPlaceholder.ts'
@@ -532,11 +533,9 @@ export default {
 						return entry
 					}
 					const { component, props } = entry
-					// do not override class of NcLink
-					const componentClass = component.name === 'NcLink' ? undefined : 'rich-text--component'
 					return h(component, {
 						...props,
-						class: componentClass,
+						class: 'rich-text--component',
 					})
 				})
 			}
@@ -632,6 +631,7 @@ export default {
 				if (String(type) === 'a') {
 					const route = getRoute(this.$router, props.href)
 					if (route) {
+						// Resolved link to this app; render RouterLink
 						delete props.href
 						delete props.target
 
@@ -639,6 +639,18 @@ export default {
 							...props,
 							to: route,
 						}, { default: () => children })
+					}
+
+					const isAllowedScheme = /^(https?:\/\/|tel:|mailto:)/.test(props.href)
+					if (isAllowedScheme) {
+						// External link; render normally, open in the new tab
+						props.href = props.href.trim()
+						return h(NcRichTextExternalLink, props, children)
+					} else {
+						// Unresolved relative link that does not belong to this app; render only children
+						delete props.href
+						delete props.target
+						return h('span', props, children)
 					}
 				}
 				return h(type, props, children)
@@ -683,13 +695,6 @@ export default {
 
 	.rich-text--fallback, .rich-text-component {
 		display: inline;
-	}
-
-	.rich-text--external-link {
-		text-decoration: underline;
-		&:after {
-			content: ' ↗';
-		}
 	}
 }
 
