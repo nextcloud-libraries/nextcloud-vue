@@ -7,7 +7,40 @@
 
 All notable changes to this project will be documented in this file.
 
+## [v9.7.0](https://github.com/nextcloud-libraries/nextcloud-vue/tree/v9.7.0) (2026-04-24)
+[Full Changelog](https://github.com/nextcloud-libraries/nextcloud-vue/compare/v9.6.0...v9.7.0)
+
+### 📝 Notes
+* `NcRichText` component used with `useMarkdown = true` or `useExtendedMarkdown = true` no longer renders relative links that can not be resolved by Vue Router.
+They are might interfere with routing logic and considered not belonging to the application. Examples that are not rendered as a clickable link:
+  * ``[unknown protocols](unknown:protocol)``
+  * ``[unresolved relative link](internal_route)``
+  * ``[relative parameters](?parameters=1)``
+  * ``[relative anchor](#anchor)``
+
+
+### 🚀 Enhancements
+* feat(NcRichContenteditable): allow to pass `menuContainer` as string [\#8417](https://github.com/nextcloud-libraries/nextcloud-vue/pull/8417) \([Antreesy](https://github.com/Antreesy)\)
+
+### 🐛 Fixed bugs
+* fix(NcCheckboxRadioSwitch): use reactive state for group checkbox toggle [\#8324](https://github.com/nextcloud-libraries/nextcloud-vue/pull/8324) \([pringelmann](https://github.com/pringelmann)\)
+* fix(NcRichText): do not escape markdown syntax when resolving reference [\#8351](https://github.com/nextcloud-libraries/nextcloud-vue/pull/8351) \([Antreesy](https://github.com/Antreesy)\)
+* fix(NcPasswordField): reset validation state on change [\#8350](https://github.com/nextcloud-libraries/nextcloud-vue/pull/8350) \([Antreesy](https://github.com/Antreesy)\)
+* fix(NcAppNavigation): close navigation on click outside for mobile dimensions [\#8284](https://github.com/nextcloud-libraries/nextcloud-vue/pull/8284) \([grnd-alt](https://github.com/grnd-alt)\)
+* fix(NcAvatar): redirect to guest avatar if avatar does not exist [\#8440](https://github.com/nextcloud-libraries/nextcloud-vue/pull/8440) \([skjnldsv](https://github.com/skjnldsv)\)
+* fix(NcModal): prevent focus trap race condition  [\#8093](https://github.com/nextcloud-libraries/nextcloud-vue/pull/8093) \([nikhil2297](https://github.com/nikhil2297)\)
+* fix(NcRichText): do not render nested links in markdown [\#8449](https://github.com/nextcloud-libraries/nextcloud-vue/pull/8449) \([Antreesy](https://github.com/Antreesy)\)
+* fix(NcRichText)!: do not render invalid relative markdown links [\#8397](https://github.com/nextcloud-libraries/nextcloud-vue/pull/8397) \([Antreesy](https://github.com/Antreesy)\)
+* fix(NcAppNavigationSearch): Show search clear icon only when field contains something [\#8454](https://github.com/nextcloud-libraries/nextcloud-vue/pull/8454) \([jancborchardt](https://github.com/jancborchardt)\)
+
+### Other Changes
+* Updated translations
+
+## New Contributors
+* @pringelmann made their first contribution in https://github.com/nextcloud-libraries/nextcloud-vue/pull/8324
+
 ## [v9.6.0](https://github.com/nextcloud-libraries/nextcloud-vue/tree/v9.6.0) (2026-03-13)
+[Full Changelog](https://github.com/nextcloud-libraries/nextcloud-vue/compare/v9.5.0...v9.6.0)
 ### 🚀 Enhancements
 * feat(NcFilePicker): add picker component to select local files [\#7097](https://github.com/nextcloud-libraries/nextcloud-vue/pull/7097) \([susnux](https://github.com/susnux)\)
 * feat(emoji): extend 'emojiAddRecent' to allow pass emoji as an argument [\#8288](https://github.com/nextcloud-libraries/nextcloud-vue/pull/8288) \([Antreesy](https://github.com/Antreesy)\)
