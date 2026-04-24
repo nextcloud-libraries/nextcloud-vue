@@ -14,13 +14,6 @@
 	.rich-text--fallback, .rich-text-component {
 		display: inline;
 	}
-
-	.rich-text--external-link {
-		text-decoration: underline;
-		&:after {
-			content: ' ↗';
-		}
-	}
 }
 
 /* Markdown styles */

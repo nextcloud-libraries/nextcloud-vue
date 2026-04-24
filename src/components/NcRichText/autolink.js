@@ -6,28 +6,9 @@
 import { getBaseUrl, getRootUrl } from '@nextcloud/router'
 import { u } from 'unist-builder'
 import { SKIP, visitParents } from 'unist-util-visit-parents'
+import NcRichTextExternalLink from './NcRichTextExternalLink.vue'
 import { logger } from '../../utils/logger.ts'
 import { URL_PATTERN_AUTOLINK } from './helpers.js'
-
-const NcLink = {
-	name: 'NcLink',
-	props: {
-		href: {
-			type: String,
-			required: true,
-		},
-	},
-	render(h) {
-		return h('a', {
-			attrs: {
-				href: this.href,
-				rel: 'noopener noreferrer',
-				target: '_blank',
-				class: 'rich-text--external-link',
-			},
-		}, [this.href.trim()])
-	},
-}
 
 /**
  * Remark plugin for autolink parsing
@@ -95,7 +76,7 @@ export function parseUrl(text) {
 			textAfter = lastChar
 		}
 		list.push(textBefore)
-		list.push({ component: NcLink, props: { href } })
+		list.push({ component: NcRichTextExternalLink, props: { href: href.trim(), decorateExternal: true } })
 		if (textAfter) {
 			list.push(textAfter)
 		}
