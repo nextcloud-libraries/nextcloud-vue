@@ -444,7 +444,7 @@ function handleInput(event: Event) {
 		line-height: 1.5; // minimum allowed line height for accessibility
 		// 1.5 * font-size = line-height; line-height / 2 for centering and make it negative as we need to move outside the element
 		inset-block-start: calc(-1.5 * var(--input-label-font-size) / 2);
-		font-weight: 500;
+		font-weight: var(--font-weight-element, 500);
 		border-radius: var(--default-grid-baseline) var(--default-grid-baseline) 0 0;
 		background-color: var(--color-main-background);
 		padding-inline: var(--default-grid-baseline);

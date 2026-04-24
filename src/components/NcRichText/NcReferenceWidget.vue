@@ -288,7 +288,7 @@ function destroyReferenceWidget() {
 		overflow: hidden;
 		text-overflow: ellipsis;
 		white-space: nowrap;
-		font-weight: bold;
+		font-weight: var(--font-weight-heading, bold);
 	}
 
 	&--details {

@@ -285,7 +285,7 @@ function unregisterSection(id: string) {
 		margin: 4px 0;
 		line-height: var(--default-clickable-area);
 		border-radius: var(--border-radius-element);
-		font-weight: bold;
+		font-weight: var(--font-weight-element, bold);
 		padding: 0 calc(4 * var(--default-grid-baseline));
 		cursor: pointer;
 		white-space: nowrap;

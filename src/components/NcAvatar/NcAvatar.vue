@@ -953,7 +953,7 @@ export default {
 			display: block;
 			width: 100%;
 			text-align: center;
-			font-weight: normal;
+			font-weight: var(--font-weight-default, normal);
 		}
 	}
 
