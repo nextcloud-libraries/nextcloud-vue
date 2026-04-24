@@ -5,7 +5,38 @@
 
 # Changelog
 
+## [v8.38.0](https://github.com/nextcloud-libraries/nextcloud-vue/tree/v8.38.0) (2026-04-24)
+[Full Changelog](https://github.com/nextcloud-libraries/nextcloud-vue/compare/v8.37.0...v8.38.0)
+
+### 📝 Notes
+* `NcRichText` component used with `useMarkdown = true` or `useExtendedMarkdown = true` no longer renders relative links that can not be resolved by Vue Router.
+They are might interfere with routing logic and considered not belonging to the application. Examples that are not rendered as a clickable link:
+  * ``[unknown protocols](unknown:protocol)``
+  * ``[unresolved relative link](internal_route)``
+  * ``[relative parameters](?parameters=1)``
+  * ``[relative anchor](#anchor)``
+
+### 🚀 Enhancements
+* [stable8] feat(NcRichContenteditable): allow to pass `menuContainer` as string [\#8424](https://github.com/nextcloud-libraries/nextcloud-vue/pull/8424) \([backportbot[bot]](https://github.com/backportbot[bot])\)
+
+### 🐛 Fixed bugs
+* [stable8] fix(NcCheckboxRadioSwitch): use reactive state for group checkbox toggle [\#8355](https://github.com/nextcloud-libraries/nextcloud-vue/pull/8355) \([backportbot[bot]](https://github.com/backportbot[bot])\)
+* [stable8] fix(NcRichText): do not escape chars when resolving reference [\#8356](https://github.com/nextcloud-libraries/nextcloud-vue/pull/8356) \([backportbot[bot]](https://github.com/backportbot[bot])\)
+* [stable8] fix(NcFormBox): add NcButton to supported components [\#7898](https://github.com/nextcloud-libraries/nextcloud-vue/pull/7898) \([backportbot[bot]](https://github.com/backportbot[bot])\)
+* [stable8] fix(NcAvatar): redirect to guest avatar if avatar doesnt exist [\#8445](https://github.com/nextcloud-libraries/nextcloud-vue/pull/8445) \([backportbot[bot]](https://github.com/backportbot[bot])\)
+* [stable8] fix(NcPasswordField): reset validation on change [\#8357](https://github.com/nextcloud-libraries/nextcloud-vue/pull/8357) \([backportbot[bot]](https://github.com/backportbot[bot])\)
+* [stable8] fix: set clickOutsideDeactivates [\#8379](https://github.com/nextcloud-libraries/nextcloud-vue/pull/8379) \([grnd-alt](https://github.com/grnd-alt)\)
+* [stable8] fix(NcAppNavigation): also emit `navigation-toggled` on mobile change [\#8354](https://github.com/nextcloud-libraries/nextcloud-vue/pull/8354) \([skjnldsv](https://github.com/skjnldsv)\)
+* [stable8] fix(NcRichText): do not render nested links in markdown [\#8465](https://github.com/nextcloud-libraries/nextcloud-vue/pull/8465) \([backportbot[bot]](https://github.com/backportbot[bot])\)
+* [stable8] fix(NcRichText): do not render invalid relative markdown links [\#8467](https://github.com/nextcloud-libraries/nextcloud-vue/pull/8467) \([backportbot[bot]](https://github.com/backportbot[bot])\)
+
+### Other Changes
+* [stable8] chore(NcActions): outline icons in docs [\#7921](https://github.com/nextcloud-libraries/nextcloud-vue/pull/7921) \([backportbot[bot]](https://github.com/backportbot[bot])\)
+
+
 ## [v8.37.0](https://github.com/nextcloud-libraries/nextcloud-vue/tree/v8.37.0) (2026-03-13)
+[Full Changelog](https://github.com/nextcloud-libraries/nextcloud-vue/compare/v8.36.0...v8.37.0)
+
 ### 🚀 Enhancements
 * feat(NcFilePicker): add picker component to select local files [\#8180](https://github.com/nextcloud-libraries/nextcloud-vue/pull/8180)
 * feat(emoji): extend 'emojiAddRecent' to allow pass emoji as an argument [\#8290](https://github.com/nextcloud-libraries/nextcloud-vue/pull/8290)
@@ -25,6 +56,7 @@
 * test(cypress): adjust workflow and fix broken tests [\#8178](https://github.com/nextcloud-libraries/nextcloud-vue/pull/8178) \([susnux](https://github.com/susnux)\)
 
 ## [v8.36.0](https://github.com/nextcloud-libraries/nextcloud-vue/tree/v8.36.0) (2026-02-04)
+[Full Changelog](https://github.com/nextcloud-libraries/nextcloud-vue/compare/v8.35.3...v8.36.0)
 
 ### 🚀 Enhancements
 * [stable8] feat(NcRadioGroupButton): add disabled state styling to NcRadioGroupButton  [\#8126](https://github.com/nextcloud-libraries/nextcloud-vue/pull/8126) \([backportbot[bot]](https://github.com/backportbot[bot])\)
