@@ -1,14 +1,15 @@
-# 
 # Translators:
 # Joas Schilling, 2025
 # Elena Mishina, 2025
 # Igor Orlov, 2025
 # Leonid Fedotov, 2025
 # Maksim Sukharev, 2025
+# Александр, 2026
+# ashed <craysy@gmail.com>, 2026
 # 
 msgid ""
 msgstr ""
-"Last-Translator: Maksim Sukharev, 2025\n"
+"Last-Translator: ashed <craysy@gmail.com>, 2026\n"
 "Language-Team: Russian (https://app.transifex.com/nextcloud/teams/64236/ru/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Language: ru\n"
@@ -399,6 +400,15 @@ msgstr "Выбор"
 msgid "Pick an emoji"
 msgstr "Выберите эмодзи"
 
+msgid "Pick file"
+msgstr "Выберите файл"
+
+msgid "Pick files"
+msgstr "Выберите файлы"
+
+msgid "Pick folder"
+msgstr "Выберите папку"
+
 msgid "Please choose a date"
 msgstr "Выберите дату"
 
@@ -567,6 +577,18 @@ msgstr "Невозможно найти группу"
 
 msgid "Undo changes"
 msgstr "Отменить изменения"
+
+msgid "Upload file"
+msgstr "Загрузка файла"
+
+msgid "Upload files"
+msgstr "Загрузка файлов"
+
+msgid "Upload folder"
+msgstr "Загрузка папки"
+
+msgid "Uploading …"
+msgstr "Загрузка…"
 
 msgid "User status: {status}"
 msgstr "Статус пользователя: {status}"
