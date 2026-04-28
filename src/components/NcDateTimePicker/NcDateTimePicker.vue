@@ -288,7 +288,7 @@ import {
 	getFirstDay,
 } from '@nextcloud/l10n'
 import VueDatePicker from '@vuepic/vue-datepicker'
-import { computed, useTemplateRef } from 'vue'
+import { computed, ref, useTemplateRef } from 'vue'
 import NcIconSvgWrapper from '../NcIconSvgWrapper/NcIconSvgWrapper.vue'
 import NcTimezonePicker from '../NcTimezonePicker/NcTimezonePicker.vue'
 import { t } from '../../l10n.ts'
@@ -699,6 +699,78 @@ const ariaLabels = computed(() => ({
 }))
 
 /**
+ * Track the currently displayed month/year so we can navigate on horizontal scroll.
+ * Initialise from modelValue so the first scroll continues from the displayed month,
+ * not from today.
+ */
+function getInitialMonthYear() {
+	const date = props.modelValue instanceof Date
+		? props.modelValue
+		: (Array.isArray(props.modelValue) && props.modelValue[0] instanceof Date
+				? props.modelValue[0]
+				: new Date())
+	return { month: date.getMonth(), year: date.getFullYear() }
+}
+const currentMonthYear = ref(getInitialMonthYear())
+
+/**
+ * Called when the displayed month/year changes in the library (navigation arrows, etc.)
+ *
+ * @param payload The emitted month/year object from the library
+ * @param payload.instance
+ * @param payload.month
+ * @param payload.year
+ */
+function onUpdateMonthYear(payload: { instance: number, month: number, year: number }) {
+	if (!Number.isNaN(payload.month) && !Number.isNaN(payload.year)) {
+		currentMonthYear.value = { month: payload.month, year: payload.year }
+	}
+}
+
+// Timer handle used to throttle horizontal scroll — null means "ready to fire"
+let scrollCooldownTimer: ReturnType<typeof setTimeout> | null = null
+// Minimum pause (ms) between consecutive month steps triggered by scrolling
+const SCROLL_STEP_COOLDOWN_MS = 500
+
+/**
+ * Handle horizontal wheel scroll on the calendar to navigate months.
+ * Vertical scroll is intentionally ignored so the page can still scroll normally.
+ * A cooldown timer prevents more than one month step per gesture.
+ *
+ * @param event The wheel event
+ */
+function onCalendarWheel(event: WheelEvent) {
+	// Only act when horizontal component is dominant; ignore pure vertical scroll
+	if (Math.abs(event.deltaX) <= Math.abs(event.deltaY)) {
+		return
+	}
+	event.preventDefault()
+
+	// Cooldown active — ignore until the timer expires
+	if (scrollCooldownTimer !== null) {
+		return
+	}
+
+	// deltaX > 0 → scrolled right → next month (future); < 0 → previous month (past)
+	const direction = event.deltaX > 0 ? 1 : -1
+	let { month, year } = currentMonthYear.value
+	month += direction
+	if (month > 11) {
+		month = 0
+		year++
+	} else if (month < 0) {
+		month = 11
+		year--
+	}
+	currentMonthYear.value = { month, year }
+	pickerInstance.value?.setMonthYear({ month, year })
+
+	scrollCooldownTimer = setTimeout(() => {
+		scrollCooldownTimer = null
+	}, SCROLL_STEP_COOLDOWN_MS)
+}
+
+/**
  * Select the current value.
  * This is used by the confirmation button if `confirmation` was set.
  */
@@ -765,7 +837,7 @@ function sameDay(a: Date, b: Date): boolean {
 </script>
 
 <template>
-	<div class="vue-date-time-picker__wrapper">
+	<div class="vue-date-time-picker__wrapper" @wheel="onCalendarWheel">
 		<VueDatePicker
 			ref="picker"
 			:aria-labels
@@ -784,6 +856,7 @@ function sameDay(a: Date, b: Date): boolean {
 			:maxTime="calcMinMaxTime.maxTime"
 			:minutesIncrement="minuteStep"
 			:modelValue="value"
+			:monthChangeOnScroll="false"
 			:nowButtonLabel="t('Now')"
 			:selectText="t('Pick')"
 			sixWeeks="fair"
@@ -795,6 +868,7 @@ function sameDay(a: Date, b: Date): boolean {
 			:weekStart
 			v-bind="pickerType"
 			@update:modelValue="onUpdateModelValue"
+			@updateMonthYear="onUpdateMonthYear"
 			@blur="emit('blur')">
 			<template #action-buttons>
 				<NcButton size="small" variant="tertiary" @click="cancelSelection">
@@ -949,8 +1023,22 @@ function sameDay(a: Date, b: Date): boolean {
 
 	// make the bottom page toggle stand out better
 	:deep(.dp__btn.dp__button.dp__button_bottom) {
-		color: var(--color-primary-element-light);
+		color: var(--color-primary-element-light-text);
 		background-color: var(--color-primary-element-light);
+	}
+
+	// Disabled days that are also selected/active should use primary text color to stay legible
+	// on the blue primary background, instead of the grey secondary color used for disabled days.
+	// Same applies to offset days (days from prev/next month shown at calendar edges).
+	:deep(.dp__cell_disabled.dp__active_date),
+	:deep(.dp__cell_disabled.dp__range_start),
+	:deep(.dp__cell_disabled.dp__range_end),
+	:deep(.dp__cell_disabled.dp__range_between),
+	:deep(.dp__cell_offset.dp__active_date),
+	:deep(.dp__cell_offset.dp__range_start),
+	:deep(.dp__cell_offset.dp__range_end),
+	:deep(.dp__cell_offset.dp__range_between) {
+		color: var(--dp-primary-text-color);
 	}
 
 	// Fix server styles causing buttons to be primary colored
