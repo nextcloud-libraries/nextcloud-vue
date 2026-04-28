@@ -949,8 +949,22 @@ function sameDay(a: Date, b: Date): boolean {
 
 	// make the bottom page toggle stand out better
 	:deep(.dp__btn.dp__button.dp__button_bottom) {
-		color: var(--color-primary-element-light);
+		color: var(--color-primary-element-light-text);
 		background-color: var(--color-primary-element-light);
+	}
+
+	// Disabled days that are also selected/active should use primary text color to stay legible
+	// on the blue primary background, instead of the grey secondary color used for disabled days.
+	// Same applies to offset days (days from prev/next month shown at calendar edges).
+	:deep(.dp__cell_disabled.dp__active_date),
+	:deep(.dp__cell_disabled.dp__range_start),
+	:deep(.dp__cell_disabled.dp__range_end),
+	:deep(.dp__cell_disabled.dp__range_between),
+	:deep(.dp__cell_offset.dp__active_date),
+	:deep(.dp__cell_offset.dp__range_start),
+	:deep(.dp__cell_offset.dp__range_end),
+	:deep(.dp__cell_offset.dp__range_between) {
+		color: var(--dp-primary-text-color);
 	}
 
 	// Fix server styles causing buttons to be primary colored
