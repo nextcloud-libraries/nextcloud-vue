@@ -183,7 +183,8 @@ See: https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Attributes/
 		:boundary="boundary || undefined"
 		:container
 		:delay
-		:distance="10"
+		:distance
+		:skidding
 		handleResize
 		:noAutoFocus="true /* Handled by the focus trap */"
 		:placement="internalPlacement"
@@ -281,6 +282,28 @@ export default {
 		 */
 		delay: {
 			type: [Number, Object],
+			default: 0,
+		},
+
+		/**
+		 * Distance in pixels between the popover and the trigger element.
+		 *
+		 * @type {number}
+		 */
+		distance: {
+			type: Number,
+			default: 10,
+		},
+
+		/**
+		 * Skidding (offset along the trigger axis) in pixels. For a `bottom-start`
+		 * placement, positive values shift the popover toward the end of the trigger,
+		 * negative values toward the start.
+		 *
+		 * @type {number}
+		 */
+		skidding: {
+			type: Number,
 			default: 0,
 		},
 
