@@ -266,7 +266,7 @@ export default {
 	}
 
 	&__name {
-		font-weight: bold;
+		font-weight: var(--font-weight-heading, bold);
 		color: var(--color-main-text);
 		font-size: var(--default-font-size);
 		line-height: var(--default-clickable-area);

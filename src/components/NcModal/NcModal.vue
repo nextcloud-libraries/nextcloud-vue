@@ -996,7 +996,7 @@ export default {
 
 .model__content-text {
 	font-size: 16px;
-	font-weight: bold;
+	font-weight: var(--font-weight-heading, bold);
 }
 </style>
 ```

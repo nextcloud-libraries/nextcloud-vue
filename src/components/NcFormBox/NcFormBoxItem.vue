@@ -117,6 +117,7 @@ const hasDescription = () => !!description || !!slots.description
 	border-radius: var(--border-radius-element);
 	background-color: var(--color-primary-element-extra-light);
 	color: var(--color-main-text);
+	font-weight: var(--font-weight-element, normal);
 	transition-property: color, border-color, background-color;
 	transition-duration: var(--animation-quick);
 	transition-timing-function: linear;
@@ -141,6 +142,10 @@ const hasDescription = () => !!description || !!slots.description
 	&:has(:focus-visible) {
 		outline: 2px solid var(--color-main-text);
 		box-shadow: 0 0 0 4px var(--color-main-background);
+	}
+
+	&__description {
+		font-weight: var(--font-weight-default, normal);
 	}
 
 	&.formBoxItem_legacy {

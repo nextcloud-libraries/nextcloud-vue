@@ -176,7 +176,7 @@ export default {
 }
 
 h5 {
-	font-weight: bold;
+	font-weight: var(--font-weight-heading, bold);
 	margin: 40px 0 20px 0;
 }
 
@@ -417,7 +417,7 @@ td.row-size {
 }
 
 .table-header {
-	font-weight: normal;
+	font-weight: var(--font-weight-default, normal);
 	color: var(--color-text-maxcontrast);
 }
 
@@ -751,7 +751,7 @@ function onClick(event: MouseEvent) {
 	transition-timing-function: linear;
 	cursor: pointer;
 	font-size: var(--default-font-size);
-	font-weight: bold;
+	font-weight: var(--font-weight-element, bold);
 
 	// Setup different button sizes
 	&--size-small {
@@ -847,7 +847,7 @@ function onClick(event: MouseEvent) {
 	}
 
 	&__text {
-		font-weight: bold;
+		font-weight: var(--font-weight-element, bold);
 		margin-bottom: 1px;
 		padding: 2px 0;
 		white-space: nowrap;

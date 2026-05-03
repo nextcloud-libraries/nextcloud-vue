@@ -85,7 +85,7 @@ export default {
 			justify-content: flex-start !important;
 
 			.button-vue__text {
-				font-weight: normal !important;
+				font-weight: var(--font-weight-default, normal) !important;
 				margin-inline-start: 2px !important;
 			}
 		}

@@ -201,7 +201,7 @@ export default {
 
 <style lang="scss" scoped>
 .team-resources__header {
-	font-weight: bold;
+	font-weight: var(--font-weight-heading, bold);
 	margin-bottom: 6px;
 }
 
@@ -227,7 +227,7 @@ export default {
 		align-items: center;
 		gap: 12px;
 		padding: 6px 12px;
-		font-weight: bold;
+		font-weight: var(--font-weight-heading, bold);
 		margin: 0;
 	}
 
@@ -235,7 +235,7 @@ export default {
 		padding: 6px 12px;
 
 		&__name {
-			font-weight: bold;
+			font-weight: var(--font-weight-heading, bold);
 			margin-bottom: 3px;
 		}
 
@@ -243,7 +243,7 @@ export default {
 			display: flex;
 			gap: 12px;
 			padding: 6px 12px;
-			font-weight: bold;
+			font-weight: var(--font-weight-heading, bold);
 		}
 	}
 

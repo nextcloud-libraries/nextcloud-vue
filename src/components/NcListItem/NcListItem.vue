@@ -887,7 +887,7 @@ export default {
 .list-item-content__name {
 	min-width: 100px;
 	flex: 1 1 10%;
-	font-weight: 500;
+	font-weight: var(--font-weight-element, 500);
 }
 
 .list-item-content__subname {
@@ -895,7 +895,7 @@ export default {
 	min-width: 0;
 	color: var(--color-text-maxcontrast);
 	&--bold {
-		font-weight: 500;
+		font-weight: var(--font-weight-element, 500);
 	}
 }
 
@@ -1017,7 +1017,7 @@ export default {
 		&__details {
 			color: var(--color-text-maxcontrast);
 			margin: 0 9px !important;
-			font-weight: normal;
+			font-weight: var(--font-weight-default, normal);
 		}
 		&__extra {
 			margin: 2px 4px 0 4px;

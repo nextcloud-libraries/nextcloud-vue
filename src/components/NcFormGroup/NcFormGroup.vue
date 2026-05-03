@@ -93,7 +93,7 @@ const hasContentOnly = () => hideLabel && (!hasDescription() || hideDescription)
 .formGroup__label {
 	padding-inline: var(--form-element-label-offset);
 	font-size: var(--font-size);
-	font-weight: bold;
+	font-weight: var(--font-weight-heading, bold);
 }
 
 .formGroup__description {

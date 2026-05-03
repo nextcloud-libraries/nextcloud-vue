@@ -88,14 +88,14 @@ defineProps<{
 }
 
 .sidebarTabsButton__name {
-	font-weight: normal;
+	font-weight: var(--font-weight-element, normal);
 	overflow: hidden;
 	text-overflow: ellipsis;
 	text-wrap: nowrap;
 }
 
 .sidebarTabsButton_selected .sidebarTabsButton__name {
-	font-weight: bold;
+	font-weight: var(--font-weight-element, bold);
 }
 
 .sidebarTabsButton__icon {

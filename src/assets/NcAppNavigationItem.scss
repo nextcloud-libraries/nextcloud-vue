@@ -119,6 +119,7 @@
 			max-width: 100%;
 			white-space: nowrap;
 			text-overflow: ellipsis;
+			font-weight: var(--font-weight-element, normal);
 		}
 
 		.editingContainer {

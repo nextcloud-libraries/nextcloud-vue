@@ -712,6 +712,7 @@ export default {
 	color: var(--color-main-text);
 	background-color: transparent;
 	font-size: var(--default-font-size);
+	font-weight: var(--font-weight-element, normal);
 	line-height: var(--default-line-height);
 	padding: 0;
 	position: relative;
@@ -774,7 +775,7 @@ export default {
 		overflow: hidden;
 
 		&--checked {
-			font-weight: bold;
+			font-weight: var(--font-weight-element, bold);
 
 			.checkbox-radio-switch__content {
 				background-color: var(--color-primary-element);
