@@ -12,7 +12,7 @@
 			'icon-collapse--open': open,
 		}"
 		:aria-label="labelButton"
-		:variant="active ? 'tertiary-on-primary' : 'tertiary'"
+		:variant="(active && isLegacy34) ? 'tertiary-on-primary' : 'tertiary'"
 		@click="onClick">
 		<template #icon>
 			<ChevronUp
@@ -29,6 +29,7 @@
 import ChevronDown from 'vue-material-design-icons/ChevronDown.vue'
 import ChevronUp from 'vue-material-design-icons/ChevronUp.vue'
 import { t } from '../../l10n.js'
+import { isLegacy34 } from '../../utils/legacy.ts'
 import NcButton from '../NcButton/index.js'
 
 export default {
@@ -38,6 +39,10 @@ export default {
 		NcButton,
 		ChevronDown,
 		ChevronUp,
+	},
+
+	setup() {
+		return { isLegacy34 }
 	},
 
 	props: {

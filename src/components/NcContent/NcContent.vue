@@ -54,7 +54,10 @@ It also will set the skip content buttons needed for accessibility.
 </docs>
 
 <template>
-	<div id="content-vue" class="content" :class="`app-${appName.toLowerCase()}`">
+	<div
+		id="content-vue"
+		class="content"
+		:class="[`app-${appName.toLowerCase()}`, { 'content--legacy': isLegacy34 }]">
 		<!-- TODO: with vue3 the `selector` attribute needs to be changed to `to="#skip-actions"` -->
 		<Teleport selector="#skip-actions">
 			<div class="vue-skip-actions__container">
@@ -99,6 +102,7 @@ import NcButton from '../NcButton/NcButton.vue'
 import NcIconSvgWrapper from '../NcIconSvgWrapper/NcIconSvgWrapper.vue'
 import { useIsMobile } from '../../composables/useIsMobile/index.ts'
 import { t } from '../../l10n.js'
+import { isLegacy34 } from '../../utils/legacy.ts'
 import contentSvg from './content-selected.svg?raw'
 import navigationSvg from './navigation-selected.svg?raw'
 
@@ -133,6 +137,7 @@ export default {
 		const isMobile = useIsMobile()
 		return {
 			isMobile,
+			isLegacy34,
 		}
 	},
 
@@ -185,6 +190,8 @@ export default {
 </script>
 
 <style lang="scss">
+@use '../../assets/variables.scss' as *;
+
 // Remove server stylings and add a backdrop
 #skip-actions.vue-skip-actions:focus-within {
 	top: 0!important;
@@ -193,6 +200,15 @@ export default {
 	height: 100vh;
 	padding: var(--body-container-margin)!important;
 	backdrop-filter: brightness(50%);
+}
+
+// New design (NC34+): divider only when an open navigation is present.
+@media only screen and (min-width: $breakpoint-mobile) {
+	.content:not(.content--legacy) .app-navigation:not(.app-navigation--close) ~ .app-content {
+		border-inline-start: 1px solid var(--color-border);
+		border-start-start-radius: var(--body-container-radius);
+		border-end-start-radius: var(--body-container-radius);
+	}
 }
 </style>
 
@@ -242,6 +258,14 @@ export default {
 	height: var(--body-height);
 	overflow: hidden;
 	padding: 0;
+
+	// New design (NC34+): wrapper carries the frosted chrome so nav and
+	// AppContent rounded-edge cutouts share one surface.
+	&:not(&--legacy) {
+		background-color: var(--color-main-background-blur, var(--color-main-background));
+		backdrop-filter: var(--filter-background-blur, none);
+		-webkit-backdrop-filter: var(--filter-background-blur, none);
+	}
 
 	&:not(.with-sidebar--full) {
 		position: fixed;

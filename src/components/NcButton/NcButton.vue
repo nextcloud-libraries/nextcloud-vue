@@ -423,7 +423,7 @@ td.row-size {
 </docs>
 
 <script>
-import { isLegacy32 } from '../../utils/legacy.ts'
+import { isLegacy32, isLegacy34 } from '../../utils/legacy.ts'
 import { logger } from '../../utils/logger.ts'
 import { useNcFormBox } from '../NcFormBox/useNcFormBox.ts'
 
@@ -728,6 +728,7 @@ export default {
 						'button-vue--icon-and-text': hasIcon && hasText,
 						[`button-vue--vue-${this.realVariant}`]: this.realVariant,
 						'button-vue--legacy': isLegacy32,
+						'button-vue--legacy34': isLegacy34,
 						'button-vue--tertiary': this.isTertiary,
 						'button-vue--wide': this.wide,
 						[`button-vue--${this.flexAlignment}`]: this.flexAlignment !== 'center',
@@ -1004,6 +1005,12 @@ export default {
 
 		&:hover:not(:disabled) {
 			background-color: var(--color-background-hover);
+		}
+	}
+
+	&--tertiary:not(#{&}--legacy34) {
+		&:hover:not(:disabled) {
+			background-color: color-mix(in srgb, var(--color-primary-element) 8%, transparent);
 		}
 	}
 
