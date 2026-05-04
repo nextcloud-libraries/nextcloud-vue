@@ -9,7 +9,7 @@ import NcInputField from '../../../../src/components/NcInputField/NcInputField.v
 import NcPasswordField from '../../../../src/components/NcPasswordField/NcPasswordField.vue'
 import NcTextField from '../../../../src/components/NcTextField/NcTextField.vue'
 
-vi.mock('../../../../src/utils/legacy.ts', () => ({ isLegacy: true }))
+vi.mock('../../../../src/utils/legacy.ts', () => ({ isLegacy: true, isLegacy34: true }))
 
 test.each`
 name                 | component

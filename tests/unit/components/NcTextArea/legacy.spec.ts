@@ -7,7 +7,7 @@ import { mount } from '@vue/test-utils'
 import { expect, test, vi } from 'vitest'
 import NcTextArea from '../../../../src/components/NcTextArea/NcTextArea.vue'
 
-vi.mock('../../../../src/utils/legacy.ts', () => ({ isLegacy: true }))
+vi.mock('../../../../src/utils/legacy.ts', () => ({ isLegacy: true, isLegacy34: true }))
 
 test('NcTextArea should have the label as the placeholder on Nextcloud 31', () => {
 	const wrapper = mount(NcTextArea, {

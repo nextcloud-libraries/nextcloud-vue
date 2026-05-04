@@ -440,7 +440,7 @@ import type { RouteLocationRaw } from 'vue-router'
 
 import { computed, inject } from 'vue'
 import { routerKey } from 'vue-router'
-import { isLegacy } from '../../utils/legacy.ts'
+import { isLegacy, isLegacy34 } from '../../utils/legacy.ts'
 import { useNcFormBox } from '../NcFormBox/useNcFormBox.ts'
 
 export type ButtonAlignment = 'start'
@@ -699,6 +699,7 @@ function onClick(event: MouseEvent) {
 				[`button-vue--${flexAlignment}`]: flexAlignment !== 'center',
 				'button-vue--reverse': isReverseAligned,
 				'button-vue--legacy': isLegacy,
+				'button-vue--legacy34': isLegacy34,
 			},
 			formBoxItemClass,
 		]"
@@ -928,6 +929,12 @@ function onClick(event: MouseEvent) {
 
 		&:hover:not(:disabled) {
 			background-color: var(--color-background-hover);
+		}
+	}
+
+	&--tertiary:not(#{&}--legacy34) {
+		&:hover:not(:disabled) {
+			background-color: color-mix(in srgb, var(--color-primary-element) 8%, transparent);
 		}
 	}
 

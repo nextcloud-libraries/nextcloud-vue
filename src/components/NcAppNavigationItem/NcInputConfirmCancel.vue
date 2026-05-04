@@ -12,7 +12,7 @@
 </docs>
 
 <template>
-	<div class="app-navigation-input-confirm">
+	<div class="app-navigation-input-confirm" :class="{ 'app-navigation-input-confirm--legacy': isLegacy34 }">
 		<form
 			@submit.prevent="confirm"
 			@keydown.esc.exact.stop.prevent="cancel"
@@ -51,6 +51,7 @@
 import IconArrowRight from 'vue-material-design-icons/ArrowRight.vue'
 import IconClose from 'vue-material-design-icons/Close.vue'
 import { t } from '../../l10n.ts'
+import { isLegacy34 } from '../../utils/legacy.ts'
 import NcButton from '../NcButton/index.js'
 
 export default {
@@ -60,6 +61,10 @@ export default {
 		IconArrowRight,
 		IconClose,
 		NcButton,
+	},
+
+	setup() {
+		return { isLegacy34 }
 	},
 
 	props: {
@@ -154,6 +159,26 @@ $input-margin: 5px;
 			background-color: var(--color-main-background);
 			color: var(--color-main-text);
 			border-color: var(--color-primary-element);
+		}
+	}
+
+	// New design (NC34+): square confirm/cancel buttons with consistent gaps.
+	&:not(&--legacy) {
+		form {
+			align-items: center;
+			gap: $input-margin;
+			padding-inline-end: $input-margin;
+		}
+
+		.app-navigation-input-confirm__input {
+			margin-inline-end: 0 !important;
+		}
+
+		:deep(.button-vue) {
+			width: $input-height !important;
+			min-width: $input-height !important;
+			height: $input-height !important;
+			flex: 0 0 $input-height;
 		}
 	}
 }

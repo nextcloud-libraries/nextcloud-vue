@@ -448,7 +448,10 @@ The `actions-icon` slot can be used to pass icon to the inner NcActions componen
 		v-bind="{ ...to && { custom: true, to } }">
 		<li
 			class="list-item__wrapper"
-			:class="{ 'list-item__wrapper--active': active ?? isActive }"
+			:class="{
+				'list-item__wrapper--active': active ?? isActive,
+				'list-item__wrapper--legacy': isLegacy34,
+			}"
 			v-bind="$attrs">
 			<div
 				ref="list-item"
@@ -502,7 +505,7 @@ The `actions-icon` slot can be used to pass icon to the inner NcActions componen
 								<NcCounterBubble
 									v-if="counterNumber !== 0"
 									:count="counterNumber"
-									:active="active ?? isActive"
+									:active="isLegacy34 ? (active ?? isActive) : false"
 									class="list-item-details__counter"
 									:type="counterType" />
 
@@ -527,7 +530,7 @@ The `actions-icon` slot can be used to pass icon to the inner NcActions componen
 					@focusout="handleBlur">
 					<NcActions
 						ref="actions"
-						:primary="active ?? isActive"
+						:primary="isLegacy34 ? (active ?? isActive) : false"
 						:forceMenu="forceMenu"
 						:aria-label="actionsAriaLabel"
 						@update:open="handleActionsUpdateOpen">
@@ -550,6 +553,7 @@ The `actions-icon` slot can be used to pass icon to the inner NcActions componen
 </template>
 
 <script>
+import { isLegacy34 } from '../../utils/legacy.ts'
 import NcActions from '../NcActions/index.js'
 import NcCounterBubble from '../NcCounterBubble/index.ts'
 import NcVNodes from '../NcVNodes/index.ts'
@@ -564,6 +568,10 @@ export default {
 	},
 
 	inheritAttrs: false,
+
+	setup() {
+		return { isLegacy34 }
+	},
 
 	props: {
 		/**
@@ -851,8 +859,51 @@ export default {
 		padding-block-end: 4px
 	}
 
-	&--active,
-	&.active {
+	&:not(&--legacy):not(&--active):not(.active) {
+		.list-item:hover,
+		.list-item:focus-within,
+		.list-item:has(:active),
+		.list-item:has(:focus-visible) {
+			background-color: color-mix(in srgb, var(--color-primary-element) 8%, transparent);
+		}
+	}
+
+	&--active:not(&--legacy),
+	&.active:not(&--legacy) {
+		.list-item {
+			background-color: var(--color-primary-element-light);
+			color: var(--color-main-text) !important;
+
+			&:hover,
+			&:focus-within,
+			&:has(:focus-visible),
+			&:has(:active) {
+				background-color: var(--color-primary-element-light-hover);
+			}
+
+			&::before {
+				content: '';
+				position: absolute;
+				inset-block: calc(var(--default-grid-baseline, 4px) * 2);
+				inset-inline-start: 0;
+				width: 3px;
+				background-color: var(--color-primary-element);
+				border-radius: 999px;
+				animation: nc-nav-stripe-in var(--animation-quick, 200ms) ease-out;
+			}
+		}
+
+		.list-item-content__name,
+		.list-item-content__subname,
+		.list-item-content__details,
+		.list-item-details__details {
+			color: var(--color-main-text) !important;
+		}
+	}
+
+	// Legacy design (NC < 34): solid primary fill.
+	&--active.list-item__wrapper--legacy,
+	&.active.list-item__wrapper--legacy {
 		.list-item {
 			background-color: var(--color-primary-element);
 			color: var(--color-primary-element-text) !important;
@@ -870,6 +921,17 @@ export default {
 		.list-item-content__details,
 		.list-item-details__details {
 			color: var(--color-primary-element-text) !important;
+		}
+	}
+
+	@keyframes nc-nav-stripe-in {
+		from {
+			transform: scaleY(0);
+			opacity: 0;
+		}
+		to {
+			transform: scaleY(1);
+			opacity: 1;
 		}
 	}
 	.list-item-content__name,
