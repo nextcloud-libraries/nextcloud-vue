@@ -7,6 +7,7 @@
 import type NcAppSidebarTab from '../NcAppSidebarTab/NcAppSidebarTab.vue'
 
 import NcVNodes from '../NcVNodes/NcVNodes.vue'
+import { isLegacy34 } from '../../utils/legacy.ts'
 
 const selected = defineModel<boolean>('selected', { required: true })
 
@@ -23,6 +24,7 @@ defineProps<{
 		class="button-vue"
 		:class="[$style.sidebarTabsButton, {
 			[$style.sidebarTabsButton_selected]: selected,
+			[$style.sidebarTabsButton_legacy]: isLegacy34,
 		}]"
 		role="tab"
 		:aria-selected="selected"
@@ -42,20 +44,62 @@ defineProps<{
 <style module lang="scss">
 .sidebarTabsButton {
 	border: none;
-	border-bottom: var(--default-grid-baseline) solid transparent !important;
-	border-radius: var(--border-radius-small);
-	background-color: var(--color-main-background);
 	color: var(--color-main-text);
 	font-size: var(--default-font-size);
 	cursor: pointer;
 	display: flex;
 	flex-direction: column;
 	gap: var(--default-grid-baseline);
+	min-width: var(--default-clickable-area);
+
+	* {
+		cursor: pointer;
+	}
+}
+
+// New design (NC34+): rounded pill with a small primary indicator under the
+// active tab.
+.sidebarTabsButton:not(.sidebarTabsButton_legacy) {
+	position: relative;
+	border-radius: var(--border-radius-element);
+	background-color: var(--color-main-background);
+	padding: var(--default-grid-baseline);
+	padding-block-end: calc(var(--default-grid-baseline) * 2);
+	transition: background-color var(--animation-quick);
+
+	&::after {
+		content: '';
+		position: absolute;
+		bottom: 0;
+		left: 50%;
+		width: 0;
+		height: 6px;
+		border-radius: 999px;
+		background-color: var(--color-primary-element);
+		opacity: 0;
+		transform: translateX(-50%);
+		transition: width var(--animation-quick), opacity var(--animation-quick);
+	}
+
+	&:hover {
+		background-color: var(--color-background-hover);
+	}
+
+	&:focus-visible {
+		outline: 2px solid var(--color-main-text);
+		outline-offset: 2px;
+	}
+}
+
+// Legacy design (NC < 34): full-width primary border under the active tab.
+.sidebarTabsButton_legacy {
+	border-bottom: var(--default-grid-baseline) solid transparent !important;
+	border-radius: var(--border-radius-small);
+	background-color: var(--color-main-background);
 	padding: var(--border-radius-small);
 	transition:
 		background-color var(--animation-quick),
 		border-bottom-color var(--animation-quick);
-	min-width: var(--default-clickable-area);
 
 	&:hover {
 		background-color: var(--color-background-hover) !important;
@@ -65,25 +109,37 @@ defineProps<{
 	&:focus {
 		background-color: var(--color-main-background) !important;
 	}
-
-	* {
-		cursor: pointer;
-	}
 }
 
 .sidebarTabsButton_selected {
-	border-bottom-color: var(--color-primary-element) !important;
-	border-bottom-left-radius: 0px;
-	border-bottom-right-radius: 0px;
 	cursor: default;
+
+	* {
+		cursor: default;
+	}
+}
+
+.sidebarTabsButton:not(.sidebarTabsButton_legacy).sidebarTabsButton_selected {
+	background-color: var(--color-background-hover);
+
+	&::after {
+		width: 80%;
+		opacity: 1;
+	}
+
+	&:hover {
+		background-color: var(--color-background-dark);
+	}
+}
+
+.sidebarTabsButton_legacy.sidebarTabsButton_selected {
+	border-bottom-color: var(--color-primary-element) !important;
+	border-bottom-left-radius: 0;
+	border-bottom-right-radius: 0;
 
 	&:hover {
 		background-color: var(--color-primary-element-light-hover) !important;
 		color: var(--color-primary-element-light-text) !important;
-	}
-
-	* {
-		cursor: default;
 	}
 }
 
@@ -94,7 +150,7 @@ defineProps<{
 	text-wrap: nowrap;
 }
 
-.sidebarTabsButton_selected .sidebarTabsButton__name {
+.sidebarTabsButton_legacy.sidebarTabsButton_selected .sidebarTabsButton__name {
 	font-weight: var(--font-weight-element, bold);
 }
 
