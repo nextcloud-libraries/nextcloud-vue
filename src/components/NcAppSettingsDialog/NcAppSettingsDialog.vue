@@ -13,6 +13,7 @@ import NcVNodes from '../NcVNodes/NcVNodes.vue'
 import NcAppSettingsDialogVersion from './NcAppSettingsDialogVersion.vue'
 import { useIsMobile } from '../../composables/useIsMobile/index.ts'
 import { t } from '../../l10n.ts'
+import { isLegacy34 } from '../../utils/legacy.ts'
 import { APP_SETTINGS_LEGACY_DESIGN_KEY, APP_SETTINGS_REGISTRATION_KEY } from './useAppSettingsDialog.ts'
 
 export interface IAppSettingsSection {
@@ -215,6 +216,7 @@ function unregisterSection(id: string) {
 	<NcDialog
 		v-if="open"
 		class="app-settings"
+		:class="{ 'app-settings--legacy': isLegacy34 }"
 		contentClasses="app-settings__content"
 		navigationClasses="app-settings__navigation"
 		:additionalTrapElements
@@ -225,6 +227,9 @@ function unregisterSection(id: string) {
 		:name
 		@update:open="handleCloseModal">
 		<template v-if="hasNavigation" #navigation="{ isCollapsed }">
+			<div v-if="!isLegacy34" class="app-settings__title">
+				{{ name }}
+			</div>
 			<ul
 				v-if="!isCollapsed"
 				class="navigation-list">
@@ -258,7 +263,158 @@ function unregisterSection(id: string) {
 </template>
 
 <style lang="scss" scoped>
-.app-settings {
+$navigation-width: 200px;
+$content-inset: calc(3 * var(--default-grid-baseline));
+
+.app-settings:not(.app-settings--legacy) {
+	--nav-tint: hsl(from var(--color-primary-element-light) h s calc(l * 1.045));
+	--nav-tint-strong: var(--color-primary-element-light);
+
+	:deep(.modal-wrapper .modal-container) {
+		padding-inline-start: 0 !important;
+		padding-block-start: 0 !important;
+		background-color: var(--nav-tint);
+		overflow: hidden;
+		max-width: 900px;
+	}
+
+	// Title is rendered inside the navigation slot; hide the native h2 but
+	// keep it in the a11y tree so the modal still has its accessible name.
+	:deep(.dialog__name) {
+		position: absolute;
+		width: 1px;
+		height: 1px;
+		margin: -1px;
+		padding: 0;
+		overflow: hidden;
+		clip-path: inset(100%);
+		white-space: nowrap;
+		border: 0;
+	}
+
+	:deep(.app-settings__navigation) {
+		min-width: $navigation-width;
+		max-width: $navigation-width;
+		flex: 0 0 $navigation-width;
+		// Beat NcDialog's default 20px end-margin so the tint meets the content.
+		margin-inline-end: 0 !important;
+		overflow-x: hidden;
+		overflow-y: auto;
+		position: relative;
+	}
+
+	:deep(.app-settings__content) {
+		padding: $content-inset;
+		background-color: var(--color-main-background);
+		border-inline-start: 1px solid var(--color-border-dark);
+		border-start-start-radius: var(--border-radius-element);
+		border-end-start-radius: var(--border-radius-element);
+	}
+
+	.app-settings__title {
+		box-sizing: border-box;
+		padding: $content-inset;
+		margin: 0;
+		font-size: 20px;
+		font-weight: 700;
+	}
+
+	.navigation-list {
+		height: 100%;
+		overflow-y: auto;
+		padding: var(--default-grid-baseline);
+
+		&__link {
+			position: relative;
+			display: flex;
+			align-items: center;
+			font-size: var(--default-font-size);
+			font-weight: 500;
+			height: var(--default-clickable-area);
+			margin: 2px 0;
+			line-height: var(--default-clickable-area);
+			border-radius: var(--border-radius-element);
+			padding-inline: calc(2 * var(--default-grid-baseline));
+			cursor: pointer;
+			white-space: nowrap;
+			text-overflow: ellipsis;
+			overflow: hidden;
+			background-color: transparent;
+			border: none;
+			color: var(--color-main-text);
+
+			&:hover,
+			&:focus-visible {
+				background-color: color-mix(in srgb, var(--color-primary-element) 8%, transparent);
+			}
+
+			&:focus-visible {
+				outline: 2px solid var(--color-main-text);
+				outline-offset: -2px;
+			}
+
+			&--active {
+				background-color: var(--nav-tint-strong);
+
+				&:hover,
+				&:focus-visible {
+					background-color: var(--color-primary-element-light-hover);
+				}
+
+				&::before {
+					content: '';
+					position: absolute;
+					inset-block: var(--default-grid-baseline);
+					inset-inline-start: 0;
+					width: 3px;
+					background-color: var(--color-primary-element);
+					border-radius: 999px;
+				}
+			}
+
+			&--icon {
+				gap: var(--default-grid-baseline);
+			}
+
+			&-icon {
+				display: flex;
+				justify-content: center;
+				align-content: center;
+				width: calc(var(--default-clickable-area) - 2 * var(--default-grid-baseline));
+				max-width: calc(var(--default-clickable-area) - 2 * var(--default-grid-baseline));
+			}
+		}
+	}
+
+}
+
+@media only screen and (max-width: $breakpoint-mobile) {
+	.app-settings:not(.app-settings--legacy) {
+		:deep(.modal-wrapper .modal-container) {
+			padding-inline-start: 12px !important;
+			padding-block-start: 4px !important;
+			background-color: var(--color-main-background);
+		}
+		:deep(.dialog__name) {
+			position: static;
+			width: auto;
+			height: auto;
+			margin: 0 0 12px 0;
+			padding-inline-end: var(--default-clickable-area);
+			overflow: visible;
+			clip-path: none;
+			white-space: normal;
+			border: 0;
+		}
+		:deep(.app-settings__content) {
+			border: none;
+			border-radius: 0;
+		}
+	}
+}
+
+// Legacy design (NC < 34): keep the original centered-title layout.
+.app-settings.app-settings--legacy {
 	:deep(.app-settings__navigation) {
 		min-width: 200px;
 		margin-inline-end: calc(4 * var(--default-grid-baseline));
@@ -270,56 +426,54 @@ function unregisterSection(id: string) {
 	:deep(.app-settings__content) {
 		padding-inline: calc(4 * var(--default-grid-baseline));
 	}
-}
 
-.navigation-list {
-	height: 100%;
-	overflow-y: auto;
-	padding: calc(3 * var(--default-grid-baseline));
+	.navigation-list {
+		height: 100%;
+		overflow-y: auto;
+		padding: calc(3 * var(--default-grid-baseline));
 
-	&__link {
-		display: flex;
-		align-content: center;
-		font-size: 16px;
-		height: var(--default-clickable-area);
-		margin: 4px 0;
-		line-height: var(--default-clickable-area);
-		border-radius: var(--border-radius-element);
-		font-weight: var(--font-weight-element, bold);
-		padding: 0 calc(4 * var(--default-grid-baseline));
-		cursor: pointer;
-		white-space: nowrap;
-		text-overflow: ellipsis;
-		overflow: hidden;
-		background-color: transparent;
-		border: none;
-
-		&:hover,
-		&:focus {
-			background-color: var(--color-background-hover);
-		}
-
-		&--active {
-			background-color: var(--color-primary-element-light) !important;
-		}
-
-		&--icon {
-			padding-inline-start: calc(2 * var(--default-grid-baseline));
-			gap: var(--default-grid-baseline);
-		}
-
-		&-icon {
+		&__link {
 			display: flex;
-			justify-content: center;
 			align-content: center;
-			width: calc(var(--default-clickable-area) - 2 * var(--default-grid-baseline));
-			max-width: calc(var(--default-clickable-area) - 2 * var(--default-grid-baseline));
+			font-size: 16px;
+			height: var(--default-clickable-area);
+			margin: 4px 0;
+			line-height: var(--default-clickable-area);
+			border-radius: var(--border-radius-element);
+			font-weight: var(--font-weight-element, bold);
+			padding: 0 calc(4 * var(--default-grid-baseline));
+			cursor: pointer;
+			white-space: nowrap;
+			text-overflow: ellipsis;
+			overflow: hidden;
+			background-color: transparent;
+			border: none;
+
+			&:hover,
+			&:focus {
+				background-color: var(--color-background-hover);
+			}
+
+			&--active {
+				background-color: var(--color-primary-element-light) !important;
+			}
+
+			&--icon {
+				padding-inline-start: calc(2 * var(--default-grid-baseline));
+				gap: var(--default-grid-baseline);
+			}
+
+			&-icon {
+				display: flex;
+				justify-content: center;
+				align-content: center;
+				width: calc(var(--default-clickable-area) - 2 * var(--default-grid-baseline));
+				max-width: calc(var(--default-clickable-area) - 2 * var(--default-grid-baseline));
+			}
 		}
 	}
-}
 
-@media only screen and (max-width: $breakpoint-small-mobile) {
-	.app-settings {
+	@media only screen and (max-width: $breakpoint-small-mobile) {
 		:deep(.dialog__name) {
 			padding-inline-start: 16px;
 		}
