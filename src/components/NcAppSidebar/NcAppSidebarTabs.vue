@@ -13,6 +13,7 @@
 			v-if="hasMultipleTabs || showForSingleTab"
 			role="tablist"
 			class="app-sidebar-tabs__nav"
+			:class="{ 'app-sidebar-tabs__nav--legacy': isLegacy34 }"
 			@keydown.left.exact.prevent.stop="focusPreviousTab"
 			@keydown.right.exact.prevent.stop="focusNextTab"
 			@keydown.tab.exact.prevent.stop="focusActiveTabContent"
@@ -57,6 +58,7 @@
 </template>
 
 <script>
+import { isLegacy34 } from '../../utils/legacy.ts'
 import NcCheckboxRadioSwitch from '../NcCheckboxRadioSwitch/index.js'
 import NcVNodes from '../NcVNodes/index.js'
 
@@ -109,6 +111,7 @@ export default {
 			 * Local active (open) tab's ID. It allows to use component without active.sync
 			 */
 			activeTab: '',
+			isLegacy34,
 		}
 	},
 
@@ -269,23 +272,96 @@ export default {
 		margin: 10px 8px 0 8px;
 		border-bottom: 1px solid var(--color-border);
 
-		// Override checkbox-radio-switch styles so that it looks like tabs
-		& :deep(.checkbox-radio-switch--button-variant) {
-			border: unset !important;
-			border-radius: 0 !important;
-			.checkbox-content {
-				padding: var(--default-grid-baseline);
-				border-radius: var(--default-grid-baseline) var(--default-grid-baseline) 0 0 !important;
-				margin: 0 !important;
-				border-bottom: var(--default-grid-baseline) solid transparent !important;
-				.checkbox-content__icon > * {
-					color: var(--color-main-text) !important;
+		// New design (NC34+): rounded pill tabs with a small primary indicator
+		// under the active tab.
+		&:not(&--legacy) {
+			gap: var(--default-grid-baseline);
+			padding-block-end: var(--default-grid-baseline);
+
+			& :deep(.checkbox-radio-switch--button-variant) {
+				position: relative;
+				border: unset !important;
+				border-radius: var(--border-radius-element) !important;
+				background-color: var(--color-main-background);
+				min-width: var(--default-clickable-area);
+				transition: background-color var(--animation-quick);
+
+				.checkbox-content {
+					padding: var(--default-grid-baseline);
+					padding-block-end: calc(var(--default-grid-baseline) * 2);
+					border-radius: var(--border-radius-element) !important;
+					margin: 0 !important;
+					.checkbox-content__icon > * {
+						color: var(--color-main-text) !important;
+					}
+				}
+
+				.checkbox-content__text {
+					font-weight: var(--font-weight-element, normal);
+				}
+
+				&::after {
+					content: '';
+					position: absolute;
+					bottom: 0;
+					left: 50%;
+					width: 0;
+					height: 6px;
+					border-radius: 999px;
+					background-color: var(--color-primary-element);
+					opacity: 0;
+					transform: translateX(-50%);
+					transition: width var(--animation-quick), opacity var(--animation-quick);
+				}
+
+				&:hover {
+					background-color: var(--color-background-hover);
+				}
+
+				&:focus-visible {
+					outline: 2px solid var(--color-main-text);
+					outline-offset: 2px;
+				}
+
+				&.checkbox-radio-switch--checked {
+					background-color: var(--color-background-hover) !important;
+					.checkbox-radio-switch__content {
+						background: transparent !important;
+						color: var(--color-main-text) !important;
+					}
+					&::after {
+						width: 80%;
+						opacity: 1;
+					}
+					&:hover {
+						background-color: var(--color-background-dark) !important;
+					}
 				}
 			}
-			&.checkbox-radio-switch--checked .checkbox-radio-switch__content{
-				background: transparent !important;
-				color: var(--color-main-text) !important;
-				border-bottom: var(--default-grid-baseline) solid var(--color-primary-element) !important;
+		}
+
+		// Legacy design (NC < 34): full-width primary border under the active tab.
+		&--legacy {
+			& :deep(.checkbox-radio-switch--button-variant) {
+				border: unset !important;
+				border-radius: 0 !important;
+				.checkbox-content {
+					padding: var(--default-grid-baseline);
+					border-radius: var(--default-grid-baseline) var(--default-grid-baseline) 0 0 !important;
+					margin: 0 !important;
+					border-bottom: var(--default-grid-baseline) solid transparent !important;
+					.checkbox-content__icon > * {
+						color: var(--color-main-text) !important;
+					}
+				}
+				&.checkbox-radio-switch--checked .checkbox-radio-switch__content{
+					background: transparent !important;
+					color: var(--color-main-text) !important;
+					border-bottom: var(--default-grid-baseline) solid var(--color-primary-element) !important;
+				}
+				&.checkbox-radio-switch--checked .checkbox-content__text {
+					font-weight: var(--font-weight-element, bold);
+				}
 			}
 		}
 	}
