@@ -139,7 +139,10 @@ emit('toggle-navigation', {
 	<div
 		ref="appNavigationContainer"
 		class="app-navigation"
-		:class="{ 'app-navigation--close': !open }">
+		:class="{
+			'app-navigation--close': !open,
+			'app-navigation--legacy': isLegacy34,
+		}">
 		<nav
 			id="app-navigation-vue"
 			:aria-hidden="open ? 'false' : 'true'"
@@ -177,6 +180,7 @@ import Vue from 'vue'
 import { useHotKey } from '../../composables/useHotKey/index.ts'
 import { useIsMobile } from '../../composables/useIsMobile/index.ts'
 import { getTrapStack } from '../../utils/focusTrap.ts'
+import { isLegacy34 } from '../../utils/legacy.ts'
 import { logger } from '../../utils/logger.ts'
 import NcAppNavigationList from '../NcAppNavigationList/index.js'
 import NcAppNavigationToggle from '../NcAppNavigationToggle/index.js'
@@ -218,6 +222,7 @@ export default {
 	setup() {
 		return {
 			isMobile: useIsMobile(),
+			isLegacy34,
 		}
 	},
 
@@ -396,9 +401,14 @@ export default {
 	user-select: none;
 	flex-grow: 0;
 	flex-shrink: 0;
-	background-color: var(--color-main-background-blur, var(--color-main-background));
-	-webkit-backdrop-filter: var(--filter-background-blur, none);
-	backdrop-filter: var(--filter-background-blur, none);
+	// New design (NC34+): transparent so the frosted chrome on NcContent shows through.
+	background-color: transparent;
+
+	&--legacy {
+		background-color: var(--color-main-background-blur, var(--color-main-background));
+		-webkit-backdrop-filter: var(--filter-background-blur, none);
+		backdrop-filter: var(--filter-background-blur, none);
+	}
 
 	&--close {
 		margin-inline-start: calc(-1 * min($navigation-width, var(--app-navigation-max-width)));

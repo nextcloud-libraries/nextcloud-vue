@@ -31,16 +31,42 @@
 		}
 	}
 
-	// When .active class is applied, change color background of link and utils. The
-	// !important prevents the focus state to override the active state.
-	&.active {
+	// !important so :focus-within does not override the active state.
+	// New design (NC34+): glassy tinted bg + inline-start stripe.
+	&:not(.app-navigation-entry--legacy).active {
+		background-color: var(--color-primary-element-light) !important;
+
+		&:hover {
+			background-color: var(--color-primary-element-light-hover) !important;
+		}
+
+		&:not(.app-navigation-entry--editing) {
+			.app-navigation-entry-link,
+			.app-navigation-entry-button {
+				color: var(--color-main-text) !important;
+			}
+		}
+
+		&:not(.app-navigation-entry--editing)::before {
+			content: '';
+			position: absolute;
+			inset-block: calc(var(--default-grid-baseline, 4px) * 2);
+			inset-inline-start: 0;
+			width: 3px;
+			background-color: var(--color-primary-element);
+			border-radius: 999px;
+			animation: nc-nav-stripe-in var(--animation-quick, 200ms) ease-out;
+		}
+	}
+
+	// Legacy design (NC < 34): solid primary fill.
+	&.app-navigation-entry--legacy.active {
 		background-color: var(--color-primary-element) !important;
 
 		&:hover {
 			background-color: var(--color-primary-element-hover) !important;
 		}
 
-		// overwrite active text color
 		.app-navigation-entry-link, .app-navigation-entry-button {
 			color: var(--color-primary-element-text) !important;
 		}
@@ -48,6 +74,10 @@
 	&:focus-within,
 	&:hover {
 		background-color: var(--color-background-hover);
+	}
+	&:not(.app-navigation-entry--legacy):focus-within,
+	&:not(.app-navigation-entry--legacy):hover {
+		background-color: color-mix(in srgb, var(--color-primary-element) 8%, transparent);
 	}
 	&.active,
 	&:focus-within,
@@ -74,7 +104,10 @@
 	.app-navigation-entry__actions:hover :deep(.button-vue) {
 		background-color: var(--color-background-dark) !important;
 	}
-	&.active .app-navigation-entry__actions:hover :deep(.button-vue) {
+	&:not(.app-navigation-entry--legacy).active .app-navigation-entry__actions:hover :deep(.button-vue) {
+		background-color: var(--color-background-dark) !important;
+	}
+	&.app-navigation-entry--legacy.active .app-navigation-entry__actions:hover :deep(.button-vue) {
 		background-color: var(--color-primary-element) !important;
 	}
 
@@ -101,6 +134,7 @@
 		padding: 0;
 		white-space: nowrap;
 		color: var(--color-main-text);
+		font-weight: 500;
 		background-repeat: no-repeat;
 		background-position: $icon-margin center;
 		background-size: $icon-size $icon-size;
@@ -229,5 +263,16 @@
 		&:active {
 			background-color: var(--color-primary-element-light-hover) !important;
 		}
+	}
+}
+
+@keyframes nc-nav-stripe-in {
+	from {
+		transform: scaleY(0);
+		opacity: 0;
+	}
+	to {
+		transform: scaleY(1);
+		opacity: 1;
 	}
 }

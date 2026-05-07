@@ -301,6 +301,7 @@ Just set the `pinned` prop.
 				:class="{
 					'app-navigation-entry--editing': editingActive,
 					'app-navigation-entry--deleted': undo,
+					'app-navigation-entry--legacy': isLegacy34,
 					active: (to && isActive) || active,
 				}"
 				class="app-navigation-entry">
@@ -369,7 +370,7 @@ Just set the `pinned` prop.
 						:boundaries-element="actionsBoundariesElement"
 						:placement="menuPlacement"
 						:open="menuOpen"
-						:type="(to && isActive) || active ? 'tertiary-on-primary' : 'tertiary'"
+						type="tertiary"
 						:force-menu="forceMenu"
 						:default-icon="menuIcon"
 						@update:open="onMenuToggle">
@@ -424,6 +425,7 @@ import NcInputConfirmCancel from './NcInputConfirmCancel.vue'
 import { useIsMobile } from '../../composables/useIsMobile/index.ts'
 import { t } from '../../l10n.js'
 import GenRandomId from '../../utils/GenRandomId.js'
+import { isLegacy34 } from '../../utils/legacy.ts'
 import NcActionButton from '../NcActionButton/index.js'
 import NcActions from '../NcActions/index.js'
 import NcLoadingIcon from '../NcLoadingIcon/index.js'
@@ -652,6 +654,7 @@ export default {
 	setup() {
 		return {
 			isMobile: useIsMobile(),
+			isLegacy34,
 		}
 	},
 
