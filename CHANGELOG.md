@@ -5,6 +5,15 @@
 
 # Changelog
 
+## [v8.39.0](https://github.com/nextcloud-libraries/nextcloud-vue/tree/v8.39.0) (2026-05-07)
+[Full Changelog](https://github.com/nextcloud-libraries/nextcloud-vue/compare/v8.38.0...v8.39.0)
+
+## What's Changed
+### 🚀 Enhancements
+* [stable8] feat: change NcAppNavigationItem/NcListItem active state design and NcAppContent edge style on Nextcloud 34+ [\#8498](https://github.com/nextcloud-libraries/nextcloud-vue/pull/8498) \([nfebe](https://github.com/nfebe)\)
+* [stable8] feat(NcAppSidebarTab): Redesign active tab as rounded filled pill [\#8501](https://github.com/nextcloud-libraries/nextcloud-vue/pull/8501) \([nfebe](https://github.com/nfebe)\)
+* [stable8] feat(NcAppSettingsDialog): new navigation design [\#8503](https://github.com/nextcloud-libraries/nextcloud-vue/pull/8503) \([nfebe](https://github.com/nfebe)\)
+
 ## [v8.38.0](https://github.com/nextcloud-libraries/nextcloud-vue/tree/v8.38.0) (2026-04-24)
 [Full Changelog](https://github.com/nextcloud-libraries/nextcloud-vue/compare/v8.37.0...v8.38.0)
 
