@@ -181,7 +181,7 @@ export default {
 
 	&__heading {
 		font-size: var(--note-card-icon-size); // Same as icon
-		font-weight: 600;
+		font-weight: var(--font-weight-heading, 600);
 	}
 
 	&__icon {

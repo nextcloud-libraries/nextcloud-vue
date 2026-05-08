@@ -262,6 +262,7 @@ export default {
 	&__description {
 		display: block;
 		color: var(--color-text-maxcontrast);
+		font-weight: var(--font-weight-default, normal);
 	}
 
 	&--button-variant {

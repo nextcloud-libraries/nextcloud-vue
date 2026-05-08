@@ -295,7 +295,7 @@ $content-inset: calc(3 * var(--default-grid-baseline));
 		padding: $content-inset;
 		margin: 0;
 		font-size: 20px;
-		font-weight: 700;
+		font-weight: var(--font-weight-heading, 700);
 	}
 
 	:deep(.app-settings__navigation) {
@@ -329,7 +329,7 @@ $content-inset: calc(3 * var(--default-grid-baseline));
 			display: flex;
 			align-items: center;
 			font-size: var(--default-font-size);
-			font-weight: 500;
+			font-weight: var(--font-weight-element, 500);
 			height: var(--default-clickable-area);
 			margin: 2px 0;
 			line-height: var(--default-clickable-area);

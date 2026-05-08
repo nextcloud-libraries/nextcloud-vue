@@ -221,7 +221,7 @@ export default {
 	}
 
 	&__headline {
-		font-weight: bold;
+		font-weight: var(--font-weight-heading, bold);
 		font-size: 20px;
 		line-height: 30px;
 		margin-bottom: 12px;

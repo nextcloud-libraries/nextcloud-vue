@@ -1539,7 +1539,7 @@ $top-buttons-spacing: $app-navigation-padding; // align with app navigation
 							margin: 0;
 							padding: $desc-input-padding;
 							font-size: 20px;
-							font-weight: bold;
+							font-weight: var(--font-weight-heading, bold);
 						}
 					}
 

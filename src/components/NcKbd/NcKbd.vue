@@ -209,7 +209,7 @@ OS detection is automatic but can be overridden via the `mac` prop.
 		border-block-end: 2px solid var(--color-border);
 
 		th {
-			font-weight: bold;
+			font-weight: var(--font-weight-heading, bold);
 		}
 	}
 }

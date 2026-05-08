@@ -261,7 +261,7 @@ export default {
 	&__header {
 
 		h5 {
-			font-weight: bold;
+			font-weight: var(--font-weight-heading, bold);
 			margin-bottom: 6px;
 		}
 

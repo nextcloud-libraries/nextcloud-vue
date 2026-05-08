@@ -189,7 +189,7 @@ export default {
 </script>
 <style lang="scss" scoped>
 	h5 {
-		font-weight: bold;
+		font-weight: var(--font-weight-heading, bold);
 		margin: 40px 0 20px;
 	}
 
@@ -1104,7 +1104,7 @@ export default {
 		inset-block-start: -10px;
 		line-height: 1.5; // minimum allowed line height for accessibility
 		font-size: 13px; // minimum allowed font size for accessibility
-		font-weight: 500;
+		font-weight: var(--font-weight-element, 500);
 		border-radius: var(--default-grid-baseline) var(--default-grid-baseline) 0 0;
 		background-color: var(--color-main-background);
 		padding-inline: 5px;

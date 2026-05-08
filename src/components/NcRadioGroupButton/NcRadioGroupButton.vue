@@ -135,7 +135,7 @@ function onUpdate() {
 }
 
 .radioGroupButton__label {
-	font-weight: bold;
+	font-weight: var(--font-weight-element, bold);
 }
 
 .radioGroupButton_disabled {
