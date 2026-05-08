@@ -7,6 +7,16 @@
 
 All notable changes to this project will be documented in this file.
 
+## [v9.8.0](https://github.com/nextcloud-libraries/nextcloud-vue/tree/v9.8.0) (2026-05-07)
+[Full Changelog](https://github.com/nextcloud-libraries/nextcloud-vue/compare/v9.7.0...v9.8.0)
+
+## What's Changed
+### 🚀 Enhancements
+* feat: Semantic font weights for interactive elements [\#8469](https://github.com/nextcloud-libraries/nextcloud-vue/pull/8469) \([kra-mo](https://github.com/kra-mo)\)
+* feat: change NcAppNavigationItem/NcListItem active state design and NcAppContent edge style on Nextcloud 34+ [\#8448](https://github.com/nextcloud-libraries/nextcloud-vue/pull/8448) \([nfebe](https://github.com/nfebe)\)
+* feat(NcAppSidebarTab): Redesign active tab as rounded filled pill [\#8447](https://github.com/nextcloud-libraries/nextcloud-vue/pull/8447) \([nfebe](https://github.com/nfebe)\)
+* feat(NcAppSettingsDialog): new navigation design [\#8477](https://github.com/nextcloud-libraries/nextcloud-vue/pull/8477) \([nfebe](https://github.com/nfebe)\)
+
 ## [v9.7.0](https://github.com/nextcloud-libraries/nextcloud-vue/tree/v9.7.0) (2026-04-24)
 [Full Changelog](https://github.com/nextcloud-libraries/nextcloud-vue/compare/v9.6.0...v9.7.0)
 
