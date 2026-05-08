@@ -388,7 +388,7 @@ $content-inset: calc(3 * var(--default-grid-baseline));
 
 }
 
-@media only screen and (max-width: $breakpoint-mobile) {
+@media only screen and (width < $breakpoint-mobile) {
 	.app-settings:not(.app-settings--legacy) {
 		:deep(.modal-wrapper .modal-container) {
 			padding-inline-start: 12px !important;

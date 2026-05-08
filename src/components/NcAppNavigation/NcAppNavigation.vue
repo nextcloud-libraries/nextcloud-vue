@@ -419,7 +419,7 @@ function handleEsc(): void {
 }
 
 // When on mobile, we make the navigation slide over the NcAppContent
-@media only screen and (max-width: $breakpoint-mobile) {
+@media only screen and (width < $breakpoint-mobile) {
 	.app-navigation {
 		position: absolute;
 		border-inline-end: 1px solid var(--color-border);
