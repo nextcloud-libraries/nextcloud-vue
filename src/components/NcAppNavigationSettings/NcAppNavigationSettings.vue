@@ -114,7 +114,7 @@ export default {
 			padding-inline: 0 calc((var(--default-clickable-area) - 16px) / 2) !important;
 
 			:deep(.button-vue__text) {
-				font-weight: normal !important;
+				font-weight: var(--font-weight-default, normal) !important;
 			}
 		}
 	}

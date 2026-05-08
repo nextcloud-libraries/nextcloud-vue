@@ -55,7 +55,7 @@
 		background-color: transparent;
 		box-shadow: none;
 
-		font-weight: normal;
+		font-weight: var(--font-weight-element, normal);
 		font-size: var(--default-font-size);
 		line-height: var(--default-clickable-area);
 
@@ -106,7 +106,7 @@
 		}
 
 		&__name {
-			font-weight: bold;
+			font-weight: var(--font-weight-heading, bold);
 			text-overflow: ellipsis;
 			overflow: hidden;
 			white-space: nowrap;
@@ -118,6 +118,7 @@
 			display: block;
 			white-space: pre-wrap;
 			font-size: var(--font-size-small);
+			font-weight: var(--font-weight-default, normal);
 			line-height: var(--default-line-height);
 			color: var(--color-text-maxcontrast);
 			cursor: pointer;

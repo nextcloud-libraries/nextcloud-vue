@@ -134,7 +134,7 @@
 		padding: 0;
 		white-space: nowrap;
 		color: var(--color-main-text);
-		font-weight: 500;
+		font-weight: var(--font-weight-element, 500);
 		background-repeat: no-repeat;
 		background-position: $icon-margin center;
 		background-size: $icon-size $icon-size;
@@ -157,6 +157,7 @@
 			max-width: 100%;
 			white-space: nowrap;
 			text-overflow: ellipsis;
+			font-weight: var(--font-weight-element, normal);
 		}
 
 		.editingContainer {

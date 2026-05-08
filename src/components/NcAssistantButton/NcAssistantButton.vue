@@ -76,7 +76,7 @@ export default {
 }
 
 h5 {
-	font-weight: bold;
+	font-weight: var(--font-weight-heading, bold);
 	margin: 40px 0 20px 0;
 }
 

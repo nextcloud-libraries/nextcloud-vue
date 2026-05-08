@@ -322,7 +322,7 @@ export default {
 		}
 
 		&__text {
-			font-weight: normal;
+			font-weight: var(--font-weight-element, normal);
 		}
 	}
 	:deep(.button-vue__text) {

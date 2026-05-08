@@ -591,7 +591,7 @@ $input-margin: 4px;
 	background-color: transparent;
 	box-shadow: none;
 
-	font-weight: normal;
+	font-weight: var(--font-weight-default, normal);
 
 	&__icon-wrapper {
 		display: flex;

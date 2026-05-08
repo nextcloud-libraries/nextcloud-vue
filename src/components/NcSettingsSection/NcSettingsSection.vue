@@ -167,7 +167,7 @@ $maxWidth: 900px;
 		align-items: center;
 		justify-content: center;
 		font-size: 20px;
-		font-weight: bold;
+		font-weight: var(--font-weight-heading, bold);
 		max-width: $maxWidth;
 		margin-top: 0; // Remove default heading margin
 	}

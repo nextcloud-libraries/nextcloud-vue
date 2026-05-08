@@ -456,7 +456,7 @@ export default {
 		inset-block-start: -10px;
 		line-height: 1.5; // minimum allowed line height for accessibility
 		font-size: 13px; // minimum allowed font size for accessibility
-		font-weight: 500;
+		font-weight: var(--font-weight-element, 500);
 		color: var(--color-main-text);
 		background-color: var(--color-main-background);
 		padding-inline: 4px;
