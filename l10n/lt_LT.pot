@@ -183,7 +183,7 @@ msgid "Edit item"
 msgstr "Taisyti elementą"
 
 msgid "Emoji picker"
-msgstr "Šypsenėlių parinkiklis"
+msgstr "Emociukų parinkiklis"
 
 msgid "Enable interactive view"
 msgstr "Įgalinti interaktyvų vaizdą"
