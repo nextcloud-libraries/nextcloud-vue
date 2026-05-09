@@ -325,7 +325,7 @@ msgid "No color"
 msgstr "Be spalvos"
 
 msgid "No emoji found"
-msgstr "Nerasta jaustukų"
+msgstr "Nerasta emociukių"
 
 msgid "No link provider found"
 msgstr "Nerasta nuorodų teikėjo"
