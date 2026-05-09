@@ -183,7 +183,7 @@ msgid "Edit item"
 msgstr "Taisyti elementą"
 
 msgid "Emoji picker"
-msgstr "Šypsenėlių parinkiklis"
+msgstr "Emociukų parinkiklis"
 
 msgid "Enable interactive view"
 msgstr "Įgalinti interaktyvų vaizdą"
@@ -325,7 +325,7 @@ msgid "No color"
 msgstr "Be spalvos"
 
 msgid "No emoji found"
-msgstr "Nerasta jaustukų"
+msgstr "Nerasta emociukių"
 
 msgid "No link provider found"
 msgstr "Nerasta nuorodų teikėjo"
@@ -395,7 +395,7 @@ msgid "Pick"
 msgstr "Pasirinkti"
 
 msgid "Pick an emoji"
-msgstr "Pasirinkti jaustuką"
+msgstr "Pasirinkti emociuką"
 
 msgid "Pick file"
 msgstr "Pasirinkti failą"
@@ -450,7 +450,7 @@ msgid "Search …"
 msgstr "Ieškoti …"
 
 msgid "Search emoji"
-msgstr "Ieškoti šypsenėlių"
+msgstr "Ieškoti emociukų"
 
 msgid "Search for time zone"
 msgstr "Ieškoti laiko juostų"
