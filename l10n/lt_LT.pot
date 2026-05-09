@@ -450,7 +450,7 @@ msgid "Search …"
 msgstr "Ieškoti …"
 
 msgid "Search emoji"
-msgstr "Ieškoti šypsenėlių"
+msgstr "Ieškoti emociukų"
 
 msgid "Search for time zone"
 msgstr "Ieškoti laiko juostų"
