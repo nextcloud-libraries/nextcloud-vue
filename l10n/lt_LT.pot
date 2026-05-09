@@ -395,7 +395,7 @@ msgid "Pick"
 msgstr "Pasirinkti"
 
 msgid "Pick an emoji"
-msgstr "Pasirinkti jaustuką"
+msgstr "Pasirinkti emociuką"
 
 msgid "Pick file"
 msgstr "Pasirinkti failą"
