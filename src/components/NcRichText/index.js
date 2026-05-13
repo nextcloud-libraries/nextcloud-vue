@@ -22,7 +22,7 @@ import {
 	searchProvider,
 	sortProviders,
 } from '../../functions/reference/providerHelper.ts'
-import { getLinkWithPicker } from '../../functions/reference/referencePickerModal.ts'
+import { getLinkWithPicker, getReferenceWithPicker } from '../../functions/reference/referencePickerModal.ts'
 import { isWidgetRegistered, registerWidget, renderWidget } from './../../functions/reference/widgets.ts'
 
 export default NcRichText
@@ -32,6 +32,7 @@ export {
 	getLinkWithPicker,
 	getProvider,
 	getProviders,
+	getReferenceWithPicker,
 	isCustomPickerElementRegistered,
 	isWidgetRegistered,
 	NcCustomPickerRenderResult,

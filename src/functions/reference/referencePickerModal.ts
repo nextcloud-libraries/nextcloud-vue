@@ -7,8 +7,13 @@ import Vue from 'vue'
 import NcReferencePickerModal from './../../components/NcRichText/NcReferencePicker/NcReferencePickerModal.vue'
 import { getProvider } from './providerHelper.ts'
 
+type PickerSubmitResult = {
+	link: string
+	title?: string
+}
+
 /**
- * Creates a reference picker modal and return a promise which provides the result
+ * Creates a reference picker modal and return a promise which provides the link URL
  *
  * @param providerId - Optional ID of initial selected provider
  * @param isInsideViewer - Should be true if this function is called while the Viewer is displayed
