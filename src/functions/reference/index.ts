@@ -13,7 +13,10 @@ export {
 	renderWidget,
 } from './widgets.ts'
 
-export { getLinkWithPicker } from './referencePickerModal.ts'
+export {
+	getLinkWithPicker,
+	getReferenceWithPicker,
+} from './referencePickerModal.ts'
 
 export {
 	type ReferenceProvider,
