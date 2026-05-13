@@ -34,10 +34,10 @@
 	// !important so :focus-within does not override the active state.
 	// New design (NC34+): glassy tinted bg + inline-start stripe.
 	&:not(.app-navigation-entry--legacy).active {
-		background-color: var(--color-primary-element-light) !important;
+		background-color: color-mix(in srgb, var(--color-primary-element) 16%, transparent) !important;
 
 		&:hover {
-			background-color: var(--color-primary-element-light-hover) !important;
+			background-color: color-mix(in srgb, var(--color-primary-element) 22%, transparent) !important;
 		}
 
 		&:not(.app-navigation-entry--editing) {
