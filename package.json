@@ -118,7 +118,7 @@
     "unist-builder": "^4.0.0",
     "unist-util-visit-parents": "^6.0.2",
     "vue": "^3.5.18",
-    "vue-router": "^5.0.6"
+    "vue-router": "^5.0.7"
   },
   "devDependencies": {
     "@babel/plugin-syntax-import-assertions": "^7.28.6",
