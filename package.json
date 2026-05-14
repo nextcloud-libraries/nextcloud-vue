@@ -159,7 +159,7 @@
     "vitest": "^4.0.14",
     "vue-material-design-icons": "^5.3.1",
     "vue-styleguidist": "^4.72.4",
-    "vue-tsc": "^3.2.8",
+    "vue-tsc": "^3.2.9",
     "webpack": "^5.106.2",
     "webpack-merge": "^6.0.1"
   },
