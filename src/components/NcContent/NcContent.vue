@@ -264,7 +264,6 @@ export default {
 	&:not(&--legacy) {
 		background-color: var(--color-main-background-blur, var(--color-main-background));
 		backdrop-filter: var(--filter-background-blur, none);
-		-webkit-backdrop-filter: var(--filter-background-blur, none);
 	}
 
 	&:not(.with-sidebar--full) {
