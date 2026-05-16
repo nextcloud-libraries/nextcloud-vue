@@ -79,11 +79,6 @@ const numberOfLines = computed(() => {
 })
 
 const descriptionStyle = computed(() => {
-	if (numberOfLines.value === 0) {
-		return {
-			display: 'none',
-		}
-	}
 	const lineClamp = numberOfLines.value
 	return {
 		lineClamp,
