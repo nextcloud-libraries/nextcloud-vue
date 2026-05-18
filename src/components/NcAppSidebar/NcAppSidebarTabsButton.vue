@@ -73,7 +73,7 @@ defineProps<{
 		bottom: 0;
 		left: 50%;
 		width: 0;
-		height: 6px;
+		height: 4px;
 		border-radius: 999px;
 		background-color: var(--color-primary-element);
 		opacity: 0;
