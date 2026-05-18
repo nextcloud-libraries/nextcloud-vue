@@ -101,7 +101,7 @@ export default {
 		onSubmit(e) {
 			const value = e.target.value
 			if (this.isLinkValid) {
-				this.$emit('submit', value)
+				this.$emit('submit', { link: value })
 			}
 		},
 

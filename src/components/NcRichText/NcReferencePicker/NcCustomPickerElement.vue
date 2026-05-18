@@ -65,7 +65,9 @@ export default {
 					this.renderResult.object.$on('cancel', this.onCancel)
 				}
 				this.renderResult.element.addEventListener('submit', (e) => {
-					this.onSubmit(e.detail)
+					const detail = e.detail
+					const result = typeof detail === 'string' ? { link: detail } : detail
+					this.onSubmit(result)
 				})
 				this.renderResult.element.addEventListener('cancel', this.onCancel)
 			})

@@ -101,7 +101,7 @@ export default {
 		onProviderSelected(p) {
 			if (p !== null) {
 				if (p.isLink) {
-					this.$emit('submit', p.title)
+					this.$emit('submit', { link: p.title })
 				} else {
 					this.$emit('selectProvider', p)
 				}

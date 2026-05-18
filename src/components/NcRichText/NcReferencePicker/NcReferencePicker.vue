@@ -173,11 +173,11 @@ export default {
 			this.$emit('cancel')
 		},
 
-		submitLink(link) {
+		submitLink(result) {
 			if (this.selectedProvider !== null) {
 				touchProvider(this.selectedProvider.id)
 			}
-			this.$emit('submit', link)
+			this.$emit('submit', result)
 			this.deselectProvider()
 		},
 
