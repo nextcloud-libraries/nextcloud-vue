@@ -108,12 +108,18 @@ const ariaLabel = t('External documentation')
 <style lang="scss" scoped>
 $maxWidth: 900px;
 $sectionMargin: calc(var(--default-grid-baseline) * 7);
+// Clear the NcAppNavigation toggle overhang on the inline-start edge.
+$sectionMarginStart: max(
+	#{$sectionMargin},
+	calc(var(--app-navigation-padding) + var(--default-clickable-area) + var(--default-grid-baseline) * 2)
+);
 
 .settings-section {
 	display: block;
 	padding: 0 0 calc(var(--default-grid-baseline) * 5) 0;
 	margin: $sectionMargin;
-	width: min($maxWidth, 100% - calc($sectionMargin * 2));
+	margin-inline-start: $sectionMarginStart;
+	width: min($maxWidth, 100% - #{$sectionMarginStart} - $sectionMargin);
 
 	&:not(:last-child) {
 		border-bottom: 1px solid var(--color-border);
