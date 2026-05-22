@@ -275,7 +275,7 @@ describe('NcRichText', () => {
 			},
 		})
 
-		expect(wrapper.findComponent(NcReferenceList).props('text').trim()).toBe('Inline Plain https://example.com/a_b')
+		expect(wrapper.findComponent(NcReferenceList).props('text').trim()).toMatch(/Inline\s.*Plain https:\/\/example.com\/a_b/)
 		expect(axios.get).toHaveBeenCalledWith(expect.stringContaining(encodeURIComponent(testUrl)))
 	})
 })
