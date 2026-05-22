@@ -406,7 +406,6 @@ export default {
 
 	&--legacy {
 		background-color: var(--color-main-background-blur, var(--color-main-background));
-		-webkit-backdrop-filter: var(--filter-background-blur, none);
 		backdrop-filter: var(--filter-background-blur, none);
 	}
 
@@ -468,7 +467,6 @@ export default {
 		position: absolute;
 		border-inline-end: 1px solid var(--color-border);
 		background-color: var(--color-main-background-blur, var(--color-main-background));
-		-webkit-backdrop-filter: var(--filter-background-blur, none);
 		backdrop-filter: var(--filter-background-blur, none);
 	}
 }
