@@ -7,7 +7,7 @@ import Vue from 'vue'
 import NcReferencePickerModal from './../../components/NcRichText/NcReferencePicker/NcReferencePickerModal.vue'
 import { getProvider } from './providerHelper.ts'
 
-type PickerSubmitResult = {
+type PickerReference = {
 	link: string
 	title?: string
 }

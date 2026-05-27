@@ -14,19 +14,22 @@
 			ref="provider-list"
 			@select-provider="onProviderSelected"
 			@submit="submitLink"
+			@submitReference="submitReference"
 			@cancel="cancelProviderSelection" />
 		<NcRawLinkInput
 			v-else-if="mode === MODES.standardLinkInput"
 			ref="url-input"
 			:provider="selectedProvider"
 			@submit="submitLink"
+			@submitReference="submitReference"
 			@cancel="cancelRawLinkInput" />
 		<NcSearch
 			v-else-if="mode === MODES.searchInput"
 			ref="url-input"
 			:provider="selectedProvider"
-			@cancel="cancelSearch"
-			@submit="submitLink" />
+			@submit="submitLink"
+			@submitReference="submitReference"
+			@cancel="cancelSearch" />
 		<div
 			v-else-if="mode === MODES.customElement"
 			class="custom-element-wrapper">
@@ -34,6 +37,7 @@
 				:provider="selectedProvider"
 				class="custom-element"
 				@submit="submitLink"
+				@submitReference="submitReference"
 				@cancel="cancelCustomElement" />
 		</div>
 	</div>
@@ -98,6 +102,7 @@ export default {
 		'cancel-search',
 		'provider-selected',
 		'submit',
+		'submitReference',
 	],
 
 	data() {
@@ -174,11 +179,19 @@ export default {
 			this.$emit('cancel')
 		},
 
-		submitLink(result) {
+		submitLink(link) {
 			if (this.selectedProvider !== null) {
 				touchProvider(this.selectedProvider.id)
 			}
-			this.$emit('submit', result)
+			this.$emit('submit', link)
+			this.deselectProvider()
+		},
+
+		submitReference(reference) {
+			if (this.selectedProvider !== null) {
+				touchProvider(this.selectedProvider.id)
+			}
+			this.$emit('submitReference', reference)
 			this.deselectProvider()
 		},
 

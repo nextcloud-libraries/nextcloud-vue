@@ -70,6 +70,7 @@ export default {
 
 	emits: [
 		'submit',
+		'submitReference',
 	],
 
 	data() {
@@ -96,7 +97,8 @@ export default {
 		onSubmit(e) {
 			const value = e.target.value
 			if (this.isLinkValid) {
-				this.$emit('submit', { link: value })
+				this.$emit('submit', value)
+				this.$emit('submitReference', { link: value })
 			}
 		},
 
