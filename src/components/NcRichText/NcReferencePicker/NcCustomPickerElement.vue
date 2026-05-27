@@ -29,6 +29,7 @@ export default {
 	emits: [
 		'cancel',
 		'submit',
+		'submitReference',
 	],
 
 	data() {
@@ -62,12 +63,14 @@ export default {
 				this.renderResult = result
 				if (this.renderResult.object?._isVue && this.renderResult.object?.$on) {
 					this.renderResult.object.$on('submit', this.onSubmit)
+					this.renderResult.object.$on('submitReference', this.onSubmitReference)
 					this.renderResult.object.$on('cancel', this.onCancel)
 				}
 				this.renderResult.element.addEventListener('submit', (e) => {
-					const detail = e.detail
-					const result = typeof detail === 'string' ? { link: detail } : detail
-					this.onSubmit(result)
+					this.onSubmit(e.detail)
+				})
+				this.renderResult.element.addEventListener('submitReference', (e) => {
+					this.onSubmitReference(e.detail)
 				})
 				this.renderResult.element.addEventListener('cancel', this.onCancel)
 			})
@@ -75,6 +78,10 @@ export default {
 
 		onSubmit(value) {
 			this.$emit('submit', value)
+		},
+
+		onSubmitReference(value) {
+			this.$emit('submitReference', value)
 		},
 
 		onCancel() {

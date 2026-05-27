@@ -122,6 +122,7 @@ export default {
 
 	emits: [
 		'submit',
+		'submitReference',
 	],
 
 	data() {
@@ -248,6 +249,7 @@ export default {
 				if (item.resourceUrl) {
 					this.cancelSearchRequests()
 					this.$emit('submit', item.resourceUrl)
+					this.$emit('submitReference', { link: item.resourceUrl, title: item.title })
 				} else if (item.isMore) {
 					this.searchMoreOf(item.providerId).then(() => {
 						// allow clicking twice on the same "more" item

@@ -7,7 +7,7 @@ import { createApp } from 'vue'
 import NcReferencePickerModal from './../../components/NcRichText/NcReferencePicker/NcReferencePickerModal.vue'
 import { getProvider } from './providerHelper.js'
 
-type PickerSubmitResult = {
+type PickerReference = {
 	link: string
 	title?: string
 }
@@ -33,9 +33,9 @@ export async function getLinkWithPicker(providerId?: string, isInsideViewer?: bo
 			view.unmount()
 			reject(new Error('User cancellation'))
 		},
-		onSubmit(result: string | PickerSubmitResult) {
+		onSubmit(link: string) {
 			view.unmount()
-			resolve(typeof result === 'string' ? result : result.link)
+			resolve(link)
 		},
 	})
 	view.mount(modalElement)
@@ -49,13 +49,13 @@ export async function getLinkWithPicker(providerId?: string, isInsideViewer?: bo
  * @param providerId - Optional ID of initial selected provider
  * @param isInsideViewer - Should be true if this function is called while the Viewer is displayed
  */
-export async function getReferenceWithPicker(providerId?: string, isInsideViewer?: boolean): Promise<PickerSubmitResult> {
+export async function getReferenceWithPicker(providerId?: string, isInsideViewer?: boolean): Promise<PickerReference> {
 	const modalId = 'referencePickerModal'
 	const modalElement = document.createElement('div')
 	modalElement.id = modalId
 	document.body.append(modalElement)
 
-	const { promise, reject, resolve } = Promise.withResolvers<PickerSubmitResult>()
+	const { promise, reject, resolve } = Promise.withResolvers<PickerReference>()
 	const initialProvider = (providerId && getProvider(providerId)) || null
 	const view = createApp(NcReferencePickerModal, {
 		initialProvider,
@@ -64,9 +64,9 @@ export async function getReferenceWithPicker(providerId?: string, isInsideViewer
 			view.unmount()
 			reject(new Error('User cancellation'))
 		},
-		onSubmit(result: string | PickerSubmitResult) {
+		onSubmitReference(reference: PickerReference) {
 			view.unmount()
-			resolve(typeof result === 'string' ? { link: result } : result)
+			resolve(reference)
 		},
 	})
 	view.mount(modalElement)
