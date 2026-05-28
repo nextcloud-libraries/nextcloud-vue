@@ -7,6 +7,19 @@
 
 All notable changes to this project will be documented in this file.
 
+## [v9.8.1](https://github.com/nextcloud-libraries/nextcloud-vue/tree/v9.8.1) (2026-05-28)
+[Full Changelog](https://github.com/nextcloud-libraries/nextcloud-vue/compare/v9.8.0...v9.8.1)
+
+## What's Changed
+### 🐛 Fixed bugs
+* fix: use correct boundaries of CSS breakpoints [\#8520](https://github.com/nextcloud-libraries/nextcloud-vue/pull/8520) \([susnux](https://github.com/susnux)\)
+* fix(NcAppSidebarTab): Reduce pill height [\#8547](https://github.com/nextcloud-libraries/nextcloud-vue/pull/8547) \([kra-mo](https://github.com/kra-mo)\)
+* fix(NcAppContent): background blur may be missing after minification [\#8544](https://github.com/nextcloud-libraries/nextcloud-vue/pull/8544) \([ShGKme](https://github.com/ShGKme)\)
+* fix(NcRichText): handle new lines when parsing reference links [\#8565](https://github.com/nextcloud-libraries/nextcloud-vue/pull/8565) \([Antreesy](https://github.com/Antreesy)\)
+* fix(NcAppNavigationItem): Make active state darker than hover [\#8557](https://github.com/nextcloud-libraries/nextcloud-vue/pull/8557) \([backportbot[bot]](https://github.com/backportbot[bot])\)
+### Other Changes
+* Updated translations
+
 ## [v9.8.0](https://github.com/nextcloud-libraries/nextcloud-vue/tree/v9.8.0) (2026-05-07)
 [Full Changelog](https://github.com/nextcloud-libraries/nextcloud-vue/compare/v9.7.0...v9.8.0)
 
