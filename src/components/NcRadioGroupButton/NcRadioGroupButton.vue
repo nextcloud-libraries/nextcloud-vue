@@ -98,7 +98,8 @@ function onUpdate() {
 	cursor: pointer;
 	color: var(--radio-group-button--color);
 	background-color: var(--radio-group-button--background-color);
-	transition: var(--animation-quick) background-color;
+	transition-property: background-color, transform;
+	transition-duration: var(--animation-quick);
 	border: var(--radio-group-button--border-width) solid var(--radio-group-button--background-color-hover);
 	border-bottom-width: 2px;
 	border-radius: var(--radio-group-button--border-radius);
@@ -126,6 +127,10 @@ function onUpdate() {
 
 	&:hover:not(.radioGroupButton_disabled) {
 		background-color: var(--radio-group-button--background-color-hover);
+	}
+
+	&:active:not(.radioGroupButton_disabled) {
+		transform: translateY(1px);
 	}
 
 	&:focus-within {
