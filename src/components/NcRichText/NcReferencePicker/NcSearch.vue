@@ -247,7 +247,11 @@ export default {
 				if (item.resourceUrl) {
 					this.cancelSearchRequests()
 					this.$emit('submit', item.resourceUrl)
-					this.$emit('submitReference', { link: item.resourceUrl, title: item.title })
+					const reference = { link: item.resourceUrl }
+					if (item.title) {
+						reference.title = item.title
+					}
+					this.$emit('submitReference', reference)
 				} else if (item.isMore) {
 					this.searchMoreOf(item.providerId).then(() => {
 						// allow clicking twice on the same "more" item
