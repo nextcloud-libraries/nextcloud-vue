@@ -42,7 +42,9 @@ test('setting the variant prop', { tag: '@visual' }, async ({ mount, page, brows
 	await expect(button).toHaveScreenshot()
 })
 
-test('label is adjusted to match requested mode', async ({ mount, page }) => {
+test('label is adjusted to match requested mode', async ({ browserName, mount, page }) => {
+	test.skip(browserName === 'webkit', 'Currently breaks with Playwright 1.60')
+
 	const component = await mount(NcFilePicker, {
 		props: {},
 	})
@@ -154,9 +156,11 @@ test.describe('file picking', () => {
 	})
 
 	test('picking a directory', async ({ mount, page }) => {
+		const { promise: filesAttached, resolve: filesAttachedResolve } = Promise.withResolvers<void>()
 		page.on('filechooser', async (fileChooser) => {
 			expect(fileChooser.isMultiple()).toBe(false)
 			await fileChooser.setFiles(join(import.meta.dirname, 'folder'))
+			filesAttachedResolve()
 		})
 
 		const { promise, resolve } = Promise.withResolvers<string[]>()
@@ -172,13 +176,16 @@ test.describe('file picking', () => {
 
 		await page.getByRole('button', { name: 'Pick folder' })
 			.click()
+		await filesAttached
 		expect(await promise).toEqual(['folder/.gitkeep'])
 	})
 
 	test('picking a directory when having the menu', async ({ mount, page }) => {
+		const { promise: filesAttached, resolve: filesAttachedResolve } = Promise.withResolvers<void>()
 		page.on('filechooser', async (fileChooser) => {
 			expect(fileChooser.isMultiple()).toBe(false)
 			await fileChooser.setFiles(join(import.meta.dirname, 'folder'))
+			filesAttachedResolve()
 		})
 
 		const { promise, resolve } = Promise.withResolvers<string[]>()
@@ -196,6 +203,7 @@ test.describe('file picking', () => {
 		await page.getByRole('menuitem', { name: 'Upload folder' })
 			.click()
 
+		await filesAttached
 		expect(await promise).toEqual(['folder/.gitkeep'])
 	})
 })
