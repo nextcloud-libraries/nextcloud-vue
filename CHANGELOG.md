@@ -7,6 +7,15 @@
 
 All notable changes to this project will be documented in this file.
 
+## [v9.8.2](https://github.com/nextcloud-libraries/nextcloud-vue/tree/v9.8.2) (2026-06-02)
+[Full Changelog](https://github.com/nextcloud-libraries/nextcloud-vue/compare/v9.8.1...v9.8.2)
+
+## What's Changed
+### 🐛 Fixed bugs
+* fix(build): include full package version for CSS hash prefix [\#8580](https://github.com/nextcloud-libraries/nextcloud-vue/pull/8580) \([Antreesy](https://github.com/Antreesy)\)
+### Other Changes
+* Updated dependencies
+
 ## [v9.8.1](https://github.com/nextcloud-libraries/nextcloud-vue/tree/v9.8.1) (2026-05-28)
 [Full Changelog](https://github.com/nextcloud-libraries/nextcloud-vue/compare/v9.8.0...v9.8.1)
 
