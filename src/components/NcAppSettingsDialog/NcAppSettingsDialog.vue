@@ -278,6 +278,15 @@ $content-inset: calc(3 * var(--default-grid-baseline));
 		max-width: 900px;
 	}
 
+	:deep(.modal-container__close) {
+		background-color: var(--color-primary-element-light) !important;
+
+		&:hover,
+		&:focus-visible {
+			background-color: var(--color-primary-element-light-hover) !important;
+		}
+	}
+
 	:deep(.dialog__name) {
 		position: absolute;
 		width: 1px;
