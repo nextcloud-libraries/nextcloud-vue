@@ -12,6 +12,7 @@ import { join, resolve } from 'node:path'
 import * as url from 'url'
 import { defineConfig } from 'vite'
 import l10nPlugin from './build/l10n-plugin.mts'
+import packageJson from './package.json' with { type: 'json' }
 
 // `__dirname` not available on ES modules by default
 const __dirname = url.fileURLToPath(new URL('.', import.meta.url))
@@ -94,8 +95,15 @@ const overrides = defineConfig({
 			},
 		},
 		modules: {
-			// Make sure @nextcloud/vue v9 and @nextcloud/vue v8 have different scopes even for the same component code
-			hashPrefix: '@nextcloud/vue@8',
+			/*
+			 * Make sure different versions of @nextcloud/vue
+			 * have different CSS Modules scopes even for the same component code:
+			 * - Vue 2 and Vue 3 components behave differently even with exactly the same source
+			 * - v-bind() in CSS does not guarantee stable CSS variable name and may change
+			 *   on patch update even when the component source did not change
+			 */
+			hashPrefix: `@nextcloud/vue@${packageJson.version}`,
+
 			// hashPrefix only works when custom generateScopedName is set
 			// Ref: https://github.com/madyankin/postcss-modules/blob/v6.0.1/src/scoping.js#L39
 			generateScopedName: '_[local]_[hash:base64:5]',
