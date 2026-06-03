@@ -42,7 +42,7 @@
 				:focus-on-create="focusOnCreate"
 				@provider-selected="onProviderSelect"
 				@submit="onSubmit"
-				@submitReference="onSubmitReference"
+				@pick="onPick"
 				@cancel="onCancel" />
 		</div>
 	</NcModal>
@@ -99,7 +99,7 @@ export default {
 	emits: [
 		'cancel',
 		'submit',
-		'submitReference',
+		'pick',
 	],
 
 	data() {
@@ -156,9 +156,9 @@ export default {
 			this.$emit('submit', value)
 		},
 
-		onSubmitReference(value) {
+		onPick(value) {
 			this.show = false
-			this.$emit('submitReference', value)
+			this.$emit('pick', value)
 		},
 
 		onProviderSelect(provider) {

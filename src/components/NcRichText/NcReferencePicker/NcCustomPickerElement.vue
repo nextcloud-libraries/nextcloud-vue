@@ -29,7 +29,7 @@ export default {
 	emits: [
 		'cancel',
 		'submit',
-		'submitReference',
+		'pick',
 	],
 
 	data() {
@@ -63,14 +63,14 @@ export default {
 				this.renderResult = result
 				if (this.renderResult.object?._isVue && this.renderResult.object?.$on) {
 					this.renderResult.object.$on('submit', this.onSubmit)
-					this.renderResult.object.$on('submitReference', this.onSubmitReference)
+					this.renderResult.object.$on('pick', this.onPick)
 					this.renderResult.object.$on('cancel', this.onCancel)
 				}
 				this.renderResult.element.addEventListener('submit', (e) => {
 					this.onSubmit(e.detail)
 				})
-				this.renderResult.element.addEventListener('submitReference', (e) => {
-					this.onSubmitReference(e.detail)
+				this.renderResult.element.addEventListener('pick', (e) => {
+					this.onPick(e.detail)
 				})
 				this.renderResult.element.addEventListener('cancel', this.onCancel)
 			})
@@ -80,8 +80,8 @@ export default {
 			this.$emit('submit', value)
 		},
 
-		onSubmitReference(value) {
-			this.$emit('submitReference', value)
+		onPick(value) {
+			this.$emit('pick', value)
 		},
 
 		onCancel() {

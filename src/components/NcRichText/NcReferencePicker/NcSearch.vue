@@ -122,7 +122,7 @@ export default {
 
 	emits: [
 		'submit',
-		'submitReference',
+		'pick',
 	],
 
 	data() {
@@ -251,7 +251,7 @@ export default {
 					if (item.title) {
 						reference.title = item.title
 					}
-					this.$emit('submitReference', reference)
+					this.$emit('pick', reference)
 				} else if (item.isMore) {
 					this.searchMoreOf(item.providerId).then(() => {
 						// allow clicking twice on the same "more" item

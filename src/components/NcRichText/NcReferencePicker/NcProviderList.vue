@@ -65,7 +65,7 @@ export default {
 	emits: [
 		'select-provider',
 		'submit',
-		'submitReference',
+		'pick',
 	],
 
 	data() {
@@ -103,7 +103,7 @@ export default {
 			if (p !== null) {
 				if (p.isLink) {
 					this.$emit('submit', p.title)
-					this.$emit('submitReference', { link: p.title })
+					this.$emit('pick', { link: p.title })
 				} else {
 					this.$emit('select-provider', p)
 				}
