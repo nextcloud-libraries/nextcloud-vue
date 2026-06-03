@@ -44,7 +44,9 @@ export async function getLinkWithPicker(providerId?: string, isInsideViewer?: bo
  * The function guarantees a `link: string` on the resolved object. Custom picker elements may
  * include additional fields (e.g. `title`).
  *
- * @template T - Expected shape of the resolved reference, mus extend `PickerReference`
+ * @experimental The shape of the resolved reference and the signature of this function may still change.
+ *
+ * @template T - Expected shape of the resolved reference, must include `link: string`
  * @param providerId - Optional ID of initial selected provider
  * @param isInsideViewer - Should be true if this function is called while the Viewer is displayed
  */
@@ -63,7 +65,7 @@ export async function getReferenceWithPicker<T extends { link: string }>(provide
 			view.unmount()
 			reject(new Error('User cancellation'))
 		},
-		onSubmitReference(reference: T) {
+		onPick(reference: T) {
 			view.unmount()
 			resolve(reference)
 		},

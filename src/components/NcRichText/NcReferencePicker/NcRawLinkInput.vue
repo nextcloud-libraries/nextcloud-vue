@@ -71,7 +71,7 @@ export default {
 
 	emits: [
 		'submit',
-		'submitReference',
+		'pick',
 	],
 
 	data() {
@@ -103,7 +103,7 @@ export default {
 			const value = e.target.value
 			if (this.isLinkValid) {
 				this.$emit('submit', value)
-				this.$emit('submitReference', { link: value })
+				this.$emit('pick', { link: value })
 			}
 		},
 
