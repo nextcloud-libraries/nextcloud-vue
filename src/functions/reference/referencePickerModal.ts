@@ -7,11 +7,6 @@ import { createApp } from 'vue'
 import NcReferencePickerModal from './../../components/NcRichText/NcReferencePicker/NcReferencePickerModal.vue'
 import { getProvider } from './providerHelper.js'
 
-type PickerReference = {
-	link: string
-	title?: string
-}
-
 /**
  * Creates a reference picker modal and return a promise which provides the link URL
  *
@@ -44,18 +39,22 @@ export async function getLinkWithPicker(providerId?: string, isInsideViewer?: bo
 }
 
 /**
- * Creates a reference picker modal and return a promise which provides the reference object
+ * Creates a reference picker modal and return a promise which provides the reference object.
  *
+ * The function guarantees a `link: string` on the resolved object. Custom picker elements may
+ * include additional fields (e.g. `title`).
+ *
+ * @template T - Expected shape of the resolved reference, mus extend `PickerReference`
  * @param providerId - Optional ID of initial selected provider
  * @param isInsideViewer - Should be true if this function is called while the Viewer is displayed
  */
-export async function getReferenceWithPicker(providerId?: string, isInsideViewer?: boolean): Promise<PickerReference> {
+export async function getReferenceWithPicker<T extends { link: string }>(providerId?: string, isInsideViewer?: boolean): Promise<T> {
 	const modalId = 'referencePickerModal'
 	const modalElement = document.createElement('div')
 	modalElement.id = modalId
 	document.body.append(modalElement)
 
-	const { promise, reject, resolve } = Promise.withResolvers<PickerReference>()
+	const { promise, reject, resolve } = Promise.withResolvers<T>()
 	const initialProvider = (providerId && getProvider(providerId)) || null
 	const view = createApp(NcReferencePickerModal, {
 		initialProvider,
@@ -64,7 +63,7 @@ export async function getReferenceWithPicker(providerId?: string, isInsideViewer
 			view.unmount()
 			reject(new Error('User cancellation'))
 		},
-		onSubmitReference(reference: PickerReference) {
+		onSubmitReference(reference: T) {
 			view.unmount()
 			resolve(reference)
 		},
