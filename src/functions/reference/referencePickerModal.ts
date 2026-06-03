@@ -7,11 +7,6 @@ import Vue from 'vue'
 import NcReferencePickerModal from './../../components/NcRichText/NcReferencePicker/NcReferencePickerModal.vue'
 import { getProvider } from './providerHelper.ts'
 
-type PickerReference = {
-	link: string
-	title?: string
-}
-
 /**
  * Creates a reference picker modal and return a promise which provides the link URL
  *
