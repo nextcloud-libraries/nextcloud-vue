@@ -110,11 +110,7 @@ test.describe('file picking', () => {
 	test.skip(({ browserName }) => browserName === 'webkit', 'WebKit does not support file pickers in Playwright yet')
 
 	test('picking a single file', async ({ mount, page }) => {
-		page.on('filechooser', async (fileChooser) => {
-			expect(fileChooser.isMultiple()).toBe(false)
-			await fileChooser.setFiles({ name: 'testfile.txt', mimeType: 'text/plain', buffer: Buffer.from('Hello World') })
-		})
-
+		const fileChooserPromise = page.waitForEvent('filechooser')
 		const { promise, resolve } = Promise.withResolvers<string[]>()
 		await mount(NcFilePickerEmitStory, { // we need this story as PlayWright can only proxy simple structures like strings but not complex ones like File objects
 			props: {},
@@ -125,20 +121,15 @@ test.describe('file picking', () => {
 
 		const button = page.getByRole('button', { name: 'Pick file' })
 		await button.click()
+		const fileChooser = await fileChooserPromise
+		expect(fileChooser.isMultiple()).toBe(false)
+		await fileChooser.setFiles({ name: 'testfile.txt', mimeType: 'text/plain', buffer: Buffer.from('Hello World') })
 
 		expect(await promise).toEqual(['testfile.txt'])
 	})
 
 	test('picking multiple files', async ({ mount, page }) => {
-		page.on('filechooser', async (fileChooser) => {
-			expect(fileChooser.isMultiple()).toBe(true)
-			await fileChooser.setFiles([
-				{ name: 'a.txt', mimeType: 'text/plain', buffer: Buffer.from('Hello') },
-				{ name: 'b.txt', mimeType: 'text/plain', buffer: Buffer.from('Hallo') },
-				{ name: 'c.txt', mimeType: 'text/plain', buffer: Buffer.from('Hola') },
-			])
-		})
-
+		const fileChooserPromise = page.waitForEvent('filechooser')
 		const { promise, resolve } = Promise.withResolvers<string[]>()
 		await mount(NcFilePickerEmitStory, {
 			props: {
@@ -151,18 +142,19 @@ test.describe('file picking', () => {
 
 		const button = page.getByRole('button', { name: 'Pick files' })
 		await button.click()
+		const fileChooser = await fileChooserPromise
+		expect(fileChooser.isMultiple()).toBe(true)
+		await fileChooser.setFiles([
+			{ name: 'a.txt', mimeType: 'text/plain', buffer: Buffer.from('Hello') },
+			{ name: 'b.txt', mimeType: 'text/plain', buffer: Buffer.from('Hallo') },
+			{ name: 'c.txt', mimeType: 'text/plain', buffer: Buffer.from('Hola') },
+		])
 
 		expect(await promise).toEqual(['a.txt', 'b.txt', 'c.txt'])
 	})
 
 	test('picking a directory', async ({ mount, page }) => {
-		const { promise: filesAttached, resolve: filesAttachedResolve } = Promise.withResolvers<void>()
-		page.on('filechooser', async (fileChooser) => {
-			expect(fileChooser.isMultiple()).toBe(false)
-			await fileChooser.setFiles(join(import.meta.dirname, 'folder'))
-			filesAttachedResolve()
-		})
-
+		const fileChooserPromise = page.waitForEvent('filechooser')
 		const { promise, resolve } = Promise.withResolvers<string[]>()
 		await mount(NcFilePickerEmitStory, {
 			props: {
@@ -176,18 +168,15 @@ test.describe('file picking', () => {
 
 		await page.getByRole('button', { name: 'Pick folder' })
 			.click()
-		await filesAttached
+		const fileChooser = await fileChooserPromise
+		expect(fileChooser.isMultiple()).toBe(false)
+		await fileChooser.setFiles(join(import.meta.dirname, 'folder'))
+
 		expect(await promise).toEqual(['folder/.gitkeep'])
 	})
 
 	test('picking a directory when having the menu', async ({ mount, page }) => {
-		const { promise: filesAttached, resolve: filesAttachedResolve } = Promise.withResolvers<void>()
-		page.on('filechooser', async (fileChooser) => {
-			expect(fileChooser.isMultiple()).toBe(false)
-			await fileChooser.setFiles(join(import.meta.dirname, 'folder'))
-			filesAttachedResolve()
-		})
-
+		const fileChooserPromise = page.waitForEvent('filechooser')
 		const { promise, resolve } = Promise.withResolvers<string[]>()
 		await mount(NcFilePickerEmitStory, {
 			props: {
@@ -202,8 +191,10 @@ test.describe('file picking', () => {
 			.click()
 		await page.getByRole('menuitem', { name: 'Upload folder' })
 			.click()
+		const fileChooser = await fileChooserPromise
+		expect(fileChooser.isMultiple()).toBe(false)
+		await fileChooser.setFiles(join(import.meta.dirname, 'folder'))
 
-		await filesAttached
 		expect(await promise).toEqual(['folder/.gitkeep'])
 	})
 })
