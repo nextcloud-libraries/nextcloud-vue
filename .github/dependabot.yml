@@ -1,4 +1,4 @@
-# SPDX-FileCopyrightText: 2021-2024 Nextcloud GmbH and Nextcloud contributors
+# SPDX-FileCopyrightText: 2021-2026 Nextcloud GmbH and Nextcloud contributors
 # SPDX-License-Identifier: CC0-1.0
 
 version: 2
@@ -24,6 +24,16 @@ updates:
           - "@vitest/*"
 
   - package-ecosystem: github-actions
+    directory: "/"
+    schedule:
+      interval: weekly
+      timezone: Europe/Paris
+    open-pull-requests-limit: 10
+    labels:
+    - 3. to review
+    - dependencies
+
+  - package-ecosystem: devcontainers
     directory: "/"
     schedule:
       interval: weekly
