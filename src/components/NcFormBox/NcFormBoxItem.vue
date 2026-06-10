@@ -118,7 +118,7 @@ const hasDescription = () => !!description || !!slots.description
 	background-color: var(--color-primary-element-extra-light);
 	color: var(--color-main-text);
 	font-weight: var(--font-weight-element, normal);
-	transition-property: color, border-color, background-color;
+	transition-property: color, border-color, background-color, transform;
 	transition-duration: var(--animation-quick);
 	transition-timing-function: linear;
 	-webkit-user-select: none;
@@ -137,6 +137,10 @@ const hasDescription = () => !!description || !!slots.description
 	&:hover:not(:has(:disabled)) {
 		color: var(--color-primary-element-light-text);
 		background-color: var(--color-primary-element-extra-light-hover);
+	}
+
+	&:active:not(:disabled) {
+		transform: translateY(1px);
 	}
 
 	&:has(:focus-visible) {
