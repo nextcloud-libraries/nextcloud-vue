@@ -153,7 +153,7 @@
     "sass": "^1.100.0",
     "stylelint": "^17.13.0",
     "ts-node": "^10.9.2",
-    "typescript": "^5.9.3",
+    "typescript": "^6.0.3",
     "url-loader": "^4.1.1",
     "vite": "^7.3.2",
     "vitest": "^4.0.14",
