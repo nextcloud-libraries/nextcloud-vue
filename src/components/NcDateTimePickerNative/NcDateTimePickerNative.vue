@@ -97,9 +97,16 @@ import { createElementId } from '../../utils/createElementId.ts'
 defineOptions({ inheritAttrs: false })
 
 /**
- * The date is – like the `Date` object in JavaScript – tied to UTC.
- * The selected time zone does not have an influence of the selected time and date value.
- * You have to translate the time yourself when you want to factor in time zones.
+ * The selected value is interpreted in the browser's local timezone.
+ * The component converts between the native input value and a JavaScript
+ * `Date` using that local timezone context.
+ * If your app needs to work in a specific timezone other than the
+ * browser's local one (for example UTC or an IANA timezone), you
+ * must convert the value yourself.
+ *
+ * For example, serializing the resulting `Date` with `toISOString()`
+ * will produce the corresponding UTC timestamp.
+ *
  * Pass null to clear the input field.
  */
 const modelValue = defineModel<Date | null>({ default: null })
