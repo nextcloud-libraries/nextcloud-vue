@@ -73,12 +73,17 @@ const noAccess = computed(() => {
 })
 
 const numberOfLines = computed(() => {
-	// no description for width < 450, one line until 550 and so on
-	const lineCountOffsets = [450, 550, 650, Infinity]
+	// no description for width < 250, one line until 550 and so on
+	const lineCountOffsets = [250, 550, 650, Infinity]
 	return lineCountOffsets.findIndex((max) => width.value < max)
 })
 
 const descriptionStyle = computed(() => {
+	if (numberOfLines.value === 0) {
+		return {
+			display: 'none',
+		}
+	}
 	const lineClamp = numberOfLines.value
 	return {
 		lineClamp,
@@ -288,7 +293,8 @@ function destroyReferenceWidget() {
 
 	&--details {
 		padding: calc(var(--default-grid-baseline, 4px) * 3);
-		width: 60%;
+		width: 0;
+		flex-grow: 1;
 
 		p {
 			margin: 0;
