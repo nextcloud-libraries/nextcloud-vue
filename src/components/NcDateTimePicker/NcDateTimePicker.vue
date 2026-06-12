@@ -949,7 +949,6 @@ function sameDay(a: Date, b: Date): boolean {
 
 	// make the bottom page toggle stand out better
 	:deep(.dp__btn.dp__button.dp__button_bottom) {
-		color: var(--color-primary-element-light);
 		background-color: var(--color-primary-element-light);
 	}
 
