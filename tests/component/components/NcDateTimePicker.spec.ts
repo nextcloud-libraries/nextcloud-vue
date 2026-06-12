@@ -43,8 +43,9 @@ for (const [type, modelValue, expectedValue] of testcases) {
 
 const l10nTestcases = [
 	['datetime', new Date(2000, 0, 2, 3, 4), 'en-GB', '2 Jan 2000, 03:04'],
+	['datetime', new Date(2000, 0, 2, 3, 4), 'de-DE', '02.01.2000, 03:04'],
 	['date', new Date(2000, 0, 2, 3, 4), 'es-ES', '2 ene 2000'],
-	['month', new Date(2000, 0, 2, 3, 4), 'de-DE', '01.2000'],
+	['month', new Date(2000, 0, 2, 3, 4), 'en-US', '01/2000'],
 ] as const
 
 for (const [type, modelValue, locale, expectedValue] of l10nTestcases) {

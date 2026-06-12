@@ -559,7 +559,9 @@ export default {
 			return processor
 				.use(remarkParse)
 				.use(remarkStripCode)
-				.processSync(text)
+				// replace any whitespace character with literal whitespace for correct parsing
+				// 'mdast-util-to-string' library omits them and followed text is joined to the link
+				.processSync(text.replace(/\s/g, ' '))
 				.value
 		},
 
