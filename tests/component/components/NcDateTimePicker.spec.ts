@@ -62,6 +62,18 @@ for (const [type, modelValue, locale, expectedValue] of l10nTestcases) {
 	})
 }
 
+test('Use provided locale for formatting date input', async ({ mount, page }) => {
+	await mount(NcDateTimePicker, {
+		props: {
+			modelValue: new Date(2026, 5, 16),
+			locale: 'de-DE',
+			type: 'date',
+		},
+	})
+
+	await expect(page.getByRole('textbox')).toHaveValue('16.06.2026')
+})
+
 test('Today is selected by default', async ({ mount, page }) => {
 	await page.clock.setSystemTime(new Date(2000, 0, 22))
 

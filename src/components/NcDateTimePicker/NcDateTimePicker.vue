@@ -20,10 +20,23 @@ For those cases this component can be used.
 			<NcCheckboxRadioSwitch v-model="type" type="radio" value="month">Month</NcCheckboxRadioSwitch>
 			<NcCheckboxRadioSwitch v-model="type" type="radio" value="year">Year</NcCheckboxRadioSwitch>
 		</fieldset>
-		<NcDateTimePicker
-			v-model="time"
-			:type />
-		<span>{{ time }}</span>
+		<fieldset>
+			<legend>Picker locale</legend>
+			<NcInputField v-model="locale" labelOutside label="Locale" list="sample-locales"/>
+			<datalist id="sample-locales">
+				<option value="en-US"></option>
+				<option value="en-CA"></option>
+				<option value="es"></option>
+				<option value="de"></option>
+				<option value="ja"></option>
+				<option value="zh"></option>
+			</datalist>
+		</fieldset>
+		<fieldset>
+			<legend>Picker</legend>
+			<NcDateTimePicker v-model="time" :type :locale />
+			<span>{{ time }}</span>
+		</fieldset>
 	</div>
 </template>
 <script>
@@ -32,6 +45,7 @@ export default {
 		return {
 			type: 'date',
 			time: new Date('2022-10-10 10:10:10'),
+			locale: 'en-US'
 		}
 	},
 }
@@ -545,17 +559,18 @@ const realFormat = computed<LibraryFormatOptions>(() => {
 		return 'RR-II'
 	}
 
+	const formatLocale = props.locale
 	let formatter: Intl.DateTimeFormat | undefined
 	if (props.type === 'date' || props.type === 'date-range') {
-		formatter = new Intl.DateTimeFormat(getCanonicalLocale(), { dateStyle: 'medium' })
+		formatter = new Intl.DateTimeFormat(formatLocale, { dateStyle: 'medium' })
 	} else if (props.type === 'time' || props.type === 'time-range') {
-		formatter = new Intl.DateTimeFormat(getCanonicalLocale(), { timeStyle: 'short' })
+		formatter = new Intl.DateTimeFormat(formatLocale, { timeStyle: 'short' })
 	} else if (props.type === 'datetime' || props.type === 'datetime-range') {
-		formatter = new Intl.DateTimeFormat(getCanonicalLocale(), { dateStyle: 'medium', timeStyle: 'short' })
+		formatter = new Intl.DateTimeFormat(formatLocale, { dateStyle: 'medium', timeStyle: 'short' })
 	} else if (props.type === 'month') {
-		formatter = new Intl.DateTimeFormat(getCanonicalLocale(), { year: 'numeric', month: '2-digit' })
+		formatter = new Intl.DateTimeFormat(formatLocale, { year: 'numeric', month: '2-digit' })
 	} else if (props.type === 'year') {
-		formatter = new Intl.DateTimeFormat(getCanonicalLocale(), { year: 'numeric' })
+		formatter = new Intl.DateTimeFormat(formatLocale, { year: 'numeric' })
 	}
 
 	if (formatter) {
