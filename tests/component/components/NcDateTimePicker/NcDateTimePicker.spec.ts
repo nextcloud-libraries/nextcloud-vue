@@ -4,7 +4,7 @@
  */
 
 import { expect, test } from '@playwright/experimental-ct-vue'
-import NcDateTimePicker from '../../../src/components/NcDateTimePicker/NcDateTimePicker.vue'
+import NcDateTimePicker from '../../../../src/components/NcDateTimePicker/NcDateTimePicker.vue'
 
 test('aria-label set on input element', async ({ mount, page }) => {
 	await mount(NcDateTimePicker, {

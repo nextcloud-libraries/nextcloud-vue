@@ -293,6 +293,7 @@ import NcIconSvgWrapper from '../NcIconSvgWrapper/NcIconSvgWrapper.vue'
 import NcTimezonePicker from '../NcTimezonePicker/NcTimezonePicker.vue'
 import { t } from '../../l10n.ts'
 import NcButton from '../NcButton/index.ts'
+import { getDateFormat, getDateRangeFormat, getDateTimeFormat, getDateTimeRangeFormat, getMonthFormat, getTimeFormat, getTimeRangeFormat, getYearFormat } from './format.ts'
 import useDateFnsLocale from './useDateFnsLocale.ts'
 
 type LibraryFormatOptions = VueDatePickerProps['format']
@@ -557,23 +558,23 @@ const realFormat = computed<LibraryFormatOptions>(() => {
 		return 'RR-II'
 	}
 
-	let formatter: Intl.DateTimeFormat | undefined
-	if (props.type === 'date' || props.type === 'date-range') {
-		formatter = new Intl.DateTimeFormat(realLocale, { dateStyle: 'medium' })
-	} else if (props.type === 'time' || props.type === 'time-range') {
-		formatter = new Intl.DateTimeFormat(realLocale, { timeStyle: 'short' })
-	} else if (props.type === 'datetime' || props.type === 'datetime-range') {
-		formatter = new Intl.DateTimeFormat(realLocale, { dateStyle: 'medium', timeStyle: 'short' })
-	} else if (props.type === 'month') {
-		formatter = new Intl.DateTimeFormat(realLocale, { year: 'numeric', month: '2-digit' })
-	} else if (props.type === 'year') {
-		formatter = new Intl.DateTimeFormat(realLocale, { year: 'numeric' })
-	}
-
-	if (formatter) {
-		return (input: Date | [Date, Date]) => Array.isArray(input)
-			? formatter.formatRange(input[0], input[1])
-			: formatter.format(input)
+	switch (props.type) {
+		case 'date':
+			return getDateFormat(realLocale)
+		case 'date-range':
+			return getDateRangeFormat(realLocale)
+		case 'time':
+			return getTimeFormat(realLocale)
+		case 'time-range':
+			return getTimeRangeFormat(realLocale)
+		case 'datetime':
+			return getDateTimeFormat(realLocale)
+		case 'datetime-range':
+			return getDateTimeRangeFormat(realLocale)
+		case 'month':
+			return getMonthFormat(realLocale)
+		case 'year':
+			return getYearFormat(realLocale)
 	}
 
 	// fallback to default formatting
