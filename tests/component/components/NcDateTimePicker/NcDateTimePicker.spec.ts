@@ -23,9 +23,9 @@ const testcases = [
 	['week', new Date(2000, 0, 2, 3, 4), '1999-52'],
 	['month', new Date(2000, 0, 2, 3, 4), '01/2000'],
 	['year', new Date(2000, 0, 2, 3, 4), '2000'],
-	['date-range', [new Date(2000, 0, 1), new Date(2000, 0, 7)] as [Date, Date], /Jan 1\s–\s7, 2000/i],
-	['time-range', [new Date(2000, 0, 1, 2, 3), new Date(2000, 0, 1, 8, 9)] as [Date, Date], /2:03\s(AM\s)?–\s8:09\sAM/i],
-	['datetime-range', [new Date(2000, 0, 1, 2, 3), new Date(2000, 0, 7, 8, 9)] as [Date, Date], /Jan 1, 2000, 2:03\sAM\s–\sJan 7, 2000, 8:09\sAM/i],
+	['date-range', [new Date(2000, 0, 1), new Date(2000, 0, 7)] as [Date, Date], /Jan 1, 2000\s-\sJan 7, 2000/i],
+	['time-range', [new Date(2000, 0, 1, 2, 3), new Date(2000, 0, 1, 8, 9)] as [Date, Date], /2:03\s(AM\s)?-\s8:09\sAM/i],
+	['datetime-range', [new Date(2000, 0, 1, 2, 3), new Date(2000, 0, 7, 8, 9)] as [Date, Date], /Jan 1, 2000, 2:03\sAM\s-\sJan 7, 2000, 8:09\sAM/i],
 ] as const
 
 for (const [type, modelValue, expectedValue] of testcases) {
@@ -43,7 +43,7 @@ for (const [type, modelValue, expectedValue] of testcases) {
 
 const l10nTestcases = [
 	['datetime', new Date(2000, 0, 2, 3, 4), 'en-GB', '2 Jan 2000, 03:04'],
-	['datetime', new Date(2000, 0, 2, 3, 4), 'de-DE', '02.01.2000, 03:04'],
+	['datetime', new Date(2000, 0, 2, 3, 4), 'de-DE', '02.01.2000 03:04'],
 	['date', new Date(2000, 0, 2, 3, 4), 'es-ES', '2 ene 2000'],
 	['month', new Date(2000, 0, 2, 3, 4), 'en-US', '01/2000'],
 ] as const
@@ -80,6 +80,78 @@ for (const [type, format, modelValue, locale, expectedValue] of customFormatTest
 		})
 
 		await expect(page.getByRole('textbox')).toHaveValue(expectedValue)
+	})
+}
+
+const textInputTestCases = [
+	['date', 'de-DE', '01.02.2000', new Date(2000, 1, 1)],
+	['date-range', 'en-US', 'Jan 1, 2000 - Jan 7, 2000', [new Date(2000, 0, 1), new Date(2000, 0, 7)]],
+	['time', 'en-CA', '3:04 p.m.', new Date(2000, 1, 1, 15, 4)],
+	['time-range', 'es', '2:03 - 08:09', [new Date(2000, 0, 7, 2, 3), new Date(2000, 0, 7, 8, 9)]],
+	['datetime', 'tr', '2 Oca 2000, 03:04', new Date(2000, 0, 2, 3, 4)],
+	['datetime-range', 'lt', '2000-01-01 02:03 - 2000-01-07 08:09', [new Date(2000, 0, 1, 2, 3), new Date(2000, 0, 7, 8, 9)]],
+	['month', 'es', '01/2000', new Date(2000, 0, 1)],
+	['year', 'en', '2000', new Date(2000, 0, 7)],
+	['week', 'de', '2000-31', new Date(2000, 6, 31)],
+] as const
+for (const [type, locale, textInput, expectedValue] of textInputTestCases) {
+	test(`Handle text input for date with type: ${type} and locale ${locale}`, async ({ mount, page }) => {
+		page.addScriptTag({ content: `document.getElementsByTagName('html')[0].dataset.locale = "${locale}";` })
+		const { promise: emittedValuePromise, resolve: onEmitValue } = Promise.withResolvers<Date | [Date, Date]>()
+		await mount(NcDateTimePicker, {
+			props: {
+				type,
+			},
+			on: {
+				'update:modelValue': onEmitValue,
+			},
+		})
+
+		await page.getByRole('textbox').fill(textInput)
+
+		const emmitedValue = await emittedValuePromise
+
+		if (type === 'date' || type === 'week') {
+			const emmitedDate = emmitedValue as Date
+			const expectedDate = expectedValue as Date
+			expect.soft(emmitedDate.getUTCFullYear()).toEqual(expectedDate.getUTCFullYear())
+			expect.soft(emmitedDate.getUTCMonth()).toEqual(expectedDate.getUTCMonth())
+			expect.soft(emmitedDate.getUTCDate()).toEqual(expectedDate.getUTCDate())
+		} else if (type === 'date-range') {
+			const [emmitedStartDate, emmitedEndDate] = emmitedValue as [Date, Date]
+			const [expectedStartDate, expectedEndDate] = expectedValue as [Date, Date]
+			expect.soft(emmitedStartDate.getUTCFullYear()).toEqual(expectedStartDate.getUTCFullYear())
+			expect.soft(emmitedStartDate.getUTCMonth()).toEqual(expectedStartDate.getUTCMonth())
+			expect.soft(emmitedStartDate.getUTCDate()).toEqual(expectedStartDate.getUTCDate())
+			expect.soft(emmitedEndDate.getUTCFullYear()).toEqual(expectedEndDate.getUTCFullYear())
+			expect.soft(emmitedEndDate.getUTCMonth()).toEqual(expectedEndDate.getUTCMonth())
+			expect.soft(emmitedEndDate.getUTCDate()).toEqual(expectedEndDate.getUTCDate())
+		} else if (type === 'time') {
+			const emmitedDate = emmitedValue as Date
+			const expectedDate = expectedValue as Date
+			expect.soft(emmitedDate.getUTCHours()).toEqual(expectedDate.getUTCHours())
+			expect.soft(emmitedDate.getUTCMinutes()).toEqual(expectedDate.getUTCMinutes())
+		} else if (type === 'time-range') {
+			const [emmitedStartDate, emmitedEndDate] = emmitedValue as [Date, Date]
+			const [expectedStartDate, expectedEndDate] = expectedValue as [Date, Date]
+			expect.soft(emmitedStartDate.getUTCHours()).toEqual(expectedStartDate.getUTCHours())
+			expect.soft(emmitedStartDate.getUTCMinutes()).toEqual(expectedStartDate.getUTCMinutes())
+			expect.soft(emmitedEndDate.getUTCHours()).toEqual(expectedEndDate.getUTCHours())
+			expect.soft(emmitedEndDate.getUTCMinutes()).toEqual(expectedEndDate.getUTCMinutes())
+		} else if (type.startsWith('datetime')) {
+			expect(emmitedValue).toEqual(expectedValue)
+		} else if (type === 'month') {
+			const emmitedDate = emmitedValue as Date
+			const expectedDate = expectedValue as Date
+			expect.soft(emmitedDate.getUTCFullYear()).toEqual(expectedDate.getUTCFullYear())
+			expect.soft(emmitedDate.getUTCMonth()).toEqual(expectedDate.getUTCMonth())
+		} else if (type === 'year') {
+			const emmitedDate = emmitedValue as Date
+			const expectedDate = expectedValue as Date
+			expect.soft(emmitedDate.getUTCFullYear()).toEqual(expectedDate.getUTCFullYear())
+		} else {
+			throw new Error(`No comparisson for type: ${type}`)
+		}
 	})
 }
 
