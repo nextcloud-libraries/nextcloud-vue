@@ -140,7 +140,7 @@ import type { Slot } from 'vue'
 
 import { emit, subscribe, unsubscribe } from '@nextcloud/event-bus'
 import { createFocusTrap } from 'focus-trap'
-import { inject, onMounted, onUnmounted, ref, useTemplateRef, warn, watch, watchEffect } from 'vue'
+import { computed, inject, onMounted, onUnmounted, ref, useTemplateRef, warn, watch, watchEffect } from 'vue'
 import NcAppNavigationList from '../NcAppNavigationList/NcAppNavigationList.vue'
 import NcAppNavigationToggle from './NcAppNavigationToggle.vue'
 import { useIsMobile } from '../../composables/useIsMobile/index.ts'
@@ -191,6 +191,7 @@ const setHasAppNavigation = inject(
 const appNavigationContainerElement = useTemplateRef('appNavigationContainer')
 const isMobile = useIsMobile()
 const open = ref(!isMobile.value)
+const shouldActivateFocusTrap = computed(() => isMobile.value && open.value)
 
 watchEffect(() => {
 	if (!props.ariaLabel && !props.ariaLabelledby) {
@@ -202,7 +203,7 @@ watch(isMobile, () => {
 	open.value = !isMobile.value
 })
 
-watch(open, () => {
+watch(shouldActivateFocusTrap, () => {
 	toggleFocusTrap()
 })
 
@@ -276,7 +277,7 @@ function toggleNavigationByEventBus({ open }: { open: boolean }): void {
  * Activate focus trap if it is currently needed, otherwise deactivate
  */
 function toggleFocusTrap(): void {
-	if (isMobile.value && open.value) {
+	if (shouldActivateFocusTrap.value) {
 		focusTrap.activate()
 	} else {
 		focusTrap.deactivate()

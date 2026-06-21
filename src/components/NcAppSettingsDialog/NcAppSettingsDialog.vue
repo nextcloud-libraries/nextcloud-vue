@@ -270,26 +270,27 @@ $content-inset: calc(3 * var(--default-grid-baseline));
 	--nav-tint: hsl(from var(--color-primary-element-light) h s calc(l * 1.045));
 	--nav-tint-strong: var(--color-primary-element-light);
 
-	:deep(.modal-wrapper .modal-container) {
+	// Apply styles to parent dialog, do not affect nested ones
+	& > :deep(.modal-wrapper > .modal-container) {
 		padding-inline-start: 0 !important;
 		padding-block-start: 0 !important;
 		background-color: var(--nav-tint);
 		overflow: hidden;
 		max-width: 900px;
-	}
 
-	// Title is rendered inside the navigation slot; hide the native h2 but
-	// keep it in the a11y tree so the modal still has its accessible name.
-	:deep(.dialog__name) {
-		position: absolute;
-		width: 1px;
-		height: 1px;
-		margin: -1px;
-		padding: 0;
-		overflow: hidden;
-		clip-path: inset(100%);
-		white-space: nowrap;
-		border: 0;
+		// Title is rendered inside the navigation slot; hide the native h2 but
+		// keep it in the a11y tree so the modal still has its accessible name.
+		& > .modal-container__content > .dialog__name {
+			position: absolute;
+			width: 1px;
+			height: 1px;
+			margin: -1px;
+			padding: 0;
+			overflow: hidden;
+			clip-path: inset(100%);
+			white-space: nowrap;
+			border: 0;
+		}
 	}
 
 	:deep(.app-settings__navigation) {
@@ -390,21 +391,23 @@ $content-inset: calc(3 * var(--default-grid-baseline));
 
 @media only screen and (width < $breakpoint-mobile) {
 	.app-settings:not(.app-settings--legacy) {
-		:deep(.modal-wrapper .modal-container) {
+		// Apply styles to parent dialog, do not affect nested ones
+		& > :deep(.modal-wrapper > .modal-container) {
 			padding-inline-start: 12px !important;
 			padding-block-start: 4px !important;
 			background-color: var(--color-main-background);
-		}
-		:deep(.dialog__name) {
-			position: static;
-			width: auto;
-			height: auto;
-			margin: 0 0 12px 0;
-			padding-inline-end: var(--default-clickable-area);
-			overflow: visible;
-			clip-path: none;
-			white-space: normal;
-			border: 0;
+
+			& > .modal-container__content > .dialog__name {
+				position: static;
+				width: auto;
+				height: auto;
+				margin: 0 0 12px 0;
+				padding-inline-end: var(--default-clickable-area);
+				overflow: visible;
+				clip-path: none;
+				white-space: normal;
+				border: 0;
+			}
 		}
 		:deep(.app-settings__content) {
 			border: none;
@@ -474,8 +477,13 @@ $content-inset: calc(3 * var(--default-grid-baseline));
 	}
 
 	@media only screen and (max-width: $breakpoint-small-mobile) {
-		:deep(.dialog__name) {
-			padding-inline-start: 16px;
+		.app-settings:not(.app-settings--legacy) {
+			// Apply styles to parent dialog, do not affect nested ones
+			& > :deep(.modal-wrapper > .modal-container) {
+				& > .modal-container__content > .dialog__name {
+					padding-inline-start: 16px;
+				}
+			}
 		}
 	}
 }
