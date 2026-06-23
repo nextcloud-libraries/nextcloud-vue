@@ -3,6 +3,7 @@
  * SPDX-License-Identifier: CC0-1.0
  */
 
+import jsonPlugin from '@eslint/json'
 import { recommendedLibrary } from '@nextcloud/eslint-config'
 import { defineConfig } from 'eslint/config'
 
@@ -29,5 +30,12 @@ export default defineConfig([
 		rules: {
 			'vue/require-prop-comment': 'off',
 		},
+	},
+
+	// lint devcontainer.json as JSONC
+	{
+		files: ['.devcontainer/devcontainer.json'],
+		language: 'json/jsonc',
+		...jsonPlugin.configs.recommended,
 	},
 ])
