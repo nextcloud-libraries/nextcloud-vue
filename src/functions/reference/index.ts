@@ -3,10 +3,15 @@
  * SPDX-License-Identifier: AGPL-3.0-or-later
  */
 
-export {
-	type ReferenceWidgetProps,
-	type ReferenceWidgetRenderProperties,
+export type {
+	ReferenceWidgetProps,
+	ReferenceWidgetRenderProperties,
+} from './widgets.ts'
 
+export type { ReferenceProvider } from './providerHelper.ts'
+export type { CustomPickerElement } from './customPickerElements.ts'
+
+export {
 	hasInteractiveView,
 	isWidgetRegistered,
 	registerWidget,
@@ -19,8 +24,6 @@ export {
 } from './referencePickerModal.ts'
 
 export {
-	type ReferenceProvider,
-
 	anyLinkProviderId,
 	getProvider,
 	getProviders,
@@ -29,8 +32,6 @@ export {
 } from './providerHelper.ts'
 
 export {
-	type CustomPickerElement,
-
 	isCustomPickerElementRegistered,
 	NcCustomPickerRenderResult,
 	registerCustomPickerElement,
