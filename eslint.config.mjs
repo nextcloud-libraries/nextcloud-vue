@@ -23,6 +23,8 @@ export default defineConfig([
 		rules: {
 			// we are that library - we provide the deprecations...
 			'@nextcloud/no-deprecated-library-props': 'off',
+			// Vue 3 forward compatibility - we are still on Vue 2, so we don't need to care about that
+			'vue/custom-event-name-casing': 'off',
 		},
 	},
 
