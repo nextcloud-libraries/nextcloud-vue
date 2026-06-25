@@ -734,7 +734,7 @@ export default {
 		 * Handle link click
 		 *
 		 * @param {PointerEvent} event - Native click event
-		 * @param {Function} [navigate] - VueRouter link's navigate if any
+		 * @param {(event: PointerEvent) => void} [navigate] - VueRouter link's navigate if any
 		 * @param {string} [routerLinkHref] - VueRouter link's href
 		 */
 		onClick(event, navigate, routerLinkHref) {

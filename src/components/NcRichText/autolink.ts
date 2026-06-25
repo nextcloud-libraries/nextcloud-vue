@@ -14,11 +14,12 @@ import { logger } from '../../utils/logger.ts'
 import { URL_PATTERN_AUTOLINK } from './helpers.js'
 
 /**
+ * Remark plugin to autolink URLs in text nodes.
  *
- * @param root0
- * @param root0.autolink
- * @param root0.useMarkdown
- * @param root0.useExtendedMarkdown
+ * @param options - Options for the plugin
+ * @param options.autolink - Whether to enable autolinking of URLs
+ * @param options.useMarkdown - Whether to use markdown parsing
+ * @param options.useExtendedMarkdown - Whether to use extended markdown parsing
  */
 export function remarkAutolink({ autolink, useMarkdown, useExtendedMarkdown }) {
 	return function(tree) {
@@ -59,8 +60,9 @@ export function remarkAutolink({ autolink, useMarkdown, useExtendedMarkdown }) {
 }
 
 /**
+ * Parses a text and returns either an array of text nodes and link nodes or the original text if no links were found.
  *
- * @param text
+ * @param text - The text to parse
  */
 export function parseUrl(text: string) {
 	let match = URL_PATTERN_AUTOLINK.exec(text)

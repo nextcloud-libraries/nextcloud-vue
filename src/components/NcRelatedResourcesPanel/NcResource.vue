@@ -33,18 +33,26 @@ export default {
 		NcButton,
 	},
 
-	/* eslint vue/require-prop-comment: warn -- TODO: Add a proper doc block about what this props do */
 	props: {
+		/**
+		 * The icon URL to display for the resource
+		 */
 		icon: {
 			type: String,
 			required: true,
 		},
 
+		/**
+		 * The name of the resource to display
+		 */
 		name: {
 			type: String,
 			required: true,
 		},
 
+		/**
+		 * The URL of the resource to link to
+		 */
 		url: {
 			type: String,
 			required: true,

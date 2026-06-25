@@ -63,10 +63,6 @@ export default {
 		NcButton,
 	},
 
-	setup() {
-		return { isLegacy34 }
-	},
-
 	props: {
 		/**
 		 * If this element is used on a primary element set to true for primary styling.
@@ -98,6 +94,10 @@ export default {
 		'confirm',
 		'update:modelValue',
 	],
+
+	setup() {
+		return { isLegacy34 }
+	},
 
 	data() {
 		return {

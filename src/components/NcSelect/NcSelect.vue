@@ -676,9 +676,9 @@ export default {
 			/**
 			 * Patched Vue-Select keydown events handlers map to stop Escape propagation in open select
 			 *
-			 * @param {Record<number, Function>} map - Mapped keyCode to handlers { <keyCode>:<callback> }
-			 * @param {import('@nextcloud/vue-select').VueSelect} vm - VueSelect instance
-			 * @return {Record<number, Function>} patched keydown event handlers
+			 * @param {Record<number, (event: KeyboardEvent) => void>} map - Mapped keyCode to handlers { <keyCode>:<callback> }
+			 * @param {import('vue').ComponentPublicInstance} vm - VueSelect instance
+			 * @return {Record<number, (event: KeyboardEvent) => void>} patched keydown event handlers
 			 */
 			default(map, vm) {
 				return {

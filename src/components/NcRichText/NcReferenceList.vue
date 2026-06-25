@@ -29,33 +29,50 @@ export default {
 		NcReferenceWidget,
 	},
 
-	/* eslint vue/require-prop-comment: warn -- TODO: Add a proper doc block about what this props do */
 	props: {
+		/**
+		 * The text to extract references from
+		 */
 		text: {
 			type: String,
 			default: '',
 		},
 
+		/**
+		 * The data of the references to display.
+		 */
 		referenceData: {
 			type: Array,
 			default: null,
 		},
 
+		/**
+		 * The maximum number of references to display
+		 */
 		limit: {
 			type: Number,
 			default: 1,
 		},
 
+		/**
+		 * Show the fallback reference if no references are found
+		 */
 		displayFallback: {
 			type: Boolean,
 			default: false,
 		},
 
+		/**
+		 * Whether to render the widgets in interactive mode (if available)
+		 */
 		interactive: {
 			type: Boolean,
 			default: true,
 		},
 
+		/**
+		 * Whether to show user an option to enable to interactive mode for widgets (if available)
+		 */
 		interactiveOptIn: {
 			type: Boolean,
 			default: false,
