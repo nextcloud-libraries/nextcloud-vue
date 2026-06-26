@@ -288,7 +288,7 @@ import {
 	getFirstDay,
 } from '@nextcloud/l10n'
 import VueDatePicker from '@vuepic/vue-datepicker'
-import { computed, useTemplateRef } from 'vue'
+import { computed, ref, useTemplateRef } from 'vue'
 import NcIconSvgWrapper from '../NcIconSvgWrapper/NcIconSvgWrapper.vue'
 import NcTimezonePicker from '../NcTimezonePicker/NcTimezonePicker.vue'
 import { t } from '../../l10n.ts'
@@ -421,6 +421,13 @@ const props = withDefaults(defineProps<{
 	 * @default false
 	 */
 	inline?: boolean
+
+	/**
+	 * Enable or disable manual text input for the date picker.
+	 *
+	 * @default true
+	 */
+	manualInput?: boolean
 }>(), {
 	ariaLabel: t('Datepicker input'),
 	ariaLabelMenu: t('Datepicker menu'),
@@ -433,6 +440,7 @@ const props = withDefaults(defineProps<{
 	modelValue: null,
 	// set by fallbackPlaceholder
 	placeholder: undefined,
+	manualInput: true,
 	type: 'date',
 	inline: false,
 })
@@ -453,6 +461,7 @@ const emit = defineEmits<{
 
 const targetElement = useTemplateRef('target')
 const pickerInstance = useTemplateRef('picker')
+const manualInputValue = ref<Date | null>(null)
 
 /**
  * Mapping of the model-value prop to the format expected by the library.
@@ -559,12 +568,17 @@ const realFormat = computed<LibraryFormatOptions>(() => {
 	}
 
 	if (formatter) {
-		return (input: Date | [Date, Date]) => Array.isArray(input)
-			? formatter.formatRange(input[0], input[1])
-			: formatter.format(input)
+		return (input: Date | [Date, Date]) => {
+			if (Array.isArray(input)) {
+				return isFiniteDateRange(input)
+					? formatter.formatRange(input[0], input[1])
+					: ''
+			}
+
+			return isFiniteDate(input) ? formatter.format(input) : ''
+		}
 	}
 
-	// fallback to default formatting
 	return undefined
 })
 
@@ -625,6 +639,50 @@ function onUpdateModelValue(value: LibraryModelValue): void {
 		// otherwise it already emits the correct format
 		emit('update:modelValue', value as Date | [Date, Date])
 	}
+}
+
+/**
+ * Propagate valid manually typed input through the same model normalization path as picker selections.
+ *
+ * @param event The raw input event
+ * @param parsedDate The library-parsed date or null if parsing failed
+ */
+function onTextInput(event: Event, parsedDate: Date | null): void {
+	if (parsedDate) {
+		manualInputValue.value = parsedDate
+		return
+	}
+
+	const input = event.target instanceof HTMLInputElement ? event.target.value : ''
+	const tempDate = new Date(input)
+	manualInputValue.value = Number.isNaN(tempDate.getTime()) ? null : tempDate
+
+	if (manualInputValue.value !== null && pickerInstance.value) {
+		pickerInstance.value.updateInternalModelValue(manualInputValue.value)
+	}
+}
+
+function onTextSubmit(): void {
+	commitManualInput()
+}
+
+function onManualInputKeySubmit(): void {
+	commitManualInput()
+}
+
+function onBlur(): void {
+	commitManualInput()
+	emit('blur')
+}
+
+function commitManualInput(): void {
+	if (manualInputValue.value === null) {
+		return
+	}
+
+	onUpdateModelValue(manualInputValue.value)
+	manualInputValue.value = null
+	pickerInstance.value?.closeMenu()
 }
 
 /**
@@ -762,6 +820,26 @@ function sameDay(a: Date, b: Date): boolean {
 		&& a.getDate() === b.getDate()
 	)
 }
+
+/**
+ *
+ * @param value
+ */
+function isFiniteDate(value: unknown): value is Date {
+	return value instanceof Date && Number.isFinite(value.getTime())
+}
+
+/**
+ *
+ * @param value
+ */
+function isFiniteDateRange(value: unknown): value is [Date, Date] {
+	return Array.isArray(value)
+		&& value.length === 2
+		&& isFiniteDate(value[0])
+		&& isFiniteDate(value[1])
+}
+
 </script>
 
 <template>
@@ -789,13 +867,17 @@ function sameDay(a: Date, b: Date): boolean {
 			sixWeeks="fair"
 			:inline
 			:teleport="appendToBody ? (targetElement || undefined) : false"
-			textInput
+			:textInput="manualInput"
 			:weekNumName
 			:weekNumbers="showWeekNumber ? { type: 'iso' } : undefined"
 			:weekStart
 			v-bind="pickerType"
 			@update:modelValue="onUpdateModelValue"
-			@blur="emit('blur')">
+			@blur="onBlur"
+			@keydown.enter.capture="onManualInputKeySubmit"
+			@keydown.tab.capture="onManualInputKeySubmit"
+			@textInput="onTextInput"
+			@textSubmit="onTextSubmit">
 			<template #action-buttons>
 				<NcButton size="small" variant="tertiary" @click="cancelSelection">
 					{{ t('Cancel') }}
