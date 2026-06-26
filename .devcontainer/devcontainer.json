@@ -12,7 +12,7 @@
 	// Do not use mcr.microsoft.com/devcontainers/universal because it does not support arm64.
 	"image": "mcr.microsoft.com/devcontainers/base:noble",
 	"features": {
-		"ghcr.io/devcontainers/features/node:2": {}
+		"ghcr.io/devcontainers/features/node:": {}
 	},
 	// Work around for localhost:9323 (Playwright report) not beeing properly forwared due to issues with IPv6.
 	// https://github.com/microsoft/vscode-remote-release/issues/7029
