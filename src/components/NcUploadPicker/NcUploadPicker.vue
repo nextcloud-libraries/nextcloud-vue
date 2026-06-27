@@ -3,145 +3,32 @@
   - SPDX-License-Identifier: AGPL-3.0-or-later
 -->
 
-<template>
-	<NcFilePicker
-		ref="filePicker"
-		:accept
-		:actionCaption="t('Upload from device')"
-		:directory
-		:disabled
-		:iconOnly
-		:label
-		:multiple
-		:variant
-		@pick="onPick">
-		<template #icon>
-			<NcIconSvgWrapper :path="mdiPlus" />
-		</template>
-
-		<template #actions>
-			<!-- App defined upload actions -->
-			<NcActionButton
-				v-for="entry in menuEntriesUpload"
-				:key="entry.id"
-				:class="$style.uploadPicker_menuEntry"
-				closeAfterClick
-				@click="onClick(entry)">
-				<template v-if="entry.iconSvg" #icon>
-					<NcIconSvgWrapper :svg="entry.iconSvg" />
-				</template>
-				{{ entry.label }}
-			</NcActionButton>
-
-			<!-- Custom new file entries -->
-			<template v-if="!noMenu && menuEntriesNew.length > 0">
-				<NcActionSeparator />
-				<NcActionCaption :name="t('Create new')" />
-				<NcActionButton
-					v-for="entry in menuEntriesNew"
-					:key="entry.id"
-					:class="$style.uploadPicker_menuEntry"
-					closeAfterClick
-					@click="onClick(entry)">
-					<template v-if="entry.iconSvg" #icon>
-						<NcIconSvgWrapper :svg="entry.iconSvg" />
-					</template>
-					{{ entry.label }}
-				</NcActionButton>
-			</template>
-
-			<!-- other file entries -->
-			<template v-if="!noMenu && menuEntriesOther.length > 0">
-				<NcActionSeparator />
-				<NcActionButton
-					v-for="entry in menuEntriesOther"
-					:key="entry.id"
-					:class="$style.uploadPicker_menuEntry"
-					closeAfterClick
-					@click="onClick(entry)">
-					<template v-if="entry.iconSvg" #icon>
-						<NcIconSvgWrapper :svg="entry.iconSvg" />
-					</template>
-					{{ entry.label }}
-				</NcActionButton>
-			</template>
-		</template>
-
-		<!-- Progressbar and status -->
-		<div
-			v-show="isUploading"
-			:class="[$style.uploadPicker_progress, {
-				[$style.uploadPicker_progress__uploading]: isUploading,
-				[$style.uploadPicker_progress__paused]: isPaused,
-			}]">
-			<NcProgressBar
-				:aria-label="t('Upload progress')"
-				:aria-describedby="progressTimeId"
-				:error="hasFailure"
-				:value="uploadManager.eta.progress"
-				size="medium" />
-			<p :id="progressTimeId" :class="$style.uploadPicker_progressLabel">
-				<span v-if="isPaused">
-					{{ t('paused') }}
-				</span>
-				<span v-else-if="isOnlyAssembling">
-					<!-- TRANSLATORS: Chunks are assembled and the process runs -->
-					{{ t('assembling') }}
-				</span>
-				<span v-else :title="etaTimeAndSpeed()">
-					{{ uploadManager.eta.timeReadable }}
-					<!-- the speed is included in the tooltip / title so we only show it in the text content if there is enough space (not showing "a few seconds left") -->
-					<span v-if="uploadManager.eta.speedReadable && uploadManager.eta.time >= 60">
-						({{ uploadManager.eta.speedReadable }})
-					</span>
-				</span>
-			</p>
-		</div>
-
-		<!-- Cancel upload button -->
-		<NcButton
-			v-if="isUploading && !isOnlyAssembling"
-			:class="$style.uploadPicker_cancelButton"
-			:aria-label="t('Cancel uploads')"
-			variant="tertiary"
-			@click="onCancel">
-			<template #icon>
-				<NcIconSvgWrapper :path="mdiClose" />
-			</template>
-		</NcButton>
-	</NcFilePicker>
-</template>
-
 <script setup lang="ts">
 import type { Folder, IFolder, INode } from '@nextcloud/files'
-import type { Upload } from '@nextcloud/upload'
+import type { IUpload } from '@nextcloud/files/upload'
+import type { FilePickerItem, FilePickerItemGroup } from '../NcFilePicker/NcFilePicker.vue'
 
 import { mdiClose, mdiPlus } from '@mdi/js'
 import { openConflictPicker } from '@nextcloud/dialogs'
 import { getUniqueName } from '@nextcloud/files'
+import { getUploader, UploaderStatus, UploadStatus } from '@nextcloud/files/upload'
 import { basename } from '@nextcloud/paths'
-import { getConflicts, getUploader, UploaderStatus, UploadStatus } from '@nextcloud/upload'
-import { computed, onBeforeMount, useTemplateRef, watch } from 'vue'
-import NcActionButton from '../NcActionButton/NcActionButton.vue'
-import NcActionCaption from '../NcActionCaption/NcActionCaption.vue'
-import NcActionSeparator from '../NcActionSeparator/NcActionSeparator.vue'
+import { onBeforeMount, onUnmounted, ref, useTemplateRef, watch } from 'vue'
 import NcButton from '../NcButton/NcButton.vue'
 import NcFilePicker from '../NcFilePicker/NcFilePicker.vue'
 import NcIconSvgWrapper from '../NcIconSvgWrapper/NcIconSvgWrapper.vue'
 import NcProgressBar from '../NcProgressBar/NcProgressBar.vue'
+import { useFormatRelativeTime } from '../../composables/index.ts'
 import { t } from '../../l10n.ts'
 import { createElementId } from '../../utils/createElementId.ts'
 import { logger } from '../../utils/logger.ts'
 
-export interface IUploadPickerMenuEntry {
-	id: string
-	category: 'upload' | 'create' | 'other'
-	label: string
-	iconSvg?: string
-	callback: (destination: IFolder, content: INode[]) => Promise<void> | void
-}
-
 const props = withDefaults(defineProps<{
+	/**
+	 * Actions to be shown in the upload picker menu.
+	 */
+	actions?: FilePickerItem[] | FilePickerItemGroup[]
+
 	/**
 	 * The upload destination folder
 	 */
@@ -173,16 +60,6 @@ const props = withDefaults(defineProps<{
 	multiple?: boolean
 
 	/**
-	 * Optional menu entries to add to the upload picker menu
-	 */
-	menuEntries?: IUploadPickerMenuEntry[]
-
-	/**
-	 * Allow to disable the actions menu for this UploadPicker instance
-	 */
-	noMenu?: boolean
-
-	/**
 	 * Only show the icon without text label
 	 */
 	iconOnly?: boolean
@@ -197,17 +74,15 @@ const props = withDefaults(defineProps<{
 	 */
 	directory?: boolean
 }>(), {
+	actions: () => [],
 	accept: () => [],
 	label: () => t('New'),
-	menuEntries: () => [],
 	variant: 'secondary',
 })
 
 const emit = defineEmits<{
-	uploaded: [upload: Upload]
-	failed: [upload: Upload]
-	paused: [queue: Upload[]]
-	resumed: [queue: Upload[]]
+	paused: [queue: IUpload[]]
+	resumed: [queue: IUpload[]]
 }>()
 
 defineExpose({
@@ -216,43 +91,60 @@ defineExpose({
 })
 
 const filePickerElement = useTemplateRef('filePicker')
+const progressTimeId = createElementId()
 
 const uploadManager = getUploader()
 onBeforeMount(() => {
-	uploadManager.addNotifier(onUploadCompletion)
-	setDestination(props.destination)
+	uploadManager.addEventListener('uploadFinished', updateUploadStatus)
+	uploadManager.addEventListener('uploadStarted', updateUploadStatus)
+	uploadManager.addEventListener('uploadProgress', updateEta)
+	uploadManager.addEventListener('paused', onUploaderPaused)
+	uploadManager.addEventListener('resumed', onUploaderResumed)
+	updateUploadStatus()
 })
-watch(() => props.destination, () => setDestination(props.destination))
+onUnmounted(() => {
+	uploadManager.removeEventListener('uploadFinished', updateUploadStatus)
+	uploadManager.removeEventListener('uploadStarted', updateUploadStatus)
+	uploadManager.removeEventListener('uploadProgress', updateEta)
+	uploadManager.removeEventListener('paused', onUploaderPaused)
+	uploadManager.removeEventListener('resumed', onUploaderResumed)
+})
 
-const progressTimeId = createElementId()
+watch(() => props.destination, () => setDestination(props.destination), { immediate: true })
 
-const menuEntriesUpload = computed(() => props.menuEntries?.filter((entry) => entry.category === 'upload'))
-const menuEntriesNew = computed(() => props.menuEntries?.filter((entry) => entry.category === 'create'))
-const menuEntriesOther = computed(() => props.menuEntries?.filter((entry) => entry.category === 'other'))
+const isPaused = ref(uploadManager.status === UploaderStatus.PAUSED)
+/** Handle uploader paused event */
+function onUploaderPaused() {
+	isPaused.value = true
+	emit('paused', [...uploadManager.queue])
+}
+/** Handle uploader resumed event */
+function onUploaderResumed() {
+	isPaused.value = false
+	emit('resumed', [...uploadManager.queue])
+}
 
-const queue = computed(() => uploadManager.queue as Upload[])
-const hasFailure = computed(() => queue.value.some((upload: Upload) => upload.status === UploadStatus.FAILED))
-const isUploading = computed(() => queue.value.some((upload: Upload) => upload.status !== UploadStatus.CANCELLED))
-const isAssembling = computed(() => queue.value.some((upload: Upload) => upload.status === UploadStatus.ASSEMBLING))
-const isOnlyAssembling = computed(() => {
-	return isAssembling.value
-		&& queue.value.every((upload: Upload) => (
-			// ignore empty uploads or meta uploads
-			upload.size === 0
-			// all the uploads are assembling or finished
+const hasFailure = ref(false)
+const isUploading = ref(false)
+const isAssembling = ref(false)
+const isOnlyAssembling = ref(false)
+
+/**
+ * Update the upload status flags based on the current queue
+ */
+function updateUploadStatus() {
+	hasFailure.value = uploadManager.queue.some((upload: IUpload) => upload.status === UploadStatus.FAILED)
+	isUploading.value = uploadManager.queue.some((upload: IUpload) => upload.status !== UploadStatus.CANCELLED)
+	isAssembling.value = uploadManager.queue.some((upload: IUpload) => upload.status === UploadStatus.ASSEMBLING)
+	isOnlyAssembling.value = isAssembling.value
+		&& uploadManager.queue.every((upload: IUpload) => (
+			// either a meta upload
+			upload.children.length === 0
+			// or all the uploads are assembling or finished
 			|| upload.status === UploadStatus.ASSEMBLING
 			|| upload.status === UploadStatus.FINISHED
 		))
-})
-
-const isPaused = computed(() => uploadManager.info?.status === UploaderStatus.PAUSED)
-watch(isPaused, (isPaused) => {
-	if (isPaused) {
-		emit('paused', queue.value)
-	} else {
-		emit('resumed', queue.value)
-	}
-})
+}
 
 /**
  * Reset the file input form
@@ -275,27 +167,15 @@ function setDestination(destination: IFolder) {
 	uploadManager.destination = destination as Folder
 }
 
-/**
- * Get the current eta time and speed as a string
- */
-function etaTimeAndSpeed(): string {
-	const speed = uploadManager.eta.speedReadable
-	if (speed) {
-		return `${uploadManager.eta.timeReadable} (${speed})`
-	}
-	return uploadManager.eta.timeReadable
-}
-
-/**
- * Handle clicking a menu entry
- *
- * @param entry The entry that was clicked
- */
-async function onClick(entry: IUploadPickerMenuEntry) {
-	await entry.callback(
-		props.destination!,
-		await props.content().catch(() => []),
-	)
+const etaProgress = ref(0)
+const etaSpeed = ref('')
+const etaTimeRaw = ref(0)
+const etaTime = useFormatRelativeTime(etaTimeRaw, { ignoreSeconds: true })
+/** Update the ETA and speed values */
+function updateEta() {
+	etaTimeRaw.value = uploadManager.statistics.eta === Infinity ? Infinity : uploadManager.statistics.eta * 1000
+	etaSpeed.value = uploadManager.statistics.speedReadable
+	etaProgress.value = uploadManager.statistics.eta.progress
 }
 
 /**
@@ -306,29 +186,7 @@ async function onClick(entry: IUploadPickerMenuEntry) {
 async function onPick(files: File[]) {
 	try {
 		await uploadManager
-			.batchUpload('', files, async (nodes, currentPath) => {
-				const content = await props.content(currentPath)
-				// @ts-expect-error - types to be fixed in upload package
-				const conflicts = getConflicts(nodes, content)
-				if (conflicts.length === 0) {
-					return nodes
-				}
-
-				const result = await openConflictPicker(basename(currentPath), conflicts, content, { recursive: props.directory })
-				if (result) {
-					const names: string[] = content.map((n) => n.displayname)
-					for (const node of result.renamed) {
-						const newName = getUniqueName(node.name, names)
-						names.push(newName)
-						Object.defineProperty(node, 'name', newName)
-					}
-					return [
-						...result.selected,
-						...result.renamed,
-					]
-				}
-				return false
-			})
+			.batchUpload('', files, { callback: handleConflicts })
 	} catch (error) {
 		logger.debug('Error while uploading', { error })
 	} finally {
@@ -337,28 +195,108 @@ async function onPick(files: File[]) {
 }
 
 /**
+ * Handle conflicts during upload
+ *
+ * @param nodes - The nodes that might conflict
+ * @param currentPath - The path of the current directory
+ */
+async function handleConflicts(nodes: string[], currentPath: string): Promise<Record<string, string> | false> {
+	const content = await props.content(currentPath)
+	const conflicts = content.filter((node) => nodes.includes(node.basename))
+	const uploadMapping = Object.fromEntries(nodes.map((name) => [name, name]))
+	if (conflicts.length === 0) {
+		return uploadMapping
+	}
+
+	const result = await openConflictPicker(basename(currentPath), conflicts, content, { recursive: props.directory })
+	if (result) {
+		const usedNames = content.map((node) => node.basename)
+		for (const node of conflicts) {
+			if ((result.skipped as unknown as INode[]).some((skipped) => skipped.basename === node.basename)) {
+				delete uploadMapping[node.basename]
+			} else if ((result.renamed as unknown as INode[]).some((renamed) => renamed.basename === node.basename)) {
+				const newName = getUniqueName(basename(node.basename), usedNames)
+				uploadMapping[node.basename] = newName
+				usedNames.push(newName)
+			}
+		}
+		return uploadMapping
+	}
+	return false
+}
+
+/**
  * Cancel ongoing queue
  */
 function onCancel() {
-	uploadManager.queue.forEach((upload: Upload) => {
+	uploadManager.queue.forEach((upload: IUpload) => {
 		upload.cancel()
 	})
 	reset()
 }
-
-/**
- * Handle upload completion
- *
- * @param upload - The completed upload
- */
-function onUploadCompletion(upload: Upload) {
-	if (upload.status === UploadStatus.FAILED) {
-		emit('failed', upload)
-	} else {
-		emit('uploaded', upload)
-	}
-}
 </script>
+
+<template>
+	<NcFilePicker
+		ref="filePicker"
+		:accept
+		:actionCaption="actions.length > 0 || directory ? t('Upload from device') : undefined"
+		:actions
+		:directory
+		:disabled
+		:iconOnly
+		:label
+		:multiple
+		:variant
+		@pick="onPick">
+		<template #icon>
+			<NcIconSvgWrapper :path="mdiPlus" />
+		</template>
+
+		<!-- Progressbar and status -->
+		<div
+			v-show="isUploading"
+			:class="[$style.uploadPicker_progress, {
+				[$style.uploadPicker_progress__uploading]: isUploading,
+				[$style.uploadPicker_progress__paused]: isPaused,
+			}]">
+			<NcProgressBar
+				:aria-label="t('Upload progress')"
+				:aria-describedby="progressTimeId"
+				:error="hasFailure"
+				:value="etaProgress"
+				size="medium" />
+			<p :id="progressTimeId" :class="$style.uploadPicker_progressLabel">
+				<span v-if="isPaused">
+					{{ t('paused') }}
+				</span>
+				<span v-else-if="isOnlyAssembling">
+					<!-- TRANSLATORS: Chunks are assembled and the process runs -->
+					{{ t('assembling') }}
+				</span>
+				<span v-else :title="`${etaTime} (${etaSpeed})`">
+					{{ etaTimeRaw === Infinity ? t('Estimating …') : etaTime }}
+					<!-- the speed is included in the tooltip / title so we only show it in the text content if there is enough space (not showing "a few seconds left") -->
+					<span v-if="etaSpeed && etaTimeRaw > 60000">
+						({{ etaSpeed }})
+					</span>
+				</span>
+			</p>
+		</div>
+
+		<!-- Cancel upload button -->
+		<NcButton
+			v-if="isUploading && !isOnlyAssembling"
+			:class="$style.uploadPicker_cancelButton"
+			:aria-label="t('Cancel uploads')"
+			variant="tertiary"
+			@click="onCancel">
+			<template #icon>
+				<NcIconSvgWrapper :path="mdiClose" />
+			</template>
+		</NcButton>
+	</NcFilePicker>
+</template>
 
 <style module>
 .uploadPicker_progress {

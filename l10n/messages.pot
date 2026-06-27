@@ -136,9 +136,6 @@ msgstr ""
 msgid "Copy to clipboard"
 msgstr ""
 
-msgid "Create new"
-msgstr ""
-
 #. TRANSLATORS: Ctrl key on keyboard (Windows/Linux)
 msgid "Ctrl"
 msgstr ""
@@ -199,6 +196,9 @@ msgstr ""
 
 #. TRANSLATORS: Escape key on keyboard
 msgid "Escape"
+msgstr ""
+
+msgid "Estimating&nbsp;…"
 msgstr ""
 
 msgid "External documentation"
