@@ -325,8 +325,8 @@ function onBeforePageUnload(event: BeforeUnloadEvent) {
 				[$style.uploadPicker_progress__paused]: isPaused,
 			}]">
 			<NcProgressBar
-				:aria-label="t('Upload progress')"
-				:aria-describedby="progressTimeId"
+				:ariaLabel="t('Upload progress')"
+				:ariaDescribedby="progressTimeId"
 				:error="hasFailure"
 				:value="etaProgress"
 				size="medium" />
