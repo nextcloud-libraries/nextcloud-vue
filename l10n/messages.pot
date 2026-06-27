@@ -43,6 +43,7 @@ msgstr ""
 msgid "Anything shared with the same group of people will show up here"
 msgstr ""
 
+#. TRANSLATORS: State of the current upload - chunks of the uploaded files are being assembled into the final file
 msgid "assembling"
 msgstr ""
 
@@ -139,9 +140,6 @@ msgstr ""
 msgid "Copy to clipboard"
 msgstr ""
 
-msgid "Create new"
-msgstr ""
-
 #. TRANSLATORS: Ctrl key on keyboard (Windows/Linux)
 msgid "Ctrl"
 msgstr ""
@@ -205,6 +203,9 @@ msgstr ""
 
 #. TRANSLATORS: Escape key on keyboard
 msgid "Escape"
+msgstr ""
+
+msgid "Estimating …"
 msgstr ""
 
 msgid "External documentation"
@@ -405,6 +406,7 @@ msgstr ""
 msgid "Pause slideshow"
 msgstr ""
 
+#. TRANSLATORS: State of the current upload - it is paused
 msgid "paused"
 msgstr ""
 
