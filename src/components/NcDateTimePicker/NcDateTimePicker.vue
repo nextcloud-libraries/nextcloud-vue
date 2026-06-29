@@ -288,7 +288,7 @@ import {
 	getFirstDay,
 } from '@nextcloud/l10n'
 import VueDatePicker from '@vuepic/vue-datepicker'
-import { computed, useTemplateRef } from 'vue'
+import { computed, useTemplateRef, warn, watchEffect } from 'vue'
 import NcIconSvgWrapper from '../NcIconSvgWrapper/NcIconSvgWrapper.vue'
 import NcTimezonePicker from '../NcTimezonePicker/NcTimezonePicker.vue'
 import { t } from '../../l10n.ts'
@@ -353,7 +353,9 @@ const props = withDefaults(defineProps<{
 
 	/**
 	 * The locale to use for formatting the shown dates.
-	 * By default the users current Nextcloud locale is used.
+	 *
+	 * @deprecated This property is no longer used and will be ignored because this component will always use the current Nextcloud locale.
+	 * @see https://github.com/nextcloud-libraries/nextcloud-vue/issues/8639
 	 */
 	locale?: string
 
@@ -425,7 +427,7 @@ const props = withDefaults(defineProps<{
 	ariaLabel: t('Datepicker input'),
 	ariaLabelMenu: t('Datepicker menu'),
 	format: undefined,
-	locale: getCanonicalLocale(),
+	locale: undefined,
 	max: undefined,
 	min: undefined,
 	minuteStep: 10,
@@ -450,6 +452,13 @@ const emit = defineEmits<{
 	 */
 	blur: []
 }>()
+
+const realLocale = getCanonicalLocale()
+watchEffect(() => {
+	if (props.locale !== undefined) {
+		warn('[NcDateTimePicker] The `locale` property is no longer used and will be ignored.')
+	}
+})
 
 const targetElement = useTemplateRef('target')
 const pickerInstance = useTemplateRef('picker')
@@ -547,15 +556,15 @@ const realFormat = computed<LibraryFormatOptions>(() => {
 
 	let formatter: Intl.DateTimeFormat | undefined
 	if (props.type === 'date' || props.type === 'date-range') {
-		formatter = new Intl.DateTimeFormat(getCanonicalLocale(), { dateStyle: 'medium' })
+		formatter = new Intl.DateTimeFormat(realLocale, { dateStyle: 'medium' })
 	} else if (props.type === 'time' || props.type === 'time-range') {
-		formatter = new Intl.DateTimeFormat(getCanonicalLocale(), { timeStyle: 'short' })
+		formatter = new Intl.DateTimeFormat(realLocale, { timeStyle: 'short' })
 	} else if (props.type === 'datetime' || props.type === 'datetime-range') {
-		formatter = new Intl.DateTimeFormat(getCanonicalLocale(), { dateStyle: 'medium', timeStyle: 'short' })
+		formatter = new Intl.DateTimeFormat(realLocale, { dateStyle: 'medium', timeStyle: 'short' })
 	} else if (props.type === 'month') {
-		formatter = new Intl.DateTimeFormat(getCanonicalLocale(), { year: 'numeric', month: '2-digit' })
+		formatter = new Intl.DateTimeFormat(realLocale, { year: 'numeric', month: '2-digit' })
 	} else if (props.type === 'year') {
-		formatter = new Intl.DateTimeFormat(getCanonicalLocale(), { year: 'numeric' })
+		formatter = new Intl.DateTimeFormat(realLocale, { year: 'numeric' })
 	}
 
 	if (formatter) {
@@ -777,7 +786,7 @@ function sameDay(a: Date, b: Date): boolean {
 			:dayNames
 			:placeholder="placeholder ?? placeholderFallback"
 			:format="realFormat"
-			:locale
+			:locale="realLocale"
 			:minDate="calcMinMaxTime.minDate"
 			:maxDate="calcMinMaxTime.maxDate"
 			:minTime="calcMinMaxTime.minTime"
