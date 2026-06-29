@@ -27,7 +27,8 @@
 				:aria-valuemax="resizeMaxHeight"
 				:aria-controls="widgetId"
 				@pointerdown.stop.prevent="startResize"
-				@keydown="onResizeKeydown" />
+				@keydown.up.stop.prevent="onResizeKeydown(-RESIZE_KEYBOARD_STEP)"
+				@keydown.down.stop.prevent="onResizeKeydown(RESIZE_KEYBOARD_STEP)" />
 		</div>
 
 		<component
@@ -116,6 +117,7 @@ export default {
 			customWidget,
 			customWidgetHeight,
 			widgetId,
+			RESIZE_KEYBOARD_STEP,
 		}
 	},
 
@@ -323,12 +325,8 @@ export default {
 			window.addEventListener('pointerup', this.stopResize)
 		},
 
-		onResizeKeydown(event) {
+		onResizeKeydown(delta) {
 			if (!this.isResizable || !this.$refs.customWidget) {
-				return
-			}
-
-			if (!['ArrowDown', 'ArrowUp'].includes(event.key)) {
 				return
 			}
 
@@ -336,20 +334,7 @@ export default {
 			this.initResizeLimits()
 
 			const currentHeight = this.resizedHeight ?? this.resizeStartHeight
-
-			let next
-			switch (event.key) {
-				case 'ArrowDown':
-					next = currentHeight + RESIZE_KEYBOARD_STEP
-					break
-				case 'ArrowUp':
-					next = currentHeight - RESIZE_KEYBOARD_STEP
-					break
-				default:
-					return
-			}
-
-			event.preventDefault()
+			const next = currentHeight + delta
 			this.resizedHeight = Math.min(this.resizeMaxHeight, Math.max(this.resizeMinHeight, next))
 		},
 
