@@ -7,6 +7,7 @@
 	<div ref="widgetRoot" :class="{ 'toggle-interactive': hasInteractiveView && !isInteractive }">
 		<div
 			v-if="reference && hasCustomWidget"
+			:id="widgetId"
 			ref="customWidget"
 			class="widget-custom"
 			:class="{
@@ -20,7 +21,11 @@
 				role="slider"
 				tabindex="0"
 				aria-orientation="vertical"
-				:aria-label="t('Resize widget height')"
+				:aria-label="t('Widget height')"
+				:aria-valuenow="ariaValueNow"
+				:aria-valuemin="resizeMinHeight"
+				:aria-valuemax="resizeMaxHeight"
+				:aria-controls="widgetId"
 				@pointerdown.stop.prevent="startResize"
 				@keydown="onResizeKeydown" />
 		</div>
@@ -56,6 +61,7 @@ import { nextTick, ref } from 'vue'
 import { RouterLink } from 'vue-router'
 import NcButton from '../../components/NcButton/index.js'
 import { t } from '../../l10n.js'
+import { createElementId } from '../../utils/createElementId.ts'
 import { destroyWidget, hasFullWidth, hasInteractiveView, isResizable, isWidgetRegistered, renderWidget } from './../../functions/reference/widgets.ts'
 import { getRoute } from './autolink.js'
 
@@ -88,10 +94,14 @@ export default {
 	},
 
 	setup() {
+		const widgetId = `nc-reference-widget-${createElementId()}`
+
 		const isVisible = ref(false)
 		// This is the widget root node
 		const widgetRoot = ref()
+		const customWidget = ref()
 		const { width } = useElementSize(widgetRoot)
+		const { height: customWidgetHeight } = useElementSize(customWidget)
 
 		useIntersectionObserver(widgetRoot, ([entry]) => {
 			nextTick(() => {
@@ -103,6 +113,9 @@ export default {
 			width,
 			isVisible,
 			widgetRoot,
+			customWidget,
+			customWidgetHeight,
+			widgetId,
 		}
 	},
 
@@ -116,7 +129,7 @@ export default {
 			resizeStartY: 0,
 			resizeStartHeight: 0,
 			resizeMinHeight: 100,
-			resizeMaxHeight: null,
+			resizeMaxHeight: window.innerHeight - 120,
 		}
 	},
 
@@ -142,6 +155,10 @@ export default {
 				return null
 			}
 			return { height: `${this.resizedHeight}px !important` }
+		},
+
+		ariaValueNow() {
+			return Math.round(this.resizedHeight ?? this.customWidgetHeight)
 		},
 
 		hasInteractiveView() {
@@ -285,10 +302,10 @@ export default {
 				const parsedMin = parseFloat(computedStyle.minHeight)
 				const parsedMax = parseFloat(computedStyle.maxHeight)
 				this.resizeMinHeight = parsedMin > 0 ? parsedMin : 100
-				this.resizeMaxHeight = Number.isFinite(parsedMax) && parsedMax > 0 ? parsedMax : null
+				this.resizeMaxHeight = Number.isFinite(parsedMax) && parsedMax > 0 ? parsedMax : (window.innerHeight - 120)
 			} else {
 				this.resizeMinHeight = 100
-				this.resizeMaxHeight = null
+				this.resizeMaxHeight = window.innerHeight - 120
 			}
 		},
 
@@ -318,7 +335,6 @@ export default {
 			// Establish limits once per interaction
 			this.initResizeLimits()
 
-			const maxHeight = this.resizeMaxHeight ?? (window.innerHeight - 120)
 			const currentHeight = this.resizedHeight ?? this.resizeStartHeight
 
 			let next
@@ -334,7 +350,7 @@ export default {
 			}
 
 			event.preventDefault()
-			this.resizedHeight = Math.min(maxHeight, Math.max(this.resizeMinHeight, next))
+			this.resizedHeight = Math.min(this.resizeMaxHeight, Math.max(this.resizeMinHeight, next))
 		},
 
 		onResize(event) {
@@ -343,8 +359,7 @@ export default {
 			}
 
 			const deltaY = event.clientY - this.resizeStartY
-			const maxHeight = this.resizeMaxHeight ?? (window.innerHeight - 120)
-			this.resizedHeight = Math.min(maxHeight, Math.max(this.resizeMinHeight, this.resizeStartHeight + deltaY))
+			this.resizedHeight = Math.min(this.resizeMaxHeight, Math.max(this.resizeMinHeight, this.resizeStartHeight + deltaY))
 		},
 
 		stopResize() {

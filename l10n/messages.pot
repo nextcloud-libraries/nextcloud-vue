@@ -360,9 +360,6 @@ msgstr ""
 msgid "Rename project"
 msgstr ""
 
-msgid "Resize widget height"
-msgstr ""
-
 #. TRANSLATORS: A color name for RGB(191, 103, 139)
 msgid "Rosy brown"
 msgstr ""
@@ -494,6 +491,9 @@ msgid "Whiskey"
 msgstr ""
 
 msgid "White"
+msgstr ""
+
+msgid "Widget height"
 msgstr ""
 
 msgid "Write a message …"
