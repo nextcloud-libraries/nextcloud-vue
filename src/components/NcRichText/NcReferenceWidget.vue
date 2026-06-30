@@ -50,7 +50,7 @@ useIntersectionObserver(widgetRoot, ([entry]) => {
 
 const showInteractive = ref(false)
 const rendered = ref(false)
-let idleTimeout: NodeJS.Timeout | null = null
+let idleTimeout: number | null = null
 
 const isInteractive = computed(() => {
 	return (!props.interactiveOptIn && props.interactive) || showInteractive.value
