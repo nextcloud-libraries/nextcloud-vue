@@ -493,5 +493,8 @@ msgstr ""
 msgid "White"
 msgstr ""
 
+msgid "Widget height"
+msgstr ""
+
 msgid "Write a message …"
 msgstr ""

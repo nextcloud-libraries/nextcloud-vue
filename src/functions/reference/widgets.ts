@@ -19,6 +19,7 @@ export interface ReferenceWidgetProps {
 	id: string
 	hasInteractiveView: boolean
 	fullWidth: boolean
+	isResizable: boolean
 	callback: ReferenceWidgetRenderCallback
 	onDestroy: ReferenceWidgetDestroyCallback
 }
@@ -34,7 +35,10 @@ window._registerWidget ??= (id: string, callback: ReferenceWidgetRenderCallback,
  * @param id - Id tof the widget
  * @param callback - Render callback
  * @param onDestroy - Cleanup callback
- * @param props - Widget props
+ * @param props - Widget props (all optional)
+ * @param props.hasInteractiveView - Whether the widget exposes an interactive view (default: true)
+ * @param props.fullWidth - Whether the widget renders at full container width (default: false)
+ * @param props.isResizable - Whether the user can drag-resize the widget height (default: false)
  */
 export function registerWidget(
 	id: string,
@@ -45,6 +49,7 @@ export function registerWidget(
 	const propsWithDefaults = {
 		hasInteractiveView: true,
 		fullWidth: false,
+		isResizable: false,
 		...props,
 	}
 
@@ -124,4 +129,13 @@ export function hasInteractiveView(id: string): boolean {
  */
 export function hasFullWidth(id: string): boolean {
 	return !!window._vue_richtext_widgets[id]?.fullWidth
+}
+
+/**
+ * Check if the widget is resizable.
+ *
+ * @param id - Id of the widget
+ */
+export function isResizable(id: string): boolean {
+	return !!window._vue_richtext_widgets[id]?.isResizable
 }
