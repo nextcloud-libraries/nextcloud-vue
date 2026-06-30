@@ -1,4 +1,3 @@
-# 
 # Translators:
 # Martin Wilichowski, 2025
 # Ferdinand Thiessen, 2025
@@ -604,6 +603,9 @@ msgstr "Whiskey"
 
 msgid "White"
 msgstr "Weiß"
+
+msgid "Widget height"
+msgstr "Widget-Höhe"
 
 msgid "Write a message …"
 msgstr "Nachricht schreiben …"
