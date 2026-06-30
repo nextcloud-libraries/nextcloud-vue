@@ -545,6 +545,86 @@ export default {
 </script>
 ```
 
+### Wide buttons
+
+```vue
+<template>
+	<NcActions menu-name="Object management" wide>
+		<template #icon>
+			<IconPencilOutline :size="20" />
+		</template>
+		<NcActionButton>
+			<template #icon>
+				<IconPencilOutline :size="20" />
+			</template>
+			Rename
+		</NcActionButton>
+		<NcActionButton>
+			<template #icon>
+				<IconTrashCanOutline :size="20" />
+			</template>
+			Delete
+		</NcActionButton>
+		<NcActionButton>
+			<template #icon>
+				<IconArrowRight :size="20" />
+			</template>
+			Validate
+		</NcActionButton>
+		<NcActionButton>
+			<template #icon>
+				<IconTrayArrowDown :size="20" />
+			</template>
+			Download
+		</NcActionButton>
+	</NcActions>
+	<NcActions wide>
+		<template #icon>
+			<IconPencilOutline :size="20" />
+		</template>
+		<NcActionButton>
+			<template #icon>
+				<IconPencilOutline :size="20" />
+			</template>
+			Rename
+		</NcActionButton>
+		<NcActionButton>
+			<template #icon>
+				<IconTrashCanOutline :size="20" />
+			</template>
+			Delete
+		</NcActionButton>
+		<NcActionButton>
+			<template #icon>
+				<IconArrowRight :size="20" />
+			</template>
+			Validate
+		</NcActionButton>
+		<NcActionButton>
+			<template #icon>
+				<IconTrayArrowDown :size="20" />
+			</template>
+			Download
+		</NcActionButton>
+	</NcActions>
+</template>
+<script>
+import IconArrowRight from 'vue-material-design-icons/ArrowRight.vue'
+import IconTrashCanOutline from 'vue-material-design-icons/TrashCanOutline.vue'
+import IconTrayArrowDown from 'vue-material-design-icons/TrayArrowDown.vue'
+import IconPencilOutline from 'vue-material-design-icons/PencilOutline.vue'
+
+export default {
+	components: {
+		IconArrowRight,
+		IconTrashCanOutline,
+		IconTrayArrowDown,
+		IconPencilOutline,
+	},
+}
+</script>
+```
+
 ### Use cases
 
 ```vue
@@ -1092,6 +1172,14 @@ export default {
 			},
 
 			default: null,
+		},
+
+		/**
+		 * Specifies whether the button should span all the available width.
+		 */
+		wide: {
+			type: Boolean,
+			default: false,
 		},
 
 		/**
@@ -1694,13 +1782,19 @@ export default {
 				mergeProps(
 					propsToForward,
 					{
-						class: 'action-item action-item--single',
+						class: [
+							'action-item action-item--single',
+							{
+								'action-item--wide': this.wide,
+							},
+						],
 						'aria-label': action?.props?.['aria-label'] || text,
 						title,
 						disabled: this.disabled || action?.props?.disabled,
 						pressed: action?.props?.modelValue,
 						size: this.size,
 						type,
+						wide: this.wide,
 						// If it has a menuName, we use a secondary button
 						variant: this.variant || (buttonText ? 'secondary' : 'tertiary'),
 						onFocus: this.onFocus,
@@ -1759,6 +1853,7 @@ export default {
 						disabled: this.disabled,
 						size: this.size,
 						variant: this.triggerButtonVariant,
+						wide: this.wide,
 						ref: 'triggerButton',
 						'aria-label': this.menuName ? null : this.ariaLabel,
 						// 'aria-controls' should only present together with a valid aria-haspopup
@@ -1861,6 +1956,7 @@ export default {
 					`action-item--${this.triggerButtonVariant}`,
 					{
 						'action-item--open': this.opened,
+						'action-item--wide': this.wide,
 					},
 				],
 			},
@@ -1911,6 +2007,10 @@ export default {
 
 	&.action-item--open .action-item__menutoggle {
 		background-color: var(--open-background-color);
+	}
+
+	&.action-item--wide {
+		width: 100%;
 	}
 
 	&__menutoggle__icon {
