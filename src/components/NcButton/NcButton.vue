@@ -861,7 +861,7 @@ function onClick(event: MouseEvent) {
 	}
 
 	// Icon-only button
-	&:has(#{&}__text:empty) {
+	&:has(#{&}__text:empty):not(#{&}--wide) {
 		--button-padding: var(--button-radius);
 		line-height: 1;
 		width: var(--button-size) !important;
