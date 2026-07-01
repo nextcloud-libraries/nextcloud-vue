@@ -569,10 +569,6 @@ export default {
 
 	inheritAttrs: false,
 
-	setup() {
-		return { isLegacy34 }
-	},
-
 	props: {
 		/**
 		 * The details text displayed in the upper right part of the component
@@ -713,6 +709,10 @@ export default {
 		'update:menuOpen',
 	],
 
+	setup() {
+		return { isLegacy34 }
+	},
+
 	data() {
 		return {
 			hovered: false,
@@ -759,7 +759,7 @@ export default {
 		 * Handle link click
 		 *
 		 * @param {MouseEvent|KeyboardEvent} event - Native click or keydown event
-		 * @param {Function} [navigate] - VueRouter link's navigate if any
+		 * @param {(event: Event) => void} [navigate] - VueRouter link's navigate if any
 		 * @param {string} [routerLinkHref] - VueRouter link's href
 		 */
 		onClick(event, navigate, routerLinkHref) {

@@ -109,7 +109,7 @@ export default {
 				}">
 				<NcAppContentDetailsToggle v-if="showDetails" @click.stop.prevent="hideDetails" />
 
-				<div class="app-content-wrapper__list" v-show="!showDetails">
+				<div v-show="!showDetails" class="app-content-wrapper__list">
 					<slot name="list" />
 				</div>
 				<slot v-if="showDetails" />

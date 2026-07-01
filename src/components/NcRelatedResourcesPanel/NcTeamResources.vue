@@ -98,13 +98,18 @@ export default {
 		NcIconSvgWrapper,
 	},
 
-	/* eslint vue/require-prop-comment: warn -- TODO: Add a proper doc block about what this props do */
 	props: {
+		/**
+		 * The provider ID to fetch resources for
+		 */
 		providerId: {
 			type: String,
 			default: null,
 		},
 
+		/**
+		 * The item ID to fetch resources for
+		 */
 		itemId: {
 			type: [String, Number],
 			default: null,

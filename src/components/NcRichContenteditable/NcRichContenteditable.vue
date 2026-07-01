@@ -822,7 +822,7 @@ export default {
 		/**
 		 * Update the value text from the provided html
 		 *
-		 * @param {string} htmlOrText the html content (or raw text with @mentions)
+		 * @param {string} htmlOrText - The html content (or raw text with \@mentions)
 		 */
 		updateValue(htmlOrText) {
 			// Browsers keep <br> after erasing contenteditable

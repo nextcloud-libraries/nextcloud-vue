@@ -111,13 +111,16 @@ export default {
 		},
 
 		/**
-		 * Make the header name dynamic
+		 * The header text to show above the list of resources
 		 */
 		header: {
 			type: String,
 			default: t('Related resources'),
 		},
 
+		/**
+		 * The description text to show below the header
+		 */
 		description: {
 			type: String,
 			default: t('Anything shared with the same group of people will show up here'),
