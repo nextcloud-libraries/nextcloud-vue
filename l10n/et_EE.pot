@@ -1,4 +1,3 @@
-# 
 # Translators:
 # Joas Schilling, 2025
 # Priit Jõerüüt <transifex@joeruut.com>, 2026
@@ -599,6 +598,9 @@ msgstr "Viskikarva kollakaspruun"
 
 msgid "White"
 msgstr "Valge"
+
+msgid "Widget height"
+msgstr "Vidina kõrgus"
 
 msgid "Write a message …"
 msgstr "Koosta sõnum…"
