@@ -37,13 +37,6 @@ It can't be used multiple times on the same page.
  */
 export default {
 	name: 'NcGuestContent',
-	mounted() {
-		document.getElementById('content').classList.add('nc-guest-content')
-	},
-
-	destroyed() {
-		document.getElementById('content').classList.remove('nc-guest-content')
-	},
 }
 </script>
 
@@ -61,7 +54,7 @@ export default {
 </style>
 
 <style lang="scss">
-#content.nc-guest-content {
+#content:has(#guest-content-vue) {
 	// Enable scrolling
 	overflow: auto;
 
