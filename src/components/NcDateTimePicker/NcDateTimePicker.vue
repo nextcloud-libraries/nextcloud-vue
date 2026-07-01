@@ -293,6 +293,7 @@ import NcIconSvgWrapper from '../NcIconSvgWrapper/NcIconSvgWrapper.vue'
 import NcTimezonePicker from '../NcTimezonePicker/NcTimezonePicker.vue'
 import { t } from '../../l10n.ts'
 import NcButton from '../NcButton/index.ts'
+import useDateFnsLocale from './useDateFnsLocale.ts'
 
 type LibraryFormatOptions = VueDatePickerProps['format']
 
@@ -539,6 +540,8 @@ const placeholderFallback = computed(() => {
 	return t('Select date and time')
 })
 
+const dateFnsLocale = useDateFnsLocale(realLocale)
+
 /**
  * The date (time) formatting to be used by the library.
  * We use the provided format if possible, otherwise we provide a formatting function
@@ -775,7 +778,12 @@ function sameDay(a: Date, b: Date): boolean {
 
 <template>
 	<div class="vue-date-time-picker__wrapper">
+		<!-- Setting :key="dateFnsLocale.code" forces the component to rerender when `:formatLocale` changes.
+             Without it, the formatted date only changes after the user focuses on the text input.
+             This issue was only observed with :format="realFormat" being a pattern, e.g., 'dd MMM yyyy'.
+             See https://github.com/Vuepic/vue-datepicker/issues/1284  -->
 		<VueDatePicker
+			:key="dateFnsLocale.code"
 			ref="picker"
 			:aria-labels
 			:autoApply="!confirm"
@@ -787,6 +795,7 @@ function sameDay(a: Date, b: Date): boolean {
 			:placeholder="placeholder ?? placeholderFallback"
 			:format="realFormat"
 			:locale="realLocale"
+			:formatLocale="dateFnsLocale"
 			:minDate="calcMinMaxTime.minDate"
 			:maxDate="calcMinMaxTime.maxDate"
 			:minTime="calcMinMaxTime.minTime"
