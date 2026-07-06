@@ -64,6 +64,8 @@ export default defineConfig({
 
 		ctViteConfig: async () => ({
 			plugins: [
+				// Add to support multiple locales
+				(await import('./build/date-fns-locales-plugin.mts')).default(),
 				// normally added by default but we overwrite the plugins so we need to add it back manually
 				(await import('@vitejs/plugin-vue')).default(),
 				// We do have some dependencies that use node modules -> we need to polyfill

@@ -9,6 +9,7 @@ import { createLibConfig } from '@nextcloud/vite-config'
 import { globSync } from 'glob'
 import { join, resolve } from 'node:path'
 import { defineConfig } from 'vite'
+import dateFnsLocalesPlugin from './build/date-fns-locales-plugin.mts'
 import vueDocsPlugin from './build/docs-plugin.ts'
 import l10nPlugin from './build/l10n-plugin.mjs'
 import packageJson from './package.json' with { type: 'json' }
@@ -31,6 +32,7 @@ const entryPoints = {
 const overrides = defineConfig({
 	plugins: [
 		vueDocsPlugin,
+		dateFnsLocalesPlugin(),
 		l10nPlugin(resolve(import.meta.dirname, 'l10n')),
 	],
 	css: {
@@ -71,7 +73,7 @@ export default defineConfig((env) => {
 		// By default all dependencies are external, but no path imports
 		nodeExternalsOptions: {
 			// Packages with paths imports should be added here to mark them as external as well
-			include: [/^@nextcloud\/.+\//, /^@mdi\/svg\//],
+			include: [/^@nextcloud\/.+\//, /^@mdi\/svg\//, /^date-fns\/locale\//],
 			// Make sure to not provide uncompiled vue files as dependencies, this will break unit tests
 			exclude: [/\.vue(\?|$)/],
 		},
