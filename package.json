@@ -145,7 +145,7 @@
     "eslint": "^10.6.0",
     "file-loader": "^6.2.0",
     "gettext-extractor": "^4.0.6",
-    "gettext-parser": "^9.0.2",
+    "gettext-parser": "^9.1.1",
     "glob": "^13.0.6",
     "jsdom": "^29.1.1",
     "remark-gfm": "^4.0.1",
