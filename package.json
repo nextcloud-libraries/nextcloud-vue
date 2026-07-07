@@ -137,7 +137,7 @@
     "@playwright/test": "^1.61.1",
     "@types/gettext-parser": "^9.0.0",
     "@types/node": "^26.0.1",
-    "@vitest/coverage-v8": "^4.1.9",
+    "@vitest/coverage-v8": "^4.1.10",
     "@vue/test-utils": "^2.4.6",
     "@vue/tsconfig": "^0.9.1",
     "babel-loader-exclude-node-modules-except": "^1.2.4",
