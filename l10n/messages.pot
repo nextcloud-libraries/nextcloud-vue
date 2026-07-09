@@ -198,7 +198,7 @@ msgstr ""
 msgid "Escape"
 msgstr ""
 
-msgid "Estimating&nbsp;…"
+msgid "Estimating …"
 msgstr ""
 
 msgid "External documentation"
@@ -248,6 +248,10 @@ msgid "Increment minutes"
 msgstr ""
 
 msgid "Increment seconds"
+msgstr ""
+
+#. likely parsed "Date" from "Infinity" or "NaN"
+msgid "Invalid date"
 msgstr ""
 
 msgid "invisible"

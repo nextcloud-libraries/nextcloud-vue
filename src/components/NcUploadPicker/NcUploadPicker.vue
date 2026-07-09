@@ -13,7 +13,7 @@ import { openConflictPicker } from '@nextcloud/dialogs'
 import { getUniqueName } from '@nextcloud/files'
 import { getUploader, UploaderStatus, UploadStatus } from '@nextcloud/files/upload'
 import { basename } from '@nextcloud/paths'
-import { onBeforeMount, onUnmounted, ref, useTemplateRef, watch } from 'vue'
+import { computed, onBeforeMount, onUnmounted, ref, useTemplateRef, watch } from 'vue'
 import NcButton from '../NcButton/NcButton.vue'
 import NcFilePicker from '../NcFilePicker/NcFilePicker.vue'
 import NcIconSvgWrapper from '../NcIconSvgWrapper/NcIconSvgWrapper.vue'
@@ -95,17 +95,21 @@ const progressTimeId = createElementId()
 
 const uploadManager = getUploader()
 onBeforeMount(() => {
+	window.addEventListener('beforeunload', onBeforePageUnload)
 	uploadManager.addEventListener('uploadFinished', updateUploadStatus)
 	uploadManager.addEventListener('uploadStarted', updateUploadStatus)
 	uploadManager.addEventListener('uploadProgress', updateEta)
+	uploadManager.addEventListener('finished', updateUploadStatus)
 	uploadManager.addEventListener('paused', onUploaderPaused)
 	uploadManager.addEventListener('resumed', onUploaderResumed)
 	updateUploadStatus()
 })
 onUnmounted(() => {
+	window.removeEventListener('beforeunload', onBeforePageUnload)
 	uploadManager.removeEventListener('uploadFinished', updateUploadStatus)
 	uploadManager.removeEventListener('uploadStarted', updateUploadStatus)
 	uploadManager.removeEventListener('uploadProgress', updateEta)
+	uploadManager.removeEventListener('finished', updateUploadStatus)
 	uploadManager.removeEventListener('paused', onUploaderPaused)
 	uploadManager.removeEventListener('resumed', onUploaderResumed)
 })
@@ -133,8 +137,8 @@ const isOnlyAssembling = ref(false)
  * Update the upload status flags based on the current queue
  */
 function updateUploadStatus() {
+	isUploading.value = uploadManager.status === UploaderStatus.UPLOADING
 	hasFailure.value = uploadManager.queue.some((upload: IUpload) => upload.status === UploadStatus.FAILED)
-	isUploading.value = uploadManager.queue.some((upload: IUpload) => upload.status !== UploadStatus.CANCELLED)
 	isAssembling.value = uploadManager.queue.some((upload: IUpload) => upload.status === UploadStatus.ASSEMBLING)
 	isOnlyAssembling.value = isAssembling.value
 		&& uploadManager.queue.every((upload: IUpload) => (
@@ -169,13 +173,15 @@ function setDestination(destination: IFolder) {
 
 const etaProgress = ref(0)
 const etaSpeed = ref('')
-const etaTimeRaw = ref(0)
-const etaTime = useFormatRelativeTime(etaTimeRaw, { ignoreSeconds: true })
+const etaRaw = ref<number>(Infinity)
+const etaTimeRaw = computed(() => etaRaw.value === Infinity ? Infinity : new Date(Date.now() + etaRaw.value))
+const etaTimeFormatted = useFormatRelativeTime(etaTimeRaw, { ignoreSeconds: true })
+const etaTime = computed(() => etaTimeRaw.value === Infinity ? t('Estimating …') : etaTimeFormatted.value)
 /** Update the ETA and speed values */
 function updateEta() {
-	etaTimeRaw.value = uploadManager.statistics.eta === Infinity ? Infinity : uploadManager.statistics.eta * 1000
+	etaRaw.value = uploadManager.statistics.eta === Infinity ? Infinity : (uploadManager.statistics.eta * 1000)
 	etaSpeed.value = uploadManager.statistics.speedReadable
-	etaProgress.value = uploadManager.statistics.eta.progress
+	etaProgress.value = uploadManager.statistics.progress
 }
 
 /**
@@ -229,10 +235,21 @@ async function handleConflicts(nodes: string[], currentPath: string): Promise<Re
  * Cancel ongoing queue
  */
 function onCancel() {
-	uploadManager.queue.forEach((upload: IUpload) => {
-		upload.cancel()
-	})
+	uploadManager.reset()
 	reset()
+}
+
+/**
+ * Handle page unload.
+ * Block the unload if there are ongoing uploads.
+ *
+ * @param event - The event
+ */
+function onBeforePageUnload(event: BeforeUnloadEvent) {
+	if (uploadManager.queue.length > 0) {
+		event.preventDefault()
+		event.returnValue = ''
+	}
 }
 </script>
 
@@ -275,9 +292,9 @@ function onCancel() {
 					{{ t('assembling') }}
 				</span>
 				<span v-else :title="`${etaTime} (${etaSpeed})`">
-					{{ etaTimeRaw === Infinity ? t('Estimating …') : etaTime }}
+					{{ etaTime }}
 					<!-- the speed is included in the tooltip / title so we only show it in the text content if there is enough space (not showing "a few seconds left") -->
-					<span v-if="etaSpeed && etaTimeRaw > 60000">
+					<span v-if="etaSpeed && etaRaw > 31000" :class="$style.uploadPicker_progressLabelSpeed">
 						({{ etaSpeed }})
 					</span>
 				</span>
@@ -324,6 +341,10 @@ function onCancel() {
 	overflow: hidden;
 	white-space: nowrap;
 	text-overflow: ellipsis;
+}
+
+.uploadPicker_progressLabelSpeed{
+	color: var(--color-text-maxcontrast);
 }
 
 @keyframes breathing {
