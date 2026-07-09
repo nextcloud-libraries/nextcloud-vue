@@ -87,7 +87,11 @@ export function useFormatRelativeTime(
 	 * This is the callback for the interval.
 	 */
 	function updateRelativeTime() {
-		relativeTime.value = formatRelativeTime(date.value, options.value)
+		if (Number.isNaN(date.value.getTime())) {
+			relativeTime.value = t('Invalid date') // likely parsed "Date" from "Infinity" or "NaN"
+		} else {
+			relativeTime.value = formatRelativeTime(date.value, options.value)
+		}
 
 		if (toValue(opts).update !== false) {
 			const diff = Math.abs(Date.now() - new Date(toValue(timestamp)).getTime())
