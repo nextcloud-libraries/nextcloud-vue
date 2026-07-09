@@ -241,6 +241,9 @@ msgstr ""
 msgid "Increment seconds"
 msgstr ""
 
+msgid "Invalid date"
+msgstr ""
+
 msgid "invisible"
 msgstr ""
 

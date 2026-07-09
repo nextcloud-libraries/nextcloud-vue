@@ -80,19 +80,27 @@ export function useFormatRelativeTime(
 	 * The formatted relative time
 	 */
 	const relativeTime = ref('')
-	watchEffect(() => updateRelativeTime())
+	watchEffect(updateRelativeTime)
 
 	/**
 	 * Update the relative time string.
 	 * This is the callback for the interval.
 	 */
 	function updateRelativeTime() {
-		relativeTime.value = formatRelativeTime(date.value, options.value)
+		const timestamp = date.value.getTime()
+		if (Number.isNaN(timestamp)) {
+			// likely parsed "Date" from "Infinity" or "NaN"
+			relativeTime.value = t('Invalid date')
+			// no further update until the timestamp is valid again
+			return
+		} else {
+			relativeTime.value = formatRelativeTime(date.value, options.value)
+		}
 
 		if (toValue(opts).update !== false) {
-			const diff = Math.abs(Date.now() - new Date(toValue(timestamp)).getTime())
-			const interval = diff > 120000 || options.value.ignoreSeconds
-				? Math.min(diff / 60, 1800000)
+			const diff = Math.abs(Date.now() - timestamp)
+			const interval = diff > 120_000 || options.value.ignoreSeconds
+				? Math.min(diff / 60, 1_800_000) // max. 30 minutes
 				: 1000
 			timeoutId = window.setTimeout(updateRelativeTime, interval)
 		}
