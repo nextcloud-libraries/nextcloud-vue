@@ -569,10 +569,6 @@ export default {
 
 	inheritAttrs: false,
 
-	setup() {
-		return { isLegacy34 }
-	},
-
 	props: {
 		/**
 		 * The details text displayed in the upper right part of the component
@@ -712,6 +708,10 @@ export default {
 		'dragstart',
 		'update:menuOpen',
 	],
+
+	setup() {
+		return { isLegacy34 }
+	},
 
 	data() {
 		return {
