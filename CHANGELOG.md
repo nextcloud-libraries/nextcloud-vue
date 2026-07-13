@@ -7,6 +7,31 @@
 
 All notable changes to this project will be documented in this file.
 
+## [v9.9.0](https://github.com/nextcloud-libraries/nextcloud-vue/tree/v9.9.0) (2026-07-13)
+[Full Changelog](https://github.com/nextcloud-libraries/nextcloud-vue/compare/v9.8.2...v9.9.0)
+
+## What's Changed
+### 🚀 Enhancements
+* feat(referencePicker): introduce getReferenceWithPicker() [\#8532](https://github.com/nextcloud-libraries/nextcloud-vue/pull/8532) \([mejo-](https://github.com/mejo-)\)
+* feat(NcReferenceWidget): allow to enable resizable widget height [\#8695](https://github.com/nextcloud-libraries/nextcloud-vue/pull/8695)
+* feat(NcActions): add wide prop for full-width menus [\#8698](https://github.com/nextcloud-libraries/nextcloud-vue/pull/8698) \([Chartman123](https://github.com/Chartman123)\)
+### 🐛 Fixed bugs
+* fix(NcAppNavigation): deactivate focus on resize [\#8646](https://github.com/nextcloud-libraries/nextcloud-vue/pull/8646) \([Antreesy](https://github.com/Antreesy)\)
+* fix(NcDateTimePicker): correct button icon color [\#8632](https://github.com/nextcloud-libraries/nextcloud-vue/pull/8632) \([pallavibakale](https://github.com/pallavibakale)\)
+* fix(NcDateTimePicker): use same locale for formatting and UI elements [\#8643](https://github.com/nextcloud-libraries/nextcloud-vue/pull/8643) \([odzhychko](https://github.com/odzhychko)\)
+* fix(NcGuestContent): migrate style assignment fully to CSS [\#8677](https://github.com/nextcloud-libraries/nextcloud-vue/pull/8677) \([Antreesy](https://github.com/Antreesy)\)
+### Other Changes
+* fix(NcAppSettingsDialog): prevent style leaking to nested dialogs [\#8645](https://github.com/nextcloud-libraries/nextcloud-vue/pull/8645) \([Antreesy](https://github.com/Antreesy)\)
+* test(NcFilePicker): fix flaky tests [\#8619](https://github.com/nextcloud-libraries/nextcloud-vue/pull/8619) \([odzhychko](https://github.com/odzhychko)\)
+* chore: add Development container [\#8618](https://github.com/nextcloud-libraries/nextcloud-vue/pull/8618) \([odzhychko](https://github.com/odzhychko)\)
+* chore: resolve ESLint warnings [\#8683](https://github.com/nextcloud-libraries/nextcloud-vue/pull/8683) \([susnux](https://github.com/susnux)\)
+* Updated dependencies
+* Updated translations
+
+## New Contributors
+* @odzhychko made their first contribution in https://github.com/nextcloud-libraries/nextcloud-vue/pull/8619
+* @pallavibakale made their first contribution in https://github.com/nextcloud-libraries/nextcloud-vue/pull/8632
+
 ## [v9.8.2](https://github.com/nextcloud-libraries/nextcloud-vue/tree/v9.8.2) (2026-06-02)
 [Full Changelog](https://github.com/nextcloud-libraries/nextcloud-vue/compare/v9.8.1...v9.8.2)
 
