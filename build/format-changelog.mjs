@@ -10,6 +10,16 @@ import process from 'node:process'
 import { fileURLToPath } from 'node:url'
 
 /**
+ * GitHub handles whose authorship reference is omitted from the changelog,
+ * e.g. bots that only forward other people's work (backports, translations).
+ */
+const IGNORED_AUTHORS = [
+	'backportbot[bot]',
+	'nextcloud-bot',
+	'transifex-integration[bot]',
+]
+
+/**
  * Run against CHANGELOG.md if executed as:
  * - package.json script | `npm run prerelease:format-changelog`
  * - Node.js script | `node build/format-changelog.mjs`
@@ -24,6 +34,8 @@ if (process.argv[1] === fileURLToPath(import.meta.url)) {
  *   by @foo in https://github.com/nextcloud-libraries/nextcloud-vue/pull/42
  * becomes
  *   [\#42](…/pull/42) \([foo](https://github.com/foo)\)
+ * For handles in IGNORED_AUTHORS the authorship suffix is dropped, leaving just
+ *   [\#42](…/pull/42)
  *
  * @param {string} content the changelog (or release notes) markdown
  * @return {string} the formatted markdown
@@ -31,7 +43,13 @@ if (process.argv[1] === fileURLToPath(import.meta.url)) {
 export function formatChangelog(content) {
 	return content.replaceAll(
 		/by @([^ ]+) in ((https:\/\/github.com\/)nextcloud-libraries\/nextcloud-vue\/pull\/(\d+))/g,
-		'[\\#$4]($2) \\([$1]($3$1)\\)',
+		(match, handle, prUrl, baseUrl, prNumber) => {
+			const link = `[\\#${prNumber}](${prUrl})`
+			if (IGNORED_AUTHORS.includes(handle)) {
+				return link
+			}
+			return `${link} \\([${handle}](${baseUrl}${handle})\\)`
+		},
 	)
 }
 
