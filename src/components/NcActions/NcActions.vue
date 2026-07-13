@@ -1753,7 +1753,7 @@ export default {
 		 * Render the provided action
 		 *
 		 * @param {import('vue').VNode} action the action to render
-		 * @return {Function} the vue render function
+		 * @return {import('vue').VNode}
 		 */
 		const renderInlineAction = (action) => {
 			const iconProp = action?.props?.icon
@@ -1814,7 +1814,7 @@ export default {
 		 * Render the actions popover
 		 *
 		 * @param {Array} actions the actions to render within
-		 * @return {Function} the vue render function
+		 * @return {import('vue').VNode}
 		 */
 		const renderActionsPopover = (actions) => {
 			const triggerIcon = isSlotPopulated(this.$slots.icon?.())

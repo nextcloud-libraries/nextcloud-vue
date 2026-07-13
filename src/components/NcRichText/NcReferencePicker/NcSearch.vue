@@ -106,6 +106,9 @@ export default {
 			required: true,
 		},
 
+		/**
+		 * Whether to show the empty content when there are no search results
+		 */
 		showEmptyContent: {
 			type: Boolean,
 			default: true,

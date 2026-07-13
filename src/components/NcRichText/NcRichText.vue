@@ -360,6 +360,9 @@ export default {
 			default: '',
 		},
 
+		/**
+		 * Arguments for the richobjects
+		 */
 		arguments: {
 			type: Object,
 			default: () => {
@@ -367,16 +370,25 @@ export default {
 			},
 		},
 
+		/**
+		 * Limit the number of reference widgets to render
+		 */
 		referenceLimit: {
 			type: Number,
 			default: 0,
 		},
 
+		/**
+		 * Whether to render the widgets in interactive mode (if available)
+		 */
 		referenceInteractive: {
 			type: Boolean,
 			default: true,
 		},
 
+		/**
+		 * Whether to show user an option to enable to interactive mode for widgets (if available)
+		 */
 		referenceInteractiveOptIn: {
 			type: Boolean,
 			default: false,
