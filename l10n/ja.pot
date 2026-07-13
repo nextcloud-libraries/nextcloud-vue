@@ -1,4 +1,3 @@
-# 
 # Translators:
 # Joas Schilling, 2025
 # kshimohata, 2025
@@ -597,6 +596,9 @@ msgstr "ウイスキー"
 
 msgid "White"
 msgstr "白"
+
+msgid "Widget height"
+msgstr "ウィジェットの高さ"
 
 msgid "Write a message …"
 msgstr "メッセージを書く ..."

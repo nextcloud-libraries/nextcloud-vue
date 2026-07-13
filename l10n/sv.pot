@@ -2,10 +2,11 @@
 # Joas Schilling, 2025
 # Johan Bernhardsson <johan@kafit.se>, 2025
 # Magnus Höglund, 2026
+# Peter Lundin, 2026
 # 
 msgid ""
 msgstr ""
-"Last-Translator: Magnus Höglund, 2026\n"
+"Last-Translator: Peter Lundin, 2026\n"
 "Language-Team: Swedish (https://app.transifex.com/nextcloud/teams/64236/sv/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Language: sv\n"
@@ -599,6 +600,9 @@ msgstr "Whisky"
 
 msgid "White"
 msgstr "Vit"
+
+msgid "Widget height"
+msgstr "Widget höjd"
 
 msgid "Write a message …"
 msgstr "Skriv ett meddelande …"
