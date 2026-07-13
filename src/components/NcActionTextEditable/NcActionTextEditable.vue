@@ -239,6 +239,8 @@ $input-margin: 4px;
 	&:deep(.material-design-icon) {
 		width: var(--default-clickable-area);
 		height: var(--default-clickable-area);
+		align-self: flex-start;
+		margin-top: var(--default-grid-baseline);
 		opacity: $opacity_full;
 
 		.material-design-icon__svg {
