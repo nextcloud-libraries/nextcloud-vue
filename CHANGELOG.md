@@ -5,6 +5,25 @@
 
 # Changelog
 
+## [v8.40.0](https://github.com/nextcloud-libraries/nextcloud-vue/tree/v8.40.0) (2026-07-13)
+[Full Changelog](https://github.com/nextcloud-libraries/nextcloud-vue/compare/v8.39.0...v8.40.0)
+
+## What's Changed
+### 🚀 Enhancements
+* [stable8] feat: Semantic font weights for interactive elements [\#8519](https://github.com/nextcloud-libraries/nextcloud-vue/pull/8519) \([kra-mo](https://github.com/kra-mo)\)
+* [stable8] feat(NcReferenceWidget): allow to enable resizable widget height [\#8665](https://github.com/nextcloud-libraries/nextcloud-vue/pull/8665) \([mejo-](https://github.com/mejo-)\)
+### 🐛 Fixed bugs
+* [stable8] fix: use correct boundaries of CSS breakpoints [\#8543](https://github.com/nextcloud-libraries/nextcloud-vue/pull/8543)
+* fix(NcAppNavigationItem): Make active state darker than hover [\#8533](https://github.com/nextcloud-libraries/nextcloud-vue/pull/8533) \([nfebe](https://github.com/nfebe)\)
+* [stable8] fix(NcAppContent): background blur may be missing after minification [\#8566](https://github.com/nextcloud-libraries/nextcloud-vue/pull/8566)
+* [stable8] fix(NcRichText): handle new lines when parsing reference links [\#8568](https://github.com/nextcloud-libraries/nextcloud-vue/pull/8568)
+* [stable8] fix(NcAppSidebarTab): Reduce pill height [\#8553](https://github.com/nextcloud-libraries/nextcloud-vue/pull/8553) \([kra-mo](https://github.com/kra-mo)\)
+* [stable8] fix(build): include full package version for CSS hash prefix [\#8584](https://github.com/nextcloud-libraries/nextcloud-vue/pull/8584) \([Antreesy](https://github.com/Antreesy)\)
+* [stable8] fix(NcGuestContent): migrate style assignment fully to CSS [\#8696](https://github.com/nextcloud-libraries/nextcloud-vue/pull/8696)
+
+### Other Changes
+* Updated dependencies
+
 ## [v8.39.0](https://github.com/nextcloud-libraries/nextcloud-vue/tree/v8.39.0) (2026-05-07)
 [Full Changelog](https://github.com/nextcloud-libraries/nextcloud-vue/compare/v8.38.0...v8.39.0)
 
