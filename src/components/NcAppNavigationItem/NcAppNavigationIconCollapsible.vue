@@ -41,10 +41,6 @@ export default {
 		ChevronUp,
 	},
 
-	setup() {
-		return { isLegacy34 }
-	},
-
 	props: {
 		/**
 		 * Is the list currently open (or collapsed)
@@ -65,6 +61,10 @@ export default {
 	},
 
 	emits: ['click'],
+
+	setup() {
+		return { isLegacy34 }
+	},
 
 	computed: {
 		labelButton() {

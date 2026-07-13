@@ -27,7 +27,7 @@ const props = withDefaults(defineProps<{
 	/** Disabled state */
 	disabled?: boolean
 	/** Switch toggle model value */
-	modelValue: boolean // eslint-disable-line vue/no-unused-properties
+	modelValue: boolean
 }>(), {
 	label: undefined,
 	description: undefined,
