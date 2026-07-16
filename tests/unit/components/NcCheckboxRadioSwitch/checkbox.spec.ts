@@ -140,4 +140,30 @@ describe('NcCheckboxRadioSwitch', () => {
 
 		wrapper.unmount()
 	})
+
+	it('sets role="switch" on a switch input', () => {
+		const wrapper = mount(NcCheckboxRadioSwitch, {
+			props: {
+				type: 'switch',
+			},
+			slots: {
+				default: 'Test',
+			},
+		})
+
+		expect(wrapper.find('input').attributes('role')).toBe('switch')
+	})
+
+	it.each(['checkbox', 'radio'] as const)('does not set a role on a %s input', (type) => {
+		const wrapper = mount(NcCheckboxRadioSwitch, {
+			props: {
+				type,
+			},
+			slots: {
+				default: 'Test',
+			},
+		})
+
+		expect(wrapper.find('input').attributes('role')).toBeUndefined()
+	})
 })
