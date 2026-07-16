@@ -4,7 +4,7 @@
   -->
 
 <script setup lang="ts">
-import { mdiMenu, mdiMenuOpen } from '@mdi/js'
+import { mdiDockLeft } from '@mdi/js'
 import { computed } from 'vue'
 import NcIconSvgWrapper from '../NcIconSvgWrapper/NcIconSvgWrapper.vue'
 import { t } from '../../l10n.ts'
@@ -31,7 +31,7 @@ const title = computed(() => open.value ? t('Close navigation') : t('Open naviga
 			variant="tertiary"
 			@click="open = !open">
 			<template #icon>
-				<NcIconSvgWrapper :path="open ? mdiMenuOpen : mdiMenu" />
+				<NcIconSvgWrapper :path="mdiDockLeft" directional />
 			</template>
 		</NcButton>
 	</div>
