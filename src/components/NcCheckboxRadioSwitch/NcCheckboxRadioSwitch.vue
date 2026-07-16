@@ -300,6 +300,7 @@ export default {
 			class="checkbox-radio-switch__input"
 			:disabled="disabled"
 			:type="inputType"
+			:role="inputRole"
 			:value="value"
 			:checked="isChecked"
 			:indeterminate.prop="hasIndeterminate ? indeterminate : null"
@@ -616,6 +617,16 @@ export default {
 				return this.internalType
 			}
 			return TYPE_CHECKBOX
+		},
+
+		/**
+		 * ARIA role for the input. A switch renders as a native checkbox, so it
+		 * needs an explicit `switch` role to be announced correctly.
+		 *
+		 * @return {string|undefined}
+		 */
+		inputRole() {
+			return this.internalType === TYPE_SWITCH ? 'switch' : undefined
 		},
 
 		/**
