@@ -3,13 +3,13 @@
 # Elena Mishina, 2025
 # Igor Orlov, 2025
 # Leonid Fedotov, 2025
-# Maksim Sukharev, 2025
 # Александр, 2026
 # ashed <craysy@gmail.com>, 2026
+# Maksim Sukharev, 2026
 # 
 msgid ""
 msgstr ""
-"Last-Translator: ashed <craysy@gmail.com>, 2026\n"
+"Last-Translator: Maksim Sukharev, 2026\n"
 "Language-Team: Russian (https://app.transifex.com/nextcloud/teams/64236/ru/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Language: ru\n"
@@ -605,6 +605,9 @@ msgstr "Виски"
 
 msgid "White"
 msgstr "Белый"
+
+msgid "Widget height"
+msgstr "Высота виджета"
 
 msgid "Write a message …"
 msgstr "Напишите сообщение …"
