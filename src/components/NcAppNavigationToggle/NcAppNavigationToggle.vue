@@ -15,17 +15,18 @@
 			variant="tertiary"
 			@click="toggleNavigation">
 			<template #icon>
-				<MenuOpenIcon v-if="open" :size="20" />
-				<MenuIcon v-else :size="20" />
+				<DockRight v-if="isRtl" :size="20" />
+				<DockLeft v-else :size="20" />
 			</template>
 		</NcButton>
 	</div>
 </template>
 
 <script>
-import MenuIcon from 'vue-material-design-icons/Menu.vue'
-import MenuOpenIcon from 'vue-material-design-icons/MenuOpen.vue'
+import DockLeft from 'vue-material-design-icons/DockLeft.vue'
+import DockRight from 'vue-material-design-icons/DockRight.vue'
 import { t } from '../../l10n.js'
+import { isRtl } from '../../utils/rtl.ts'
 import NcButton from '../NcButton/index.js'
 
 const disableKeyboardShortcuts = window.OCP?.Accessibility?.disableKeyboardShortcuts?.()
@@ -34,16 +35,15 @@ export default {
 	name: 'NcAppNavigationToggle',
 
 	components: {
+		DockLeft,
+		DockRight,
 		NcButton,
-		MenuIcon,
-		MenuOpenIcon,
 	},
 
 	props: {
 		/**
 		 * Tracks whether the toggle has been clicked or not.
-		 * If it has been clicked, switches between the different MenuIcons
-		 * and emits a boolean indicating its opened status
+		 * If it has been clicked, emits a boolean indicating its opened status
 		 */
 		open: {
 			type: Boolean,
@@ -54,7 +54,10 @@ export default {
 	emits: ['update:open'],
 
 	setup() {
-		return { disableKeyboardShortcuts }
+		return {
+			isRtl,
+			disableKeyboardShortcuts,
+		}
 	},
 
 	computed: {
