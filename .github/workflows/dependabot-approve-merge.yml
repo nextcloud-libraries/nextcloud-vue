@@ -26,6 +26,13 @@ jobs:
   auto-approve-merge:
     if: github.event.pull_request.user.login == 'dependabot[bot]' || github.event.pull_request.user.login == 'renovate[bot]'
     runs-on: ubuntu-latest
+    env:
+      # env variable for maintainers: 'true' allows to auto-merge 1.0.2 -> 2.0.0
+      ALLOW_MAJOR: false
+      # env variable for maintainers: 'true' allows to auto-merge 1.0.2 -> 1.1.0
+      ALLOW_MINOR: true
+      # env variable for maintainers: RegExp string to ignore some dependencies from auto-approve and auto-merge
+      IGNORE_PATTERN: ''
     permissions:
       # for auto-approve step to work
       pull-requests: write
@@ -76,22 +83,6 @@ jobs:
         env:
           PR_URL: ${{ github.event.pull_request.html_url }}
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
-      # Nextcloud bot approve
-      - name: Nextcloud Bot approve
-        uses: hmarr/auto-approve-action@f0939ea97e9205ef24d872e76833fa908a770363 # v4.0.0
-        if: ${{
-          startsWith(steps.branchname.outputs.branch, 'dependabot/')
-          && steps.auto_approve.conclusion == 'success'
-          && (github.event.action == 'opened' || github.event.action == 'reopened')
-          && (
-            steps.metadata.outputs.update-type == 'version-update:semver-patch'
-            || (fromJSON(env.ALLOW_MINOR) && steps.metadata.outputs.update-type == 'version-update:semver-minor')
-            || (fromJSON(env.ALLOW_MAJOR) && steps.metadata.outputs.update-type == 'version-update:semver-major')
-          )
-          }}
-        with:
-          github-token: ${{ secrets.DEPENDABOT_AUTOMERGE_TOKEN }}
 
       # Enable GitHub auto merge
       - name: Auto merge
