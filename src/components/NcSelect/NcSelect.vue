@@ -1145,7 +1145,7 @@ export default {
 	/* Actions */
 	--vs-actions-padding: 0 8px 0 8px;
 	/* Override default vue-select styles */
-	min-height: calc(var(--default-clickable-area) - 2 * var(--border-width-input));
+	min-height: calc(var(--default-clickable-area) - 2 * var(--border-width-input, 2px));
 	min-width: 260px;
 	margin: 0 0 var(--default-grid-baseline);
 
@@ -1169,10 +1169,13 @@ export default {
 		width: 100%;
 		--input-padding-end: calc(var(--default-clickable-area) + var(--default-grid-baseline));
 
-		// Neutralize vue-select defaults on the wrapper div (no longer the native input)
+		// Neutralize vue-select defaults on the wrapper div (no longer the native input).
+		// The height reset also beats legacy global styles (e.g. bundled by the server)
+		// that force a fixed height on `.vs__search` from the old native-input design.
 		border: none !important;
 		margin: 0 !important;
 		padding: 0 !important;
+		height: auto !important;
 	}
 
 	// Force floating label when a value is selected (search input is empty but a value exists)
