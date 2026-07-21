@@ -254,6 +254,85 @@ test.describe('NcSelect - e2e flows', () => {
 	})
 })
 
+test.describe('NcSelect - event bindings', () => {
+	// The search-slot events are bound one by one onto NcTextField, so these
+	// exercise each forwarded handler reaching the native <input>.
+
+	test('typing forwards the input event and filters options', async ({ mount, page }) => {
+		const component = await mount(NcSelectStory)
+		await component.getByRole('combobox').click()
+		await component.getByRole('combobox').fill('qu')
+		// input event reached vue-select -> filteredOptions updated
+		expect(await page.getByRole('option').all()).toHaveLength(2)
+		await expect(page.getByRole('option', { name: 'qux' })).toBeVisible()
+	})
+
+	test('keydown ArrowDown opens and navigates', async ({ mount, page }) => {
+		const component = await mount(NcSelectStory)
+		const combobox = component.getByRole('combobox')
+		await combobox.focus()
+		// closed until a key is pressed
+		await expect(page.getByRole('option').first()).not.toBeVisible()
+		await combobox.press('ArrowDown')
+		await expect(page.getByRole('option').first()).toBeVisible()
+	})
+
+	test('focus does not auto-open the dropdown (WCAG 3.2.1)', async ({ mount, page }) => {
+		const component = await mount(NcSelectStory)
+		// focus handler is bound but must not open on focus
+		await component.locator('input').focus()
+		await expect(component.locator('input')).toBeFocused()
+		await expect(page.getByRole('option').first()).not.toBeVisible()
+	})
+
+	test('blur closes an open dropdown', async ({ mount, page }) => {
+		const component = await mount(NcSelectStory)
+		await component.getByRole('combobox').click()
+		await expect(page.getByRole('option').first()).toBeVisible()
+
+		// blur handler must close the options
+		await component.locator('input').evaluate((el: HTMLElement) => el.blur())
+		await expect(page.getByRole('option').first()).not.toBeVisible()
+	})
+
+	test('Enter during IME composition does not select', async ({ mount, page }) => {
+		const emitted: unknown[] = []
+		const component = await mount(NcSelectStory, {
+			props: { multiple: true },
+			on: { selected: (data) => emitted.push(data) },
+		})
+		const input = component.locator('input')
+		await input.click()
+		await expect(page.getByRole('option', { name: 'foo' })).toBeVisible()
+
+		// Start composing: compositionstart handler sets vue-select isComposing = true
+		await input.evaluate((el) => el.dispatchEvent(new CompositionEvent('compositionstart')))
+		await input.pressSequentially('f')
+		await input.press('Enter')
+		// Enter must be swallowed while composing
+		expect(emitted).toHaveLength(0)
+
+		// End composition: compositionend handler clears isComposing
+		await input.evaluate((el) => el.dispatchEvent(new CompositionEvent('compositionend')))
+		await input.press('Enter')
+		expect(emitted).toHaveLength(1)
+		expect(emitted[0]).toEqual(['foo'])
+	})
+
+	test('Escape closes without emitting a selection', async ({ mount, page }) => {
+		const emitted: unknown[] = []
+		const component = await mount(NcSelectStory, {
+			on: { selected: (data) => emitted.push(data) },
+		})
+		await component.getByRole('combobox').click()
+		await expect(page.getByRole('option').first()).toBeVisible()
+
+		await component.getByRole('combobox').press('Escape')
+		await expect(page.getByRole('option').first()).not.toBeVisible()
+		expect(emitted).toHaveLength(0)
+	})
+})
+
 test.describe('NcSelect - review regressions', () => {
 	test('typing a query hides the selected value', async ({ mount }) => {
 		const component = await mount(NcSelectStory, {
