@@ -1014,7 +1014,7 @@ export default {
 							addClass,
 							togglePlacementClass,
 							// On top placement, leave a gap for the floating label overhang
-							// (half the 13px/1.5 label line-height) instead of connecting seamlessly
+							// (about half the floated label line-height) instead of connecting seamlessly
 							offset(({ placement }) => (placement.startsWith('top') ? 10 : -1)),
 							shift({ limiter: limitShift() }),
 						],
@@ -1178,7 +1178,7 @@ export default {
 	// Force floating label when a value is selected (search input is empty but a value exists)
 	.vs__selected-options:has(.vs__selected) .vs__search {
 		.input-field__input + .input-field__label {
-			--input-label-font-size: 13px;
+			--input-label-font-size: var(--font-size-small, 13px);
 			line-height: 1.5;
 			inset-block-start: calc(-1.5 * var(--input-label-font-size) / 2);
 			font-weight: 500;
@@ -1397,7 +1397,7 @@ export default {
 		// Float label when has tags or dropdown is open
 		&:has(.vs__selected) .select__label,
 		&.vs--open .select__label {
-			--input-label-font-size: 13px;
+			--input-label-font-size: var(--font-size-small, 13px);
 			font-size: var(--input-label-font-size);
 			line-height: 1.5;
 			// Match NcInputField: half the line-height above the border
