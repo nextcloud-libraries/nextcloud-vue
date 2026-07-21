@@ -484,7 +484,7 @@ export default {
 		</template>
 		<template #search="{ attributes, events }">
 			<!--
-				v-bind MUST come before explicit props — Vue 3 last-binding-wins.
+				v-bind MUST come before explicit props, Vue 3 last-binding-wins.
 				We spread vue-select attributes but null out placeholder/value/modelValue
 				so our explicit bindings below take precedence.
 			-->
@@ -963,7 +963,11 @@ export default {
 				const addClass = {
 					name: 'addClass',
 					fn(/* middlewareArgs */) {
-						dropdownMenu.classList.add('vs__dropdown-menu--floating')
+						// `nc-select__dropdown` scopes our menu styles: the menu is
+						// teleported to <body>, so it cannot be reached by the
+						// `.nc-select` root scope and would otherwise style every
+						// vue-select dropdown on the page (cross-version conflicts).
+						dropdownMenu.classList.add('vs__dropdown-menu--floating', 'nc-select__dropdown')
 						return {}
 					},
 				}
@@ -1296,7 +1300,7 @@ export default {
 	&.vs--multiple {
 		.vs__dropdown-toggle {
 			// Use transparent border in closed state to reserve the same space
-			// as the open state's real border — prevents layout jump on click
+			// as the open state's real border, prevents layout jump on click
 			border: var(--border-width-input-focused, 2px) solid transparent;
 			box-shadow: var(--input-border-box-shadow);
 			// Top padding for floating label clearance, no bottom padding
@@ -1324,13 +1328,13 @@ export default {
 			outline: 2px solid var(--color-main-background);
 		}
 
-		// Remove NcTextField border in multi mode — border is on dropdown-toggle
+		// Remove NcTextField border in multi mode, border is on dropdown-toggle
 		.vs__search .input-field__input {
 			box-shadow: none !important;
 			background: transparent;
 		}
 
-		// NcTextField shares flex row with tags — always inline, no absolute hiding.
+		// NcTextField shares flex row with tags, always inline, no absolute hiding.
 		// No min-width: it may shrink fully so it never forces an empty wrap row
 		// (matches vue-select's own search sizing)
 		.vs__search {
@@ -1356,7 +1360,7 @@ export default {
 			}
 		}
 
-		// No label margin needed — label is via #header
+		// No label margin needed, label is via #header
 		.vs__search .input-field {
 			margin-block-start: 0;
 		}
@@ -1469,10 +1473,11 @@ export default {
 	}
 }
 
-// Dropdown menu is teleported to body by floating-ui, so it must be
-// styled at root level (cannot be nested under .v-select.select).
-// CSS variables must also be set here since it can't inherit from .v-select.select.
-.vs__dropdown-menu {
+// Dropdown menu is teleported to <body>, so it can't live under the
+// `.nc-select` root scope. The `.nc-select__dropdown` class (added in
+// calculatePosition) scopes it instead, so these styles and CSS variables
+// only affect our menus and never leak to other vue-select instances.
+.nc-select__dropdown.vs__dropdown-menu {
 	--vs-border-color: var(--color-border-maxcontrast);
 	--vs-border-style: solid;
 	--vs-border-radius: var(--border-radius-element);
@@ -1524,7 +1529,7 @@ export default {
 	}
 }
 
-// Border for .vs__dropdown-toggle — inlined from inputLikeBorder mixin
+// Border for .vs__dropdown-toggle, inlined from inputLikeBorder mixin
 // because the mixin's @media #{&} produces doubled selectors when nested.
 .nc-select.v-select.select .vs__dropdown-toggle {
 	--input-border-box-shadow-light: 0 -1px var(--vs-border-color),
