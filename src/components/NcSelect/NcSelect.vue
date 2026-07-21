@@ -484,24 +484,42 @@ export default {
 		</template>
 		<template #search="{ attributes, events }">
 			<!--
-				v-bind MUST come before explicit props, Vue 3 last-binding-wins.
-				We spread vue-select attributes but null out placeholder/value/modelValue
-				so our explicit bindings below take precedence.
+				vue-select's `attributes`/`events` are its search-slot contract, not
+				HTML pass-through, so we forward only the combobox a11y attributes and
+				events one by one. This skips `attributes.ref` (a vue-select template
+				ref) and lets our own `modelValue`, `placeholder`, `label` and
+				`disabled` win over their vue-select equivalents.
+				No placeholder when: multi mode (select__label is the placeholder) or a
+				value is selected (the vs__selected overlay shows it instead).
 			-->
 			<NcTextField
-				v-bind="{ ...attributes, placeholder: undefined, value: undefined, modelValue: undefined }"
+				:id="attributes.id"
 				class="vs__search"
 				:class="[inputClass]"
+				:type="attributes.type"
 				:modelValue="attributes.value"
 				:placeholder="multiple || modelValue ? '' : (placeholder || '')"
 				:label="!labelOutside && !multiple && inputLabel ? inputLabel : ''"
 				:labelOutside="labelOutside || multiple"
 				:disabled="disabled"
 				:required="inputRequired"
-				v-on="filterEvents(events)"
+				:role="attributes.role"
+				:tabindex="attributes.tabindex"
+				:readonly="attributes.readonly"
+				:autocomplete="attributes.autocomplete"
+				:aria-label="attributes['aria-label']"
+				:aria-autocomplete="attributes['aria-autocomplete']"
+				:aria-controls="attributes['aria-controls']"
+				:aria-owns="attributes['aria-owns']"
+				:aria-expanded="attributes['aria-expanded']"
+				:aria-activedescendant="attributes['aria-activedescendant']"
+				@keydown="events.keydown"
+				@keypress="events.keypress"
+				@focus="events.focus"
+				@blur="events.blur"
+				@compositionstart="events.compositionstart"
+				@compositionend="events.compositionend"
 				@update:modelValue="events.input({ target: { value: $event } })" />
-			<!-- No placeholder when: multi mode (select__label serves as placeholder)
-				 or value selected (vs__selected overlay shows the value instead). -->
 		</template>
 		<template #open-indicator="{ attributes }">
 			<ChevronDown
@@ -1058,21 +1076,6 @@ export default {
 
 	methods: {
 		t,
-
-		/**
-		 * Filter out the `input` event from vue-select events.
-		 * Input is handled via @update:modelValue to avoid double-firing.
-		 * All other events (keydown, blur, focus, compositionstart, compositionend)
-		 * must reach the native <input> for keyboard nav, dropdown close, and IME.
-		 *
-		 * @param {object} events vue-select event handlers
-		 * @return {object} events without `input`
-		 */
-		filterEvents(events) {
-			// eslint-disable-next-line @typescript-eslint/no-unused-vars
-			const { input, ...rest } = events
-			return rest
-		},
 	},
 }
 </script>

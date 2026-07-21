@@ -170,22 +170,19 @@ describe('NcSelect', () => {
 
 			const input = wrapper.find('input')
 			await input.trigger('keydown', { key: 'ArrowDown' })
-			// If keydown is forwarded, vue-select processes it — no error thrown
+			// If keydown is forwarded, vue-select processes it without error
 			expect(wrapper.find('.v-select').exists()).toBe(true)
 		})
 
-		it('filters input event from forwarded events', () => {
+		it('forwards combobox a11y attributes to the inner input', () => {
 			const wrapper = mount(NcSelect, {
 				props: { inputLabel: 'Label', options },
 			})
 
-			const vm = wrapper.vm as any
-			const events = { input: vi.fn(), keydown: vi.fn(), blur: vi.fn() }
-			const filtered = vm.filterEvents(events)
-
-			expect(filtered).not.toHaveProperty('input')
-			expect(filtered).toHaveProperty('keydown')
-			expect(filtered).toHaveProperty('blur')
+			const input = wrapper.find('input')
+			expect(input.attributes('role')).toBe('combobox')
+			expect(input.attributes('aria-autocomplete')).toBe('list')
+			expect(input.attributes('aria-expanded')).toBe('false')
 		})
 	})
 })
