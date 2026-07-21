@@ -467,8 +467,7 @@ export default {
 
 <template>
 	<VueSelect
-		data-v-new-select
-		class="select"
+		class="select nc-select"
 		:class="{
 			'select--legacy': isLegacy,
 			'select--no-wrap': noWrap,
@@ -1077,7 +1076,7 @@ export default {
 <style lang="scss">
 @use '../../assets/input-border.scss' as border;
 
-[data-v-new-select].v-select.select {
+.nc-select.v-select.select {
 	/* Custom vue-select CSS variables scoped to NcSelect */
 	/* Search Input */
 	--vs-search-input-color: var(--color-main-text);
@@ -1527,7 +1526,7 @@ export default {
 
 // Border for .vs__dropdown-toggle — inlined from inputLikeBorder mixin
 // because the mixin's @media #{&} produces doubled selectors when nested.
-[data-v-new-select].v-select.select .vs__dropdown-toggle {
+.nc-select.v-select.select .vs__dropdown-toggle {
 	--input-border-box-shadow-light: 0 -1px var(--vs-border-color),
 		0 0 0 1px color-mix(in srgb, var(--vs-border-color), 65% transparent);
 	--input-border-box-shadow-dark: 0 -1px var(--vs-border-color),
@@ -1539,25 +1538,25 @@ export default {
 }
 
 // Hover: use .vs--disabled on parent (toggle div never has [disabled] attribute)
-[data-v-new-select].v-select.select:not(.vs--disabled) .vs__dropdown-toggle:hover {
+.nc-select.v-select.select:not(.vs--disabled) .vs__dropdown-toggle:hover {
 	box-shadow: 0 0 0 1px var(--vs-border-color);
 }
 
 @media (prefers-color-scheme: dark) {
-	[data-v-new-select].v-select.select .vs__dropdown-toggle {
+	.nc-select.v-select.select .vs__dropdown-toggle {
 		--input-border-box-shadow: var(--input-border-box-shadow-dark);
 	}
 }
 
-[data-theme-dark] [data-v-new-select].v-select.select .vs__dropdown-toggle {
+[data-theme-dark] .nc-select.v-select.select .vs__dropdown-toggle {
 	--input-border-box-shadow: var(--input-border-box-shadow-dark);
 }
 
-[data-theme-light] [data-v-new-select].v-select.select .vs__dropdown-toggle {
+[data-theme-light] .nc-select.v-select.select .vs__dropdown-toggle {
 	--input-border-box-shadow: var(--input-border-box-shadow-light);
 }
 
-.select--legacy[data-v-new-select].v-select.select .vs__dropdown-toggle {
+.select--legacy.nc-select.v-select.select .vs__dropdown-toggle {
 	box-shadow: 0 0 0 1px var(--vs-border-color);
 
 	&:hover:not([disabled]) {
