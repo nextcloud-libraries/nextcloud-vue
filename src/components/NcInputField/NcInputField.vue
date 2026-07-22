@@ -61,9 +61,13 @@ export interface NcInputFieldProps {
 	labelOutside?: boolean
 
 	/**
-	 * The type of the input element
+	 * The type of the input element.
+	 *
+	 * The date/time types (`date`, `datetime-local`, `month`, `time`, `week`) render a native
+	 * picker; their label always floats as such inputs have no empty placeholder state.
 	 */
 	type?: 'text' | 'password' | 'email' | 'tel' | 'url' | 'search' | 'number'
+		| 'date' | 'datetime-local' | 'month' | 'time' | 'week'
 
 	/**
 	 * The placeholder of the input.
