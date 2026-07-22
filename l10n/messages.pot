@@ -40,6 +40,9 @@ msgstr ""
 msgid "Anything shared with the same group of people will show up here"
 msgstr ""
 
+msgid "assembling"
+msgstr ""
+
 msgid "Avatar of {displayName}"
 msgstr ""
 
@@ -77,6 +80,9 @@ msgid "Cancel"
 msgstr ""
 
 msgid "Cancel changes"
+msgstr ""
+
+msgid "Cancel uploads"
 msgstr ""
 
 msgid "Change name"
@@ -192,6 +198,9 @@ msgstr ""
 msgid "Escape"
 msgstr ""
 
+msgid "Estimating …"
+msgstr ""
+
 msgid "External documentation"
 msgstr ""
 
@@ -239,6 +248,10 @@ msgid "Increment minutes"
 msgstr ""
 
 msgid "Increment seconds"
+msgstr ""
+
+#. likely parsed "Date" from "Infinity" or "NaN"
+msgid "Invalid date"
 msgstr ""
 
 msgid "invisible"
@@ -291,6 +304,9 @@ msgid "More options"
 msgstr ""
 
 msgid "Neutral skin color"
+msgstr ""
+
+msgid "New"
 msgstr ""
 
 msgid "Next"
@@ -370,6 +386,9 @@ msgid "Password is secure"
 msgstr ""
 
 msgid "Pause slideshow"
+msgstr ""
+
+msgid "paused"
 msgstr ""
 
 msgid "People & Body"
@@ -565,6 +584,12 @@ msgid "Upload files"
 msgstr ""
 
 msgid "Upload folder"
+msgstr ""
+
+msgid "Upload from device"
+msgstr ""
+
+msgid "Upload progress"
 msgstr ""
 
 msgid "Uploading …"
