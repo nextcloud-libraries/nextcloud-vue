@@ -280,12 +280,8 @@ function clearFocusTrap() {
 			{{ description }}
 		</span>
 
-		<!-- Visual triangle -->
-		<div v-show="isOpened" class="header-menu__caret" />
-
 		<!-- Menu opened content -->
 		<div
-			v-show="isOpened"
 			:id="`header-menu-${id}`"
 			class="header-menu__wrapper">
 			<div ref="contentContainer" class="header-menu__content">
@@ -312,21 +308,21 @@ $externalMargin: 8px;
 		margin: 0 $externalMargin;
 		border-radius: var(--border-radius-element);
 		background-color: var(--color-main-background);
+		// box-shadow (not drop-shadow filter) to avoid blur while scaling in Chromium
+		box-shadow: 0 1px 5px var(--color-box-shadow);
 
-		filter: drop-shadow(0 1px 5px var(--color-box-shadow));
+		// Closed state: hidden and scaled down. Animate open/close (scale from the header/trigger)
+		visibility: hidden;
+		opacity: 0;
+		transform: scale(0.96);
+		transform-origin: top center;
+		transition: opacity var(--animation-quick), transform var(--animation-quick), visibility var(--animation-quick);
 	}
 
-	&__caret {
-		position: absolute;
-		z-index: 2001; // Because __wrapper is 2000.
-		bottom: 0;
-		inset-inline-start: calc(50% - 10px);
-		width: 0;
-		height: 0;
-		content: ' ';
-		pointer-events: none;
-		border: 10px solid transparent;
-		border-bottom-color: var(--color-main-background);
+	&--opened &__wrapper {
+		visibility: visible;
+		opacity: 1;
+		transform: scale(1);
 	}
 
 	&__content {
