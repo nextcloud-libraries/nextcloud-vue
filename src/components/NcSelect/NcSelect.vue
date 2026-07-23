@@ -1089,7 +1089,9 @@ body {
 	/* Override default vue-select styles */
 	min-height: calc(var(--default-clickable-area) - 2 * var(--border-width-input));
 	min-width: 260px;
-	margin: 0 0 var(--default-grid-baseline);
+	// 6px block-start reserves space for the floated label, matching
+	// NcInputField (.input-field margin-block-start) so fields line up in a row.
+	margin: 6px 0 var(--default-grid-baseline);
 
 	&.vs--open {
 		--vs-border-width: var(--border-width-input-focused, 2px);
