@@ -91,6 +91,7 @@ All available types are: 'date', 'datetime-local', 'month', 'time' and 'week', p
 import type { VueClassType } from '../../utils/VueTypes.ts'
 
 import { computed } from 'vue'
+import NcInputField from '../NcInputField/NcInputField.vue'
 import { t } from '../../l10n.ts'
 import { createElementId } from '../../utils/createElementId.ts'
 
@@ -163,6 +164,11 @@ const formattedValue = computed(() => modelValue.value ? formatValue(modelValue.
 const formattedMax = computed(() => props.max ? formatValue(props.max) : undefined)
 const formattedMin = computed(() => props.min ? formatValue(props.min) : undefined)
 
+// Forward the props NcInputField owns (class, id, inputClass, type, …). label,
+// min and max are handled explicitly in the template as they need transforming.
+const ncInputFieldPropNames = new Set(Object.keys(NcInputField.props))
+const propsToForward = computed(() => Object.fromEntries(Object.entries(props).filter(([key]) => ncInputFieldPropNames.has(key))))
+
 /**
  * Returns Object with string values of a Date
  *
@@ -204,7 +210,11 @@ function formatValue(value: Date): string {
 }
 
 /**
- * Handle the input event
+ * Handle the input event.
+ *
+ * The component renders through NcInputField for a visually identical design.
+ * The `@input` listener is merged onto NcInputField's inner <input> via $attrs,
+ * so this receives the native event and keeps access to `valueAsNumber`.
  *
  * @param event - The input event payload
  */
@@ -230,68 +240,33 @@ function onInput(event: Event): void {
 </script>
 
 <template>
-	<div class="native-datetime-picker" :class="$props.class">
-		<label
-			class="native-datetime-picker__label"
-			:class="{ 'hidden-visually': hideLabel }"
-			:for="id">
-			{{ label }}
-		</label>
-		<input
-			:id
-			class="native-datetime-picker__input"
-			:class="inputClass"
-			:type
-			:value="formattedValue"
-			:min="formattedMin"
-			:max="formattedMax"
-			v-bind="$attrs"
-			@input="onInput">
-	</div>
+	<NcInputField
+		v-bind="{ ...$attrs, ...propsToForward }"
+		class="native-datetime-picker"
+		:label="hideLabel ? undefined : label"
+		:labelOutside="hideLabel"
+		:aria-label="hideLabel ? label : undefined"
+		:modelValue="formattedValue"
+		:min="formattedMin"
+		:max="formattedMax"
+		@input="onInput" />
 </template>
 
 <style lang="scss" scoped>
-.native-datetime-picker {
-	display: flex;
-	flex-direction: column;
-
-	.native-datetime-picker__label {
-		margin-block-end: 2px;
-	}
-
-	.native-datetime-picker__input {
-		// If border width differs between focused and unfocused we need to compensate to prevent jumping
-		--input-border-width-offset: calc(var(--border-width-input-focused, 2px) - var(--border-width-input, 2px));
-		width: 100%;
-		flex: 0 0 auto;
-		margin: 0;
-		padding-inline-start: calc(var(--border-radius-element) + var(--input-border-width-offset));
-		padding-inline-end: calc(var(--default-grid-baseline) + var(--input-border-width-offset));
-		border: var(--border-width-input, 2px) solid var(--color-border-maxcontrast);
-
-		&:active:not([disabled]),
-		&:hover:not([disabled]),
-		&:focus:not([disabled]),
-		&:focus-within:not([disabled]) {
-			border-color: var(--color-main-text);
-			border-width: var(--border-width-input-focused, 2px);
-			box-shadow: 0 0 0 2px var(--color-main-background) !important;
-			// Reset padding offset when focused
-			--input-border-width-offset: 0px;
-		}
-	}
-}
-
+// NcInputField provides the full visual design (border, height, radius, floating
+// label). We only add native-picker color-scheme theming so the browser renders
+// the calendar/clock popover matching the active Nextcloud theme.
+// `.native-datetime-picker` is applied to NcInputField's inner <input> via $attrs.
 [data-theme-light],
 [data-themes*=light] {
-	.native-datetime-picker__input {
+	:deep(.native-datetime-picker) {
 		color-scheme: light;
 	}
 }
 
 [data-theme-dark],
 [data-themes*=dark] {
-	.native-datetime-picker__input {
+	:deep(.native-datetime-picker) {
 		color-scheme: dark;
 	}
 }
@@ -299,12 +274,12 @@ function onInput(event: Event): void {
 [data-theme-default],
 [data-themes*=default] {
 	@media (prefers-color-scheme: light) {
-		.native-datetime-picker__input {
+		:deep(.native-datetime-picker) {
 			color-scheme: light;
 		}
 	}
 	@media (prefers-color-scheme: dark) {
-		.native-datetime-picker__input {
+		:deep(.native-datetime-picker) {
 			color-scheme: dark;
 		}
 	}
