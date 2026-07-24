@@ -38,6 +38,31 @@ const selectArray = [
 
 	{
 		props: {
+			inputLabel: 'With helper text',
+			helperText: 'Choose the option that fits best',
+			options: [
+				'foo',
+				'bar',
+				'baz',
+			],
+		},
+	},
+
+	{
+		props: {
+			inputLabel: 'With error',
+			helperText: 'This selection is required',
+			error: true,
+			options: [
+				'foo',
+				'bar',
+				'baz',
+			],
+		},
+	},
+
+	{
+		props: {
 			inputLabel: 'Simple (top placement)',
 			placement: 'top',
 			options: [
@@ -508,6 +533,7 @@ export default {
 				:readonly="attributes.readonly"
 				:autocomplete="attributes.autocomplete"
 				:aria-label="attributes['aria-label']"
+				:aria-describedby="[attributes['aria-describedby'], helperText ? `${inputId}-helper-text` : null].filter(Boolean).join(' ') || undefined"
 				:aria-autocomplete="attributes['aria-autocomplete']"
 				:aria-controls="attributes['aria-controls']"
 				:aria-owns="attributes['aria-owns']"
@@ -552,7 +578,31 @@ export default {
 		<template #no-options>
 			{{ t('No results') }}
 		</template>
-		<template v-for="(_, name) in $slots" #[name]="data">
+		<!-- Helper text beneath the control, plus any consumer-provided footer slot -->
+		<template v-if="helperText || $slots.footer" #footer="data">
+			<slot name="footer" v-bind="data" />
+			<p
+				v-if="helperText"
+				:id="`${inputId}-helper-text`"
+				class="select__helper-text"
+				:class="{
+					'select__helper-text--error': error,
+					'select__helper-text--success': success,
+				}">
+				<NcIconSvgWrapper
+					v-if="success"
+					class="select__helper-text-icon"
+					:path="mdiCheck"
+					inline />
+				<NcIconSvgWrapper
+					v-else-if="error"
+					class="select__helper-text-icon"
+					:path="mdiAlertCircleOutline"
+					inline />
+				{{ helperText }}
+			</p>
+		</template>
+		<template v-for="name in forwardedSlots" :key="name" #[name]="data">
 			<!-- @slot Any combination of slots from https://vue-select.org/api/slots.html -->
 			<slot :name="name" v-bind="data" />
 		</template>
@@ -568,11 +618,13 @@ import {
 	offset,
 	shift,
 } from '@floating-ui/dom'
+import { mdiAlertCircleOutline, mdiCheck } from '@mdi/js'
 import { VueSelect } from '@nextcloud/vue-select'
 import { h, warn } from 'vue'
 import ChevronDown from 'vue-material-design-icons/ChevronDown.vue'
 import Close from 'vue-material-design-icons/Close.vue'
 import NcEllipsisedOption from '../NcEllipsisedOption/NcEllipsisedOption.vue'
+import NcIconSvgWrapper from '../NcIconSvgWrapper/NcIconSvgWrapper.vue'
 import NcLoadingIcon from '../NcLoadingIcon/NcLoadingIcon.vue'
 import NcTextField from '../NcTextField/NcTextField.vue'
 import { t } from '../../l10n.ts'
@@ -585,6 +637,7 @@ export default {
 	components: {
 		ChevronDown,
 		NcEllipsisedOption,
+		NcIconSvgWrapper,
 		NcLoadingIcon,
 		NcTextField,
 		VueSelect,
@@ -759,6 +812,30 @@ export default {
 		inputLabel: {
 			type: String,
 			default: null,
+		},
+
+		/**
+		 * Additional helper text shown beneath the select.
+		 */
+		helperText: {
+			type: String,
+			default: '',
+		},
+
+		/**
+		 * Toggle the error state, styling the helper text as an error.
+		 */
+		error: {
+			type: Boolean,
+			default: false,
+		},
+
+		/**
+		 * Toggle the success state, styling the helper text as a success.
+		 */
+		success: {
+			type: Boolean,
+			default: false,
 		},
 
 		/**
@@ -952,6 +1029,8 @@ export default {
 		return {
 			avatarSize,
 			isLegacy,
+			mdiAlertCircleOutline,
+			mdiCheck,
 		}
 	},
 
@@ -962,6 +1041,16 @@ export default {
 	},
 
 	computed: {
+		/**
+		 * Consumer-provided slots forwarded to vue-select, excluding `footer`
+		 * which we render ourselves to host the helper text.
+		 *
+		 * @return {string[]}
+		 */
+		forwardedSlots() {
+			return Object.keys(this.$slots).filter((name) => name !== 'footer')
+		},
+
 		inputRequired() {
 			if (!this.required) {
 				return null
@@ -1083,6 +1172,30 @@ export default {
 <style lang="scss">
 @use '../../assets/input-border.scss' as border;
 
+// Helper text beneath the control, matching NcInputField's helper text.
+.nc-select.v-select.select .select__helper-text {
+	display: flex;
+	align-items: center;
+	margin: 0;
+	padding-block: 4px;
+	padding-inline: var(--border-radius-element);
+	color: var(--color-text-maxcontrast);
+	font-size: var(--default-font-size);
+	overflow-wrap: anywhere;
+
+	&--error {
+		color: var(--color-error);
+	}
+
+	&--success {
+		color: var(--color-success);
+	}
+
+	.select__helper-text-icon {
+		margin-inline-end: 8px;
+	}
+}
+
 .nc-select.v-select.select {
 	/* Custom vue-select CSS variables scoped to NcSelect */
 	/* Search Input */
@@ -1202,6 +1315,13 @@ export default {
 		border: none !important;
 		box-shadow: none !important;
 		background: transparent;
+	}
+
+	// Anchor the absolutely-positioned actions to the control itself, so content
+	// rendered below it inside .v-select (e.g. the helper text) does not shift
+	// the caret's vertical centering.
+	.vs__dropdown-toggle {
+		position: relative;
 	}
 
 	.vs__actions {
