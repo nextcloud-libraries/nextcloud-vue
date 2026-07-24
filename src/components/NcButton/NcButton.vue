@@ -747,7 +747,8 @@ function onClick(event: MouseEvent) {
 	display: flex;
 	align-items: center;
 	justify-content: center;
-	transition-property: color, border-color, background-color;
+	will-change: transform;
+	transition-property: color, border-color, background-color, transform;
 	transition-duration: 0.1s;
 	transition-timing-function: linear;
 	cursor: pointer;
@@ -795,6 +796,8 @@ function onClick(event: MouseEvent) {
 	// TODO: add ripple effect
 	&:active:not(:disabled) {
 		background-color: var(--color-primary-element-light);
+		// TODO: add to theming with animation initiative
+		transform: scale(0.985);
 	}
 
 	&__wrapper {
