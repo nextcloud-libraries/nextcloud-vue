@@ -253,7 +253,7 @@ function toggleNavigation(state?: boolean): void {
 
 	open.value = state === undefined ? !open.value : state
 	const bodyStyles = getComputedStyle(document.body)
-	const animationLength = parseInt(bodyStyles.getPropertyValue('--animation-quick')) || 100
+	const animationLength = parseInt(bodyStyles.getPropertyValue('--animation-slow')) || 300
 
 	setTimeout(() => {
 		emit('navigation-toggled', {
@@ -341,7 +341,7 @@ function handleEsc(): void {
 	// Set scoped variable override
 	// Using --color-text-maxcontrast as a fallback evaluates to an invalid value as it references itself in this scope instead of the variable defined higher up
 	--color-text-maxcontrast: var(--color-text-maxcontrast-background-blur, var(--color-text-maxcontrast-default));
-	transition: transform var(--animation-quick), margin var(--animation-quick);
+	transition: transform var(--animation-slow), margin var(--animation-slow);
 	width: $navigation-width;
 	// Left toggle button padding + toggle button + right padding from NcAppContent
 	--app-navigation-max-width: calc(100vw - (var(--app-navigation-padding) + var(--default-clickable-area) + var(--default-grid-baseline)));
