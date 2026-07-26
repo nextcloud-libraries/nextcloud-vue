@@ -76,7 +76,7 @@ msgid "Boston Blue"
 msgstr "Bostonská modrá"
 
 msgid "busy"
-msgstr "zaneprádněn(a)"
+msgstr "zaneprádněn/a"
 
 msgid "Calendar icon"
 msgstr "Ikona kalendáře"
