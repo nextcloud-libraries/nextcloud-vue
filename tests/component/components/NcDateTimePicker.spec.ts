@@ -62,6 +62,27 @@ for (const [type, modelValue, locale, expectedValue] of l10nTestcases) {
 	})
 }
 
+const customFormatTestcases = [
+	['date', 'yyyy MMM dd', new Date(2000, 9, 2), 'de-DE', '2000 Okt. 02'],
+	['date-range', 'dd MMM yyyy', [new Date(2000, 0, 1), new Date(2000, 9, 7)] as [Date, Date], 'es-ES', '01 ene 2000 - 07 oct 2000'],
+	['date', 'EEEE d MMMM yy', new Date(2026, 9, 2), 'ru', 'пятница 2 октября 26'],
+	['month', 'LLLL yy', new Date(2026, 9, 2), 'ru', 'октябрь 26'],
+] as const
+for (const [type, format, modelValue, locale, expectedValue] of customFormatTestcases) {
+	test(`Handle format ${format} for type ${type} with locale ${locale}`, async ({ mount, page }) => {
+		page.addScriptTag({ content: `document.getElementsByTagName('html')[0].dataset.locale = "${locale}";` })
+		await mount(NcDateTimePicker, {
+			props: {
+				modelValue,
+				format,
+				type,
+			},
+		})
+
+		await expect(page.getByRole('textbox')).toHaveValue(expectedValue)
+	})
+}
+
 test('Today is selected by default', async ({ mount, page }) => {
 	await page.clock.setSystemTime(new Date(2000, 0, 22))
 
