@@ -100,6 +100,7 @@ describe('NcAvatar.vue', () => {
 			displayName             | initials | case
 			${''}                   | ${'?'}   | ${'empty user'}
 			${'Jane Doe'}           | ${'JD'}  | ${'display name property'}
+			${'Jane Doe !'}         | ${'JD'}  | ${'trailing space before special character'}
 			${'Jane (Doe)'}         | ${'JD'}  | ${'special characters in name'}
 			${'jane doe'}           | ${'JD'}  | ${'lower case name'}
 			${'Jane Some Name Doe'} | ${'JD'}  | ${'middle names'}

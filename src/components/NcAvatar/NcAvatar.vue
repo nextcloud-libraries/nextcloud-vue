@@ -619,7 +619,7 @@ export default {
 					return initials
 				}
 
-				const filtered = filteredChars.join('')
+				const filtered = filteredChars.join('').trim()
 				const idx = filtered.lastIndexOf(' ')
 				initials = String.fromCodePoint(filtered.codePointAt(0))
 				if (idx !== -1) {
