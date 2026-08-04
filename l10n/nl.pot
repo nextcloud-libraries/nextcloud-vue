@@ -4,10 +4,11 @@
 # Stephan Paternotte <stephan@paternottes.net>, 2025
 # Ik Jij, 2026
 # Marc Elvery, 2026
+# Rutger Kramer, 2026
 # 
 msgid ""
 msgstr ""
-"Last-Translator: Marc Elvery, 2026\n"
+"Last-Translator: Rutger Kramer, 2026\n"
 "Language-Team: Dutch (https://app.transifex.com/nextcloud/teams/64236/nl/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Language: nl\n"
@@ -602,6 +603,9 @@ msgstr "Whiskey"
 
 msgid "White"
 msgstr "Wit"
+
+msgid "Widget height"
+msgstr "Hoogte van widget"
 
 msgid "Write a message …"
 msgstr "Schrijf een bericht …"
