@@ -263,6 +263,17 @@
 	}
 }
 
+// When the parent list renders a sliding highlight, suppress the per-entry
+// hover/focus background of non-active entries so only the moving highlight
+// is visible. Active entries keep their own static highlight and stripe.
+// The leading list class keeps these more specific than the rules above.
+.app-navigation-list--animated-highlight {
+	.app-navigation-entry:not(.active):hover,
+	.app-navigation-entry:not(.active):focus-within {
+		background-color: transparent !important;
+	}
+}
+
 @keyframes nc-nav-stripe-in {
 	from {
 		transform: scaleY(0);
