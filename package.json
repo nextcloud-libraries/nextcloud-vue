@@ -148,7 +148,7 @@
     "gettext-extractor": "^4.0.6",
     "gettext-parser": "^9.1.1",
     "glob": "^13.0.6",
-    "jsdom": "^29.1.1",
+    "jsdom": "^30.0.1",
     "remark-gfm": "^4.0.1",
     "resolve-url-loader": "^5.0.0",
     "sass": "^1.102.0",
