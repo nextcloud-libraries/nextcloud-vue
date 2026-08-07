@@ -13,7 +13,6 @@ import type { Locale } from 'date-fns/locale'
 import { format as dateFnsLocale } from 'date-fns/format'
 import * as allDateFnsLocales from 'date-fns/locale'
 import { getDateFormat, getDateTimeFormat, getMonthFormat, getTimeFormat, getYearFormat } from '../../../../src/components/NcDateTimePicker/format.ts'
-import allLocales from './allLocales.ts'
 
 const date = new Date(2000, 0, 2, 3, 4)
 const dateRange = [new Date(2000, 0, 1), new Date(2000, 0, 7)] as const
@@ -24,19 +23,6 @@ const snapshot = {
 
 }
 
-const byLocaleCodeDateFnsLocale = new Map(Object.values(allDateFnsLocales).map((locale) => [locale.code, locale]))
-
-function findDateFnsLocale(localeCode: string): Locale | undefined {
-	const dateFnsLocale = byLocaleCodeDateFnsLocale.get(localeCode)
-	if (dateFnsLocale !== undefined) {
-		return dateFnsLocale
-	}
-	if (localeCode.includes('-')) {
-		return findDateFnsLocale(localeCode.split('-')[0])
-	}
-	return undefined
-}
-
 function format(date: Date, formatStr: string, locale: Locale) {
 	return dateFnsLocale(date, formatStr, { locale })
 }
@@ -45,23 +31,10 @@ function formatRange(dates: readonly [Date, Date], formatStr: string, locale: Lo
 	return format(dates[0], formatStr, locale) + ' - ' + format(dates[1], formatStr, locale)
 }
 
-for (const locale of allLocales) {
-	const localeCode = locale.code.replaceAll('_', '-')
-
-	const supportedByIntl = Intl.DateTimeFormat.supportedLocalesOf([localeCode]).length !== 0
-	let dateFnsLocale = findDateFnsLocale(localeCode)
-	if (dateFnsLocale === undefined) {
-		if (supportedByIntl) {
-			dateFnsLocale = allDateFnsLocales.enUS
-		} else {
-			// Exclude snapshot if locale is not supported by Intl.DateTimeFormat or date-fns/locale.
-			// Including such locales would only bloat the snapshot.
-			continue
-		}
-	}
-
-	snapshot[localeCode] = {
-		localeName: locale.name,
+const displayNames = new Intl.DisplayNames(['en'], { type: 'language' })
+for (const dateFnsLocale of Object.values(allDateFnsLocales)) {
+	snapshot[dateFnsLocale.code] = {
+		localeName: displayNames.of(dateFnsLocale.code),
 		date: format(date, getDateFormat(dateFnsLocale), dateFnsLocale),
 		dateRange: formatRange(dateRange, getDateFormat(dateFnsLocale), dateFnsLocale),
 		time: format(date, getTimeFormat(), dateFnsLocale),
