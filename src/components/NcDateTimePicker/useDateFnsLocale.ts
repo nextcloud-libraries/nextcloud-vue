@@ -4,11 +4,11 @@
  */
 
 import type { Locale } from 'date-fns'
-import type { MaybeRefOrGetter } from 'vue'
+import type { ComputedRef, MaybeRefOrGetter } from 'vue'
 
 import { computedAsync } from '@vueuse/core'
 import { enUS } from 'date-fns/locale/en-US'
-import { toValue } from 'vue'
+import { computed, toValue } from 'vue'
 import loader from './dateFnsLocaleLoader.ts'
 
 /**
@@ -17,8 +17,9 @@ import loader from './dateFnsLocaleLoader.ts'
  *
  * @param locale locale code (e.g., 'de-DE')
  */
-export default function useDateFnsLocale(locale: MaybeRefOrGetter<string>) {
-	return computedAsync(() => loadDateFnsLocale(toValue(locale)), enUS)
+export default function useDateFnsLocale(locale: MaybeRefOrGetter<string>): ComputedRef<Locale> {
+	const loadedLocale = computedAsync(() => loadDateFnsLocale(toValue(locale)))
+	return computed(() => loadedLocale.value ?? enUS)
 }
 
 /**
