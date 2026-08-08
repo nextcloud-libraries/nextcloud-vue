@@ -176,15 +176,20 @@ export default {
 .name-parts {
 	display: flex;
 	max-width: 100%;
+	min-width: 0;
 	cursor: inherit;
 	&__first {
 		overflow: hidden;
 		text-overflow: ellipsis;
+		white-space: pre;
+	}
+	&__last {
+		flex: 0 0 auto;
+		white-space: pre;
 	}
 	&__first,
 	&__last {
 		// prevent whitespace from being trimmed
-		white-space: pre;
 		cursor: inherit;
 		strong {
 			font-weight: bold;

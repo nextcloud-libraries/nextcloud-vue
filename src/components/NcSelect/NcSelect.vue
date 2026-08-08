@@ -1158,6 +1158,8 @@ export default {
 	.vs__selected {
 		// min-height (not height) so multi-line entries like NcSelectUsers chips can grow
 		min-height: calc(var(--default-clickable-area) - 2 * var(--vs-border-width) - var(--default-grid-baseline));
+		min-width: 0;
+		max-width: 100%;
 		margin: calc(var(--default-grid-baseline) / 2);
 		padding-block: 0;
 		padding-inline: 12px 8px;
