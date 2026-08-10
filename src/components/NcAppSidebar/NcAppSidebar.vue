@@ -1507,7 +1507,7 @@ body {
 // When AppSidebar is animation is active - also apply transition for the toggle button offset
 body:has(.app-sidebar.slide-right-enter-active),
 body:has(.app-sidebar.slide-right-leave-active) {
-	transition: --app-sidebar-offset var(--animation-quick);
+	transition: --app-sidebar-offset var(--animation-slow);
 }
 
 body:has(.app-sidebar__toggle) {
@@ -1794,7 +1794,7 @@ $desc-height: $desc-name-height + $desc-subname-height;
 
 .slide-right-leave-active,
 .slide-right-enter-active {
-	transition-duration: var(--animation-quick);
+	transition-duration: var(--animation-slow);
 	transition-property: margin-inline-end;
 }
 
