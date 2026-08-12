@@ -289,7 +289,7 @@ import {
 } from '@nextcloud/l10n'
 import VueDatePicker from '@vuepic/vue-datepicker'
 import { parse } from 'date-fns/parse'
-import { computed, useTemplateRef, warn, watchEffect } from 'vue'
+import { computed, useTemplateRef, warn, watch, watchEffect } from 'vue'
 import NcIconSvgWrapper from '../NcIconSvgWrapper/NcIconSvgWrapper.vue'
 import NcTimezonePicker from '../NcTimezonePicker/NcTimezonePicker.vue'
 import { t } from '../../l10n.ts'
@@ -545,7 +545,16 @@ const placeholderFallback = computed(() => {
 	return t('Select date and time')
 })
 
-const dateFnsLocale = useDateFnsLocale(realLocale)
+const { isLoading: dateFnsLocaleIsLoading, locale: dateFnsLocale } = useDateFnsLocale()
+watch(dateFnsLocale, () => {
+	// Force reformating of values once the locale updates.
+	// By default Existing values are not reformated once locale is updated.
+	// See https://github.com/Vuepic/vue-datepicker/issues/1284
+	pickerInstance.value?.parseModel()
+}, {
+	// Apply only after new locale was reaplied to VueDatePicker.
+	flush: 'post',
+})
 
 /**
  * The date (time) formatting to be used by the library.
@@ -811,12 +820,8 @@ function sameDay(a: Date, b: Date): boolean {
 
 <template>
 	<div class="vue-date-time-picker__wrapper">
-		<!-- Setting :key="dateFnsLocale.code" forces the component to rerender when `:formatLocale` changes.
-             Without it, the formatted date only changes after the user focuses on the text input.
-             This issue was only observed with :format="realFormat" being a pattern, e.g., 'dd MMM yyyy'.
-             See https://github.com/Vuepic/vue-datepicker/issues/1284  -->
+		<!-- :readonly="dateFnsLocaleIsLoading" avoids discarding user input if the locale finishes loading after the user started input. -->
 		<VueDatePicker
-			:key="dateFnsLocale?.code"
 			ref="picker"
 			:aria-labels
 			:autoApply="!confirm"
@@ -829,6 +834,7 @@ function sameDay(a: Date, b: Date): boolean {
 			:format="realFormat"
 			:locale="realLocale"
 			:formatLocale="dateFnsLocale"
+			:readonly="dateFnsLocaleIsLoading"
 			:minDate="calcMinMaxTime.minDate"
 			:maxDate="calcMinMaxTime.maxDate"
 			:minTime="calcMinMaxTime.minTime"

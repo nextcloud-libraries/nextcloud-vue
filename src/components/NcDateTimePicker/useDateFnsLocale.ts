@@ -4,39 +4,85 @@
  */
 
 import type { Locale } from 'date-fns'
-import type { ComputedRef, MaybeRefOrGetter } from 'vue'
+import type { Ref } from 'vue'
 
-import { computedAsync } from '@vueuse/core'
+import { getCanonicalLocale } from '@nextcloud/l10n'
 import { enUS } from 'date-fns/locale/en-US'
-import { computed, toValue } from 'vue'
+import { ref } from 'vue'
+import { logger } from '../../utils/logger.ts'
 import loader from './dateFnsLocaleLoader.ts'
 
+const FALLBACK_LOCALE = enUS
+let cachedLocale: undefined | Promise<Locale> | Locale
+
 /**
- * Given a locale try to load the corresponding locale from date-fns.
- * Fall back to en-US while loading, if the request locale does not exist or could not be loaded.
+ * Reset locale cache. Only used for tests.
  *
- * @param locale locale code (e.g., 'de-DE')
+ * @internal
  */
-export default function useDateFnsLocale(locale: MaybeRefOrGetter<string>): ComputedRef<Locale> {
-	const loadedLocale = computedAsync(() => loadDateFnsLocale(toValue(locale)))
-	return computed(() => loadedLocale.value ?? enUS)
+export function resetDateFnsLocaleCache(): void {
+	cachedLocale = undefined
+}
+
+/**
+ * Try to load the corresponding locale from date-fns for {@link getCanonicalLocale()}.
+ * Fall back to {@link enUS} while loading, if the requested locale does not exist or could not be loaded.
+ */
+export default function useDateFnsLocale(): { isLoading: Ref<boolean>, locale: Ref<Locale> } {
+	const localeCode = getCanonicalLocale()
+	if (localeCode === FALLBACK_LOCALE.code) {
+		return {
+			isLoading: ref(false),
+			locale: ref(FALLBACK_LOCALE),
+		}
+	}
+
+	if (cachedLocale === undefined) {
+		cachedLocale = loadDateFnsLocale(localeCode)
+	}
+
+	if (cachedLocale instanceof Promise) {
+		const isLoading = ref(true)
+		const locale = ref(FALLBACK_LOCALE)
+		cachedLocale
+			.then((loadedLocale) => {
+				cachedLocale = loadedLocale
+				isLoading.value = false
+				locale.value = cachedLocale
+			})
+		return {
+			isLoading,
+			locale,
+		}
+	}
+
+	return {
+		isLoading: ref(false),
+		locale: ref(cachedLocale),
+	}
 }
 
 /**
  * Given a locale code load the locale from the loader.
  *
- * @param locale Locale code (e.g, nl-BE.js)
+ * @param localeCode Locale code (e.g, "nl-BE")
  */
-async function loadDateFnsLocale(locale: string): Promise<Locale | undefined> {
-	if (locale in loader) {
-		return await loader[locale]()
+async function loadDateFnsLocale(localeCode: string): Promise<Locale> {
+	if (localeCode in loader) {
+		try {
+			return await loader[localeCode]()
+		} catch (error) {
+			logger.warn('Failed to load locale.', { localeCode, error })
+			return FALLBACK_LOCALE
+		}
 	}
 
-	if (locale.includes('-')) {
+	if (localeCode.includes('-')) {
 		// Try without region
-		const shortLocale = locale.split('-')[0]
+		const shortLocale = localeCode.split('-')[0]
 		return loadDateFnsLocale(shortLocale)
 	}
 
-	return undefined
+	logger.warn('Found no locale to load.', { localeCode })
+	return FALLBACK_LOCALE
 }
