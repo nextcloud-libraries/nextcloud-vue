@@ -47,6 +47,9 @@ This is a simple progress bar component.
 	<span
 		v-if="type === 'circular'"
 		role="progressbar"
+		:aria-label="ariaLabel"
+		:aria-labelledby="ariaLabelledby"
+		:aria-describedby="ariaDescribedby"
 		:aria-valuenow="value"
 		:style="{ '--progress-bar-height': height + 'px' }"
 		:class="{ 'progress-bar--error': error }"
@@ -79,6 +82,9 @@ This is a simple progress bar component.
 		class="progress-bar progress-bar--linear vue"
 		:class="{ 'progress-bar--error': error }"
 		:style="{ '--progress-bar-height': height + 'px' }"
+		:aria-label="ariaLabel"
+		:aria-labelledby="ariaLabelledby"
+		:aria-describedby="ariaDescribedby"
 		:value="value"
 		max="100" />
 </template>
@@ -89,6 +95,30 @@ export default {
 	name: 'NcProgressBar',
 
 	props: {
+		/**
+		 * The accessible label for the progressbar.
+		 */
+		ariaLabel: {
+			type: String,
+			default: undefined,
+		},
+
+		/**
+		 * The id of the element that labels the progressbar.
+		 */
+		ariaLabelledby: {
+			type: String,
+			default: undefined,
+		},
+
+		/**
+		 * The id of the element that describes the progressbar.
+		 */
+		ariaDescribedby: {
+			type: String,
+			default: undefined,
+		},
+
 		/**
 		 * An integer between 1 and 100
 		 */
