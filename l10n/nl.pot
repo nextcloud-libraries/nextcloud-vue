@@ -5,11 +5,10 @@
 # Ik Jij, 2026
 # Marc Elvery, 2026
 # Rutger Kramer, 2026
-# Sebastiaan Veld <sebastiaan.veld@virtfields.nl>, 2026
 # 
 msgid ""
 msgstr ""
-"Last-Translator: Sebastiaan Veld <sebastiaan.veld@virtfields.nl>, 2026\n"
+"Last-Translator: Rutger Kramer, 2026\n"
 "Language-Team: Dutch (https://app.transifex.com/nextcloud/teams/64236/nl/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Language: nl\n"
@@ -528,7 +527,7 @@ msgid "Smart Picker"
 msgstr "Slimme Kiezer"
 
 msgid "Smileys & Emotion"
-msgstr "Smileys & Emoties"
+msgstr "Smileys & Emotie"
 
 #. TRANSLATORS: Space key on keyboard
 msgid "Space"
