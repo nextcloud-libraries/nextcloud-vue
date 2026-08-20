@@ -51,6 +51,7 @@
     "lint": "eslint",
     "lint:fix": "eslint --fix",
     "prerelease:format-changelog": "node build/format-changelog.mjs",
+    "release": "node build/release.mjs",
     "styleguide": "vue-styleguidist --config styleguide.config.cjs server",
     "styleguide:build": "vue-styleguidist --config styleguide.config.cjs build",
     "stylelint": "stylelint \"src/**/*.vue\" \"src/**/*.scss\" \"src/**/*.css\"",
