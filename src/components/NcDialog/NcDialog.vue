@@ -566,10 +566,18 @@ const modalProps = computed(() => ({
 	overflow: hidden;
 
 	&__modal {
+		// Padding of the modal container around the dialog. Exposed as custom
+		// properties so consumers can adjust it without overriding internals.
+		// Defaults: 4px block-start to align with the close button (0 block-end so
+		// overflowing content looks nice on scroll), 12px inline-start to align
+		// with the modal padding (0 inline-end to keep the actions' outline margin).
+		--dialog-padding-block: 4px 0;
+		--dialog-padding-inline: 12px 0;
+
 		:deep(.modal-wrapper .modal-container) {
 			display: flex !important;
-			padding-block: 4px 0; // 4px to align with close button, 0 block-end to make overflowing content on scroll look nice
-			padding-inline: 12px 0; // Same as with padding-block, we need the actions to have a margin of 4px for the button outline
+			padding-block: var(--dialog-padding-block);
+			padding-inline: var(--dialog-padding-inline);
 		}
 		:deep(.modal-wrapper .modal-container__content) {
 			display: flex;
