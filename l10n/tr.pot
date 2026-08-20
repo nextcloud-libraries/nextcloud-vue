@@ -253,6 +253,9 @@ msgstr "Artma dakikası"
 msgid "Increment seconds"
 msgstr "Artma saniyesi"
 
+msgid "Invalid date"
+msgstr "Tarih geçersiz"
+
 msgid "invisible"
 msgstr "görünmez"
 
