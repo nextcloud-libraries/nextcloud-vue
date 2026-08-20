@@ -76,6 +76,7 @@
 		&:deep(.material-design-icon) {
 			width: var(--default-clickable-area);
 			height: var(--default-clickable-area);
+			align-self: flex-start;
 			opacity: $opacity_full;
 
 			.material-design-icon__svg {

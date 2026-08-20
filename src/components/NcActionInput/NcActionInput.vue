@@ -128,6 +128,7 @@ For the `NcSelect` component, all events will be passed through. Please see the 
 			:class="{
 				'action-input-picker--disabled': disabled,
 				'action-input--visible-label': labelOutside && label,
+				'action-input--tight-label': isNativePicker || isMultiselectType,
 			}"
 			class="action-input"
 			@mouseleave="onLeave">
@@ -595,7 +596,8 @@ $input-margin: 4px;
 
 	&__icon-wrapper {
 		display: flex;
-		align-self: center;
+		align-self: flex-start;
+		margin-top: var(--default-grid-baseline);
 		align-items: center;
 		justify-content: center;
 
@@ -608,6 +610,12 @@ $input-margin: 4px;
 				vertical-align: middle;
 			}
 		}
+	}
+
+	// NcSelect and the native date picker render their own label with a tighter
+	// line-height. Extra margin drops the icon too low, so omitting it there.
+	&--tight-label &__icon-wrapper {
+		margin-top: 0;
 	}
 
 	& > span {
