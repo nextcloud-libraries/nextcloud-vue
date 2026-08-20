@@ -118,6 +118,7 @@ onBeforeMount(() => {
 	uploadManager.addEventListener('uploadProgress', updateEta)
 	uploadManager.addEventListener('finished', onUploaderFinished)
 	uploadManager.addEventListener('paused', onUploaderPaused)
+	uploadManager.addEventListener('reset', updateUploadStatus)
 	uploadManager.addEventListener('resumed', onUploaderResumed)
 	updateUploadStatus()
 })
@@ -128,6 +129,7 @@ onUnmounted(() => {
 	uploadManager.removeEventListener('uploadProgress', updateEta)
 	uploadManager.removeEventListener('finished', onUploaderFinished)
 	uploadManager.removeEventListener('paused', onUploaderPaused)
+	uploadManager.removeEventListener('reset', updateUploadStatus)
 	uploadManager.removeEventListener('resumed', onUploaderResumed)
 })
 
@@ -136,12 +138,12 @@ watch(() => props.destination, () => setDestination(props.destination), { immedi
 const isPaused = ref(uploadManager.status === UploaderStatus.PAUSED)
 /** Handle uploader paused event */
 function onUploaderPaused() {
-	isPaused.value = true
+	updateUploadStatus()
 	emit('paused', [...uploadManager.queue])
 }
 /** Handle uploader resumed event */
 function onUploaderResumed() {
-	isPaused.value = false
+	updateUploadStatus()
 	emit('resumed', [...uploadManager.queue])
 }
 
@@ -154,7 +156,10 @@ const isOnlyAssembling = ref(false)
  * Update the upload status flags based on the current queue
  */
 function updateUploadStatus() {
+	isPaused.value = uploadManager.status === UploaderStatus.PAUSED
+	// While paused the queue is not processed, but the queued uploads are still pending
 	isUploading.value = uploadManager.status === UploaderStatus.UPLOADING
+		|| (isPaused.value && uploadManager.queue.length > 0)
 	hasFailure.value = uploadManager.queue.some((upload: IUpload) => upload.status === UploadStatus.FAILED)
 	isAssembling.value = uploadManager.queue.some((upload: IUpload) => upload.status === UploadStatus.ASSEMBLING)
 	isOnlyAssembling.value = isAssembling.value
