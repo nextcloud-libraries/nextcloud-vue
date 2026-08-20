@@ -11,7 +11,11 @@ describe('useFormatRelativeTime composable', () => {
 	const time = Date.parse('2025-01-01T00:00:00Z')
 
 	beforeAll(() => vi.useFakeTimers())
-	beforeEach(() => vi.setSystemTime(time + 60000))
+	beforeEach(() => {
+		// composables of previous tests are never unmounted, so drop their pending timers
+		vi.clearAllTimers()
+		vi.setSystemTime(time + 60000)
+	})
 
 	it('works with timestamp', () => {
 		const formatted = useFormatRelativeTime(time)
@@ -63,6 +67,51 @@ describe('useFormatRelativeTime composable', () => {
 		// and wait for it (Vue's computed calculation)
 		await vi.advanceTimersToNextTimerAsync()
 		expect(formatted.value).toBe('4 minutes ago')
+	})
+
+	it.each`
+	name                 | timestamp
+	${'NaN'}             | ${Number.NaN}
+	${'Infinity'}        | ${Number.POSITIVE_INFINITY}
+	${'-Infinity'}       | ${Number.NEGATIVE_INFINITY}
+	${'an invalid date'} | ${new Date('not a date')}
+	${'out of range'}    | ${new Date(8.64e15 + 1)}
+	`('handles $name', ({ timestamp }) => {
+		const formatted = useFormatRelativeTime(timestamp)
+		expect(formatted.value).toBe('Invalid date')
+	})
+
+	it('does not schedule updates for an invalid date', async () => {
+		const formatted = useFormatRelativeTime(Number.NaN)
+		expect(formatted.value).toBe('Invalid date')
+		expect(vi.getTimerCount()).toBe(0)
+
+		await vi.advanceTimersByTimeAsync(60000)
+		expect(formatted.value).toBe('Invalid date')
+	})
+
+	it('recovers when the timestamp becomes valid again', async () => {
+		const timestamp = ref(Number.NaN)
+		const formatted = useFormatRelativeTime(timestamp)
+		expect(formatted.value).toBe('Invalid date')
+
+		timestamp.value = time
+		await nextTick()
+		expect(formatted.value).toBe('1 minute ago')
+
+		// updates are scheduled again
+		await vi.advanceTimersByTimeAsync(60000)
+		expect(formatted.value).toBe('2 minutes ago')
+	})
+
+	it('handles a timestamp becoming invalid', async () => {
+		const timestamp = ref(time)
+		const formatted = useFormatRelativeTime(timestamp)
+		expect(formatted.value).toBe('1 minute ago')
+
+		timestamp.value = Number.NaN
+		await nextTick()
+		expect(formatted.value).toBe('Invalid date')
 	})
 
 	it.each`
