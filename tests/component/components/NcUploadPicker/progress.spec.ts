@@ -92,6 +92,26 @@ test.describe('NcUploadPicker: progress', () => {
 			.toEqual(['0', '1', '1', '2'])
 	})
 
+	test('shows uploads queued while paused, but does not start them', async ({ mount, page }) => {
+		const dav = await mockDav(page)
+		await mount(NcUploadPickerStory, { props: { startPaused: true } })
+
+		await pickFiles(page, createFile('file.txt', 5))
+
+		// The upload is queued, so there is progress to show, but nothing is uploaded yet
+		const progress = page.getByRole('progressbar')
+		await expect(progress).toBeVisible()
+		await expect(progress).toHaveAttribute('value', '0')
+		await expect(page.getByText('paused')).toBeVisible()
+		expect(dav.requests).toHaveLength(0)
+
+		await page.getByRole('button', { name: 'Resume uploads' }).click()
+
+		await expect(page.getByText('paused')).toBeHidden()
+		expect((await dav.waitFor('PUT'))[0].path).toBe('/files/test/Folder/file.txt')
+		await expect(progress).toBeHidden()
+	})
+
 	test('shows the paused state and stops uploading until resumed', async ({ mount, page }) => {
 		const events: string[] = []
 		// Hold back the first chunk so the uploader can be paused while it is uploading

@@ -321,6 +321,36 @@ describe('NcUploadPicker: uploading', () => {
 		expect(progressLabel(wrapper)).not.toBe('paused')
 		expect(wrapper.emitted('resumed')).toEqual([[[queued]]])
 	})
+
+	it('shows uploads that are queued while paused', async () => {
+		const wrapper = mountPicker()
+
+		// the uploader is paused, so the queued upload is not started
+		uploader.status = UploaderStatus.PAUSED
+		uploader.queue = [{ source: 'file.txt', status: UploadStatus.INITIALIZED, children: [] }]
+		await uploader.emit('uploadStarted', uploader.queue[0])
+
+		expect(wrapper.get('progress').isVisible()).toBe(true)
+		expect(wrapper.get('progress').attributes('value')).toBe('0')
+		expect(progressLabel(wrapper)).toBe('paused')
+		// the queued uploads can still be cancelled
+		expect(wrapper.get('button[aria-label="Cancel uploads"]').isVisible()).toBe(true)
+	})
+
+	it('hides the progress when the queue is reset', async () => {
+		const wrapper = mountPicker()
+		uploader.status = UploaderStatus.PAUSED
+		uploader.queue = [{ source: 'file.txt', status: UploadStatus.INITIALIZED, children: [] }]
+		await uploader.emit('uploadStarted', uploader.queue[0])
+
+		// resetting the uploader empties the queue and continues the queue processing
+		uploader.status = UploaderStatus.IDLE
+		uploader.queue = []
+		await uploader.emit('reset')
+
+		expect(wrapper.get('progress').isVisible()).toBe(false)
+		expect(wrapper.find('button[aria-label="Cancel uploads"]').exists()).toBe(false)
+	})
 })
 
 describe('NcUploadPicker: unloading the page', () => {
