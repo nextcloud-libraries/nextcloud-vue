@@ -46,6 +46,21 @@ test.describe('NcUploadPicker: cancelling uploads', () => {
 		expect(dav.received('MOVE')).toHaveLength(0)
 	})
 
+	test('cancels uploads that are queued while paused', async ({ mount, page }) => {
+		const dav = await mockDav(page)
+		await mount(NcUploadPickerStory, { props: { startPaused: true } })
+
+		await pickFiles(page, createFile('file.txt', 5))
+		await expect(page.getByRole('progressbar')).toBeVisible()
+
+		await page.getByRole('button', { name: 'Cancel uploads' }).click()
+
+		// The queue is emptied, so the uploader is neither uploading nor paused anymore
+		await expect(page.getByRole('progressbar')).toBeHidden()
+		await expect(page.getByText('paused')).toBeHidden()
+		expect(dav.requests).toHaveLength(0)
+	})
+
 	test('can upload again after cancelling', async ({ mount, page }) => {
 		const dav = await mockDav(page, { hold: ({ method }) => method === 'PUT' })
 		await mount(NcUploadPickerStory)
