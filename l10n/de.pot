@@ -258,6 +258,9 @@ msgstr "Minuten hochzählen"
 msgid "Increment seconds"
 msgstr "Sekunden hochzählen"
 
+msgid "Invalid date"
+msgstr "Ungültiges Datum"
+
 msgid "invisible"
 msgstr "Unsichtbar"
 
