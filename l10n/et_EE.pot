@@ -253,6 +253,9 @@ msgstr "Suurenda minuteid"
 msgid "Increment seconds"
 msgstr "Suurenda sekundeid"
 
+msgid "Invalid date"
+msgstr "Vigane kuupäev"
+
 msgid "invisible"
 msgstr "nähtamatu"
 
