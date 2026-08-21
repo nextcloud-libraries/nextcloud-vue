@@ -1360,6 +1360,26 @@ export default {
 		},
 
 		/**
+		 * `Array.filter` callback to drop redundant `NcActionSeparator` entries:
+		 * - the first or the last item in the list;
+		 * - a duplicate of the consequent separator (e.g. if action between them was hidden).
+		 *
+		 * @param {import('vue').VNode} action The action to check
+		 * @param {number} index The index of the action within `actionsList`
+		 * @param {import('vue').VNode[]} actionsList The full list of actions being filtered
+		 * @return {boolean} Whether the action should be kept
+		 */
+		isNotRedundantSeparator(action, index, actionsList) {
+			if (this.getActionName(action) !== 'NcActionSeparator') {
+				return true
+			}
+			if (index === 0 || index === actionsList.length - 1) {
+				return false
+			}
+			return this.getActionName(actionsList[index - 1]) !== 'NcActionSeparator'
+		},
+
+		/**
 		 * Check whether a icon prop value is an URL or not
 		 *
 		 * @param {string} url The icon prop value
@@ -1710,7 +1730,9 @@ export default {
 		/**
 		 * @type {import('vue').VNode[]}
 		 */
-		const menuActions = actions.filter((action) => !inlineActions.includes(action))
+		const menuActions = actions
+			.filter((action) => !inlineActions.includes(action))
+			.filter(this.isNotRedundantSeparator)
 
 		/**
 		 * Determine what kind of menu we have.
@@ -1961,7 +1983,7 @@ export default {
 				],
 			},
 			[
-				renderActionsPopover(actions),
+				renderActionsPopover(menuActions),
 			],
 		)
 	},
