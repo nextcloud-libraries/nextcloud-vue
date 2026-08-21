@@ -185,4 +185,33 @@ describe('NcSelect', () => {
 			expect(input.attributes('aria-expanded')).toBe('false')
 		})
 	})
+
+	describe('helper text', () => {
+		it('renders the helper text beneath the select', () => {
+			const wrapper = mount(NcSelect, {
+				props: { inputLabel: 'Label', options, inputId: 'sel', helperText: 'Pick your favourite' },
+			})
+
+			const helper = wrapper.find('#sel-helper-text')
+			expect(helper.exists()).toBe(true)
+			expect(helper.text()).toBe('Pick your favourite')
+		})
+
+		it('renders no helper text when none is provided', () => {
+			const wrapper = mount(NcSelect, {
+				props: { inputLabel: 'Label', options, inputId: 'sel' },
+			})
+
+			expect(wrapper.find('#sel-helper-text').exists()).toBe(false)
+		})
+
+		it('links the input to the helper text via aria-describedby', () => {
+			const wrapper = mount(NcSelect, {
+				props: { inputLabel: 'Label', options, inputId: 'sel', helperText: 'Pick your favourite' },
+			})
+
+			const describedby = wrapper.find('input').attributes('aria-describedby')
+			expect(describedby).toContain('sel-helper-text')
+		})
+	})
 })
