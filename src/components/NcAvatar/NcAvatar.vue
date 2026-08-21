@@ -195,6 +195,7 @@ export default {
 		:class="{
 			'avatardiv--unknown': userDoesNotExist,
 			'avatardiv--with-menu': hasMenu,
+			'avatardiv--with-legacy-menu': hasMenu && isLegacy35,
 			'avatardiv--with-menu-loading': contactsMenuLoading,
 		}"
 		:style="avatarStyle"
@@ -210,42 +211,70 @@ export default {
 				alt="">
 		</slot>
 
-		<!-- Contact menu -->
-		<!-- We show a button if the menu is not loaded yet. -->
-		<NcButton
-			v-if="hasMenu && menu.length === 0"
-			:aria-label="avatarAriaLabel"
-			class="action-item action-item__menutoggle"
-			variant="tertiary-no-background"
-			@click="toggleMenu">
-			<template #icon>
-				<NcLoadingIcon v-if="contactsMenuLoading" />
-				<IconDotsHorizontal v-else :size="20" />
-			</template>
-		</NcButton>
-		<NcActions
-			v-else-if="hasMenu"
-			v-model:open="contactsMenuOpenState"
-			:aria-label="avatarAriaLabel"
-			:container="menuContainer"
-			forceMenu
-			manualOpen
-			variant="tertiary-no-background"
-			@click="toggleMenu">
-			<component
-				:is="item.ncActionComponent"
-				v-for="(item, key) in menu"
-				:key="key"
-				v-bind="item.ncActionComponentProps">
-				<template v-if="item.iconSvg" #icon>
-					<NcIconSvgWrapper :svg="item.iconSvg" />
+		<!-- Legacy contacts menu (Nextcloud 32–34) -->
+		<template v-if="isLegacy35 && hasMenu">
+			<!-- We show a button if the menu is not loaded yet. -->
+			<NcButton
+				v-if="menu.length === 0"
+				:aria-label="avatarAriaLabel"
+				class="action-item action-item__menutoggle"
+				variant="tertiary-no-background"
+				@click="toggleMenu">
+				<template #icon>
+					<NcLoadingIcon v-if="contactsMenuLoading" />
+					<IconDotsHorizontal v-else :size="20" />
 				</template>
-				{{ item.text }}
-			</component>
-			<template v-if="contactsMenuLoading" #icon>
-				<NcLoadingIcon />
+			</NcButton>
+			<NcActions
+				v-else
+				v-model:open="contactsMenuOpenState"
+				:aria-label="avatarAriaLabel"
+				:container="menuContainer"
+				forceMenu
+				manualOpen
+				variant="tertiary-no-background"
+				@click="toggleMenu">
+				<component
+					:is="item.ncActionComponent"
+					v-for="(item, key) in menu"
+					:key="key"
+					v-bind="item.ncActionComponentProps">
+					<template v-if="item.iconSvg" #icon>
+						<NcIconSvgWrapper :svg="item.iconSvg" />
+					</template>
+					{{ item.text }}
+				</component>
+				<template v-if="contactsMenuLoading" #icon>
+					<NcLoadingIcon />
+				</template>
+			</NcActions>
+		</template>
+
+		<!-- Profile hover card (Nextcloud 35+) -->
+		<NcPopover
+			v-else-if="hasMenu"
+			v-model:shown="contactsMenuOpenState"
+			class="avatar-profile-popover"
+			:container="menuContainer"
+			:delay="{ show: 400, hide: 0 }"
+			:popoverTriggers="['hover']"
+			:triggers="['hover', 'focus', 'click']"
+			noFocusTrap
+			popupRole="dialog">
+			<template #trigger="{ attrs }">
+				<span
+					class="avatar-profile-popover__trigger"
+					v-bind="attrs"
+					role="button"
+					tabindex="0"
+					:aria-label="avatarAriaLabel" />
 			</template>
-		</NcActions>
+			<NcProfileHoverCard
+				:user="user"
+				:open="contactsMenuOpenState"
+				:actions="hoverCardActions"
+				:actionsLoading="contactsMenuLoading" />
+		</NcPopover>
 
 		<!-- Avatar status -->
 		<span v-if="showUserStatusIconOnAvatar" class="avatardiv__user-status avatardiv__user-status--icon">
@@ -276,6 +305,8 @@ import { getBuilder } from '@nextcloud/browser-storage'
 import { subscribe, unsubscribe } from '@nextcloud/event-bus'
 import { generateUrl } from '@nextcloud/router'
 import { vOnClickOutside as ClickOutside } from '@vueuse/components'
+import debounce from 'debounce'
+import { defineAsyncComponent } from 'vue'
 import IconDotsHorizontal from 'vue-material-design-icons/DotsHorizontal.vue'
 import { getRoute } from '../../components/NcRichText/autolink.ts'
 import { useIsDarkTheme } from '../../composables/index.ts'
@@ -284,6 +315,7 @@ import { usernameToColor } from '../../functions/usernameToColor/index.ts'
 import { t } from '../../l10n.ts'
 import { userStatus } from '../../mixins/index.js'
 import { getAvatarUrl } from '../../utils/getAvatarUrl.ts'
+import { isLegacy35 } from '../../utils/legacy.ts'
 import { logger } from '../../utils/logger.ts'
 import { getUserStatusText } from '../../utils/UserStatus.ts'
 import NcActionButton from '../NcActionButton/index.js'
@@ -294,6 +326,7 @@ import NcActionText from '../NcActionText/index.js'
 import NcButton from '../NcButton/index.ts'
 import NcIconSvgWrapper from '../NcIconSvgWrapper/index.ts'
 import NcLoadingIcon from '../NcLoadingIcon/index.ts'
+import NcPopover from '../NcPopover/index.js'
 import NcUserStatusIcon from '../NcUserStatusIcon/index.js'
 
 const browserStorage = getBuilder('nextcloud').persist().build()
@@ -333,6 +366,8 @@ export default {
 		NcButton,
 		NcIconSvgWrapper,
 		NcLoadingIcon,
+		NcPopover,
+		NcProfileHoverCard: defineAsyncComponent(() => import('../NcProfileHoverCard/NcProfileHoverCard.vue')),
 		NcUserStatusIcon,
 	},
 
@@ -466,7 +501,7 @@ export default {
 		 * Selector for the popover menu container
 		 */
 		menuContainer: {
-			type: [Boolean, String, Object, Element],
+			type: [Boolean, String],
 			default: 'body',
 		},
 	},
@@ -476,6 +511,7 @@ export default {
 
 		return {
 			isDarkTheme,
+			isLegacy35,
 		}
 	},
 
@@ -549,10 +585,15 @@ export default {
 			if (this.disableMenu) {
 				return false
 			}
-			if (this.isMenuLoaded) {
-				return this.menu.length > 0
+			if (this.isLegacy35) {
+				// Legacy contacts menu: hide for current user / invalid avatars.
+				if (this.isMenuLoaded) {
+					return this.menu.length > 0
+				}
+				return !(this.user === getCurrentUser()?.uid || this.userDoesNotExist || this.url)
 			}
-			return !(this.user === getCurrentUser()?.uid || this.userDoesNotExist || this.url)
+			// Profile hover card for any real user avatar, including the current user.
+			return Boolean(this.user) && !this.isNoUser && !this.url && !this.userDoesNotExist
 		},
 
 		/**
@@ -629,7 +670,61 @@ export default {
 			return initials.toLocaleUpperCase()
 		},
 
+		/**
+		 * Contacts menu actions for the hover card.
+		 * `null` until actions are loaded so the card can fall back to profile API actions.
+		 *
+		 * @return {Array|null}
+		 */
+		hoverCardActions() {
+			if (this.isLegacy35 || !this.isMenuLoaded) {
+				return null
+			}
+			return this.menu.length > 0 ? this.menu : null
+		},
+
 		menu() {
+			if (this.isLegacy35) {
+				return this.legacyMenu
+			}
+
+			const actions = this.contactsMenuActions.map((item) => {
+				const route = getRoute(this.$router, item.hyperlink)
+				return {
+					id: item.id,
+					appId: item.appId,
+					text: item.title,
+					href: route ? undefined : item.hyperlink,
+					to: route || undefined,
+					icon: item.icon,
+				}
+			})
+
+			for (const action of getEnabledContactsMenuActions(this.contactsMenuData)) {
+				try {
+					actions.push({
+						id: action.id,
+						text: action.displayName(this.contactsMenuData),
+						iconSvg: action.iconSvg(this.contactsMenuData),
+						onClick: () => action.callback(this.contactsMenuData),
+					})
+				} catch (error) {
+					logger.error(`Failed to render ContactsMenu action ${action.id}`, {
+						error,
+						action,
+					})
+				}
+			}
+
+			return actions
+		},
+
+		/**
+		 * Legacy NcActions menu entries for Nextcloud 32–34.
+		 *
+		 * @return {Array}
+		 */
+		legacyMenu() {
 			const actions = this.contactsMenuActions.map((item) => {
 				const route = getRoute(this.$router, item.hyperlink)
 				return {
@@ -703,6 +798,29 @@ export default {
 			this.isMenuLoaded = false
 			this.loadAvatarUrl()
 		},
+
+		preloadedUserStatus(status) {
+			if (status) {
+				this.setUserStatus(status)
+			}
+		},
+
+		contactsMenuOpenState(shown) {
+			// Hover card opens on hover/focus; debounce the contacts menu fetch.
+			// Legacy NcActions loads on click via toggleMenu.
+			if (this.isLegacy35) {
+				return
+			}
+			if (shown) {
+				this.debouncedFetchContactsMenu()
+			} else {
+				this.debouncedFetchContactsMenu.clear()
+			}
+		},
+	},
+
+	created() {
+		this.debouncedFetchContactsMenu = debounce(this.fetchContactsMenu, 300)
 	},
 
 	mounted() {
@@ -723,6 +841,7 @@ export default {
 	},
 
 	beforeUnmount() {
+		this.debouncedFetchContactsMenu.clear()
 		unsubscribe('settings:avatar:updated', this.loadAvatarUrl)
 		unsubscribe('settings:display-name:updated', this.loadAvatarUrl)
 		unsubscribe('user_status:status.updated', this.handleUserStatusUpdated)
@@ -742,7 +861,7 @@ export default {
 		},
 
 		/**
-		 * Toggle the popover menu on click or enter
+		 * Toggle the legacy popover menu on click or enter
 		 *
 		 * @param {KeyboardEvent|MouseEvent} event the UI event
 		 */
@@ -757,6 +876,10 @@ export default {
 		},
 
 		closeMenu() {
+			// Only used by the legacy NcActions path (click-outside).
+			if (!this.isLegacy35) {
+				return
+			}
 			this.contactsMenuOpenState = false
 		},
 
@@ -768,7 +891,11 @@ export default {
 				this.contactsMenuData = data
 				this.contactsMenuActions = data.topAction ? [data.topAction].concat(data.actions) : data.actions
 			} catch {
-				this.contactsMenuOpenState = false
+				this.contactsMenuData = {}
+				this.contactsMenuActions = []
+				if (this.isLegacy35) {
+					this.contactsMenuOpenState = false
+				}
 			}
 			this.contactsMenuLoading = false
 			this.isMenuLoaded = true
@@ -901,6 +1028,10 @@ export default {
 
 	&--with-menu {
 		cursor: pointer;
+		position: relative;
+	}
+
+	&--with-legacy-menu {
 		.action-item {
 			position: absolute;
 			top: 0;
@@ -912,7 +1043,7 @@ export default {
 		}
 		&:focus-within,
 		&:hover,
-		&#{&}-loading {
+		&.avatardiv--with-menu-loading {
 			:deep(.action-item__menutoggle) {
 				opacity: 1;
 			}
@@ -936,6 +1067,22 @@ export default {
 		& > :deep(.button-vue),
 		& > :deep(.action-item .button-vue) {
 			--button-radius: calc(var(--avatar-size) / 2);
+		}
+	}
+
+	.avatar-profile-popover {
+		position: absolute;
+		inset: 0;
+		width: 100%;
+		height: 100%;
+		z-index: 1;
+
+		&__trigger {
+			display: block;
+			width: 100%;
+			height: 100%;
+			border-radius: inherit;
+			outline: none;
 		}
 	}
 

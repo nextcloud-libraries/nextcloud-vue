@@ -6,6 +6,8 @@
 const [majorVersion] = window.OC?.config?.version?.split('.') ?? []
 // Fallback assumes the current major when no server version is detectable
 // (tests, embedded use). Keeps legacy fallbacks off by default in those cases.
-const major = Number.parseInt(majorVersion ?? '34')
+const major = Number.parseInt(majorVersion ?? '35')
 export const isLegacy = major < 32
 export const isLegacy34 = major < 34
+/** Nextcloud 32–34: keep pre–profile-hovercard avatar contacts menu. */
+export const isLegacy35 = major < 35
