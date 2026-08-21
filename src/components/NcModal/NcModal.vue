@@ -270,6 +270,12 @@ const numHeaderActions = computed(() => {
 	return actions
 })
 
+/**
+ * Whether the modal header has visible content (title and/or actions).
+ * Used to reclaim header space on short viewports for dialogs that put the title inside the content.
+ */
+const hasHeaderContent = computed(() => props.name.trim() !== '' || numHeaderActions.value > 0)
+
 // for developers we should add a warning if used with invalid props combination
 onMounted(() => {
 	if (!props.name && !props.labelId) {
@@ -425,14 +431,15 @@ function clearFocusTrap() {
 				:class="{
 					'modal-mask--opaque': dark || closeButtonOutside || hasPrevious || hasNext,
 					'modal-mask--light': lightBackdrop,
+					'modal-mask--no-header': !hasHeaderContent,
 				}"
 				role="dialog"
 				aria-modal="true"
 				:aria-labelledby="labelId || `modal-name-${modalId}`"
 				:aria-describedby="'modal-description-' + modalId"
 				tabindex="-1">
-				<!-- Header -->
-				<transition name="fade-visibility" appear>
+				<!-- Header (omitted when empty so short viewports can use full height) -->
+				<transition v-if="hasHeaderContent" name="fade-visibility" appear>
 					<div
 						class="modal-header"
 						:data-theme-light="lightBackdrop"
@@ -792,6 +799,35 @@ function clearFocusTrap() {
 			position: absolute;
 			top: var(--header-height);
 			border-radius: 0;
+		}
+	}
+}
+
+// Without a header, only keep a small margin from the viewport edges
+$max-modal-height-no-header: min(90%, calc(100% - 2 * var(--body-container-margin)));
+
+// When there is no title/actions in the header, do not reserve header space.
+// Critical on short viewports (e.g. 200% text zoom) so dialog content stays usable.
+.modal-mask--no-header .modal-wrapper {
+	&--small,
+	&--normal,
+	&--large {
+		& > .modal-container {
+			max-height: $max-modal-height-no-header;
+		}
+	}
+
+	&--full > .modal-container {
+		height: 100%;
+		top: 0;
+	}
+
+	// Fullscreen layouts — use the entire viewport when the header is empty
+	// (max-height ~360–400px covers 200% text zoom; match the fullscreen breakpoint)
+	@media only screen and ((max-width: $breakpoint-small-mobile) or (max-height: 400px)) {
+		.modal-container {
+			height: 100%;
+			top: 0;
 		}
 	}
 }
