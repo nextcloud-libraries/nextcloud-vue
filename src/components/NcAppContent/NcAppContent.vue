@@ -3,149 +3,6 @@
   - SPDX-License-Identifier: AGPL-3.0-or-later
 -->
 
-<docs>
-### General description
-
-This components provides a wrapper around the main app's content.
-
-Single-column layouts can just use the default slot. A resizable column
-can be added by providing content to the named slot `list`.
-
-### CSS variables
-In the css section some css variables are declared and will be available for
-all the children of the NcAppContent component
-
-### Examples
-
-#### Usage: Single-column content
-```vue
-<template>
-	<NcAppContent>
-		<h2>Single-column main content</h2>
-	</NcAppContent>
-</template>
-```
-
-#### Usage: Two resizable columns
-```vue
-<template>
-	<NcAppContent>
-		<template #list>
-			<div>Resizable list content</div>
-		</template>
-
-		<div>Main content</div>
-	</NcAppContent>
-</template>
-```
-
-#### Overriding Defaults
-The default, min and max sizes (in percent) of the resizable list column can be overridden.
-The list size must be between the min and the max width value.
-
-```
-<NcAppContent
-	:list-size="35"
-	:list-min-width="20"
-	:list-max-width="45"
->...</NcAppContent>
-```
-
-#### Usage: Custom document title
-For accessibility reasons every document should have a `h1` heading,
-this is visually hidden, but required for a semantically correct document.
-You can use your app name or current view for the heading.
-
-Additionally you can set a custom document title, e.g. to show the current status.
-
-```vue
-<template>
-	<NcAppContent :pageHeading="heading ? 'Heading' : undefined" :pageTitle="title ? 'Title' : undefined" >
-		<NcCheckboxRadioSwitch type="switch" :checked.sync="title">
-			Toggle title
-		</NcCheckboxRadioSwitch>
-		<NcCheckboxRadioSwitch type="switch" :checked.sync="heading">
-			Toggle Heading
-		</NcCheckboxRadioSwitch>
-		<NcButton @click="reset">Reset</NcButton>
-	</NcAppContent>
-</template>
-
-<script>
-export default {
-	data() {
-		return {
-			heading: false,
-			title: false,
-		}
-	},
-	methods: {
-		reset() {
-			this.heading = false
-			this.title = false
-			document.title = ''
-		},
-	},
-}
-</script>
-```
-</docs>
-
-<template>
-	<main id="app-content-vue" class="app-content no-snapper" :class="{ 'app-content--has-list': !!$slots.list }">
-		<h1 v-if="pageHeading" class="hidden-visually">
-			{{ pageHeading }}
-		</h1>
-
-		<template v-if="!!$slots.list">
-			<!-- Mobile view does not allow resizeable panes -->
-			<div
-				v-if="isMobile || layout === 'no-split'"
-				class="app-content-wrapper app-content-wrapper--no-split"
-				:class="{
-					'app-content-wrapper--show-details': showDetails,
-					'app-content-wrapper--show-list': !showDetails,
-					'app-content-wrapper--mobile': isMobile,
-				}">
-				<NcAppContentDetailsToggle v-if="showDetails" @click.stop.prevent="showDetails = false" />
-
-				<div v-show="!showDetails" class="app-content-wrapper__list">
-					<slot name="list" />
-				</div>
-				<slot v-if="showDetails" />
-			</div>
-			<div v-else-if="layout === 'vertical-split' || layout === 'horizontal-split'" class="app-content-wrapper">
-				<Splitpanes
-					:horizontal="layout === 'horizontal-split'"
-					class="default-theme"
-					:class="{
-						'splitpanes--horizontal': layout === 'horizontal-split',
-						'splitpanes--vertical': layout === 'vertical-split',
-					}"
-					:rtl="isRtl"
-					@resized="handlePaneResize">
-					<Pane
-						class="splitpanes__pane-list"
-						:size="listPaneSize || paneDefaults.list.size"
-						:minSize="paneDefaults.list.min"
-						:maxSize="paneDefaults.list.max">
-						<slot name="list" />
-					</Pane>
-
-					<Pane
-						class="splitpanes__pane-details"
-						:size="detailsPaneSize"
-						:minSize="paneDefaults.details.min"
-						:maxSize="paneDefaults.details.max">
-						<slot />
-					</Pane>
-				</Splitpanes>
-			</div>
-		</template>
-		<slot v-if="!$slots.list" />
-	</main>
-</template>
-
 <script lang="ts">
 import { getBuilder } from '@nextcloud/browser-storage'
 import { getCapabilities } from '@nextcloud/capabilities'
@@ -418,6 +275,61 @@ function restorePaneConfig(): void {
 }
 </script>
 
+<template>
+	<main id="app-content-vue" class="app-content no-snapper" :class="{ 'app-content--has-list': !!$slots.list }">
+		<h1 v-if="pageHeading" class="hidden-visually">
+			{{ pageHeading }}
+		</h1>
+
+		<template v-if="!!$slots.list">
+			<!-- Mobile view does not allow resizeable panes -->
+			<div
+				v-if="isMobile || layout === 'no-split'"
+				class="app-content-wrapper app-content-wrapper--no-split"
+				:class="{
+					'app-content-wrapper--show-details': showDetails,
+					'app-content-wrapper--show-list': !showDetails,
+					'app-content-wrapper--mobile': isMobile,
+				}">
+				<NcAppContentDetailsToggle v-if="showDetails" @click.stop.prevent="showDetails = false" />
+
+				<div v-show="!showDetails" class="app-content-wrapper__list">
+					<slot name="list" />
+				</div>
+				<slot v-if="showDetails" />
+			</div>
+			<div v-else-if="layout === 'vertical-split' || layout === 'horizontal-split'" class="app-content-wrapper">
+				<Splitpanes
+					:horizontal="layout === 'horizontal-split'"
+					class="default-theme"
+					:class="{
+						'splitpanes--horizontal': layout === 'horizontal-split',
+						'splitpanes--vertical': layout === 'vertical-split',
+					}"
+					:rtl="isRtl"
+					@resized="handlePaneResize">
+					<Pane
+						class="splitpanes__pane-list"
+						:size="listPaneSize || paneDefaults.list.size"
+						:minSize="paneDefaults.list.min"
+						:maxSize="paneDefaults.list.max">
+						<slot name="list" />
+					</Pane>
+
+					<Pane
+						class="splitpanes__pane-details"
+						:size="detailsPaneSize"
+						:minSize="paneDefaults.details.min"
+						:maxSize="paneDefaults.details.max">
+						<slot />
+					</Pane>
+				</Splitpanes>
+			</div>
+		</template>
+		<slot v-if="!$slots.list" />
+	</main>
+</template>
+
 <style lang="scss" scoped>
 
 .app-content {
@@ -516,3 +428,91 @@ function restorePaneConfig(): void {
 	height: 100%;
 }
 </style>
+
+<docs>
+### General description
+
+This components provides a wrapper around the main app's content.
+
+Single-column layouts can just use the default slot. A resizable column
+can be added by providing content to the named slot `list`.
+
+### CSS variables
+In the css section some css variables are declared and will be available for
+all the children of the NcAppContent component
+
+### Examples
+
+#### Usage: Single-column content
+```vue
+<template>
+	<NcAppContent>
+		<h2>Single-column main content</h2>
+	</NcAppContent>
+</template>
+```
+
+#### Usage: Two resizable columns
+```vue
+<template>
+	<NcAppContent>
+		<template #list>
+			<div>Resizable list content</div>
+		</template>
+
+		<div>Main content</div>
+	</NcAppContent>
+</template>
+```
+
+#### Overriding Defaults
+The default, min and max sizes (in percent) of the resizable list column can be overridden.
+The list size must be between the min and the max width value.
+
+```
+<NcAppContent
+	:list-size="35"
+	:list-min-width="20"
+	:list-max-width="45"
+>...</NcAppContent>
+```
+
+#### Usage: Custom document title
+For accessibility reasons every document should have a `h1` heading,
+this is visually hidden, but required for a semantically correct document.
+You can use your app name or current view for the heading.
+
+Additionally you can set a custom document title, e.g. to show the current status.
+
+```vue
+<template>
+	<NcAppContent :pageHeading="heading ? 'Heading' : undefined" :pageTitle="title ? 'Title' : undefined" >
+		<NcCheckboxRadioSwitch type="switch" :checked.sync="title">
+			Toggle title
+		</NcCheckboxRadioSwitch>
+		<NcCheckboxRadioSwitch type="switch" :checked.sync="heading">
+			Toggle Heading
+		</NcCheckboxRadioSwitch>
+		<NcButton @click="reset">Reset</NcButton>
+	</NcAppContent>
+</template>
+
+<script>
+export default {
+	data() {
+		return {
+			heading: false,
+			title: false,
+		}
+	},
+	methods: {
+		reset() {
+			this.heading = false
+			this.title = false
+			document.title = ''
+		},
+	},
+}
+</script>
+```
+</docs>
