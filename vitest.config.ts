@@ -5,7 +5,7 @@
 
 import { resolve } from 'node:path'
 import { defineConfig } from 'vite'
-import viteConfig from './vite.config'
+import viteConfig from './vite.config.ts'
 
 export default async (env) => {
 	const config = typeof viteConfig === 'function' ? await viteConfig(env) : viteConfig
@@ -21,8 +21,8 @@ export default async (env) => {
 				TZ: 'UTC',
 			},
 			environment: 'jsdom',
-			setupFiles: resolve(__dirname, './tests/setup.js'),
-			globalSetup: resolve(__dirname, './tests/global-setup.js'),
+			setupFiles: resolve(import.meta.dirname, './tests/setup.js'),
+			globalSetup: resolve(import.meta.dirname, './tests/global-setup.js'),
 			exclude: [
 				'tests/component/**',
 				'node_modules/**',

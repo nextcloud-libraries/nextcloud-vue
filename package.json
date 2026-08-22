@@ -18,23 +18,23 @@
   "type": "module",
   "exports": {
     ".": {
-      "types": "./dist/index.d.ts",
+      "types": "./dist/index.d.mts",
       "import": "./dist/index.mjs"
     },
     "./components/*": {
-      "types": "./dist/components/*/index.d.ts",
+      "types": "./dist/components/*/index.d.mts",
       "import": "./dist/components/*/index.mjs"
     },
     "./composables/*": {
-      "types": "./dist/composables/*/index.d.ts",
+      "types": "./dist/composables/*/index.d.mts",
       "import": "./dist/composables/*/index.mjs"
     },
     "./directives/*": {
-      "types": "./dist/directives/*/index.d.ts",
+      "types": "./dist/directives/*/index.d.mts",
       "import": "./dist/directives/*/index.mjs"
     },
     "./functions/*": {
-      "types": "./dist/functions/*/index.d.ts",
+      "types": "./dist/functions/*/index.d.mts",
       "import": "./dist/functions/*/index.mjs"
     }
   },
@@ -131,14 +131,14 @@
     "@nextcloud/browserslist-config": "^3.1.2",
     "@nextcloud/eslint-config": "^9.0.1",
     "@nextcloud/stylelint-config": "^3.2.2",
-    "@nextcloud/vite-config": "^2.5.0",
+    "@nextcloud/vite-config": "^3.0.0-beta.1",
     "@nextcloud/webpack-vue-config": "github:nextcloud/webpack-vue-config#vue3",
     "@playwright/experimental-ct-vue": "^1.62.1",
     "@playwright/test": "^1.62.1",
     "@types/gettext-parser": "^9.0.0",
     "@types/node": "^26.2.0",
     "@types/webpack-env": "^1.18.8",
-    "@vitest/coverage-v8": "^4.1.10",
+    "@vitest/coverage-v8": "^4.1.11",
     "@vue/test-utils": "^2.4.6",
     "@vue/tsconfig": "^0.9.1",
     "babel-loader-exclude-node-modules-except": "^1.2.4",
@@ -156,8 +156,8 @@
     "ts-node": "^10.9.2",
     "typescript": "^5.9.3",
     "url-loader": "^4.1.1",
-    "vite": "^8.2.1",
-    "vitest": "^4.0.14",
+    "vite": "^8.2.2",
+    "vitest": "^4.1.11",
     "vue-material-design-icons": "^5.3.1",
     "vue-styleguidist": "^4.72.4",
     "vue-tsc": "^3.3.10",

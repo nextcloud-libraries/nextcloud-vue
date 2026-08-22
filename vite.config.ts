@@ -67,8 +67,12 @@ export default defineConfig((env) => {
 		// Add our overrides to the config
 		config: overrides,
 		// Only create declarations for source files
-		DTSPluginOptions: {
-			tsconfigPath: 'src/tsconfig.json',
+		DtsPluginOptions: {
+			vue: true,
+			tsconfig: 'src/tsconfig.json',
+			// The parallel tsc worker communicates over IPC, but the Volar based
+			// Vue language plugin is not structured-cloneable, so it must stay off.
+			parallel: false,
 		},
 		// By default all dependencies are external, but no path imports
 		nodeExternalsOptions: {
