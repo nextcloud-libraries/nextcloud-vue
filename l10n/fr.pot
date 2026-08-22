@@ -9,10 +9,11 @@
 # Jérôme HERBINET, 2025
 # William Méauzoone, 2025
 # Sp P, 2026
+# Xavier, 2026
 # 
 msgid ""
 msgstr ""
-"Last-Translator: Sp P, 2026\n"
+"Last-Translator: Xavier, 2026\n"
 "Language-Team: French (https://app.transifex.com/nextcloud/teams/64236/fr/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Language: fr\n"
@@ -261,6 +262,9 @@ msgstr "Augmenter les minutes"
 
 msgid "Increment seconds"
 msgstr "Augmenter les secondes"
+
+msgid "Invalid date"
+msgstr "Date non valide"
 
 msgid "invisible"
 msgstr "invisible"
@@ -608,6 +612,9 @@ msgstr "Whiskey"
 
 msgid "White"
 msgstr "Blanc"
+
+msgid "Widget height"
+msgstr "Hauteur du widget"
 
 msgid "Write a message …"
 msgstr "Écrire un message…"

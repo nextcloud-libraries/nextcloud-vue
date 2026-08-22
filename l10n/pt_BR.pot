@@ -255,6 +255,9 @@ msgstr "Aumentar minutos"
 msgid "Increment seconds"
 msgstr "Aumentar segundos"
 
+msgid "Invalid date"
+msgstr "Data inválida"
+
 msgid "invisible"
 msgstr "invisível"
 
