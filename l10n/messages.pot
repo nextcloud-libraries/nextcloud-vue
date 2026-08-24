@@ -205,6 +205,9 @@ msgstr ""
 msgid "Hide password"
 msgstr ""
 
+msgid "Invalid date"
+msgstr ""
+
 msgid "invisible"
 msgstr ""
 
