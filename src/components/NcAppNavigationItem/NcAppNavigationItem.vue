@@ -318,13 +318,16 @@ Just set the `pinned` prop.
 			v-slot="{ href: routerLinkHref, navigate, isActive }"
 			v-bind="{ ...isRouterLink && { custom: true, to } }">
 			<div
+				ref="entry"
 				class="app-navigation-entry"
 				:class="{
 					'app-navigation-entry--editing': editingActive,
 					'app-navigation-entry--deleted': undo,
 					'app-navigation-entry--legacy': isLegacy34,
 					active: (to && isActive) || active,
-				}">
+				}"
+				@pointerenter="requestHighlight"
+				@focusin="requestHighlight">
 				<!-- Icon and name -->
 				<a
 					v-if="!undo"
@@ -449,6 +452,7 @@ import { createElementId } from '../../utils/createElementId.ts'
 import { isLegacy34 } from '../../utils/legacy.ts'
 import NcActionButton from '../NcActionButton/index.js'
 import NcActions from '../NcActions/index.js'
+import { APP_NAVIGATION_HIGHLIGHT } from '../NcAppNavigationList/highlight.ts'
 import NcLoadingIcon from '../NcLoadingIcon/index.ts'
 import NcVNodes from '../NcVNodes/index.ts'
 
@@ -464,6 +468,11 @@ export default {
 		NcVNodes,
 		Pencil,
 		Undo,
+	},
+
+	inject: {
+		// Provided by NcAppNavigationList, absent when used outside of one
+		highlight: { from: APP_NAVIGATION_HIGHLIGHT, default: null },
 	},
 
 	props: {
@@ -718,7 +727,26 @@ export default {
 		this.actionsBoundariesElement = document.querySelector('#content-vue') || undefined
 	},
 
+	beforeUnmount() {
+		// Release the highlight, e.g. when a virtual scroller drops this entry
+		this.releaseHighlight()
+	},
+
 	methods: {
+		/** Ask the parent list to move its highlight onto this entry */
+		requestHighlight() {
+			// Entries being edited have their own UI
+			if (this.editingActive) {
+				return
+			}
+			this.highlight?.show(this.$refs.entry)
+		},
+
+		/** Tell the parent list this entry no longer wants the highlight */
+		releaseHighlight() {
+			this.highlight?.hide(this.$refs.entry)
+		},
+
 		// sync opened menu state with prop
 		onMenuToggle(state) {
 			this.$emit('update:menuOpen', state)
