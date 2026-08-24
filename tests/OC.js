@@ -33,7 +33,7 @@ export default {
 	],
 
 	config: {
-		version: '32.0.0',
+		version: '35.0.0',
 	},
 
 	appswebroots: {

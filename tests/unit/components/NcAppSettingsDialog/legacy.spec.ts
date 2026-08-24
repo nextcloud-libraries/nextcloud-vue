@@ -9,7 +9,7 @@ import { nextTick } from 'vue'
 import NcAppSettingsDialog from '../../../../src/components/NcAppSettingsDialog/NcAppSettingsDialog.vue'
 import { resizeWindowWidth } from '../../testing-utils.ts'
 
-vi.mock('../../../../src/utils/legacy.ts', () => ({ isLegacy: false, isLegacy34: false }))
+vi.mock('../../../../src/utils/legacy.ts', () => ({ isLegacy: false, isLegacy34: false, isLegacy35: false }))
 
 test('NcAppSettingsDialog renders title in navigation column on Nextcloud >= 34', async () => {
 	await resizeWindowWidth(1024)
