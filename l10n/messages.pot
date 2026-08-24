@@ -8,6 +8,9 @@ msgstr ""
 msgid "{tag} (restricted)"
 msgstr ""
 
+msgid "{user} has not added any info yet"
+msgstr ""
+
 msgid "A color with a HEX value {hex}"
 msgstr ""
 
@@ -145,6 +148,9 @@ msgstr ""
 msgid "Edit item"
 msgstr ""
 
+msgid "Edit profile"
+msgstr ""
+
 msgid "Emoji picker"
 msgstr ""
 
@@ -172,6 +178,9 @@ msgid "Failed to add the item to the project"
 msgstr ""
 
 msgid "Failed to create a project"
+msgstr ""
+
+msgid "Failed to load profile"
 msgstr ""
 
 msgid "Failed to rename the project"
@@ -225,6 +234,15 @@ msgstr ""
 
 #. TRANSLATORS: The button is in a loading state
 msgid "Loading …"
+msgstr ""
+
+msgid "Loading actions"
+msgstr ""
+
+msgid "Loading profile"
+msgstr ""
+
+msgid "Local time: {time}"
 msgstr ""
 
 #. TRANSLATORS: A color name for RGB(45, 115, 190)
@@ -345,6 +363,9 @@ msgstr ""
 msgid "Previous"
 msgstr ""
 
+msgid "Profile of {user}"
+msgstr ""
+
 msgid "Provider icon"
 msgstr ""
 
@@ -456,6 +477,9 @@ msgstr ""
 msgid "Tab"
 msgstr ""
 
+msgid "The headline and about sections will show up here"
+msgstr ""
+
 msgid "Travel & Places"
 msgstr ""
 
@@ -500,4 +524,7 @@ msgid "Widget height"
 msgstr ""
 
 msgid "Write a message …"
+msgstr ""
+
+msgid "You have not added any info yet"
 msgstr ""
