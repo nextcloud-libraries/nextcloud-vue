@@ -1844,7 +1844,7 @@ export default {
 					noFocusTrap: !this.config.withFocusTrap,
 					'onUpdate:shown': this.toggleMenu,
 					onAfterShow: this.onOpened,
-					onAfterClose: this.onClosed,
+					onAfterHide: this.onClosed,
 				},
 				{
 					trigger: () => h(NcButton, {
