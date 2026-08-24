@@ -1,4 +1,3 @@
-# 
 # Translators:
 # Joas Schilling, 2025
 # Martin Bonde <Martin@maboni.dk>, 2026
@@ -16,6 +15,9 @@ msgstr "{tag} (usynlig)"
 
 msgid "{tag} (restricted)"
 msgstr "{tag} (begrænset)"
+
+msgid "{user} has not added any info yet"
+msgstr "{user} har ikke tilføjet nogen info endnu"
 
 msgid "A color with a HEX value {hex}"
 msgstr "En farve med en HEX-værdi {hex}"
@@ -181,6 +183,9 @@ msgstr "forstyr ikke"
 msgid "Edit item"
 msgstr "Rediger emne"
 
+msgid "Edit profile"
+msgstr "Redigér profil"
+
 msgid "Emoji picker"
 msgstr "Emoji vælger"
 
@@ -213,6 +218,9 @@ msgstr "Kunne ikke føje elementet til projektet"
 
 msgid "Failed to create a project"
 msgstr "Kunne ikke oprette et projekt"
+
+msgid "Failed to load profile"
+msgstr "Kunne ikke indlæse profil"
 
 msgid "Failed to rename the project"
 msgstr "Projektet kunne ikke omdøbes"
@@ -254,6 +262,9 @@ msgstr "Forøg minutter"
 msgid "Increment seconds"
 msgstr "Forøg sekunder"
 
+msgid "Invalid date"
+msgstr "Ugyldig dato"
+
 msgid "invisible"
 msgstr "usynlig"
 
@@ -272,6 +283,15 @@ msgstr "Indlæs flere \"{options}\""
 #. TRANSLATORS: The button is in a loading state
 msgid "Loading …"
 msgstr "Indlæser ..."
+
+msgid "Loading actions"
+msgstr "Indlæser handlinger"
+
+msgid "Loading profile"
+msgstr "Indlæser profil"
+
+msgid "Local time: {time}"
+msgstr "Lokal tid: {time}"
 
 #. TRANSLATORS: A color name for RGB(45, 115, 190)
 msgid "Mariner"
@@ -394,6 +414,15 @@ msgstr "Vælg"
 msgid "Pick an emoji"
 msgstr "Vælg en emoji"
 
+msgid "Pick file"
+msgstr "Vælg fil"
+
+msgid "Pick files"
+msgstr "Vælg filer"
+
+msgid "Pick folder"
+msgstr "Vælg mappe"
+
 msgid "Please choose a date"
 msgstr "Vælg en dato"
 
@@ -405,6 +434,9 @@ msgstr "Forrige måned"
 
 msgid "Previous year"
 msgstr "Foregående år"
+
+msgid "Profile of {user}"
+msgstr "Profil for {user}"
 
 msgid "Provider icon"
 msgstr "Udbyder ikon"
@@ -539,6 +571,9 @@ msgstr "Symboler"
 msgid "Tab"
 msgstr "Faneblad"
 
+msgid "The headline and about sections will show up here"
+msgstr "Overskriften og om afsnit vil dukke op her"
+
 msgid "Time picker"
 msgstr "Tidsvælger"
 
@@ -563,6 +598,18 @@ msgstr "Kan ikke søge på denne gruppe"
 msgid "Undo changes"
 msgstr "Fortryd ændringer"
 
+msgid "Upload file"
+msgstr "Upload fil"
+
+msgid "Upload files"
+msgstr "Upload filer"
+
+msgid "Upload folder"
+msgstr "Upload mappe"
+
+msgid "Uploading …"
+msgstr "Uploader..."
+
 msgid "User status: {status}"
 msgstr "Brugerstatus: {status}"
 
@@ -579,6 +626,9 @@ msgstr "Whiskey"
 msgid "White"
 msgstr "Hvid"
 
+msgid "Widget height"
+msgstr "Kontrolhøjde"
+
 msgid "Write a message …"
 msgstr "Skriv en besked ..."
 
@@ -587,3 +637,6 @@ msgstr "År vælger"
 
 msgid "Year picker overlay"
 msgstr "År vælger overlay"
+
+msgid "You have not added any info yet"
+msgstr "Du har ikke tilføjet nogen info endnu"
