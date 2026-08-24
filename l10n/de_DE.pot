@@ -21,7 +21,7 @@ msgid "{tag} (restricted)"
 msgstr "{tag} (eingeschränkt)"
 
 msgid "{user} has not added any info yet"
-msgstr "{user} hat noch keine Informationen hinzugefügt."
+msgstr "{user} hat noch keine Informationen hinzugefügt"
 
 msgid "A color with a HEX value {hex}"
 msgstr "Eine Farbe mit einem HEX-Wert {hex}"
