@@ -5,10 +5,23 @@
 
 # Changelog
 
+## [v8.41.0](https://github.com/nextcloud-libraries/nextcloud-vue/tree/v8.41.0) (2026-08-25)
+[Full Changelog](https://github.com/nextcloud-libraries/nextcloud-vue/compare/v8.40.0...v8.41.0)
+### 🚀 Enhancements
+* feat: profile hovercard [\#8872](https://github.com/nextcloud-libraries/nextcloud-vue/pull/8872) \([kristian-zendato](https://github.com/kristian-zendato)\)
+
+### 🐛 Fixed bugs
+* fix(NcAppNavigationToggle): Use more common left panel toggle icon [\#8749](https://github.com/nextcloud-libraries/nextcloud-vue/pull/8749) \([kra-mo](https://github.com/kra-mo)\)
+* fix: generating avatar with unusual display name [\#8816](https://github.com/nextcloud-libraries/nextcloud-vue/pull/8816)
+* fix(useFormatDateTime): properly handle invalid dates [\#8855](https://github.com/nextcloud-libraries/nextcloud-vue/pull/8855)
+* fix(NcCheckboxRadioSwitch): expose switch type with role=switch [\#8748](https://github.com/nextcloud-libraries/nextcloud-vue/pull/8748)
+
+### Other Changes
+* chore: make prerelease script reusable, ignore bots [\#8735](https://github.com/nextcloud-libraries/nextcloud-vue/pull/8735)
+
 ## [v8.40.0](https://github.com/nextcloud-libraries/nextcloud-vue/tree/v8.40.0) (2026-07-13)
 [Full Changelog](https://github.com/nextcloud-libraries/nextcloud-vue/compare/v8.39.0...v8.40.0)
 
-## What's Changed
 ### 🚀 Enhancements
 * [stable8] feat: Semantic font weights for interactive elements [\#8519](https://github.com/nextcloud-libraries/nextcloud-vue/pull/8519) \([kra-mo](https://github.com/kra-mo)\)
 * [stable8] feat(NcReferenceWidget): allow to enable resizable widget height [\#8665](https://github.com/nextcloud-libraries/nextcloud-vue/pull/8665) \([mejo-](https://github.com/mejo-)\)
@@ -27,7 +40,6 @@
 ## [v8.39.0](https://github.com/nextcloud-libraries/nextcloud-vue/tree/v8.39.0) (2026-05-07)
 [Full Changelog](https://github.com/nextcloud-libraries/nextcloud-vue/compare/v8.38.0...v8.39.0)
 
-## What's Changed
 ### 🚀 Enhancements
 * [stable8] feat: change NcAppNavigationItem/NcListItem active state design and NcAppContent edge style on Nextcloud 34+ [\#8498](https://github.com/nextcloud-libraries/nextcloud-vue/pull/8498) \([nfebe](https://github.com/nfebe)\)
 * [stable8] feat(NcAppSidebarTab): Redesign active tab as rounded filled pill [\#8501](https://github.com/nextcloud-libraries/nextcloud-vue/pull/8501) \([nfebe](https://github.com/nfebe)\)
