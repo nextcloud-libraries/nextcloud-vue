@@ -241,7 +241,7 @@ For the `NcSelect` component, all events will be passed through. Please see the 
 							:disabled="disabled"
 							:inputClass="{ focusable: isFocusable }"
 							:type="type"
-							trailingButtonIcon="arrowRight"
+							trailingButtonIcon="arrowEnd"
 							:trailingButtonLabel="trailingButtonLabel"
 							:showTrailingButton="showTrailingButton && !disabled"
 							v-bind="$attrs"
