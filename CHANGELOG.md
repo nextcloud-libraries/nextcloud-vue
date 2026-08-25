@@ -7,10 +7,40 @@
 
 All notable changes to this project will be documented in this file.
 
+## [v9.10.0](https://github.com/nextcloud-libraries/nextcloud-vue/tree/v9.10.0) (2026-08-24)
+[Full Changelog](https://github.com/nextcloud-libraries/nextcloud-vue/compare/v9.9.0...v9.10.0)
+
+### 🚀 Enhancements
+* fix(NcSelect): floating label design using NcTextField [\#8570](https://github.com/nextcloud-libraries/nextcloud-vue/pull/8570) \([skjnldsv](https://github.com/skjnldsv)\)
+* feat(NcPopover): animate open/close and remove arrow, fix #8690 [\#8769](https://github.com/nextcloud-libraries/nextcloud-vue/pull/8769) \([jancborchardt](https://github.com/jancborchardt)\)
+* feat(NcHeaderMenu): animate open/close and remove caret [\#8770](https://github.com/nextcloud-libraries/nextcloud-vue/pull/8770) \([jancborchardt](https://github.com/jancborchardt)\)
+* feat(styling): Clicky controls [\#8579](https://github.com/nextcloud-libraries/nextcloud-vue/pull/8579) \([kra-mo](https://github.com/kra-mo)\)
+* feat: profile popover card [\#8845](https://github.com/nextcloud-libraries/nextcloud-vue/pull/8845) \([kristian-zendato](https://github.com/kristian-zendato)\)
+* feat(NcAppNavigation): add animation effect for navigation items [\#8685](https://github.com/nextcloud-libraries/nextcloud-vue/pull/8685) \([jancborchardt](https://github.com/jancborchardt)\)
+* feat(NcDateTimePickerNative): floating label design [\#8768](https://github.com/nextcloud-libraries/nextcloud-vue/pull/8768) \([skjnldsv](https://github.com/skjnldsv)\)
+
+### 🐛 Fixed bugs
+* fix(actions): top-align icons with multi-line action labels [\#8730](https://github.com/nextcloud-libraries/nextcloud-vue/pull/8730) \([jancborchardt](https://github.com/jancborchardt)\)
+* fix(NcAppNavigationToggle): Use more common left panel toggle icon [\#8746](https://github.com/nextcloud-libraries/nextcloud-vue/pull/8746) \([kra-mo](https://github.com/kra-mo)\)
+* fix(NcAppNavigationItem): close mobile navigation on router-link click [\#8732](https://github.com/nextcloud-libraries/nextcloud-vue/pull/8732) \([jancborchardt](https://github.com/jancborchardt)\)
+* fix(NcDateTimePicker): use translated words in dates formatted with a format string [\#8644](https://github.com/nextcloud-libraries/nextcloud-vue/pull/8644) \([odzhychko](https://github.com/odzhychko)\)
+* fix(NcAppNavigationItem): tabbing on editable items [\#8212](https://github.com/nextcloud-libraries/nextcloud-vue/pull/8212) \([GVodyanov](https://github.com/GVodyanov)\)
+* fix: generating avatar with unusual display name [\#8792](https://github.com/nextcloud-libraries/nextcloud-vue/pull/8792) \([madbob](https://github.com/madbob)\)
+* fix(NcDateTimePicker): handle text input for default formatting [\#8657](https://github.com/nextcloud-libraries/nextcloud-vue/pull/8657) \([odzhychko](https://github.com/odzhychko)\)
+* fix(NcAppNavigation, NcAppSidebar): More graceful animations [\#8691](https://github.com/nextcloud-libraries/nextcloud-vue/pull/8691) \([kra-mo](https://github.com/kra-mo)\)
+* fix(NcDateTimePicker): avoid rerendering picker on locale change [\#8836](https://github.com/nextcloud-libraries/nextcloud-vue/pull/8836) \([odzhychko](https://github.com/odzhychko)\)
+* fix(useFormatDateTime): properly handle invalid dates [\#8852](https://github.com/nextcloud-libraries/nextcloud-vue/pull/8852) \([susnux](https://github.com/susnux)\)
+* fix(NcProgressBar): properly assign attributes [\#8851](https://github.com/nextcloud-libraries/nextcloud-vue/pull/8851) \([susnux](https://github.com/susnux)\)
+* fix(NcSelect): truncate long selected labels without overflowing the input [\#8829](https://github.com/nextcloud-libraries/nextcloud-vue/pull/8829) \([Koc](https://github.com/Koc)\)
+* fix(NcCheckboxRadioSwitch): expose switch type with role=switch [\#8747](https://github.com/nextcloud-libraries/nextcloud-vue/pull/8747) \([skjnldsv](https://github.com/skjnldsv)\)
+
+### Other Changes
+* chore: make prerelease script reusable, ignore bots [\#8731](https://github.com/nextcloud-libraries/nextcloud-vue/pull/8731) \([Antreesy](https://github.com/Antreesy)\)
+* test(NcDateTimePicker): shrink number of locales for the snapshot test case [\#8825](https://github.com/nextcloud-libraries/nextcloud-vue/pull/8825) \([odzhychko](https://github.com/odzhychko)\)
+
 ## [v9.9.0](https://github.com/nextcloud-libraries/nextcloud-vue/tree/v9.9.0) (2026-07-13)
 [Full Changelog](https://github.com/nextcloud-libraries/nextcloud-vue/compare/v9.8.2...v9.9.0)
 
-## What's Changed
 ### 🚀 Enhancements
 * feat(referencePicker): introduce getReferenceWithPicker() [\#8532](https://github.com/nextcloud-libraries/nextcloud-vue/pull/8532) \([mejo-](https://github.com/mejo-)\)
 * feat(NcReferenceWidget): allow to enable resizable widget height [\#8695](https://github.com/nextcloud-libraries/nextcloud-vue/pull/8695)
@@ -28,14 +58,9 @@ All notable changes to this project will be documented in this file.
 * Updated dependencies
 * Updated translations
 
-## New Contributors
-* @odzhychko made their first contribution in https://github.com/nextcloud-libraries/nextcloud-vue/pull/8619
-* @pallavibakale made their first contribution in https://github.com/nextcloud-libraries/nextcloud-vue/pull/8632
-
 ## [v9.8.2](https://github.com/nextcloud-libraries/nextcloud-vue/tree/v9.8.2) (2026-06-02)
 [Full Changelog](https://github.com/nextcloud-libraries/nextcloud-vue/compare/v9.8.1...v9.8.2)
 
-## What's Changed
 ### 🐛 Fixed bugs
 * fix(build): include full package version for CSS hash prefix [\#8580](https://github.com/nextcloud-libraries/nextcloud-vue/pull/8580) \([Antreesy](https://github.com/Antreesy)\)
 ### Other Changes
@@ -44,7 +69,6 @@ All notable changes to this project will be documented in this file.
 ## [v9.8.1](https://github.com/nextcloud-libraries/nextcloud-vue/tree/v9.8.1) (2026-05-28)
 [Full Changelog](https://github.com/nextcloud-libraries/nextcloud-vue/compare/v9.8.0...v9.8.1)
 
-## What's Changed
 ### 🐛 Fixed bugs
 * fix: use correct boundaries of CSS breakpoints [\#8520](https://github.com/nextcloud-libraries/nextcloud-vue/pull/8520) \([susnux](https://github.com/susnux)\)
 * fix(NcAppSidebarTab): Reduce pill height [\#8547](https://github.com/nextcloud-libraries/nextcloud-vue/pull/8547) \([kra-mo](https://github.com/kra-mo)\)
@@ -57,7 +81,6 @@ All notable changes to this project will be documented in this file.
 ## [v9.8.0](https://github.com/nextcloud-libraries/nextcloud-vue/tree/v9.8.0) (2026-05-07)
 [Full Changelog](https://github.com/nextcloud-libraries/nextcloud-vue/compare/v9.7.0...v9.8.0)
 
-## What's Changed
 ### 🚀 Enhancements
 * feat: Semantic font weights for interactive elements [\#8469](https://github.com/nextcloud-libraries/nextcloud-vue/pull/8469) \([kra-mo](https://github.com/kra-mo)\)
 * feat: change NcAppNavigationItem/NcListItem active state design and NcAppContent edge style on Nextcloud 34+ [\#8448](https://github.com/nextcloud-libraries/nextcloud-vue/pull/8448) \([nfebe](https://github.com/nfebe)\)
@@ -92,9 +115,6 @@ They are might interfere with routing logic and considered not belonging to the 
 
 ### Other Changes
 * Updated translations
-
-## New Contributors
-* @pringelmann made their first contribution in https://github.com/nextcloud-libraries/nextcloud-vue/pull/8324
 
 ## [v9.6.0](https://github.com/nextcloud-libraries/nextcloud-vue/tree/v9.6.0) (2026-03-13)
 [Full Changelog](https://github.com/nextcloud-libraries/nextcloud-vue/compare/v9.5.0...v9.6.0)
