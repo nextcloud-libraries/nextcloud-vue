@@ -16,6 +16,9 @@ msgstr "{tag} (görünmez)"
 msgid "{tag} (restricted)"
 msgstr "{tag} (kısıtlanmış)"
 
+msgid "{user} has not added any info yet"
+msgstr "{user} henüz bir bilgi eklememiş"
+
 msgid "A color with a HEX value {hex}"
 msgstr "{hex} onaltılık değeri ile bir renk "
 
@@ -180,6 +183,9 @@ msgstr "Rahatsız etmeyin"
 msgid "Edit item"
 msgstr "Ögeyi düzenle"
 
+msgid "Edit profile"
+msgstr "Profili düzenle"
+
 msgid "Emoji picker"
 msgstr "Emoji seçici"
 
@@ -212,6 +218,9 @@ msgstr "Öge projeye eklenemedi"
 
 msgid "Failed to create a project"
 msgstr "Bir proje oluşturulamadı"
+
+msgid "Failed to load profile"
+msgstr "Profil yüklenemedi"
 
 msgid "Failed to rename the project"
 msgstr "Proje yeniden adlandırılamadı"
@@ -274,6 +283,15 @@ msgstr "Diğer \"{options}\""
 #. TRANSLATORS: The button is in a loading state
 msgid "Loading …"
 msgstr "Yükleniyor…"
+
+msgid "Loading actions"
+msgstr "İşlemler yükleniyor"
+
+msgid "Loading profile"
+msgstr "Profil yükleniyor"
+
+msgid "Local time: {time}"
+msgstr "Yerel zaman: {time}"
 
 #. TRANSLATORS: A color name for RGB(45, 115, 190)
 msgid "Mariner"
@@ -417,6 +435,9 @@ msgstr "Önceki ay"
 msgid "Previous year"
 msgstr "Önceki yıl"
 
+msgid "Profile of {user}"
+msgstr "{user} profili"
+
 msgid "Provider icon"
 msgstr "Hizmet sağlayıcı simgesi"
 
@@ -550,6 +571,9 @@ msgstr "Simgeler"
 msgid "Tab"
 msgstr "Tab"
 
+msgid "The headline and about sections will show up here"
+msgstr "Başlık ve bölümler burada görüntülenir"
+
 msgid "Time picker"
 msgstr "Saat seçici"
 
@@ -613,3 +637,6 @@ msgstr "Yıl seçici"
 
 msgid "Year picker overlay"
 msgstr "Yıl seçici kaplaması"
+
+msgid "You have not added any info yet"
+msgstr "Henüz bir bilgi eklememişsiniz"
