@@ -4,4 +4,3 @@
  */
 
 export { default } from './NcProfileHoverCard.vue'
-export type { IProfileAction, IProfileData, IProfileHoverCardAction, IUserStatus } from './NcProfileHoverCard.vue'
