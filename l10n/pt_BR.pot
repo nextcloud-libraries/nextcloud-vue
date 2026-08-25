@@ -293,7 +293,7 @@ msgid "Loading profile"
 msgstr "Carregando perfil"
 
 msgid "Local time: {time}"
-msgstr "Tempo local: {time}"
+msgstr "Hora local: {time}"
 
 #. TRANSLATORS: A color name for RGB(45, 115, 190)
 msgid "Mariner"
