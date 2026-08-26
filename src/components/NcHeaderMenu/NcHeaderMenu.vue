@@ -261,6 +261,7 @@ function clearFocusTrap() {
 		<NcButton
 			:id="isNav ? triggerId : null"
 			ref="triggerButton"
+			role="menuitem"
 			:aria-controls="`header-menu-${id}`"
 			:aria-expanded="isOpened.toString()"
 			:aria-label
