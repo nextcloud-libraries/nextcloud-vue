@@ -1,0 +1,17 @@
+/*
+ * SPDX-FileCopyrightText: 2026 Nextcloud GmbH and Nextcloud contributors
+ * SPDX-License-Identifier: AGPL-3.0-or-later
+ */
+
+import { describe, expect, it } from '@jest/globals'
+import { mdiArrowRight } from '@mdi/js'
+import { mount } from '@vue/test-utils'
+import NcActionInput from '../../../../src/components/NcActionInput/NcActionInput.vue'
+
+describe('NcActionInput', () => {
+	it('renders the arrow icon in the trailing button', () => {
+		const wrapper = mount(NcActionInput)
+
+		expect(wrapper.html()).toContain(mdiArrowRight)
+	})
+})
