@@ -16,6 +16,9 @@ msgstr "{tag} (nähtamatu)"
 msgid "{tag} (restricted)"
 msgstr "{tag} (piiratud)"
 
+msgid "{user} has not added any info yet"
+msgstr "{user} pole veel mitte mingit teavet lisanud"
+
 msgid "A color with a HEX value {hex}"
 msgstr "Värv kuueteistkümnendarvuna {hex}"
 
@@ -180,6 +183,9 @@ msgstr "ära sega"
 msgid "Edit item"
 msgstr "Muuda objekti"
 
+msgid "Edit profile"
+msgstr "Muuda profiili"
+
 msgid "Emoji picker"
 msgstr "Emojide valija"
 
@@ -212,6 +218,9 @@ msgstr "Objekti lisamine projekti ei õnnestunud"
 
 msgid "Failed to create a project"
 msgstr "Projekti loomine ei õnnestunud"
+
+msgid "Failed to load profile"
+msgstr "Profiili laadimine ei õnnestunud"
 
 msgid "Failed to rename the project"
 msgstr "Projekti nime muutmine ei õnnestunud"
@@ -274,6 +283,15 @@ msgstr "Laadi veel „{options}“"
 #. TRANSLATORS: The button is in a loading state
 msgid "Loading …"
 msgstr "Laadin…"
+
+msgid "Loading actions"
+msgstr "Laadin tegevusi"
+
+msgid "Loading profile"
+msgstr "Laadin profiili"
+
+msgid "Local time: {time}"
+msgstr "Kohalik aeg: {time}"
 
 #. TRANSLATORS: A color name for RGB(45, 115, 190)
 msgid "Mariner"
@@ -417,6 +435,9 @@ msgstr "Eelmine kuu"
 msgid "Previous year"
 msgstr "Eelmine aasta"
 
+msgid "Profile of {user}"
+msgstr "Kasutaja profiil: {user}"
+
 msgid "Provider icon"
 msgstr "Teenusepakkuja ikoon"
 
@@ -550,6 +571,9 @@ msgstr "Sümbolid"
 msgid "Tab"
 msgstr "Tabulaator"
 
+msgid "The headline and about sections will show up here"
+msgstr "Teaba ja pealkirja plokid saavad olema nähtavad siin"
+
 msgid "Time picker"
 msgstr "Ajavalija"
 
@@ -613,3 +637,6 @@ msgstr "Aastavalija"
 
 msgid "Year picker overlay"
 msgstr "Aastavavalija ülekatteaken"
+
+msgid "You have not added any info yet"
+msgstr "Sa pole veel mitte mingit teavet lisanud"
