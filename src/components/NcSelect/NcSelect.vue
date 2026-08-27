@@ -580,7 +580,6 @@ export default {
 		</template>
 		<!-- Helper text beneath the control, plus any consumer-provided footer slot -->
 		<template v-if="helperText || $slots.footer" #footer="data">
-			<slot name="footer" v-bind="data" />
 			<p
 				v-if="helperText"
 				:id="`${inputId}-helper-text`"
@@ -601,8 +600,9 @@ export default {
 					inline />
 				{{ helperText }}
 			</p>
+			<slot name="footer" v-bind="data" />
 		</template>
-		<template v-for="name in forwardedSlots" :key="name" #[name]="data">
+		<template v-for="name in forwardedSlots()" :key="name" #[name]="data">
 			<!-- @slot Any combination of slots from https://vue-select.org/api/slots.html -->
 			<slot :name="name" v-bind="data" />
 		</template>
@@ -1041,16 +1041,6 @@ export default {
 	},
 
 	computed: {
-		/**
-		 * Consumer-provided slots forwarded to vue-select, excluding `footer`
-		 * which we render ourselves to host the helper text.
-		 *
-		 * @return {string[]}
-		 */
-		forwardedSlots() {
-			return Object.keys(this.$slots).filter((name) => name !== 'footer')
-		},
-
 		inputRequired() {
 			if (!this.required) {
 				return null
@@ -1165,6 +1155,19 @@ export default {
 
 	methods: {
 		t,
+
+		/**
+		 * Consumer-provided slots forwarded to vue-select, excluding `footer`
+		 * which we render ourselves to host the helper text.
+		 *
+		 * `$slots` is not reactive, so this is a method (re-evaluated on every
+		 * render) rather than a computed, to keep the forwarded slot list fresh.
+		 *
+		 * @return {string[]}
+		 */
+		forwardedSlots() {
+			return Object.keys(this.$slots).filter((name) => name !== 'footer')
+		},
 	},
 }
 </script>
