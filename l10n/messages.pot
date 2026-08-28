@@ -8,9 +8,6 @@ msgstr ""
 msgid "{tag} (restricted)"
 msgstr ""
 
-msgid "{user} has not added any info yet"
-msgstr ""
-
 msgid "A color with a HEX value {hex}"
 msgstr ""
 
