@@ -7,6 +7,19 @@
 
 All notable changes to this project will be documented in this file.
 
+## [v9.11.0](https://github.com/nextcloud-libraries/nextcloud-vue/tree/v9.11.0) (2026-08-28)
+[Full Changelog](https://github.com/nextcloud-libraries/nextcloud-vue/compare/v9.10.0...v9.11.0)
+
+### 🚀 Enhancements
+* feat(NcAppSidebarTab): add animation effect for tab button [\#8793](https://github.com/nextcloud-libraries/nextcloud-vue/pull/8793) \([jancborchardt](https://github.com/jancborchardt)\)
+* feat(NcSelect): add helperText support [\#8787](https://github.com/nextcloud-libraries/nextcloud-vue/pull/8787) \([skjnldsv](https://github.com/skjnldsv)\)
+
+### 🐛 Fixed bugs
+* fix(NcActionInput): display arrow icon for submit [\#8884](https://github.com/nextcloud-libraries/nextcloud-vue/pull/8884) \([odzhychko](https://github.com/odzhychko)\)
+* fix(NcActions) Listen on afterHide instead of non-existing afterClosed. [\#8870](https://github.com/nextcloud-libraries/nextcloud-vue/pull/8870) \([rotdrop](https://github.com/rotdrop)\)
+* fix(NcSelect): align the multiple variant width with the single one [\#8893](https://github.com/nextcloud-libraries/nextcloud-vue/pull/8893) \([skjnldsv](https://github.com/skjnldsv)\)
+* fix(NcAppNavigationItem): backwards tabbing action selection [\#8821](https://github.com/nextcloud-libraries/nextcloud-vue/pull/8821) \([[GVodyanov](https://github.com/GVodyanov)\)
+
 ## [v9.10.0](https://github.com/nextcloud-libraries/nextcloud-vue/tree/v9.10.0) (2026-08-24)
 [Full Changelog](https://github.com/nextcloud-libraries/nextcloud-vue/compare/v9.9.0...v9.10.0)
 
