@@ -18,9 +18,7 @@ All notable changes to this project will be documented in this file.
 * fix(NcActionInput): display arrow icon for submit [\#8884](https://github.com/nextcloud-libraries/nextcloud-vue/pull/8884) \([odzhychko](https://github.com/odzhychko)\)
 * fix(NcActions) Listen on afterHide instead of non-existing afterClosed. [\#8870](https://github.com/nextcloud-libraries/nextcloud-vue/pull/8870) \([rotdrop](https://github.com/rotdrop)\)
 * fix(NcSelect): align the multiple variant width with the single one [\#8893](https://github.com/nextcloud-libraries/nextcloud-vue/pull/8893) \([skjnldsv](https://github.com/skjnldsv)\)
-
-## New Contributors
-* @rotdrop made their first contribution in https://github.com/nextcloud-libraries/nextcloud-vue/pull/8870
+* fix(NcAppNavigationItem): backwards tabbing action selection [\#8821](https://github.com/nextcloud-libraries/nextcloud-vue/pull/8821) \([[GVodyanov](https://github.com/GVodyanov)\)
 
 ## [v9.10.0](https://github.com/nextcloud-libraries/nextcloud-vue/tree/v9.10.0) (2026-08-24)
 [Full Changelog](https://github.com/nextcloud-libraries/nextcloud-vue/compare/v9.9.0...v9.10.0)
