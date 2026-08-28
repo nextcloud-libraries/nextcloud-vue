@@ -76,4 +76,45 @@ describe('NcSelect', () => {
 		cy.contains('.option', 'Olivia').should('exist')
 		cy.document().find('.option').should('have.length', 1)
 	})
+
+	describe('helper text', () => {
+		const mountHelper = (props: Record<string, unknown>) => mount(NcSelect, {
+			propsData: {
+				inputLabel: 'Label',
+				inputId: 'sel',
+				options: ['foo', 'bar', 'baz'],
+				...props,
+			},
+		})
+
+		it('renders the helper text beneath the select', () => {
+			mountHelper({ helperText: 'Pick your favourite' })
+
+			cy.get('#sel-helper-text').should('exist').and('contain.text', 'Pick your favourite')
+		})
+
+		it('renders no helper text when none is provided', () => {
+			mountHelper({})
+
+			cy.get('#sel-helper-text').should('not.exist')
+		})
+
+		it('links the input to the helper text via aria-describedby', () => {
+			mountHelper({ helperText: 'Pick your favourite' })
+
+			cy.get('input').should('have.attr', 'aria-describedby').and('contain', 'sel-helper-text')
+		})
+
+		it('styles the helper text as an error', () => {
+			mountHelper({ helperText: 'Required', error: true })
+
+			cy.get('#sel-helper-text').should('have.class', 'select__helper-text--error')
+		})
+
+		it('styles the helper text as a success', () => {
+			mountHelper({ helperText: 'Looks good', success: true })
+
+			cy.get('#sel-helper-text').should('have.class', 'select__helper-text--success')
+		})
+	})
 })
