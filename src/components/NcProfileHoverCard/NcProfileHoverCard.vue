@@ -12,7 +12,6 @@ import { getCapabilities } from '@nextcloud/capabilities'
 import { getCanonicalLocale } from '@nextcloud/l10n'
 import { generateOcsUrl, generateUrl } from '@nextcloud/router'
 import { computed, onMounted, ref, watch } from 'vue'
-import AccountIcon from 'vue-material-design-icons/AccountOutline.vue'
 import BriefcaseIcon from 'vue-material-design-icons/BriefcaseOutline.vue'
 import ClockIcon from 'vue-material-design-icons/ClockOutline.vue'
 import MapMarkerIcon from 'vue-material-design-icons/MapMarkerOutline.vue'
@@ -23,7 +22,6 @@ import NcActionRouter from '../NcActionRouter/NcActionRouter.vue'
 import NcActions from '../NcActions/NcActions.vue'
 import NcAvatar from '../NcAvatar/NcAvatar.vue'
 import NcButton from '../NcButton/NcButton.vue'
-import NcEmptyContent from '../NcEmptyContent/NcEmptyContent.vue'
 import NcLoadingIcon from '../NcLoadingIcon/NcLoadingIcon.vue'
 import NcRichText from '../NcRichText/NcRichText.vue'
 import { useIsSmallMobile } from '../../composables/useIsMobile/index.ts'
@@ -179,14 +177,6 @@ const primaryActionButtonProps = computed(() => {
 		}
 	}
 	return {}
-})
-
-const emptyProfileMessage = computed(() => {
-	if (isCurrentUser.value) {
-		return t('You have not added any info yet')
-	}
-	const name = profileData.value?.displayname || props.user || ''
-	return t('{user} has not added any info yet', { user: name })
 })
 
 /**
@@ -576,15 +566,6 @@ async function fetchUserStatus(userId: string): Promise<IUserStatus> {
 								<NcRichText :text="profileData.biography" useExtendedMarkdown />
 							</div>
 						</template>
-						<NcEmptyContent
-							v-else
-							class="profile-hover-card__blocks-empty-info"
-							:name="emptyProfileMessage"
-							:description="t('The headline and about sections will show up here')">
-							<template #icon>
-								<AccountIcon :size="40" />
-							</template>
-						</NcEmptyContent>
 					</div>
 				</div>
 			</div>
@@ -790,11 +771,6 @@ $sidebar-width: 180px;
 			:deep(p) {
 				margin: 0;
 			}
-		}
-
-		&-empty-info {
-			margin: 0;
-			padding: 0;
 		}
 	}
 

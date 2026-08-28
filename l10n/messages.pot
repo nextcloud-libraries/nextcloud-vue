@@ -8,9 +8,6 @@ msgstr ""
 msgid "{tag} (restricted)"
 msgstr ""
 
-msgid "{user} has not added any info yet"
-msgstr ""
-
 msgid "A color with a HEX value {hex}"
 msgstr ""
 
@@ -558,9 +555,6 @@ msgstr ""
 msgid "Tab"
 msgstr ""
 
-msgid "The headline and about sections will show up here"
-msgstr ""
-
 msgid "Time picker"
 msgstr ""
 
@@ -623,7 +617,4 @@ msgid "Year picker"
 msgstr ""
 
 msgid "Year picker overlay"
-msgstr ""
-
-msgid "You have not added any info yet"
 msgstr ""
