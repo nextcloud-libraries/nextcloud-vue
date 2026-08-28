@@ -1187,11 +1187,11 @@ export default {
 	overflow-wrap: anywhere;
 
 	&--error {
-		color: var(--color-error);
+		color: var(--color-text-error);
 	}
 
 	&--success {
-		color: var(--color-success);
+		color: var(--color-text-success);
 	}
 
 	.select__helper-text-icon {
