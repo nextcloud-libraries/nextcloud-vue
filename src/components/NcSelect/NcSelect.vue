@@ -1431,6 +1431,10 @@ export default {
 	// Multi-select: border on dropdown-toggle (contains tags + input)
 	// NcTextField is transparent; floating label via #header slot
 	&.vs--multiple {
+		// The multiple variant otherwise renders ~2px wider than the single one
+		// and overflows its container; inset it by 1px on each side to align.
+		margin-inline: 1px;
+
 		.vs__dropdown-toggle {
 			// Use transparent border in closed state to reserve the same space
 			// as the open state's real border, prevents layout jump on click
