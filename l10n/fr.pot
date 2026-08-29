@@ -25,6 +25,9 @@ msgstr "{tag} (invisible)"
 msgid "{tag} (restricted)"
 msgstr "{tag} (restreint)"
 
+msgid "{user} has not added any info yet"
+msgstr "{user} n'a pas ajouté d'informations pour le moment"
+
 msgid "A color with a HEX value {hex}"
 msgstr "Une couleur de valeur HEX {hex}"
 
@@ -190,6 +193,9 @@ msgstr "ne pas déranger"
 msgid "Edit item"
 msgstr "Éditer l'élément"
 
+msgid "Edit profile"
+msgstr "Éditer le profil"
+
 msgid "Emoji picker"
 msgstr "Sélecteur d'émojis"
 
@@ -222,6 +228,9 @@ msgstr "Impossible d'ajouter l'élément au projet"
 
 msgid "Failed to create a project"
 msgstr "Impossible de créer un projet"
+
+msgid "Failed to load profile"
+msgstr "Impossible de charger le profil"
 
 msgid "Failed to rename the project"
 msgstr "Impossible de renommer le projet"
@@ -284,6 +293,15 @@ msgstr "Charger d'avantage \"{options}\""
 #. TRANSLATORS: The button is in a loading state
 msgid "Loading …"
 msgstr "Chargement..."
+
+msgid "Loading actions"
+msgstr "Chargement des actions"
+
+msgid "Loading profile"
+msgstr "Chargement du profil"
+
+msgid "Local time: {time}"
+msgstr "Heure locale : {time}"
 
 #. TRANSLATORS: A color name for RGB(45, 115, 190)
 msgid "Mariner"
@@ -428,6 +446,9 @@ msgstr "Mois précédent"
 msgid "Previous year"
 msgstr "Année précédente"
 
+msgid "Profile of {user}"
+msgstr "Profil de {user}"
+
 msgid "Provider icon"
 msgstr "Icône du fournisseur"
 
@@ -561,6 +582,9 @@ msgstr "Symboles"
 msgid "Tab"
 msgstr "Tab"
 
+msgid "The headline and about sections will show up here"
+msgstr "Les sections de titre et à propos apparaîtront ici"
+
 msgid "Time picker"
 msgstr "Sélecteur de temps"
 
@@ -624,3 +648,6 @@ msgstr "Sélecteur d'année"
 
 msgid "Year picker overlay"
 msgstr "Superposition du sélecteur d’année"
+
+msgid "You have not added any info yet"
+msgstr "Vous n'avez pas ajouté d'informations pour le moment"
