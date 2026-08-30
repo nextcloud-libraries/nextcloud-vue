@@ -3,10 +3,11 @@
 # Johan Bernhardsson <johan@kafit.se>, 2025
 # Magnus Höglund, 2026
 # Jonatan Nyberg, 2026
+# Daniel Nylander <po@danielnylander.se>, 2026
 # 
 msgid ""
 msgstr ""
-"Last-Translator: Jonatan Nyberg, 2026\n"
+"Last-Translator: Daniel Nylander <po@danielnylander.se>, 2026\n"
 "Language-Team: Swedish (https://app.transifex.com/nextcloud/teams/64236/sv/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Language: sv\n"
@@ -17,6 +18,9 @@ msgstr "{tag} (osynlig)"
 
 msgid "{tag} (restricted)"
 msgstr "{tag} (begränsad)"
+
+msgid "{user} has not added any info yet"
+msgstr "{user} har inte lagt till någon information ännu"
 
 msgid "A color with a HEX value {hex}"
 msgstr "En färg med HEX-värdet {hex}"
@@ -182,6 +186,9 @@ msgstr "stör ej"
 msgid "Edit item"
 msgstr "Redigera objektet"
 
+msgid "Edit profile"
+msgstr "Redigera profil"
+
 msgid "Emoji picker"
 msgstr "Emojiväljare"
 
@@ -214,6 +221,9 @@ msgstr "Det gick inte att lägga till objektet i projektet"
 
 msgid "Failed to create a project"
 msgstr "Det gick inte att skapa ett projekt"
+
+msgid "Failed to load profile"
+msgstr "Kunde inte läsa in profilen"
 
 msgid "Failed to rename the project"
 msgstr "Det gick inte att byta namn på projektet"
@@ -255,6 +265,9 @@ msgstr "Öka minuter"
 msgid "Increment seconds"
 msgstr "Öka sekunder"
 
+msgid "Invalid date"
+msgstr "Ogiltigt datum"
+
 msgid "invisible"
 msgstr "osynlig"
 
@@ -273,6 +286,15 @@ msgstr "Läs in fler \"{options}\""
 #. TRANSLATORS: The button is in a loading state
 msgid "Loading …"
 msgstr "Läser in …"
+
+msgid "Loading actions"
+msgstr "Läser in åtgärder"
+
+msgid "Loading profile"
+msgstr "Läser in profil"
+
+msgid "Local time: {time}"
+msgstr "Lokal tid: {time}"
 
 #. TRANSLATORS: A color name for RGB(45, 115, 190)
 msgid "Mariner"
@@ -416,6 +438,9 @@ msgstr "Föregående månad"
 msgid "Previous year"
 msgstr "Föregående år"
 
+msgid "Profile of {user}"
+msgstr "Profil för {user}"
+
 msgid "Provider icon"
 msgstr "Leverantörsikon"
 
@@ -549,6 +574,9 @@ msgstr "Symboler"
 msgid "Tab"
 msgstr "Tab"
 
+msgid "The headline and about sections will show up here"
+msgstr "Rubrik- och om-avsnitten visas här."
+
 msgid "Time picker"
 msgstr "Tidsväljare"
 
@@ -612,3 +640,6 @@ msgstr "Årsväljare"
 
 msgid "Year picker overlay"
 msgstr "Panel för årsväljare"
+
+msgid "You have not added any info yet"
+msgstr "Du har inte lagt till någon information ännu."
