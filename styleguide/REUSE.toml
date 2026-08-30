@@ -34,3 +34,9 @@ path = ["assets/img/background/jenna-kim-the-globe.webp", "assets/img/background
 precedence = "aggregate"
 SPDX-FileCopyrightText = "Nextcloud GmbH"
 SPDX-License-Identifier = "CC-BY-SA-4.0"
+
+[[annotations]]
+path = ["assets/img/core/img/icons.svg", "assets/img/icons-metadata.json"]
+precedence = "aggregate"
+SPDX-FileCopyrightText = "Nextcloud GmbH and Nextcloud contributors"
+SPDX-License-Identifier = "Apache-2.0"
