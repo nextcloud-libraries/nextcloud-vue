@@ -4,14 +4,21 @@
  */
 
 import { resolve } from 'node:path'
-import { defineConfig } from 'vite'
-import viteConfig from './vite.config'
+import { defineConfig } from 'vitest/config'
+import viteConfig from './vite.config.ts'
 
-export default async (env) => {
+export default defineConfig(async (env) => {
 	const config = typeof viteConfig === 'function' ? await viteConfig(env) : viteConfig
 
 	return defineConfig({
 		...config,
+		// Vitest merges the config with the vite config,
+		// which concatenates the "target" array causing ocx to fail because of duplicated entries.
+		// ref: https://github.com/vitest-dev/vitest/issues/11035
+		oxc: {
+			...config.oxc,
+			target: 'esnext',
+		},
 		test: {
 			// ensure we have a consistent testing environment between local and CI
 			env: {
@@ -21,8 +28,8 @@ export default async (env) => {
 				TZ: 'UTC',
 			},
 			environment: 'jsdom',
-			setupFiles: resolve(__dirname, './tests/setup.js'),
-			globalSetup: resolve(__dirname, './tests/global-setup.js'),
+			setupFiles: resolve(import.meta.dirname, './tests/setup.js'),
+			globalSetup: resolve(import.meta.dirname, './tests/global-setup.js'),
 			exclude: [
 				'tests/component/**',
 				'node_modules/**',
@@ -39,4 +46,4 @@ export default async (env) => {
 			},
 		},
 	})
-}
+})

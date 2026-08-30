@@ -160,6 +160,11 @@ export default {
 			})
 		},
 
+		/**
+		 * Resolve the references of the current text.
+		 *
+		 * @return {Promise<{ data: { ocs: { data: { references: object[] } } } }>} The OCS response
+		 */
 		resolve() {
 			const match = (new RegExp(URL_PATTERN).exec(this.text.trim()))
 			const isPublic = getCurrentUser() === null

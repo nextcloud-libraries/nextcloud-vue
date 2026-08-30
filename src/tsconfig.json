@@ -2,6 +2,7 @@
 	"extends": "../tsconfig.json",
 	"compilerOptions": {
 		"declaration": true,
+		"allowJs": true,
 		"emitDeclarationOnly": true,
 		"rootDir": ".",
 	},

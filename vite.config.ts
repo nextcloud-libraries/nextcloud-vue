@@ -11,6 +11,7 @@ import { join, resolve } from 'node:path'
 import { defineConfig } from 'vite'
 import dateFnsLocalesPlugin from './build/date-fns-locales-plugin.mts'
 import vueDocsPlugin from './build/docs-plugin.ts'
+import dtsJavascriptResolvePlugin from './build/dts-js-resolve-plugin.ts'
 import l10nPlugin from './build/l10n-plugin.mjs'
 import packageJson from './package.json' with { type: 'json' }
 
@@ -32,6 +33,8 @@ const entryPoints = {
 const overrides = defineConfig({
 	plugins: [
 		vueDocsPlugin,
+		// ref: https://github.com/sxzz/rolldown-plugin-dts/issues/286
+		dtsJavascriptResolvePlugin(),
 		dateFnsLocalesPlugin(),
 		l10nPlugin(resolve(import.meta.dirname, 'l10n')),
 	],
@@ -66,10 +69,20 @@ export default defineConfig((env) => {
 	const createConfig = createLibConfig(entryPoints, {
 		// Add our overrides to the config
 		config: overrides,
-		// Only create declarations for source files
-		DTSPluginOptions: {
-			tsconfigPath: 'src/tsconfig.json',
-		},
+		// Only create declarations for source files.
+		// The plugin requires bundled input, so it can not be used by consumers
+		// of this config that only serve the sources, like vitest.
+		// TODO: move this to shared config
+		DtsPluginOptions: env.command !== 'build'
+			? false
+			: {
+					vue: true,
+					tsconfig: 'src/tsconfig.json',
+					// The parallel tsc worker communicates over IPC, but the Volar based
+					// Vue language plugin is not structured-cloneable, so it must stay off.
+					// ref: https://github.com/sxzz/rolldown-plugin-dts/issues/285
+					parallel: false,
+				},
 		// By default all dependencies are external, but no path imports
 		nodeExternalsOptions: {
 			// Packages with paths imports should be added here to mark them as external as well
