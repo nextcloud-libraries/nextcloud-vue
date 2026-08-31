@@ -1105,12 +1105,18 @@ export default {
 }
 
 .modal-wrapper {
+	// Space reserved for the modal header; 0 when the header is not shown
+	--modal-header-offset: var(--header-height);
 	display: flex;
 	align-items: center;
 	justify-content: center;
 	box-sizing: border-box;
 	width: 100%;
 	height: 100%;
+
+	&--no-header {
+		--modal-header-offset: var(--body-container-margin);
+	}
 
 	/* Navigation buttons */
 	.prev,
@@ -1192,9 +1198,9 @@ export default {
 	&--full {
 		& > .modal-container {
 			width: 100%;
-			height: calc(100% - var(--header-height));
+			height: calc(100% - var(--modal-header-offset));
 			position: absolute;
-			top: var(--header-height);
+			top: var(--modal-header-offset);
 			border-radius: 0;
 		}
 	}
@@ -1205,9 +1211,9 @@ export default {
 			max-width: initial;
 			width: 100%;
 			max-height: initial;
-			height: calc(100% - var(--header-height));
+			height: calc(100% - var(--modal-header-offset));
 			position: absolute;
-			top: var(--header-height);
+			top: var(--modal-header-offset);
 			border-radius: 0;
 		}
 	}
