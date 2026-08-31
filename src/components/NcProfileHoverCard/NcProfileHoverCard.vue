@@ -121,7 +121,18 @@ const loading = ref(false)
 const error = ref(false)
 const profileData = ref<IProfileData | null>(props.profile)
 const userStatus = ref<IUserStatus>(props.preloadedUserStatus ?? {})
+/**
+ * True once status is known for the current user (preloaded or fetched, including empty).
+ * The card stays on the loading state until this is true to avoid a status flash.
+ */
+const userStatusReady = ref(props.preloadedUserStatus !== null)
 const isMobile = useIsSmallMobile()
+
+/**
+ * Show the spinner until profile and status are both ready.
+ */
+const showLoading = computed(() => loading.value
+	|| (!!profileData.value && !error.value && !userStatusReady.value))
 
 if (props.user && props.profile) {
 	setCachedProfile(props.user, props.profile)
@@ -348,12 +359,14 @@ watch(() => props.profile, (value) => {
 watch(() => props.preloadedUserStatus, (value) => {
 	if (value) {
 		userStatus.value = value
+		userStatusReady.value = true
 	}
 })
 
 watch(() => props.user, () => {
 	profileData.value = props.profile
 	userStatus.value = props.preloadedUserStatus ?? {}
+	userStatusReady.value = props.preloadedUserStatus !== null
 	error.value = false
 	if (props.user && props.profile) {
 		setCachedProfile(props.user, props.profile)
@@ -376,22 +389,15 @@ onMounted(() => {
 })
 
 /**
- * Whether user status was already provided (including a known empty status).
- */
-function hasPreloadedUserStatus() {
-	return props.preloadedUserStatus !== null
-		|| !!(userStatus.value.icon || userStatus.value.message || userStatus.value.status)
-}
-
-/**
  * Ensure user status is loaded when missing.
  *
  * @param userId - User id
  */
 async function ensureUserStatus(userId: string) {
-	// Skip the status request when already preloaded (e.g. from NcAvatar)
-	if (!hasPreloadedUserStatus()) {
+	// Skip the status request when already known (e.g. from NcAvatar)
+	if (!userStatusReady.value) {
 		userStatus.value = await fetchUserStatus(userId)
+		userStatusReady.value = true
 	}
 }
 
@@ -413,7 +419,14 @@ async function loadProfile() {
 		}
 	}
 	if (profileData.value) {
-		await ensureUserStatus(userId)
+		if (!userStatusReady.value) {
+			loading.value = true
+			try {
+				await ensureUserStatus(userId)
+			} finally {
+				loading.value = false
+			}
+		}
 		return
 	}
 
@@ -426,12 +439,13 @@ async function loadProfile() {
 				const { data } = await axios.get(generateOcsUrl('/profile/{userId}', { userId }))
 				return data.ocs?.data ?? null
 			}),
-			hasPreloadedUserStatus()
+			userStatusReady.value
 				? Promise.resolve(userStatus.value)
 				: fetchUserStatus(userId),
 		])
 		profileData.value = profile
 		userStatus.value = status
+		userStatusReady.value = true
 		if (!profileData.value) {
 			error.value = true
 		}
@@ -468,7 +482,7 @@ async function fetchUserStatus(userId: string): Promise<IUserStatus> {
 		class="profile-hover-card"
 		role="dialog"
 		:aria-label="t('Profile of {user}', { user: profileData?.displayname || user || '' })">
-		<div v-if="loading" class="profile-hover-card__loading">
+		<div v-if="showLoading" class="profile-hover-card__loading">
 			<NcLoadingIcon :size="32" :name="t('Loading profile')" />
 		</div>
 
@@ -1081,6 +1095,7 @@ $sidebar-width: 180px;
 `NcProfileHoverCard` is the **content** of a profile popover. It is not a trigger and does not wrap `NcPopover`.
 
 When `open` becomes `true`, the card loads the user's profile and user status itself.
+The card content is shown only after both are ready (or preloaded), so status does not flash in late.
 Pass `profile` to skip the profile request.
 Pass `preloadedUserStatus` to skip the status request (e.g. when `NcAvatar` already loaded it).
 
