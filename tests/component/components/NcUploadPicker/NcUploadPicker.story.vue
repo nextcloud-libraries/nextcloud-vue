@@ -33,12 +33,6 @@ const props = withDefaults(defineProps<{
 	destinationPath?: string
 
 	/**
-	 * WebDAV path set by the "Set destination" control,
-	 * used to test the exposed `setDestination` method.
-	 */
-	otherDestinationPath?: string
-
-	/**
 	 * Basenames of the nodes that already exist in the destination,
 	 * used to trigger upload conflicts.
 	 */
@@ -65,7 +59,6 @@ const props = withDefaults(defineProps<{
 	actions: undefined,
 	label: undefined,
 	variant: undefined,
-	otherDestinationPath: undefined,
 	destinationPath: 'files/test/Folder',
 	existingFiles: () => [],
 	maxParallelUploads: 5,
@@ -92,7 +85,6 @@ if (props.startPaused) {
 	uploader.pause()
 }
 
-Object.assign(window, { _debugUploader: uploader })
 const picker = useTemplateRef('picker')
 const destination = computed(() => createFolder(props.destinationPath))
 
@@ -157,9 +149,6 @@ function serialize(upload: IUpload) {
 			@upload:finished="emit('upload:finished', serialize($event))"
 			@upload:started="emit('upload:started', $event.source)" />
 
-		<button v-if="otherDestinationPath" type="button" @click="picker!.setDestination(createFolder(otherDestinationPath))">
-			Set destination
-		</button>
 		<button type="button" @click="picker!.reset()">
 			Reset picker
 		</button>

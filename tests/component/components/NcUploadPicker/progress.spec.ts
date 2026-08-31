@@ -67,6 +67,35 @@ test.describe('NcUploadPicker: progress', () => {
 		await expect(page.getByRole('progressbar')).toBeHidden()
 	})
 
+	test('shows the assembling state only when nothing is uploaded anymore', async ({ mount, page }) => {
+		const dav = await mockDav(page, {
+			// Hold back the small file uploads and the assembling of the chunks
+			hold: ({ method, path }) => method === 'MOVE' || (method === 'PUT' && path.startsWith('/files/')),
+		})
+		const finished: string[] = []
+		await mount(NcUploadPickerStory, {
+			props: { multiple: true },
+			on: { 'upload:finished': ({ source }: { source: string }) => finished.push(source) },
+		})
+
+		await pickFiles(page, createFile('file.txt', 1), createFile('other.txt', 1), createFile('big-file.txt', 25))
+
+		// All chunks were uploaded, so the assembling started
+		await dav.waitFor('MOVE')
+		// Finish one of the small uploads, the other one is still uploading
+		const [upload] = dav.received('PUT', /\/file\.txt$/)
+		upload.respond()
+		await expect.poll(() => finished.some((source) => source.endsWith('/file.txt'))).toBe(true)
+
+		// The chunks are assembled, but there is still an upload running
+		await expect(page.getByText('assembling')).toBeHidden()
+		// So the remaining upload can still be cancelled
+		await expect(page.getByRole('button', { name: 'Cancel uploads' })).toBeVisible()
+
+		dav.releaseAll()
+		await expect(page.getByRole('progressbar')).toBeHidden()
+	})
+
 	test('retries a failed chunk without uploading the other chunks again', async ({ mount, page }) => {
 		let failChunk = true
 		const dav = await mockDav(page, {

@@ -190,13 +190,12 @@ test.describe('NcUploadPicker: destination handling', () => {
 		expect(uploads[1].path).toBe('/files/test/Photos/file.txt')
 	})
 
-	test('uploads to the destination set using the exposed method', async ({ mount, page }) => {
+	test('uploads to a destination that needs to be encoded', async ({ mount, page }) => {
 		const dav = await mockDav(page)
 		await mount(NcUploadPickerStory, {
-			props: { otherDestinationPath: 'photos/test/albums/2022 Summer Vacations' },
+			props: { destinationPath: 'photos/test/albums/2022 Summer Vacations' },
 		})
 
-		await page.getByRole('button', { name: 'Set destination' }).click()
 		await pickFiles(page, createFile('file.txt', 1))
 
 		const [upload] = await dav.waitFor('PUT')
