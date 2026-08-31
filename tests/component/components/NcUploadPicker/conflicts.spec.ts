@@ -20,9 +20,12 @@ test.describe('NcUploadPicker: conflicting files', () => {
 
 		const dialog = conflictDialog(page)
 		await expect(dialog).toBeVisible()
+		// Both versions are shown, a single conflict is resolved using the dialog actions
 		const conflict = dialog.getByRole('group', { name: 'file.txt' })
-		await expect(conflict.getByRole('checkbox', { name: /^New version/ })).toBeVisible()
-		await expect(conflict.getByRole('checkbox', { name: /^Existing version/ })).toBeVisible()
+		await expect(conflict.getByText('Existing version', { exact: true })).toBeAttached()
+		await expect(conflict.getByText('New version', { exact: true })).toBeAttached()
+		await expect(dialog.getByRole('button', { name: 'Keep both' })).toBeVisible()
+		await expect(dialog.getByRole('button', { name: 'Replace' })).toBeVisible()
 		// Nothing is uploaded before the conflict is resolved
 		expect(dav.received('PUT')).toHaveLength(0)
 	})
@@ -70,34 +73,12 @@ test.describe('NcUploadPicker: conflicting files', () => {
 		await expect(page.getByRole('progressbar')).toBeHidden()
 	})
 
-	test('keeping the existing version skips the conflicting file', async ({ mount, page }) => {
-		// Hold back the uploads and only upload one file at a time,
-		// so the first upload is the first picked file that is not skipped
-		const dav = await mockDav(page, { hold: ({ method }) => method === 'PUT' })
-		await mount(NcUploadPickerStory, {
-			props: { existingFiles: ['file.txt'], maxParallelUploads: 1, multiple: true },
-		})
-
-		await pickFiles(page, createFile('file.txt', 1), createFile('other.txt', 1))
-
-		const dialog = conflictDialog(page)
-		await keepVersion(dialog, 'file.txt', 'Existing version')
-		await dialog.getByRole('button', { name: /Continue/ }).click()
-
-		// Only the file without a conflict is uploaded
-		const [upload] = await dav.waitFor('PUT')
-		expect(upload.path).toBe('/files/test/Folder/other.txt')
-	})
-
-	test('keeping the new version overwrites the existing file', async ({ mount, page }) => {
+	test('replacing the existing file overwrites it', async ({ mount, page }) => {
 		const dav = await mockDav(page)
 		await mount(NcUploadPickerStory, { props: { existingFiles: ['file.txt'] } })
 
 		await pickFiles(page, createFile('file.txt', 1))
-
-		const dialog = conflictDialog(page)
-		await keepVersion(dialog, 'file.txt', 'New version')
-		await dialog.getByRole('button', { name: /Continue/ }).click()
+		await conflictDialog(page).getByRole('button', { name: 'Replace' }).click()
 
 		const [upload] = await dav.waitFor('PUT')
 		expect(upload.path).toBe('/files/test/Folder/file.txt')
@@ -108,37 +89,97 @@ test.describe('NcUploadPicker: conflicting files', () => {
 		await mount(NcUploadPickerStory, { props: { existingFiles: ['file.txt'] } })
 
 		await pickFiles(page, createFile('file.txt', 1))
-
-		const dialog = conflictDialog(page)
-		await keepVersion(dialog, 'file.txt', 'New version')
-		await keepVersion(dialog, 'file.txt', 'Existing version')
-		await dialog.getByRole('button', { name: /Continue/ }).click()
+		await conflictDialog(page).getByRole('button', { name: 'Keep both' }).click()
 
 		// The existing file is kept, the new one is uploaded with a unique name
 		const uploads = await dav.waitFor('PUT')
 		expect(uploads.map(({ path }) => path)).toEqual(['/files/test/Folder/file (1).txt'])
 	})
+
+	test('asks which version to keep for every conflicting file', async ({ mount, page }) => {
+		const dav = await mockDav(page)
+		await mount(NcUploadPickerStory, {
+			props: { existingFiles: ['file.txt', 'other.txt'], multiple: true },
+		})
+
+		await pickFiles(page, createFile('file.txt', 1), createFile('other.txt', 1))
+
+		const dialog = conflictDialog(page, 2)
+		await expect(dialog).toBeVisible()
+		// Every conflict can be resolved on its own, the new versions are preselected
+		for (const name of ['file.txt', 'other.txt']) {
+			const conflict = dialog.getByRole('group', { name })
+			await expect(conflict.getByRole('checkbox', { name: /Existing version$/ })).not.toBeChecked()
+			await expect(conflict.getByRole('checkbox', { name: /New version$/ })).toBeChecked()
+		}
+		// Nothing is uploaded before the conflicts are resolved
+		expect(dav.received('PUT')).toHaveLength(0)
+	})
+
+	test('keeping the existing version skips the conflicting file', async ({ mount, page }) => {
+		const dav = await mockDav(page)
+		await mount(NcUploadPickerStory, {
+			props: { existingFiles: ['file.txt', 'other.txt'], multiple: true },
+		})
+
+		await pickFiles(page, createFile('file.txt', 1), createFile('other.txt', 1))
+
+		// Only keep the existing version of the first file, the second one is replaced
+		const dialog = conflictDialog(page, 2)
+		await selectVersion(dialog, 'file.txt', 'Existing version', true)
+		await selectVersion(dialog, 'file.txt', 'New version', false)
+		await dialog.getByRole('button', { name: /Continue/ }).click()
+
+		// Only the file that is not skipped is uploaded
+		await dav.waitFor('PUT')
+		await expect(page.getByRole('progressbar')).toBeHidden()
+		expect(dav.received('PUT').map(({ path }) => path)).toEqual(['/files/test/Folder/other.txt'])
+	})
+
+	test('skipping all conflicts uploads nothing', async ({ mount, page }) => {
+		const dav = await mockDav(page)
+		await mount(NcUploadPickerStory, {
+			props: { existingFiles: ['file.txt', 'other.txt'], multiple: true },
+		})
+
+		await pickFiles(page, createFile('file.txt', 1), createFile('other.txt', 1))
+		await conflictDialog(page, 2).getByRole('button', { name: 'Skip 2 files' }).click()
+
+		await expect(page.getByRole('progressbar')).toBeHidden()
+		expect(dav.received('PUT')).toHaveLength(0)
+	})
 })
 
 /**
- * The conflict dialog shown when uploading a file that already exists.
+ * The conflict dialog shown when uploading files that already exist.
  *
  * @param page - The page of the test
+ * @param conflicts - Number of conflicting files, a single conflict is resolved by the dialog actions
  */
-function conflictDialog(page: Page): Locator {
-	return page.getByRole('dialog', { name: '1 file conflict' })
+function conflictDialog(page: Page, conflicts: number = 1): Locator {
+	return page.getByRole('dialog', {
+		name: conflicts === 1 ? 'Select file to keep' : 'Select files to keep',
+	})
 }
 
 /**
- * Select one of the versions of a conflicting file.
+ * Select or deselect one of the versions of a conflicting file.
+ * This is only possible if there is more than one conflict.
  *
  * @param dialog - The conflict dialog
  * @param name - Name of the conflicting file
- * @param version - The version to keep
+ * @param version - The version to select or deselect
+ * @param selected - Whether the version should be selected afterwards
  */
-async function keepVersion(dialog: Locator, name: string, version: 'New version' | 'Existing version') {
+async function selectVersion(
+	dialog: Locator,
+	name: string,
+	version: 'New version' | 'Existing version',
+	selected: boolean,
+) {
 	const conflict = dialog.getByRole('group', { name })
-	// The checkbox itself is not clickable as it is covered by its label
-	await conflict.getByText(version, { exact: true }).click()
-	await expect(conflict.getByRole('checkbox', { name: new RegExp(`^${version}`) })).toBeChecked()
+	const checkbox = conflict.getByRole('checkbox', { name: new RegExp(`${version}$`) })
+	// The checkbox cannot be clicked as it is covered by its label, so it is toggled using the keyboard
+	await checkbox.press(' ')
+	await expect(checkbox).toBeChecked({ checked: selected })
 }

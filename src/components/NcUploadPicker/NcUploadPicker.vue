@@ -162,14 +162,9 @@ function updateUploadStatus() {
 		|| (isPaused.value && uploadManager.queue.length > 0)
 	hasFailure.value = uploadManager.queue.some((upload: IUpload) => upload.status === UploadStatus.FAILED)
 	isAssembling.value = uploadManager.queue.some((upload: IUpload) => upload.status === UploadStatus.ASSEMBLING)
+	// only assembling if assembling at all AND all other uploads are already finished (or failed)
 	isOnlyAssembling.value = isAssembling.value
-		&& uploadManager.queue.every((upload: IUpload) => (
-			// either a meta upload
-			upload.children.length === 0
-			// or all the uploads are assembling or finished
-			|| upload.status === UploadStatus.ASSEMBLING
-			|| upload.status === UploadStatus.FINISHED
-		))
+		&& uploadManager.queue.every((upload: IUpload) => upload.status >= UploadStatus.ASSEMBLING)
 }
 
 /**
@@ -259,13 +254,15 @@ async function onPick(files: File[]) {
 async function handleConflicts(nodes: string[], currentPath: string): Promise<Record<string, string> | false> {
 	try {
 		const content = await props.content(currentPath)
-		const conflicts = content.filter((node) => nodes.includes(node.basename))
+		const conflicts = content.filter((node) => nodes.includes(node.displayname) || nodes.includes(node.basename))
 		const uploadMapping = Object.fromEntries(nodes.map((name) => [name, name]))
 		if (conflicts.length === 0) {
 			return uploadMapping
 		}
 
-		const existingNodes = content.filter((node) => !conflicts.find((conflict) => conflict.displayname === node.displayname || conflict.basename === node.basename))
+		// The conflict picker requires the incoming and the existing nodes to be aligned,
+		// so the existing content has to be filtered to only contain the conflicting nodes.
+		const existingNodes = content.filter((node) => nodes.includes(node.displayname) || nodes.includes(node.basename))
 		// @ts-expect-error -- conflict between versons of dependencies - needs to be fixed in @nextcloud/dialogs
 		const result = await openConflictPicker(basename(currentPath), conflicts, existingNodes, { recursive: props.directory })
 		if (result) {
