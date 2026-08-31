@@ -130,12 +130,83 @@ if (props.user && props.profile) {
 const isCurrentUser = computed(() => !!props.user && getCurrentUser()?.uid === props.user)
 const settingsUrl = generateUrl('/settings/user')
 
+/**
+ * Full profile page URL for the current card user.
+ */
+const profileUrl = computed(() => {
+	const userId = profileData.value?.userId || props.user
+	if (!userId) {
+		return null
+	}
+	return generateUrl('/u/{userId}', { userId })
+})
+
+/**
+ * Props for avatar wrappers that link to the full profile when available.
+ */
+const profileLinkProps = computed(() => {
+	if (!profileUrl.value) {
+		return {}
+	}
+	return {
+		href: profileUrl.value,
+		'aria-label': t('View profile'),
+	}
+})
+
+/**
+ * Drop actions that do not belong in the hover-card sidebar
+ * (timezone info and the separate "View profile" entry).
+ *
+ * @param action - Hover card or profile API action
+ */
+function isSidebarAction(action: Pick<IProfileHoverCardAction, 'appId' | 'id'>) {
+	return action.appId !== 'timezone'
+		&& action.appId !== 'profile'
+		&& action.id !== 'profile'
+}
+
+/**
+ * Display label for an action (short Talk labels without the redundant name).
+ *
+ * @param action - Hover card action
+ */
+function actionDisplayText(action: IProfileHoverCardAction) {
+	// Keep self-profile labels such as "Open Talk" unchanged
+	if (isCurrentUser.value) {
+		return action.text
+	}
+	if (action.id === 'talk-call' || isSpreedDirectCallAction(action)) {
+		return t('Start call')
+	}
+	if (action.id === 'talk' || action.appId === 'spreed') {
+		return t('Send message')
+	}
+	return action.text
+}
+
+/**
+ * Contacts-menu Talk "direct call" action (vs chat), identified by URL fragment.
+ *
+ * @param action - Hover card action
+ */
+function isSpreedDirectCallAction(action: IProfileHoverCardAction) {
+	if (action.appId !== 'spreed') {
+		return false
+	}
+	const href = action.href ?? (typeof action.to === 'string' ? action.to : '')
+	return typeof href === 'string' && href.includes('#direct-call')
+}
+
+/**
+ * Actions shown in the card sidebar, excluding timezone and View profile.
+ */
 const resolvedActions = computed((): IProfileHoverCardAction[] => {
 	if (props.actions && props.actions.length > 0) {
-		return props.actions.filter((action) => action.appId !== 'timezone')
+		return props.actions.filter(isSidebarAction)
 	}
 	return (profileData.value?.actions ?? [])
-		.filter((action) => action.appId !== 'timezone')
+		.filter(isSidebarAction)
 		.map((action) => ({
 			id: action.id,
 			appId: action.appId,
@@ -417,21 +488,33 @@ async function fetchUserStatus(userId: string): Promise<IUserStatus> {
 					</template>
 				</NcButton>
 				<div class="profile-hover-card__header__container">
-					<NcAvatar
+					<component
+						:is="profileUrl ? 'a' : 'div'"
 						v-if="isMobile"
-						class="avatar profile-hover-card__header__container__avatar"
-						:user="profileData.userId"
-						:size="96"
-						disableMenu
-						disableTooltip
-						:preloadedUserStatus="avatarUserStatus"
-						:isNoUser="!profileData.isUserAvatarVisible" />
+						class="profile-hover-card__header__container__avatar"
+						:class="{ 'profile-hover-card__profile-link': !!profileUrl }"
+						v-bind="profileLinkProps">
+						<NcAvatar
+							class="avatar"
+							:user="profileData.userId"
+							:size="96"
+							disableMenu
+							disableTooltip
+							:preloadedUserStatus="avatarUserStatus"
+							:isNoUser="!profileData.isUserAvatarVisible" />
+					</component>
 					<div
 						v-else
 						class="profile-hover-card__header__container__placeholder" />
 					<div class="profile-hover-card__header__container__identity">
 						<div class="profile-hover-card__header__container__displayname">
-							<h2>{{ profileData.displayname || profileData.userId }}</h2>
+							<a
+								v-if="profileUrl"
+								class="profile-hover-card__profile-link"
+								:href="profileUrl">
+								<h2>{{ profileData.displayname || profileData.userId }}</h2>
+							</a>
+							<h2 v-else>{{ profileData.displayname || profileData.userId }}</h2>
 							<span
 								v-if="profileData.pronouns"
 								class="profile-hover-card__header__container__pronoun-separator">·</span>
@@ -454,15 +537,20 @@ async function fetchUserStatus(userId: string): Promise<IUserStatus> {
 				<div class="profile-hover-card__content">
 					<!-- Sidebar: avatar + actions (mirrors ProfileApp.vue) -->
 					<div class="profile-hover-card__sidebar">
-						<NcAvatar
+						<component
+							:is="profileUrl ? 'a' : 'div'"
 							v-if="!isMobile"
-							class="avatar"
-							:user="profileData.userId"
-							:size="135"
-							disableMenu
-							disableTooltip
-							:preloadedUserStatus="avatarUserStatus"
-							:isNoUser="!profileData.isUserAvatarVisible" />
+							:class="{ 'profile-hover-card__profile-link': !!profileUrl }"
+							v-bind="profileLinkProps">
+							<NcAvatar
+								class="avatar"
+								:user="profileData.userId"
+								:size="135"
+								disableMenu
+								disableTooltip
+								:preloadedUserStatus="avatarUserStatus"
+								:isNoUser="!profileData.isUserAvatarVisible" />
+						</component>
 
 						<div class="user-actions">
 							<div
@@ -492,7 +580,7 @@ async function fetchUserStatus(userId: string): Promise<IUserStatus> {
 											class="user-actions__primary__icon-class"
 											:class="primaryAction.icon" />
 									</template>
-									{{ primaryAction.text }}
+									{{ actionDisplayText(primaryAction) }}
 								</NcButton>
 								<NcActions
 									v-if="otherActions.length > 0"
@@ -518,7 +606,7 @@ async function fetchUserStatus(userId: string): Promise<IUserStatus> {
 												class="user-actions__other__icon-class"
 												:class="action.icon" />
 										</template>
-										{{ action.text }}
+										{{ actionDisplayText(action) }}
 									</component>
 								</NcActions>
 							</template>
@@ -596,6 +684,19 @@ $sidebar-width: 180px;
 	border-radius: var(--border-radius-large);
 	display: flex;
 	flex-direction: column;
+
+	&__profile-link {
+		color: inherit;
+		text-decoration: none;
+		outline-offset: 2px;
+
+		&:hover,
+		&:focus-visible {
+			h2 {
+				text-decoration: underline;
+			}
+		}
+	}
 
 	&__header {
 		display: flex;
