@@ -38,10 +38,39 @@ test.describe('NcUploadPicker: conflicting files', () => {
 		expect(dav.received('PUT')).toHaveLength(0)
 	})
 
-	test('keeping the existing version skips the conflicting file', async ({ mount, page }) => {
-		// FIXME: Skipped files are currently uploaded anyway: https://github.com/nextcloud-libraries/nextcloud-files/pull/1722
-		test.fail()
+	test('failing to check for conflicts cancels the upload', async ({ mount, page }) => {
+		const dav = await mockDav(page)
+		await mount(NcUploadPickerStory, { props: { existingFiles: ['file.txt'], failContent: true } })
 
+		await pickFiles(page, createFile('file.txt', 1))
+
+		// Conflicts cannot be resolved without the content of the destination,
+		// so nothing is uploaded instead of silently overwriting existing files
+		await expect(page.getByRole('dialog')).toBeHidden()
+		await expect(page.getByRole('progressbar')).toBeHidden()
+		expect(dav.received('PUT')).toHaveLength(0)
+	})
+
+	test('failing to check for conflicts does not block later uploads', async ({ mount, page }) => {
+		const dav = await mockDav(page)
+		const props = { existingFiles: ['file.txt'], failContent: true }
+		const component = await mount(NcUploadPickerStory, { props })
+
+		await pickFiles(page, createFile('file.txt', 1))
+		// The destination was checked, but nothing was uploaded
+		await dav.waitFor('HEAD')
+		expect(dav.received('PUT')).toHaveLength(0)
+
+		// The cancelled upload does not keep the uploader busy
+		await component.update({ props: { ...props, failContent: false } })
+		await pickFiles(page, createFile('other.txt', 1))
+
+		const [upload] = await dav.waitFor('PUT')
+		expect(upload.path).toBe('/files/test/Folder/other.txt')
+		await expect(page.getByRole('progressbar')).toBeHidden()
+	})
+
+	test('keeping the existing version skips the conflicting file', async ({ mount, page }) => {
 		// Hold back the uploads and only upload one file at a time,
 		// so the first upload is the first picked file that is not skipped
 		const dav = await mockDav(page, { hold: ({ method }) => method === 'PUT' })

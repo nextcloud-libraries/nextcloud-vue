@@ -414,9 +414,10 @@ describe('NcUploadPicker: conflict handling', () => {
 	it('asks the user how to resolve conflicts', async () => {
 		openConflictPicker.mockResolvedValue({ selected: [createNode('file.txt')], renamed: [], skipped: [] })
 
-		const resolution = await resolveConflicts(['file.txt', 'other.txt'], { content: ['file.txt'] })
+		const resolution = await resolveConflicts(['file.txt', 'other.txt'], { content: ['file.txt', 'unrelated.txt'] })
 
 		expect(openConflictPicker).toHaveBeenCalledOnce()
+		// the conflict picker requires both lists to only consist of the conflicting nodes
 		const [, conflicts, content] = openConflictPicker.mock.calls[0]
 		expect((conflicts as INode[]).map(({ basename }) => basename)).toEqual(['file.txt'])
 		expect((content as INode[]).map(({ basename }) => basename)).toEqual(['file.txt'])
