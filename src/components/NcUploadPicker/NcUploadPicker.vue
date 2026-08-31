@@ -257,27 +257,32 @@ async function onPick(files: File[]) {
  * @param currentPath - The path of the current directory
  */
 async function handleConflicts(nodes: string[], currentPath: string): Promise<Record<string, string> | false> {
-	const content = await props.content(currentPath)
-	const conflicts = content.filter((node) => nodes.includes(node.basename))
-	const uploadMapping = Object.fromEntries(nodes.map((name) => [name, name]))
-	if (conflicts.length === 0) {
-		return uploadMapping
-	}
-
-	// @ts-expect-error -- conflict between versons of dependencies - needs to be fixed in @nextcloud/dialogs
-	const result = await openConflictPicker(basename(currentPath), conflicts, content, { recursive: props.directory })
-	if (result) {
-		const usedNames = content.map((node) => node.basename)
-		for (const node of conflicts) {
-			if ((result.skipped as unknown as INode[]).some((skipped) => skipped.basename === node.basename)) {
-				delete uploadMapping[node.basename]
-			} else if ((result.renamed as unknown as INode[]).some((renamed) => renamed.basename === node.basename)) {
-				const newName = getUniqueName(basename(node.basename), usedNames)
-				uploadMapping[node.basename] = newName
-				usedNames.push(newName)
-			}
+	try {
+		const content = await props.content(currentPath)
+		const conflicts = content.filter((node) => nodes.includes(node.basename))
+		const uploadMapping = Object.fromEntries(nodes.map((name) => [name, name]))
+		if (conflicts.length === 0) {
+			return uploadMapping
 		}
-		return uploadMapping
+
+		const existingNodes = content.filter((node) => !conflicts.find((conflict) => conflict.displayname === node.displayname || conflict.basename === node.basename))
+		// @ts-expect-error -- conflict between versons of dependencies - needs to be fixed in @nextcloud/dialogs
+		const result = await openConflictPicker(basename(currentPath), conflicts, existingNodes, { recursive: props.directory })
+		if (result) {
+			const usedNames = content.map((node) => node.basename)
+			for (const node of conflicts) {
+				if ((result.skipped as unknown as INode[]).some((skipped) => skipped.basename === node.basename)) {
+					delete uploadMapping[node.basename]
+				} else if ((result.renamed as unknown as INode[]).some((renamed) => renamed.basename === node.basename)) {
+					const newName = getUniqueName(basename(node.basename), usedNames)
+					uploadMapping[node.basename] = newName
+					usedNames.push(newName)
+				}
+			}
+			return uploadMapping
+		}
+	} catch (error) {
+		logger.error('Error during conflict resolution - skipping upload', { error })
 	}
 	return false
 }

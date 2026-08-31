@@ -45,6 +45,12 @@ const props = withDefaults(defineProps<{
 	existingFiles?: string[]
 
 	/**
+	 * Make fetching the content of the destination fail,
+	 * used to test that conflicts cannot be resolved.
+	 */
+	failContent?: boolean
+
+	/**
 	 * Start with a paused uploader,
 	 * so picked files are queued but only uploaded when using the "Resume uploads" control.
 	 */
@@ -86,6 +92,7 @@ if (props.startPaused) {
 	uploader.pause()
 }
 
+Object.assign(window, { _debugUploader: uploader })
 const picker = useTemplateRef('picker')
 const destination = computed(() => createFolder(props.destinationPath))
 
@@ -109,6 +116,10 @@ function createFolder(path: string): Folder {
  * Fake the content of the upload destination to be able to test conflict handling.
  */
 async function fetchContent(): Promise<INode[]> {
+	if (props.failContent) {
+		throw new Error('Could not fetch the content of the destination')
+	}
+
 	return props.existingFiles.map((name) => new NcFile({
 		owner: destination.value.owner!,
 		source: `${destination.value.source}/${name}`,
