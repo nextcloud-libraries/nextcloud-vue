@@ -270,6 +270,13 @@ const numHeaderActions = computed(() => {
 	return actions
 })
 
+/**
+ * Whether the modal header is needed.
+ * Only show it when there is a title, outside close button, or header actions —
+ * otherwise the area can be used for the modal content (full height on mobile / full size).
+ */
+const hasHeader = computed(() => props.name.trim() !== '' || numHeaderActions.value > 0)
+
 // for developers we should add a warning if used with invalid props combination
 onMounted(() => {
 	if (!props.name && !props.labelId) {
@@ -431,9 +438,10 @@ function clearFocusTrap() {
 				:aria-labelledby="labelId || `modal-name-${modalId}`"
 				:aria-describedby="'modal-description-' + modalId"
 				tabindex="-1">
-				<!-- Header -->
+				<!-- Header (only when there is a title, outside close button, or actions) -->
 				<transition name="fade-visibility" appear>
 					<div
+						v-if="hasHeader"
 						class="modal-header"
 						:data-theme-light="lightBackdrop"
 						:data-theme-dark="!lightBackdrop">
@@ -504,7 +512,10 @@ function clearFocusTrap() {
 						class="modal-wrapper"
 						:class="[
 							`modal-wrapper--${size}`,
-							{ 'modal-wrapper--spread-navigation': spreadNavigation },
+							{
+								'modal-wrapper--spread-navigation': spreadNavigation,
+								'modal-wrapper--no-header': !hasHeader,
+							},
 						]"
 						@mousedown.self="handleClickModalWrapper">
 						<!-- Navigation button -->
@@ -688,11 +699,17 @@ function clearFocusTrap() {
 }
 
 .modal-wrapper {
+	// Space reserved for the modal header; 0 when the header is not shown
+	--modal-header-offset: var(--header-height);
 	display: flex;
 	align-items: center;
 	justify-content: center;
 	width: 100%;
 	height: 100%;
+
+	&--no-header {
+		--modal-header-offset: var(--body-container-margin);
+	}
 
 	/* Navigation buttons */
 	.prev,
@@ -775,9 +792,9 @@ function clearFocusTrap() {
 	&--full {
 		& > .modal-container {
 			width: 100%;
-			height: calc(100% - var(--header-height));
+			height: calc(100% - var(--modal-header-offset));
 			position: absolute;
-			top: var(--header-height);
+			top: var(--modal-header-offset);
 			border-radius: 0;
 		}
 	}
@@ -788,9 +805,9 @@ function clearFocusTrap() {
 			max-width: initial;
 			width: 100%;
 			max-height: initial;
-			height: calc(100% - var(--header-height));
+			height: calc(100% - var(--modal-header-offset));
 			position: absolute;
-			top: var(--header-height);
+			top: var(--modal-header-offset);
 			border-radius: 0;
 		}
 	}
