@@ -271,6 +271,7 @@ export default {
 			</template>
 			<NcProfileHoverCard
 				:user="user"
+				:displayName="hoverCardDisplayName"
 				:open="contactsMenuOpenState"
 				:actions="hoverCardActions"
 				:actionsLoading="contactsMenuLoading"
@@ -682,6 +683,15 @@ export default {
 				return null
 			}
 			return this.menu.length > 0 ? this.menu : null
+		},
+
+		/**
+		 * Best available display name for the hover card (prop or contacts menu).
+		 *
+		 * @return {string|undefined}
+		 */
+		hoverCardDisplayName() {
+			return this.displayName || this.contactsMenuData?.fullName || undefined
 		},
 
 		/**

@@ -204,9 +204,6 @@ msgstr ""
 msgid "Failed to create a project"
 msgstr ""
 
-msgid "Failed to load profile"
-msgstr ""
-
 msgid "Failed to rename the project"
 msgstr ""
 
@@ -501,6 +498,9 @@ msgstr ""
 msgid "Selected"
 msgstr ""
 
+msgid "Send message"
+msgstr ""
+
 msgid "Settings"
 msgstr ""
 
@@ -534,6 +534,9 @@ msgstr ""
 
 #. TRANSLATORS: Space key on keyboard
 msgid "Space"
+msgstr ""
+
+msgid "Start call"
 msgstr ""
 
 msgid "Start slideshow"
@@ -592,6 +595,9 @@ msgid "Uploading …"
 msgstr ""
 
 msgid "User status: {status}"
+msgstr ""
+
+msgid "View profile"
 msgstr ""
 
 msgid "View team"

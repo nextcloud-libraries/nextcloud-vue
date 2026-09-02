@@ -82,6 +82,12 @@ const props = withDefaults(defineProps<{
 	user?: string | null
 
 	/**
+	 * Optional display name when already known (skips `/displaynames` for limited profiles).
+	 * When omitted and the full profile is unavailable, the card looks the name up itself.
+	 */
+	displayName?: string | null
+
+	/**
 	 * Optional preloaded profile data (skips the profile API request when set).
 	 */
 	profile?: IProfileData | null
@@ -110,6 +116,7 @@ const props = withDefaults(defineProps<{
 	actionsLoading?: boolean
 }>(), {
 	user: null,
+	displayName: null,
 	profile: null,
 	preloadedUserStatus: null,
 	open: false,
@@ -122,6 +129,10 @@ const error = ref(false)
 const profileData = ref<IProfileData | null>(props.profile)
 const userStatus = ref<IUserStatus>(props.preloadedUserStatus ?? {})
 /**
+ * False when the full profile is disabled or unavailable; card shows avatar + name only.
+ */
+const profileEnabled = ref(!!props.profile)
+/**
  * True once status is known for the current user (preloaded or fetched, including empty).
  * The card stays on the loading state until this is true to avoid a status flash.
  */
@@ -129,7 +140,7 @@ const userStatusReady = ref(props.preloadedUserStatus !== null)
 const isMobile = useIsSmallMobile()
 
 /**
- * Show the spinner until profile and status are both ready.
+ * Show the spinner until profile (or limited fallback) and status are both ready.
  */
 const showLoading = computed(() => loading.value
 	|| (!!profileData.value && !error.value && !userStatusReady.value))
@@ -142,15 +153,27 @@ const isCurrentUser = computed(() => !!props.user && getCurrentUser()?.uid === p
 const settingsUrl = generateUrl('/settings/user')
 
 /**
- * Full profile page URL for the current card user.
+ * Full profile page URL — only when the profile is enabled and reachable.
  */
 const profileUrl = computed(() => {
+	if (!profileEnabled.value) {
+		return null
+	}
 	const userId = profileData.value?.userId || props.user
 	if (!userId) {
 		return null
 	}
 	return generateUrl('/u/{userId}', { userId })
 })
+
+/**
+ * Display name for the header (full profile, prop, or user id).
+ */
+const resolvedDisplayName = computed(() => profileData.value?.displayname
+	|| props.displayName
+	|| profileData.value?.userId
+	|| props.user
+	|| '')
 
 /**
  * Props for avatar wrappers that link to the full profile when available.
@@ -349,6 +372,7 @@ function otherActionProps(action: IProfileHoverCardAction) {
 watch(() => props.profile, (value) => {
 	if (value) {
 		profileData.value = value
+		profileEnabled.value = true
 		if (props.user) {
 			setCachedProfile(props.user, value)
 		}
@@ -363,10 +387,17 @@ watch(() => props.preloadedUserStatus, (value) => {
 	}
 })
 
+watch(() => props.displayName, (value) => {
+	if (value && profileData.value && !profileEnabled.value) {
+		profileData.value = { ...profileData.value, displayname: value }
+	}
+})
+
 watch(() => props.user, () => {
 	profileData.value = props.profile
 	userStatus.value = props.preloadedUserStatus ?? {}
 	userStatusReady.value = props.preloadedUserStatus !== null
+	profileEnabled.value = !!props.profile
 	error.value = false
 	if (props.user && props.profile) {
 		setCachedProfile(props.user, props.profile)
@@ -387,6 +418,39 @@ onMounted(() => {
 		loadProfile()
 	}
 })
+
+/**
+ * Resolve a display name for limited profiles: prop first, then `/displaynames`.
+ *
+ * @param userId - User id
+ */
+async function resolveDisplayName(userId: string): Promise<string> {
+	if (props.displayName) {
+		return props.displayName
+	}
+	try {
+		const { data } = await axios.post(generateUrl('/displaynames'), { users: [userId] })
+		return data?.users?.[userId] || userId
+	} catch (e) {
+		logger.debug('Failed to load display name for hovercard', { error: e, userId })
+		return userId
+	}
+}
+
+/**
+ * Minimal profile when the full profile is disabled or unavailable.
+ * Matches Talk / sharing sidebars: avatar + display name (+ status/actions).
+ *
+ * @param userId - User id
+ */
+async function createLimitedProfile(userId: string): Promise<IProfileData> {
+	return {
+		userId,
+		displayname: await resolveDisplayName(userId),
+		actions: [],
+		isUserAvatarVisible: true,
+	}
+}
 
 /**
  * Ensure user status is loaded when missing.
@@ -416,9 +480,10 @@ async function loadProfile() {
 		const cached = getCachedProfile(userId)
 		if (cached) {
 			profileData.value = cached
+			profileEnabled.value = true
 		}
 	}
-	if (profileData.value) {
+	if (profileData.value && profileEnabled.value) {
 		if (!userStatusReady.value) {
 			loading.value = true
 			try {
@@ -433,25 +498,32 @@ async function loadProfile() {
 	loading.value = true
 	error.value = false
 
+	const statusPromise = userStatusReady.value
+		? Promise.resolve(userStatus.value)
+		: fetchUserStatus(userId)
+
 	try {
-		const [profile, status] = await Promise.all([
-			fetchProfileCached(userId, async () => {
-				const { data } = await axios.get(generateOcsUrl('/profile/{userId}', { userId }))
-				return data.ocs?.data ?? null
-			}),
-			userStatusReady.value
-				? Promise.resolve(userStatus.value)
-				: fetchUserStatus(userId),
-		])
-		profileData.value = profile
-		userStatus.value = status
-		userStatusReady.value = true
-		if (!profileData.value) {
-			error.value = true
+		const profile = await fetchProfileCached(userId, async () => {
+			const { data } = await axios.get(generateOcsUrl('/profile/{userId}', { userId }))
+			return data.ocs?.data ?? null
+		})
+		if (profile) {
+			profileData.value = profile
+			profileEnabled.value = true
+		} else {
+			// Profile disabled or empty — show avatar + name like Talk / sharing
+			profileData.value = await createLimitedProfile(userId)
+			profileEnabled.value = false
 		}
 	} catch (e) {
-		logger.debug('Failed to load profile for hovercard', { error: e, user: userId })
-		error.value = true
+		logger.debug('Failed to load profile for hovercard, showing limited info', { error: e, user: userId })
+		profileData.value = await createLimitedProfile(userId)
+		profileEnabled.value = false
+	}
+
+	try {
+		userStatus.value = await statusPromise
+		userStatusReady.value = true
 	} finally {
 		loading.value = false
 	}
@@ -480,8 +552,9 @@ async function fetchUserStatus(userId: string): Promise<IUserStatus> {
 <template>
 	<div
 		class="profile-hover-card"
+		:class="{ 'profile-hover-card--limited': !showLoading && !!profileData && !error && !profileEnabled }"
 		role="dialog"
-		:aria-label="t('Profile of {user}', { user: profileData?.displayname || user || '' })">
+		:aria-label="t('Profile of {user}', { user: resolvedDisplayName })">
 		<div v-if="showLoading" class="profile-hover-card__loading">
 			<NcLoadingIcon :size="32" :name="t('Loading profile')" />
 		</div>
@@ -511,6 +584,7 @@ async function fetchUserStatus(userId: string): Promise<IUserStatus> {
 						<NcAvatar
 							class="avatar"
 							:user="profileData.userId"
+							:displayName="resolvedDisplayName"
 							:size="96"
 							disableMenu
 							disableTooltip
@@ -526,9 +600,9 @@ async function fetchUserStatus(userId: string): Promise<IUserStatus> {
 								v-if="profileUrl"
 								class="profile-hover-card__profile-link"
 								:href="profileUrl">
-								<h2>{{ profileData.displayname || profileData.userId }}</h2>
+								<h2>{{ resolvedDisplayName }}</h2>
 							</a>
-							<h2 v-else>{{ profileData.displayname || profileData.userId }}</h2>
+							<h2 v-else>{{ resolvedDisplayName }}</h2>
 							<span
 								v-if="profileData.pronouns"
 								class="profile-hover-card__header__container__pronoun-separator">·</span>
@@ -559,6 +633,7 @@ async function fetchUserStatus(userId: string): Promise<IUserStatus> {
 							<NcAvatar
 								class="avatar"
 								:user="profileData.userId"
+								:displayName="resolvedDisplayName"
 								:size="135"
 								disableMenu
 								disableTooltip
@@ -628,7 +703,9 @@ async function fetchUserStatus(userId: string): Promise<IUserStatus> {
 					</div>
 
 					<!-- Content blocks: details + bio (mirrors ProfileApp.vue) -->
-					<div class="profile-hover-card__blocks">
+					<div
+						v-if="profileEnabled"
+						class="profile-hover-card__blocks">
 						<div
 							v-if="profileData.organisation || profileData.role || profileData.address || localTimeLabel"
 							class="profile-hover-card__blocks-details">
@@ -672,10 +749,6 @@ async function fetchUserStatus(userId: string): Promise<IUserStatus> {
 				</div>
 			</div>
 		</template>
-
-		<div v-else class="profile-hover-card__error">
-			{{ t('Failed to load profile') }}
-		</div>
 	</div>
 </template>
 
@@ -889,8 +962,7 @@ $sidebar-width: 180px;
 		}
 	}
 
-	&__loading,
-	&__error {
+	&__loading {
 		display: flex;
 		align-items: center;
 		justify-content: center;
@@ -898,6 +970,28 @@ $sidebar-width: 180px;
 		min-height: $card-height;
 		padding: 16px;
 		color: var(--color-text-maxcontrast);
+	}
+
+	// Avatar + name (+ actions) only — drop the empty content column height
+	&--limited {
+		min-height: 0;
+
+		.profile-hover-card__body {
+			flex: 0 0 auto;
+		}
+
+		.profile-hover-card__content {
+			height: auto;
+			padding-block-end: 24px;
+		}
+
+		.profile-hover-card__sidebar {
+			margin-block-end: 0;
+		}
+
+		.user-actions {
+			margin-top: 8px;
+		}
 	}
 }
 
@@ -1049,9 +1143,15 @@ $sidebar-width: 180px;
 			}
 		}
 
-		&__loading,
-		&__error {
+		&__loading {
 			min-height: 200px;
+		}
+
+		// Disabled profile: avatar + name are in the header; no content blocks
+		&--limited {
+			.profile-hover-card__body {
+				display: none;
+			}
 		}
 	}
 
@@ -1096,7 +1196,11 @@ $sidebar-width: 180px;
 
 When `open` becomes `true`, the card loads the user's profile and user status itself.
 The card content is shown only after both are ready (or preloaded), so status does not flash in late.
+If the profile is disabled or unavailable, the card still shows avatar, display name, status, and actions
+instead of an error.
 Pass `profile` to skip the profile request.
+Pass `displayName` when already known to skip the `/displaynames` lookup for limited profiles;
+otherwise the card fetches it when the full profile cannot be loaded.
 Pass `preloadedUserStatus` to skip the status request (e.g. when `NcAvatar` already loaded it).
 
 `NcAvatar` already hosts this card on hover or focus for real users (unless `disable-menu` is set)
