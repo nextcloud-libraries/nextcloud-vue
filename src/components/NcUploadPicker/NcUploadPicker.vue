@@ -424,5 +424,246 @@ To use the `NcUploadPicker` component, you need to install the following package
 
 ## Usage
 
-**TODO**: Add usage example here
+The upload picker lets users pick files – or whole directories – from their device and uploads them
+to a folder on the Nextcloud server, using the shared uploader of `@nextcloud/files/upload`.
+While uploading it shows the progress, the estimated remaining time and a button to cancel all queued uploads.
+
+Two props are required to set it up:
+
+- `destination`: The folder to upload into, as an `IFolder` of `@nextcloud/files`.
+- `content`: A callback that resolves with the nodes that already exist in a folder that is uploaded into.
+  It is called with the path relative to the `destination` – the empty string for the destination itself –
+  and is used to detect upload conflicts. If there are conflicts, the user is asked to skip or rename
+  the conflicting files.
+
+### Exposed methods
+
+- `function reset(): void`
+  Reset the internal state of the picker, e.g. to clear the current selection.
+
+**Note**: All upload pickers share the global uploader instance of `getUploader()`,
+including its queue and its destination. Because of that only a single upload picker
+should be mounted at a time – in the examples below the picker that was mounted last defines the destination.
+
+**Note about the examples**: There is no Nextcloud server behind the styleguide,
+so the examples use a fake WebDAV server that simulates slow – but always successful – uploads.
+Uploading a file called `Photo.jpg` or `Notes.md` triggers the conflict dialog,
+files larger than 10 MiB are uploaded in chunks.
+
+### Basic usage
+
+```vue
+<template>
+	<div>
+		<NcUploadPicker
+			:content="fetchContent"
+			:destination="destination"
+			multiple
+			@finished="log('finished')"
+			@upload:finished="log('upload:finished', $event)"
+			@upload:started="log('upload:started', $event)" />
+
+		<NcNoteCard v-if="events.length === 0" type="info">
+			Pick some files to upload them to <code>{{ destination.path }}</code>.
+		</NcNoteCard>
+		<ul v-else>
+			<li v-for="(event, index) in events" :key="index">
+				{{ event }}
+			</li>
+		</ul>
+	</div>
+</template>
+<script>
+import { File as NcFile, Folder, Permission } from '@nextcloud/files'
+import { generateRemoteUrl } from '@nextcloud/router'
+import { ref } from 'vue'
+
+// The folder the picked files are uploaded into
+const destination = new Folder({
+	id: 42,
+	owner: 'admin',
+	permissions: Permission.ALL,
+	root: '/files/admin',
+	source: generateRemoteUrl('dav/files/admin/Uploads'),
+})
+
+// The nodes that already exist in the destination, in a real app this is the result of a PROPFIND
+const existingNodes = ['Photo.jpg', 'Notes.md'].map((name) => new NcFile({
+	mime: 'application/octet-stream',
+	owner: 'admin',
+	root: '/files/admin',
+	source: `${destination.source}/${name}`,
+}))
+
+export default {
+	setup() {
+		const events = ref([])
+
+		return {
+			destination,
+			events,
+
+			// Provide the content of the folder that is uploaded into to allow detecting conflicts
+			async fetchContent(relativePath) {
+				// Folders created by the upload itself are empty, so they never conflict
+				return relativePath ? [] : existingNodes
+			},
+
+			log(name, upload) {
+				// One `upload:*` event is emitted for the destination itself - shown as `/` - and one per picked file
+				const path = upload && decodeURIComponent(upload.source.slice(destination.source.length))
+				events.value.unshift(upload ? `${name}: ${path}` : name)
+			},
+		}
+	},
+}
+</script>
+```
+
+### Directories and custom actions
+
+Setting `directory` adds an entry to upload a whole directory tree, which is recreated in the destination.
+Additional entries – like the "New folder" action of the Files app – can be added using the `actions` prop,
+either as a flat list or grouped with a caption.
+The `accept` prop restricts the file types that can be picked.
+
+```vue
+<template>
+	<div>
+		<NcUploadPicker
+			:accept="['image/jpeg', 'image/png']"
+			:actions="actions"
+			:content="fetchContent"
+			:destination="destination"
+			directory
+			label="Add media"
+			multiple
+			variant="primary" />
+
+		<NcNoteCard v-if="lastAction" type="success">
+			{{ lastAction }}
+		</NcNoteCard>
+	</div>
+</template>
+<script>
+import svgFolderPlus from '@mdi/svg/svg/folder-plus-outline.svg?raw'
+import svgLink from '@mdi/svg/svg/link-plus.svg?raw'
+import { Folder, Permission } from '@nextcloud/files'
+import { generateRemoteUrl } from '@nextcloud/router'
+import { ref } from 'vue'
+
+const destination = new Folder({
+	id: 42,
+	owner: 'admin',
+	permissions: Permission.ALL,
+	root: '/files/admin',
+	source: generateRemoteUrl('dav/files/admin/Uploads'),
+})
+
+export default {
+	setup() {
+		const lastAction = ref('')
+
+		return {
+			destination,
+			lastAction,
+
+			// The destination is empty, so no upload will ever conflict
+			async fetchContent() {
+				return []
+			},
+
+			actions: [
+				{
+					caption: 'Create new',
+					actions: [
+						{
+							label: 'New folder',
+							iconSvg: svgFolderPlus,
+							onClick: () => {
+								lastAction.value = 'Clicked "New folder"'
+							},
+						},
+						{
+							label: 'Add from link',
+							iconSvg: svgLink,
+							onClick: () => {
+								lastAction.value = 'Clicked "Add from link"'
+							},
+						},
+					],
+				},
+			],
+		}
+	},
+}
+</script>
+```
+
+### Controlling the uploader
+
+The uploader itself is not owned by the picker, so it can also be controlled directly.
+This is useful to pause the queue – picked files are queued but not uploaded until it is resumed –
+or to change the destination while the picker is mounted.
+
+```vue
+<template>
+	<div class="uploader-controls">
+		<NcUploadPicker
+			ref="picker"
+			:content="fetchContent"
+			:destination="destination"
+			multiple />
+
+		<NcButton @click="uploader.pause()">
+			Pause
+		</NcButton>
+		<NcButton @click="uploader.start()">
+			Resume
+		</NcButton>
+	</div>
+</template>
+<script>
+import { Folder, Permission } from '@nextcloud/files'
+import { getUploader } from '@nextcloud/files/upload'
+import { generateRemoteUrl } from '@nextcloud/router'
+
+/**
+ * Create a folder for the given path within the users files.
+ *
+ * @param {string} path - Path of the folder, e.g. `/Documents`
+ */
+function createFolder(path) {
+	return new Folder({
+		id: 42,
+		owner: 'admin',
+		permissions: Permission.ALL,
+		root: '/files/admin',
+		source: generateRemoteUrl(`dav/files/admin${path}`),
+	})
+}
+
+export default {
+	setup() {
+		return {
+			destination: createFolder('/Uploads'),
+			otherDestination: createFolder('/Documents'),
+			uploader: getUploader(),
+
+			async fetchContent() {
+				return []
+			},
+		}
+	},
+}
+</script>
+<style scoped>
+.uploader-controls {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 8px;
+	align-items: center;
+}
+</style>
+```
 </docs>
