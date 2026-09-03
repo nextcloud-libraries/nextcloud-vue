@@ -43,6 +43,10 @@ msgstr ""
 msgid "Anything shared with the same group of people will show up here"
 msgstr ""
 
+#. TRANSLATORS: State of the current upload - chunks of the uploaded files are being assembled into the final file
+msgid "assembling"
+msgstr ""
+
 msgid "Avatar of {displayName}"
 msgstr ""
 
@@ -80,6 +84,9 @@ msgid "Cancel"
 msgstr ""
 
 msgid "Cancel changes"
+msgstr ""
+
+msgid "Cancel uploads"
 msgstr ""
 
 msgid "Change name"
@@ -198,6 +205,9 @@ msgstr ""
 msgid "Escape"
 msgstr ""
 
+msgid "Estimating …"
+msgstr ""
+
 msgid "External documentation"
 msgstr ""
 
@@ -314,6 +324,9 @@ msgstr ""
 msgid "Neutral skin color"
 msgstr ""
 
+msgid "New"
+msgstr ""
+
 msgid "Next"
 msgstr ""
 
@@ -391,6 +404,10 @@ msgid "Password is secure"
 msgstr ""
 
 msgid "Pause slideshow"
+msgstr ""
+
+#. TRANSLATORS: State of the current upload - it is paused
+msgid "paused"
 msgstr ""
 
 msgid "People & Body"
@@ -592,6 +609,12 @@ msgid "Upload files"
 msgstr ""
 
 msgid "Upload folder"
+msgstr ""
+
+msgid "Upload from device"
+msgstr ""
+
+msgid "Upload progress"
 msgstr ""
 
 msgid "Uploading …"
