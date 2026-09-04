@@ -1,11 +1,10 @@
-# 
 # Translators:
-# John Molakvoæ <skjnldsv@protonmail.com>, 2023
-# Sveinn í Felli <sv1@fellsnet.is>, 2025
+# Joas Schilling, 2025
+# Sveinn í Felli <sv1@fellsnet.is>, 2026
 # 
 msgid ""
 msgstr ""
-"Last-Translator: Sveinn í Felli <sv1@fellsnet.is>, 2025\n"
+"Last-Translator: Sveinn í Felli <sv1@fellsnet.is>, 2026\n"
 "Language-Team: Icelandic (https://app.transifex.com/nextcloud/teams/64236/is/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Language: is\n"
@@ -16,6 +15,9 @@ msgstr "{tag} (ósýnilegt)"
 
 msgid "{tag} (restricted)"
 msgstr "{tag} (takmarkað)"
+
+msgid "{user} has not added any info yet"
+msgstr "{user} hefur ekki bætt við neinum upplýsingum ennþá"
 
 msgid "A color with a HEX value {hex}"
 msgstr "Litur með HEX-gildi {hex}"
@@ -35,6 +37,10 @@ msgstr "Aðgerðir"
 
 msgid "Add to a project"
 msgstr "Bæta við verkefni"
+
+#. TRANSLATORS: Alt key on keyboard (Windows/Linux)
+msgid "Alt"
+msgstr "Alt-lykill"
 
 msgid "Animals & Nature"
 msgstr "Dýr og náttúra"
@@ -61,6 +67,9 @@ msgstr "Til baka"
 msgid "Back to provider selection"
 msgstr "Til baka í val á þjónustuveitu"
 
+msgid "Black"
+msgstr "Svart"
+
 #. TRANSLATORS: A color name for RGB(91, 100, 179)
 msgid "Blue Violet"
 msgstr "Bláklukka"
@@ -71,6 +80,12 @@ msgstr "Bostonblátt"
 
 msgid "busy"
 msgstr "upptekin/n"
+
+msgid "Calendar icon"
+msgstr "Dagatalstákn"
+
+msgid "Cancel"
+msgstr "Hætta við"
 
 msgid "Cancel changes"
 msgstr "Hætta við breytingar"
@@ -90,6 +105,9 @@ msgstr "Hreinsa valið"
 msgid "Clear text"
 msgstr "Hreinsa texta"
 
+msgid "Clear value"
+msgstr "Hreinsa gildi"
+
 msgid "Close"
 msgstr "Loka"
 
@@ -101,6 +119,9 @@ msgstr "Loka hliðarstiku"
 
 msgid "Close Smart Picker"
 msgstr "Loka snjall-veljara"
+
+msgid "Close time Picker"
+msgstr "Loka tímaveljara"
 
 msgid "Collapse menu"
 msgstr "Fella valmynd saman"
@@ -114,11 +135,40 @@ msgstr "Staðfesta breytingar"
 msgid "Connect items to a project to make them easier to find"
 msgstr "Tengdu atriði við verkefni til að gera einfaldara að finna þau"
 
+msgid "Copied"
+msgstr "Afritað"
+
+msgid "Copy to clipboard"
+msgstr "Afrita á klippispjald"
+
+#. TRANSLATORS: Ctrl key on keyboard (Windows/Linux)
+msgid "Ctrl"
+msgstr "Ctrl-lykill"
+
 msgid "Custom"
 msgstr "Sérsniðið"
 
 msgid "Dark skin tone"
 msgstr "Dökkur húðlitur"
+
+msgid "Datepicker input"
+msgstr "Inntak dagsetningaveljara"
+
+msgid "Datepicker menu"
+msgstr "Valmynd dagsetningaveljara"
+
+msgid "Decrement hours"
+msgstr "Fækka klukkustundum"
+
+msgid "Decrement minutes"
+msgstr "Fækka mínútum"
+
+msgid "Decrement seconds"
+msgstr "Fækka sekúndum"
+
+#. TRANSLATORS: Delete key on keyboard
+msgid "Delete"
+msgstr "Eyða"
 
 #. TRANSLATORS: A color name for RGB(136, 85, 168)
 msgid "Deluge"
@@ -133,11 +183,18 @@ msgstr "ekki ónáða"
 msgid "Edit item"
 msgstr "Breyta atriði"
 
+msgid "Edit profile"
+msgstr "Breyta notandasniði"
+
 msgid "Emoji picker"
-msgstr "Emoji-táknmyndaval"
+msgstr "Emoji-táknmyndaveljari"
 
 msgid "Enable interactive view"
 msgstr "Virkja gagnvirka sýn"
+
+#. TRANSLATORS: Enter key on keyboard
+msgid "Enter"
+msgstr "Enter-lykill"
 
 msgid "Enter link"
 msgstr "Settu inn tengil"
@@ -149,14 +206,21 @@ msgstr ""
 "Villa við að sækja tengd tilföng. Hafðu samband við kerfisstjórann þinn ef "
 "þú ert með einhverjar spurningar."
 
-msgid "External documentation for {name}"
-msgstr "Utanaðkomandi leiðbeiningar fyrir {name}"
+#. TRANSLATORS: Escape key on keyboard
+msgid "Escape"
+msgstr "Escape-lykill"
+
+msgid "External documentation"
+msgstr "Utanaðkomandi leiðbeiningar"
 
 msgid "Failed to add the item to the project"
 msgstr "Mistókst að bæta atriðinu í verkefnið"
 
 msgid "Failed to create a project"
 msgstr "Mistókst að útbúa verkefni"
+
+msgid "Failed to load profile"
+msgstr "Mistókst að hlaða inn notandasniði"
 
 msgid "Failed to rename the project"
 msgstr "Mistókst að endurnefna verkefnið"
@@ -177,9 +241,6 @@ msgstr "Matur og drykkur"
 msgid "Frequently used"
 msgstr "Oftast notað"
 
-msgid "Global"
-msgstr "Almennt"
-
 msgid "Go back to the list"
 msgstr "Fara til baka í listann"
 
@@ -192,11 +253,26 @@ msgstr "Fela nánari upplýsingar"
 msgid "Hide password"
 msgstr "Fela lykilorð"
 
+msgid "Increment hours"
+msgstr "Bæta við klukkustundum"
+
+msgid "Increment minutes"
+msgstr "Bæta við mínútum"
+
+msgid "Increment seconds"
+msgstr "Bæta við sekúndum"
+
+msgid "Invalid date"
+msgstr "Ógild dagsetning"
+
 msgid "invisible"
 msgstr "ósýnilegt"
 
 msgid "Keyboard navigation help"
 msgstr "Aðstoð við rötun á lyklaborði"
+
+msgid "Keyboard shortcuts"
+msgstr "Flýtilyklar"
 
 msgid "Light skin tone"
 msgstr "Ljós húðlitur"
@@ -207,6 +283,15 @@ msgstr "Hlaða inn fleiri \"{options}\""
 #. TRANSLATORS: The button is in a loading state
 msgid "Loading …"
 msgstr "Hleð inn …"
+
+msgid "Loading actions"
+msgstr "Hleð inn aðgerðum"
+
+msgid "Loading profile"
+msgstr "Hleð inn notandasniði"
+
+msgid "Local time: {time}"
+msgstr "Staðartími: {time}"
 
 #. TRANSLATORS: A color name for RGB(45, 115, 190)
 msgid "Mariner"
@@ -221,8 +306,16 @@ msgstr "Meðalljós húðlitur"
 msgid "Medium skin tone"
 msgstr "Meðaltónn húðar"
 
-msgid "Message limit of {count} characters reached"
-msgstr "Takmörkum {count} stafa náð"
+msgid "Message limit of %n character reached"
+msgid_plural "Message limit of %n characters reached"
+msgstr[0] "Takmörkum %n stafs náð í skilaboðum"
+msgstr[1] "Takmörkum %n stafa náð í skilaboðum"
+
+msgid "Month picker"
+msgstr "Mánaðaveljari"
+
+msgid "Month picker overlay"
+msgstr "Yfirlag mánaðaveljara"
 
 msgid "More items …"
 msgstr "Fleiri atriði …"
@@ -236,8 +329,17 @@ msgstr "Hlutlaus húðlitur"
 msgid "Next"
 msgstr "Næsta"
 
+msgid "Next month"
+msgstr "Næsti mánuður"
+
+msgid "Next year"
+msgstr "Næsta ár"
+
 msgid "Nextcloud blue"
 msgstr "Nextcloud blátt"
+
+msgid "No color"
+msgstr "Enginn litur"
 
 msgid "No emoji found"
 msgstr "Ekkert tjáningartákn fannst"
@@ -247,6 +349,9 @@ msgstr "Engin tenglaveita fannst"
 
 msgid "No results"
 msgstr "Engar niðurstöður"
+
+msgid "Now"
+msgstr "Núna"
 
 msgid "Objects"
 msgstr "Hlutir"
@@ -261,17 +366,35 @@ msgstr "Ólivín"
 msgid "online"
 msgstr "nettengt"
 
+msgid "Open hours overlay"
+msgstr "Opna yfirlag klukkustunda"
+
 msgid "Open link to \"{resourceName}\""
 msgstr "Opna tengil í \"{resourceName}\""
 
 msgid "Open menu"
 msgstr "Opna valmynd"
 
-msgid "Open navigation {shortcut}"
-msgstr "Opna flakkstýringu {shortcut}"
+msgid "Open minutes overlay"
+msgstr "Opna yfirlag mínútna"
+
+msgid "Open months overlay"
+msgstr "Opna yfirlag mánaða"
+
+msgid "Open navigation"
+msgstr "Opna leiðsagnarsýn"
+
+msgid "Open seconds overlay"
+msgstr "Opna yfirlag sekúndna"
 
 msgid "Open sidebar"
 msgstr "Opna hliðarspjald"
+
+msgid "Open time picker"
+msgstr "Opna tímaveljara"
+
+msgid "Open years overlay"
+msgstr "Opna yfirlag ára"
 
 msgid "Options"
 msgstr "Valkostir"
@@ -285,32 +408,35 @@ msgstr "Gera hlé á skyggnusýningu"
 msgid "People & Body"
 msgstr "Fólk og líkami"
 
-msgid "Pick a date"
-msgstr "Veldu dagsetningu"
-
-msgid "Pick a date and a time"
-msgstr "Veldu dagsetningu og tíma"
-
-msgid "Pick a month"
-msgstr "Veldu mánuð"
-
-msgid "Pick a time"
-msgstr "Veldu tíma"
-
-msgid "Pick a week"
-msgstr "Veldu viku"
-
-msgid "Pick a year"
-msgstr "Veldu ár"
+msgid "Pick"
+msgstr "Veldu"
 
 msgid "Pick an emoji"
 msgstr "Veldu tjáningartákn"
 
-msgid "Please select a time zone:"
-msgstr "Veldu tímabelti:"
+msgid "Pick file"
+msgstr "Veldu skrá"
+
+msgid "Pick files"
+msgstr "Veldu skrár"
+
+msgid "Pick folder"
+msgstr "Veldu möppu"
+
+msgid "Please choose a date"
+msgstr "Veldu dagsetningu"
 
 msgid "Previous"
 msgstr "Fyrri"
+
+msgid "Previous month"
+msgstr "Fyrri mánuður"
+
+msgid "Previous year"
+msgstr "Fyrra ár"
+
+msgid "Profile of {user}"
+msgstr "Notandasnið fyrir {user}"
 
 msgid "Provider icon"
 msgstr "Táknmynd þjónustuveitu"
@@ -340,6 +466,9 @@ msgstr "Vista breytingar"
 msgid "Search"
 msgstr "Leita"
 
+msgid "Search …"
+msgstr "Leita …"
+
 msgid "Search emoji"
 msgstr "Leita að tjáningartákni"
 
@@ -348,9 +477,6 @@ msgstr "Leita að tímabelti"
 
 msgid "Search results"
 msgstr "Leitarniðurstöður"
-
-msgid "Search…"
-msgstr "Leita…"
 
 #. FOR TRANSLATORS: If possible in your language an even shorter version of 'a
 #. few seconds ago'
@@ -364,8 +490,29 @@ msgstr "sekúndum síðan"
 msgid "Select a tag"
 msgstr "Veldu merki"
 
+msgid "Select date"
+msgstr "Veldu dag"
+
+msgid "Select date and time"
+msgstr "Veldu dagsetningu og tíma"
+
+msgid "Select month"
+msgstr "Veldu mánuð"
+
 msgid "Select provider"
 msgstr "Veldu þjónustuveitu"
+
+msgid "Select time"
+msgstr "Veldu tíma"
+
+msgid "Select time range"
+msgstr "Veldu tímasvið"
+
+msgid "Select week"
+msgstr "Veldu viku"
+
+msgid "Select year"
+msgstr "Veldu ár"
 
 msgid "Selected"
 msgstr "Valið"
@@ -375,6 +522,10 @@ msgstr "Stillingar"
 
 msgid "Settings navigation"
 msgstr "Flakk um stillingar"
+
+#. TRANSLATORS: Shift key on keyboard
+msgid "Shift"
+msgstr "Shift-lykill"
 
 msgid "Show details"
 msgstr "Birta nánari upplýsingar"
@@ -397,6 +548,10 @@ msgstr "Snjall-veljari"
 msgid "Smileys & Emotion"
 msgstr "Broskallar og tilfinningar"
 
+#. TRANSLATORS: Space key on keyboard
+msgid "Space"
+msgstr "Bilslá"
+
 msgid "Start slideshow"
 msgstr "Byrja skyggnusýningu"
 
@@ -406,8 +561,27 @@ msgstr "Byrjaðu að skrifa til að leita"
 msgid "Submit"
 msgstr "Senda inn"
 
+msgid "Switch AM/PM mode"
+msgstr "Skipta um FH/EH-ham"
+
 msgid "Symbols"
 msgstr "Tákn"
+
+#. TRANSLATORS: Tab key on keyboard
+msgid "Tab"
+msgstr "Dálklykill (Tab)"
+
+msgid "The headline and about sections will show up here"
+msgstr "Fyrirsögnin og hlutar um hugbúnaðinn munu birtast hér"
+
+msgid "Time picker"
+msgstr "Tímaveljari"
+
+msgid "Time zone"
+msgstr "Tímabelti"
+
+msgid "Toggle overlay"
+msgstr "Víxla yfirlagi af/á"
 
 msgid "Travel & Places"
 msgstr "Staðir og ferðalög"
@@ -424,15 +598,45 @@ msgstr "Get ekki leitað í hópnum"
 msgid "Undo changes"
 msgstr "Afturkalla breytingar"
 
+msgid "Upload file"
+msgstr "Senda inn skrá"
+
+msgid "Upload files"
+msgstr "Senda inn skrár"
+
+msgid "Upload folder"
+msgstr "Innsendingamappa"
+
+msgid "Uploading …"
+msgstr "Sendi inn …"
+
 msgid "User status: {status}"
 msgstr "Staða notanda: {status}"
 
 msgid "View team"
 msgstr "Skoða teymi"
 
+msgid "W"
+msgstr "V"
+
 #. TRANSLATORS: A color name for RGB(211, 169, 103)
 msgid "Whiskey"
 msgstr "Viský"
 
+msgid "White"
+msgstr "Hvítt"
+
+msgid "Widget height"
+msgstr "Hæð viðmótshlutar"
+
 msgid "Write a message …"
 msgstr "Skrifaðu skilaboð …"
+
+msgid "Year picker"
+msgstr "Áraveljari"
+
+msgid "Year picker overlay"
+msgstr "Yfirlag áraveljara"
+
+msgid "You have not added any info yet"
+msgstr "Þú hefur ekki bætt við neinum upplýsingum ennþá"
