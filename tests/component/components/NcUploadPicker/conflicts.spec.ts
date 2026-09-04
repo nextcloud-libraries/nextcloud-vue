@@ -7,10 +7,10 @@ import type { Locator, Page } from '@playwright/test'
 
 import { expect, test } from '@playwright/experimental-ct-vue'
 import NcUploadPickerStory from './NcUploadPicker.story.vue'
-import { createFile, mockDav, pickFiles } from './upload-helpers.ts'
+import { createFile, mockDav, pickFiles, skipWithoutFilePicker } from './upload-helpers.ts'
 
 test.describe('NcUploadPicker: conflicting files', () => {
-	test.skip(({ browserName }) => browserName === 'webkit', 'WebKit does not support file pickers in Playwright yet')
+	skipWithoutFilePicker()
 
 	test('asks which version of a conflicting file to keep', async ({ mount, page }) => {
 		const dav = await mockDav(page)
@@ -44,11 +44,14 @@ test.describe('NcUploadPicker: conflicting files', () => {
 
 		await pickFiles(page, createFile('file.txt', 1))
 
+		// The destination was checked, so the uploader got as far as resolving conflicts
+		await dav.waitFor('HEAD')
+
 		// Conflicts cannot be resolved without the content of the destination,
 		// so nothing is uploaded instead of silently overwriting existing files
 		await expect(page.getByRole('dialog')).toBeHidden()
 		await expect(page.getByRole('progressbar')).toBeHidden()
-		expect(dav.received('PUT')).toHaveLength(0)
+		await dav.expectNoMore('PUT')
 	})
 
 	test('failing to check for conflicts does not block later uploads', async ({ mount, page }) => {
@@ -59,7 +62,7 @@ test.describe('NcUploadPicker: conflicting files', () => {
 		await pickFiles(page, createFile('file.txt', 1))
 		// The destination was checked, but nothing was uploaded
 		await dav.waitFor('HEAD')
-		expect(dav.received('PUT')).toHaveLength(0)
+		await dav.expectNoMore('PUT')
 
 		// The cancelled upload does not keep the uploader busy
 		await component.update({ props: { ...props, failContent: false } })

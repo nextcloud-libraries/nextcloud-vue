@@ -5,10 +5,10 @@
 
 import { expect, test } from '@playwright/experimental-ct-vue'
 import NcUploadPickerStory from './NcUploadPicker.story.vue'
-import { createFile, mockDav, pickFiles } from './upload-helpers.ts'
+import { createFile, mockDav, pickFiles, skipWithoutFilePicker } from './upload-helpers.ts'
 
 test.describe('NcUploadPicker: progress', () => {
-	test.skip(({ browserName }) => browserName === 'webkit', 'WebKit does not support file pickers in Playwright yet')
+	skipWithoutFilePicker()
 
 	test('shows that the remaining time is unknown when the upload starts', async ({ mount, page }) => {
 		const dav = await mockDav(page, { hold: ({ method }) => method === 'PUT' })
@@ -170,12 +170,47 @@ test.describe('NcUploadPicker: progress', () => {
 		await expect(progress).toBeVisible()
 		// The remaining chunk is not uploaded and the chunks are not assembled
 		expect(dav.received('PUT')).toHaveLength(1)
+		await dav.expectNoMore('PUT')
 		expect(dav.received('MOVE')).toHaveLength(0)
 
 		await page.getByRole('button', { name: 'Resume uploads' }).click()
 
 		await expect.poll(() => events).toEqual(['paused:2', 'resumed:2'])
 		await dav.waitFor('MOVE')
+		await expect(progress).toBeHidden()
+	})
+
+	test('does not lose the progress of finished uploads when an upload is retried', async ({ mount, page }) => {
+		let failUpload = true
+		const dav = await mockDav(page, {
+			// Hold back the second file, so its retry can be observed while it is still running
+			hold: ({ method, path }) => method === 'PUT' && path.endsWith('/second.txt'),
+			status: ({ method, path }) => {
+				if (method === 'PUT' && path.endsWith('/second.txt') && failUpload) {
+					failUpload = false
+					return 423
+				}
+				return method === 'MOVE' ? 204 : 201
+			},
+		})
+		// Upload one file after the other to have a deterministic progress
+		await mount(NcUploadPickerStory, { props: { multiple: true, maxParallelUploads: 1 } })
+
+		await pickFiles(page, createFile('first.txt', 1), createFile('second.txt', 1))
+
+		// The first of the two equally sized files is done
+		const progress = page.getByRole('progressbar')
+		await expect(progress).toHaveAttribute('value', '50')
+
+		// Let the second upload fail, so it gets retried
+		const [attempt] = await dav.waitFor('PUT', { path: /\/second\.txt$/ })
+		attempt.respond()
+
+		// While the retry is running the progress of the finished file is kept instead of starting over
+		const attempts = await dav.waitFor('PUT', { count: 2, path: /\/second\.txt$/, timeout: 30000 })
+		await expect(progress).toHaveAttribute('value', '50')
+
+		attempts[1].respond()
 		await expect(progress).toBeHidden()
 	})
 })

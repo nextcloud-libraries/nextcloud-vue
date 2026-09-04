@@ -3,11 +3,39 @@
  * SPDX-License-Identifier: AGPL-3.0-or-later
  */
 
+import type { UploadStatus as UpstreamUploadStatus } from '@nextcloud/files/upload'
 import type { Page } from '@playwright/test'
 
-import { expect } from '@playwright/experimental-ct-vue'
+import { expect, test } from '@playwright/experimental-ct-vue'
 
-const DAV_ROOT = /^.*\/remote\.php\/dav/
+const DAV_ROOT = /^.*?\/remote\.php\/dav/
+
+/**
+ * Mirror of `UploadStatus` from `@nextcloud/files/upload`.
+ *
+ * The upstream module cannot be imported at runtime here, as it is only usable in a browser
+ * (it accesses `window` on import), while the test bodies themselves run in Node.
+ * The `satisfies` clause makes the type checker fail if the upstream values ever change,
+ * so this mirror cannot silently drift.
+ */
+export const UploadStatus = {
+	INITIALIZED: 0,
+	SCHEDULED: 1,
+	UPLOADING: 2,
+	ASSEMBLING: 3,
+	FINISHED: 4,
+	CANCELLED: 5,
+	FAILED: 6,
+} as const satisfies typeof UpstreamUploadStatus
+
+/**
+ * Skip the surrounding tests on browsers that cannot drive a file picker.
+ *
+ * Call this at the top of a `test.describe` that picks files.
+ */
+export function skipWithoutFilePicker(): void {
+	test.skip(({ browserName }) => browserName === 'webkit', 'WebKit does not support file pickers in Playwright yet')
+}
 
 export interface FakeFile {
 	name: string
@@ -20,11 +48,12 @@ export interface FakeFile {
  *
  * @param name - Name of the file
  * @param sizeInMiB - Size of the file in MiB
+ * @param mimeType - MIME type of the file
  */
-export function createFile(name: string, sizeInMiB: number): FakeFile {
+export function createFile(name: string, sizeInMiB: number, mimeType = 'text/plain'): FakeFile {
 	return {
 		name,
-		mimeType: 'text/plain',
+		mimeType,
 		buffer: Buffer.alloc(sizeInMiB * 1024 * 1024),
 	}
 }
@@ -78,6 +107,13 @@ export interface DavMockOptions {
 	 * @default 200 for `HEAD` on the destination, 404 for any other `HEAD`, 204 for `MOVE` and 201 otherwise
 	 */
 	status?: (request: DavRequest) => number
+
+	/**
+	 * Abort matching requests with a network error instead of responding to them.
+	 *
+	 * @default false
+	 */
+	fail?: (request: DavRequest) => boolean
 }
 
 export interface DavMock {
@@ -101,6 +137,18 @@ export interface DavMock {
 	 * @param options - Number of expected requests, pattern the path has to match and the timeout in milliseconds
 	 */
 	waitFor(method: string, options?: { count?: number, path?: RegExp, timeout?: number }): Promise<DavRequest[]>
+
+	/**
+	 * Assert that no further matching requests arrive within the given duration.
+	 *
+	 * Unlike `received()`, which only looks at the requests received so far, this waits,
+	 * so the assertion does not pass just because a request the uploader is about to send
+	 * has not been sent yet.
+	 *
+	 * @param method - The HTTP method
+	 * @param options - Pattern the path has to match and how long to wait in milliseconds
+	 */
+	expectNoMore(method: string, options?: { path?: RegExp, timeout?: number }): Promise<void>
 
 	/**
 	 * Stop holding back responses:
@@ -150,7 +198,11 @@ export async function mockDav(page: Page, options: DavMockOptions = {}): Promise
 		await promise
 
 		try {
-			await route.fulfill({ status: options.status?.(request) ?? defaultStatus(request) })
+			if (options.fail?.(request)) {
+				await route.abort('connectionreset')
+			} else {
+				await route.fulfill({ status: options.status?.(request) ?? defaultStatus(request) })
+			}
 		} catch {
 			// The request was aborted, e.g. because the upload was cancelled, or the page is already closed
 		}
@@ -169,6 +221,12 @@ export async function mockDav(page: Page, options: DavMockOptions = {}): Promise
 				.poll(() => received(method, path).length, { message: `Waiting for ${count} ${method} request(s)`, timeout })
 				.toBeGreaterThanOrEqual(count)
 			return received(method, path)
+		},
+
+		async expectNoMore(method, { path, timeout = 2000 } = {}) {
+			const count = received(method, path).length
+			await page.waitForTimeout(timeout)
+			expect(received(method, path), `Expected no further ${method} request`).toHaveLength(count)
 		},
 
 		releaseAll() {

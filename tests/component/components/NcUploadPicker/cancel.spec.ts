@@ -5,13 +5,10 @@
 
 import { expect, test } from '@playwright/experimental-ct-vue'
 import NcUploadPickerStory from './NcUploadPicker.story.vue'
-import { createFile, mockDav, pickFiles } from './upload-helpers.ts'
-
-/** The upload of a file was cancelled */
-const UPLOAD_CANCELLED = 5
+import { createFile, mockDav, pickFiles, skipWithoutFilePicker, UploadStatus } from './upload-helpers.ts'
 
 test.describe('NcUploadPicker: cancelling uploads', () => {
-	test.skip(({ browserName }) => browserName === 'webkit', 'WebKit does not support file pickers in Playwright yet')
+	skipWithoutFilePicker()
 
 	test('cancels a running upload', async ({ mount, page }) => {
 		const finished: { source: string, status: number }[] = []
@@ -28,7 +25,7 @@ test.describe('NcUploadPicker: cancelling uploads', () => {
 		await expect(page.getByRole('progressbar')).toBeHidden()
 		await expect(page.getByRole('button', { name: 'Cancel uploads' })).toBeHidden()
 		await expect.poll(() => finished.find(({ source }) => source.endsWith('/file.txt')))
-			.toMatchObject({ status: UPLOAD_CANCELLED })
+			.toMatchObject({ status: UploadStatus.CANCELLED })
 	})
 
 	test('cancels a chunked upload before the chunks are assembled', async ({ mount, page }) => {
@@ -43,7 +40,7 @@ test.describe('NcUploadPicker: cancelling uploads', () => {
 
 		await expect(page.getByRole('progressbar')).toBeHidden()
 		// The chunks are never assembled into the destination file
-		expect(dav.received('MOVE')).toHaveLength(0)
+		await dav.expectNoMore('MOVE')
 	})
 
 	test('cancels uploads that are queued while paused', async ({ mount, page }) => {
@@ -58,6 +55,7 @@ test.describe('NcUploadPicker: cancelling uploads', () => {
 		// The queue is emptied, so the uploader is neither uploading nor paused anymore
 		await expect(page.getByRole('progressbar')).toBeHidden()
 		await expect(page.getByText('paused')).toBeHidden()
+		await dav.expectNoMore('PUT')
 		expect(dav.requests).toHaveLength(0)
 	})
 
