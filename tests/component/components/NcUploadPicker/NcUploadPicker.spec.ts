@@ -6,12 +6,7 @@
 import { expect, test } from '@playwright/experimental-ct-vue'
 import { join } from 'node:path'
 import NcUploadPickerStory from './NcUploadPicker.story.vue'
-import { createFile, mockDav, pickFiles } from './upload-helpers.ts'
-
-/** The upload of a file finished successfully */
-const UPLOAD_FINISHED = 4
-/** The upload of a file failed */
-const UPLOAD_FAILED = 6
+import { createFile, mockDav, pickFiles, skipWithoutFilePicker, UploadStatus } from './upload-helpers.ts'
 
 test.describe('NcUploadPicker: rendering', () => {
 	test('shows a button with the default label', async ({ mount, page }) => {
@@ -49,7 +44,7 @@ test.describe('NcUploadPicker: rendering', () => {
 })
 
 test.describe('NcUploadPicker: uploading', () => {
-	test.skip(({ browserName }) => browserName === 'webkit', 'WebKit does not support file pickers in Playwright yet')
+	skipWithoutFilePicker()
 
 	test('shows the progress while uploading and hides it afterwards', async ({ mount, page }) => {
 		const dav = await mockDav(page, { hold: ({ method }) => method === 'PUT' })
@@ -85,7 +80,7 @@ test.describe('NcUploadPicker: uploading', () => {
 		// the file upload and the upload of the destination folder itself are both reported
 		await expect.poll(() => finished.length).toBe(2)
 		expect(finished.find(({ source }) => source.endsWith('/file.txt')))
-			.toMatchObject({ status: UPLOAD_FINISHED })
+			.toMatchObject({ status: UploadStatus.FINISHED })
 	})
 
 	test('uploads multiple files', async ({ mount, page }) => {
@@ -133,7 +128,7 @@ test.describe('NcUploadPicker: uploading', () => {
 
 		await expect.poll(() => finished.length).toBe(2)
 		expect(finished.find(({ source }) => source.endsWith('/file.txt')))
-			.toMatchObject({ status: UPLOAD_FAILED })
+			.toMatchObject({ status: UploadStatus.FAILED })
 		await expect(page.getByRole('progressbar')).toBeHidden()
 	})
 
@@ -174,7 +169,7 @@ test.describe('NcUploadPicker: uploading', () => {
 })
 
 test.describe('NcUploadPicker: destination handling', () => {
-	test.skip(({ browserName }) => browserName === 'webkit', 'WebKit does not support file pickers in Playwright yet')
+	skipWithoutFilePicker()
 
 	test('uploads to the destination of the current props', async ({ mount, page }) => {
 		const dav = await mockDav(page)
