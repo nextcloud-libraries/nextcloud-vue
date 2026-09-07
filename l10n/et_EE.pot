@@ -16,9 +16,6 @@ msgstr "{tag} (nähtamatu)"
 msgid "{tag} (restricted)"
 msgstr "{tag} (piiratud)"
 
-msgid "{user} has not added any info yet"
-msgstr "{user} pole veel mitte mingit teavet lisanud"
-
 msgid "A color with a HEX value {hex}"
 msgstr "Värv kuueteistkümnendarvuna {hex}"
 
@@ -218,9 +215,6 @@ msgstr "Objekti lisamine projekti ei õnnestunud"
 
 msgid "Failed to create a project"
 msgstr "Projekti loomine ei õnnestunud"
-
-msgid "Failed to load profile"
-msgstr "Profiili laadimine ei õnnestunud"
 
 msgid "Failed to rename the project"
 msgstr "Projekti nime muutmine ei õnnestunud"
@@ -517,6 +511,9 @@ msgstr "Vali aasta"
 msgid "Selected"
 msgstr "Valitud"
 
+msgid "Send message"
+msgstr "Saada sõnum"
+
 msgid "Settings"
 msgstr "Seadistused"
 
@@ -552,6 +549,9 @@ msgstr "Smailid ja emotsioonid"
 msgid "Space"
 msgstr "Tühikuklahv"
 
+msgid "Start call"
+msgstr "Helista"
+
 msgid "Start slideshow"
 msgstr "Alusta slaidiesitust"
 
@@ -570,9 +570,6 @@ msgstr "Sümbolid"
 #. TRANSLATORS: Tab key on keyboard
 msgid "Tab"
 msgstr "Tabulaator"
-
-msgid "The headline and about sections will show up here"
-msgstr "Teaba ja pealkirja plokid saavad olema nähtavad siin"
 
 msgid "Time picker"
 msgstr "Ajavalija"
@@ -613,6 +610,9 @@ msgstr "Üleslaadimisel…"
 msgid "User status: {status}"
 msgstr "Kasutaja olek: {status}"
 
+msgid "View profile"
+msgstr "Vaata profiili"
+
 msgid "View team"
 msgstr "Vaata tiimi"
 
@@ -637,6 +637,3 @@ msgstr "Aastavalija"
 
 msgid "Year picker overlay"
 msgstr "Aastavavalija ülekatteaken"
-
-msgid "You have not added any info yet"
-msgstr "Sa pole veel mitte mingit teavet lisanud"
