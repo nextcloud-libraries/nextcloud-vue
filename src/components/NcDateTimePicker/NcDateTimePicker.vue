@@ -295,6 +295,7 @@ import NcTimezonePicker from '../NcTimezonePicker/NcTimezonePicker.vue'
 import { t } from '../../l10n.ts'
 import NcButton from '../NcButton/index.ts'
 import { getDateFormat, getDateTimeFormat, getMonthFormat, getTimeFormat, getWeekFormat, getYearFormat } from './format.ts'
+import { checkForNonStandardTokens } from './formatValidation.ts'
 import useDateFnsLocale from './useDateFnsLocale.ts'
 
 type LibraryFormatOptions = VueDatePickerProps['format']
@@ -554,6 +555,20 @@ watch(dateFnsLocale, () => {
 }, {
 	// Apply only after new locale was reaplied to VueDatePicker.
 	flush: 'post',
+})
+
+watchEffect(() => {
+	if (typeof props.format !== 'string') {
+		return
+	}
+	const nonStandardTokens = checkForNonStandardTokens(props.format)
+	if (nonStandardTokens.length !== 0) {
+		let warning = `[NcDateTimePicker] The \`format\` property value "${props.format}" uses the non-standard formating tokens ${nonStandardTokens.join(', ')}.`
+		warning += ' They will be disabled in the future because they are only supported by the date-fns library.'
+		warning += ' Only use tokens from the Unicode Technical Standard #35.'
+		warning += ' See https://github.com/nextcloud-libraries/nextcloud-vue/issues/8931'
+		warn(warning)
+	}
 })
 
 /**
