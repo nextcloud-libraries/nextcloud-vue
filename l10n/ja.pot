@@ -17,9 +17,6 @@ msgstr "{tag} (不可視)"
 msgid "{tag} (restricted)"
 msgstr "{tag} (制限付)"
 
-msgid "{user} has not added any info yet"
-msgstr "{user}はまだ情報を追加していません"
-
 msgid "A color with a HEX value {hex}"
 msgstr " HEX値 {hex} を持つ色"
 
@@ -184,9 +181,6 @@ msgstr "邪魔をしないでください"
 msgid "Edit item"
 msgstr "編集"
 
-msgid "Edit profile"
-msgstr "プロフィールを編集する"
-
 msgid "Emoji picker"
 msgstr "絵文字ピッカー"
 
@@ -217,9 +211,6 @@ msgstr "プロジェクトへのアイテムの追加に失敗しました"
 
 msgid "Failed to create a project"
 msgstr "プロジェクトの作成に失敗しました"
-
-msgid "Failed to load profile"
-msgstr "プロフィールの読み込みに失敗しました"
 
 msgid "Failed to rename the project"
 msgstr "プロジェクトの名前変更に失敗しました"
@@ -261,9 +252,6 @@ msgstr "分を増やす"
 msgid "Increment seconds"
 msgstr "秒を増やす"
 
-msgid "Invalid date"
-msgstr "無効な日付"
-
 msgid "invisible"
 msgstr "不可視"
 
@@ -282,15 +270,6 @@ msgstr "\"{options}\" をもっと読み込む"
 #. TRANSLATORS: The button is in a loading state
 msgid "Loading …"
 msgstr "読み込み中 …"
-
-msgid "Loading actions"
-msgstr "アクションの読み込み中"
-
-msgid "Loading profile"
-msgstr "プロフィールを読み込み中"
-
-msgid "Local time: {time}"
-msgstr "現地時間：{time}"
 
 #. TRANSLATORS: A color name for RGB(45, 115, 190)
 msgid "Mariner"
@@ -433,9 +412,6 @@ msgstr "前月"
 msgid "Previous year"
 msgstr "前年"
 
-msgid "Profile of {user}"
-msgstr "{user}のプロフィール"
-
 msgid "Provider icon"
 msgstr "プロバイダーのアイコン"
 
@@ -569,9 +545,6 @@ msgstr "記号"
 msgid "Tab"
 msgstr "Tab"
 
-msgid "The headline and about sections will show up here"
-msgstr "見出しと概要のセクションがここに表示されます"
-
 msgid "Time picker"
 msgstr "時刻ピッカー"
 
@@ -635,6 +608,3 @@ msgstr "年ピッカー"
 
 msgid "Year picker overlay"
 msgstr "年ピッカーオーバーレイ"
-
-msgid "You have not added any info yet"
-msgstr "まだ情報は追加されていません"
