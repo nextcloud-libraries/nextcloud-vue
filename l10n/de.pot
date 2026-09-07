@@ -19,9 +19,6 @@ msgstr "{tag} (unsichtbar)"
 msgid "{tag} (restricted)"
 msgstr "{tag} (eingeschränkt)"
 
-msgid "{user} has not added any info yet"
-msgstr "{user} hat noch keine Informationen hinzugefügt"
-
 msgid "A color with a HEX value {hex}"
 msgstr "Eine Farbe mit einem HEX-Wert {hex}"
 
@@ -223,9 +220,6 @@ msgstr "Das Element konnte nicht zum Projekt hinzugefügt werden"
 
 msgid "Failed to create a project"
 msgstr "Projekt konnte nicht erstellt werden"
-
-msgid "Failed to load profile"
-msgstr "Profil konnte nicht geladen werden"
 
 msgid "Failed to rename the project"
 msgstr "Das Projekt konnte nicht umbenannt werden"
@@ -522,6 +516,9 @@ msgstr "Jahr auswählen"
 msgid "Selected"
 msgstr "Ausgewählt"
 
+msgid "Send message"
+msgstr "Nachricht senden"
+
 msgid "Settings"
 msgstr "Einstellungen"
 
@@ -557,6 +554,9 @@ msgstr "Smileys & Emotionen"
 msgid "Space"
 msgstr "Leertaste"
 
+msgid "Start call"
+msgstr "Anruf starten"
+
 msgid "Start slideshow"
 msgstr "Diashow starten"
 
@@ -575,9 +575,6 @@ msgstr "Symbole"
 #. TRANSLATORS: Tab key on keyboard
 msgid "Tab"
 msgstr "Tab"
-
-msgid "The headline and about sections will show up here"
-msgstr "Die Überschrift und der Abschnitt Über werden hier angezeigt"
 
 msgid "Time picker"
 msgstr "Zeitauswahl"
@@ -618,6 +615,9 @@ msgstr "Wird hochgeladen …"
 msgid "User status: {status}"
 msgstr "Benutzerstatus: {status}"
 
+msgid "View profile"
+msgstr "Profil anzeigen"
+
 msgid "View team"
 msgstr "Team anzeigen"
 
@@ -642,6 +642,3 @@ msgstr "Jahresauswahl"
 
 msgid "Year picker overlay"
 msgstr "Jahre-Overlay öffnen"
-
-msgid "You have not added any info yet"
-msgstr "Du hast noch keine Informationen hinzugefügt"
