@@ -12,7 +12,6 @@ import { getCapabilities } from '@nextcloud/capabilities'
 import { getCanonicalLocale } from '@nextcloud/l10n'
 import { generateOcsUrl, generateUrl } from '@nextcloud/router'
 import { computed, onMounted, ref, watch } from 'vue'
-import AccountIcon from 'vue-material-design-icons/AccountOutline.vue'
 import BriefcaseIcon from 'vue-material-design-icons/BriefcaseOutline.vue'
 import ClockIcon from 'vue-material-design-icons/ClockOutline.vue'
 import MapMarkerIcon from 'vue-material-design-icons/MapMarkerOutline.vue'
@@ -23,7 +22,6 @@ import NcActionRouter from '../NcActionRouter/NcActionRouter.vue'
 import NcActions from '../NcActions/NcActions.vue'
 import NcAvatar from '../NcAvatar/NcAvatar.vue'
 import NcButton from '../NcButton/NcButton.vue'
-import NcEmptyContent from '../NcEmptyContent/NcEmptyContent.vue'
 import NcLoadingIcon from '../NcLoadingIcon/NcLoadingIcon.vue'
 import NcRichText from '../NcRichText/NcRichText.vue'
 import { useIsSmallMobile } from '../../composables/useIsMobile/index.ts'
@@ -84,6 +82,12 @@ const props = withDefaults(defineProps<{
 	user?: string | null
 
 	/**
+	 * Optional display name when already known (skips `/displaynames` for limited profiles).
+	 * When omitted and the full profile is unavailable, the card looks the name up itself.
+	 */
+	displayName?: string | null
+
+	/**
 	 * Optional preloaded profile data (skips the profile API request when set).
 	 */
 	profile?: IProfileData | null
@@ -112,6 +116,7 @@ const props = withDefaults(defineProps<{
 	actionsLoading?: boolean
 }>(), {
 	user: null,
+	displayName: null,
 	profile: null,
 	preloadedUserStatus: null,
 	open: false,
@@ -123,7 +128,22 @@ const loading = ref(false)
 const error = ref(false)
 const profileData = ref<IProfileData | null>(props.profile)
 const userStatus = ref<IUserStatus>(props.preloadedUserStatus ?? {})
+/**
+ * False when the full profile is disabled or unavailable; card shows avatar + name only.
+ */
+const profileEnabled = ref(!!props.profile)
+/**
+ * True once status is known for the current user (preloaded or fetched, including empty).
+ * The card stays on the loading state until this is true to avoid a status flash.
+ */
+const userStatusReady = ref(props.preloadedUserStatus !== null)
 const isMobile = useIsSmallMobile()
+
+/**
+ * Show the spinner until profile (or limited fallback) and status are both ready.
+ */
+const showLoading = computed(() => loading.value
+	|| (!!profileData.value && !error.value && !userStatusReady.value))
 
 if (props.user && props.profile) {
 	setCachedProfile(props.user, props.profile)
@@ -132,12 +152,95 @@ if (props.user && props.profile) {
 const isCurrentUser = computed(() => !!props.user && getCurrentUser()?.uid === props.user)
 const settingsUrl = generateUrl('/settings/user')
 
+/**
+ * Full profile page URL — only when the profile is enabled and reachable.
+ */
+const profileUrl = computed(() => {
+	if (!profileEnabled.value) {
+		return null
+	}
+	const userId = profileData.value?.userId || props.user
+	if (!userId) {
+		return null
+	}
+	return generateUrl('/u/{userId}', { userId })
+})
+
+/**
+ * Display name for the header (full profile, prop, or user id).
+ */
+const resolvedDisplayName = computed(() => profileData.value?.displayname
+	|| props.displayName
+	|| profileData.value?.userId
+	|| props.user
+	|| '')
+
+/**
+ * Props for avatar wrappers that link to the full profile when available.
+ */
+const profileLinkProps = computed(() => {
+	if (!profileUrl.value) {
+		return {}
+	}
+	return {
+		href: profileUrl.value,
+		'aria-label': t('View profile'),
+	}
+})
+
+/**
+ * Drop actions that do not belong in the hover-card sidebar
+ * (timezone info and the separate "View profile" entry).
+ *
+ * @param action - Hover card or profile API action
+ */
+function isSidebarAction(action: Pick<IProfileHoverCardAction, 'appId' | 'id'>) {
+	return action.appId !== 'timezone'
+		&& action.appId !== 'profile'
+		&& action.id !== 'profile'
+}
+
+/**
+ * Display label for an action (short Talk labels without the redundant name).
+ *
+ * @param action - Hover card action
+ */
+function actionDisplayText(action: IProfileHoverCardAction) {
+	// Keep self-profile labels such as "Open Talk" unchanged
+	if (isCurrentUser.value) {
+		return action.text
+	}
+	if (action.id === 'talk-call' || isSpreedDirectCallAction(action)) {
+		return t('Start call')
+	}
+	if (action.id === 'talk' || action.appId === 'spreed') {
+		return t('Send message')
+	}
+	return action.text
+}
+
+/**
+ * Contacts-menu Talk "direct call" action (vs chat), identified by URL fragment.
+ *
+ * @param action - Hover card action
+ */
+function isSpreedDirectCallAction(action: IProfileHoverCardAction) {
+	if (action.appId !== 'spreed') {
+		return false
+	}
+	const href = action.href ?? (typeof action.to === 'string' ? action.to : '')
+	return typeof href === 'string' && href.includes('#direct-call')
+}
+
+/**
+ * Actions shown in the card sidebar, excluding timezone and View profile.
+ */
 const resolvedActions = computed((): IProfileHoverCardAction[] => {
 	if (props.actions && props.actions.length > 0) {
-		return props.actions.filter((action) => action.appId !== 'timezone')
+		return props.actions.filter(isSidebarAction)
 	}
 	return (profileData.value?.actions ?? [])
-		.filter((action) => action.appId !== 'timezone')
+		.filter(isSidebarAction)
 		.map((action) => ({
 			id: action.id,
 			appId: action.appId,
@@ -179,14 +282,6 @@ const primaryActionButtonProps = computed(() => {
 		}
 	}
 	return {}
-})
-
-const emptyProfileMessage = computed(() => {
-	if (isCurrentUser.value) {
-		return t('You have not added any info yet')
-	}
-	const name = profileData.value?.displayname || props.user || ''
-	return t('{user} has not added any info yet', { user: name })
 })
 
 /**
@@ -277,6 +372,7 @@ function otherActionProps(action: IProfileHoverCardAction) {
 watch(() => props.profile, (value) => {
 	if (value) {
 		profileData.value = value
+		profileEnabled.value = true
 		if (props.user) {
 			setCachedProfile(props.user, value)
 		}
@@ -287,12 +383,21 @@ watch(() => props.profile, (value) => {
 watch(() => props.preloadedUserStatus, (value) => {
 	if (value) {
 		userStatus.value = value
+		userStatusReady.value = true
+	}
+})
+
+watch(() => props.displayName, (value) => {
+	if (value && profileData.value && !profileEnabled.value) {
+		profileData.value = { ...profileData.value, displayname: value }
 	}
 })
 
 watch(() => props.user, () => {
 	profileData.value = props.profile
 	userStatus.value = props.preloadedUserStatus ?? {}
+	userStatusReady.value = props.preloadedUserStatus !== null
+	profileEnabled.value = !!props.profile
 	error.value = false
 	if (props.user && props.profile) {
 		setCachedProfile(props.user, props.profile)
@@ -315,11 +420,36 @@ onMounted(() => {
 })
 
 /**
- * Whether user status was already provided (including a known empty status).
+ * Resolve a display name for limited profiles: prop first, then `/displaynames`.
+ *
+ * @param userId - User id
  */
-function hasPreloadedUserStatus() {
-	return props.preloadedUserStatus !== null
-		|| !!(userStatus.value.icon || userStatus.value.message || userStatus.value.status)
+async function resolveDisplayName(userId: string): Promise<string> {
+	if (props.displayName) {
+		return props.displayName
+	}
+	try {
+		const { data } = await axios.post(generateUrl('/displaynames'), { users: [userId] })
+		return data?.users?.[userId] || userId
+	} catch (e) {
+		logger.debug('Failed to load display name for hovercard', { error: e, userId })
+		return userId
+	}
+}
+
+/**
+ * Minimal profile when the full profile is disabled or unavailable.
+ * Matches Talk / sharing sidebars: avatar + display name (+ status/actions).
+ *
+ * @param userId - User id
+ */
+async function createLimitedProfile(userId: string): Promise<IProfileData> {
+	return {
+		userId,
+		displayname: await resolveDisplayName(userId),
+		actions: [],
+		isUserAvatarVisible: true,
+	}
 }
 
 /**
@@ -328,9 +458,10 @@ function hasPreloadedUserStatus() {
  * @param userId - User id
  */
 async function ensureUserStatus(userId: string) {
-	// Skip the status request when already preloaded (e.g. from NcAvatar)
-	if (!hasPreloadedUserStatus()) {
+	// Skip the status request when already known (e.g. from NcAvatar)
+	if (!userStatusReady.value) {
 		userStatus.value = await fetchUserStatus(userId)
+		userStatusReady.value = true
 	}
 }
 
@@ -349,34 +480,50 @@ async function loadProfile() {
 		const cached = getCachedProfile(userId)
 		if (cached) {
 			profileData.value = cached
+			profileEnabled.value = true
 		}
 	}
-	if (profileData.value) {
-		await ensureUserStatus(userId)
+	if (profileData.value && profileEnabled.value) {
+		if (!userStatusReady.value) {
+			loading.value = true
+			try {
+				await ensureUserStatus(userId)
+			} finally {
+				loading.value = false
+			}
+		}
 		return
 	}
 
 	loading.value = true
 	error.value = false
 
+	const statusPromise = userStatusReady.value
+		? Promise.resolve(userStatus.value)
+		: fetchUserStatus(userId)
+
 	try {
-		const [profile, status] = await Promise.all([
-			fetchProfileCached(userId, async () => {
-				const { data } = await axios.get(generateOcsUrl('/profile/{userId}', { userId }))
-				return data.ocs?.data ?? null
-			}),
-			hasPreloadedUserStatus()
-				? Promise.resolve(userStatus.value)
-				: fetchUserStatus(userId),
-		])
-		profileData.value = profile
-		userStatus.value = status
-		if (!profileData.value) {
-			error.value = true
+		const profile = await fetchProfileCached(userId, async () => {
+			const { data } = await axios.get(generateOcsUrl('/profile/{userId}', { userId }))
+			return data.ocs?.data ?? null
+		})
+		if (profile) {
+			profileData.value = profile
+			profileEnabled.value = true
+		} else {
+			// Profile disabled or empty — show avatar + name like Talk / sharing
+			profileData.value = await createLimitedProfile(userId)
+			profileEnabled.value = false
 		}
 	} catch (e) {
-		logger.debug('Failed to load profile for hovercard', { error: e, user: userId })
-		error.value = true
+		logger.debug('Failed to load profile for hovercard, showing limited info', { error: e, user: userId })
+		profileData.value = await createLimitedProfile(userId)
+		profileEnabled.value = false
+	}
+
+	try {
+		userStatus.value = await statusPromise
+		userStatusReady.value = true
 	} finally {
 		loading.value = false
 	}
@@ -405,9 +552,10 @@ async function fetchUserStatus(userId: string): Promise<IUserStatus> {
 <template>
 	<div
 		class="profile-hover-card"
+		:class="{ 'profile-hover-card--limited': !showLoading && !!profileData && !error && !profileEnabled }"
 		role="dialog"
-		:aria-label="t('Profile of {user}', { user: profileData?.displayname || user || '' })">
-		<div v-if="loading" class="profile-hover-card__loading">
+		:aria-label="t('Profile of {user}', { user: resolvedDisplayName })">
+		<div v-if="showLoading" class="profile-hover-card__loading">
 			<NcLoadingIcon :size="32" :name="t('Loading profile')" />
 		</div>
 
@@ -427,21 +575,34 @@ async function fetchUserStatus(userId: string): Promise<IUserStatus> {
 					</template>
 				</NcButton>
 				<div class="profile-hover-card__header__container">
-					<NcAvatar
+					<component
+						:is="profileUrl ? 'a' : 'div'"
 						v-if="isMobile"
-						class="avatar profile-hover-card__header__container__avatar"
-						:user="profileData.userId"
-						:size="96"
-						disableMenu
-						disableTooltip
-						:preloadedUserStatus="avatarUserStatus"
-						:isNoUser="!profileData.isUserAvatarVisible" />
+						class="profile-hover-card__header__container__avatar"
+						:class="{ 'profile-hover-card__profile-link': !!profileUrl }"
+						v-bind="profileLinkProps">
+						<NcAvatar
+							class="avatar"
+							:user="profileData.userId"
+							:displayName="resolvedDisplayName"
+							:size="96"
+							disableMenu
+							disableTooltip
+							:preloadedUserStatus="avatarUserStatus"
+							:isNoUser="!profileData.isUserAvatarVisible" />
+					</component>
 					<div
 						v-else
 						class="profile-hover-card__header__container__placeholder" />
 					<div class="profile-hover-card__header__container__identity">
 						<div class="profile-hover-card__header__container__displayname">
-							<h2>{{ profileData.displayname || profileData.userId }}</h2>
+							<a
+								v-if="profileUrl"
+								class="profile-hover-card__profile-link"
+								:href="profileUrl">
+								<h2>{{ resolvedDisplayName }}</h2>
+							</a>
+							<h2 v-else>{{ resolvedDisplayName }}</h2>
 							<span
 								v-if="profileData.pronouns"
 								class="profile-hover-card__header__container__pronoun-separator">·</span>
@@ -464,15 +625,21 @@ async function fetchUserStatus(userId: string): Promise<IUserStatus> {
 				<div class="profile-hover-card__content">
 					<!-- Sidebar: avatar + actions (mirrors ProfileApp.vue) -->
 					<div class="profile-hover-card__sidebar">
-						<NcAvatar
+						<component
+							:is="profileUrl ? 'a' : 'div'"
 							v-if="!isMobile"
-							class="avatar"
-							:user="profileData.userId"
-							:size="135"
-							disableMenu
-							disableTooltip
-							:preloadedUserStatus="avatarUserStatus"
-							:isNoUser="!profileData.isUserAvatarVisible" />
+							:class="{ 'profile-hover-card__profile-link': !!profileUrl }"
+							v-bind="profileLinkProps">
+							<NcAvatar
+								class="avatar"
+								:user="profileData.userId"
+								:displayName="resolvedDisplayName"
+								:size="135"
+								disableMenu
+								disableTooltip
+								:preloadedUserStatus="avatarUserStatus"
+								:isNoUser="!profileData.isUserAvatarVisible" />
+						</component>
 
 						<div class="user-actions">
 							<div
@@ -502,7 +669,7 @@ async function fetchUserStatus(userId: string): Promise<IUserStatus> {
 											class="user-actions__primary__icon-class"
 											:class="primaryAction.icon" />
 									</template>
-									{{ primaryAction.text }}
+									{{ actionDisplayText(primaryAction) }}
 								</NcButton>
 								<NcActions
 									v-if="otherActions.length > 0"
@@ -528,7 +695,7 @@ async function fetchUserStatus(userId: string): Promise<IUserStatus> {
 												class="user-actions__other__icon-class"
 												:class="action.icon" />
 										</template>
-										{{ action.text }}
+										{{ actionDisplayText(action) }}
 									</component>
 								</NcActions>
 							</template>
@@ -536,7 +703,9 @@ async function fetchUserStatus(userId: string): Promise<IUserStatus> {
 					</div>
 
 					<!-- Content blocks: details + bio (mirrors ProfileApp.vue) -->
-					<div class="profile-hover-card__blocks">
+					<div
+						v-if="profileEnabled"
+						class="profile-hover-card__blocks">
 						<div
 							v-if="profileData.organisation || profileData.role || profileData.address || localTimeLabel"
 							class="profile-hover-card__blocks-details">
@@ -576,23 +745,10 @@ async function fetchUserStatus(userId: string): Promise<IUserStatus> {
 								<NcRichText :text="profileData.biography" useExtendedMarkdown />
 							</div>
 						</template>
-						<NcEmptyContent
-							v-else
-							class="profile-hover-card__blocks-empty-info"
-							:name="emptyProfileMessage"
-							:description="t('The headline and about sections will show up here')">
-							<template #icon>
-								<AccountIcon :size="40" />
-							</template>
-						</NcEmptyContent>
 					</div>
 				</div>
 			</div>
 		</template>
-
-		<div v-else class="profile-hover-card__error">
-			{{ t('Failed to load profile') }}
-		</div>
 	</div>
 </template>
 
@@ -615,6 +771,19 @@ $sidebar-width: 180px;
 	border-radius: var(--border-radius-large);
 	display: flex;
 	flex-direction: column;
+
+	&__profile-link {
+		color: inherit;
+		text-decoration: none;
+		outline-offset: 2px;
+
+		&:hover,
+		&:focus-visible {
+			h2 {
+				text-decoration: underline;
+			}
+		}
+	}
 
 	&__header {
 		display: flex;
@@ -791,15 +960,9 @@ $sidebar-width: 180px;
 				margin: 0;
 			}
 		}
-
-		&-empty-info {
-			margin: 0;
-			padding: 0;
-		}
 	}
 
-	&__loading,
-	&__error {
+	&__loading {
 		display: flex;
 		align-items: center;
 		justify-content: center;
@@ -807,6 +970,28 @@ $sidebar-width: 180px;
 		min-height: $card-height;
 		padding: 16px;
 		color: var(--color-text-maxcontrast);
+	}
+
+	// Avatar + name (+ actions) only — drop the empty content column height
+	&--limited {
+		min-height: 0;
+
+		.profile-hover-card__body {
+			flex: 0 0 auto;
+		}
+
+		.profile-hover-card__content {
+			height: auto;
+			padding-block-end: 24px;
+		}
+
+		.profile-hover-card__sidebar {
+			margin-block-end: 0;
+		}
+
+		.user-actions {
+			margin-top: 8px;
+		}
 	}
 }
 
@@ -958,9 +1143,15 @@ $sidebar-width: 180px;
 			}
 		}
 
-		&__loading,
-		&__error {
+		&__loading {
 			min-height: 200px;
+		}
+
+		// Disabled profile: avatar + name are in the header; no content blocks
+		&--limited {
+			.profile-hover-card__body {
+				display: none;
+			}
 		}
 	}
 
@@ -1004,7 +1195,12 @@ $sidebar-width: 180px;
 `NcProfileHoverCard` is the **content** of a profile popover. It is not a trigger and does not wrap `NcPopover`.
 
 When `open` becomes `true`, the card loads the user's profile and user status itself.
+The card content is shown only after both are ready (or preloaded), so status does not flash in late.
+If the profile is disabled or unavailable, the card still shows avatar, display name, status, and actions
+instead of an error.
 Pass `profile` to skip the profile request.
+Pass `displayName` when already known to skip the `/displaynames` lookup for limited profiles;
+otherwise the card fetches it when the full profile cannot be loaded.
 Pass `preloadedUserStatus` to skip the status request (e.g. when `NcAvatar` already loaded it).
 
 `NcAvatar` already hosts this card on hover or focus for real users (unless `disable-menu` is set)
