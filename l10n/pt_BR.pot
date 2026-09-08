@@ -17,9 +17,6 @@ msgstr "{tag} (invisível)"
 msgid "{tag} (restricted)"
 msgstr "{tag} (restrito)"
 
-msgid "{user} has not added any info yet"
-msgstr "{user} ainda não adicionou nenhuma informação"
-
 msgid "A color with a HEX value {hex}"
 msgstr "Uma cor com valor HEX {hex}"
 
@@ -220,9 +217,6 @@ msgstr "Falha ao adicionar itens ao projeto"
 
 msgid "Failed to create a project"
 msgstr "Falha ao criar um projeto"
-
-msgid "Failed to load profile"
-msgstr "Falha ao carregar o perfil"
 
 msgid "Failed to rename the project"
 msgstr "Falha ao renomear o projeto"
@@ -520,6 +514,9 @@ msgstr "Selecione ano"
 msgid "Selected"
 msgstr "Selecionado"
 
+msgid "Send message"
+msgstr "Enviar mensagem"
+
 msgid "Settings"
 msgstr "Configurações"
 
@@ -555,6 +552,9 @@ msgstr "Smileys & Emoções"
 msgid "Space"
 msgstr "Barra de espaço"
 
+msgid "Start call"
+msgstr "Iniciar chamada"
+
 msgid "Start slideshow"
 msgstr "Iniciar apresentação de slides"
 
@@ -573,9 +573,6 @@ msgstr "Símbolos"
 #. TRANSLATORS: Tab key on keyboard
 msgid "Tab"
 msgstr "Tab"
-
-msgid "The headline and about sections will show up here"
-msgstr "O título e as seções de apresentação aparecerão aqui"
 
 msgid "Time picker"
 msgstr "Seletor de tempo"
@@ -616,6 +613,9 @@ msgstr "Enviando …´"
 msgid "User status: {status}"
 msgstr "Status do usuário: {status}"
 
+msgid "View profile"
+msgstr "Ver perfil"
+
 msgid "View team"
 msgstr "Ver equipe"
 
@@ -640,6 +640,3 @@ msgstr "Seletor de ano"
 
 msgid "Year picker overlay"
 msgstr "Sobreposição do seletor de ano"
-
-msgid "You have not added any info yet"
-msgstr "Você ainda não adicionou nenhuma informação"

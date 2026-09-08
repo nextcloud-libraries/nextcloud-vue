@@ -16,9 +16,6 @@ msgstr "{tag} (görünmez)"
 msgid "{tag} (restricted)"
 msgstr "{tag} (kısıtlanmış)"
 
-msgid "{user} has not added any info yet"
-msgstr "{user} henüz bir bilgi eklememiş"
-
 msgid "A color with a HEX value {hex}"
 msgstr "{hex} onaltılık değeri ile bir renk "
 
@@ -218,9 +215,6 @@ msgstr "Öge projeye eklenemedi"
 
 msgid "Failed to create a project"
 msgstr "Bir proje oluşturulamadı"
-
-msgid "Failed to load profile"
-msgstr "Profil yüklenemedi"
 
 msgid "Failed to rename the project"
 msgstr "Proje yeniden adlandırılamadı"
@@ -517,6 +511,9 @@ msgstr "Yıl seçin"
 msgid "Selected"
 msgstr "Seçilmiş"
 
+msgid "Send message"
+msgstr "İleti gönder"
+
 msgid "Settings"
 msgstr "Ayarlar"
 
@@ -552,6 +549,9 @@ msgstr "İfadeler ve duygular"
 msgid "Space"
 msgstr "Space"
 
+msgid "Start call"
+msgstr "Çağrı başlat"
+
 msgid "Start slideshow"
 msgstr "Slayt sunumunu başlat"
 
@@ -570,9 +570,6 @@ msgstr "Simgeler"
 #. TRANSLATORS: Tab key on keyboard
 msgid "Tab"
 msgstr "Tab"
-
-msgid "The headline and about sections will show up here"
-msgstr "Başlık ve bölümler burada görüntülenir"
 
 msgid "Time picker"
 msgstr "Saat seçici"
@@ -613,6 +610,9 @@ msgstr "Yükleniyor…"
 msgid "User status: {status}"
 msgstr "Kullanıcı durumu: {status}"
 
+msgid "View profile"
+msgstr "Profili görüntüle"
+
 msgid "View team"
 msgstr "Takımı görüntüle"
 
@@ -637,6 +637,3 @@ msgstr "Yıl seçici"
 
 msgid "Year picker overlay"
 msgstr "Yıl seçici kaplaması"
-
-msgid "You have not added any info yet"
-msgstr "Henüz bir bilgi eklememişsiniz"
