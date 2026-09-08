@@ -8,9 +8,6 @@ msgstr ""
 msgid "{tag} (restricted)"
 msgstr ""
 
-msgid "{user} has not added any info yet"
-msgstr ""
-
 msgid "A color with a HEX value {hex}"
 msgstr ""
 
@@ -178,9 +175,6 @@ msgid "Failed to add the item to the project"
 msgstr ""
 
 msgid "Failed to create a project"
-msgstr ""
-
-msgid "Failed to load profile"
 msgstr ""
 
 msgid "Failed to rename the project"
@@ -426,6 +420,9 @@ msgstr ""
 msgid "Selected"
 msgstr ""
 
+msgid "Send message"
+msgstr ""
+
 msgid "Settings"
 msgstr ""
 
@@ -461,6 +458,9 @@ msgstr ""
 msgid "Space"
 msgstr ""
 
+msgid "Start call"
+msgstr ""
+
 msgid "Start slideshow"
 msgstr ""
 
@@ -475,9 +475,6 @@ msgstr ""
 
 #. TRANSLATORS: Tab key on keyboard
 msgid "Tab"
-msgstr ""
-
-msgid "The headline and about sections will show up here"
 msgstr ""
 
 msgid "Travel & Places"
@@ -510,6 +507,9 @@ msgstr ""
 msgid "User status: {status}"
 msgstr ""
 
+msgid "View profile"
+msgstr ""
+
 msgid "View team"
 msgstr ""
 
@@ -524,7 +524,4 @@ msgid "Widget height"
 msgstr ""
 
 msgid "Write a message …"
-msgstr ""
-
-msgid "You have not added any info yet"
 msgstr ""

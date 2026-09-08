@@ -258,7 +258,7 @@ export default {
 			class="avatar-profile-popover"
 			:container="menuContainer"
 			:delay="{ show: 400, hide: 0 }"
-			:popover-triggers="['hover']"
+			:popper-triggers="['hover']"
 			:triggers="['hover', 'focus', 'click']"
 			no-focus-trap
 			popup-role="dialog">
@@ -272,6 +272,7 @@ export default {
 			</template>
 			<NcProfileHoverCard
 				:user="user"
+				:displayName="hoverCardDisplayName"
 				:open="contactsMenuOpenState"
 				:actions="hoverCardActions"
 				:actions-loading="contactsMenuLoading"
@@ -718,6 +719,15 @@ export default {
 				return null
 			}
 			return this.menu.length > 0 ? this.menu : null
+		},
+
+		/**
+		 * Best available display name for the hover card (prop or contacts menu).
+		 *
+		 * @return {string|undefined}
+		 */
+		hoverCardDisplayName() {
+			return this.displayName || this.contactsMenuData?.fullName || undefined
 		},
 
 		/**
