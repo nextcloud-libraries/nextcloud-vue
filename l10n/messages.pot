@@ -477,9 +477,6 @@ msgstr ""
 msgid "Tab"
 msgstr ""
 
-msgid "The headline and about sections will show up here"
-msgstr ""
-
 msgid "Travel & Places"
 msgstr ""
 
@@ -527,7 +524,4 @@ msgid "Widget height"
 msgstr ""
 
 msgid "Write a message …"
-msgstr ""
-
-msgid "You have not added any info yet"
 msgstr ""

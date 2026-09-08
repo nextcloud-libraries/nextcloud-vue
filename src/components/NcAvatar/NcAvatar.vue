@@ -258,7 +258,7 @@ export default {
 			class="avatar-profile-popover"
 			:container="menuContainer"
 			:delay="{ show: 400, hide: 0 }"
-			:popover-triggers="['hover']"
+			:popper-triggers="['hover']"
 			:triggers="['hover', 'focus', 'click']"
 			no-focus-trap
 			popup-role="dialog">
