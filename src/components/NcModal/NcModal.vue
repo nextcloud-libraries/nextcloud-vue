@@ -209,9 +209,10 @@ export default {
 			:aria-labelledby="modalLabelId"
 			:aria-describedby="'modal-description-' + randId"
 			tabindex="-1">
-			<!-- Header -->
+			<!-- Header (only when there is a title, outside close button, or actions) -->
 			<transition name="fade-visibility" appear>
 				<div
+					v-if="hasHeader"
 					class="modal-header"
 					:data-theme-light="lightBackdrop"
 					:data-theme-dark="!lightBackdrop">
@@ -287,7 +288,10 @@ export default {
 					v-show="showModal"
 					:class="[
 						`modal-wrapper--${size}`,
-						{ 'modal-wrapper--spread-navigation': spreadNavigation },
+						{
+							'modal-wrapper--spread-navigation': spreadNavigation,
+							'modal-wrapper--no-header': !hasHeader,
+						},
 					]"
 					class="modal-wrapper"
 					@mousedown.self="handleClickModalWrapper">
@@ -714,6 +718,15 @@ export default {
 
 			return actions
 		},
+
+		/**
+		 * Whether the modal header is needed.
+		 * Only show it when there is a title, outside close button, or header actions —
+		 * otherwise the area can be used for the modal content (full height on mobile / full size).
+		 */
+		hasHeader() {
+			return this.modalName !== '' || this.numHeaderActions > 0
+		},
 	},
 
 	watch: {
@@ -1105,12 +1118,18 @@ export default {
 }
 
 .modal-wrapper {
+	// Space reserved for the modal header; 0 when the header is not shown
+	--modal-header-offset: var(--header-height);
 	display: flex;
 	align-items: center;
 	justify-content: center;
 	box-sizing: border-box;
 	width: 100%;
 	height: 100%;
+
+	&--no-header {
+		--modal-header-offset: var(--body-container-margin);
+	}
 
 	/* Navigation buttons */
 	.prev,
@@ -1192,9 +1211,9 @@ export default {
 	&--full {
 		& > .modal-container {
 			width: 100%;
-			height: calc(100% - var(--header-height));
+			height: calc(100% - var(--modal-header-offset));
 			position: absolute;
-			top: var(--header-height);
+			top: var(--modal-header-offset);
 			border-radius: 0;
 		}
 	}
@@ -1205,9 +1224,9 @@ export default {
 			max-width: initial;
 			width: 100%;
 			max-height: initial;
-			height: calc(100% - var(--header-height));
+			height: calc(100% - var(--modal-header-offset));
 			position: absolute;
-			top: var(--header-height);
+			top: var(--modal-header-offset);
 			border-radius: 0;
 		}
 	}
