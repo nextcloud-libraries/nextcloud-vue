@@ -10,6 +10,7 @@ import { isA11yActivation } from '../src/functions/a11y/index.ts'
 import { spawnDialog } from '../src/functions/dialog/index.ts'
 import { emojiAddRecent, emojiSearch, EmojiSkinTone, getCurrentSkinTone, setCurrentSkinTone } from '../src/functions/emoji/index.ts'
 import { usernameToColor } from '../src/functions/usernameToColor/index.ts'
+import { mockWebDav } from './webdav.mock.js'
 
 import 'regenerator-runtime/runtime.js'
 import 'core-js/stable/index.js'
@@ -31,8 +32,13 @@ function mockRequests(error) {
 	const { request, config } = error
 	let data = null
 
+	// Failures without a response, like aborted requests, cannot be mocked
+	if (!request?.responseURL) {
+		return Promise.reject(error)
+	}
+
 	// Mock resolved link references for NcRichText
-	const resolveReferences = request.responseURL.match(/references\/resolvePublic/)
+	const resolveReferences = request.responseURL.match(/references\/resolve(Public)?\?/)
 	if (resolveReferences) {
 		const referenceValue = new URL(request.responseURL).searchParams.get('reference')
 		data = {
@@ -81,6 +87,9 @@ function mockRequests(error) {
 }
 
 axios.interceptors.response.use((r) => r, (e) => mockRequests(e))
+
+// Fake the WebDAV endpoints used for uploading files
+mockWebDav()
 
 // app name fallback
 window.appName = 'nextcloud-vue'
