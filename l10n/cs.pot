@@ -48,6 +48,11 @@ msgstr "Jakýkoli odkaz"
 msgid "Anything shared with the same group of people will show up here"
 msgstr "Cokoli nasdíleného stejné skupině lidí se zobrazí zde"
 
+#. TRANSLATORS: State of the current upload - chunks of the uploaded files are
+#. being assembled into the final file
+msgid "assembling"
+msgstr "skládání dohromady"
+
 msgid "Avatar of {displayName}"
 msgstr "Zástupný obrázek uživatele {displayName}"
 
@@ -86,6 +91,9 @@ msgstr "Storno"
 
 msgid "Cancel changes"
 msgstr "Zrušit změny"
+
+msgid "Cancel uploads"
+msgstr "Zrušit nahrávání"
 
 msgid "Change name"
 msgstr "Změnit název"
@@ -180,6 +188,9 @@ msgstr "nerušit"
 msgid "Edit item"
 msgstr "Upravit položku"
 
+msgid "Edit profile"
+msgstr "Upravit profil"
+
 msgid "Emoji picker"
 msgstr "Výběr emotikon"
 
@@ -203,6 +214,9 @@ msgstr ""
 #. TRANSLATORS: Escape key on keyboard
 msgid "Escape"
 msgstr "Esc"
+
+msgid "Estimating …"
+msgstr "Odhadování …"
 
 msgid "External documentation"
 msgstr "Externí dokumentace"
@@ -253,6 +267,9 @@ msgstr "Zvýšit minuty"
 msgid "Increment seconds"
 msgstr "Zvýšit sekundy"
 
+msgid "Invalid date"
+msgstr "Neplatné datum"
+
 msgid "invisible"
 msgstr "neviditelné"
 
@@ -271,6 +288,15 @@ msgstr "Načíst další „{options}“"
 #. TRANSLATORS: The button is in a loading state
 msgid "Loading …"
 msgstr "Načítání …"
+
+msgid "Loading actions"
+msgstr "Načítání akcí"
+
+msgid "Loading profile"
+msgstr "Načítání profilu"
+
+msgid "Local time: {time}"
+msgstr "Místní čas: {time}"
 
 #. TRANSLATORS: A color name for RGB(45, 115, 190)
 msgid "Mariner"
@@ -306,6 +332,9 @@ msgstr "Další volby"
 
 msgid "Neutral skin color"
 msgstr "Neutrální tělová barva"
+
+msgid "New"
+msgstr "Nové"
 
 msgid "Next"
 msgstr "Následující"
@@ -386,6 +415,10 @@ msgstr "Heslo je bezpečné"
 msgid "Pause slideshow"
 msgstr "Pozastavit prezentaci"
 
+#. TRANSLATORS: State of the current upload - it is paused
+msgid "paused"
+msgstr "pozastaveno"
+
 msgid "People & Body"
 msgstr "Lidé a tělo"
 
@@ -415,6 +448,9 @@ msgstr "Předchozí měsíc"
 
 msgid "Previous year"
 msgstr "Předchozí rok"
+
+msgid "Profile of {user}"
+msgstr "Profil uživatele {user}"
 
 msgid "Provider icon"
 msgstr "Ikona poskytovatele"
@@ -495,6 +531,9 @@ msgstr "Vybrat rok"
 msgid "Selected"
 msgstr "Vybráno"
 
+msgid "Send message"
+msgstr "Odeslat zprávu"
+
 msgid "Settings"
 msgstr "Nastavení"
 
@@ -529,6 +568,9 @@ msgstr "Úsměvy a emoce"
 #. TRANSLATORS: Space key on keyboard
 msgid "Space"
 msgstr "Mezerník"
+
+msgid "Start call"
+msgstr "Zahájit hovor"
 
 msgid "Start slideshow"
 msgstr "Spustit prezentaci"
@@ -582,11 +624,20 @@ msgstr "Nahrát soubory"
 msgid "Upload folder"
 msgstr "Nahrát složku"
 
+msgid "Upload from device"
+msgstr "Nahrát ze zařízení"
+
+msgid "Upload progress"
+msgstr "Postup průběhu nahrávání"
+
 msgid "Uploading …"
 msgstr "Nahrávání …"
 
 msgid "User status: {status}"
 msgstr "Stav uživatele: {status}"
+
+msgid "View profile"
+msgstr "Zobrazit profil"
 
 msgid "View team"
 msgstr "Zobrazit kolektiv"
