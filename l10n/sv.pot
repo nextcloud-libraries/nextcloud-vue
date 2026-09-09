@@ -19,9 +19,6 @@ msgstr "{tag} (osynlig)"
 msgid "{tag} (restricted)"
 msgstr "{tag} (begränsad)"
 
-msgid "{user} has not added any info yet"
-msgstr "{user} har inte lagt till någon information ännu"
-
 msgid "A color with a HEX value {hex}"
 msgstr "En färg med HEX-värdet {hex}"
 
@@ -53,6 +50,11 @@ msgstr "Valfri länk"
 
 msgid "Anything shared with the same group of people will show up here"
 msgstr "Allt som delas med samma grupp av personer visas här"
+
+#. TRANSLATORS: State of the current upload - chunks of the uploaded files are
+#. being assembled into the final file
+msgid "assembling"
+msgstr "sammanställer"
 
 msgid "Avatar of {displayName}"
 msgstr "Avatar för {displayName}"
@@ -92,6 +94,9 @@ msgstr "Avbryt"
 
 msgid "Cancel changes"
 msgstr "Avbryt ändringar"
+
+msgid "Cancel uploads"
+msgstr "Avbryt uppladdningar"
 
 msgid "Change name"
 msgstr "Ändra namn"
@@ -213,6 +218,9 @@ msgstr ""
 msgid "Escape"
 msgstr "Escape"
 
+msgid "Estimating …"
+msgstr "Beräknar …"
+
 msgid "External documentation"
 msgstr "Extern dokumentation"
 
@@ -221,9 +229,6 @@ msgstr "Det gick inte att lägga till objektet i projektet"
 
 msgid "Failed to create a project"
 msgstr "Det gick inte att skapa ett projekt"
-
-msgid "Failed to load profile"
-msgstr "Kunde inte läsa in profilen"
 
 msgid "Failed to rename the project"
 msgstr "Det gick inte att byta namn på projektet"
@@ -329,6 +334,9 @@ msgstr "Fler alternativ"
 msgid "Neutral skin color"
 msgstr "Neutral hudfärg"
 
+msgid "New"
+msgstr "Ny"
+
 msgid "Next"
 msgstr "Nästa"
 
@@ -407,6 +415,10 @@ msgstr "Lösenordet är säkert"
 
 msgid "Pause slideshow"
 msgstr "Pausa bildspelet"
+
+#. TRANSLATORS: State of the current upload - it is paused
+msgid "paused"
+msgstr "pausad"
 
 msgid "People & Body"
 msgstr "Människor och kropp"
@@ -520,6 +532,9 @@ msgstr "Välj år"
 msgid "Selected"
 msgstr "Vald"
 
+msgid "Send message"
+msgstr "Skicka meddelande"
+
 msgid "Settings"
 msgstr "Inställningar"
 
@@ -555,6 +570,9 @@ msgstr "Smileys och känslor"
 msgid "Space"
 msgstr "Mellanslag"
 
+msgid "Start call"
+msgstr "Starta samtal"
+
 msgid "Start slideshow"
 msgstr "Starta bildspelet"
 
@@ -573,9 +591,6 @@ msgstr "Symboler"
 #. TRANSLATORS: Tab key on keyboard
 msgid "Tab"
 msgstr "Tab"
-
-msgid "The headline and about sections will show up here"
-msgstr "Rubrik- och om-avsnitten visas här."
 
 msgid "Time picker"
 msgstr "Tidsväljare"
@@ -610,11 +625,20 @@ msgstr "Ladda upp filer"
 msgid "Upload folder"
 msgstr "Ladda upp mapp"
 
+msgid "Upload from device"
+msgstr "Ladda upp från enhet"
+
+msgid "Upload progress"
+msgstr "Uppladdningsförlopp"
+
 msgid "Uploading …"
 msgstr "Laddar upp …"
 
 msgid "User status: {status}"
 msgstr "Användarstatus: {status}"
+
+msgid "View profile"
+msgstr "Visa profil"
 
 msgid "View team"
 msgstr "Visa teamet"
@@ -640,6 +664,3 @@ msgstr "Årsväljare"
 
 msgid "Year picker overlay"
 msgstr "Panel för årsväljare"
-
-msgid "You have not added any info yet"
-msgstr "Du har inte lagt till någon information ännu."
