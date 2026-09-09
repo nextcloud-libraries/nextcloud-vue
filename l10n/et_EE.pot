@@ -48,6 +48,11 @@ msgstr "Mistahes link"
 msgid "Anything shared with the same group of people will show up here"
 msgstr "Siin kuvatakse kõik, mida jagatakse sama kasutajagrupiga"
 
+#. TRANSLATORS: State of the current upload - chunks of the uploaded files are
+#. being assembled into the final file
+msgid "assembling"
+msgstr "koostan üleslaaditud sisu üheks failiks"
+
 msgid "Avatar of {displayName}"
 msgstr "Tunnuspilt: {displayName}"
 
@@ -86,6 +91,9 @@ msgstr "Katkesta"
 
 msgid "Cancel changes"
 msgstr "Tühista muudatused"
+
+msgid "Cancel uploads"
+msgstr "Katkesta üleslaadimised"
 
 msgid "Change name"
 msgstr "Muuda nime"
@@ -207,6 +215,9 @@ msgstr ""
 msgid "Escape"
 msgstr "Esc-klahv"
 
+msgid "Estimating …"
+msgstr "Hindan…"
+
 msgid "External documentation"
 msgstr "Dokumentatsioon välises allikas"
 
@@ -320,6 +331,9 @@ msgstr "Rohkem valikuid"
 msgid "Neutral skin color"
 msgstr "Kesta neutraalne toon"
 
+msgid "New"
+msgstr "Uus"
+
 msgid "Next"
 msgstr "Edasi"
 
@@ -398,6 +412,10 @@ msgstr "Salasõna on turvaline"
 
 msgid "Pause slideshow"
 msgstr "Slaidiesitluse paus"
+
+#. TRANSLATORS: State of the current upload - it is paused
+msgid "paused"
+msgstr "peatatud"
 
 msgid "People & Body"
 msgstr "Inimesed ja keha"
@@ -603,6 +621,12 @@ msgstr "Laadi failid üles"
 
 msgid "Upload folder"
 msgstr "Laadi kaust üles"
+
+msgid "Upload from device"
+msgstr "Laadi seadmest üles"
+
+msgid "Upload progress"
+msgstr "Üleslaadimise edenemine"
 
 msgid "Uploading …"
 msgstr "Üleslaadimisel…"
