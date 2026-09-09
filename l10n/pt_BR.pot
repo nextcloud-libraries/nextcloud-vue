@@ -50,6 +50,11 @@ msgid "Anything shared with the same group of people will show up here"
 msgstr ""
 "Qualquer coisa compartilhada com o mesmo grupo de pessoas aparecerá aqui"
 
+#. TRANSLATORS: State of the current upload - chunks of the uploaded files are
+#. being assembled into the final file
+msgid "assembling"
+msgstr "montando"
+
 msgid "Avatar of {displayName}"
 msgstr "Avatar de {displayName}"
 
@@ -88,6 +93,9 @@ msgstr "Cancelar"
 
 msgid "Cancel changes"
 msgstr "Cancelar alterações"
+
+msgid "Cancel uploads"
+msgstr "Cancelar uploads"
 
 msgid "Change name"
 msgstr "Mudar nome"
@@ -209,6 +217,9 @@ msgstr ""
 msgid "Escape"
 msgstr "Escape"
 
+msgid "Estimating …"
+msgstr "Calculando …"
+
 msgid "External documentation"
 msgstr "Documentação externa"
 
@@ -323,6 +334,9 @@ msgstr "Mais opções"
 msgid "Neutral skin color"
 msgstr "Tom de pele neutro"
 
+msgid "New"
+msgstr "Novo"
+
 msgid "Next"
 msgstr "Próximo"
 
@@ -401,6 +415,10 @@ msgstr "A senha é segura"
 
 msgid "Pause slideshow"
 msgstr "Pausar apresentação de slides"
+
+#. TRANSLATORS: State of the current upload - it is paused
+msgid "paused"
+msgstr "em pausa"
 
 msgid "People & Body"
 msgstr "Pessoas & Corpo"
@@ -606,6 +624,12 @@ msgstr "Enviar arquivos"
 
 msgid "Upload folder"
 msgstr "Enviar pasta"
+
+msgid "Upload from device"
+msgstr "Enviar do dispositivo"
+
+msgid "Upload progress"
+msgstr "Progresso do upload"
 
 msgid "Uploading …"
 msgstr "Enviando …´"
