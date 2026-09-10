@@ -5,6 +5,23 @@
 
 @use 'variables.scss' as *;
 
+// The actions of an entry are only shown if the entry is active, hovered or focused.
+// They must not be hidden using `display: none` (or `visibility: hidden`) as this would
+// remove them from the tab order: when tabbing backwards (shift + tab) into an entry the
+// entry is not focused yet, so the actions would simply be skipped. See #8143.
+// Instead they are only hidden visually and taken out of the layout flow.
+@mixin actions-hidden {
+	position: absolute;
+	opacity: 0;
+	pointer-events: none;
+}
+
+@mixin actions-visible {
+	position: relative;
+	opacity: 1;
+	pointer-events: auto;
+}
+
 .app-navigation-entry {
 	position: relative;
 	display: flex;
@@ -95,7 +112,7 @@
 	&:focus-within,
 	&:hover {
 		.app-navigation-entry__utils .app-navigation-entry__actions {
-			display: inline-block;
+			@include actions-visible;
 		}
 	}
 
@@ -215,7 +232,7 @@
 	flex: 0 1 auto;
 	justify-content: flex-end;
 	&#{&}--display-actions .action-item.app-navigation-entry__actions {
-		display: inline-block;
+		@include actions-visible;
 	}
 	/* counter */
 	.app-navigation-entry__counter-wrapper {
@@ -227,7 +244,7 @@
 	}
 	/* actions */
 	.action-item.app-navigation-entry__actions {
-		display: none;
+		@include actions-hidden;
 	}
 }
 
