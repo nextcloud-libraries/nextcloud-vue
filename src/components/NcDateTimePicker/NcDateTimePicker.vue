@@ -421,7 +421,7 @@ const props = withDefaults(defineProps<{
 	 *
 	 * @default 'date'
 	 */
-	type?: 'date' | 'datetime' | 'time' | 'week' | 'month' | 'year' | 'date-range' | 'time-range' | 'datetime-range'
+	type?: 'week' | 'month' | 'year' | 'date' | 'date-range' | 'time' | 'time-range' | 'datetime' | 'datetime-range'
 
 	/**
 	 * Render the calendar inline (no input field).
@@ -633,7 +633,10 @@ const pickerType = computed(() => ({
 		// but its not covered by our component interface (props / events) documentation so just disabled for now.
 		partialRange: false,
 	},
-	enableTimePicker: !(props.type === 'date' || props.type === 'date-range'),
+	// Show additional time picker only for 'datetime*'.
+	// 'month', 'year', 'time*' do not support it anyway.
+	// But for 'date*' and 'week' it has to be excplicitly disabled.
+	enableTimePicker: props.type === 'datetime' || props.type === 'datetime-range',
 	flow: props.type === 'datetime'
 		? ['calendar', 'time'] as ['calendar', 'time']
 		: undefined,

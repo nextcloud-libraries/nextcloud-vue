@@ -78,4 +78,29 @@ describe('NcDateTimePicker.vue', () => {
 			})
 		})
 	})
+
+	describe('Time picker visibility', () => {
+		it.for([
+			['week', false],
+			['month', false],
+			['year', false],
+			['date', false],
+			['date-range', false],
+			['time', false],
+			['time-range', false],
+			['datetime', true],
+			['datetime-range', true],
+		])('renders the time picker button for type %s -> %s', async ([type, isRendered]) => {
+			const wrapper = mount(NcDateTimePicker, {
+				props: {
+					type,
+					inline: true,
+				},
+			})
+
+			await nextTick()
+
+			expect(wrapper.find('[data-test-id="open-time-picker-btn"]').exists()).toBe(isRendered)
+		})
+	})
 })
