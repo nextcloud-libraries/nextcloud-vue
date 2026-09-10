@@ -78,4 +78,48 @@ describe('NcDateTimePicker.vue', () => {
 			})
 		})
 	})
+
+	describe('Non-standard token handling', () => {
+		it('warns about non-standard formatting tokens', () => {
+			const warnHandler = vi.fn()
+
+			mount(NcDateTimePicker, {
+				props: { format: 'Pp' },
+				global: {
+					config: { warnHandler },
+				},
+			})
+
+			expect(warnHandler).toHaveBeenCalledOnce()
+			expect(warnHandler.mock.calls[0][0]).toEqual('[NcDateTimePicker] The `format` property value "Pp" uses the non-standard formating tokens P, p. They will be disabled in the future because they are only supported by the date-fns library. Only use tokens from the Unicode Technical Standard #35. See https://github.com/nextcloud-libraries/nextcloud-vue/issues/8931')
+		})
+
+		it('warns about non-standard formatting tokens after property change', async () => {
+			const warnHandler = vi.fn()
+			const wrapper = mount(NcDateTimePicker, {
+				props: {
+					format: 'HH',
+				},
+				global: {
+					config: { warnHandler },
+				},
+			})
+
+			await wrapper.setProps({ format: 'II-RR' })
+
+			expect(warnHandler).toHaveBeenCalledOnce()
+			expect(warnHandler.mock.calls[0][0])
+				.toContain('[NcDateTimePicker] The `format` property value "II-RR" uses the non-standard formating tokens I, R.')
+		})
+
+		it('supports non-standard tokens', async () => {
+			const wrapper = mount(NcDateTimePicker, {
+				props: { modelValue: new Date(2026, 1, 10), format: 'II-RR' },
+			})
+
+			await nextTick()
+
+			expect(wrapper.find('input').element.value).toBe('07-2026')
+		})
+	})
 })
