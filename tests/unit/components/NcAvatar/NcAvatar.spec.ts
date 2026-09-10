@@ -220,5 +220,34 @@ describe('NcAvatar.vue', () => {
 
 			expect(wrapper.find('img').exists()).toBeFalsy()
 		})
+
+		describe('Variant selection', () => {
+			// Hardcoded descriptors sent everything above 1x to the 512px file.
+			it.each([
+				[22, '4.364x', '23.273x'],
+				[32, '3x', '16x'],
+				[40, '2.4x', '12.8x'],
+				[64, '1.5x', '8x'],
+			])('describes both variants relative to a %ipx avatar', async (size, small, large) => {
+				const wrapper = mount(NcAvatar, {
+					props: { displayName: 'Alice', user: 'alice', size },
+				})
+				await nextTick()
+
+				const srcset = wrapper.find('img').attributes('srcset')
+				expect(srcset).toContain(`/avatar/alice/64?guestFallback=true ${small}`)
+				expect(srcset).toContain(`/avatar/alice/512?guestFallback=true ${large}`)
+			})
+
+			it('offers no second variant above 64px, where the large one is used directly', async () => {
+				const wrapper = mount(NcAvatar, {
+					props: { displayName: 'Alice', user: 'alice', size: 128 },
+				})
+				await nextTick()
+
+				expect(wrapper.find('img').attributes('src')).toContain('/avatar/alice/512')
+				expect(wrapper.find('img').attributes('srcset')).toBeUndefined()
+			})
+		})
 	})
 })
