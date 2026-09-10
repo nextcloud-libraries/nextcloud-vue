@@ -1,10 +1,26 @@
-import { mount } from '@vue/test-utils'
-/*!
+/*
  * SPDX-FileCopyrightText: 2025 Nextcloud GmbH and Nextcloud contributors
  * SPDX-License-Identifier: AGPL-3.0-or-later
  */
-import { beforeEach, describe, expect, it } from 'vitest'
+
+import { subscribe, unsubscribe } from '@nextcloud/event-bus'
+import { mount } from '@vue/test-utils'
+import { beforeEach, describe, expect, it, vi } from 'vitest'
+import { nextTick } from 'vue'
 import NcAppContent from '../../../../src/components/NcAppContent/NcAppContent.vue'
+
+/**
+ * Dispatch a single finger touch event on an element.
+ *
+ * @param element - The element to dispatch the event on
+ * @param type - The touch event type
+ * @param clientX - The horizontal position of the finger
+ */
+function dispatchTouchEvent(element: Element, type: string, clientX: number): void {
+	const event = new Event(type, { bubbles: true })
+	Object.defineProperty(event, 'touches', { value: [{ clientX, clientY: 0 }] })
+	element.dispatchEvent(event)
+}
 
 describe('NcAppContent', () => {
 	beforeEach(() => {
@@ -102,5 +118,41 @@ describe('NcAppContent', () => {
 		})
 
 		expect(document.title).toBe('My title - Nextcloud')
+	})
+
+	it('toggles the navigation on swipe', async () => {
+		const handler = vi.fn()
+		subscribe('toggle-navigation', handler)
+
+		const wrapper = mount(NcAppContent, { attachTo: document.body })
+		// the touch handlers are registered on the root element once it is mounted
+		await nextTick()
+
+		dispatchTouchEvent(wrapper.element, 'touchstart', 10)
+		dispatchTouchEvent(wrapper.element, 'touchmove', 300)
+		dispatchTouchEvent(wrapper.element, 'touchend', 300)
+
+		expect(handler).toHaveBeenCalledWith({ open: true })
+		unsubscribe('toggle-navigation', handler)
+	})
+
+	it('does not toggle the navigation on swipe if swiping is disabled', async () => {
+		const handler = vi.fn()
+		subscribe('toggle-navigation', handler)
+
+		const wrapper = mount(NcAppContent, {
+			attachTo: document.body,
+			propsData: {
+				disableSwipe: true,
+			},
+		})
+		await nextTick()
+
+		dispatchTouchEvent(wrapper.element, 'touchstart', 10)
+		dispatchTouchEvent(wrapper.element, 'touchmove', 300)
+		dispatchTouchEvent(wrapper.element, 'touchend', 300)
+
+		expect(handler).not.toHaveBeenCalled()
+		unsubscribe('toggle-navigation', handler)
 	})
 })
