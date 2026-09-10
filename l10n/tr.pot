@@ -48,6 +48,11 @@ msgstr "Herhangi bir bağlantı"
 msgid "Anything shared with the same group of people will show up here"
 msgstr "Aynı kişi grubu ile paylaşılan herşey burada görüntülenir"
 
+#. TRANSLATORS: State of the current upload - chunks of the uploaded files are
+#. being assembled into the final file
+msgid "assembling"
+msgstr "birleştiriliyor"
+
 msgid "Avatar of {displayName}"
 msgstr "{displayName} avatarı"
 
@@ -86,6 +91,9 @@ msgstr "İptal"
 
 msgid "Cancel changes"
 msgstr "Değişiklikleri iptal et"
+
+msgid "Cancel uploads"
+msgstr "Yüklemeleri iptal et"
 
 msgid "Change name"
 msgstr "Adı değiştir"
@@ -207,6 +215,9 @@ msgstr ""
 msgid "Escape"
 msgstr "Escape"
 
+msgid "Estimating …"
+msgstr "Öngörülüyor…"
+
 msgid "External documentation"
 msgstr "Dış belgeler"
 
@@ -320,6 +331,9 @@ msgstr "Diğer seçenekler"
 msgid "Neutral skin color"
 msgstr "Nötr deri rengi"
 
+msgid "New"
+msgstr "Yeni"
+
 msgid "Next"
 msgstr "Sonraki"
 
@@ -398,6 +412,10 @@ msgstr "Parola güvenli"
 
 msgid "Pause slideshow"
 msgstr "Slayt sunumunu duraklat"
+
+#. TRANSLATORS: State of the current upload - it is paused
+msgid "paused"
+msgstr "duraklatıldı"
 
 msgid "People & Body"
 msgstr "İnsanlar ve beden"
@@ -603,6 +621,12 @@ msgstr "Dosyaları yükle"
 
 msgid "Upload folder"
 msgstr "Klasörü yükle"
+
+msgid "Upload from device"
+msgstr "Aygıttan yükle"
+
+msgid "Upload progress"
+msgstr "Yükleme ilerlemesi"
 
 msgid "Uploading …"
 msgstr "Yükleniyor…"
