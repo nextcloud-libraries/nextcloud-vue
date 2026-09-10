@@ -87,10 +87,10 @@ export default {
 	inset-inline-end: 0;
 
 	// the whole navigation item is hovered thus will have the hover color - to distinguish we need to set a different color here.
-	&:hover {
+	&.button-vue--legacy34:hover {
 		background-color: var(--color-background-dark) !important;
 	}
-	&--active:hover {
+	&--active.button-vue--legacy34:hover {
 		background-color: var(--color-primary-element) !important;
 	}
 }
