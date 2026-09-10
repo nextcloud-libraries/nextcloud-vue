@@ -418,6 +418,7 @@ Just set the `pinned` prop.
 </template>
 
 <script>
+import { emit } from '@nextcloud/event-bus'
 import Pencil from 'vue-material-design-icons/Pencil.vue'
 import Undo from 'vue-material-design-icons/Undo.vue'
 import NcAppNavigationIconCollapsible from './NcAppNavigationIconCollapsible.vue'
@@ -744,6 +745,10 @@ export default {
 			if (routerLinkHref) {
 				navigate?.(event)
 				event.preventDefault()
+				// On mobile, close app-navigation when navigating so it doesn't overlay content
+				if (this.isMobile) {
+					emit('toggle-navigation', { open: false })
+				}
 			}
 		},
 
