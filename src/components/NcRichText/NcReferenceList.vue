@@ -83,7 +83,7 @@ export default {
 	data() {
 		return {
 			references: null,
-			loading: true,
+			loading: false,
 		}
 	},
 
@@ -130,7 +130,7 @@ export default {
 		text: 'fetch',
 	},
 
-	mounted() {
+	created() {
 		this.fetch()
 	},
 
