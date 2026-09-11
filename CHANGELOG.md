@@ -7,6 +7,24 @@
 
 All notable changes to this project will be documented in this file.
 
+## [v9.12.0](https://github.com/nextcloud-libraries/nextcloud-vue/tree/v9.12.0) (2026-09-11)
+[Full Changelog](https://github.com/nextcloud-libraries/nextcloud-vue/compare/v9.11.0...v9.12.0)
+
+### 🚀 Enhancements
+* feat(NcUploadPicker): migrate component from `@nextcloud/upload` [\#7882](https://github.com/nextcloud-libraries/nextcloud-vue/pull/7882) \([susnux](https://github.com/susnux)\)
+
+### 🐛 Fixed bugs
+* fix: modal height in small screen [\#8859](https://github.com/nextcloud-libraries/nextcloud-vue/pull/8859) \([kristian-zendato](https://github.com/kristian-zendato)\)
+* fix(NcDateTimePicker): for week picker do not show time picker [\#8923](https://github.com/nextcloud-libraries/nextcloud-vue/pull/8923) \([odzhychko](https://github.com/odzhychko)\)
+* fix(NcAvatar): pick the avatar variant a display actually needs [\#8948](https://github.com/nextcloud-libraries/nextcloud-vue/pull/8948) \([pringelmann](https://github.com/pringelmann)\)
+* fix(NcReferenceList): do not flash empty widget list before first fetch [\#8865](https://github.com/nextcloud-libraries/nextcloud-vue/pull/8865) \([jospoortvliet](https://github.com/jospoortvliet)\)
+* fix: update profile hovercard content data [\#8885](https://github.com/nextcloud-libraries/nextcloud-vue/pull/8885) \([kristian-zendato](https://github.com/kristian-zendato)\)
+
+### Other Changes
+* Revert "feat(NcAppNavigation): add animation effect for navigation items" [\#8939](https://github.com/nextcloud-libraries/nextcloud-vue/pull/8939) \([susnux](https://github.com/susnux)\)
+* Updated dependencies
+* Updated translations
+
 ## [v9.11.0](https://github.com/nextcloud-libraries/nextcloud-vue/tree/v9.11.0) (2026-08-28)
 [Full Changelog](https://github.com/nextcloud-libraries/nextcloud-vue/compare/v9.10.0...v9.11.0)
 
