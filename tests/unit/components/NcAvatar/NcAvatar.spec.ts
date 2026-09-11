@@ -228,7 +228,7 @@ describe('NcAvatar.vue', () => {
 				[64, '1.5x', '8x'],
 			])('describes both variants relative to a %ipx avatar', async (size, small, large) => {
 				const wrapper = mount(NcAvatar, {
-					props: { displayName: 'Alice', user: 'alice', size },
+					propsData: { displayName: 'Alice', user: 'alice', size },
 				})
 				await nextTick()
 
@@ -239,7 +239,7 @@ describe('NcAvatar.vue', () => {
 
 			it('offers no second variant above 64px, where the large one is used directly', async () => {
 				const wrapper = mount(NcAvatar, {
-					props: { displayName: 'Alice', user: 'alice', size: 128 },
+					propsData: { displayName: 'Alice', user: 'alice', size: 128 },
 				})
 				await nextTick()
 
