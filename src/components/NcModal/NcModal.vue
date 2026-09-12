@@ -29,6 +29,16 @@ defineOptions({ inheritAttrs: false })
  */
 const showModal = defineModel<boolean>('show', { default: true })
 
+/**
+ * Whether the slideshow is running.
+ *
+ * Bind it to start or stop the slideshow from outside, or to follow the
+ * play / pause button. It resets to `false` when the last slide is reached.
+ *
+ * @since 9.13.0
+ */
+const runSlideshow = defineModel<boolean>('slideshowRunning', { default: false })
+
 const props = withDefaults(defineProps<{
 	/**
 	 * Name to be shown with the modal
@@ -213,7 +223,6 @@ const {
 } = useIntervalFn(nextSlide, toRef(() => props.slideshowDelay), { immediate: false })
 
 const animationKey = ref(0)
-const runSlideshow = ref(false)
 watchEffect(() => {
 	if (runSlideshow.value && !props.slideshowPaused) {
 		startSlideshow()
@@ -963,8 +972,10 @@ export default {
 <template>
 	<div>
 		<NcButton @click="isOpen = true">Show Modal</NcButton>
+		<NcButton @click="isOpen = true; running = true">Show Modal and start the slideshow</NcButton>
 		<NcModal
 			v-if="isOpen"
+			v-model:slideshow-running="running"
 			close-button-outside
 			enable-slideshow
 			:has-next="page < lastPage"
@@ -975,6 +986,7 @@ export default {
 			@close="isOpen = false">
 			<div class="modal__content" :style="{ background: currentPage.background }">
 				<p class="model__content-text">{{ currentPage.text }}</p>
+				<p class="model__content-text">{{ running ? 'Slideshow running' : 'Slideshow stopped' }}</p>
 			</div>
 		</NcModal>
 	</div>
@@ -991,6 +1003,7 @@ export default {
 	data() {
 		return {
 			isOpen: false,
+			running: false,
 			page: 0,
 			lastPage: PAGES.length - 1,
 		}
