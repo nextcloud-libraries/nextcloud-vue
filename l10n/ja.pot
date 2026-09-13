@@ -49,6 +49,11 @@ msgstr "任意のリンク"
 msgid "Anything shared with the same group of people will show up here"
 msgstr "同じグループで共有しているものは、全てここに表示されます"
 
+#. TRANSLATORS: State of the current upload - chunks of the uploaded files are
+#. being assembled into the final file
+msgid "assembling"
+msgstr "組み立て中"
+
 msgid "Avatar of {displayName}"
 msgstr "{displayName} のアバター"
 
@@ -87,6 +92,9 @@ msgstr "キャンセル"
 
 msgid "Cancel changes"
 msgstr "変更をキャンセル"
+
+msgid "Cancel uploads"
+msgstr "アップロードをキャンセル"
 
 msgid "Change name"
 msgstr "名前の変更"
@@ -181,6 +189,9 @@ msgstr "邪魔をしないでください"
 msgid "Edit item"
 msgstr "編集"
 
+msgid "Edit profile"
+msgstr "プロフィールを編集する"
+
 msgid "Emoji picker"
 msgstr "絵文字ピッカー"
 
@@ -202,6 +213,9 @@ msgstr "関連リソースの取得エラー。ご不明な点がございまし
 #. TRANSLATORS: Escape key on keyboard
 msgid "Escape"
 msgstr "Escape"
+
+msgid "Estimating …"
+msgstr "計算中…"
 
 msgid "External documentation"
 msgstr "外部ドキュメント"
@@ -252,6 +266,9 @@ msgstr "分を増やす"
 msgid "Increment seconds"
 msgstr "秒を増やす"
 
+msgid "Invalid date"
+msgstr "無効な日付"
+
 msgid "invisible"
 msgstr "不可視"
 
@@ -270,6 +287,15 @@ msgstr "\"{options}\" をもっと読み込む"
 #. TRANSLATORS: The button is in a loading state
 msgid "Loading …"
 msgstr "読み込み中 …"
+
+msgid "Loading actions"
+msgstr "アクションの読み込み中"
+
+msgid "Loading profile"
+msgstr "プロフィールを読み込み中"
+
+msgid "Local time: {time}"
+msgstr "現地時間：{time}"
 
 #. TRANSLATORS: A color name for RGB(45, 115, 190)
 msgid "Mariner"
@@ -302,6 +328,9 @@ msgstr "他のオプション"
 
 msgid "Neutral skin color"
 msgstr "ニュートラルな肌の色"
+
+msgid "New"
+msgstr "新規"
 
 msgid "Next"
 msgstr "次"
@@ -382,6 +411,10 @@ msgstr "パスワードは保護されています"
 msgid "Pause slideshow"
 msgstr "スライドショーを一時停止"
 
+#. TRANSLATORS: State of the current upload - it is paused
+msgid "paused"
+msgstr "一時停止"
+
 msgid "People & Body"
 msgstr "様々な人と体の部位"
 
@@ -411,6 +444,9 @@ msgstr "前月"
 
 msgid "Previous year"
 msgstr "前年"
+
+msgid "Profile of {user}"
+msgstr "{user}のプロフィール"
 
 msgid "Provider icon"
 msgstr "プロバイダーのアイコン"
@@ -491,6 +527,9 @@ msgstr "年を選択"
 msgid "Selected"
 msgstr "選択済み"
 
+msgid "Send message"
+msgstr "メッセージを送信"
+
 msgid "Settings"
 msgstr "設定"
 
@@ -525,6 +564,9 @@ msgstr "感情表現"
 #. TRANSLATORS: Space key on keyboard
 msgid "Space"
 msgstr "Space"
+
+msgid "Start call"
+msgstr "通話を開始する"
 
 msgid "Start slideshow"
 msgstr "スライドショーを開始"
@@ -578,11 +620,20 @@ msgstr "ファイルをアップロード"
 msgid "Upload folder"
 msgstr "フォルダーをアップロード"
 
+msgid "Upload from device"
+msgstr "デバイスからアップロード"
+
+msgid "Upload progress"
+msgstr "アップロードの進捗状況"
+
 msgid "Uploading …"
 msgstr "アップロード中..."
 
 msgid "User status: {status}"
 msgstr "ユーザのステータス: {status}"
+
+msgid "View profile"
+msgstr "プロフィールを表示"
 
 msgid "View team"
 msgstr "チームを表示"
