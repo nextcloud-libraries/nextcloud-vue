@@ -545,7 +545,7 @@ const modalProps = computed(() => ({
 <style lang="scss">
 /** When having the small dialog style we override the modal styling so dialogs look more dialog like */
 @media only screen and (max-width: $breakpoint-small-mobile) {
-	.dialog__modal .modal-wrapper--small .modal-container {
+	.dialog__modal .modal-wrapper.modal-wrapper--small .modal-container {
 		width: fit-content;
 		height: unset;
 		max-height: 90%;
