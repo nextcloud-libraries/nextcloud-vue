@@ -455,6 +455,15 @@ export default {
 		},
 
 		/**
+		 * The user's avatar version, as returned alongside user lists.
+		 * Passing it earns the avatar a much longer cache lifetime.
+		 */
+		version: {
+			type: [String, Number],
+			default: null,
+		},
+
+		/**
 		 * Set a display name that will be rendered as a tooltip
 		 * either the url, user or displayName property must be defined
 		 * specify just the displayname to generate a placeholder avatar without
@@ -845,6 +854,8 @@ export default {
 			this.loadAvatarUrl()
 		},
 
+		version: 'loadAvatarUrl',
+
 		preloadedUserStatus(status) {
 			if (status) {
 				this.setUserStatus(status)
@@ -989,18 +1000,17 @@ export default {
 		 * @return {string}
 		 */
 		avatarUrlGenerator(user, size) {
-			let avatarUrl = getAvatarUrl(user, {
+			// Only the current user's version is on the page. Anyone else's has to
+			// come from whoever fetched the user list.
+			const version = this.version
+				?? (user === getCurrentUser()?.uid ? window.oc_userconfig?.avatar?.version : null)
+
+			return getAvatarUrl(user, {
 				size,
 				isDarkTheme: this.isDarkTheme,
 				isGuest: this.isGuest,
+				version,
 			})
-
-			// eslint-disable-next-line camelcase
-			if (user === getCurrentUser()?.uid && typeof oc_userconfig !== 'undefined') {
-				avatarUrl += '?v=' + window.oc_userconfig.avatar.version
-			}
-
-			return avatarUrl
 		},
 
 		/**
