@@ -149,28 +149,43 @@ export default {
 	</main>
 </template>
 
-<script>
+<script lang="ts">
+import type { PropType } from 'vue'
+
 import { getBuilder } from '@nextcloud/browser-storage'
 import { getCapabilities } from '@nextcloud/capabilities'
 import { emit } from '@nextcloud/event-bus'
-import { useSwipe } from '@vueuse/core'
+import { useCurrentElement, useSwipe } from '@vueuse/core'
 import { Pane, Splitpanes } from 'splitpanes'
+import { defineComponent } from 'vue'
 import NcAppContentDetailsToggle from './NcAppContentDetailsToggle.vue'
-import { useIsMobile } from '../../composables/useIsMobile/index.js'
+import { useIsMobile } from '../../composables/useIsMobile/index.ts'
 import { useAppName, useLocalizedAppName } from '../../utils/appName.ts'
 import { logger } from '../../utils/logger.ts'
 import { isRtl } from '../../utils/rtl.ts'
 
 import 'splitpanes/dist/splitpanes.css'
 
+/**
+ * Content layout used when a list is provided together with the main content.
+ */
+export type AppContentLayout = 'no-split' | 'vertical-split' | 'horizontal-split'
+
+/**
+ * Payload of the `resized` event of the splitpanes component.
+ */
+interface SplitpanesResizedEvent {
+	panes: { min: number, max: number, size: number }[]
+}
+
 const browserStorage = getBuilder('nextcloud').persist().build()
-const instanceName = getCapabilities().theming?.name ?? 'Nextcloud'
+const instanceName = (getCapabilities() as { theming?: { name?: string } }).theming?.name ?? 'Nextcloud'
 
 /**
  * App content container to be used for the main content of your app
  *
  */
-export default {
+export default defineComponent({
 	name: 'NcAppContent',
 
 	components: {
@@ -247,10 +262,10 @@ export default {
 		 * On mobile screen `no-split` layout is forced.
 		 */
 		layout: {
-			type: String,
+			type: String as PropType<AppContentLayout>,
 			default: 'vertical-split',
-			validator(value) {
-				return ['no-split', 'vertical-split', 'horizontal-split'].includes(value)
+			validator(value: unknown): boolean {
+				return ['no-split', 'vertical-split', 'horizontal-split'].includes(value as string)
 			},
 		},
 
@@ -258,7 +273,7 @@ export default {
 		 * Specify the `<h1>` page heading
 		 */
 		pageHeading: {
-			type: String,
+			type: String as PropType<string | null>,
 			default: null,
 		},
 
@@ -270,7 +285,7 @@ export default {
 		 * When setting the prop then the following format will be used: `{pageTitle} - {instanceName}`
 		 */
 		pageTitle: {
-			type: String,
+			type: String as PropType<string | null>,
 			default: null,
 		},
 	},
@@ -280,7 +295,31 @@ export default {
 		'resizeList',
 	],
 
-	setup() {
+	setup(props) {
+		const element = useCurrentElement<HTMLElement>()
+
+		const swipe = useSwipe(
+			// Swiping can be disabled by not providing a target to listen on
+			() => props.disableSwipe ? undefined : element.value,
+			{
+				onSwipeEnd(_event, direction) {
+					const minSwipeX = 70
+					const touchZone = 300
+					if (Math.abs(swipe.lengthX.value) > minSwipeX) {
+						if (swipe.coordsStart.x < (touchZone / 2) && direction === 'right') {
+							emit('toggle-navigation', {
+								open: true,
+							})
+						} else if (swipe.coordsStart.x < touchZone * 1.5 && direction === 'left') {
+							emit('toggle-navigation', {
+								open: false,
+							})
+						}
+					}
+				},
+			},
+		)
+
 		return {
 			appName: useAppName(),
 			localizedAppName: useLocalizedAppName(),
@@ -291,14 +330,13 @@ export default {
 
 	data() {
 		return {
-			contentHeight: 0,
-			swiping: {},
-			listPaneSize: this.restorePaneConfig(),
+			// Restored from the browser storage by the `paneConfigKey` watcher
+			listPaneSize: undefined as number | undefined,
 		}
 	},
 
 	computed: {
-		paneConfigID() {
+		paneConfigID(): string {
 			// If provided, let's use it
 			if (this.paneConfigKey !== '') {
 				return `pane-list-size-${this.paneConfigKey}`
@@ -316,7 +354,7 @@ export default {
 			}
 		},
 
-		detailsPaneSize() {
+		detailsPaneSize(): number {
 			if (this.listPaneSize) {
 				return 100 - this.listPaneSize
 			}
@@ -341,8 +379,8 @@ export default {
 			}
 		},
 
-		realPageTitle() {
-			const entries = new Set()
+		realPageTitle(): string | null {
+			const entries = new Set<string>()
 			if (this.pageTitle) {
 				// when page title is set we only use that
 				// we still split to remove duplicated instanceName
@@ -372,9 +410,9 @@ export default {
 	watch: {
 		realPageTitle: {
 			immediate: true,
-			handler() {
-				if (this.realPageTitle !== null) {
-					document.title = this.realPageTitle
+			handler(realPageTitle: string | null) {
+				if (realPageTitle !== null) {
+					document.title = realPageTitle
 				}
 			},
 		},
@@ -388,40 +426,17 @@ export default {
 	},
 
 	mounted() {
-		if (!this.disableSwipe) {
-			this.swiping = useSwipe(this.$el, {
-				onSwipeEnd: this.handleSwipe,
-			})
-		}
-
 		this.restorePaneConfig()
 	},
 
 	methods: {
 		/**
-		 * handle the swipe event
+		 * Handle the resize of the list pane by the user.
 		 *
-		 * @param {TouchEvent} e The touch event
-		 * @param {import('@vueuse/core').SwipeDirection} direction The swipe direction of the event
+		 * @param event - The `resized` event of the splitpanes component
 		 */
-		handleSwipe(e, direction) {
-			const minSwipeX = 70
-			const touchZone = 300
-			if (Math.abs(this.swiping.lengthX) > minSwipeX) {
-				if (this.swiping.coordsStart.x < (touchZone / 2) && direction === 'right') {
-					emit('toggle-navigation', {
-						open: true,
-					})
-				} else if (this.swiping.coordsStart.x < touchZone * 1.5 && direction === 'left') {
-					emit('toggle-navigation', {
-						open: false,
-					})
-				}
-			}
-		},
-
-		handlePaneResize(event) {
-			const listPaneSize = parseInt(event.panes[0].size, 10)
+		handlePaneResize(event: SplitpanesResizedEvent) {
+			const listPaneSize = Math.trunc(event.panes[0].size)
 			browserStorage.setItem(this.paneConfigID, JSON.stringify(listPaneSize))
 			this.listPaneSize = listPaneSize
 			/**
@@ -433,11 +448,10 @@ export default {
 
 		// browserStorage is not reactive, we need to update this manually
 		restorePaneConfig() {
-			const listPaneSize = parseInt(browserStorage.getItem(this.paneConfigID), 10)
+			const listPaneSize = parseInt(browserStorage.getItem(this.paneConfigID) ?? '', 10)
 			if (!isNaN(listPaneSize) && listPaneSize !== this.listPaneSize) {
 				logger.debug('[NcAppContent] pane config', { listPaneSize })
 				this.listPaneSize = listPaneSize
-				return listPaneSize
 			}
 		},
 
@@ -448,7 +462,7 @@ export default {
 			this.$emit('update:showDetails', false)
 		},
 	},
-}
+})
 </script>
 
 <style lang="scss" scoped>
