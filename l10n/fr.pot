@@ -10,10 +10,11 @@
 # William Méauzoone, 2025
 # Sp P, 2026
 # Xavier, 2026
+# Yohan HARROCH, 2026
 # 
 msgid ""
 msgstr ""
-"Last-Translator: Xavier, 2026\n"
+"Last-Translator: Yohan HARROCH, 2026\n"
 "Language-Team: French (https://app.transifex.com/nextcloud/teams/64236/fr/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Language: fr\n"
@@ -26,10 +27,10 @@ msgid "{tag} (restricted)"
 msgstr "{tag} (restreint)"
 
 msgid "A color with a HEX value {hex}"
-msgstr "Une couleur de valeur HEX {hex}"
+msgstr "Une couleur dont la valeur hexadécimale est {hex}"
 
 msgid "a few seconds ago"
-msgstr "il y a quelques instants"
+msgstr "il y a quelques secondes"
 
 #. TRANSLATORS: A color name for RGB(110, 166, 143)
 msgid "Acapulco"
@@ -49,7 +50,7 @@ msgid "Alt"
 msgstr "Alt"
 
 msgid "Animals & Nature"
-msgstr "Animaux & Nature"
+msgstr "Animaux et nature"
 
 msgid "Any link"
 msgstr "N'importe quel lien"
