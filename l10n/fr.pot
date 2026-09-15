@@ -1,7 +1,6 @@
 # Translators:
 # Joas Schilling, 2025
 # XYZ, 2025
-# Corentin Noël <tintou@noel.tf>, 2025
 # Pascal Prugna, 2025
 # Charles Taborin, 2025
 # Caro Leviia, 2025
@@ -24,7 +23,7 @@ msgid "{tag} (invisible)"
 msgstr "{tag} (invisible)"
 
 msgid "{tag} (restricted)"
-msgstr "{tag} (restreint)"
+msgstr "{tag} (restreinte)"
 
 msgid "A color with a HEX value {hex}"
 msgstr "Une couleur dont la valeur hexadécimale est {hex}"
@@ -131,13 +130,13 @@ msgid "Close navigation"
 msgstr "Fermer la navigation"
 
 msgid "Close sidebar"
-msgstr "Fermer la barre latérale"
+msgstr "Fermer le panneau latéral"
 
 msgid "Close Smart Picker"
 msgstr "Fermer le sélecteur intelligent"
 
 msgid "Close time Picker"
-msgstr "Fermer le sélecteur de temps"
+msgstr "Fermer le sélecteur d’heure"
 
 msgid "Collapse menu"
 msgstr "Réduire le menu"
@@ -168,7 +167,7 @@ msgid "Dark skin tone"
 msgstr "Teint de peau foncé"
 
 msgid "Datepicker input"
-msgstr "Entrée du sélecteur de date"
+msgstr "Champ du sélecteur de date"
 
 msgid "Datepicker menu"
 msgstr "Menu du sélecteur de date"
@@ -197,10 +196,10 @@ msgid "do not disturb"
 msgstr "ne pas déranger"
 
 msgid "Edit item"
-msgstr "Éditer l'élément"
+msgstr "Modifier l’élément"
 
 msgid "Edit profile"
-msgstr "Éditer le profil"
+msgstr "Modifier le profil"
 
 msgid "Emoji picker"
 msgstr "Sélecteur d'émojis"
@@ -219,12 +218,12 @@ msgid ""
 "Error getting related resources. Please contact your system administrator if"
 " you have any questions."
 msgstr ""
-"Erreur lors de la récupération des ressources liées. Contactez votre "
-"administrateur système pour répondre à vos éventuelles questions."
+"Erreur lors de la récupération des ressources liées. Si vous avez des "
+"questions, contactez votre administrateur système."
 
 #. TRANSLATORS: Escape key on keyboard
 msgid "Escape"
-msgstr "Echap"
+msgstr "Échap"
 
 msgid "Estimating …"
 msgstr "Estimation en cours…"
@@ -252,7 +251,7 @@ msgid "Flags"
 msgstr "Drapeaux"
 
 msgid "Food & Drink"
-msgstr "Nourriture & Boissons"
+msgstr "Nourriture et boissons"
 
 msgid "Frequently used"
 msgstr "Utilisés fréquemment"
@@ -267,7 +266,7 @@ msgid "Hide details"
 msgstr "Masquer les détails"
 
 msgid "Hide password"
-msgstr "Cacher le mot de passe"
+msgstr "Masquer le mot de passe"
 
 msgid "Increment hours"
 msgstr "Augmenter les heures"
@@ -285,7 +284,7 @@ msgid "invisible"
 msgstr "invisible"
 
 msgid "Keyboard navigation help"
-msgstr "Aide à la navigation du clavier"
+msgstr "Aide à la navigation au clavier"
 
 msgid "Keyboard shortcuts"
 msgstr "Raccourcis clavier"
@@ -294,11 +293,11 @@ msgid "Light skin tone"
 msgstr "Teint de peau clair"
 
 msgid "Load more \"{options}\""
-msgstr "Charger d'avantage \"{options}\""
+msgstr "Charger davantage « {options} »"
 
 #. TRANSLATORS: The button is in a loading state
 msgid "Loading …"
-msgstr "Chargement..."
+msgstr "Chargement…"
 
 msgid "Loading actions"
 msgstr "Chargement des actions"
@@ -324,18 +323,18 @@ msgstr "Teint de peau moyen"
 
 msgid "Message limit of %n character reached"
 msgid_plural "Message limit of %n characters reached"
-msgstr[0] "Limite de messages de %n caractère atteinte"
-msgstr[1] "Limite de messages de %n caractères atteinte"
-msgstr[2] "Limite de messages de %n caractères atteinte"
+msgstr[0] "La limite de %n caractère par message a été atteinte"
+msgstr[1] "La limite de %n caractères par message a été atteinte"
+msgstr[2] "La limite de %n caractères par message a été atteinte"
 
 msgid "Month picker"
 msgstr "Sélecteur de mois"
 
 msgid "Month picker overlay"
-msgstr "Superposition du sélecteur de mois"
+msgstr "Panneau du sélecteur de mois"
 
 msgid "More items …"
-msgstr "Plus d'éléments..."
+msgstr "Plus d’éléments…"
 
 msgid "More options"
 msgstr "Plus d'options"
@@ -350,10 +349,10 @@ msgid "Next"
 msgstr "Suivant"
 
 msgid "Next month"
-msgstr "Mois prochain"
+msgstr "Mois suivant"
 
 msgid "Next year"
-msgstr "Année prochaine"
+msgstr "Année suivante"
 
 msgid "Nextcloud blue"
 msgstr "Bleu Nextcloud"
@@ -387,34 +386,34 @@ msgid "online"
 msgstr "en ligne"
 
 msgid "Open hours overlay"
-msgstr "Superposition des heures d'ouverture"
+msgstr "Ouvrir le sélecteur des heures"
 
 msgid "Open link to \"{resourceName}\""
-msgstr "Ouvrir le lien vers \"{resourceName}\""
+msgstr "Ouvrir le lien vers « {resourceName} »"
 
 msgid "Open menu"
 msgstr "Ouvrir le menu"
 
 msgid "Open minutes overlay"
-msgstr "Superposition des minutes d'ouverture"
+msgstr "Ouvrir le sélecteur des minutes"
 
 msgid "Open months overlay"
-msgstr "Superposition des mois ouverts"
+msgstr "Ouvrir le sélecteur des mois"
 
 msgid "Open navigation"
 msgstr "Ouvrir la navigation"
 
 msgid "Open seconds overlay"
-msgstr "Superposition des secondes ouvertes"
+msgstr "Ouvrir le sélecteur des secondes"
 
 msgid "Open sidebar"
-msgstr "Ouvrir la barre latérale"
+msgstr "Ouvrir le panneau latéral"
 
 msgid "Open time picker"
-msgstr "Ouvrir le sélecteur de temps"
+msgstr "Ouvrir le sélecteur d’heure"
 
 msgid "Open years overlay"
-msgstr "Superposition des années ouvertes"
+msgstr "Ouvrir le sélecteur des années"
 
 msgid "Options"
 msgstr "Options"
@@ -430,7 +429,7 @@ msgid "paused"
 msgstr "suspendu"
 
 msgid "People & Body"
-msgstr "Personnes & Corps"
+msgstr "Personnes et corps"
 
 msgid "Pick"
 msgstr "Choisir"
@@ -485,7 +484,7 @@ msgid "Rosy brown"
 msgstr "Brun rosé"
 
 msgid "Save changes"
-msgstr "Sauvegarder les changements"
+msgstr "Enregistrer les modifications"
 
 msgid "Search"
 msgstr "Rechercher"
@@ -494,10 +493,10 @@ msgid "Search …"
 msgstr "Rechercher…"
 
 msgid "Search emoji"
-msgstr "Rechercher un emoji"
+msgstr "Rechercher un émoji"
 
 msgid "Search for time zone"
-msgstr "Rechercher le fuseau horaire"
+msgstr "Rechercher un fuseau horaire"
 
 msgid "Search results"
 msgstr "Résultats de recherche"
@@ -509,10 +508,10 @@ msgstr "il y a qq. sec."
 
 #. FOR TRANSLATORS: Shorter version of 'a few seconds ago'
 msgid "seconds ago"
-msgstr "il y a quelques secondes"
+msgstr "il y a quelques sec."
 
 msgid "Select a tag"
-msgstr "Sélectionnez une balise"
+msgstr "Sélectionner une étiquette"
 
 msgid "Select date"
 msgstr "Sélectionnez la date"
@@ -564,7 +563,7 @@ msgid "Skin tone"
 msgstr "Teint de peau"
 
 msgid "Skip to app navigation"
-msgstr "Passer à l'app navigation"
+msgstr "Passer à la navigation de l’application"
 
 msgid "Skip to main content"
 msgstr "Passer au contenu principal"
@@ -573,7 +572,7 @@ msgid "Smart Picker"
 msgstr "Sélecteur intelligent"
 
 msgid "Smileys & Emotion"
-msgstr "Smileys & Émotions"
+msgstr "Smileys et émotions"
 
 #. TRANSLATORS: Space key on keyboard
 msgid "Space"
@@ -592,7 +591,7 @@ msgid "Submit"
 msgstr "Valider"
 
 msgid "Switch AM/PM mode"
-msgstr "Basculer le mode Matin/Après-midi"
+msgstr "Basculer entre AM et PM"
 
 msgid "Symbols"
 msgstr "Symboles"
@@ -602,28 +601,28 @@ msgid "Tab"
 msgstr "Tab"
 
 msgid "Time picker"
-msgstr "Sélecteur de temps"
+msgstr "Sélecteur d’heure"
 
 msgid "Time zone"
 msgstr "Fuseau horaire"
 
 msgid "Toggle overlay"
-msgstr "Basculer la superposition"
+msgstr "Afficher ou masquer le panneau de sélection"
 
 msgid "Travel & Places"
-msgstr "Voyage & Lieux"
+msgstr "Voyage et lieux"
 
 msgid "Type to search for existing projects"
 msgstr "Tapez pour rechercher des projets existants"
 
 msgid "Type to search time zone"
-msgstr "Saisissez les premiers lettres pour rechercher un fuseau horaire"
+msgstr "Saisissez du texte pour rechercher un fuseau horaire"
 
 msgid "Unable to search the group"
 msgstr "Impossible de chercher le groupe"
 
 msgid "Undo changes"
-msgstr "Annuler les changements"
+msgstr "Annuler les modifications"
 
 msgid "Upload file"
 msgstr "Téléverser un fichier"
@@ -641,7 +640,7 @@ msgid "Upload progress"
 msgstr "Progression du téléversement"
 
 msgid "Uploading …"
-msgstr "Téléversement ..."
+msgstr "Téléversement en cours…"
 
 msgid "User status: {status}"
 msgstr "Statut de l'utilisateur : {status}"
@@ -672,4 +671,4 @@ msgid "Year picker"
 msgstr "Sélecteur d'année"
 
 msgid "Year picker overlay"
-msgstr "Superposition du sélecteur d’année"
+msgstr "Panneau du sélecteur d’année"
