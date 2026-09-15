@@ -120,6 +120,19 @@ describe('NcAppContent', () => {
 		expect(document.title).toBe('My title - Nextcloud')
 	})
 
+	it('updates the show details state when going back to the list', async () => {
+		const wrapper = mount(NcAppContent, {
+			slots: {
+				list: '<div class="list" />',
+			},
+		})
+
+		// the details are shown by default, so the toggle to go back to the list is available
+		await wrapper.find('.app-details-toggle').trigger('click')
+
+		expect(wrapper.emitted('update:showDetails')).toEqual([[false]])
+	})
+
 	it('toggles the navigation on swipe', async () => {
 		const handler = vi.fn()
 		subscribe('toggle-navigation', handler)
