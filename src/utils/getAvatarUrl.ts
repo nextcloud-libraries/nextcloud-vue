@@ -23,6 +23,11 @@ interface AvatarUrlOptions {
 	 * @default 64
 	 */
 	size?: 64 | 512
+
+	/**
+	 * The user's avatar version. Including it earns a much longer cache lifetime.
+	 */
+	version?: string | number | null
 }
 
 /**
@@ -45,8 +50,16 @@ export function getAvatarUrl(user: string, options?: AvatarUrlOptions): string {
 		? '/dark'
 		: ''
 
-	return generateUrl(`/avatar${guestUrl}/{user}/{size}${themeUrl}?guestFallback=true`, {
+	// Coalesced rather than checked for truthiness: 0 is a real version, held by
+	// everyone who never changed their avatar.
+	const version = options?.version ?? null
+	const versionUrl = version === null
+		? ''
+		: '&v={version}'
+
+	return generateUrl(`/avatar${guestUrl}/{user}/{size}${themeUrl}?guestFallback=true${versionUrl}`, {
 		user,
 		size,
+		version,
 	})
 }
