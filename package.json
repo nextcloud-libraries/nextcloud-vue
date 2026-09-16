@@ -153,7 +153,7 @@
     "jsdom": "^30.0.1",
     "remark-gfm": "^4.0.1",
     "resolve-url-loader": "^5.0.0",
-    "sass": "^1.104.0",
+    "sass": "^1.104.1",
     "stylelint": "^17.15.0",
     "ts-node": "^10.9.2",
     "typescript": "^5.9.3",
