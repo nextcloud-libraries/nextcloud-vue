@@ -3,10 +3,17 @@
  * SPDX-License-Identifier: AGPL-3.0-or-later
  */
 
+import type * as NextcloudAuth from '@nextcloud/auth'
+
 import { mount, shallowMount } from '@vue/test-utils'
-import { afterAll, beforeAll, describe, expect, it } from 'vitest'
+import { afterAll, afterEach, beforeAll, describe, expect, it, vi } from 'vitest'
 import { h, nextTick } from 'vue'
 import NcAvatar from '../../../../src/components/NcAvatar/NcAvatar.vue'
+
+vi.mock('@nextcloud/auth', async (importOriginal) => ({
+	...await importOriginal<typeof NextcloudAuth>(),
+	getCurrentUser: () => ({ uid: 'me', displayName: 'Me', isAdmin: false }),
+}))
 
 describe('NcAvatar.vue', () => {
 	it('aria label is set to include status if status is shown visually', async () => {
@@ -248,6 +255,56 @@ describe('NcAvatar.vue', () => {
 
 				expect(wrapper.find('img').attributes('src')).toContain('/avatar/alice/512')
 				expect(wrapper.find('img').attributes('srcset')).toBeUndefined()
+			})
+		})
+
+		describe('Cache-busting version', () => {
+			afterEach(() => {
+				delete window.oc_userconfig
+			})
+
+			it('versions another user from the passed prop', async () => {
+				const wrapper = mount(NcAvatar, {
+					props: { displayName: 'Alice', user: 'alice', version: 7 },
+				})
+				await nextTick()
+
+				expect(wrapper.find('img').attributes('src'))
+					.toBe('//index.php/avatar/alice/64?guestFallback=true&v=7')
+			})
+
+			it('leaves another user unversioned when the page config has one', async () => {
+				window.oc_userconfig = { avatar: { version: 3 } }
+
+				const wrapper = mount(NcAvatar, {
+					props: { displayName: 'Alice', user: 'alice' },
+				})
+				await nextTick()
+
+				expect(wrapper.find('img').attributes('src')).not.toContain('v=')
+			})
+
+			it('versions the current user from the page config', async () => {
+				window.oc_userconfig = { avatar: { version: 3 } }
+
+				const wrapper = mount(NcAvatar, {
+					props: { displayName: 'Me', user: 'me' },
+				})
+				await nextTick()
+
+				expect(wrapper.find('img').attributes('src'))
+					.toBe('//index.php/avatar/me/64?guestFallback=true&v=3')
+			})
+
+			it('prefers an explicitly passed version over the page config', async () => {
+				window.oc_userconfig = { avatar: { version: 3 } }
+
+				const wrapper = mount(NcAvatar, {
+					props: { displayName: 'Me', user: 'me', version: 9 },
+				})
+				await nextTick()
+
+				expect(wrapper.find('img').attributes('src')).toContain('v=9')
 			})
 		})
 	})
