@@ -7,6 +7,24 @@
 
 All notable changes to this project will be documented in this file.
 
+## [v9.13.0](https://github.com/nextcloud-libraries/nextcloud-vue/tree/v9.13.0) (2026-09-17)
+[Full Changelog](https://github.com/nextcloud-libraries/nextcloud-vue/compare/v9.12.0...v9.13.0)
+
+### 🚀 Enhancements
+* feat(NcModal): expose the slideshow state as a model [\#8955](https://github.com/nextcloud-libraries/nextcloud-vue/pull/8955) \([skjnldsv](https://github.com/skjnldsv)\)
+* feat(NcAvatar): add a version prop for longer avatar caching [\#8959](https://github.com/nextcloud-libraries/nextcloud-vue/pull/8959) \([pringelmann](https://github.com/pringelmann)\)
+
+### 🐛 Fixed bugs
+* fix(NcAppNavigation): also emit `navigation-toggled` on mobile change [\#8353](https://github.com/nextcloud-libraries/nextcloud-vue/pull/8353) \([skjnldsv](https://github.com/skjnldsv)\)
+* fix(dialog): specificity of mobile selector [\#8956](https://github.com/nextcloud-libraries/nextcloud-vue/pull/8956) \([pulsejet](https://github.com/pulsejet)\)
+
+### Other Changes
+* refactor(NcAppContent*): migrate to `<script setup>` [\#8864](https://github.com/nextcloud-libraries/nextcloud-vue/pull/8864) \([susnux](https://github.com/susnux)\)
+* refactor(NcAppContent*): migrate components to Typescript [\#8863](https://github.com/nextcloud-libraries/nextcloud-vue/pull/8863) \([susnux](https://github.com/susnux)\)
+* chore(deps): update `@nextcloud/files` to v4.1.0 [\#8972](https://github.com/nextcloud-libraries/nextcloud-vue/pull/8972) \([susnux](https://github.com/susnux)\)
+* Updated dependencies
+* Updated translations
+
 ## [v9.12.0](https://github.com/nextcloud-libraries/nextcloud-vue/tree/v9.12.0) (2026-09-11)
 [Full Changelog](https://github.com/nextcloud-libraries/nextcloud-vue/compare/v9.11.0...v9.12.0)
 
