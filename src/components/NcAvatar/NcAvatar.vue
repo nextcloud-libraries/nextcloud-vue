@@ -460,7 +460,7 @@ export default {
 		 */
 		version: {
 			type: [String, Number],
-			default: null,
+			default: undefined,
 		},
 
 		/**
@@ -1003,7 +1003,7 @@ export default {
 			// Only the current user's version is on the page. Anyone else's has to
 			// come from whoever fetched the user list.
 			const version = this.version
-				?? (user === getCurrentUser()?.uid ? window.oc_userconfig?.avatar?.version : null)
+				?? (user === getCurrentUser()?.uid ? window.oc_userconfig?.avatar?.version : undefined)
 
 			return getAvatarUrl(user, {
 				size,

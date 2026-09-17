@@ -39,6 +39,11 @@ describe('getAvatarUrl', () => {
 		expect(getAvatarUrl('alice', { version: 0 })).toBe('//index.php/avatar/alice/64?guestFallback=true&v=0')
 	})
 
+	it('should omit the version when there is none', () => {
+		expect(getAvatarUrl('alice')).toBe('//index.php/avatar/alice/64?guestFallback=true')
+		expect(getAvatarUrl('alice', { version: undefined })).toBe('//index.php/avatar/alice/64?guestFallback=true')
+	})
+
 	it('should return correct relative URL for user avatar in dark mode if enforced', () => {
 		expect(getAvatarUrl('alice', { isDarkTheme: true })).toBe('//index.php/avatar/alice/64/dark?guestFallback=true')
 		expect(getAvatarUrl('john', { isDarkTheme: true, size: 512 })).toBe('//index.php/avatar/john/512/dark?guestFallback=true')

@@ -263,6 +263,27 @@ describe('NcAvatar.vue', () => {
 				delete window.oc_userconfig
 			})
 
+			it('versions another user from the passed prop', async () => {
+				const wrapper = mount(NcAvatar, {
+					props: { displayName: 'Alice', user: 'alice', version: 7 },
+				})
+				await nextTick()
+
+				expect(wrapper.find('img').attributes('src'))
+					.toBe('//index.php/avatar/alice/64?guestFallback=true&v=7')
+			})
+
+			it('leaves another user unversioned when the page config has one', async () => {
+				window.oc_userconfig = { avatar: { version: 3 } }
+
+				const wrapper = mount(NcAvatar, {
+					props: { displayName: 'Alice', user: 'alice' },
+				})
+				await nextTick()
+
+				expect(wrapper.find('img').attributes('src')).not.toContain('v=')
+			})
+
 			it('versions the current user from the page config', async () => {
 				window.oc_userconfig = { avatar: { version: 3 } }
 
