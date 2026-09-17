@@ -64,6 +64,13 @@ module.exports = async () => {
 				alias: {
 					vue$: 'vue/dist/vue.esm-browser.js',
 				},
+				byDependency: {
+					// The code of the documentation examples is transpiled to CommonJS,
+					// so without the `import` condition ESM only packages - like `@nextcloud/files` - cannot be imported by them
+					commonjs: {
+						conditionNames: ['require', 'import', 'module', 'browser', 'default'],
+					},
+				},
 			},
 		}),
 

@@ -64,11 +64,13 @@ describe('NcDateTimePickerNative.vue', () => {
 			},
 		})
 
+		// Visible label rendered by NcInputField, no aria-label on the input
 		expect(wrapper.find('label').text()).toBe('the label')
-		expect(wrapper.find('label').classes('hidden-visually')).toBe(false)
+		expect(wrapper.find('input').attributes('aria-label')).toBeUndefined()
 
+		// Hidden label: no visible <label>, exposed to assistive tech via aria-label
 		await wrapper.setProps({ hideLabel: true, label: 'the label' })
-		expect(wrapper.find('label').text()).toBe('the label')
-		expect(wrapper.find('label').classes('hidden-visually')).toBe(true)
+		expect(wrapper.find('label').exists()).toBe(false)
+		expect(wrapper.find('input').attributes('aria-label')).toBe('the label')
 	})
 })

@@ -29,6 +29,7 @@ export default {
 	emits: [
 		'cancel',
 		'submit',
+		'pick',
 	],
 
 	data() {
@@ -62,10 +63,14 @@ export default {
 				this.renderResult = result
 				if (this.renderResult.object?._isVue && this.renderResult.object?.$on) {
 					this.renderResult.object.$on('submit', this.onSubmit)
+					this.renderResult.object.$on('pick', this.onPick)
 					this.renderResult.object.$on('cancel', this.onCancel)
 				}
 				this.renderResult.element.addEventListener('submit', (e) => {
 					this.onSubmit(e.detail)
+				})
+				this.renderResult.element.addEventListener('pick', (e) => {
+					this.onPick(e.detail)
 				})
 				this.renderResult.element.addEventListener('cancel', this.onCancel)
 			})
@@ -73,6 +78,10 @@ export default {
 
 		onSubmit(value) {
 			this.$emit('submit', value)
+		},
+
+		onPick(value) {
+			this.$emit('pick', value)
 		},
 
 		onCancel() {

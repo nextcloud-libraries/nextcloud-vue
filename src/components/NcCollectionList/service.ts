@@ -3,9 +3,10 @@
  * SPDX-License-Identifier: AGPL-3.0-or-later
  */
 
+import type { AxiosResponse } from '@nextcloud/axios'
 import type { OCSResponse } from '@nextcloud/typings/ocs'
 
-import axios, { type AxiosResponse } from '@nextcloud/axios'
+import axios from '@nextcloud/axios'
 import { generateOcsUrl } from '@nextcloud/router'
 
 /**

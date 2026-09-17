@@ -88,7 +88,7 @@ onBeforeUnmount(() => {
 		padding-inline: var(--app-settings-section-text-offset);
 		padding-block: 0;
 		font-size: 20px;
-		font-weight: bold;
+		font-weight: var(--font-weight-heading, bold);
 	}
 
 	&__description {

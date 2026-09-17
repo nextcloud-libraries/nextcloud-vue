@@ -19,7 +19,9 @@ General purpose password field component.
 			<NcPasswordField v-model="text2"
 				id="textField"
 				:label-outside="true"
-				placeholder="Min. 12 characters" />
+				placeholder="Min. 12 characters"
+				:success="true"
+				helper-text="Password is secure" />
 		</div>
 		<div class="external-label">
 			<label for="textField2">New password</label>
@@ -32,10 +34,9 @@ General purpose password field component.
 		</div>
 
 		<NcPasswordField v-model="text4"
-			label="Good new password"
-			:success="true"
-			placeholder="Min. 12 characters"
-			helper-text="Password is secure">
+			label="Validate new password"
+			check-password-strength
+			placeholder="Min. 12 characters">
 			<template #icon>
 				<IconLockOutline :size="20" />
 			</template>
@@ -57,7 +58,7 @@ export default {
 	data() {
 		return {
 			text1: '',
-			text2: '',
+			text2: 'FWZxt29XEoTQfnBEa',
 			text3: 'hunter',
 			text4: '',
 			text5: '',
@@ -152,8 +153,6 @@ const emit = defineEmits<{
 	invalid: []
 }>()
 
-watch(modelValue, debounce(checkPassword, 500))
-
 // public API
 defineExpose({
 	focus,
@@ -232,12 +231,19 @@ const minLengthWithPolicy = computed(() => {
 		?? undefined
 })
 
+watch(modelValue, () => {
+	// Reset internal validation state on value change, before debounced checkPassword() is called
+	isValid.value = undefined
+	internalHelpMessage.value = ''
+})
+watch(modelValue, debounce(checkPassword, 500))
+
 /**
  * Validate the entered password.
  * If available this method will use the password-policy app API to validate the password.
  */
 async function checkPassword() {
-	if (!props.checkPasswordStrength) {
+	if (!props.checkPasswordStrength || !modelValue.value) {
 		return
 	}
 

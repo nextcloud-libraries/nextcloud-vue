@@ -66,7 +66,10 @@ export function useCollections() {
 	}
 
 	/**
-	 * @param {*} param0
+	 * @param {object} options - Options for adding a resource to a collection
+	 * @param {string} options.collectionId - ID of the collection to add the resource to
+	 * @param {string} options.resourceType - Type of the resource to add
+	 * @param {string} options.resourceId - ID of the resource to add
 	 */
 	async function addResourceToCollection({ collectionId, resourceType, resourceId }) {
 		const collection = await addResourceService(collectionId, resourceType, String(resourceId))

@@ -1,0 +1,22 @@
+/*
+ * SPDX-FileCopyrightText: 2026 Nextcloud GmbH and Nextcloud contributors
+ * SPDX-License-Identifier: CC0-1.0
+ */
+
+{
+	"name": "NextcloudVue",
+	// Do not use mcr.microsoft.com/devcontainers/javascript-node because it only uses Debian.
+	// Playwright snapshots are rendered slightly differently on Debian than on Ubuntu.
+	// Using Ubuntu is consistent with .github/workflows/playwright.yml
+	//
+	// Do not use mcr.microsoft.com/devcontainers/universal because it does not support arm64.
+	"image": "mcr.microsoft.com/devcontainers/base:noble",
+	"features": {
+		"ghcr.io/devcontainers/features/node:2": {}
+	},
+	// Work around for localhost:9323 (Playwright report) not beeing properly forwared due to issues with IPv6.
+	// https://github.com/microsoft/vscode-remote-release/issues/7029
+	"containerEnv": {
+		"NODE_OPTIONS": "--dns-result-order=ipv4first"
+	}
+}

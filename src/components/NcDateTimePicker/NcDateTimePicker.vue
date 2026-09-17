@@ -288,13 +288,17 @@ import {
 	getFirstDay,
 } from '@nextcloud/l10n'
 import VueDatePicker from '@vuepic/vue-datepicker'
-import { computed, useTemplateRef } from 'vue'
+import { parse } from 'date-fns/parse'
+import { computed, useTemplateRef, warn, watch, watchEffect } from 'vue'
 import NcIconSvgWrapper from '../NcIconSvgWrapper/NcIconSvgWrapper.vue'
 import NcTimezonePicker from '../NcTimezonePicker/NcTimezonePicker.vue'
 import { t } from '../../l10n.ts'
 import NcButton from '../NcButton/index.ts'
+import { getDateFormat, getDateTimeFormat, getMonthFormat, getTimeFormat, getWeekFormat, getYearFormat } from './format.ts'
+import useDateFnsLocale from './useDateFnsLocale.ts'
 
 type LibraryFormatOptions = VueDatePickerProps['format']
+type LibraryTextInputOptions = VueDatePickerProps['textInput']
 
 /**
  * The preselected IANA time zone ID for the time zone picker,
@@ -342,18 +346,22 @@ const props = withDefaults(defineProps<{
 	confirm?: boolean
 
 	/**
-	 * Preview format for the picker input field.
+	 * Format for the picker input field.
 	 * Can either be a string of Unicode tokens or a function that takes a Date object
 	 * or for range picker an array of two dates, and returns the formatted date as string.
 	 *
-	 * @default Intl.DateTimeFormat is used to format dates and times
+	 * If no format is provided, localized date and time formats are used.
+	 * If a function is provided users cannot use text input.
+	 *
 	 * @see https://www.unicode.org/reports/tr35/tr35-dates.html#Date_Field_Symbol_Table
 	 */
 	format?: string | ((date: Date) => string) | ((dates: [Date, Date]) => string)
 
 	/**
 	 * The locale to use for formatting the shown dates.
-	 * By default the users current Nextcloud locale is used.
+	 *
+	 * @deprecated This property is no longer used and will be ignored because this component will always use the current Nextcloud locale.
+	 * @see https://github.com/nextcloud-libraries/nextcloud-vue/issues/8639
 	 */
 	locale?: string
 
@@ -413,7 +421,7 @@ const props = withDefaults(defineProps<{
 	 *
 	 * @default 'date'
 	 */
-	type?: 'date' | 'datetime' | 'time' | 'week' | 'month' | 'year' | 'date-range' | 'time-range' | 'datetime-range'
+	type?: 'week' | 'month' | 'year' | 'date' | 'date-range' | 'time' | 'time-range' | 'datetime' | 'datetime-range'
 
 	/**
 	 * Render the calendar inline (no input field).
@@ -425,7 +433,7 @@ const props = withDefaults(defineProps<{
 	ariaLabel: t('Datepicker input'),
 	ariaLabelMenu: t('Datepicker menu'),
 	format: undefined,
-	locale: getCanonicalLocale(),
+	locale: undefined,
 	max: undefined,
 	min: undefined,
 	minuteStep: 10,
@@ -450,6 +458,13 @@ const emit = defineEmits<{
 	 */
 	blur: []
 }>()
+
+const realLocale = getCanonicalLocale()
+watchEffect(() => {
+	if (props.locale !== undefined) {
+		warn('[NcDateTimePicker] The `locale` property is no longer used and will be ignored.')
+	}
+})
 
 const targetElement = useTemplateRef('target')
 const pickerInstance = useTemplateRef('picker')
@@ -530,42 +545,81 @@ const placeholderFallback = computed(() => {
 	return t('Select date and time')
 })
 
+const { isLoading: dateFnsLocaleIsLoading, locale: dateFnsLocale } = useDateFnsLocale()
+watch(dateFnsLocale, () => {
+	// Force reformating of values once the locale updates.
+	// By default Existing values are not reformated once locale is updated.
+	// See https://github.com/Vuepic/vue-datepicker/issues/1284
+	pickerInstance.value?.parseModel()
+}, {
+	// Apply only after new locale was reaplied to VueDatePicker.
+	flush: 'post',
+})
+
 /**
  * The date (time) formatting to be used by the library.
- * We use the provided format if possible, otherwise we provide a formatting function
- * which uses the browsers Intl API to format the date / time in the current users locale.
+ * We use the provided format if possible, otherwise we provide a localized formatting
+ * using `date-fns/locale' which is mostly similiar to Intl.DateTime formating.
  */
 const realFormat = computed<LibraryFormatOptions>(() => {
 	if (props.format) {
 		// we can cast the type here as in this case its either string
 		// function `(Date) => string` or `([Date, Date]) => string` where we cast to `(Date[]) => string` here.
 		return props.format as LibraryFormatOptions
-	} else if (props.type === 'week') {
-		// cannot format weeks with Intl.
-		return 'RR-II'
 	}
 
-	let formatter: Intl.DateTimeFormat | undefined
-	if (props.type === 'date' || props.type === 'date-range') {
-		formatter = new Intl.DateTimeFormat(getCanonicalLocale(), { dateStyle: 'medium' })
-	} else if (props.type === 'time' || props.type === 'time-range') {
-		formatter = new Intl.DateTimeFormat(getCanonicalLocale(), { timeStyle: 'short' })
-	} else if (props.type === 'datetime' || props.type === 'datetime-range') {
-		formatter = new Intl.DateTimeFormat(getCanonicalLocale(), { dateStyle: 'medium', timeStyle: 'short' })
-	} else if (props.type === 'month') {
-		formatter = new Intl.DateTimeFormat(getCanonicalLocale(), { year: 'numeric', month: '2-digit' })
-	} else if (props.type === 'year') {
-		formatter = new Intl.DateTimeFormat(getCanonicalLocale(), { year: 'numeric' })
-	}
-
-	if (formatter) {
-		return (input: Date | [Date, Date]) => Array.isArray(input)
-			? formatter.formatRange(input[0], input[1])
-			: formatter.format(input)
+	switch (props.type) {
+		case 'date':
+		case 'date-range':
+			return getDateFormat(dateFnsLocale.value)
+		case 'time':
+		case 'time-range':
+			return getTimeFormat()
+		case 'datetime':
+		case 'datetime-range':
+			return getDateTimeFormat(dateFnsLocale.value)
+		case 'month':
+			return getMonthFormat(dateFnsLocale.value)
+		case 'year':
+			return getYearFormat(dateFnsLocale.value)
+		case 'week':
+			return getWeekFormat()
 	}
 
 	// fallback to default formatting
 	return undefined
+})
+
+const textInput = computed<LibraryTextInputOptions>(() => {
+	const realFormatVal = realFormat.value
+	if (typeof realFormatVal === 'function') {
+		// NOTE We could provide a format string through `textInput.format`.
+		// Then Vuepic uses it when the user focuses the input.
+		// But this feature has a bug.
+		// It does not respect the provided locale when formatting.
+		// See https://github.com/Vuepic/vue-datepicker/issues/1286
+		//
+		// Possible workarounds that seem not to be worth implementing for now:
+		// - replace input value when user focuses the input by ourselves
+
+		// Disable text input if user provided a format function.
+		// We do not know how to parse such values.
+		return false
+	}
+
+	if (typeof realFormatVal === 'string') {
+		return {
+			// This should not be required in Vuepic because `format` is automatically used for parsing.
+			// But v11 has a bug because the format string ist cut off wrongly.
+			// This is fixed in v12.1.0 and can then be simplified.
+			// See https://github.com/Vuepic/vue-datepicker/issues/1208
+			format: (value: string) => {
+				return parse(value, realFormatVal, new Date(), { locale: (dateFnsLocale.value) })
+			},
+		}
+	}
+
+	return true
 })
 
 const pickerType = computed(() => ({
@@ -579,7 +633,10 @@ const pickerType = computed(() => ({
 		// but its not covered by our component interface (props / events) documentation so just disabled for now.
 		partialRange: false,
 	},
-	enableTimePicker: !(props.type === 'date' || props.type === 'date-range'),
+	// Show additional time picker only for 'datetime*'.
+	// 'month', 'year', 'time*' do not support it anyway.
+	// But for 'date*' and 'week' it has to be excplicitly disabled.
+	enableTimePicker: props.type === 'datetime' || props.type === 'datetime-range',
 	flow: props.type === 'datetime'
 		? ['calendar', 'time'] as ['calendar', 'time']
 		: undefined,
@@ -766,6 +823,7 @@ function sameDay(a: Date, b: Date): boolean {
 
 <template>
 	<div class="vue-date-time-picker__wrapper">
+		<!-- :readonly="dateFnsLocaleIsLoading" avoids discarding user input if the locale finishes loading after the user started input. -->
 		<VueDatePicker
 			ref="picker"
 			:aria-labels
@@ -777,7 +835,9 @@ function sameDay(a: Date, b: Date): boolean {
 			:dayNames
 			:placeholder="placeholder ?? placeholderFallback"
 			:format="realFormat"
-			:locale
+			:locale="realLocale"
+			:formatLocale="dateFnsLocale"
+			:readonly="dateFnsLocaleIsLoading"
 			:minDate="calcMinMaxTime.minDate"
 			:maxDate="calcMinMaxTime.maxDate"
 			:minTime="calcMinMaxTime.minTime"
@@ -789,7 +849,7 @@ function sameDay(a: Date, b: Date): boolean {
 			sixWeeks="fair"
 			:inline
 			:teleport="appendToBody ? (targetElement || undefined) : false"
-			textInput
+			:textInput
 			:weekNumName
 			:weekNumbers="showWeekNumber ? { type: 'iso' } : undefined"
 			:weekStart
@@ -949,7 +1009,7 @@ function sameDay(a: Date, b: Date): boolean {
 
 	// make the bottom page toggle stand out better
 	:deep(.dp__btn.dp__button.dp__button_bottom) {
-		color: var(--color-primary-element-light);
+		color: var(--color-primary-element-light-text);
 		background-color: var(--color-primary-element-light);
 	}
 

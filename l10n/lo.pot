@@ -1,10 +1,9 @@
-# 
 # Translators:
-# bone NI, 2025
+# bounkirdni_2025, 2026
 # 
 msgid ""
 msgstr ""
-"Last-Translator: bone NI, 2025\n"
+"Last-Translator: bounkirdni_2025, 2026\n"
 "Language-Team: Lao (https://app.transifex.com/nextcloud/teams/64236/lo/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Language: lo\n"
@@ -392,6 +391,15 @@ msgstr "ເລືອກ"
 msgid "Pick an emoji"
 msgstr "ເລືອກອີໂມຈິ"
 
+msgid "Pick file"
+msgstr "ເລືອກໄຟລ໌"
+
+msgid "Pick files"
+msgstr "ເລືອກໄຟລ໌"
+
+msgid "Pick folder"
+msgstr "ເລືອກໂຟນເດີ"
+
 msgid "Please choose a date"
 msgstr "ກະລຸນາເລືອກວັນທີ"
 
@@ -438,7 +446,7 @@ msgstr "ຄົ້ນຫາ…"
 msgid "Search emoji"
 msgstr "ຄົ້ນຫາອີໂມຈິ"
 
-msgid "Search for timezone"
+msgid "Search for time zone"
 msgstr "ຄົ້ນຫາເຂດເວລາ"
 
 msgid "Search results"
@@ -540,7 +548,7 @@ msgstr "Tab"
 msgid "Time picker"
 msgstr "ໂຕເລືອກເວລາ"
 
-msgid "Timezone"
+msgid "Time zone"
 msgstr "ເຂດເວລາ"
 
 msgid "Toggle overlay"
@@ -560,6 +568,18 @@ msgstr "ບໍ່ສາມາດຄົ້ນຫາກຸ່ມໄດ້"
 
 msgid "Undo changes"
 msgstr "ຍ້ອນຄືນການປ່ຽນແປງ"
+
+msgid "Upload file"
+msgstr "ອັບໂຫຼດໄຟລ໌"
+
+msgid "Upload files"
+msgstr "ອັບໂຫຼດໄຟລ໌"
+
+msgid "Upload folder"
+msgstr "ອັບໂຫຼດໂຟນເດີ"
+
+msgid "Uploading …"
+msgstr "ກຳລັງອັບໂຫຼດ..."
 
 msgid "User status: {status}"
 msgstr "ສະຖານະຜູ້ໃຊ້: {status}"

@@ -106,6 +106,9 @@ export default {
 			required: true,
 		},
 
+		/**
+		 * Whether to show the empty content when there are no search results
+		 */
 		showEmptyContent: {
 			type: Boolean,
 			default: true,
@@ -122,6 +125,7 @@ export default {
 
 	emits: [
 		'submit',
+		'pick',
 	],
 
 	data() {
@@ -248,6 +252,11 @@ export default {
 				if (item.resourceUrl) {
 					this.cancelSearchRequests()
 					this.$emit('submit', item.resourceUrl)
+					const reference = { link: item.resourceUrl }
+					if (item.title) {
+						reference.title = item.title
+					}
+					this.$emit('pick', reference)
 				} else if (item.isMore) {
 					this.searchMoreOf(item.providerId).then(() => {
 						// allow clicking twice on the same "more" item

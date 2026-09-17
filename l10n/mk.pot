@@ -1,11 +1,10 @@
-# 
 # Translators:
 # Joas Schilling, 2025
-# Сашко Тодоров <sasetodorov@gmail.com>, 2025
+# Сашко Тодоров <sasetodorov@gmail.com>, 2026
 # 
 msgid ""
 msgstr ""
-"Last-Translator: Сашко Тодоров <sasetodorov@gmail.com>, 2025\n"
+"Last-Translator: Сашко Тодоров <sasetodorov@gmail.com>, 2026\n"
 "Language-Team: Macedonian (https://app.transifex.com/nextcloud/teams/64236/mk/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Language: mk\n"
@@ -133,6 +132,12 @@ msgstr "Потврди ги промените"
 msgid "Connect items to a project to make them easier to find"
 msgstr "Поврзете ги елементите со проект за да биде полесно да се најдат"
 
+msgid "Copied"
+msgstr "Копирано"
+
+msgid "Copy to clipboard"
+msgstr "Копирај во клипбоард"
+
 #. TRANSLATORS: Ctrl key on keyboard (Windows/Linux)
 msgid "Ctrl"
 msgstr "Ctrl"
@@ -253,6 +258,9 @@ msgstr "невидливо"
 
 msgid "Keyboard navigation help"
 msgstr "Навигација со тастатура"
+
+msgid "Keyboard shortcuts"
+msgstr "Кратенки со тастатура"
 
 msgid "Light skin tone"
 msgstr "Светла кожа"
@@ -385,6 +393,15 @@ msgstr "Избери"
 msgid "Pick an emoji"
 msgstr "Избери емотикон"
 
+msgid "Pick file"
+msgstr "Избери датотека"
+
+msgid "Pick files"
+msgstr "Избери датотеки"
+
+msgid "Pick folder"
+msgstr "Избери папка"
+
 msgid "Please choose a date"
 msgstr "Избери датум"
 
@@ -431,7 +448,7 @@ msgstr "Барај…"
 msgid "Search emoji"
 msgstr "Барај emoji"
 
-msgid "Search for timezone"
+msgid "Search for time zone"
 msgstr "Барај временска зона"
 
 msgid "Search results"
@@ -533,7 +550,7 @@ msgstr "Tab"
 msgid "Time picker"
 msgstr "Избирач на време"
 
-msgid "Timezone"
+msgid "Time zone"
 msgstr "Временска зона"
 
 msgid "Toggle overlay"
@@ -553,6 +570,18 @@ msgstr "Неможе да се пронајде групата"
 
 msgid "Undo changes"
 msgstr "Врати ги промените"
+
+msgid "Upload file"
+msgstr "Прикачи датотека"
+
+msgid "Upload files"
+msgstr "Прикачи датотеки"
+
+msgid "Upload folder"
+msgstr "Прикачи папка"
+
+msgid "Uploading …"
+msgstr "Прикачување …"
 
 msgid "User status: {status}"
 msgstr "Статус: {status}"

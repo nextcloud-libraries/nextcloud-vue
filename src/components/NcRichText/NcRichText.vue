@@ -15,9 +15,13 @@ This component displays rich text with optional autolink or [Markdown support](h
 		<NcCheckboxRadioSwitch v-model="autolink" type="checkbox">Autolink</NcCheckboxRadioSwitch>
 		<NcCheckboxRadioSwitch v-model="useMarkdown" type="checkbox">Use Markdown</NcCheckboxRadioSwitch>
 
+		<br/>
+		Rich text:
+		<hr/>
 		<NcRichText
 			:class="{'plain-text': !useMarkdown }"
 			:text="text" :autolink="autolink" :arguments="args"
+			:reference-limit="1"
 			:use-markdown="useMarkdown" />
 	</div>
 </template>
@@ -302,13 +306,13 @@ See [NcRichContenteditable](#/Components/NcRichContenteditable) documentation fo
 </docs>
 
 <script>
+import { toString } from 'mdast-util-to-string'
 import rehypeExternalLinks from 'rehype-external-links'
 import rehype2react from 'rehype-react'
 import breaks from 'remark-breaks'
 import remarkGfm from 'remark-gfm'
 import remarkParse from 'remark-parse'
 import remark2rehype from 'remark-rehype'
-import remarkStringify from 'remark-stringify'
 import remarkUnlinkProtocols from 'remark-unlink-protocols'
 import { unified } from 'unified'
 import { Fragment, h, ref, resolveComponent } from 'vue'
@@ -316,6 +320,7 @@ import { RouterLink } from 'vue-router'
 import NcCheckboxRadioSwitch from '../NcCheckboxRadioSwitch/NcCheckboxRadioSwitch.vue'
 import NcReferenceList from './NcReferenceList.vue'
 import NcRichTextCopyButton from './NcRichTextCopyButton.vue'
+import NcRichTextExternalLink from './NcRichTextExternalLink.vue'
 import { createElementId } from '../../utils/createElementId.ts'
 import { getRoute, parseUrl, remarkAutolink } from './autolink.ts'
 import { remarkPlaceholder } from './remarkPlaceholder.ts'
@@ -355,6 +360,9 @@ export default {
 			default: '',
 		},
 
+		/**
+		 * Arguments for the richobjects
+		 */
 		arguments: {
 			type: Object,
 			default: () => {
@@ -362,16 +370,25 @@ export default {
 			},
 		},
 
+		/**
+		 * Limit the number of reference widgets to render
+		 */
 		referenceLimit: {
 			type: Number,
 			default: 0,
 		},
 
+		/**
+		 * Whether to render the widgets in interactive mode (if available)
+		 */
 		referenceInteractive: {
 			type: Boolean,
 			default: true,
 		},
 
+		/**
+		 * Whether to show user an option to enable to interactive mode for widgets (if available)
+		 */
 		referenceInteractiveOptIn: {
 			type: Boolean,
 			default: false,
@@ -528,11 +545,9 @@ export default {
 						return entry
 					}
 					const { component, props } = entry
-					// do not override class of NcLink
-					const componentClass = component.name === 'NcLink' ? undefined : 'rich-text--component'
 					return h(component, {
 						...props,
-						class: componentClass,
+						class: 'rich-text--component',
 					})
 				})
 			}
@@ -550,11 +565,15 @@ export default {
 				return text
 			}
 
-			return unified()
+			const processor = unified()
+			processor.compiler = (tree) => toString(tree)
+
+			return processor
 				.use(remarkParse)
 				.use(remarkStripCode)
-				.use(remarkStringify)
-				.processSync(text)
+				// replace any whitespace character with literal whitespace for correct parsing
+				// 'mdast-util-to-string' library omits them and followed text is joined to the link
+				.processSync(text.replace(/\s/g, ' '))
 				.value
 		},
 
@@ -626,6 +645,7 @@ export default {
 				if (String(type) === 'a') {
 					const route = getRoute(this.$router, props.href)
 					if (route) {
+						// Resolved link to this app; render RouterLink
 						delete props.href
 						delete props.target
 
@@ -633,6 +653,18 @@ export default {
 							...props,
 							to: route,
 						}, { default: () => children })
+					}
+
+					const isAllowedScheme = /^(https?:\/\/|tel:|mailto:)/.test(props.href)
+					if (isAllowedScheme) {
+						// External link; render normally, open in the new tab
+						props.href = props.href.trim()
+						return h(NcRichTextExternalLink, props, children)
+					} else {
+						// Unresolved relative link that does not belong to this app; render only children
+						delete props.href
+						delete props.target
+						return h('span', props, children)
 					}
 				}
 				return h(type, props, children)
@@ -678,13 +710,6 @@ export default {
 	.rich-text--fallback, .rich-text-component {
 		display: inline;
 	}
-
-	.rich-text--external-link {
-		text-decoration: underline;
-		&:after {
-			content: ' ↗';
-		}
-	}
 }
 
 /* Markdown styles */
@@ -716,7 +741,7 @@ export default {
 	}
 
 	h1, h2, h3, h4, h5, h6 {
-		font-weight: bold;
+		font-weight: var(--font-weight-heading, bold);
 	}
 
 	h4 {

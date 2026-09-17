@@ -140,11 +140,12 @@ import type { Slot } from 'vue'
 
 import { emit, subscribe, unsubscribe } from '@nextcloud/event-bus'
 import { createFocusTrap } from 'focus-trap'
-import { inject, onMounted, onUnmounted, ref, useTemplateRef, warn, watch, watchEffect } from 'vue'
+import { computed, inject, onMounted, onUnmounted, ref, useTemplateRef, warn, watch, watchEffect } from 'vue'
 import NcAppNavigationList from '../NcAppNavigationList/NcAppNavigationList.vue'
 import NcAppNavigationToggle from './NcAppNavigationToggle.vue'
 import { useIsMobile } from '../../composables/useIsMobile/index.ts'
 import { getTrapStack } from '../../utils/focusTrap.ts'
+import { isLegacy34 } from '../../utils/legacy.ts'
 import { HAS_APP_NAVIGATION_KEY } from '../NcContent/constants.ts'
 
 const props = defineProps<{
@@ -190,6 +191,7 @@ const setHasAppNavigation = inject(
 const appNavigationContainerElement = useTemplateRef('appNavigationContainer')
 const isMobile = useIsMobile()
 const open = ref(!isMobile.value)
+const shouldActivateFocusTrap = computed(() => isMobile.value && open.value)
 
 watchEffect(() => {
 	if (!props.ariaLabel && !props.ariaLabelledby) {
@@ -201,7 +203,7 @@ watch(isMobile, (value: boolean) => {
 	open.value = !value
 })
 
-watch(open, (value: boolean) => {
+watch(shouldActivateFocusTrap, () => {
 	toggleFocusTrap()
 	emit('navigation-toggled', {
 		open: value,
@@ -218,6 +220,13 @@ onMounted(() => {
 
 	focusTrap = createFocusTrap(appNavigationContainerElement.value!, {
 		allowOutsideClick: true,
+		clickOutsideDeactivates: () => {
+			if (isMobile.value) {
+				focusTrap.deactivate({ returnFocus: false })
+				toggleNavigation(false)
+			}
+			return false
+		},
 		fallbackFocus: appNavigationContainerElement.value!,
 		trapStack: getTrapStack(),
 		escapeDeactivates: false,
@@ -247,7 +256,7 @@ function toggleNavigation(state?: boolean): void {
 
 	open.value = state === undefined ? !open.value : state
 	const bodyStyles = getComputedStyle(document.body)
-	const animationLength = parseInt(bodyStyles.getPropertyValue('--animation-quick')) || 100
+	const animationLength = parseInt(bodyStyles.getPropertyValue('--animation-slow')) || 200
 
 	setTimeout(() => {
 		emit('navigation-toggled', {
@@ -271,7 +280,7 @@ function toggleNavigationByEventBus({ open }: { open: boolean }): void {
  * Activate focus trap if it is currently needed, otherwise deactivate
  */
 function toggleFocusTrap(): void {
-	if (isMobile.value && open.value) {
+	if (shouldActivateFocusTrap.value) {
 		focusTrap.activate()
 	} else {
 		focusTrap.deactivate()
@@ -292,7 +301,10 @@ function handleEsc(): void {
 	<div
 		ref="appNavigationContainer"
 		class="app-navigation"
-		:class="{ 'app-navigation--closed': !open }">
+		:class="{
+			'app-navigation--closed': !open,
+			'app-navigation--legacy': isLegacy34,
+		}">
 		<nav
 			id="app-navigation-vue"
 			:aria-hidden="open ? 'false' : 'true'"
@@ -332,7 +344,7 @@ function handleEsc(): void {
 	// Set scoped variable override
 	// Using --color-text-maxcontrast as a fallback evaluates to an invalid value as it references itself in this scope instead of the variable defined higher up
 	--color-text-maxcontrast: var(--color-text-maxcontrast-background-blur, var(--color-text-maxcontrast-default));
-	transition: transform var(--animation-quick), margin var(--animation-quick);
+	transition: transform var(--animation-slow), margin var(--animation-slow);
 	width: $navigation-width;
 	// Left toggle button padding + toggle button + right padding from NcAppContent
 	--app-navigation-max-width: calc(100vw - (var(--app-navigation-padding) + var(--default-clickable-area) + var(--default-grid-baseline)));
@@ -350,9 +362,13 @@ function handleEsc(): void {
 	user-select: none;
 	flex-grow: 0;
 	flex-shrink: 0;
-	background-color: var(--color-main-background-blur, var(--color-main-background));
-	-webkit-backdrop-filter: var(--filter-background-blur, none);
-	backdrop-filter: var(--filter-background-blur, none);
+	// New design (NC34+): transparent so the frosted chrome on NcContent shows through.
+	background-color: transparent;
+
+	&--legacy {
+		background-color: var(--color-main-background-blur, var(--color-main-background));
+		backdrop-filter: var(--filter-background-blur, none);
+	}
 
 	&--closed {
 		margin-inline-start: calc(-1 * min($navigation-width, var(--app-navigation-max-width)));
@@ -406,10 +422,12 @@ function handleEsc(): void {
 }
 
 // When on mobile, we make the navigation slide over the NcAppContent
-@media only screen and (max-width: $breakpoint-mobile) {
+@media only screen and (width < $breakpoint-mobile) {
 	.app-navigation {
 		position: absolute;
 		border-inline-end: 1px solid var(--color-border);
+		background-color: var(--color-main-background-blur, var(--color-main-background));
+		backdrop-filter: var(--filter-background-blur, none);
 	}
 }
 

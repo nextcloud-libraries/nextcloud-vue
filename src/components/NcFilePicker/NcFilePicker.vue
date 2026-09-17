@@ -129,6 +129,7 @@ defineSlots<{
 
 defineExpose({
 	reset,
+	triggerPickFiles,
 })
 
 const formElement = useTemplateRef('form')

@@ -45,7 +45,7 @@ const labelId = `NcHotkeyList_${createElementId()}`
 }
 
 .hotkeyList__heading {
-	font-weight: bold;
+	font-weight: var(--font-weight-heading, bold);
 	margin-inline: var(--form-element-label-offset);
 }
 </style>

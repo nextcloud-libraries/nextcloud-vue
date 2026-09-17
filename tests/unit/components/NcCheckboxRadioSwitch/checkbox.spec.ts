@@ -78,4 +78,92 @@ describe('NcCheckboxRadioSwitch', () => {
 		expect(descriptionElement.exists()).toBe(true)
 		expect(descriptionElement.text()).toContain('My description')
 	})
+
+	it('emits correct value on keyboard toggle for boolean checkbox', async () => {
+		const wrapper = mount(NcCheckboxRadioSwitch, {
+			props: {
+				modelValue: false,
+			},
+			slots: {
+				default: 'Toggle me',
+			},
+		})
+
+		await wrapper.find('input').trigger('change')
+		expect(wrapper.emitted('update:modelValue')?.[0]).toEqual([true])
+	})
+
+	it('emits correct value on keyboard toggle for checkbox group', async () => {
+		const wrapper = mount(NcCheckboxRadioSwitch, {
+			props: {
+				modelValue: ['a'],
+				value: 'b',
+				name: 'test-group',
+			},
+			slots: {
+				default: 'Option B',
+			},
+			attachTo: document.body,
+		})
+
+		// Simulate keyboard spacebar: browser toggles input.checked BEFORE firing change
+		const input = wrapper.find('input')
+		const inputEl = input.element as HTMLInputElement
+		inputEl.checked = true // Browser would do this before firing change
+		await input.trigger('change')
+
+		expect(wrapper.emitted('update:modelValue')?.[0]).toEqual([['a', 'b']])
+
+		wrapper.unmount()
+	})
+
+	it('emits correct value on keyboard un-toggle for checkbox group', async () => {
+		const wrapper = mount(NcCheckboxRadioSwitch, {
+			props: {
+				modelValue: ['a', 'b'],
+				value: 'b',
+				name: 'test-group',
+			},
+			slots: {
+				default: 'Option B',
+			},
+			attachTo: document.body,
+		})
+
+		// Simulate keyboard spacebar unchecking: browser sets checked=false before change
+		const input = wrapper.find('input')
+		const inputEl = input.element as HTMLInputElement
+		inputEl.checked = false
+		await input.trigger('change')
+
+		expect(wrapper.emitted('update:modelValue')?.[0]).toEqual([['a']])
+
+		wrapper.unmount()
+	})
+
+	it('sets role="switch" on a switch input', () => {
+		const wrapper = mount(NcCheckboxRadioSwitch, {
+			props: {
+				type: 'switch',
+			},
+			slots: {
+				default: 'Test',
+			},
+		})
+
+		expect(wrapper.find('input').attributes('role')).toBe('switch')
+	})
+
+	it.each(['checkbox', 'radio'] as const)('does not set a role on a %s input', (type) => {
+		const wrapper = mount(NcCheckboxRadioSwitch, {
+			props: {
+				type,
+			},
+			slots: {
+				default: 'Test',
+			},
+		})
+
+		expect(wrapper.find('input').attributes('role')).toBeUndefined()
+	})
 })

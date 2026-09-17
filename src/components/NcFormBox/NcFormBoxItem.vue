@@ -117,7 +117,9 @@ const hasDescription = () => !!description || !!slots.description
 	border-radius: var(--border-radius-element);
 	background-color: var(--color-primary-element-extra-light);
 	color: var(--color-main-text);
-	transition-property: color, border-color, background-color;
+	font-weight: var(--font-weight-element, normal);
+	will-change: transform;
+	transition-property: color, border-color, background-color, transform;
 	transition-duration: var(--animation-quick);
 	transition-timing-function: linear;
 	-webkit-user-select: none;
@@ -138,9 +140,18 @@ const hasDescription = () => !!description || !!slots.description
 		background-color: var(--color-primary-element-extra-light-hover);
 	}
 
+	&:active:not(:disabled) {
+		// TODO: add to theming with animation initiative
+		transform: scale(0.985);
+	}
+
 	&:has(:focus-visible) {
 		outline: 2px solid var(--color-main-text);
 		box-shadow: 0 0 0 4px var(--color-main-background);
+	}
+
+	&__description {
+		font-weight: var(--font-weight-default, normal);
 	}
 
 	&.formBoxItem_legacy {

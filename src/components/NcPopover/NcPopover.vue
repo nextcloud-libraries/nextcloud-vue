@@ -178,12 +178,11 @@ See: https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Attributes/
 	<Dropdown
 		ref="popover"
 		v-model:shown="internalShown"
-		:arrowPadding="10"
 		:autoHide="!noCloseOnClickOutside && closeOnClickOutside"
 		:boundary="boundary || undefined"
 		:container
 		:delay
-		:distance="10"
+		:distance="4 /* One --default-grid-baseline (4px). No arrow to bridge a larger gap anymore. */"
 		handleResize
 		:noAutoFocus="true /* Handled by the focus trap */"
 		:placement="internalPlacement"
@@ -628,11 +627,6 @@ export default {
 </script>
 
 <style lang="scss" module>
-$arrow-width: 10px;
-// Move the arrow just slightly inside the popover
-// To prevent a visual gap on page scaling
-$arrow-position: $arrow-width - 1px;
-
 // Class is built by floating-vue as "v-popper--theme-{THEME}"
 .ncPopover:global(.v-popper--theme-nc-popover-9) {
 	&,
@@ -688,6 +682,8 @@ $arrow-position: $arrow-width - 1px;
 			 */
 			box-shadow: 0 1px 10px var(--color-box-shadow);
 			border-radius: var(--border-radius-element);
+			// Scale from where the arrow used to point (towards the trigger)
+			transition: transform var(--animation-quick);
 		}
 
 		:global(.v-popper__inner) {
@@ -698,60 +694,48 @@ $arrow-position: $arrow-width - 1px;
 			background: var(--color-main-background);
 		}
 
+		// The arrow is removed in favour of the open/close scale animation
 		:global(.v-popper__arrow-container) {
-			position: absolute;
-			z-index: 1;
-			width: 0;
-			height: 0;
-			border-style: solid;
-			border-color: transparent;
-			border-width: $arrow-width;
+			display: none;
 		}
 
-		&[data-popper-placement^='top'] :global(.v-popper__arrow-container) {
-			bottom: -$arrow-position;
-			/* stylelint-disable-next-line csstools/use-logical */ /* upstream logic */
-			border-bottom-width: 0;
-			/* stylelint-disable-next-line csstools/use-logical */ /* upstream logic */
-			border-top-color: var(--color-main-background);
+		// Scale the popover from the edge facing the trigger (where the arrow used to be)
+		&[data-popper-placement^='top'] :global(.v-popper__wrapper) {
+			transform-origin: bottom center;
 		}
 
-		&[data-popper-placement^='bottom'] :global(.v-popper__arrow-container) {
-			top: -$arrow-position;
-			/* stylelint-disable-next-line csstools/use-logical */ /* upstream logic */
-			border-top-width: 0;
-			/* stylelint-disable-next-line csstools/use-logical */ /* upstream logic */
-			border-bottom-color: var(--color-main-background);
+		&[data-popper-placement^='bottom'] :global(.v-popper__wrapper) {
+			transform-origin: top center;
 		}
 
-		&[data-popper-placement^='right'] :global(.v-popper__arrow-container) {
-			/* stylelint-disable-next-line csstools/use-logical */ /* upstream logic */
-			left: -$arrow-position;
-			/* stylelint-disable-next-line csstools/use-logical */ /* upstream logic */
-			border-left-width: 0;
-			/* stylelint-disable-next-line csstools/use-logical */ /* upstream logic */
-			border-right-color: var(--color-main-background);
+		&[data-popper-placement^='right'] :global(.v-popper__wrapper) {
+			/* stylelint-disable-next-line csstools/use-logical */ /* transform-origin has no logical keyword */
+			transform-origin: left center;
 		}
 
-		&[data-popper-placement^='left'] :global(.v-popper__arrow-container) {
-			/* stylelint-disable-next-line csstools/use-logical */ /* upstream logic */
-			right: -$arrow-position;
-			/* stylelint-disable-next-line csstools/use-logical */ /* upstream logic */
-			border-right-width: 0;
-			/* stylelint-disable-next-line csstools/use-logical */ /* upstream logic */
-			border-left-color: var(--color-main-background);
+		&[data-popper-placement^='left'] :global(.v-popper__wrapper) {
+			/* stylelint-disable-next-line csstools/use-logical */ /* transform-origin has no logical keyword */
+			transform-origin: right center;
 		}
 
 		&[aria-hidden='true'] {
 			visibility: hidden;
 			transition: opacity var(--animation-quick), visibility var(--animation-quick);
 			opacity: 0;
+
+			:global(.v-popper__wrapper) {
+				transform: scale(0.96);
+			}
 		}
 
 		&[aria-hidden='false'] {
 			visibility: visible;
 			transition: opacity var(--animation-quick);
 			opacity: 1;
+
+			:global(.v-popper__wrapper) {
+				transform: scale(1);
+			}
 		}
 	}
 }

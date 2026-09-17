@@ -38,6 +38,31 @@ const selectArray = [
 
 	{
 		props: {
+			inputLabel: 'With helper text',
+			helperText: 'Choose the option that fits best',
+			options: [
+				'foo',
+				'bar',
+				'baz',
+			],
+		},
+	},
+
+	{
+		props: {
+			inputLabel: 'With error',
+			helperText: 'This selection is required',
+			error: true,
+			options: [
+				'foo',
+				'bar',
+				'baz',
+			],
+		},
+	},
+
+	{
+		props: {
 			inputLabel: 'Simple (top placement)',
 			placement: 'top',
 			options: [
@@ -146,6 +171,150 @@ export default {
 	display: flex;
 	flex-direction: column;
 	gap: 2px 0;
+}
+</style>
+```
+
+### Pre-selected and clearable
+
+```vue
+<template>
+	<div class="grid">
+		<div class="container">
+			<NcSelect v-model="singleValue"
+				input-label="Clearable single"
+				:options="options"
+				clearable />
+		</div>
+		<div class="container">
+			<NcSelect v-model="singlePlaceholder"
+				input-label="With placeholder"
+				placeholder="Search for something..."
+				:options="options" />
+		</div>
+	</div>
+</template>
+
+<script>
+export default {
+	data() {
+		return {
+			options: ['foo', 'bar', 'baz', 'qux', 'quux'],
+			singleValue: 'bar',
+			singlePlaceholder: null,
+		}
+	},
+}
+</script>
+
+<style>
+.grid {
+	display: grid;
+	grid-template-columns: repeat(2, 1fr);
+	gap: 10px;
+}
+
+.container {
+	display: flex;
+	flex-direction: column;
+}
+</style>
+```
+
+### Disabled state
+
+```vue
+<template>
+	<div class="grid">
+		<div class="container">
+			<NcSelect v-model="singleValue"
+				input-label="Disabled single"
+				:options="options"
+				disabled />
+		</div>
+		<div class="container">
+			<NcSelect v-model="multiValue"
+				input-label="Disabled multi"
+				:options="options"
+				multiple
+				disabled />
+		</div>
+	</div>
+</template>
+
+<script>
+export default {
+	data() {
+		return {
+			options: ['foo', 'bar', 'baz'],
+			singleValue: 'foo',
+			multiValue: ['foo', 'bar'],
+		}
+	},
+}
+</script>
+
+<style>
+.grid {
+	display: grid;
+	grid-template-columns: repeat(2, 1fr);
+	gap: 10px;
+}
+
+.container {
+	display: flex;
+	flex-direction: column;
+}
+</style>
+```
+
+### Label outside
+
+```vue
+<template>
+	<div class="grid">
+		<div class="container">
+			<label for="ext-single">External label (single)</label>
+			<NcSelect v-model="singleValue"
+				input-id="ext-single"
+				label-outside
+				placeholder="Pick an option"
+				:options="options" />
+		</div>
+		<div class="container">
+			<label for="ext-multi">External label (multi)</label>
+			<NcSelect v-model="multiValue"
+				input-id="ext-multi"
+				label-outside
+				:options="options"
+				multiple />
+		</div>
+	</div>
+</template>
+
+<script>
+export default {
+	data() {
+		return {
+			options: ['foo', 'bar', 'baz', 'qux', 'quux'],
+			singleValue: null,
+			multiValue: [],
+		}
+	},
+}
+</script>
+
+<style>
+.grid {
+	display: grid;
+	grid-template-columns: repeat(2, 1fr);
+	gap: 10px;
+}
+
+.container {
+	display: flex;
+	flex-direction: column;
+	gap: 4px;
 }
 </style>
 ```
@@ -323,7 +492,7 @@ export default {
 
 <template>
 	<VueSelect
-		class="select"
+		class="select nc-select"
 		:class="{
 			'select--legacy': isLegacy,
 			'select--no-wrap': noWrap,
@@ -331,7 +500,7 @@ export default {
 		v-bind="propsToForward"
 		@search="search = $event"
 		@update:modelValue="$emit('update:modelValue', $event)">
-		<template v-if="!labelOutside && inputLabel" #header>
+		<template v-if="multiple && !labelOutside && inputLabel" #header>
 			<label
 				:for="inputId"
 				class="select__label">
@@ -339,13 +508,44 @@ export default {
 			</label>
 		</template>
 		<template #search="{ attributes, events }">
-			<input
+			<!--
+				vue-select's `attributes`/`events` are its search-slot contract, not
+				HTML pass-through, so we forward only the combobox a11y attributes and
+				events one by one. This skips `attributes.ref` (a vue-select template
+				ref) and lets our own `modelValue`, `placeholder`, `label` and
+				`disabled` win over their vue-select equivalents.
+				No placeholder when: multi mode (select__label is the placeholder) or a
+				value is selected (the vs__selected overlay shows it instead).
+			-->
+			<NcTextField
+				:id="attributes.id"
 				class="vs__search"
 				:class="[inputClass]"
-				v-bind="attributes"
+				:type="attributes.type"
+				:modelValue="attributes.value"
+				:placeholder="multiple || modelValue ? '' : (placeholder || '')"
+				:label="!labelOutside && !multiple && inputLabel ? inputLabel : ''"
+				:labelOutside="labelOutside || multiple"
+				:disabled="disabled"
 				:required="inputRequired"
-				dir="auto"
-				v-on="events">
+				:role="attributes.role"
+				:tabindex="attributes.tabindex"
+				:readonly="attributes.readonly"
+				:autocomplete="attributes.autocomplete"
+				:aria-label="attributes['aria-label']"
+				:aria-describedby="[attributes['aria-describedby'], helperText ? `${inputId}-helper-text` : null].filter(Boolean).join(' ') || undefined"
+				:aria-autocomplete="attributes['aria-autocomplete']"
+				:aria-controls="attributes['aria-controls']"
+				:aria-owns="attributes['aria-owns']"
+				:aria-expanded="attributes['aria-expanded']"
+				:aria-activedescendant="attributes['aria-activedescendant']"
+				@keydown="events.keydown"
+				@keypress="events.keypress"
+				@focus="events.focus"
+				@blur="events.blur"
+				@compositionstart="events.compositionstart"
+				@compositionend="events.compositionend"
+				@update:modelValue="events.input({ target: { value: $event } })" />
 		</template>
 		<template #open-indicator="{ attributes }">
 			<ChevronDown
@@ -354,8 +554,7 @@ export default {
 				:style="{
 					cursor: !disabled ? 'pointer' : null,
 				}"
-				:size="26" />
-				<!-- Set size to 26 to make up for the increased padding of this icon -->
+				:size="20" />
 		</template>
 		<template #option="option">
 			<!-- @slot Customize how a option is rendered. -->
@@ -379,7 +578,31 @@ export default {
 		<template #no-options>
 			{{ t('No results') }}
 		</template>
-		<template v-for="(_, name) in $slots" #[name]="data">
+		<!-- Helper text beneath the control, plus any consumer-provided footer slot -->
+		<template v-if="helperText || $slots.footer" #footer="data">
+			<p
+				v-if="helperText"
+				:id="`${inputId}-helper-text`"
+				class="select__helper-text"
+				:class="{
+					'select__helper-text--error': error,
+					'select__helper-text--success': success,
+				}">
+				<NcIconSvgWrapper
+					v-if="success"
+					class="select__helper-text-icon"
+					:path="mdiCheck"
+					inline />
+				<NcIconSvgWrapper
+					v-else-if="error"
+					class="select__helper-text-icon"
+					:path="mdiAlertCircleOutline"
+					inline />
+				{{ helperText }}
+			</p>
+			<slot name="footer" v-bind="data" />
+		</template>
+		<template v-for="name in forwardedSlots()" :key="name" #[name]="data">
 			<!-- @slot Any combination of slots from https://vue-select.org/api/slots.html -->
 			<slot :name="name" v-bind="data" />
 		</template>
@@ -395,20 +618,18 @@ import {
 	offset,
 	shift,
 } from '@floating-ui/dom'
+import { mdiAlertCircleOutline, mdiCheck } from '@mdi/js'
+import { VueSelect } from '@nextcloud/vue-select'
 import { h, warn } from 'vue'
-import VueSelect from 'vue-select'
 import ChevronDown from 'vue-material-design-icons/ChevronDown.vue'
 import Close from 'vue-material-design-icons/Close.vue'
 import NcEllipsisedOption from '../NcEllipsisedOption/NcEllipsisedOption.vue'
+import NcIconSvgWrapper from '../NcIconSvgWrapper/NcIconSvgWrapper.vue'
 import NcLoadingIcon from '../NcLoadingIcon/NcLoadingIcon.vue'
+import NcTextField from '../NcTextField/NcTextField.vue'
 import { t } from '../../l10n.ts'
 import { createElementId } from '../../utils/createElementId.ts'
 import { isLegacy } from '../../utils/legacy.ts'
-
-// TODO: Use @nextcloud/vue-select once a vue 3 version is available.
-// Until then, all @nextcloud/vue-select specific improvements won't be available.
-// E.g. the `limit` prop has no effect, currently.
-import 'vue-select/dist/vue-select.css'
 
 export default {
 	name: 'NcSelect',
@@ -416,7 +637,9 @@ export default {
 	components: {
 		ChevronDown,
 		NcEllipsisedOption,
+		NcIconSvgWrapper,
 		NcLoadingIcon,
+		NcTextField,
 		VueSelect,
 	},
 
@@ -592,6 +815,30 @@ export default {
 		},
 
 		/**
+		 * Additional helper text shown beneath the select.
+		 */
+		helperText: {
+			type: String,
+			default: '',
+		},
+
+		/**
+		 * Toggle the error state, styling the helper text as an error.
+		 */
+		error: {
+			type: Boolean,
+			default: false,
+		},
+
+		/**
+		 * Toggle the success state, styling the helper text as a success.
+		 */
+		success: {
+			type: Boolean,
+			default: false,
+		},
+
+		/**
 		 * Pass true if you are using an external label
 		 */
 		labelOutside: {
@@ -681,9 +928,9 @@ export default {
 			/**
 			 * Patched Vue-Select keydown events handlers map to stop Escape propagation in open select
 			 *
-			 * @param {Record<number, Function>} map - Mapped keyCode to handlers { <keyCode>:<callback> }
-			 * @param {import('@nextcloud/vue-select').VueSelect} vm - VueSelect instance
-			 * @return {Record<number, Function>} patched keydown event handlers
+			 * @param {Record<number, (event: KeyboardEvent) => void>} map - Mapped keyCode to handlers { <keyCode>:<callback> }
+			 * @param {import('vue').ComponentPublicInstance} vm - VueSelect instance
+			 * @return {Record<number, (event: KeyboardEvent) => void>} patched keydown event handlers
 			 */
 			default(map, vm) {
 				return {
@@ -782,6 +1029,8 @@ export default {
 		return {
 			avatarSize,
 			isLegacy,
+			mdiAlertCircleOutline,
+			mdiCheck,
 		}
 	},
 
@@ -811,7 +1060,11 @@ export default {
 				const addClass = {
 					name: 'addClass',
 					fn(/* middlewareArgs */) {
-						dropdownMenu.classList.add('vs__dropdown-menu--floating')
+						// `nc-select__dropdown` scopes our menu styles: the menu is
+						// teleported to <body>, so it cannot be reached by the
+						// `.nc-select` root scope and would otherwise style every
+						// vue-select dropdown on the page (cross-version conflicts).
+						dropdownMenu.classList.add('vs__dropdown-menu--floating', 'nc-select__dropdown')
 						return {}
 					},
 				}
@@ -835,11 +1088,13 @@ export default {
 					computePosition(component.$refs.toggle, dropdownMenu, {
 						placement: this.placement,
 						middleware: [
-							offset(-1),
+							// Flip first so the placement-dependent middleware below see the final placement
+							flip(),
 							addClass,
 							togglePlacementClass,
-							// Match popperjs default collision prevention behavior by appending the following middleware in order
-							flip(),
+							// On top placement, leave a gap for the floating label overhang
+							// (about half the floated label line-height) instead of connecting seamlessly
+							offset(({ placement }) => (placement.startsWith('top') ? 10 : -1)),
 							shift({ limiter: limitShift() }),
 						],
 					}).then(({ x, y }) => {
@@ -900,6 +1155,19 @@ export default {
 
 	methods: {
 		t,
+
+		/**
+		 * Consumer-provided slots forwarded to vue-select, excluding `footer`
+		 * which we render ourselves to host the helper text.
+		 *
+		 * `$slots` is not reactive, so this is a method (re-evaluated on every
+		 * render) rather than a computed, to keep the forwarded slot list fresh.
+		 *
+		 * @return {string[]}
+		 */
+		forwardedSlots() {
+			return Object.keys(this.$slots).filter((name) => name !== 'footer')
+		},
 	},
 }
 </script>
@@ -907,12 +1175,32 @@ export default {
 <style lang="scss">
 @use '../../assets/input-border.scss' as border;
 
-body {
-	/**
-	 * Set custom vue-select CSS variables.
-	 * Needs to be on the body (not :root) for theming to apply (see nextcloud/server#36462)
-	 */
+// Helper text beneath the control, matching NcInputField's helper text.
+.nc-select.v-select.select .select__helper-text {
+	display: flex;
+	align-items: center;
+	margin: 0;
+	padding-block: 4px;
+	padding-inline: var(--border-radius-element);
+	color: var(--color-text-maxcontrast);
+	font-size: var(--default-font-size);
+	overflow-wrap: anywhere;
 
+	&--error {
+		color: var(--color-text-error);
+	}
+
+	&--success {
+		color: var(--color-text-success);
+	}
+
+	.select__helper-text-icon {
+		margin-inline-end: 8px;
+	}
+}
+
+.nc-select.v-select.select {
+	/* Custom vue-select CSS variables scoped to NcSelect */
 	/* Search Input */
 	--vs-search-input-color: var(--color-main-text);
 	--vs-search-input-bg: var(--color-main-background);
@@ -971,26 +1259,23 @@ body {
 	--vs-transition-duration: 0ms;
 
 	/* Actions */
-	--vs-actions-padding: 0 8px 0 4px;
-}
-
-.v-select.select {
+	--vs-actions-padding: 0 8px 0 8px;
 	/* Override default vue-select styles */
-	min-height: calc(var(--default-clickable-area) - 2 * var(--border-width-input));
+	min-height: calc(var(--default-clickable-area) - 2 * var(--border-width-input, 2px));
 	min-width: 260px;
-	margin: 0 0 var(--default-grid-baseline);
+	// 6px block-start reserves space for the floated label, matching
+	// NcInputField (.input-field margin-block-start) so fields line up in a row.
+	margin: 6px 0 var(--default-grid-baseline);
 
 	&.vs--open {
 		--vs-border-width: var(--border-width-input-focused, 2px);
 	}
 
-	.select__label {
-		display: block;
-		margin-bottom: 2px;
-	}
-
 	.vs__selected {
-		height: calc(var(--default-clickable-area) - 2 * var(--vs-border-width) - var(--default-grid-baseline));
+		// min-height (not height) so multi-line entries like NcSelectUsers chips can grow
+		min-height: calc(var(--default-clickable-area) - 2 * var(--vs-border-width) - var(--default-grid-baseline));
+		min-width: 0;
+		max-width: 100%;
 		margin: calc(var(--default-grid-baseline) / 2);
 		padding-block: 0;
 		padding-inline: 12px 8px;
@@ -999,64 +1284,94 @@ body {
 		border: none;
 	}
 
-	&.vs--open .vs__selected:first-of-type {
-		margin-inline-start: calc(var(--default-grid-baseline) / 2 - (var(--border-width-input-focused, 2px) - var(--border-width-input, 2px))) !important; // prevent jumping
+	.vs__search {
+		// NcTextField filling the search area; padding-end reserved for the actions overlay
+		width: 100%;
+		--input-padding-end: calc(var(--default-clickable-area) + var(--default-grid-baseline));
+
+		// Neutralize vue-select defaults on the wrapper div (no longer the native input).
+		// The height reset also beats legacy global styles (e.g. bundled by the server)
+		// that force a fixed height on `.vs__search` from the old native-input design.
+		border: none !important;
+		margin: 0 !important;
+		padding: 0 !important;
+		height: auto !important;
 	}
 
-	.vs__search {
-		text-overflow: ellipsis;
-		color: var(--color-main-text);
-		min-height: unset !important;
-		height: calc(var(--default-clickable-area) - 2 * var(--vs-border-width)) !important;
-
-		&::placeholder {
-			color: var(--color-text-maxcontrast);
+	// Force floating label when a value is selected (search input is empty but a value exists)
+	.vs__selected-options:has(.vs__selected) .vs__search {
+		.input-field__input + .input-field__label {
+			--input-label-font-size: var(--font-size-small, 13px);
+			line-height: 1.5;
+			inset-block-start: calc(-1.5 * var(--input-label-font-size) / 2);
+			font-weight: 500;
+			border-radius: var(--default-grid-baseline) var(--default-grid-baseline) 0 0;
+			background-color: var(--color-main-background);
+			padding-inline: var(--default-grid-baseline);
+			margin-inline: calc(var(--input-padding-start) - var(--default-grid-baseline)) calc(var(--input-padding-end) - var(--default-grid-baseline));
+			transition: height var(--animation-quick), inset-block-start var(--animation-quick), font-size var(--animation-quick), color var(--animation-quick);
 		}
 	}
 
-	.vs__search, .vs__search:focus {
-		margin: 0;
+	// Single mode: border is on NcTextField, dropdown-toggle is invisible
+	&:not(.vs--multiple) .vs__dropdown-toggle {
+		padding: 0;
+		overflow: visible;
+		border: none !important;
+		box-shadow: none !important;
+		background: transparent;
 	}
 
+	// Anchor the absolutely-positioned actions to the control itself, so content
+	// rendered below it inside .v-select (e.g. the helper text) does not shift
+	// the caret's vertical centering.
 	.vs__dropdown-toggle {
 		position: relative;
-		max-height: 100px;
-		padding: var(--border-width-input);
-		overflow-y: auto;
 	}
 
 	.vs__actions {
-		position: sticky;
-		top: 0;
+		position: absolute;
+		z-index: 999;
+		inset-inline-end: 0;
+		top: 50%;
+		transform: translateY(-50%);
+		height: 100%;
+		margin-block-start: 1px;
+		display: flex;
+		align-items: center;
 	}
 
 	.vs__clear {
 		margin-inline-end: 2px;
 	}
 
-	&.vs--open .vs__dropdown-toggle {
-		border-color: var(--color-main-text);
-		border-bottom-color: transparent;
-		border-bottom-left-radius: 0;
-		border-bottom-right-radius: 0;
-		border-style: solid;
-		border-width: var(--border-width-input-focused);
-		outline: 2px solid var(--color-main-background);
-		padding: 0;
-	}
-
-	&:not(.vs--disabled, .vs--open) {
-		.vs__dropdown-toggle:active,
-		.vs__dropdown-toggle:focus-within {
-			outline: 2px solid var(--color-main-background);
-			border-color: var(--color-main-text);
+	&.vs--open {
+		// Remove bottom border-radius when dropdown is open
+		.vs__search .input-field__input {
+			border-end-start-radius: 0 !important;
+			border-end-end-radius: 0 !important;
 		}
 	}
 
 	&.vs--disabled {
+		// Override vue-select's disabled background on all internal elements
+		// to prevent stacking with NcInputField's own background
+		.vs__clear,
+		.vs__dropdown-toggle,
+		.vs__open-indicator,
+		.vs__open-indicator-button,
 		.vs__search,
 		.vs__selected {
+			background-color: transparent;
 			color: var(--color-text-maxcontrast);
+		}
+
+		// Lighter border in disabled state to match single mode (NcInputField uses --color-border-dark)
+		.vs__dropdown-toggle {
+			--input-border-box-shadow-light: 0 -1px var(--color-border-dark),
+				0 0 0 1px color-mix(in srgb, var(--color-border-dark), 65% transparent);
+			--input-border-box-shadow-dark: 0 1px var(--color-border-dark),
+				0 0 0 1px color-mix(in srgb, var(--color-border-dark), 65% transparent);
 		}
 
 		.vs__clear,
@@ -1066,9 +1381,12 @@ body {
 	}
 
 	&--no-wrap {
+		.vs__dropdown-toggle {
+			overflow: hidden;
+		}
 		.vs__selected-options {
 			flex-wrap: nowrap;
-			overflow: auto;
+			overflow: auto !important;
 			min-width: unset;
 			.vs__selected {
 				min-width: unset;
@@ -1076,52 +1394,238 @@ body {
 		}
 	}
 
+	// Drop-up: the menu is detached above the select (calculatePosition leaves a
+	// gap for the floating label, which stays in its usual top position),
+	// so keep the regular fully-rounded borders instead of flattening the seam
 	&--drop-up {
 		&.vs--open {
-			.vs__dropdown-toggle {
-				border-radius: 0 0 var(--vs-border-radius) var(--vs-border-radius);
-				border-top-color: transparent;
-				border-bottom-color: var(--color-main-text);
+			.vs__search .input-field__input {
+				border-end-start-radius: var(--border-radius-element) !important;
+				border-end-end-radius: var(--border-radius-element) !important;
+			}
+
+			// !important to beat the later-defined down-state open rule
+			// (.vs--multiple.vs--open .vs__dropdown-toggle) of equal specificity
+			&.vs--multiple .vs__dropdown-toggle {
+				border-end-start-radius: var(--border-radius-element) !important;
+				border-end-end-radius: var(--border-radius-element) !important;
+				// Bottom is a regular outer edge here, not a divider seam
+				border-block-end-color: var(--color-main-text) !important;
 			}
 		}
 	}
 
 	.vs__selected-options {
 		// If search is hidden, ensure that the height of the search is the same
-		min-height: calc(var(--default-clickable-area) - 2 * var(--vs-border-width));
+		min-height: unset;
 
 		// Hide search from dom if unused to prevent unneeded flex wrap
-		.vs__selected ~ .vs__search[readonly] {
+		.vs__selected ~ .vs__search:has(.input-field__input[readonly]) {
 			position: absolute;
 		}
-		padding: 0 5px;
+		padding: 0;
+		border: none;
+		overflow: visible;
+	}
+
+	// Multi-select: border on dropdown-toggle (contains tags + input)
+	// NcTextField is transparent; floating label via #header slot
+	&.vs--multiple {
+		// The multiple variant otherwise renders ~2px wider than the single one
+		// and overflows its container; inset it by 1px on each side to align.
+		margin-inline: 1px;
+
+		.vs__dropdown-toggle {
+			// Use transparent border in closed state to reserve the same space
+			// as the open state's real border, prevents layout jump on click
+			border: var(--border-width-input-focused, 2px) solid transparent;
+			box-shadow: var(--input-border-box-shadow);
+			// Top padding for floating label clearance, no bottom padding
+			padding-block: calc(var(--default-grid-baseline) * 1.5) 0;
+			// Left padding so tags don't overlap the border-radius curve,
+			// right padding reserved for the actions overlay (chevron)
+			padding-inline: var(--default-grid-baseline) calc(var(--default-clickable-area) + var(--default-grid-baseline));
+			overflow: visible;
+			background: var(--color-main-background);
+		}
+
+		// Wider reservation when the clear button is shown next to the chevron
+		&:has(.vs__clear) .vs__dropdown-toggle {
+			padding-inline-end: calc(2 * var(--default-clickable-area));
+		}
+
+		// When open, switch to visible border with subtle bottom divider
+		&.vs--open .vs__dropdown-toggle {
+			box-shadow: none !important;
+			border-color: var(--color-main-text);
+			// Subtle divider line between tags and dropdown (not fully transparent)
+			border-block-end-color: var(--color-border-maxcontrast);
+			border-end-start-radius: 0;
+			border-end-end-radius: 0;
+			outline: 2px solid var(--color-main-background);
+		}
+
+		// Remove NcTextField border in multi mode, border is on dropdown-toggle
+		.vs__search .input-field__input {
+			box-shadow: none !important;
+			background: transparent;
+		}
+
+		// NcTextField shares flex row with tags, always inline, no absolute hiding.
+		// No min-width: it may shrink fully so it never forces an empty wrap row
+		// (matches vue-select's own search sizing)
+		.vs__search {
+			width: 0;
+			flex-grow: 1;
+			min-width: 0;
+		}
+
+		// No-wrap: clip overflow inside the toggle (needs to be here
+		// for specificity to beat the overflow: visible above)
+		&.select--no-wrap {
+			.vs__dropdown-toggle {
+				overflow: hidden;
+			}
+
+			.vs__actions {
+				// Slight fade for non-wrap tags display
+				background: linear-gradient(90deg, transparent, var(--color-main-background) 10%, var(--color-main-background) 100%);
+				margin-block: 0px;
+				margin-inline-end: 2px;
+				border-radius: var(--border-radius-element);
+				height: calc(100% - 6px);
+			}
+		}
+
+		// No label margin needed, label is via #header
+		.vs__search .input-field {
+			margin-block-start: 0;
+		}
+
+		// Match NcTextField height to tag row height for consistent toggle sizing
+		.vs__search .input-field__main-wrapper {
+			height: calc(var(--default-clickable-area) - 2 * var(--vs-border-width) - var(--default-grid-baseline));
+			margin: calc(var(--default-grid-baseline) / 2) 0;
+		}
+
+		// Label: centered inside toggle when empty (placeholder-like),
+		// floats above border when has value or open (matches NcInputField)
+		.select__label {
+			position: absolute;
+			z-index: 1;
+			inset-inline-start: var(--border-width-input-focused, 2px);
+			// Center vertically regardless of toggle height
+			top: 50%;
+			transform: translateY(-50%);
+			font-size: var(--default-font-size);
+			margin-inline: var(--border-radius-element);
+			color: var(--color-text-maxcontrast);
+			pointer-events: none;
+			white-space: nowrap;
+			overflow: hidden;
+			text-overflow: ellipsis;
+			max-width: calc(100% - var(--clickable-area-large));
+			transition: top var(--animation-quick), transform var(--animation-quick), font-size var(--animation-quick), font-weight var(--animation-quick), background-color var(--animation-quick) var(--animation-slow);
+		}
+
+		// Float label when has tags or dropdown is open
+		&:has(.vs__selected) .select__label,
+		&.vs--open .select__label {
+			--input-label-font-size: var(--font-size-small, 13px);
+			font-size: var(--input-label-font-size);
+			line-height: 1.5;
+			// Match NcInputField: half the line-height above the border
+			top: calc(-1.5 * var(--input-label-font-size) / 2);
+			transform: none;
+			font-weight: 500;
+			border-radius: var(--default-grid-baseline) var(--default-grid-baseline) 0 0;
+			background-color: var(--color-main-background);
+			padding-inline: var(--default-grid-baseline);
+			margin-inline: calc(var(--border-radius-element) - var(--default-grid-baseline));
+			transition: top var(--animation-quick), transform var(--animation-quick), font-size var(--animation-quick), font-weight var(--animation-quick), background-color var(--animation-quick);
+		}
 	}
 
 	&.vs--single {
+		// In single mode, overlay the selected value on top of the NcTextField input area
+		// so it appears inside the border (which is on the NcTextField, not the toggle)
+		.vs__selected-options {
+			position: relative;
+			flex-wrap: nowrap;
+			// Ensure height even when search input is hidden (vs--unsearchable)
+			min-height: var(--default-clickable-area);
+		}
+
+		.vs__selected {
+			position: absolute;
+			// Skip the label clearance so the overlay covers only the input box,
+			// keeping (multi-line) content like NcSelectUsers centered on the input
+			// (6px = NcInputField .input-field margin-block-start)
+			inset-block: 6px 0;
+			inset-inline-start: 0;
+			inset-inline-end: 0;
+			margin: 0;
+			z-index: 2; // above vs__search (z-index: 1 from vue-select default)
+			pointer-events: none;
+			display: flex;
+			align-items: center;
+			padding-block: 0;
+			// Match the input text position: main-wrapper padding (border width) + input padding
+			padding-inline: calc(var(--border-radius-element) + var(--border-width-input-focused, 2px)) var(--input-padding-end, calc(var(--default-clickable-area) + var(--default-grid-baseline)));
+			background: unset !important;
+			border: none;
+			border-radius: 0;
+			height: unset;
+			min-height: unset;
+			font-size: var(--default-font-size);
+			color: var(--color-main-text);
+			white-space: nowrap;
+			overflow: hidden;
+			text-overflow: ellipsis;
+		}
+
+		// No label clearance to skip when the label is external
+		&:has(.input-field--label-outside) .vs__selected {
+			inset-block-start: 0;
+		}
+
+		// Extra padding when clear button visible (clear + chevron need more space)
+		&:has(.vs__clear) .vs__selected {
+			padding-inline-end: calc(2 * var(--default-clickable-area));
+		}
+
 		&.vs--loading,
 		&.vs--open {
 			.vs__selected {
-				// Fix `max-width` for `position: absolute`
-				max-width: 100%;
-				// Fix color to be accessible
-				opacity: 1;
-				color: var(--color-text-maxcontrast);
+				// Fix color to be accessible while typing
+				opacity: 0.4;
 			}
 		}
-		.vs__selected-options {
-			flex-wrap: nowrap;
-		}
-		.vs__selected {
-			background: unset !important;
+
+		// Hide the selected value as soon as the user types a query
+		// (restores vue-select's default, overridden by our display: flex above)
+		&.vs--searching .vs__selected {
+			display: none;
 		}
 	}
 }
 
-.vs__dropdown-toggle {
-	@include border.inputLikeBorder('.select--legacy', var(--vs-border-color));
-}
-
-.vs__dropdown-menu {
+// Dropdown menu is teleported to <body>, so it can't live under the
+// `.nc-select` root scope. The `.nc-select__dropdown` class (added in
+// calculatePosition) scopes it instead, so these styles and CSS variables
+// only affect our menus and never leak to other vue-select instances.
+.nc-select__dropdown.vs__dropdown-menu {
+	--vs-border-color: var(--color-border-maxcontrast);
+	--vs-border-style: solid;
+	--vs-border-radius: var(--border-radius-element);
+	--vs-dropdown-bg: var(--color-main-background);
+	--vs-dropdown-color: var(--color-main-text);
+	--vs-dropdown-option-padding: 8px 20px;
+	--vs-dropdown-option--active-bg: var(--color-background-hover);
+	--vs-dropdown-option--active-color: var(--color-main-text);
+	--vs-dropdown-option--kb-focus-box-shadow: inset 0px 0px 0px 2px var(--color-border-maxcontrast);
+	--vs-dropdown-option--deselect-bg: var(--color-error);
+	--vs-dropdown-option--deselect-color: #fff;
 	border-width: var(--border-width-input-focused) !important;
 	border-color: var(--color-main-text) !important;
 	outline: none !important;
@@ -1139,13 +1643,15 @@ body {
 		top: 0;
 		inset-inline-start: 0;
 
+		// Top placement: the menu is detached from the select (gap for the
+		// floating label), so it keeps a full border on all sides
 		&-placement-top {
-			border-radius: var(--vs-border-radius) var(--vs-border-radius) 0 0 !important;
+			border-radius: var(--vs-border-radius) !important;
 			border-top-style: var(--vs-border-style) !important;
-			border-bottom-style: none !important;
 			box-shadow:
 				0 -2px 0 var(--color-main-background), // Top
 				-2px 0 0 var(--color-main-background), // Right
+				0 2px 0 var(--color-main-background), // Bottom
 				2px 0 0 var(--color-main-background), // Left
 				!important
 		}
@@ -1157,6 +1663,46 @@ body {
 
 	.vs__no-options {
 		color: var(--color-text-maxcontrast) !important;
+	}
+}
+
+// Border for .vs__dropdown-toggle, inlined from inputLikeBorder mixin
+// because the mixin's @media #{&} produces doubled selectors when nested.
+.nc-select.v-select.select .vs__dropdown-toggle {
+	--input-border-box-shadow-light: 0 -1px var(--vs-border-color),
+		0 0 0 1px color-mix(in srgb, var(--vs-border-color), 65% transparent);
+	--input-border-box-shadow-dark: 0 -1px var(--vs-border-color),
+		0 0 0 1px color-mix(in srgb, var(--vs-border-color), 65% transparent);
+	--input-border-box-shadow: var(--input-border-box-shadow-light);
+	border: none;
+	border-radius: var(--border-radius-element);
+	box-shadow: var(--input-border-box-shadow);
+}
+
+// Hover: use .vs--disabled on parent (toggle div never has [disabled] attribute)
+.nc-select.v-select.select:not(.vs--disabled) .vs__dropdown-toggle:hover {
+	box-shadow: 0 0 0 1px var(--vs-border-color);
+}
+
+@media (prefers-color-scheme: dark) {
+	.nc-select.v-select.select .vs__dropdown-toggle {
+		--input-border-box-shadow: var(--input-border-box-shadow-dark);
+	}
+}
+
+[data-theme-dark] .nc-select.v-select.select .vs__dropdown-toggle {
+	--input-border-box-shadow: var(--input-border-box-shadow-dark);
+}
+
+[data-theme-light] .nc-select.v-select.select .vs__dropdown-toggle {
+	--input-border-box-shadow: var(--input-border-box-shadow-light);
+}
+
+.select--legacy.nc-select.v-select.select .vs__dropdown-toggle {
+	box-shadow: 0 0 0 1px var(--vs-border-color);
+
+	&:hover:not([disabled]) {
+		box-shadow: 0 0 0 2px var(--vs-border-color);
 	}
 }
 </style>

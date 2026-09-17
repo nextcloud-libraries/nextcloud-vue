@@ -217,7 +217,7 @@ $input-margin: 4px;
 	background-color: transparent;
 	box-shadow: none;
 
-	font-weight: normal;
+	font-weight: var(--font-weight-default, normal);
 	line-height: var(--default-clickable-area);
 
 	& > span {
@@ -239,6 +239,8 @@ $input-margin: 4px;
 	&:deep(.material-design-icon) {
 		width: var(--default-clickable-area);
 		height: var(--default-clickable-area);
+		align-self: flex-start;
+		margin-top: var(--default-grid-baseline);
 		opacity: $opacity_full;
 
 		.material-design-icon__svg {

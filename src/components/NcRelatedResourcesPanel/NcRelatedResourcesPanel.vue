@@ -111,13 +111,16 @@ export default {
 		},
 
 		/**
-		 * Make the header name dynamic
+		 * The header text to show above the list of resources
 		 */
 		header: {
 			type: String,
 			default: t('Related resources'),
 		},
 
+		/**
+		 * The description text to show below the header
+		 */
 		description: {
 			type: String,
 			default: t('Anything shared with the same group of people will show up here'),
@@ -176,8 +179,8 @@ export default {
 		},
 
 		url() {
-			let providerId = null
-			let itemId = null
+			let providerId
+			let itemId
 
 			if (this.isFiles) {
 				providerId = 'files'
@@ -261,7 +264,7 @@ export default {
 	&__header {
 
 		h5 {
-			font-weight: bold;
+			font-weight: var(--font-weight-heading, bold);
 			margin-bottom: 6px;
 		}
 

@@ -587,7 +587,7 @@ function hexToRGB(hex: string): [number, number, number] {
 				font-family: var(--font-face);
 				font-size: var(--font-size-small, 13px);
 				line-height: 1.5;
-				font-weight: 500;
+				font-weight: var(--font-weight-element, 500);
 				color: var(--color-text-maxcontrast);
 				background-color: var(--color-main-background);
 				pointer-events: none;

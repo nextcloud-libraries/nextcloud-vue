@@ -6,6 +6,28 @@
 <!-- Follows the tab aria guidelines
 	https://www.w3.org/TR/wai-aria-practices/examples/tabs/tabs-1/tabs.html -->
 
+<docs>
+A tab of the `NcAppSidebar`. The default slot is the tab panel content.
+
+### Tab icon
+
+The `icon` slot renders the icon in the tab navigation. It is passed whether the
+tab is currently active, so a filled icon variant can be used for the active tab
+and an outlined one for the others. The two are crossfaded on selection.
+
+```vue
+<NcAppSidebarTab id="settings" name="Settings">
+	<template #icon="{ selected }">
+		<IconCog v-if="selected" :size="20" />
+		<IconCogOutline v-else :size="20" />
+	</template>
+	Settings tab content
+</NcAppSidebarTab>
+```
+
+Passing a single icon is still supported - it is then used for both states.
+</docs>
+
 <template>
 	<section
 		:id="`tab-${id}`"
@@ -49,7 +71,10 @@ export default {
 		},
 
 		/**
-		 * Tab icon's html class in navigation. Used if #icon slot is not provided
+		 * Tab icon's html class in navigation. Used if #icon slot is not provided.
+		 *
+		 * The #icon slot receives the tab's active state as `{ selected }`, so a
+		 * filled icon variant can be rendered for the active tab.
 		 */
 		icon: {
 			type: String,
@@ -112,12 +137,16 @@ export default {
 		},
 
 		/**
-		 * Render tab's icon slot if any
+		 * Render tab's icon slot if any.
+		 * The active state is passed to the slot so consumers can render a
+		 * filled icon variant for the active tab, e.g.
+		 * `<template #icon="{ selected }">`.
 		 *
+		 * @param {boolean} selected whether the tab is currently active
 		 * @return {import('vue').VNode[]}
 		 */
-		renderIcon() {
-			return this.$slots.icon?.()
+		renderIcon(selected = false) {
+			return this.$slots.icon?.({ selected })
 		},
 	},
 }

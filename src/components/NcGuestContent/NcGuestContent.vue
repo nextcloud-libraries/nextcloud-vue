@@ -29,19 +29,9 @@ It can't be used multiple times on the same page.
 <script setup lang="ts">
 import type { Slot } from 'vue'
 
-import { onMounted, onUnmounted } from 'vue'
-
 defineSlots<{
 	default?: Slot
 }>()
-
-onMounted(() => {
-	document.getElementById('content')!.classList.add('nc-guest-content')
-})
-
-onUnmounted(() => {
-	document.getElementById('content')!.classList.remove('nc-guest-content')
-})
 </script>
 
 <template>
@@ -64,7 +54,7 @@ onUnmounted(() => {
 </style>
 
 <style lang="scss">
-#content.nc-guest-content {
+#content:has(#guest-content-vue) {
 	// Enable scrolling
 	overflow: auto;
 

@@ -98,7 +98,9 @@ function onUpdate() {
 	cursor: pointer;
 	color: var(--radio-group-button--color);
 	background-color: var(--radio-group-button--background-color);
-	transition: var(--animation-quick) background-color;
+	will-change: transform;
+	transition-property: color, background-color, transform;
+	transition-duration: var(--animation-quick);
 	border: var(--radio-group-button--border-width) solid var(--radio-group-button--background-color-hover);
 	border-bottom-width: 2px;
 	border-radius: var(--radio-group-button--border-radius);
@@ -128,6 +130,11 @@ function onUpdate() {
 		background-color: var(--radio-group-button--background-color-hover);
 	}
 
+	&:active:not(.radioGroupButton_disabled) {
+		// TODO: add to theming with animation initiative
+		transform: scale(0.985);
+	}
+
 	&:focus-within {
 		--radio-group-button--border-width: 2px;
 		--radio-group-button--padding: 0px;
@@ -143,7 +150,7 @@ function onUpdate() {
 }
 
 .radioGroupButton__label {
-	font-weight: bold;
+	font-weight: var(--font-weight-element, bold);
 }
 
 .radioGroupButton_disabled {

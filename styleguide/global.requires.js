@@ -10,6 +10,7 @@ import { isA11yActivation } from '../src/functions/a11y/index.ts'
 import { spawnDialog } from '../src/functions/dialog/index.ts'
 import { emojiAddRecent, emojiSearch, EmojiSkinTone, getCurrentSkinTone, setCurrentSkinTone } from '../src/functions/emoji/index.ts'
 import { usernameToColor } from '../src/functions/usernameToColor/index.ts'
+import { mockWebDav } from './webdav.mock.js'
 
 import 'regenerator-runtime/runtime.js'
 import 'core-js/stable/index.js'
@@ -28,13 +29,55 @@ const USER_GROUPS = [
  * @param {object} error Axios error
  */
 function mockRequests(error) {
-	const { request } = error
+	const { request, config } = error
 	let data = null
+
+	// Failures without a response, like aborted requests, cannot be mocked
+	if (!request?.responseURL) {
+		return Promise.reject(error)
+	}
+
+	// Mock resolved link references for NcRichText
+	const resolveReferences = request.responseURL.match(/references\/resolve(Public)?\?/)
+	if (resolveReferences) {
+		const referenceValue = new URL(request.responseURL).searchParams.get('reference')
+		data = {
+			references: {
+				[referenceValue]: {
+					richObjectType: 'open-graph',
+					openGraphObject: {
+						id: referenceValue,
+						name: 'Name for the resolved reference',
+						description: 'Description for the resolved reference',
+						thumb: 'favicon-touch.png',
+						link: referenceValue,
+					},
+					accessible: true,
+				},
+			},
+		}
+	}
 
 	// Mock requesting groups
 	const requestGroups = request.responseURL.match(/cloud\/groups\/details\?search=([^&]*)&limit=\d+$/)
 	if (requestGroups) {
 		data = { groups: USER_GROUPS.filter((e) => !requestGroups[1] || e.displayname.startsWith(requestGroups[1]) || e.id.startsWith(requestGroups[1])) }
+	}
+
+	const requestPasswordPolicy = request.responseURL.match(/apps\/password_policy\/api\/v1\/validate/)
+	if (requestPasswordPolicy) {
+		const payload = typeof config.data === 'string' ? JSON.parse(config.data) : config.data
+
+		if (payload.password.length < 12) {
+			data = {
+				passed: false,
+				reason: 'Password needs to be at least 12 characters long',
+			}
+		} else {
+			data = {
+				passed: true,
+			}
+		}
 	}
 
 	if (data) {
@@ -44,6 +87,9 @@ function mockRequests(error) {
 }
 
 axios.interceptors.response.use((r) => r, (e) => mockRequests(e))
+
+// Fake the WebDAV endpoints used for uploading files
+mockWebDav()
 
 // app name fallback
 window.appName = 'nextcloud-vue'

@@ -1,4 +1,3 @@
-# 
 # Translators:
 # Joas Schilling, 2025
 # Priit Jõerüüt <transifex@joeruut.com>, 2026
@@ -49,6 +48,11 @@ msgstr "Mistahes link"
 msgid "Anything shared with the same group of people will show up here"
 msgstr "Siin kuvatakse kõik, mida jagatakse sama kasutajagrupiga"
 
+#. TRANSLATORS: State of the current upload - chunks of the uploaded files are
+#. being assembled into the final file
+msgid "assembling"
+msgstr "koostan üleslaaditud sisu üheks failiks"
+
 msgid "Avatar of {displayName}"
 msgstr "Tunnuspilt: {displayName}"
 
@@ -87,6 +91,9 @@ msgstr "Katkesta"
 
 msgid "Cancel changes"
 msgstr "Tühista muudatused"
+
+msgid "Cancel uploads"
+msgstr "Katkesta üleslaadimised"
 
 msgid "Change name"
 msgstr "Muuda nime"
@@ -181,6 +188,9 @@ msgstr "ära sega"
 msgid "Edit item"
 msgstr "Muuda objekti"
 
+msgid "Edit profile"
+msgstr "Muuda profiili"
+
 msgid "Emoji picker"
 msgstr "Emojide valija"
 
@@ -204,6 +214,9 @@ msgstr ""
 #. TRANSLATORS: Escape key on keyboard
 msgid "Escape"
 msgstr "Esc-klahv"
+
+msgid "Estimating …"
+msgstr "Hindan…"
 
 msgid "External documentation"
 msgstr "Dokumentatsioon välises allikas"
@@ -254,6 +267,9 @@ msgstr "Suurenda minuteid"
 msgid "Increment seconds"
 msgstr "Suurenda sekundeid"
 
+msgid "Invalid date"
+msgstr "Vigane kuupäev"
+
 msgid "invisible"
 msgstr "nähtamatu"
 
@@ -272,6 +288,15 @@ msgstr "Laadi veel „{options}“"
 #. TRANSLATORS: The button is in a loading state
 msgid "Loading …"
 msgstr "Laadin…"
+
+msgid "Loading actions"
+msgstr "Laadin tegevusi"
+
+msgid "Loading profile"
+msgstr "Laadin profiili"
+
+msgid "Local time: {time}"
+msgstr "Kohalik aeg: {time}"
 
 #. TRANSLATORS: A color name for RGB(45, 115, 190)
 msgid "Mariner"
@@ -305,6 +330,9 @@ msgstr "Rohkem valikuid"
 
 msgid "Neutral skin color"
 msgstr "Kesta neutraalne toon"
+
+msgid "New"
+msgstr "Uus"
 
 msgid "Next"
 msgstr "Edasi"
@@ -385,6 +413,10 @@ msgstr "Salasõna on turvaline"
 msgid "Pause slideshow"
 msgstr "Slaidiesitluse paus"
 
+#. TRANSLATORS: State of the current upload - it is paused
+msgid "paused"
+msgstr "peatatud"
+
 msgid "People & Body"
 msgstr "Inimesed ja keha"
 
@@ -414,6 +446,9 @@ msgstr "Eelmine kuu"
 
 msgid "Previous year"
 msgstr "Eelmine aasta"
+
+msgid "Profile of {user}"
+msgstr "Kasutaja profiil: {user}"
 
 msgid "Provider icon"
 msgstr "Teenusepakkuja ikoon"
@@ -494,6 +529,9 @@ msgstr "Vali aasta"
 msgid "Selected"
 msgstr "Valitud"
 
+msgid "Send message"
+msgstr "Saada sõnum"
+
 msgid "Settings"
 msgstr "Seadistused"
 
@@ -528,6 +566,9 @@ msgstr "Smailid ja emotsioonid"
 #. TRANSLATORS: Space key on keyboard
 msgid "Space"
 msgstr "Tühikuklahv"
+
+msgid "Start call"
+msgstr "Helista"
 
 msgid "Start slideshow"
 msgstr "Alusta slaidiesitust"
@@ -581,11 +622,20 @@ msgstr "Laadi failid üles"
 msgid "Upload folder"
 msgstr "Laadi kaust üles"
 
+msgid "Upload from device"
+msgstr "Laadi seadmest üles"
+
+msgid "Upload progress"
+msgstr "Üleslaadimise edenemine"
+
 msgid "Uploading …"
 msgstr "Üleslaadimisel…"
 
 msgid "User status: {status}"
 msgstr "Kasutaja olek: {status}"
+
+msgid "View profile"
+msgstr "Vaata profiili"
 
 msgid "View team"
 msgstr "Vaata tiimi"
@@ -599,6 +649,9 @@ msgstr "Viskikarva kollakaspruun"
 
 msgid "White"
 msgstr "Valge"
+
+msgid "Widget height"
+msgstr "Vidina kõrgus"
 
 msgid "Write a message …"
 msgstr "Koosta sõnum…"

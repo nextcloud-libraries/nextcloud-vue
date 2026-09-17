@@ -322,6 +322,7 @@ Just set the `pinned` prop.
 				:class="{
 					'app-navigation-entry--editing': editingActive,
 					'app-navigation-entry--deleted': undo,
+					'app-navigation-entry--legacy': isLegacy34,
 					active: (to && isActive) || active,
 				}">
 				<!-- Icon and name -->
@@ -391,7 +392,7 @@ Just set the `pinned` prop.
 						:open="menuOpen"
 						:forceMenu="forceMenu"
 						:defaultIcon="menuIcon"
-						:variant="(to && isActive) || active ? 'tertiary-on-primary' : 'tertiary'"
+						variant="tertiary"
 						@update:open="onMenuToggle">
 						<template #icon>
 							<!-- @slot Slot for the custom menu icon -->
@@ -437,6 +438,7 @@ Just set the `pinned` prop.
 </template>
 
 <script>
+import { emit } from '@nextcloud/event-bus'
 import Pencil from 'vue-material-design-icons/Pencil.vue'
 import Undo from 'vue-material-design-icons/Undo.vue'
 import NcAppNavigationIconCollapsible from './NcAppNavigationIconCollapsible.vue'
@@ -444,6 +446,7 @@ import NcInputConfirmCancel from './NcInputConfirmCancel.vue'
 import { useIsMobile } from '../../composables/useIsMobile/index.js'
 import { t } from '../../l10n.ts'
 import { createElementId } from '../../utils/createElementId.ts'
+import { isLegacy34 } from '../../utils/legacy.ts'
 import NcActionButton from '../NcActionButton/index.js'
 import NcActions from '../NcActions/index.js'
 import NcLoadingIcon from '../NcLoadingIcon/index.ts'
@@ -663,6 +666,7 @@ export default {
 	setup() {
 		return {
 			isMobile: useIsMobile(),
+			isLegacy34,
 		}
 	},
 
@@ -731,7 +735,7 @@ export default {
 		 * Handle link click
 		 *
 		 * @param {PointerEvent} event - Native click event
-		 * @param {Function} [navigate] - VueRouter link's navigate if any
+		 * @param {(event: PointerEvent) => void} [navigate] - VueRouter link's navigate if any
 		 * @param {string} [routerLinkHref] - VueRouter link's href
 		 */
 		onClick(event, navigate, routerLinkHref) {
@@ -745,6 +749,10 @@ export default {
 			if (routerLinkHref) {
 				navigate?.(event)
 				event.preventDefault()
+				// On mobile, close app-navigation when navigating so it doesn't overlay content
+				if (this.isMobile) {
+					emit('toggle-navigation', { open: false })
+				}
 			}
 		},
 
@@ -791,16 +799,20 @@ export default {
 		 * @param {Event} e the keydown event
 		 */
 		handleTab(e) {
-			// If there is no actions menu, do nothing.
-			if (!this.$refs.actions) {
+			if (this.editingActive) {
 				return
 			}
-			if (this.focused) {
+
+			const actionsContainer = this.$el?.querySelector('.app-navigation-entry__utils')
+			if (!actionsContainer) {
+				return
+			}
+
+			const focusableElement = actionsContainer.querySelector('button')
+			if (this.focused && focusableElement) {
 				e.preventDefault()
-				this.$refs.actions.$refs.triggerButton.$el.focus()
+				focusableElement.focus()
 				this.focused = false
-			} else {
-				this.$refs.actions.$refs.triggerButton.$el.blur()
 			}
 		},
 

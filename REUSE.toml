@@ -6,7 +6,7 @@ SPDX-PackageSupplier = "Nextcloud GmbH <https://nextcloud.com/impressum/>"
 SPDX-PackageDownloadLocation = "https://github.com/nextcloud-libraries/nextcloud-vue"
 
 [[annotations]]
-path = ["package.json", "package-lock.json", ".github/pull_request_template.md"]
+path = ["package.json", "package-lock.json", ".github/pull_request_template.md", ".devcontainer/devcontainer-lock.json"]
 precedence = "aggregate"
 SPDX-FileCopyrightText = "Nextcloud GmbH and Nextcloud contributors"
 SPDX-License-Identifier = "AGPL-3.0-or-later"

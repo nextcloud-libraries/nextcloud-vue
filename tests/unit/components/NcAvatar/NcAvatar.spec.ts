@@ -26,7 +26,7 @@ describe('NcAvatar.vue', () => {
 		await nextTick()
 
 		expect(wrapper.find('.avatardiv__user-status').exists()).toBe(true)
-		expect(wrapper.find('.action-item__menutoggle').attributes('aria-label')).toBe('Avatar of J. Doe, online')
+		expect(wrapper.find('.avatar-profile-popover__trigger').attributes('aria-label')).toBe('Avatar of J. Doe, online')
 	})
 
 	it('aria label is set to include status even if status is do-not-disturb', async () => {
@@ -47,10 +47,10 @@ describe('NcAvatar.vue', () => {
 		await nextTick()
 
 		expect(wrapper.find('.avatardiv__user-status').exists()).toBe(true)
-		expect(wrapper.find('.action-item__menutoggle').attributes('aria-label')).toBe('Avatar of J. Doe, do not disturb')
+		expect(wrapper.find('.avatar-profile-popover__trigger').attributes('aria-label')).toBe('Avatar of J. Doe, do not disturb')
 	})
 
-	it('aria label is does not include status if status not shown', async () => {
+	it('aria label does not include status if status not shown', async () => {
 		const status = {
 			icon: '',
 			status: 'online',
@@ -69,7 +69,7 @@ describe('NcAvatar.vue', () => {
 		await nextTick()
 
 		expect(wrapper.find('.avatardiv__user-status').exists()).toBe(false)
-		expect(wrapper.find('.action-item__menutoggle').attributes('aria-label')).toBe('Avatar of J. Doe')
+		expect(wrapper.find('.avatar-profile-popover__trigger').attributes('aria-label')).toBe('Avatar of J. Doe')
 	})
 
 	it('should display initials for user id', async () => {
@@ -100,6 +100,7 @@ describe('NcAvatar.vue', () => {
 			displayName             | initials | case
 			${''}                   | ${'?'}   | ${'empty user'}
 			${'Jane Doe'}           | ${'JD'}  | ${'display name property'}
+			${'Jane Doe !'}         | ${'JD'}  | ${'trailing space before special character'}
 			${'Jane (Doe)'}         | ${'JD'}  | ${'special characters in name'}
 			${'jane doe'}           | ${'JD'}  | ${'lower case name'}
 			${'Jane Some Name Doe'} | ${'JD'}  | ${'middle names'}
@@ -153,7 +154,7 @@ describe('NcAvatar.vue', () => {
 			await nextTick()
 
 			expect(wrapper.find('img').exists()).toBeTruthy()
-			expect(wrapper.find('img').attributes('src')).toMatch(/avatar\/user1\/64$/)
+			expect(wrapper.find('img').attributes('src')).toMatch(/avatar\/user1\/64\?guestFallback=true$/)
 		})
 
 		it('should render image with avatar url pointing to a user', async () => {
@@ -219,6 +220,35 @@ describe('NcAvatar.vue', () => {
 			})
 
 			expect(wrapper.find('img').exists()).toBeFalsy()
+		})
+
+		describe('Variant selection', () => {
+			// Hardcoded descriptors sent everything above 1x to the 512px file.
+			it.each([
+				[22, '4.364x', '23.273x'],
+				[32, '3x', '16x'],
+				[40, '2.4x', '12.8x'],
+				[64, '1.5x', '8x'],
+			])('describes both variants relative to a %ipx avatar', async (size, small, large) => {
+				const wrapper = mount(NcAvatar, {
+					props: { displayName: 'Alice', user: 'alice', size },
+				})
+				await nextTick()
+
+				const srcset = wrapper.find('img').attributes('srcset')
+				expect(srcset).toContain(`/avatar/alice/64?guestFallback=true ${small}`)
+				expect(srcset).toContain(`/avatar/alice/512?guestFallback=true ${large}`)
+			})
+
+			it('offers no second variant above 64px, where the large one is used directly', async () => {
+				const wrapper = mount(NcAvatar, {
+					props: { displayName: 'Alice', user: 'alice', size: 128 },
+				})
+				await nextTick()
+
+				expect(wrapper.find('img').attributes('src')).toContain('/avatar/alice/512')
+				expect(wrapper.find('img').attributes('srcset')).toBeUndefined()
+			})
 		})
 	})
 })

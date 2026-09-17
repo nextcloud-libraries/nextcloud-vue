@@ -189,7 +189,7 @@ export default {
 </script>
 <style lang="scss" scoped>
 	h5 {
-		font-weight: bold;
+		font-weight: var(--font-weight-heading, bold);
 		margin: 40px 0 20px;
 	}
 
@@ -363,11 +363,12 @@ export default {
 		},
 
 		/**
-		 * The containing element for the menu popover
+		 * The containing element or selector for the tribute (menu popover)
+		 * Defaults to `body` element
 		 */
 		menuContainer: {
-			type: Element,
-			default: () => document.body,
+			type: [String, Element, null],
+			default: null,
 		},
 
 		/**
@@ -565,11 +566,6 @@ export default {
 
 		// Update default value
 		this.updateContent(this.modelValue)
-
-		// Tribute.js library ensures that `el.contentEditable = true` when attaching to element.
-		// This overwrites the template binding.
-		// Set the contenteditable attribute to actual value afterward
-		this.$refs.contenteditable.contentEditable = this.contenteditableAttributeValue
 	},
 
 	beforeUnmount() {
@@ -686,15 +682,26 @@ export default {
 				})
 			}
 
+			// Resolve container for Tribute.js to be mounted to (default - `null`)
+			const menuContainer = (typeof this.menuContainer === 'string')
+				? document.querySelector(this.menuContainer)
+				: this.menuContainer
+
 			this.tribute = new Tribute({
 				collection: tributesCollection,
 				// FIXME: tributejs doesn't support allowSpaces as a collection option, only as a global one
 				// Requires to fork a library to allow spaces only in the middle of mentions ('@' trigger)
 				allowSpaces: false,
 				// Where to inject the menu popup
-				menuContainer: this.menuContainer,
+				menuContainer,
 			})
 			this.tribute.attach(this.$refs.contenteditable)
+
+			// Tribute.js library v5.1.3 ensures that `el.contentEditable = true` when attaching to element.
+			// This overwrites the template binding.
+			// Set the contenteditable attribute to actual value afterward
+			// TODO remove when Tribute.js library v5.1.4 is published on npm (or fork it)
+			this.$refs.contenteditable.contentEditable = this.contenteditableAttributeValue
 		},
 
 		getLink(item) {
@@ -815,7 +822,7 @@ export default {
 		/**
 		 * Update the value text from the provided html
 		 *
-		 * @param {string} htmlOrText the html content (or raw text with @mentions)
+		 * @param {string} htmlOrText - The html content (or raw text with \@mentions)
 		 */
 		updateValue(htmlOrText) {
 			// Browsers keep <br> after erasing contenteditable
@@ -1061,7 +1068,7 @@ export default {
 		inset-block-start: -10px;
 		line-height: 1.5; // minimum allowed line height for accessibility
 		font-size: 13px; // minimum allowed font size for accessibility
-		font-weight: 500;
+		font-weight: var(--font-weight-element, 500);
 		border-radius: var(--default-grid-baseline) var(--default-grid-baseline) 0 0;
 		background-color: var(--color-main-background);
 		padding-inline: 5px;

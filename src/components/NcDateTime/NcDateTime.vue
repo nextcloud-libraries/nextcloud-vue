@@ -82,7 +82,7 @@ It is also possible to disable relative time by setting the `relativeTime` prope
 </script>
 <style>
 h4 {
-	font-weight: bold;
+	font-weight: var(--font-weight-heading, bold);
 	margin-top: 12px;
 }
 </style>

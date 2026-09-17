@@ -1,11 +1,10 @@
-# 
 # Translators:
-# Joas Schilling, 2023
-# Transifex Bot <>, 2023
+# Joas Schilling, 2025
+# Balázs Meskó <meskobalazs@mailbox.org>, 2026
 # 
 msgid ""
 msgstr ""
-"Last-Translator: Transifex Bot <>, 2023\n"
+"Last-Translator: Balázs Meskó <meskobalazs@mailbox.org>, 2026\n"
 "Language-Team: Hungarian (Hungary) (https://app.transifex.com/nextcloud/teams/64236/hu_HU/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Language: hu_HU\n"
@@ -17,23 +16,34 @@ msgstr "{tag} (láthatatlan)"
 msgid "{tag} (restricted)"
 msgstr "{tag} (korlátozott)"
 
+msgid "A color with a HEX value {hex}"
+msgstr "Szín ezzel a HEX értékkel: {hex}"
+
 msgid "a few seconds ago"
-msgstr ""
+msgstr "néhány másodperce"
+
+#. TRANSLATORS: A color name for RGB(110, 166, 143)
+msgid "Acapulco"
+msgstr "Acapulco"
 
 msgid "Actions"
 msgstr "Műveletek"
 
-msgid "Actions for item with name \"{name}\""
-msgstr ""
-
 msgid "Activities"
 msgstr "Tevékenységek"
+
+msgid "Add to a project"
+msgstr "Hozzáadás egy projekthez"
+
+#. TRANSLATORS: Alt key on keyboard (Windows/Linux)
+msgid "Alt"
+msgstr "Alt"
 
 msgid "Animals & Nature"
 msgstr "Állatok és természet"
 
 msgid "Any link"
-msgstr ""
+msgstr "Bármely hivatkozás"
 
 msgid "Anything shared with the same group of people will show up here"
 msgstr "Minden, amit ugyanazzal a csoporttal oszt meg, itt fog megjelenni"
@@ -44,32 +54,59 @@ msgstr "{displayName} profilképe"
 msgid "Avatar of {displayName}, {status}"
 msgstr "{displayName} profilképe, {status}"
 
+#. TRANSLATORS: User status if the user is currently away from keyboard
+msgid "away"
+msgstr "távol"
+
 msgid "Back"
-msgstr ""
+msgstr "Vissza"
 
 msgid "Back to provider selection"
-msgstr ""
+msgstr "Vissza a szolgáltatóválasztáshoz"
+
+msgid "Black"
+msgstr "Fekete"
+
+#. TRANSLATORS: A color name for RGB(91, 100, 179)
+msgid "Blue Violet"
+msgstr "Kék ibolya"
+
+#. TRANSLATORS: A color name for RGB(55, 148, 172)
+msgid "Boston Blue"
+msgstr "Boston kék"
+
+msgid "busy"
+msgstr "foglalt"
+
+msgid "Calendar icon"
+msgstr "Naptárikon"
+
+msgid "Cancel"
+msgstr "Mégse"
 
 msgid "Cancel changes"
 msgstr "Változtatások elvetése"
 
 msgid "Change name"
-msgstr ""
+msgstr "Név módosítása"
 
 msgid "Choose"
 msgstr "Válassszon"
 
 msgid "Clear search"
-msgstr ""
+msgstr "Keresés törlése"
+
+msgid "Clear selected"
+msgstr "Kijelölés törlése"
 
 msgid "Clear text"
 msgstr "Szöveg törlése"
 
+msgid "Clear value"
+msgstr "Érték törlése"
+
 msgid "Close"
 msgstr "Bezárás"
-
-msgid "Close modal"
-msgstr "Ablak bezárása"
 
 msgid "Close navigation"
 msgstr "Navigáció bezárása"
@@ -78,33 +115,114 @@ msgid "Close sidebar"
 msgstr "Oldalsáv bezárása"
 
 msgid "Close Smart Picker"
-msgstr ""
+msgstr "Okos választó bezárása"
+
+msgid "Close time Picker"
+msgstr "Időválasztó bezárása"
 
 msgid "Collapse menu"
-msgstr ""
+msgstr "Menü összecsukása"
+
+msgid "Color picker"
+msgstr "Színválasztó"
 
 msgid "Confirm changes"
 msgstr "Változtatások megerősítése"
 
+msgid "Connect items to a project to make them easier to find"
+msgstr ""
+"Kapcsoljon elemeket egy projekthez, hogy könnyebben megtalálhatók legyenek"
+
+msgid "Copied"
+msgstr "Másolva"
+
+msgid "Copy to clipboard"
+msgstr "Vágólapra másolás"
+
+#. TRANSLATORS: Ctrl key on keyboard (Windows/Linux)
+msgid "Ctrl"
+msgstr "Ctrl"
+
 msgid "Custom"
 msgstr "Egyéni"
+
+msgid "Dark skin tone"
+msgstr "Sötét bőrtónus"
+
+msgid "Datepicker input"
+msgstr "Dátumválasztó bemenet"
+
+msgid "Datepicker menu"
+msgstr "Dátumválasztó menü"
+
+msgid "Decrement hours"
+msgstr "Órák csökkentése"
+
+msgid "Decrement minutes"
+msgstr "Percek csökkentése"
+
+msgid "Decrement seconds"
+msgstr "Másodpercek csökkentése"
+
+#. TRANSLATORS: Delete key on keyboard
+msgid "Delete"
+msgstr "Törlés"
+
+#. TRANSLATORS: A color name for RGB(136, 85, 168)
+msgid "Deluge"
+msgstr "Özönvíz"
+
+msgid "Deselect {option}"
+msgstr "{option} kijelölésének megszüntetése"
+
+msgid "do not disturb"
+msgstr "ne zavarjanak"
 
 msgid "Edit item"
 msgstr "Elem szerkesztése"
 
+msgid "Emoji picker"
+msgstr "Emodzsiválasztó"
+
+msgid "Enable interactive view"
+msgstr "Interaktív nézet engedélyezése"
+
+#. TRANSLATORS: Enter key on keyboard
+msgid "Enter"
+msgstr "Enter"
+
 msgid "Enter link"
-msgstr ""
+msgstr "Adja meg a hivatkozást"
 
 msgid ""
 "Error getting related resources. Please contact your system administrator if"
 " you have any questions."
 msgstr ""
+"Hiba a kapcsolódó erőforrások lekérése során. Ha kérdése van, vegye fel a "
+"kapcsolatot a rendszergazdával."
 
-msgid "External documentation for {name}"
-msgstr ""
+#. TRANSLATORS: Escape key on keyboard
+msgid "Escape"
+msgstr "Escape"
+
+msgid "External documentation"
+msgstr "Külső dokumentáció"
+
+msgid "Failed to add the item to the project"
+msgstr "Nem sikerült az elem projekthez adása"
+
+msgid "Failed to create a project"
+msgstr "Nem sikerült a projekt létrehozása"
+
+msgid "Failed to rename the project"
+msgstr "Nem sikerült a projekt átnevezése"
 
 msgid "Favorite"
 msgstr "Kedvenc"
+
+#. TRANSLATORS: A color name for RGB(201, 136, 121)
+msgid "Feldspar"
+msgstr "Földpát"
 
 msgid "Flags"
 msgstr "Zászlók"
@@ -115,56 +233,151 @@ msgstr "Étel és ital"
 msgid "Frequently used"
 msgstr "Gyakran használt"
 
-msgid "Global"
-msgstr "Globális"
-
 msgid "Go back to the list"
 msgstr "Ugrás vissza a listához"
+
+msgid "Gold"
+msgstr "Arany"
+
+msgid "Hide details"
+msgstr "Részletek elrejtése"
 
 msgid "Hide password"
 msgstr "Jelszó elrejtése"
 
-msgid "Load more \"{options}\"\""
-msgstr ""
+msgid "Increment hours"
+msgstr "Órák növelése"
 
-msgid "Message limit of {count} characters reached"
-msgstr "{count} karakteres üzenetkorlát elérve"
+msgid "Increment minutes"
+msgstr "Percek növelése"
+
+msgid "Increment seconds"
+msgstr "Másodpercek növelése"
+
+msgid "invisible"
+msgstr "láthatatlan"
+
+msgid "Keyboard navigation help"
+msgstr "Billentyűzetes navigáció súgója"
+
+msgid "Keyboard shortcuts"
+msgstr "Gyorsbillentyűk"
+
+msgid "Light skin tone"
+msgstr "Világos bőrtónus"
+
+msgid "Load more \"{options}\""
+msgstr "További „{options}” betöltése"
+
+#. TRANSLATORS: The button is in a loading state
+msgid "Loading …"
+msgstr "Betöltés…"
+
+#. TRANSLATORS: A color name for RGB(45, 115, 190)
+msgid "Mariner"
+msgstr "Tengerész"
+
+msgid "Medium dark skin tone"
+msgstr "Közepesen sötét bőrtónus"
+
+msgid "Medium light skin tone"
+msgstr "Közepesen világos bőrtónus"
+
+msgid "Medium skin tone"
+msgstr "Közepes bőrtónus"
+
+msgid "Message limit of %n character reached"
+msgid_plural "Message limit of %n characters reached"
+msgstr[0] "%n karakteres üzenetkorlát elérve"
+msgstr[1] "%n karakteres üzenetkorlát elérve"
+
+msgid "Month picker"
+msgstr "Hónapválasztó"
+
+msgid "Month picker overlay"
+msgstr "Hónapválasztó átfedés"
 
 msgid "More items …"
-msgstr "További elemek..."
+msgstr "További elemek…"
 
 msgid "More options"
-msgstr ""
+msgstr "További lehetőségek"
+
+msgid "Neutral skin color"
+msgstr "Semleges bőrszín"
 
 msgid "Next"
 msgstr "Következő"
+
+msgid "Next month"
+msgstr "Következő hónap"
+
+msgid "Next year"
+msgstr "Következő év"
+
+msgid "Nextcloud blue"
+msgstr "Nextcloud kék"
+
+msgid "No color"
+msgstr "Nincs szín"
 
 msgid "No emoji found"
 msgstr "Nem található emodzsi"
 
 msgid "No link provider found"
-msgstr ""
+msgstr "Nem található hivatkozásszolgáltató"
 
 msgid "No results"
 msgstr "Nincs találat"
 
+msgid "Now"
+msgstr "Most"
+
 msgid "Objects"
 msgstr "Tárgyak"
 
-msgid "Open contact menu"
-msgstr ""
+msgid "offline"
+msgstr "offline"
+
+#. TRANSLATORS: A color name for RGB(165, 184, 114)
+msgid "Olivine"
+msgstr "Olivin"
+
+msgid "online"
+msgstr "online"
+
+msgid "Open hours overlay"
+msgstr "Órák átfedésének megnyitása"
 
 msgid "Open link to \"{resourceName}\""
-msgstr ""
+msgstr "A(z) „{resourceName}” hivatkozásának megnyitása"
 
 msgid "Open menu"
-msgstr ""
+msgstr "Menü megnyitása"
+
+msgid "Open minutes overlay"
+msgstr "Percek átfedésének megnyitása"
+
+msgid "Open months overlay"
+msgstr "Hónapok átfedésének megnyitása"
 
 msgid "Open navigation"
 msgstr "Navigáció megnyitása"
 
-msgid "Open settings menu"
-msgstr ""
+msgid "Open seconds overlay"
+msgstr "Másodpercek átfedésének megnyitása"
+
+msgid "Open sidebar"
+msgstr "Oldalsáv megnyitása"
+
+msgid "Open time picker"
+msgstr "Időválasztó megnyitása"
+
+msgid "Open years overlay"
+msgstr "Évek átfedésének megnyitása"
+
+msgid "Options"
+msgstr "Beállítások"
 
 msgid "Password is secure"
 msgstr "A jelszó biztonságos"
@@ -175,47 +388,69 @@ msgstr "Diavetítés szüneteltetése"
 msgid "People & Body"
 msgstr "Emberek és test"
 
-msgid "Pick a date"
-msgstr ""
-
-msgid "Pick a date and a time"
-msgstr ""
-
-msgid "Pick a month"
-msgstr ""
-
-msgid "Pick a time"
-msgstr ""
-
-msgid "Pick a week"
-msgstr ""
-
-msgid "Pick a year"
-msgstr ""
+msgid "Pick"
+msgstr "Válasszon"
 
 msgid "Pick an emoji"
 msgstr "Válasszon egy emodzsit"
 
-msgid "Please select a time zone:"
-msgstr "Válasszon időzónát:"
+msgid "Pick file"
+msgstr "Válasszon fájlt"
+
+msgid "Pick files"
+msgstr "Válasszon fájlokat"
+
+msgid "Pick folder"
+msgstr "Válasszon mappát"
+
+msgid "Please choose a date"
+msgstr "Válasszon egy dátumot"
 
 msgid "Previous"
 msgstr "Előző"
 
+msgid "Previous month"
+msgstr "Előző hónap"
+
+msgid "Previous year"
+msgstr "Előző év"
+
 msgid "Provider icon"
-msgstr ""
+msgstr "Szolgáltató ikonja"
+
+msgid "Purple"
+msgstr "Lila"
 
 msgid "Raw link {options}"
-msgstr ""
+msgstr "Nyers hivatkozás: {options}"
 
 msgid "Related resources"
 msgstr "Kapcsolódó erőforrások"
 
+msgid "Related team resources"
+msgstr "Kapcsolódó csapaterőforrások"
+
+msgid "Rename project"
+msgstr "Projekt átnevezése"
+
+#. TRANSLATORS: A color name for RGB(191, 103, 139)
+msgid "Rosy brown"
+msgstr "Rózsás barna"
+
+msgid "Save changes"
+msgstr "Változtatások mentése"
+
 msgid "Search"
 msgstr "Keresés"
 
+msgid "Search …"
+msgstr "Keresés…"
+
 msgid "Search emoji"
-msgstr ""
+msgstr "Emodzsi keresése"
+
+msgid "Search for time zone"
+msgstr "Időzóna keresése"
 
 msgid "Search results"
 msgstr "Találatok"
@@ -223,17 +458,41 @@ msgstr "Találatok"
 #. FOR TRANSLATORS: If possible in your language an even shorter version of 'a
 #. few seconds ago'
 msgid "sec. ago"
-msgstr ""
+msgstr "másodperce"
 
 #. FOR TRANSLATORS: Shorter version of 'a few seconds ago'
 msgid "seconds ago"
-msgstr ""
+msgstr "másodperce"
 
 msgid "Select a tag"
 msgstr "Válasszon címkét"
 
+msgid "Select date"
+msgstr "Válasszon dátumot"
+
+msgid "Select date and time"
+msgstr "Válasszon dátumot és időt"
+
+msgid "Select month"
+msgstr "Válasszon hónapot"
+
 msgid "Select provider"
-msgstr ""
+msgstr "Válasszon szolgáltatót"
+
+msgid "Select time"
+msgstr "Válasszon időt"
+
+msgid "Select time range"
+msgstr "Válasszon időszakot"
+
+msgid "Select week"
+msgstr "Válasszon hetet"
+
+msgid "Select year"
+msgstr "Válasszon évet"
+
+msgid "Selected"
+msgstr "Kijelölve"
 
 msgid "Settings"
 msgstr "Beállítások"
@@ -241,29 +500,68 @@ msgstr "Beállítások"
 msgid "Settings navigation"
 msgstr "Navigáció a beállításokban"
 
+#. TRANSLATORS: Shift key on keyboard
+msgid "Shift"
+msgstr "Shift"
+
+msgid "Show details"
+msgstr "Részletek megjelenítése"
+
 msgid "Show password"
 msgstr "Jelszó megjelenítése"
 
+msgid "Skin tone"
+msgstr "Bőrtónus"
+
+msgid "Skip to app navigation"
+msgstr "Ugrás az alkalmazásnavigációhoz"
+
+msgid "Skip to main content"
+msgstr "Ugrás a fő tartalomhoz"
+
 msgid "Smart Picker"
-msgstr ""
+msgstr "Okos választó"
 
 msgid "Smileys & Emotion"
 msgstr "Mosolyok és érzelmek"
+
+#. TRANSLATORS: Space key on keyboard
+msgid "Space"
+msgstr "Szóköz"
 
 msgid "Start slideshow"
 msgstr "Diavetítés indítása"
 
 msgid "Start typing to search"
-msgstr ""
+msgstr "Kezdjen gépelni a kereséshez"
 
 msgid "Submit"
 msgstr "Beküldés"
 
+msgid "Switch AM/PM mode"
+msgstr "Váltás de./du. módra"
+
 msgid "Symbols"
 msgstr "Szimbólumok"
 
+#. TRANSLATORS: Tab key on keyboard
+msgid "Tab"
+msgstr "Tab"
+
+msgid "Time picker"
+msgstr "Időválasztó"
+
+msgid "Time zone"
+msgstr "Időzóna"
+
+msgid "Toggle overlay"
+msgstr "Átfedés be/ki"
+
 msgid "Travel & Places"
 msgstr "Utazás és helyek"
+
+msgid "Type to search for existing projects"
+msgstr "Gépeljen a meglévő projektek kereséséhez"
 
 msgid "Type to search time zone"
 msgstr "Gépeljen az időzóna kereséséhez"
@@ -274,9 +572,39 @@ msgstr "A csoport nem kereshető"
 msgid "Undo changes"
 msgstr "Változtatások visszavonása"
 
-msgid ""
-"Write message, use \"@\" to mention someone, use \":\" for emoji "
-"autocompletion …"
-msgstr ""
-"Írjon egy üzenetet, használja a „@”-ot valaki megemlítéséhet, illetve a "
-"„:”-ot az emodzsik automatikus kiegészítéséhez…"
+msgid "Upload file"
+msgstr "Fájl feltöltése"
+
+msgid "Upload files"
+msgstr "Fájlok feltöltése"
+
+msgid "Upload folder"
+msgstr "Mappa feltöltése"
+
+msgid "Uploading …"
+msgstr "Feltöltés…"
+
+msgid "User status: {status}"
+msgstr "Felhasználó állapota: {status}"
+
+msgid "View team"
+msgstr "Csapat megtekintése"
+
+msgid "W"
+msgstr "W"
+
+#. TRANSLATORS: A color name for RGB(211, 169, 103)
+msgid "Whiskey"
+msgstr "Whiskey"
+
+msgid "White"
+msgstr "Fehér"
+
+msgid "Write a message …"
+msgstr "Írjon egy üzenetet…"
+
+msgid "Year picker"
+msgstr "Évválasztó"
+
+msgid "Year picker overlay"
+msgstr "Évválasztó átfedés"

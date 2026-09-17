@@ -90,6 +90,27 @@ You can also test if the design still works with a legacy Nextcloud version by s
 NEXTCLOUD_LEGACY=y npm run styleguide
 ```
 
+#### Unit tests
+
+```sh
+npm run test
+```
+
+#### Component tests
+
+
+> [!TIP]
+> We use Playwright for component tests.
+>
+> If you don't meet the [system requirements](https://playwright.dev/docs/intro#system-requirements),
+> try the provided [Development Container](.devcontainer/devcontainer.json).
+>
+> It also matches the CI environment, so snapshots taken with it are less likely to break in CI.
+
+```sh
+npm run test:component # or test:component:gui
+```
+
 #### ☁️ Development with Nextcloud apps
 
 To test or debug `@nextcloud/vue` in Nextcloud app you need to [pack](https://docs.npmjs.com/cli/v11/commands/npm-pack) the library and **install** it in the app.

@@ -29,6 +29,16 @@ defineOptions({ inheritAttrs: false })
  */
 const showModal = defineModel<boolean>('show', { default: true })
 
+/**
+ * Whether the slideshow is running.
+ *
+ * Bind it to start or stop the slideshow from outside, or to follow the
+ * play / pause button. It resets to `false` when the last slide is reached.
+ *
+ * @since 9.13.0
+ */
+const runSlideshow = defineModel<boolean>('slideshowRunning', { default: false })
+
 const props = withDefaults(defineProps<{
 	/**
 	 * Name to be shown with the modal
@@ -194,10 +204,11 @@ const scopeIdAttrs = useScopeIdAttrs()
 const modalId = createElementId()
 const maskElement = useTemplateRef('mask')
 
-// Set up the focus trap
+// Set up the focus trap (handled by transition event listeners)
 let focusTrap: FocusTrap | undefined
-onMounted(() => useFocusTrap())
+// Ensure focus trap is cleared when the component is unmounted
 onUnmounted(() => clearFocusTrap())
+// and update the focus trap container elements when props change
 watch(() => props.additionalTrapElements, (elements) => {
 	if (focusTrap) {
 		focusTrap.updateContainerElements([maskElement.value!, ...elements])
@@ -212,7 +223,6 @@ const {
 } = useIntervalFn(nextSlide, toRef(() => props.slideshowDelay), { immediate: false })
 
 const animationKey = ref(0)
-const runSlideshow = ref(false)
 watchEffect(() => {
 	if (runSlideshow.value && !props.slideshowPaused) {
 		startSlideshow()
@@ -268,6 +278,13 @@ const numHeaderActions = computed(() => {
 
 	return actions
 })
+
+/**
+ * Whether the modal header is needed.
+ * Only show it when there is a title, outside close button, or header actions —
+ * otherwise the area can be used for the modal content (full height on mobile / full size).
+ */
+const hasHeader = computed(() => props.name.trim() !== '' || numHeaderActions.value > 0)
 
 // for developers we should add a warning if used with invalid props combination
 onMounted(() => {
@@ -375,9 +392,8 @@ function handleClickModalWrapper(event: MouseEvent) {
  * Add focus trap for accessibility.
  */
 async function useFocusTrap() {
-	// Don't do anything if the modal is hidden,
-	// or we have a focus trap already
-	if (!showModal.value || focusTrap) {
+	// Don't do anything if we have a focus trap already
+	if (focusTrap) {
 		return
 	}
 
@@ -393,7 +409,6 @@ async function useFocusTrap() {
 		escapeDeactivates: false,
 		setReturnFocus: props.setReturnFocus,
 	}
-
 	// Init focus trap
 	focusTrap = createFocusTrap([maskElement.value!, ...props.additionalTrapElements], options)
 	focusTrap.activate()
@@ -432,9 +447,10 @@ function clearFocusTrap() {
 				:aria-labelledby="labelId || `modal-name-${modalId}`"
 				:aria-describedby="'modal-description-' + modalId"
 				tabindex="-1">
-				<!-- Header -->
+				<!-- Header (only when there is a title, outside close button, or actions) -->
 				<transition name="fade-visibility" appear>
 					<div
+						v-if="hasHeader"
 						class="modal-header"
 						:data-theme-light="lightBackdrop"
 						:data-theme-dark="!lightBackdrop">
@@ -505,7 +521,10 @@ function clearFocusTrap() {
 						class="modal-wrapper"
 						:class="[
 							`modal-wrapper--${size}`,
-							{ 'modal-wrapper--spread-navigation': spreadNavigation },
+							{
+								'modal-wrapper--spread-navigation': spreadNavigation,
+								'modal-wrapper--no-header': !hasHeader,
+							},
 						]"
 						@mousedown.self="handleClickModalWrapper">
 						<!-- Navigation button -->
@@ -689,11 +708,17 @@ function clearFocusTrap() {
 }
 
 .modal-wrapper {
+	// Space reserved for the modal header; 0 when the header is not shown
+	--modal-header-offset: var(--header-height);
 	display: flex;
 	align-items: center;
 	justify-content: center;
 	width: 100%;
 	height: 100%;
+
+	&--no-header {
+		--modal-header-offset: var(--body-container-margin);
+	}
 
 	/* Navigation buttons */
 	.prev,
@@ -776,9 +801,9 @@ function clearFocusTrap() {
 	&--full {
 		& > .modal-container {
 			width: 100%;
-			height: calc(100% - var(--header-height));
+			height: calc(100% - var(--modal-header-offset));
 			position: absolute;
-			top: var(--header-height);
+			top: var(--modal-header-offset);
 			border-radius: 0;
 		}
 	}
@@ -789,9 +814,9 @@ function clearFocusTrap() {
 			max-width: initial;
 			width: 100%;
 			max-height: initial;
-			height: calc(100% - var(--header-height));
+			height: calc(100% - var(--modal-header-offset));
 			position: absolute;
-			top: var(--header-height);
+			top: var(--modal-header-offset);
 			border-radius: 0;
 		}
 	}
@@ -947,8 +972,10 @@ export default {
 <template>
 	<div>
 		<NcButton @click="isOpen = true">Show Modal</NcButton>
+		<NcButton @click="isOpen = true; running = true">Show Modal and start the slideshow</NcButton>
 		<NcModal
 			v-if="isOpen"
+			v-model:slideshow-running="running"
 			close-button-outside
 			enable-slideshow
 			:has-next="page < lastPage"
@@ -959,6 +986,7 @@ export default {
 			@close="isOpen = false">
 			<div class="modal__content" :style="{ background: currentPage.background }">
 				<p class="model__content-text">{{ currentPage.text }}</p>
+				<p class="model__content-text">{{ running ? 'Slideshow running' : 'Slideshow stopped' }}</p>
 			</div>
 		</NcModal>
 	</div>
@@ -975,6 +1003,7 @@ export default {
 	data() {
 		return {
 			isOpen: false,
+			running: false,
 			page: 0,
 			lastPage: PAGES.length - 1,
 		}
@@ -997,7 +1026,7 @@ export default {
 
 .model__content-text {
 	font-size: 16px;
-	font-weight: bold;
+	font-weight: var(--font-weight-heading, bold);
 }
 </style>
 ```
