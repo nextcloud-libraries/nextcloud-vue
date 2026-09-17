@@ -263,7 +263,6 @@ async function handleConflicts(nodes: string[], currentPath: string): Promise<Re
 		// The conflict picker requires the incoming and the existing nodes to be aligned,
 		// so the existing content has to be filtered to only contain the conflicting nodes.
 		const existingNodes = content.filter((node) => nodes.includes(node.displayname) || nodes.includes(node.basename))
-		// @ts-expect-error -- conflict between versons of dependencies - needs to be fixed in @nextcloud/dialogs
 		const result = await openConflictPicker(basename(currentPath), conflicts, existingNodes, { recursive: props.directory })
 		if (result) {
 			const usedNames = content.map((node) => node.basename)
