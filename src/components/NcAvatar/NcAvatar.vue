@@ -335,6 +335,25 @@ import NcUserStatusIcon from '../NcUserStatusIcon/index.js'
 const browserStorage = getBuilder('nextcloud').persist().build()
 
 /**
+ * How far to stretch the 64px avatar before switching to the 512px one.
+ *
+ * Only those two sizes exist: AvatarController clamps everything else. Without
+ * a tolerance, any display above 1x jumps straight to the 512px file, which is
+ * a few hundred KB for an uploaded photo.
+ */
+const SMALL_VARIANT_UPSCALE = 1.5
+
+/**
+ * Round a density to keep 4.3636... out of the markup.
+ *
+ * @param {number} value the density
+ * @return {number} the rounded density
+ */
+function density(value) {
+	return Number(value.toFixed(3))
+}
+
+/**
  * @param {string} userId The id of the user
  */
 function getUserHasAvatar(userId) {
@@ -986,9 +1005,10 @@ export default {
 
 			if (this.size <= 64) {
 				const avatarUrl = this.avatarUrlGenerator(this.user, 64)
+				// Browsers pick the lowest density at or above their own.
 				const srcset = [
-					avatarUrl + ' 1x',
-					this.avatarUrlGenerator(this.user, 512) + ' 8x',
+					`${avatarUrl} ${density((64 * SMALL_VARIANT_UPSCALE) / this.size)}x`,
+					`${this.avatarUrlGenerator(this.user, 512)} ${density(512 / this.size)}x`,
 				].join(', ')
 
 				this.updateImageIfValid(avatarUrl, srcset)
