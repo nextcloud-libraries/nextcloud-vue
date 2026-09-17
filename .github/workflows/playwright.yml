@@ -21,6 +21,12 @@ jobs:
   playwright-tests:
     timeout-minutes: 60
     runs-on: ubuntu-latest
+    # Ships the browsers and the system libraries they need, which is the
+    # `playwright install --with-deps` step this job used to run. The tag
+    # has to match the `playwright-core` version resolved by the lockfile,
+    # or Playwright downloads a second set of browsers at runtime.
+    container:
+      image: mcr.microsoft.com/playwright:v1.62.1-noble
     strategy:
       fail-fast: false
       matrix:
@@ -49,9 +55,6 @@ jobs:
 
     - name: Install dependencies
       run: npm ci
-
-    - name: Install Playwright browsers
-      run: npx playwright install --with-deps
 
     - name: Run Playwright tests
       run: npm run test:component -- --shard='${{ matrix.shardIndex }}/${{ matrix.shardTotal }}'
