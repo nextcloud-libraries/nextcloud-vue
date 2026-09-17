@@ -17,6 +17,11 @@ on:
 permissions:
   contents: read
 
+# The image's default shell is sh, which has no pipefail and no $SECONDS
+defaults:
+  run:
+    shell: bash
+
 jobs:
   # How far the suite scales across the runner's four cores, and what it
   # costs in flakiness. The whole suite in one job, so nothing but the
