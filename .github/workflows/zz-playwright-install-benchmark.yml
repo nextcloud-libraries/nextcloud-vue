@@ -23,11 +23,12 @@ defaults:
     shell: bash
 
 jobs:
-  # How far the suite scales across the runner's four cores, and what it
-  # costs in flakiness. The whole suite in one job, so nothing but the
-  # worker count differs between the rows.
-  workers:
-    name: workers ${{ matrix.workers }}
+  # Round two said workers scale badly on their own (6m19 / 4m49 / 4m22
+  # for one, two and four) while four separate runners beat two runners
+  # with two workers each. This round asks whether the two stack: more
+  # shards, each using more than one of its four idle cores.
+  shape:
+    name: ${{ matrix.shards }} shards x ${{ matrix.workers }} workers (${{ matrix.shard }})
     timeout-minutes: 60
     runs-on: ubuntu-latest
     container:
@@ -37,39 +38,19 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        workers: [1, 2, 4]
-    steps:
-      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
-        with:
-          persist-credentials: false
-
-      - name: Install dependencies
-        run: npm ci
-
-      - name: Run the whole suite
-        run: |
-          set -o pipefail
-          start=$SECONDS
-          npm run test:component -- --workers=${{ matrix.workers }} --reporter=list 2>&1 | tee run.log || true
-          echo "| ${{ matrix.workers }} worker(s) | $((SECONDS - start))s | $(grep -cE '^\s+✘' run.log || true) failed | $(grep -oE '[0-9]+ flaky' run.log || echo '0 flaky') | $(grep -oE '[0-9]+ passed' run.log | tail -1) |" >> "$GITHUB_STEP_SUMMARY"
-          # The run itself still has to pass, retries included
-          grep -qE '^\s+[0-9]+ failed' run.log && exit 1 || exit 0
-
-  # The two shapes worth comparing end to end: what #8970 lands, and the
-  # one that trades shards for workers so the per-shard setup is paid
-  # half as often.
-  four-shards-one-worker:
-    name: 4 shards x 1 worker (${{ matrix.shard }}/4)
-    timeout-minutes: 60
-    runs-on: ubuntu-latest
-    container:
-      image: mcr.microsoft.com/playwright:v1.62.1-noble
-    env:
-      HOME: /root
-    strategy:
-      fail-fast: false
-      matrix:
-        shard: [1, 2, 3, 4]
+        include:
+          - { shards: 4, workers: 2, shard: 1 }
+          - { shards: 4, workers: 2, shard: 2 }
+          - { shards: 4, workers: 2, shard: 3 }
+          - { shards: 4, workers: 2, shard: 4 }
+          - { shards: 8, workers: 1, shard: 1 }
+          - { shards: 8, workers: 1, shard: 2 }
+          - { shards: 8, workers: 1, shard: 3 }
+          - { shards: 8, workers: 1, shard: 4 }
+          - { shards: 8, workers: 1, shard: 5 }
+          - { shards: 8, workers: 1, shard: 6 }
+          - { shards: 8, workers: 1, shard: 7 }
+          - { shards: 8, workers: 1, shard: 8 }
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
@@ -82,34 +63,6 @@ jobs:
         run: |
           set -o pipefail
           start=$SECONDS
-          npm run test:component -- --workers=1 --shard='${{ matrix.shard }}/4' --reporter=list 2>&1 | tee run.log || true
-          echo "| 4x1 shard ${{ matrix.shard }} | $((SECONDS - start))s | $(grep -oE '[0-9]+ flaky' run.log || echo '0 flaky') |" >> "$GITHUB_STEP_SUMMARY"
-          grep -qE '^\s+[0-9]+ failed' run.log && exit 1 || exit 0
-
-  two-shards-two-workers:
-    name: 2 shards x 2 workers (${{ matrix.shard }}/2)
-    timeout-minutes: 60
-    runs-on: ubuntu-latest
-    container:
-      image: mcr.microsoft.com/playwright:v1.62.1-noble
-    env:
-      HOME: /root
-    strategy:
-      fail-fast: false
-      matrix:
-        shard: [1, 2]
-    steps:
-      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
-        with:
-          persist-credentials: false
-
-      - name: Install dependencies
-        run: npm ci
-
-      - name: Run the shard
-        run: |
-          set -o pipefail
-          start=$SECONDS
-          npm run test:component -- --workers=2 --shard='${{ matrix.shard }}/2' --reporter=list 2>&1 | tee run.log || true
-          echo "| 2x2 shard ${{ matrix.shard }} | $((SECONDS - start))s | $(grep -oE '[0-9]+ flaky' run.log || echo '0 flaky') |" >> "$GITHUB_STEP_SUMMARY"
+          npm run test:component -- --workers=${{ matrix.workers }} --shard='${{ matrix.shard }}/${{ matrix.shards }}' --reporter=list 2>&1 | tee run.log || true
+          echo "| ${{ matrix.shards }}x${{ matrix.workers }} shard ${{ matrix.shard }} | $((SECONDS - start))s | $(grep -oE '[0-9]+ flaky' run.log || echo '0 flaky') | $(grep -oE '[0-9]+ passed' run.log | tail -1) |" >> "$GITHUB_STEP_SUMMARY"
           grep -qE '^\s+[0-9]+ failed' run.log && exit 1 || exit 0
