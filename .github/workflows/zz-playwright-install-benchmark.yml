@@ -1,8 +1,10 @@
 # SPDX-FileCopyrightText: 2026 Nextcloud GmbH and Nextcloud contributors
 # SPDX-License-Identifier: MIT
 #
-# Throwaway workflow: measures four ways of getting Playwright's browsers
-# onto a runner, so the choice is made on numbers rather than folklore.
+# Throwaway workflow. First round measured four ways of getting the
+# browsers onto a runner and the Playwright image won, which is now in
+# #8970. This round measures the worker count, which the config pins to
+# one on CI, and the two shapes that follow from the answer.
 # Delete the branch once the numbers are in.
 
 name: Playwright install benchmark
@@ -15,165 +17,94 @@ on:
 permissions:
   contents: read
 
-env:
-  # One cheap spec, run on all three engines: proves the browsers the
-  # variant installed actually launch, which is the point for the
-  # variants that skip a step
-  SMOKE: tests/component/components/NcAppNavigationSpacer/NcAppNavigationSpacer.spec.ts
-
 jobs:
-  a-baseline:
-    name: A baseline (install --with-deps)
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
-        with:
-          persist-credentials: false
-
-      - name: Read package.json
-        uses: nextcloud-libraries/parse-package-engines-action@122ae05d4257008180a514e1ddeb0c1b9d094bdd # v0.1.0
-        id: versions
-
-      - name: Set up node
-        uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
-        with:
-          node-version: ${{ steps.versions.outputs.node-version }}
-
-      - name: Set up npm
-        run: npm i -g 'npm@${{ steps.versions.outputs.package-manager-version }}'
-
-      - name: Install dependencies
-        run: |
-          start=$SECONDS
-          npm ci
-          echo "A | npm ci | $((SECONDS - start))s" >> "$GITHUB_STEP_SUMMARY"
-
-      - name: Install Playwright browsers
-        run: |
-          start=$SECONDS
-          npx playwright install --with-deps
-          echo "A | playwright install --with-deps | $((SECONDS - start))s" >> "$GITHUB_STEP_SUMMARY"
-
-      - name: Smoke test
-        run: |
-          start=$SECONDS
-          npm run test:component -- "$SMOKE"
-          echo "A | smoke | $((SECONDS - start))s" >> "$GITHUB_STEP_SUMMARY"
-
-  b-cached:
-    name: B cache + install --with-deps
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
-        with:
-          persist-credentials: false
-
-      - name: Read package.json
-        uses: nextcloud-libraries/parse-package-engines-action@122ae05d4257008180a514e1ddeb0c1b9d094bdd # v0.1.0
-        id: versions
-
-      - name: Set up node
-        uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
-        with:
-          node-version: ${{ steps.versions.outputs.node-version }}
-
-      - name: Set up npm
-        run: npm i -g 'npm@${{ steps.versions.outputs.package-manager-version }}'
-
-      - name: Install dependencies
-        run: npm ci
-
-      - name: Resolve the Playwright version
-        id: playwright
-        run: echo "version=$(node -p "require('./node_modules/playwright-core/package.json').version")" >> "$GITHUB_OUTPUT"
-
-      - name: Restore the browsers
-        id: cache
-        uses: actions/cache@0057852bfaa89a56745cba8c7296529d2fc39830 # v4.3.0
-        with:
-          path: ~/.cache/ms-playwright
-          key: ms-playwright-${{ runner.os }}-${{ steps.playwright.outputs.version }}
-
-      - name: Install Playwright browsers
-        run: |
-          start=$SECONDS
-          npx playwright install --with-deps
-          echo "B | cache hit ${{ steps.cache.outputs.cache-hit }} | playwright install --with-deps | $((SECONDS - start))s" >> "$GITHUB_STEP_SUMMARY"
-
-      - name: Smoke test
-        run: |
-          start=$SECONDS
-          npm run test:component -- "$SMOKE"
-          echo "B | smoke | $((SECONDS - start))s" >> "$GITHUB_STEP_SUMMARY"
-
-  c-no-deps:
-    name: C cache + install, no apt
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
-        with:
-          persist-credentials: false
-
-      - name: Read package.json
-        uses: nextcloud-libraries/parse-package-engines-action@122ae05d4257008180a514e1ddeb0c1b9d094bdd # v0.1.0
-        id: versions
-
-      - name: Set up node
-        uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
-        with:
-          node-version: ${{ steps.versions.outputs.node-version }}
-
-      - name: Set up npm
-        run: npm i -g 'npm@${{ steps.versions.outputs.package-manager-version }}'
-
-      - name: Install dependencies
-        run: npm ci
-
-      - name: Resolve the Playwright version
-        id: playwright
-        run: echo "version=$(node -p "require('./node_modules/playwright-core/package.json').version")" >> "$GITHUB_OUTPUT"
-
-      - name: Restore the browsers
-        id: cache
-        uses: actions/cache@0057852bfaa89a56745cba8c7296529d2fc39830 # v4.3.0
-        with:
-          path: ~/.cache/ms-playwright
-          key: ms-playwright-${{ runner.os }}-${{ steps.playwright.outputs.version }}
-
-      - name: Install Playwright browsers
-        run: |
-          start=$SECONDS
-          npx playwright install
-          echo "C | cache hit ${{ steps.cache.outputs.cache-hit }} | playwright install (no apt) | $((SECONDS - start))s" >> "$GITHUB_STEP_SUMMARY"
-
-      # The interesting half of this variant: whether the runner image
-      # already carries what the three engines link against
-      - name: Smoke test
-        run: |
-          start=$SECONDS
-          npm run test:component -- "$SMOKE"
-          echo "C | smoke | $((SECONDS - start))s" >> "$GITHUB_STEP_SUMMARY"
-
-  d-container:
-    name: D playwright container image
+  # How far the suite scales across the runner's four cores, and what it
+  # costs in flakiness. The whole suite in one job, so nothing but the
+  # worker count differs between the rows.
+  workers:
+    name: workers ${{ matrix.workers }}
+    timeout-minutes: 60
     runs-on: ubuntu-latest
     container:
       image: mcr.microsoft.com/playwright:v1.62.1-noble
+    env:
+      HOME: /root
+    strategy:
+      fail-fast: false
+      matrix:
+        workers: [1, 2, 4]
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
           persist-credentials: false
 
       - name: Install dependencies
-        run: |
-          start=$SECONDS
-          npm ci
-          echo "D | npm ci | $((SECONDS - start))s" >> "$GITHUB_STEP_SUMMARY"
+        run: npm ci
 
-      # No install step at all: the image ships the browsers and their
-      # dependencies. The pull shows up as job setup time instead.
-      - name: Smoke test
+      - name: Run the whole suite
         run: |
+          set -o pipefail
           start=$SECONDS
-          HOME=/root npm run test:component -- "$SMOKE"
-          echo "D | smoke | $((SECONDS - start))s" >> "$GITHUB_STEP_SUMMARY"
+          npm run test:component -- --workers=${{ matrix.workers }} --reporter=list 2>&1 | tee run.log || true
+          echo "| ${{ matrix.workers }} worker(s) | $((SECONDS - start))s | $(grep -cE '^\s+✘' run.log || true) failed | $(grep -oE '[0-9]+ flaky' run.log || echo '0 flaky') | $(grep -oE '[0-9]+ passed' run.log | tail -1) |" >> "$GITHUB_STEP_SUMMARY"
+          # The run itself still has to pass, retries included
+          grep -qE '^\s+[0-9]+ failed' run.log && exit 1 || exit 0
+
+  # The two shapes worth comparing end to end: what #8970 lands, and the
+  # one that trades shards for workers so the per-shard setup is paid
+  # half as often.
+  four-shards-one-worker:
+    name: 4 shards x 1 worker (${{ matrix.shard }}/4)
+    timeout-minutes: 60
+    runs-on: ubuntu-latest
+    container:
+      image: mcr.microsoft.com/playwright:v1.62.1-noble
+    env:
+      HOME: /root
+    strategy:
+      fail-fast: false
+      matrix:
+        shard: [1, 2, 3, 4]
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Run the shard
+        run: |
+          set -o pipefail
+          start=$SECONDS
+          npm run test:component -- --workers=1 --shard='${{ matrix.shard }}/4' --reporter=list 2>&1 | tee run.log || true
+          echo "| 4x1 shard ${{ matrix.shard }} | $((SECONDS - start))s | $(grep -oE '[0-9]+ flaky' run.log || echo '0 flaky') |" >> "$GITHUB_STEP_SUMMARY"
+          grep -qE '^\s+[0-9]+ failed' run.log && exit 1 || exit 0
+
+  two-shards-two-workers:
+    name: 2 shards x 2 workers (${{ matrix.shard }}/2)
+    timeout-minutes: 60
+    runs-on: ubuntu-latest
+    container:
+      image: mcr.microsoft.com/playwright:v1.62.1-noble
+    env:
+      HOME: /root
+    strategy:
+      fail-fast: false
+      matrix:
+        shard: [1, 2]
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Run the shard
+        run: |
+          set -o pipefail
+          start=$SECONDS
+          npm run test:component -- --workers=2 --shard='${{ matrix.shard }}/2' --reporter=list 2>&1 | tee run.log || true
+          echo "| 2x2 shard ${{ matrix.shard }} | $((SECONDS - start))s | $(grep -oE '[0-9]+ flaky' run.log || echo '0 flaky') |" >> "$GITHUB_STEP_SUMMARY"
+          grep -qE '^\s+[0-9]+ failed' run.log && exit 1 || exit 0
