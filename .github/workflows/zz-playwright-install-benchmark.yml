@@ -23,46 +23,40 @@ defaults:
     shell: bash
 
 jobs:
-  # Round two said workers scale badly on their own (6m19 / 4m49 / 4m22
-  # for one, two and four) while four separate runners beat two runners
-  # with two workers each. This round asks whether the two stack: more
-  # shards, each using more than one of its four idle cores.
-  shape:
-    name: ${{ matrix.shards }} shards x ${{ matrix.workers }} workers (${{ matrix.shard }})
+  # Round four: what a chromium-only suite would cost and save, the way
+  # server runs it. No container, no install step at all, the runner's
+  # own Chrome through Playwright's `channel`.
+  chrome-only:
+    name: chrome only, ${{ matrix.workers }} worker(s)
     timeout-minutes: 60
     runs-on: ubuntu-latest
-    container:
-      image: mcr.microsoft.com/playwright:v1.62.1-noble
-    env:
-      HOME: /root
     strategy:
       fail-fast: false
       matrix:
-        include:
-          - { shards: 4, workers: 2, shard: 1 }
-          - { shards: 4, workers: 2, shard: 2 }
-          - { shards: 4, workers: 2, shard: 3 }
-          - { shards: 4, workers: 2, shard: 4 }
-          - { shards: 8, workers: 1, shard: 1 }
-          - { shards: 8, workers: 1, shard: 2 }
-          - { shards: 8, workers: 1, shard: 3 }
-          - { shards: 8, workers: 1, shard: 4 }
-          - { shards: 8, workers: 1, shard: 5 }
-          - { shards: 8, workers: 1, shard: 6 }
-          - { shards: 8, workers: 1, shard: 7 }
-          - { shards: 8, workers: 1, shard: 8 }
+        workers: [1, 2]
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
           persist-credentials: false
 
+      - name: Set up node
+        uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
+        with:
+          node-version: 24
+
       - name: Install dependencies
         run: npm ci
 
-      - name: Run the shard
+      # What server does in its own config, applied here for the measurement
+      - name: Point the chromium project at the runner's Chrome
+        run: |
+          sed -i "s/\.\.\.devices\['Desktop Chrome'\],/...devices['Desktop Chrome'], channel: 'chrome',/" playwright.config.ts
+          grep -n "channel" playwright.config.ts
+
+      - name: Run the suite on chromium alone
         run: |
           set -o pipefail
           start=$SECONDS
-          npm run test:component -- --workers=${{ matrix.workers }} --shard='${{ matrix.shard }}/${{ matrix.shards }}' --reporter=list 2>&1 | tee run.log || true
-          echo "| ${{ matrix.shards }}x${{ matrix.workers }} shard ${{ matrix.shard }} | $((SECONDS - start))s | $(grep -oE '[0-9]+ flaky' run.log || echo '0 flaky') | $(grep -oE '[0-9]+ passed' run.log | tail -1) |" >> "$GITHUB_STEP_SUMMARY"
+          npm run test:component -- --project=chromium --workers=${{ matrix.workers }} --reporter=list 2>&1 | tee run.log || true
+          echo "| chrome only, ${{ matrix.workers }} worker(s) | $((SECONDS - start))s | $(grep -oE '[0-9]+ flaky' run.log || echo '0 flaky') | $(grep -oE '[0-9]+ passed' run.log | tail -1) | $(grep -oE '[0-9]+ skipped' run.log | tail -1) |" >> "$GITHUB_STEP_SUMMARY"
           grep -qE '^\s+[0-9]+ failed' run.log && exit 1 || exit 0
