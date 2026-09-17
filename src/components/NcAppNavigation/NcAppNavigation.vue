@@ -201,13 +201,15 @@ watchEffect(() => {
 
 watch(isMobile, (value: boolean) => {
 	open.value = !value
+	// The navigation opens and closes itself with the viewport, and a
+	// consumer tracking its state has no other way to hear about that
+	emit('navigation-toggled', {
+		open: open.value,
+	})
 })
 
 watch(shouldActivateFocusTrap, () => {
 	toggleFocusTrap()
-	emit('navigation-toggled', {
-		open: value,
-	})
 })
 
 onMounted(() => {

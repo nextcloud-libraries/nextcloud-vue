@@ -3,9 +3,9 @@
  * SPDX-License-Identifier: AGPL-3.0-or-later
  */
 
-import { emit } from '@nextcloud/event-bus'
+import { emit, subscribe, unsubscribe } from '@nextcloud/event-bus'
 import { mount } from '@vue/test-utils'
-import { beforeEach, describe, expect, it } from 'vitest'
+import { beforeEach, describe, expect, it, vi } from 'vitest'
 import { nextTick } from 'vue'
 import NcAppNavigation from '../../../../src/components/NcAppNavigation/NcAppNavigation.vue'
 import { resizeWindowWidth } from '../../testing-utils.ts'
@@ -90,6 +90,25 @@ describe('NcAppNavigation.vue', () => {
 			await nextTick()
 
 			expect(wrapper.classes(NAVIGATION_CLOSED__CLASS)).toBeFalsy()
+		})
+
+		it('announces the state it took from the viewport', async () => {
+			// The navigation opens and closes itself with the viewport, and
+			// a consumer tracking its state has no other way to hear that
+			const toggled = vi.fn()
+			subscribe('navigation-toggled', toggled)
+			mount(NcAppNavigation)
+			toggled.mockClear()
+
+			await resizeWindowWidth(1023)
+			await nextTick()
+			expect(toggled).toHaveBeenCalledWith({ open: false })
+
+			await resizeWindowWidth(1024)
+			await nextTick()
+			expect(toggled).toHaveBeenCalledWith({ open: true })
+
+			unsubscribe('navigation-toggled', toggled)
 		})
 
 		it('closes by ESC key on mobile', async () => {
