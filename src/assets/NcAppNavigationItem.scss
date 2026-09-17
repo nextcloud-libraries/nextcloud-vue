@@ -47,6 +47,10 @@
 			}
 		}
 
+		:deep(.icon-collapse) {
+			color: var(--color-main-text) !important;
+		}
+
 		&:not(.app-navigation-entry--editing)::before {
 			content: '';
 			position: absolute;
