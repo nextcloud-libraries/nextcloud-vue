@@ -27,6 +27,11 @@ jobs:
     # or Playwright downloads a second set of browsers at runtime.
     container:
       image: mcr.microsoft.com/playwright:v1.62.1-noble
+    env:
+      # The steps run as root while the runner's own /github/home belongs
+      # to the image's pwuser, and Firefox refuses to launch when $HOME is
+      # owned by somebody else
+      HOME: /root
     strategy:
       fail-fast: false
       matrix:
