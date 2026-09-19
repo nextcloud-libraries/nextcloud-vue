@@ -21,11 +21,22 @@ jobs:
   playwright-tests:
     timeout-minutes: 60
     runs-on: ubuntu-latest
+    # Ships the browsers and the system libraries they need, which is the
+    # `playwright install --with-deps` step this job used to run. The tag
+    # has to match the `playwright-core` version resolved by the lockfile,
+    # or Playwright downloads a second set of browsers at runtime.
+    container:
+      image: mcr.microsoft.com/playwright:v1.62.1-noble
+    env:
+      # The steps run as root while the runner's own /github/home belongs
+      # to the image's pwuser, and Firefox refuses to launch when $HOME is
+      # owned by somebody else
+      HOME: /root
     strategy:
       fail-fast: false
       matrix:
-        shardIndex: [1, 2]
-        shardTotal: [2]
+        shardIndex: [1, 2, 3, 4]
+        shardTotal: [4]
     outputs:
       node-version: ${{ steps.versions.outputs.node-version }}
       package-manager-version: ${{ steps.versions.outputs.package-manager-version }}
@@ -49,9 +60,6 @@ jobs:
 
     - name: Install dependencies
       run: npm ci
-
-    - name: Install Playwright browsers
-      run: npx playwright install --with-deps
 
     - name: Run Playwright tests
       run: npm run test:component -- --shard='${{ matrix.shardIndex }}/${{ matrix.shardTotal }}'
