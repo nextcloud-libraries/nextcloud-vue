@@ -1199,8 +1199,11 @@ export default {
 	}
 }
 
-.nc-select.v-select.select {
-	/* Custom vue-select CSS variables scoped to NcSelect */
+/* Custom vue-select CSS variables scoped to NcSelect */
+/* The select's dropdown may be mounted outside the select. */
+/* Therefore, it does not inherit the variables and requires them on its own */
+.nc-select.v-select.select,
+.nc-select__dropdown.vs__dropdown-menu {
 	/* Search Input */
 	--vs-search-input-color: var(--color-main-text);
 	--vs-search-input-bg: var(--color-main-background);
@@ -1260,6 +1263,9 @@ export default {
 
 	/* Actions */
 	--vs-actions-padding: 0 8px 0 8px;
+}
+
+.nc-select.v-select.select {
 	/* Override default vue-select styles */
 	min-height: calc(var(--default-clickable-area) - 2 * var(--border-width-input, 2px));
 	min-width: 260px;
@@ -1615,17 +1621,6 @@ export default {
 // calculatePosition) scopes it instead, so these styles and CSS variables
 // only affect our menus and never leak to other vue-select instances.
 .nc-select__dropdown.vs__dropdown-menu {
-	--vs-border-color: var(--color-border-maxcontrast);
-	--vs-border-style: solid;
-	--vs-border-radius: var(--border-radius-element);
-	--vs-dropdown-bg: var(--color-main-background);
-	--vs-dropdown-color: var(--color-main-text);
-	--vs-dropdown-option-padding: 8px 20px;
-	--vs-dropdown-option--active-bg: var(--color-background-hover);
-	--vs-dropdown-option--active-color: var(--color-main-text);
-	--vs-dropdown-option--kb-focus-box-shadow: inset 0px 0px 0px 2px var(--color-border-maxcontrast);
-	--vs-dropdown-option--deselect-bg: var(--color-error);
-	--vs-dropdown-option--deselect-color: #fff;
 	border-width: var(--border-width-input-focused) !important;
 	border-color: var(--color-main-text) !important;
 	outline: none !important;
