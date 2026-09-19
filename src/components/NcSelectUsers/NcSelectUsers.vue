@@ -219,7 +219,7 @@ export interface NcSelectUsersModel {
  * If the `multiple` property is set then an array of users is emitted,
  * otherwise a single user data object will be emitted.
  */
-const modelValue = defineModel<NcSelectUsersModel | NcSelectUsersModel[]>('modelValue')
+const modelValue = defineModel<NcSelectUsersModel | NcSelectUsersModel[] | null>('modelValue')
 
 defineProps<{
 	/**
