@@ -48,6 +48,11 @@ msgstr "Aon nasc"
 msgid "Anything shared with the same group of people will show up here"
 msgstr "Taispeánfar aon rud a roinntear leis an ngrúpa céanna daoine anseo"
 
+#. TRANSLATORS: State of the current upload - chunks of the uploaded files are
+#. being assembled into the final file
+msgid "assembling"
+msgstr "ag cóimeáil"
+
 msgid "Avatar of {displayName}"
 msgstr "Avatar de {displayName}"
 
@@ -86,6 +91,9 @@ msgstr "Cealaigh"
 
 msgid "Cancel changes"
 msgstr "Cealaigh athruithe"
+
+msgid "Cancel uploads"
+msgstr "Cealaigh uaslódálacha"
 
 msgid "Change name"
 msgstr "Athrú ainm"
@@ -181,6 +189,9 @@ msgstr "ná cur as"
 msgid "Edit item"
 msgstr "Cuir mír in eagar"
 
+msgid "Edit profile"
+msgstr "Cuir an phróifíl in eagar"
+
 msgid "Emoji picker"
 msgstr "Roghnóir Emoji"
 
@@ -204,6 +215,9 @@ msgstr ""
 #. TRANSLATORS: Escape key on keyboard
 msgid "Escape"
 msgstr "Éalú"
+
+msgid "Estimating …"
+msgstr "Ag déanamh meastacháin …"
 
 msgid "External documentation"
 msgstr "Doiciméadú seachtrach"
@@ -254,6 +268,9 @@ msgstr "Méadaigh nóiméid"
 msgid "Increment seconds"
 msgstr "Méadaigh soicind"
 
+msgid "Invalid date"
+msgstr "Dáta neamhbhailí"
+
 msgid "invisible"
 msgstr "dofheicthe"
 
@@ -272,6 +289,15 @@ msgstr "Luchtaigh tuilleadh \"{options}\""
 #. TRANSLATORS: The button is in a loading state
 msgid "Loading …"
 msgstr "Ag lódáil …"
+
+msgid "Loading actions"
+msgstr "Ag luchtú gníomhartha"
+
+msgid "Loading profile"
+msgstr "Ag luchtú an phróifíle"
+
+msgid "Local time: {time}"
+msgstr "Am áitiúil: {time}"
 
 #. TRANSLATORS: A color name for RGB(45, 115, 190)
 msgid "Mariner"
@@ -308,6 +334,9 @@ msgstr "Tuilleadh roghanna"
 
 msgid "Neutral skin color"
 msgstr "Dath craiceann neodrach"
+
+msgid "New"
+msgstr "Nua"
 
 msgid "Next"
 msgstr "Ar aghaidh"
@@ -388,6 +417,10 @@ msgstr "Tá pasfhocal slán"
 msgid "Pause slideshow"
 msgstr "Cuir taispeántas sleamhnán ar sos"
 
+#. TRANSLATORS: State of the current upload - it is paused
+msgid "paused"
+msgstr "curtha ar sos"
+
 msgid "People & Body"
 msgstr "Daoine & Corp"
 
@@ -417,6 +450,9 @@ msgstr "An mhí roimhe sin"
 
 msgid "Previous year"
 msgstr "Bhliain roimhe sin"
+
+msgid "Profile of {user}"
+msgstr "Próifíl {user}"
 
 msgid "Provider icon"
 msgstr "Deilbhín soláthraí"
@@ -497,6 +533,9 @@ msgstr "Roghnaigh bliain"
 msgid "Selected"
 msgstr "Roghnaithe"
 
+msgid "Send message"
+msgstr "Seol teachtaireacht"
+
 msgid "Settings"
 msgstr "Socruithe"
 
@@ -531,6 +570,9 @@ msgstr "Smileys & Mothúchán"
 #. TRANSLATORS: Space key on keyboard
 msgid "Space"
 msgstr "Spás"
+
+msgid "Start call"
+msgstr "Cuir tús leis an nglao"
 
 msgid "Start slideshow"
 msgstr "Tosaigh taispeántas sleamhnán"
@@ -584,11 +626,20 @@ msgstr "Uaslódáil comhaid"
 msgid "Upload folder"
 msgstr "Uaslódáil fillteán"
 
+msgid "Upload from device"
+msgstr "Uaslódáil ón bhfeiste"
+
+msgid "Upload progress"
+msgstr "Dul chun cinn an uaslódála"
+
 msgid "Uploading …"
 msgstr "Ag uaslódáil …"
 
 msgid "User status: {status}"
 msgstr "Stádas úsáideora: {status}"
+
+msgid "View profile"
+msgstr "Féach ar an bpróifíl"
 
 msgid "View team"
 msgstr "Féach ar an bhfoireann"
