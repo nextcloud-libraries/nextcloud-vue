@@ -140,7 +140,7 @@
     "@types/gettext-parser": "^9.0.0",
     "@types/node": "^26.5.1",
     "@types/webpack-env": "^1.18.8",
-    "@vitest/coverage-v8": "^5.0.0",
+    "@vitest/coverage-v8": "^5.0.1",
     "@vue/test-utils": "^2.4.6",
     "@vue/tsconfig": "^0.9.1",
     "babel-loader-exclude-node-modules-except": "^1.2.4",
