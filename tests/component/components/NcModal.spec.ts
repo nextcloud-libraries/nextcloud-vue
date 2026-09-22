@@ -141,3 +141,44 @@ test('Modal focus trap works correctly', async ({ mount, page }) => {
 	await page.keyboard.press('Tab')
 	await expect(testButton).toBeFocused()
 })
+
+test('Slideshow progress ring is centred on the play button', async ({ mount, page }) => {
+	await mount(NcModal, {
+		props: {
+			show: true,
+			name: 'My modal',
+			enableSlideshow: true,
+			hasNext: true,
+		},
+		slots: {
+			default: 'Text',
+		},
+	})
+
+	// The ring used to be a fixed 50x50 box, which only lined up while the
+	// header was 50px tall. The bundled styles here still say 50, so ask for
+	// the height Nextcloud actually uses.
+	await page.addStyleTag({ content: '.modal-header { --header-height: 44px !important; }' })
+
+	await page.locator('.play-pause-icons').click()
+	await expect(page.locator('.progress-ring')).toBeVisible()
+
+	const measured = await page.evaluate(() => {
+		const box = (selector: string) => document.querySelector(selector)!.getBoundingClientRect()
+		const centre = (selector: string) => {
+			const rect = box(selector)
+			return [Math.round(rect.x + rect.width / 2), Math.round(rect.y + rect.height / 2)]
+		}
+		return {
+			buttonCentre: centre('.play-pause-icons'),
+			ringCentre: centre('.progress-ring__circle'),
+			ringWidth: Math.round(box('.progress-ring__circle').width),
+			hoverDiscWidth: Math.round(box('.play-pause-icons__icon').width),
+		}
+	})
+
+	expect(measured.ringCentre).toEqual(measured.buttonCentre)
+	// The ring reads as the outline of the disc the button shows on hover,
+	// so it has to sit outside it rather than cut across it
+	expect(measured.ringWidth).toBeGreaterThan(measured.hoverDiscWidth)
+})

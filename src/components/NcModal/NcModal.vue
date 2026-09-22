@@ -480,17 +480,14 @@ function clearFocusTrap() {
 								<svg
 									v-if="isPlaying"
 									:key="`${modalId}-animation-${animationKey}`"
-									class="progress-ring"
-									height="50"
-									width="50">
+									class="progress-ring">
 									<circle
 										class="progress-ring__circle"
 										stroke="white"
 										stroke-width="2"
 										fill="transparent"
-										r="15"
-										cx="25"
-										cy="25" />
+										cx="50%"
+										cy="50%" />
 								</svg>
 							</button>
 
@@ -864,23 +861,33 @@ function clearFocusTrap() {
 }
 
 // animated circle
-$radius: 15;
-$pi: 3.14159265358979;
-
 .modal-mask .play-pause-icons {
+	// The ring reads as the outline of the disc the button shows on hover, so
+	// it follows the size of that disc. It is deliberately not tied to
+	// --header-height: the two are set independently, and a ring that grew
+	// with the header would drift away from the disc it is drawn around.
+	--progress-ring-radius: calc(var(--default-clickable-area) / 2 + 1px);
+	--progress-ring-circumference: calc(2 * pi * var(--progress-ring-radius));
+
 	.progress-ring {
 		position: absolute;
 		top: 0;
 		inset-inline-start: 0;
+		// The circle is placed at the centre of the svg, so the svg has to
+		// match the button for it to stay centred once --header-height is
+		// anything other than the 50px it used to be
+		width: 100%;
+		height: 100%;
 		transform: rotate(-90deg);
 		.progress-ring__circle {
 			transition: 100ms stroke-dashoffset;
 			transform-origin: 50% 50%; // axis compensation
 			animation: progressring linear v-bind('cssSlideshowDelay') infinite;
 
+			r: var(--progress-ring-radius);
 			stroke-linecap: round;
-			stroke-dashoffset: $radius * 2 * $pi; // radius * 2 * PI
-			stroke-dasharray: $radius * 2 * $pi; // radius * 2 * PI
+			stroke-dashoffset: var(--progress-ring-circumference);
+			stroke-dasharray: var(--progress-ring-circumference);
 		}
 	}
 	&--paused {
@@ -896,7 +903,7 @@ $pi: 3.14159265358979;
 // keyframes get scoped too and break the animation name, we need them unscoped
 @keyframes progressring {
 	from {
-		stroke-dashoffset: $radius * 2 * $pi; // radius * 2 * PI
+		stroke-dashoffset: var(--progress-ring-circumference);
 	}
 	to {
 		stroke-dashoffset: 0;
