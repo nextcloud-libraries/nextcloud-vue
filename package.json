@@ -138,7 +138,7 @@
     "@playwright/experimental-ct-vue": "^1.62.1",
     "@playwright/test": "^1.63.0",
     "@types/gettext-parser": "^9.0.0",
-    "@types/node": "^26.6.1",
+    "@types/node": "^26.6.2",
     "@types/webpack-env": "^1.18.8",
     "@vitest/coverage-v8": "^5.0.1",
     "@vue/test-utils": "^2.4.6",
