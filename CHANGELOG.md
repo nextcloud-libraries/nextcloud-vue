@@ -7,6 +7,19 @@
 
 All notable changes to this project will be documented in this file.
 
+## [v9.13.1](https://github.com/nextcloud-libraries/nextcloud-vue/tree/v9.13.1) (2026-09-24)
+[Full Changelog](https://github.com/nextcloud-libraries/nextcloud-vue/compare/v9.13.0...v9.13.1)
+
+### 🐛 Fixed bugs
+* fix(NcPopover): `afterShow` and `afterHide` events are not fired with `floating-vue` >= 5.3.0 [\#8994](https://github.com/nextcloud-libraries/nextcloud-vue/pull/8994) \([rotdrop](https://github.com/rotdrop)\)
+* fix(NcModal): center the slideshow progress ring [\#8990](https://github.com/nextcloud-libraries/nextcloud-vue/pull/8990) \([skjnldsv](https://github.com/skjnldsv)\)
+* fix(NcSelect): new style variables are lost when `appendToBody` breaking `z-index` [\#8996](https://github.com/nextcloud-libraries/nextcloud-vue/pull/8996) \([ShGKme](https://github.com/ShGKme)\)
+* fix(NcDateTimePicker): warn about usage of non-standard formatting tokens [\#8934](https://github.com/nextcloud-libraries/nextcloud-vue/pull/8934) \([odzhychko](https://github.com/odzhychko)\)
+* fix(NcReferenceWidget): show description even on smaller embeds [\#8545](https://github.com/nextcloud-libraries/nextcloud-vue/pull/8545) \([tyzbit](https://github.com/tyzbit)\)
+
+### Other changes
+* Updated translations
+
 ## [v9.13.0](https://github.com/nextcloud-libraries/nextcloud-vue/tree/v9.13.0) (2026-09-17)
 [Full Changelog](https://github.com/nextcloud-libraries/nextcloud-vue/compare/v9.12.0...v9.13.0)
 
