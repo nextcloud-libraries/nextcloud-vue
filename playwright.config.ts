@@ -44,8 +44,11 @@ export default defineConfig({
 	forbidOnly: !!process.env.CI,
 	/* Retry on CI only */
 	retries: process.env.CI ? 2 : 0,
-	/* Opt out of parallel tests on CI. */
-	workers: process.env.CI ? 1 : undefined,
+	/* Two of the runner's four cores on CI, which is where the suite stops
+	   scaling: measured over the whole suite, one worker takes 6m19, two
+	   take 4m49 and four take 4m22, and four workers is also where a
+	   second test starts flaking. */
+	workers: process.env.CI ? 2 : undefined,
 
 	// On CI we are using the github annotations + blob which will be merged by workflow to a downloadable HTML report (like the one we receive locally)
 	reporter: process.env.CI ? 'blob' : 'html',
