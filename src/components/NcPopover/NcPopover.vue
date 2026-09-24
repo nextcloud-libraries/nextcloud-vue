@@ -718,7 +718,7 @@ export default {
 			transform-origin: right center;
 		}
 
-		&[aria-hidden='true'] {
+		&:global(.v-popper__popper--hidden) {
 			visibility: hidden;
 			transition: opacity var(--animation-quick), visibility var(--animation-quick);
 			opacity: 0;
@@ -728,7 +728,7 @@ export default {
 			}
 		}
 
-		&[aria-hidden='false'] {
+		&:global(.v-popper__popper--shown) {
 			visibility: visible;
 			transition: opacity var(--animation-quick);
 			opacity: 1;
