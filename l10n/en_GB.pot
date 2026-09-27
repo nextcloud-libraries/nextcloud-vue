@@ -1,10 +1,11 @@
 # Translators:
 # Joas Schilling, 2025
 # Andi Chandler <andi@gowling.com>, 2026
+# Café Tango, 2026
 # 
 msgid ""
 msgstr ""
-"Last-Translator: Andi Chandler <andi@gowling.com>, 2026\n"
+"Last-Translator: Café Tango, 2026\n"
 "Language-Team: English (United Kingdom) (https://app.transifex.com/nextcloud/teams/64236/en_GB/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Language: en_GB\n"
@@ -48,6 +49,11 @@ msgstr "Any link"
 msgid "Anything shared with the same group of people will show up here"
 msgstr "Anything shared with the same group of people will show up here"
 
+#. TRANSLATORS: State of the current upload - chunks of the uploaded files are
+#. being assembled into the final file
+msgid "assembling"
+msgstr "assembling"
+
 msgid "Avatar of {displayName}"
 msgstr "Avatar of {displayName}"
 
@@ -86,6 +92,9 @@ msgstr "Cancel"
 
 msgid "Cancel changes"
 msgstr "Cancel changes"
+
+msgid "Cancel uploads"
+msgstr "Cancel uploads"
 
 msgid "Change name"
 msgstr "Change name"
@@ -180,6 +189,9 @@ msgstr "do not disturb"
 msgid "Edit item"
 msgstr "Edit item"
 
+msgid "Edit profile"
+msgstr "Edit profile"
+
 msgid "Emoji picker"
 msgstr "Emoji picker"
 
@@ -203,6 +215,9 @@ msgstr ""
 #. TRANSLATORS: Escape key on keyboard
 msgid "Escape"
 msgstr "Escape"
+
+msgid "Estimating …"
+msgstr "Estimating …"
 
 msgid "External documentation"
 msgstr "External documentation"
@@ -253,6 +268,9 @@ msgstr "Increment minutes"
 msgid "Increment seconds"
 msgstr "Increment seconds"
 
+msgid "Invalid date"
+msgstr "Invalid date"
+
 msgid "invisible"
 msgstr "invisible"
 
@@ -271,6 +289,15 @@ msgstr "Load more \"{options}\""
 #. TRANSLATORS: The button is in a loading state
 msgid "Loading …"
 msgstr "Loading …"
+
+msgid "Loading actions"
+msgstr "Loading actions"
+
+msgid "Loading profile"
+msgstr "Loading profile"
+
+msgid "Local time: {time}"
+msgstr "Local time: {time}"
 
 #. TRANSLATORS: A color name for RGB(45, 115, 190)
 msgid "Mariner"
@@ -304,6 +331,9 @@ msgstr "More options"
 
 msgid "Neutral skin color"
 msgstr "Neutral skin colour"
+
+msgid "New"
+msgstr "New"
 
 msgid "Next"
 msgstr "Next"
@@ -384,6 +414,10 @@ msgstr "Password is secure"
 msgid "Pause slideshow"
 msgstr "Pause slideshow"
 
+#. TRANSLATORS: State of the current upload - it is paused
+msgid "paused"
+msgstr "paused"
+
 msgid "People & Body"
 msgstr "People & Body"
 
@@ -413,6 +447,9 @@ msgstr "Previous month"
 
 msgid "Previous year"
 msgstr "Previous year"
+
+msgid "Profile of {user}"
+msgstr "Profile of {user}"
 
 msgid "Provider icon"
 msgstr "Provider icon"
@@ -493,6 +530,9 @@ msgstr "Select year"
 msgid "Selected"
 msgstr "Selected"
 
+msgid "Send message"
+msgstr "Send message"
+
 msgid "Settings"
 msgstr "Settings"
 
@@ -527,6 +567,9 @@ msgstr "Smileys & Emotion"
 #. TRANSLATORS: Space key on keyboard
 msgid "Space"
 msgstr "Space"
+
+msgid "Start call"
+msgstr "Start call"
 
 msgid "Start slideshow"
 msgstr "Start slideshow"
@@ -580,11 +623,20 @@ msgstr "Upload files"
 msgid "Upload folder"
 msgstr "Upload folder"
 
+msgid "Upload from device"
+msgstr "Upload from device"
+
+msgid "Upload progress"
+msgstr "Upload progress"
+
 msgid "Uploading …"
 msgstr "Uploading …"
 
 msgid "User status: {status}"
 msgstr "User status: {status}"
+
+msgid "View profile"
+msgstr "View profile"
 
 msgid "View team"
 msgstr "View team"
