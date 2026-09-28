@@ -48,6 +48,11 @@ msgstr "任何連結"
 msgid "Anything shared with the same group of people will show up here"
 msgstr "與同一組人共享的任何內容都會顯示在此處"
 
+#. TRANSLATORS: State of the current upload - chunks of the uploaded files are
+#. being assembled into the final file
+msgid "assembling"
+msgstr "正在組合"
+
 msgid "Avatar of {displayName}"
 msgstr "{displayName} 的頭像"
 
@@ -86,6 +91,9 @@ msgstr "取消"
 
 msgid "Cancel changes"
 msgstr "取消更改"
+
+msgid "Cancel uploads"
+msgstr "取消上載"
 
 msgid "Change name"
 msgstr "更改名稱"
@@ -180,6 +188,9 @@ msgstr "請勿打擾"
 msgid "Edit item"
 msgstr "編輯項目"
 
+msgid "Edit profile"
+msgstr "編輯個人資料"
+
 msgid "Emoji picker"
 msgstr "表情符號選擇器"
 
@@ -201,6 +212,9 @@ msgstr "取得相關資源時發生錯誤。如果有任何問題，請聯絡系
 #. TRANSLATORS: Escape key on keyboard
 msgid "Escape"
 msgstr "Escape"
+
+msgid "Estimating …"
+msgstr "正在估算 …"
 
 msgid "External documentation"
 msgstr "外部文件"
@@ -251,6 +265,9 @@ msgstr "分鐘遞增"
 msgid "Increment seconds"
 msgstr "秒遞增"
 
+msgid "Invalid date"
+msgstr "無效日期"
+
 msgid "invisible"
 msgstr "隐藏的"
 
@@ -269,6 +286,15 @@ msgstr "載入更多 \"{options}\""
 #. TRANSLATORS: The button is in a loading state
 msgid "Loading …"
 msgstr "加載中 …"
+
+msgid "Loading actions"
+msgstr "正在載入操作"
+
+msgid "Loading profile"
+msgstr "正在載入個人資料"
+
+msgid "Local time: {time}"
+msgstr "當地時間：{time}"
 
 #. TRANSLATORS: A color name for RGB(45, 115, 190)
 msgid "Mariner"
@@ -301,6 +327,9 @@ msgstr "更多選項"
 
 msgid "Neutral skin color"
 msgstr "中性色膚色"
+
+msgid "New"
+msgstr "新增"
 
 msgid "Next"
 msgstr "下一個"
@@ -381,6 +410,10 @@ msgstr "密碼是安全的"
 msgid "Pause slideshow"
 msgstr "暫停幻燈片"
 
+#. TRANSLATORS: State of the current upload - it is paused
+msgid "paused"
+msgstr "已暫停"
+
 msgid "People & Body"
 msgstr "人物"
 
@@ -410,6 +443,9 @@ msgstr "上個月"
 
 msgid "Previous year"
 msgstr "去年"
+
+msgid "Profile of {user}"
+msgstr "{user} 的個人資料"
 
 msgid "Provider icon"
 msgstr "提供者圖示"
@@ -490,6 +526,9 @@ msgstr "選取年"
 msgid "Selected"
 msgstr "已選"
 
+msgid "Send message"
+msgstr "傳送訊息"
+
 msgid "Settings"
 msgstr "設定"
 
@@ -524,6 +563,9 @@ msgstr "表情"
 #. TRANSLATORS: Space key on keyboard
 msgid "Space"
 msgstr "Space"
+
+msgid "Start call"
+msgstr "開始通話"
 
 msgid "Start slideshow"
 msgstr "開始幻燈片"
@@ -577,11 +619,20 @@ msgstr "上傳多個檔案"
 msgid "Upload folder"
 msgstr "上傳資料夾"
 
+msgid "Upload from device"
+msgstr "從裝置上載"
+
+msgid "Upload progress"
+msgstr "上載進度"
+
 msgid "Uploading …"
 msgstr "上傳中 ..."
 
 msgid "User status: {status}"
 msgstr "用戶狀態：{status}"
+
+msgid "View profile"
+msgstr "查看個人資料"
 
 msgid "View team"
 msgstr "查看團隊"
@@ -595,6 +646,9 @@ msgstr "威士忌"
 
 msgid "White"
 msgstr "白色"
+
+msgid "Widget height"
+msgstr "小工具高度"
 
 msgid "Write a message …"
 msgstr "編寫訊息 …"
