@@ -31,6 +31,8 @@ where:
   - `caseSensitive`: whether specific case should be listened, e.g. only 'd' and not 'D' (default: `false`)
   - `allowInModal`: whether key strokes should also be handled while a modal is shown (default: `false`)
     By default this is disabled to not trigger hotkeys of an app while the app is overlaid by a modal.
+  - `allowInInput`: whether key strokes should also be handled while an editable element (input, textarea, select or content editable) is focused (default: `false`)
+    By default this is disabled to not trigger hotkeys while the user is typing. Prefer to combine it with a modifier (e.g. `ctrl`) to not conflict with typing.
 - `stopCallback`: a callback to stop listening to the event
 
 ### Playground
