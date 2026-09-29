@@ -221,7 +221,13 @@ function formatValue(value: Date): string {
 function onInput(event: Event): void {
 	const input = event.target as HTMLInputElement
 	if (!input || isNaN(input.valueAsNumber)) {
-		modelValue.value = null
+		if (input?.validity.badInput) {
+			// Invalid intermediate value (e.g. stepping past a segment's bounds with arrow keys)
+			// Keep the current model and reset the input to its formatted value
+			input.value = formattedValue.value
+		} else {
+			modelValue.value = null
+		}
 	} else if (props.type === 'time') {
 		const time = input.value
 
