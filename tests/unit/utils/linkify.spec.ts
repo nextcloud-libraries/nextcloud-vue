@@ -22,4 +22,22 @@ describe('utils: linkify', () => {
 	it('escape other HTML', () => {
 		expect(linkifyString('<p>foo</p><br />"')).toMatchInlineSnapshot('"&lt;p&gt;foo&lt;/p&gt;&lt;br /&gt;&quot;"')
 	})
+
+	it('should not linkify strings longer than 10000 characters', () => {
+		const long = `${'a'.repeat(10_000)} <b> http://example.com`
+		expect(linkifyString(long)).toBe(`${'a'.repeat(10_000)} &lt;b&gt; http://example.com`)
+	})
+
+	it('should still linkify strings of exactly 10000 characters', () => {
+		const url = 'http://example.com'
+		const str = `${'a '.repeat((10_000 - url.length) / 2)}${url}`
+		expect(str).toHaveLength(10_000)
+		expect(linkifyString(str)).toContain('<a href="http://example.com"')
+	})
+
+	it('should return quickly for long domain-like input', () => {
+		const start = performance.now()
+		linkifyString('a.'.repeat(500_000))
+		expect(performance.now() - start).toBeLessThan(1000)
+	})
 })
