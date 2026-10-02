@@ -182,3 +182,41 @@ test('Slideshow progress ring is centred on the play button', async ({ mount, pa
 	// so it has to sit outside it rather than cut across it
 	expect(measured.ringWidth).toBeGreaterThan(measured.hoverDiscWidth)
 })
+
+test.describe('Full size modal header', () => {
+	for (const dir of ['ltr', 'rtl'] as const) {
+		test(`starts the name at the leading edge, actions on the other side (${dir})`, async ({ mount, page }) => {
+			await page.evaluate((direction) => {
+				document.documentElement.dir = direction
+			}, dir)
+			await mount(NcModal, {
+				props: {
+					show: true,
+					name: 'photo.jpg',
+					size: 'full',
+				},
+				slots: {
+					default: 'Content',
+				},
+			})
+
+			const viewport = page.viewportSize()!
+			const name = await page.getByRole('heading', { name: 'photo.jpg' }).evaluate((heading) => {
+				// Where the text itself sits, not the box that stretches across
+				const range = document.createRange()
+				range.selectNodeContents(heading)
+				const { left, right } = range.getBoundingClientRect()
+				return { left, right }
+			})
+			const close = await page.getByRole('button', { name: 'Close' }).boundingBox()
+
+			if (dir === 'ltr') {
+				expect(name.left).toBeLessThan(viewport.width / 4)
+				expect(close!.x).toBeGreaterThan(viewport.width / 2)
+			} else {
+				expect(name.right).toBeGreaterThan(viewport.width * 3 / 4)
+				expect(close!.x).toBeLessThan(viewport.width / 2)
+			}
+		})
+	}
+})

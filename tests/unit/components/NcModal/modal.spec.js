@@ -42,6 +42,20 @@ describe('NcModal', () => {
 		expect(wrapper.emitted('update:show')).toEqual(undefined)
 	})
 
+	describe('the name in the header', () => {
+		// A full size modal is a page of its own, titled like one: from the
+		// leading edge, which `text-align: start` follows in RTL
+		it('starts at the leading edge in a full size modal', () => {
+			const wrapper = mount(NcModal, { props: { container: null, name: 'photo.jpg', size: 'full' } })
+			expect(wrapper.find('.modal-header').classes()).toContain('modal-header--name-start')
+		})
+
+		it('stays centered in a smaller one', () => {
+			const wrapper = mount(NcModal, { props: { container: null, name: 'photo.jpg', size: 'large' } })
+			expect(wrapper.find('.modal-header').classes()).not.toContain('modal-header--name-start')
+		})
+	})
+
 	describe('slideshow', () => {
 		const props = { container: null, name: 'modal', enableSlideshow: true, hasNext: true, slideshowDelay: 100 }
 
