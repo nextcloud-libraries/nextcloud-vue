@@ -182,3 +182,34 @@ test('Slideshow progress ring is centred on the play button', async ({ mount, pa
 	// so it has to sit outside it rather than cut across it
 	expect(measured.ringWidth).toBeGreaterThan(measured.hoverDiscWidth)
 })
+
+test('Name can be renamed in place when editable, and Escape keeps it without closing', async ({ mount, page }) => {
+	const renamed: string[] = []
+	await mount(NcModal, {
+		props: {
+			show: true,
+			name: 'notes.md',
+			nameEditable: true,
+			size: 'full',
+		},
+		slots: {
+			default: 'Content',
+		},
+		on: {
+			'update:name': (name: string) => renamed.push(name),
+		},
+	})
+
+	await page.getByRole('button', { name: 'notes.md' }).click()
+	const field = page.getByRole('textbox', { name: 'New name' })
+	await expect(field).toBeFocused()
+	await page.keyboard.press('Escape')
+	await expect(field).toBeHidden()
+	// Still open: the Escape was the field's
+	await expect(page.getByRole('dialog')).toBeVisible()
+
+	await page.getByRole('button', { name: 'notes.md' }).click()
+	await field.fill('meeting notes.md')
+	await page.keyboard.press('Enter')
+	await expect.poll(() => renamed).toEqual(['meeting notes.md'])
+})
