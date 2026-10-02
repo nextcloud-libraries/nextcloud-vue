@@ -321,6 +321,9 @@ msgstr ""
 msgid "New"
 msgstr ""
 
+msgid "New name"
+msgstr ""
+
 msgid "Next"
 msgstr ""
 
@@ -450,6 +453,9 @@ msgid "Related resources"
 msgstr ""
 
 msgid "Related team resources"
+msgstr ""
+
+msgid "Rename"
 msgstr ""
 
 msgid "Rename project"

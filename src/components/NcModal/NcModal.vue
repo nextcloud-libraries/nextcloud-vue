@@ -46,6 +46,15 @@ const props = withDefaults(defineProps<{
 	name?: string
 
 	/**
+	 * Let the user rename what the modal shows by clicking its name. The new
+	 * name is emitted with `update:name`, for the host to check and store;
+	 * the modal only shows it once `name` changes.
+	 *
+	 * @since 9.14.0
+	 */
+	nameEditable?: boolean
+
+	/**
 	 * Declare if a previous slide is available
 	 */
 	hasPrevious?: boolean
@@ -185,6 +194,13 @@ const emit = defineEmits<{
 	 * @param payload - The new show-state
 	 */
 	'update:show': [payload: boolean]
+
+	/**
+	 * The name the user gave in place of the current one, see `nameEditable`.
+	 *
+	 * @param name - The new name, trimmed and different from the current one
+	 */
+	'update:name': [name: string]
 }>()
 
 defineSlots<{
@@ -198,6 +214,43 @@ defineSlots<{
 	 */
 	default?: Slot
 }>()
+/** Whether the name is being edited */
+const renaming = ref(false)
+/** The name being typed */
+const newName = ref('')
+const nameInput = useTemplateRef<HTMLInputElement>('nameInput')
+
+/**
+ * Turn the name into a field to type a new one in.
+ */
+async function startRename() {
+	newName.value = props.name
+	renaming.value = true
+	await nextTick()
+	nameInput.value?.focus()
+	nameInput.value?.select()
+}
+
+/**
+ * Hand the typed name over, unless it is empty or the same.
+ */
+function submitRename() {
+	if (!renaming.value) {
+		return
+	}
+	renaming.value = false
+	const name = newName.value.trim()
+	if (name !== '' && name !== props.name) {
+		emit('update:name', name)
+	}
+}
+
+/**
+ * Leave the name as it was.
+ */
+function cancelRename() {
+	renaming.value = false
+}
 
 const scopeIdAttrs = useScopeIdAttrs()
 
@@ -458,7 +511,26 @@ function clearFocusTrap() {
 							v-if="name.trim() !== ''"
 							:id="'modal-name-' + modalId"
 							class="modal-header__name">
-							{{ name }}
+							<input
+								v-if="renaming"
+								ref="nameInput"
+								v-model="newName"
+								class="modal-header__name-input"
+								:aria-label="t('New name')"
+								@keydown.enter.prevent="submitRename"
+								@keydown.esc.stop.prevent="cancelRename"
+								@blur="cancelRename">
+							<button
+								v-else-if="nameEditable"
+								class="modal-header__name-button"
+								:title="t('Rename')"
+								type="button"
+								@click="startRename">
+								{{ name }}
+							</button>
+							<template v-else>
+								{{ name }}
+							</template>
 						</h2>
 						<div class="icons-menu">
 							<!-- Play-pause toggle -->
@@ -641,6 +713,40 @@ function clearFocusTrap() {
 			padding-inline-start: calc(var(--header-height) * v-bind('numHeaderActions'));
 			text-align: center;
 		}
+	}
+
+	// Looks like the name until it is pointed at, as renaming is a shortcut
+	// and not what the header is for
+	&__name-button,
+	&__name-input {
+		max-width: 100%;
+		margin: 0;
+		padding: 0 var(--default-grid-baseline);
+		border-radius: var(--border-radius-element);
+		color: inherit;
+		font: inherit;
+		text-align: inherit;
+		text-overflow: ellipsis;
+	}
+
+	&__name-button {
+		overflow: hidden;
+		border: none;
+		background: none;
+		cursor: text;
+		white-space: nowrap;
+
+		&:hover,
+		&:focus-visible {
+			background-color: var(--color-background-hover);
+		}
+	}
+
+	&__name-input {
+		width: 100%;
+		height: var(--default-clickable-area);
+		border: 2px solid currentColor;
+		background: transparent;
 	}
 
 	.icons-menu {
@@ -1034,6 +1140,47 @@ export default {
 .model__content-text {
 	font-size: 16px;
 	font-weight: var(--font-weight-heading, bold);
+}
+</style>
+```
+
+### Renaming from the name
+
+With `name-editable`, clicking the name lets the user type a new one, emitted
+with `update:name` once confirmed with Enter. Escape or leaving the field keeps
+the name as it was. Checking and storing the new name is up to the host.
+
+```vue
+<template>
+	<div>
+		<NcButton @click="isOpen = true">Show Modal</NcButton>
+		<NcModal
+			v-if="isOpen"
+			v-model:name="name"
+			name-editable
+			size="full"
+			close-button-outside
+			@close="isOpen = false">
+			<div class="modal__content">
+				Click the name to rename it
+			</div>
+		</NcModal>
+	</div>
+</template>
+<script>
+export default {
+	data() {
+		return {
+			isOpen: false,
+			name: 'Meeting notes.md',
+		}
+	},
+}
+</script>
+<style scoped>
+.modal__content {
+	padding: 50px;
+	text-align: center;
 }
 </style>
 ```

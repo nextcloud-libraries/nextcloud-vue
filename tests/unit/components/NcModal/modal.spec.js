@@ -42,6 +42,57 @@ describe('NcModal', () => {
 		expect(wrapper.emitted('update:show')).toEqual(undefined)
 	})
 
+	describe('renaming from the name', () => {
+		const mountEditable = (props = {}) => mount(NcModal, {
+			props: { container: null, name: 'notes.md', nameEditable: true, ...props },
+			attachTo: document.body,
+		})
+
+		it('is not offered unless asked for', () => {
+			const wrapper = mount(NcModal, { props: { container: null, name: 'notes.md' } })
+			expect(wrapper.find('.modal-header__name-button').exists()).toBe(false)
+			expect(wrapper.find('.modal-header__name').text()).toBe('notes.md')
+		})
+
+		it('hands the new name over on Enter', async () => {
+			const wrapper = mountEditable()
+			await wrapper.find('.modal-header__name-button').trigger('click')
+			const input = wrapper.find('.modal-header__name-input')
+			expect(input.element.value).toBe('notes.md')
+
+			await input.setValue('  meeting notes.md ')
+			await input.trigger('keydown', { key: 'Enter' })
+
+			expect(wrapper.emitted('update:name')).toEqual([['meeting notes.md']])
+			// Shown again as it was, until the host changes it
+			expect(wrapper.find('.modal-header__name-button').text()).toBe('notes.md')
+		})
+
+		it('leaves the name as it was on Escape, without closing the modal', async () => {
+			const wrapper = mountEditable()
+			await wrapper.find('.modal-header__name-button').trigger('click')
+			const input = wrapper.find('.modal-header__name-input')
+			await input.setValue('other.md')
+			await input.trigger('keydown', { key: 'Escape' })
+
+			expect(wrapper.emitted('update:name')).toBeUndefined()
+			expect(wrapper.emitted('update:show')).toBeUndefined()
+			expect(wrapper.find('.modal-header__name-input').exists()).toBe(false)
+		})
+
+		it('hands nothing over for an empty or unchanged name', async () => {
+			const wrapper = mountEditable()
+			for (const value of ['   ', 'notes.md']) {
+				await wrapper.find('.modal-header__name-button').trigger('click')
+				const input = wrapper.find('.modal-header__name-input')
+				await input.setValue(value)
+				await input.trigger('keydown', { key: 'Enter' })
+			}
+
+			expect(wrapper.emitted('update:name')).toBeUndefined()
+		})
+	})
+
 	describe('slideshow', () => {
 		const props = { container: null, name: 'modal', enableSlideshow: true, hasNext: true, slideshowDelay: 100 }
 
