@@ -40,6 +40,67 @@ describe('useHotKey', () => {
 		expect(mockCallback).not.toHaveBeenCalled()
 	})
 
+	it.each(['input', 'textarea', 'select'])('should not invoke callback by default, when on %s element', (tagName) => {
+		const stop = useHotKey('Enter', mockCallback, { ctrl: true })
+		const element = document.createElement(tagName)
+		document.body.appendChild(element)
+		triggerKeyDown({ key: 'Enter', code: 'Enter', ctrlKey: true, metaKey: true, bubbles: true }, element)
+		stop()
+
+		expect(mockCallback).not.toHaveBeenCalled()
+	})
+
+	it.each(['input', 'textarea', 'select'])('should invoke callback if inputs are allowed, when on %s element', (tagName) => {
+		const stop = useHotKey('Enter', mockCallback, { ctrl: true, allowInInput: true })
+		const element = document.createElement(tagName)
+		document.body.appendChild(element)
+		triggerKeyDown({ key: 'Enter', code: 'Enter', ctrlKey: true, metaKey: true, bubbles: true }, element)
+		stop()
+
+		expect(mockCallback).toHaveBeenCalled()
+	})
+
+	it('should invoke callback if inputs are allowed, when on content editable element', () => {
+		const stop = useHotKey('Enter', mockCallback, { ctrl: true, allowInInput: true })
+		const element = document.createElement('div')
+		Object.defineProperty(element, 'isContentEditable', { value: true })
+		document.body.appendChild(element)
+		triggerKeyDown({ key: 'Enter', code: 'Enter', ctrlKey: true, metaKey: true, bubbles: true }, element)
+		stop()
+
+		expect(mockCallback).toHaveBeenCalled()
+	})
+
+	it('should not invoke callback if inputs are allowed but a modal is shown', () => {
+		const modal = document.createElement('div')
+		modal.className = 'modal-mask'
+		modal.checkVisibility = () => true
+		document.body.appendChild(modal)
+		const input = document.createElement('input')
+		document.body.appendChild(input)
+
+		const stop = useHotKey('Enter', mockCallback, { ctrl: true, allowInInput: true })
+		triggerKeyDown({ key: 'Enter', code: 'Enter', ctrlKey: true, metaKey: true, bubbles: true }, input)
+		stop()
+
+		expect(mockCallback).not.toHaveBeenCalled()
+	})
+
+	it('should invoke callback if inputs and modals are allowed, when on input inside a shown modal', () => {
+		const modal = document.createElement('div')
+		modal.className = 'modal-mask'
+		modal.checkVisibility = () => true
+		document.body.appendChild(modal)
+		const input = document.createElement('input')
+		modal.appendChild(input)
+
+		const stop = useHotKey('Enter', mockCallback, { ctrl: true, allowInInput: true, allowInModal: true })
+		triggerKeyDown({ key: 'Enter', code: 'Enter', ctrlKey: true, metaKey: true, bubbles: true }, input)
+		stop()
+
+		expect(mockCallback).toHaveBeenCalled()
+	})
+
 	it('should not invoke callback by default, when a modal is shown', () => {
 		const modal = document.createElement('div')
 		modal.className = 'modal-mask'

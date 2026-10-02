@@ -47,10 +47,18 @@ export interface UseHotKeyOptions {
 	 * @default false
 	 */
 	allowInModal?: boolean
+
+	/**
+	 * Allow hot key to trigger even if an editable element (input, textarea, select or content editable) is focused.
+	 * By default this is disabled to not trigger hot keys while the user is typing.
+	 *
+	 * @default false
+	 */
+	allowInInput?: boolean
 }
 
 /**
- * Check if event target (active element) is editable (allows input from keyboard) or NcModal is open
+ * Check if event target (active element) is editable (allows input from keyboard) and not allowed, or NcModal is open
  * If true, a hot key should not trigger the callback
  *
  * @todo Discuss if we should abort on another interactive elements (button, a, e.t.c)
@@ -60,11 +68,15 @@ export interface UseHotKeyOptions {
  * @return Whether it should prevent callback
  */
 function shouldIgnoreEvent(event: KeyboardEvent, options: UseHotKeyOptions): boolean {
-	if (!(event.target instanceof HTMLElement)
-		|| event.target instanceof HTMLInputElement
-		|| event.target instanceof HTMLTextAreaElement
-		|| event.target instanceof HTMLSelectElement
-		|| event.target.isContentEditable) {
+	if (!(event.target instanceof HTMLElement)) {
+		return true
+	}
+
+	if (!options.allowInInput
+		&& (event.target instanceof HTMLInputElement
+			|| event.target instanceof HTMLTextAreaElement
+			|| event.target instanceof HTMLSelectElement
+			|| event.target.isContentEditable)) {
 		return true
 	}
 
