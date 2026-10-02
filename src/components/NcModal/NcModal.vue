@@ -88,6 +88,8 @@ const props = withDefaults(defineProps<{
 	/**
 	 * Defines the modal size.
 	 * All sizes except 'small' change automatically to full-screen on mobile.
+	 * A 'full' modal starts its name at the leading edge, like a page title,
+	 * where the other sizes center it.
 	 */
 	size?: 'small' | 'normal' | 'large' | 'full'
 
@@ -452,6 +454,7 @@ function clearFocusTrap() {
 					<div
 						v-if="hasHeader"
 						class="modal-header"
+						:class="{ 'modal-header--name-start': size === 'full' }"
 						:data-theme-light="lightBackdrop"
 						:data-theme-dark="!lightBackdrop">
 						<h2
@@ -636,11 +639,18 @@ function clearFocusTrap() {
 
 	// On wider screens the name can be centered
 	@media only screen and (min-width: $breakpoint-mobile) {
-		&__name {
+		&:not(.modal-header--name-start) &__name {
 			// On wider screens the name is centered, so we need to compensate for the actions to make the name really centered
 			padding-inline-start: calc(var(--header-height) * v-bind('numHeaderActions'));
 			text-align: center;
 		}
+	}
+
+	// A full size modal is a page of its own: its name starts at the leading
+	// edge like a page title, left or right with the text direction, and the
+	// actions take the other side
+	&--name-start &__name {
+		text-align: start;
 	}
 
 	.icons-menu {
