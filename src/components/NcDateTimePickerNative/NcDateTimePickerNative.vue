@@ -264,7 +264,13 @@ export default {
 				 */
 				input: ($event) => {
 					if (isNaN($event.target.valueAsNumber)) {
-						this.model = null
+						if ($event.target?.validity.badInput) {
+							// Invalid intermediate value (e.g. stepping past a segment's bounds with arrow keys)
+							// Keep the current model and reset the input to its formatted value
+							$event.target.value = this.formattedValue
+						} else {
+							this.model = null
+						}
 					} else if (this.type === 'time') {
 						const time = $event.target.value
 						if (this.model === '') {
