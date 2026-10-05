@@ -73,4 +73,37 @@ describe('NcDateTimePickerNative.vue', () => {
 		expect(wrapper.find('label').exists()).toBe(false)
 		expect(wrapper.find('input').attributes('aria-label')).toBe('the label')
 	})
+
+	it('does not show a clear button by default', () => {
+		const wrapper = mount(NcDateTimePickerNative, {
+			props: {
+				modelValue: new Date(),
+			},
+		})
+
+		expect(wrapper.find('button[aria-label="Clear value"]').exists()).toBe(false)
+	})
+
+	it('does not show a clear button when clearable without a value', () => {
+		const wrapper = mount(NcDateTimePickerNative, {
+			props: {
+				clearable: true,
+				modelValue: null,
+			},
+		})
+
+		expect(wrapper.find('button[aria-label="Clear value"]').exists()).toBe(false)
+	})
+
+	it('clears the value with the clear button', async () => {
+		const wrapper = mount(NcDateTimePickerNative, {
+			props: {
+				clearable: true,
+				modelValue: new Date(),
+			},
+		})
+
+		await wrapper.get('button[aria-label="Clear value"]').trigger('click')
+		expect(wrapper.emitted('update:modelValue')).toEqual([[null]])
+	})
 })
