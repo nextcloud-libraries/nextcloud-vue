@@ -531,7 +531,7 @@ export default {
 				allowOutsideClick: true,
 				setReturnFocus: this.setReturnFocus,
 				trapStack: getTrapStack(),
-				fallBackFocus: el,
+				fallbackFocus: el,
 			})
 			this.$focusTrap.activate()
 		},
