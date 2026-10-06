@@ -22,6 +22,7 @@ All available types are: 'date', 'datetime-local', 'month', 'time' and 'week', p
 			<NcSelect v-bind="props" v-model="type" />
 			<NcDateTimePickerNative
 				v-model="value"
+				clearable
 				:label="label"
 				:type="type" />
 		</div>
@@ -90,10 +91,12 @@ All available types are: 'date', 'datetime-local', 'month', 'time' and 'week', p
 <script setup lang="ts">
 import type { VueClassType } from '../../utils/VueTypes.ts'
 
+import { mdiClose } from '@mdi/js'
 import { computed } from 'vue'
 import NcInputField from '../NcInputField/NcInputField.vue'
 import { t } from '../../l10n.ts'
 import { createElementId } from '../../utils/createElementId.ts'
+import NcIconSvgWrapper from '../NcIconSvgWrapper/index.ts'
 
 defineOptions({ inheritAttrs: false })
 
@@ -149,6 +152,13 @@ const props = withDefaults(defineProps<{
 	 * The hidden input label for accessibility purposes.
 	 */
 	hideLabel?: boolean
+
+	/**
+	 * Allow to clear the input.
+	 *
+	 * @default false
+	 */
+	clearable?: boolean
 }>(), {
 	class: undefined,
 	id: () => createElementId(),
@@ -255,7 +265,14 @@ function onInput(event: Event): void {
 		:modelValue="formattedValue"
 		:min="formattedMin"
 		:max="formattedMax"
-		@input="onInput" />
+		:showTrailingButton="clearable && !!modelValue"
+		:trailingButtonLabel="t('Clear value')"
+		@input="onInput"
+		@trailingButtonClick="modelValue = null">
+		<template #trailing-button-icon>
+			<NcIconSvgWrapper inline :path="mdiClose" :size="20" />
+		</template>
+	</NcInputField>
 </template>
 
 <style lang="scss" scoped>
