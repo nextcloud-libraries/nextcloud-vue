@@ -1,10 +1,11 @@
 # Translators:
 # Joas Schilling, 2025
 # Martin Bonde <Martin@maboni.dk>, 2026
+# Christian Koerner, 2026
 # 
 msgid ""
 msgstr ""
-"Last-Translator: Martin Bonde <Martin@maboni.dk>, 2026\n"
+"Last-Translator: Christian Koerner, 2026\n"
 "Language-Team: Danish (https://app.transifex.com/nextcloud/teams/64236/da/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Language: da\n"
@@ -15,9 +16,6 @@ msgstr "{tag} (usynlig)"
 
 msgid "{tag} (restricted)"
 msgstr "{tag} (begrænset)"
-
-msgid "{user} has not added any info yet"
-msgstr "{user} har ikke tilføjet nogen info endnu"
 
 msgid "A color with a HEX value {hex}"
 msgstr "En farve med en HEX-værdi {hex}"
@@ -43,13 +41,18 @@ msgid "Alt"
 msgstr "Alt"
 
 msgid "Animals & Nature"
-msgstr "Dyr & Natur"
+msgstr "Dyr og natur"
 
 msgid "Any link"
 msgstr "Ethvert link"
 
 msgid "Anything shared with the same group of people will show up here"
-msgstr "Alt der deles med samme gruppe af personer vil vises her"
+msgstr "Alt, der deles med den samme gruppe personer, vises her"
+
+#. TRANSLATORS: State of the current upload - chunks of the uploaded files are
+#. being assembled into the final file
+msgid "assembling"
+msgstr "samler"
 
 msgid "Avatar of {displayName}"
 msgstr "Avatar af {displayName}"
@@ -85,13 +88,16 @@ msgid "Calendar icon"
 msgstr "Kalenderikon"
 
 msgid "Cancel"
-msgstr "Annullér"
+msgstr "Annuller"
 
 msgid "Cancel changes"
 msgstr "Annuller ændringer"
 
+msgid "Cancel uploads"
+msgstr "Annuller overførsler"
+
 msgid "Change name"
-msgstr "Ændre navn"
+msgstr "Skift navn"
 
 msgid "Choose"
 msgstr "Vælg"
@@ -100,13 +106,13 @@ msgid "Clear search"
 msgstr "Ryd søgning"
 
 msgid "Clear selected"
-msgstr "Ryd valgt"
+msgstr "Ryd valgte"
 
 msgid "Clear text"
 msgstr "Ryd tekst"
 
 msgid "Clear value"
-msgstr "Klar værdi"
+msgstr "Ryd værdi"
 
 msgid "Close"
 msgstr "Luk"
@@ -118,10 +124,10 @@ msgid "Close sidebar"
 msgstr "Luk sidepanel"
 
 msgid "Close Smart Picker"
-msgstr "Luk Smart Vælger"
+msgstr "Luk Smart Picker"
 
 msgid "Close time Picker"
-msgstr "Nærtid Picker"
+msgstr "Luk tidsvælger"
 
 msgid "Collapse menu"
 msgstr "Skjul menuen"
@@ -133,7 +139,7 @@ msgid "Confirm changes"
 msgstr "Bekræft ændringer"
 
 msgid "Connect items to a project to make them easier to find"
-msgstr "Forbind elementer til et projekt for at gøre dem nemmere at finde"
+msgstr "Knyt elementer til et projekt, så de er nemmere at finde"
 
 msgid "Copied"
 msgstr "Kopieret"
@@ -149,13 +155,13 @@ msgid "Custom"
 msgstr "Brugerdefineret"
 
 msgid "Dark skin tone"
-msgstr "Mørk skin tone"
+msgstr "Mørk hudfarve"
 
 msgid "Datepicker input"
-msgstr "Datapicker input"
+msgstr "Datofelt"
 
 msgid "Datepicker menu"
-msgstr "Datapicker menu"
+msgstr "Menu til datovælger"
 
 msgid "Decrement hours"
 msgstr "Formindsk timer"
@@ -181,20 +187,20 @@ msgid "do not disturb"
 msgstr "forstyr ikke"
 
 msgid "Edit item"
-msgstr "Rediger emne"
+msgstr "Rediger element"
 
 msgid "Edit profile"
-msgstr "Redigér profil"
+msgstr "Rediger profil"
 
 msgid "Emoji picker"
-msgstr "Emoji vælger"
+msgstr "Emojivælger"
 
 msgid "Enable interactive view"
-msgstr "Aktiver interaktiv visning"
+msgstr "Aktivér interaktiv visning"
 
 #. TRANSLATORS: Enter key on keyboard
 msgid "Enter"
-msgstr "Indtast"
+msgstr "Enter"
 
 msgid "Enter link"
 msgstr "Indtast link"
@@ -203,24 +209,24 @@ msgid ""
 "Error getting related resources. Please contact your system administrator if"
 " you have any questions."
 msgstr ""
-"Fejl ved hentning af relaterede ressourcer. Kontakt venligst din "
-"systemadministrator, hvis du har spørgsmål."
+"Fejl ved hentning af relaterede ressourcer. Kontakt din systemadministrator,"
+" hvis du har spørgsmål."
 
 #. TRANSLATORS: Escape key on keyboard
 msgid "Escape"
-msgstr "Afbrud"
+msgstr "Esc"
+
+msgid "Estimating …"
+msgstr "Beregner …"
 
 msgid "External documentation"
 msgstr "Ekstern dokumentation"
 
 msgid "Failed to add the item to the project"
-msgstr "Kunne ikke føje elementet til projektet"
+msgstr "Elementet kunne ikke føjes til projektet"
 
 msgid "Failed to create a project"
-msgstr "Kunne ikke oprette et projekt"
-
-msgid "Failed to load profile"
-msgstr "Kunne ikke indlæse profil"
+msgstr "Projektet kunne ikke oprettes"
 
 msgid "Failed to rename the project"
 msgstr "Projektet kunne ikke omdøbes"
@@ -236,7 +242,7 @@ msgid "Flags"
 msgstr "Flag"
 
 msgid "Food & Drink"
-msgstr "Mad & Drikke"
+msgstr "Mad og drikke"
 
 msgid "Frequently used"
 msgstr "Ofte brugt"
@@ -251,7 +257,7 @@ msgid "Hide details"
 msgstr "Skjul detaljer"
 
 msgid "Hide password"
-msgstr "Skjul kodeord"
+msgstr "Skjul adgangskode"
 
 msgid "Increment hours"
 msgstr "Forøg timer"
@@ -275,14 +281,14 @@ msgid "Keyboard shortcuts"
 msgstr "Tastaturgenveje"
 
 msgid "Light skin tone"
-msgstr "Lys skin tone"
+msgstr "Lys hudfarve"
 
 msgid "Load more \"{options}\""
 msgstr "Indlæs flere \"{options}\""
 
 #. TRANSLATORS: The button is in a loading state
 msgid "Loading …"
-msgstr "Indlæser ..."
+msgstr "Indlæser …"
 
 msgid "Loading actions"
 msgstr "Indlæser handlinger"
@@ -298,13 +304,13 @@ msgid "Mariner"
 msgstr "Mariner"
 
 msgid "Medium dark skin tone"
-msgstr "Medium mørk skin tone"
+msgstr "Mellemmørk hudfarve"
 
 msgid "Medium light skin tone"
-msgstr "Medium lys skin tone"
+msgstr "Mellemlys hudfarve"
 
 msgid "Medium skin tone"
-msgstr "Medium skin tone"
+msgstr "Mellem hudfarve"
 
 msgid "Message limit of %n character reached"
 msgid_plural "Message limit of %n characters reached"
@@ -315,19 +321,22 @@ msgid "Month picker"
 msgstr "Månedsvælger"
 
 msgid "Month picker overlay"
-msgstr "Måneder vælger overlay"
+msgstr "Oversigt til valg af måned"
 
 msgid "More items …"
-msgstr "Flere elementer ..."
+msgstr "Flere elementer …"
 
 msgid "More options"
 msgstr "Flere muligheder"
 
 msgid "Neutral skin color"
-msgstr "Neutral skin color"
+msgstr "Neutral hudfarve"
+
+msgid "New"
+msgstr "Ny"
 
 msgid "Next"
-msgstr "Videre"
+msgstr "Næste"
 
 msgid "Next month"
 msgstr "Næste måned"
@@ -367,46 +376,50 @@ msgid "online"
 msgstr "online"
 
 msgid "Open hours overlay"
-msgstr "Åbne timer overlay"
+msgstr "Åbn oversigt over timer"
 
 msgid "Open link to \"{resourceName}\""
 msgstr "Åbn link til \"{resourceName}\""
 
 msgid "Open menu"
-msgstr "Åben menu"
+msgstr "Åbn menu"
 
 msgid "Open minutes overlay"
-msgstr "Åbn minutter overlay"
+msgstr "Åbn oversigt over minutter"
 
 msgid "Open months overlay"
-msgstr "Åbne måneder overlay"
+msgstr "Åbn oversigt over måneder"
 
 msgid "Open navigation"
-msgstr "Åben navigation"
+msgstr "Åbn navigation"
 
 msgid "Open seconds overlay"
-msgstr "Åbne sekunder overlay"
+msgstr "Åbn oversigt over sekunder"
 
 msgid "Open sidebar"
 msgstr "Åbn sidepanel"
 
 msgid "Open time picker"
-msgstr "Åbent tidsvælger"
+msgstr "Åbn tidsvælger"
 
 msgid "Open years overlay"
-msgstr "Åbne år overlay"
+msgstr "Åbn oversigt over år"
 
 msgid "Options"
 msgstr "Indstillinger"
 
 msgid "Password is secure"
-msgstr "Kodeordet er sikkert"
+msgstr "Adgangskoden er sikker"
 
 msgid "Pause slideshow"
-msgstr "Suspender fremvisning"
+msgstr "Sæt slideshowet på pause"
+
+#. TRANSLATORS: State of the current upload - it is paused
+msgid "paused"
+msgstr "sat på pause"
 
 msgid "People & Body"
-msgstr "Mennesker & Menneskekroppen"
+msgstr "Mennesker og krop"
 
 msgid "Pick"
 msgstr "Vælg"
@@ -433,22 +446,22 @@ msgid "Previous month"
 msgstr "Forrige måned"
 
 msgid "Previous year"
-msgstr "Foregående år"
+msgstr "Forrige år"
 
 msgid "Profile of {user}"
 msgstr "Profil for {user}"
 
 msgid "Provider icon"
-msgstr "Udbyder ikon"
+msgstr "Udbyderikon"
 
 msgid "Purple"
 msgstr "Lilla"
 
 msgid "Raw link {options}"
-msgstr "Rå link {options}"
+msgstr "Råt link {options}"
 
 msgid "Related resources"
-msgstr "Relaterede emner"
+msgstr "Relaterede ressourcer"
 
 msgid "Related team resources"
 msgstr "Relaterede teamressourcer"
@@ -467,7 +480,7 @@ msgid "Search"
 msgstr "Søg"
 
 msgid "Search …"
-msgstr "Søg ..."
+msgstr "Søg …"
 
 msgid "Search emoji"
 msgstr "Søg emoji"
@@ -503,7 +516,7 @@ msgid "Select provider"
 msgstr "Vælg udbyder"
 
 msgid "Select time"
-msgstr "Vælg tid"
+msgstr "Vælg tidspunkt"
 
 msgid "Select time range"
 msgstr "Vælg tidsinterval"
@@ -517,11 +530,14 @@ msgstr "Vælg år"
 msgid "Selected"
 msgstr "Valgt"
 
+msgid "Send message"
+msgstr "Send besked"
+
 msgid "Settings"
 msgstr "Indstillinger"
 
 msgid "Settings navigation"
-msgstr "Naviger i indstillinger"
+msgstr "Navigation i indstillinger"
 
 #. TRANSLATORS: Shift key on keyboard
 msgid "Shift"
@@ -531,29 +547,32 @@ msgid "Show details"
 msgstr "Vis detaljer"
 
 msgid "Show password"
-msgstr "Vis kodeord"
+msgstr "Vis adgangskode"
 
 msgid "Skin tone"
-msgstr "Skin tone"
+msgstr "Hudfarve"
 
 msgid "Skip to app navigation"
-msgstr "Spring til app navigation"
+msgstr "Spring til appnavigation"
 
 msgid "Skip to main content"
 msgstr "Spring til hovedindhold"
 
 msgid "Smart Picker"
-msgstr "Smart Vælger"
+msgstr "Smart Picker"
 
 msgid "Smileys & Emotion"
-msgstr "Smileys & Emotion"
+msgstr "Smileys og følelser"
 
 #. TRANSLATORS: Space key on keyboard
 msgid "Space"
 msgstr "Mellemrum"
 
+msgid "Start call"
+msgstr "Start opkald"
+
 msgid "Start slideshow"
-msgstr "Start fremvisning"
+msgstr "Start slideshow"
 
 msgid "Start typing to search"
 msgstr "Begynd at skrive for at søge"
@@ -569,10 +588,7 @@ msgstr "Symboler"
 
 #. TRANSLATORS: Tab key on keyboard
 msgid "Tab"
-msgstr "Faneblad"
-
-msgid "The headline and about sections will show up here"
-msgstr "Overskriften og om afsnit vil dukke op her"
+msgstr "Tab"
 
 msgid "Time picker"
 msgstr "Tidsvælger"
@@ -581,43 +597,52 @@ msgid "Time zone"
 msgstr "Tidszone"
 
 msgid "Toggle overlay"
-msgstr "Slå overlay til / fra"
+msgstr "Vis/skjul oversigt"
 
 msgid "Travel & Places"
-msgstr "Rejser & Rejsemål"
+msgstr "Rejser og steder"
 
 msgid "Type to search for existing projects"
 msgstr "Skriv for at søge efter eksisterende projekter"
 
 msgid "Type to search time zone"
-msgstr "Indtast for at søge efter tidszone"
+msgstr "Skriv for at søge efter tidszone"
 
 msgid "Unable to search the group"
-msgstr "Kan ikke søge på denne gruppe"
+msgstr "Der kunne ikke søges i gruppen"
 
 msgid "Undo changes"
 msgstr "Fortryd ændringer"
 
 msgid "Upload file"
-msgstr "Upload fil"
+msgstr "Overfør fil"
 
 msgid "Upload files"
-msgstr "Upload filer"
+msgstr "Overfør filer"
 
 msgid "Upload folder"
-msgstr "Upload mappe"
+msgstr "Overfør mappe"
+
+msgid "Upload from device"
+msgstr "Overfør fra enhed"
+
+msgid "Upload progress"
+msgstr "Overførselsstatus"
 
 msgid "Uploading …"
-msgstr "Uploader..."
+msgstr "Overfører …"
 
 msgid "User status: {status}"
 msgstr "Brugerstatus: {status}"
+
+msgid "View profile"
+msgstr "Vis profil"
 
 msgid "View team"
 msgstr "Se teamet"
 
 msgid "W"
-msgstr "W"
+msgstr "U"
 
 #. TRANSLATORS: A color name for RGB(211, 169, 103)
 msgid "Whiskey"
@@ -627,16 +652,13 @@ msgid "White"
 msgstr "Hvid"
 
 msgid "Widget height"
-msgstr "Kontrolhøjde"
+msgstr "Widgethøjde"
 
 msgid "Write a message …"
-msgstr "Skriv en besked ..."
+msgstr "Skriv en besked …"
 
 msgid "Year picker"
-msgstr "År vælger"
+msgstr "Årsvælger"
 
 msgid "Year picker overlay"
-msgstr "År vælger overlay"
-
-msgid "You have not added any info yet"
-msgstr "Du har ikke tilføjet nogen info endnu"
+msgstr "Oversigt til valg af år"
