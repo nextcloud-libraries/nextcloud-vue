@@ -29,6 +29,7 @@ module.exports = async () => {
 		require: [
 			path.join(__dirname, 'styleguide/window.js'),
 			path.join(__dirname, 'styleguide/global.requires.js'),
+			path.join(__dirname, 'styleguide/scrollToHash.js'),
 			path.join(__dirname, 'styleguide/assets/icons.css'),
 			process.env.NEXTCLOUD_LEGACY
 				? path.join(__dirname, 'styleguide/assets/legacy.css')
