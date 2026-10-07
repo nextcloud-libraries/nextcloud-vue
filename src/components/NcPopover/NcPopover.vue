@@ -379,7 +379,7 @@ export default {
 				allowOutsideClick: true,
 				setReturnFocus: this.setReturnFocus || (!this.noAutoReturnFocus && this.getPopoverTriggerButtonElement()),
 				trapStack: getTrapStack(),
-				fallBackFocus: el,
+				fallbackFocus: el,
 			})
 			this.$focusTrap.activate()
 		},
