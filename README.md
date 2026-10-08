@@ -16,12 +16,25 @@
 
 ## 📄 Documentation
 
-| Version        | Target                | Documentation                                         |
-|----------------|-----------------------|-------------------------------------------------------|
-| v9.x [main]    | Nextcloud 31+ (Vue 3) | https://nextcloud-vue-components.netlify.app          |
-| v8.x [stable8] | Nextcloud 28+ (Vue 2) | https://stable8--nextcloud-vue-components.netlify.app |
-| v7.x [stable7] | Nextcloud 25 - 27     | https://stable7--nextcloud-vue-components.netlify.app |
-| v6.x [stable6] | Nextcloud 24 - 25     | https://stable6--nextcloud-vue-components.netlify.app |
+| Version        | Supported       | Target                | Documentation                                         |
+|----------------|-----------------|-----------------------|-------------------------------------------------------|
+| v9.x [main]    | ✅ Supported    | Nextcloud 31+ (Vue 3) | https://nextcloud-vue-components.netlify.app          |
+| v8.x [stable8] | ✅ Supported    | Nextcloud 28+ (Vue 2) | https://stable8--nextcloud-vue-components.netlify.app |
+| v7.x [stable7] | 🚨 Life-support | Nextcloud 25 - 27     | https://stable7--nextcloud-vue-components.netlify.app |
+| v6.x [stable6] | 🚨 Life-support | Nextcloud 24 - 25     | https://stable6--nextcloud-vue-components.netlify.app |
+| v5 and before  | ❌ End of Life  | Nextcloud ≤ 24        |                                                       |
+
+### Support level
+
+We have 4 types of support level for library versions:
+1. ✅ Current release support
+   This library version will get full support, including new features and adjustments to make it compatible with newer Nextcloud server versions.
+2. 🪲 Maintenance
+   Library versions in maintenance support will only receive functional bug fixes. This is usually kept until all the supported Nextcloud server targets reach community EoL (1 year support after release).
+3. 🚨 Life-support
+   Once in life-support we will only provide important security fixes if needed.
+4. ❌ End of Life
+   No further maintenance will be done on such versions.
 
 ## 📦 Install
 
