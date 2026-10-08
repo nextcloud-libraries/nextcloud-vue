@@ -3,8 +3,10 @@
  * SPDX-License-Identifier: AGPL-3.0-or-later
  */
 
+import type { MaybeRef } from 'vue'
+
 import { loadState } from '@nextcloud/initial-state'
-import { inject } from 'vue'
+import { inject, unref } from 'vue'
 import { logger } from './logger.ts'
 import { once } from './utils.ts'
 
@@ -28,7 +30,8 @@ export const APP_VERSION = realAppVersion
  * Get the app name (the Nextcloud app id).
  */
 export function useAppName(): string {
-	return inject<string>('appName', APP_NAME)
+	// NcContent provides the app name as a computed ref
+	return unref(inject<MaybeRef<string>>('appName', APP_NAME))
 }
 
 /**
