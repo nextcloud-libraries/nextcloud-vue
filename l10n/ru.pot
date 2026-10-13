@@ -283,7 +283,7 @@ msgid "Keyboard navigation help"
 msgstr "Справка по навигации с помощью клавиатуры"
 
 msgid "Keyboard shortcuts"
-msgstr "Сочетания клавиш"
+msgstr "Комбинации клавиш"
 
 msgid "Light skin tone"
 msgstr "Светлый оттенок кожи"
