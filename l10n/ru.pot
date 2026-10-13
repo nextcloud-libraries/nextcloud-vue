@@ -626,16 +626,16 @@ msgid "Upload file"
 msgstr "Загрузить файл"
 
 msgid "Upload files"
-msgstr "Загрузка файлов"
+msgstr "Загрузить файлы"
 
 msgid "Upload folder"
-msgstr "Загрузка папки"
+msgstr "Загрузить папку"
 
 msgid "Upload from device"
-msgstr "Загрузка с устройства"
+msgstr "Загрузить с устройства"
 
 msgid "Upload progress"
-msgstr "Прогресс загрузки"
+msgstr "Ход загрузки"
 
 msgid "Uploading …"
 msgstr "Загрузка…"
