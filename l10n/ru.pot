@@ -586,7 +586,7 @@ msgid "Start typing to search"
 msgstr "Начните вводить текст для поиска"
 
 msgid "Submit"
-msgstr "Утвердить"
+msgstr "Отправить"
 
 msgid "Switch AM/PM mode"
 msgstr "Переключение режима AM/PM"
@@ -611,19 +611,19 @@ msgid "Travel & Places"
 msgstr "Путешествия и места"
 
 msgid "Type to search for existing projects"
-msgstr "Введите для поиска существующих проектов"
+msgstr "Введите название проекта для поиска"
 
 msgid "Type to search time zone"
-msgstr "Введите для поиска часового пояса"
+msgstr "Введите название часового пояса"
 
 msgid "Unable to search the group"
-msgstr "Невозможно найти группу"
+msgstr "Не удалось выполнить поиск в группе"
 
 msgid "Undo changes"
 msgstr "Отменить изменения"
 
 msgid "Upload file"
-msgstr "Загрузка файла"
+msgstr "Загрузить файл"
 
 msgid "Upload files"
 msgstr "Загрузка файлов"
