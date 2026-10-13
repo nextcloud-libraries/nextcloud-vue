@@ -3,26 +3,27 @@
 # Elena Mishina, 2025
 # Igor Orlov, 2025
 # Leonid Fedotov, 2025
-# Александр, 2026
 # ashed <craysy@gmail.com>, 2026
 # Maksim Sukharev, 2026
+# NGC206, 2026
+# Alex <kekcuha@gmail.com>, 2026
 # 
 msgid ""
 msgstr ""
-"Last-Translator: Maksim Sukharev, 2026\n"
+"Last-Translator: Alex <kekcuha@gmail.com>, 2026\n"
 "Language-Team: Russian (https://app.transifex.com/nextcloud/teams/64236/ru/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Language: ru\n"
 "Plural-Forms: nplurals=4; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<12 || n%100>14) ? 1 : n%10==0 || (n%10>=5 && n%10<=9) || (n%100>=11 && n%100<=14)? 2 : 3);\n"
 
 msgid "{tag} (invisible)"
-msgstr "{tag} (невидимое)"
+msgstr "{tag} (невидимая)"
 
 msgid "{tag} (restricted)"
-msgstr "{tag} (ограниченное)"
+msgstr "{tag} (ограниченная)"
 
 msgid "A color with a HEX value {hex}"
-msgstr "Цвет в HEX {hex}"
+msgstr "Цвет с HEX-кодом {hex}"
 
 msgid "a few seconds ago"
 msgstr "несколько секунд назад"
@@ -32,7 +33,7 @@ msgid "Acapulco"
 msgstr "Акапулько"
 
 msgid "Actions"
-msgstr "Действия "
+msgstr "Действия"
 
 msgid "Activities"
 msgstr "События"
@@ -45,43 +46,48 @@ msgid "Alt"
 msgstr "Alt"
 
 msgid "Animals & Nature"
-msgstr "Животные и природа "
+msgstr "Животные и природа"
 
 msgid "Any link"
 msgstr "Любая ссылка"
 
 msgid "Anything shared with the same group of people will show up here"
-msgstr "Всё, чем поделились с той же группой людей, будет отображаться здесь"
+msgstr "Здесь появится всё, чем поделились с той же группой людей"
+
+#. TRANSLATORS: State of the current upload - chunks of the uploaded files are
+#. being assembled into the final file
+msgid "assembling"
+msgstr "сборка"
 
 msgid "Avatar of {displayName}"
 msgstr "Аватар {displayName}"
 
 msgid "Avatar of {displayName}, {status}"
-msgstr "Фотография {displayName}, {status}"
+msgstr "Аватар {displayName}, {status}"
 
 #. TRANSLATORS: User status if the user is currently away from keyboard
 msgid "away"
-msgstr "отсутствие"
+msgstr "неактивен"
 
 msgid "Back"
 msgstr "Назад"
 
 msgid "Back to provider selection"
-msgstr "Вернуться к выбору провайдера"
+msgstr "Вернуться к выбору поставщика"
 
 msgid "Black"
-msgstr "Черный"
+msgstr "Чёрный"
 
 #. TRANSLATORS: A color name for RGB(91, 100, 179)
 msgid "Blue Violet"
-msgstr "Синий фиолет"
+msgstr "Сине-фиолетовый"
 
 #. TRANSLATORS: A color name for RGB(55, 148, 172)
 msgid "Boston Blue"
-msgstr "Синий Бостон"
+msgstr "Бостонский синий"
 
 msgid "busy"
-msgstr "занятый"
+msgstr "занят"
 
 msgid "Calendar icon"
 msgstr "Значок календаря"
@@ -92,17 +98,20 @@ msgstr "Отмена"
 msgid "Cancel changes"
 msgstr "Отменить изменения"
 
+msgid "Cancel uploads"
+msgstr "Отменить загрузки"
+
 msgid "Change name"
 msgstr "Изменить имя"
 
 msgid "Choose"
-msgstr "Выберите"
+msgstr "Выбрать"
 
 msgid "Clear search"
 msgstr "Очистить поиск"
 
 msgid "Clear selected"
-msgstr "Очистить выбранный"
+msgstr "Снять выбор"
 
 msgid "Clear text"
 msgstr "Очистить текст"
@@ -117,10 +126,10 @@ msgid "Close navigation"
 msgstr "Закрыть навигацию"
 
 msgid "Close sidebar"
-msgstr "Закрыть сайдбар"
+msgstr "Закрыть боковую панель"
 
 msgid "Close Smart Picker"
-msgstr "Закрыть интеллектуальный выбор"
+msgstr "Закрыть умный подборщик"
 
 msgid "Close time Picker"
 msgstr "Закрыть выбор времени"
@@ -135,13 +144,13 @@ msgid "Confirm changes"
 msgstr "Подтвердить изменения"
 
 msgid "Connect items to a project to make them easier to find"
-msgstr "Подключайте элементы к проекту, чтобы их было легче найти"
+msgstr "Связывайте элементы с проектом, чтобы их было легче найти"
 
 msgid "Copied"
 msgstr "Скопировано"
 
 msgid "Copy to clipboard"
-msgstr "Скопировать в буфер"
+msgstr "Скопировать в буфер обмена"
 
 #. TRANSLATORS: Ctrl key on keyboard (Windows/Linux)
 msgid "Ctrl"
@@ -151,7 +160,7 @@ msgid "Custom"
 msgstr "Пользовательское"
 
 msgid "Dark skin tone"
-msgstr "Темный оттенок"
+msgstr "Тёмный оттенок кожи"
 
 msgid "Datepicker input"
 msgstr "Поле выбора даты"
@@ -185,6 +194,9 @@ msgstr "не беспокоить"
 msgid "Edit item"
 msgstr "Изменить элемент"
 
+msgid "Edit profile"
+msgstr "Изменить профиль"
+
 msgid "Emoji picker"
 msgstr "Подборщик эмодзи"
 
@@ -202,12 +214,15 @@ msgid ""
 "Error getting related resources. Please contact your system administrator if"
 " you have any questions."
 msgstr ""
-"Ошибка при получении связанных ресурсов. Если у вас есть какие-либо вопросы,"
-" обратитесь к системному администратору."
+"Не удалось получить связанные ресурсы. С вопросами обращайтесь к системному "
+"администратору."
 
 #. TRANSLATORS: Escape key on keyboard
 msgid "Escape"
 msgstr "Escape"
+
+msgid "Estimating …"
+msgstr "Оценка времени …"
 
 msgid "External documentation"
 msgstr "Внешняя документация"
@@ -232,10 +247,10 @@ msgid "Flags"
 msgstr "Флаги"
 
 msgid "Food & Drink"
-msgstr "Еда, напиток"
+msgstr "Еда и напитки"
 
 msgid "Frequently used"
-msgstr "Часто используемый"
+msgstr "Часто используемые"
 
 msgid "Go back to the list"
 msgstr "Вернуться к списку"
@@ -258,6 +273,9 @@ msgstr "Увеличить количество минут"
 msgid "Increment seconds"
 msgstr "Увеличить количество секунд"
 
+msgid "Invalid date"
+msgstr "Неверная дата"
+
 msgid "invisible"
 msgstr "невидимый"
 
@@ -265,30 +283,39 @@ msgid "Keyboard navigation help"
 msgstr "Справка по навигации с помощью клавиатуры"
 
 msgid "Keyboard shortcuts"
-msgstr "Комбинации клавиш"
+msgstr "Сочетания клавиш"
 
 msgid "Light skin tone"
-msgstr "Светлый оттенок"
+msgstr "Светлый оттенок кожи"
 
 msgid "Load more \"{options}\""
-msgstr "Загрузить больше \"{options}\"\""
+msgstr "Загрузить ещё «{options}»"
 
 #. TRANSLATORS: The button is in a loading state
 msgid "Loading …"
 msgstr "Загрузка …"
+
+msgid "Loading actions"
+msgstr "Загрузка действий"
+
+msgid "Loading profile"
+msgstr "Загрузка профиля"
+
+msgid "Local time: {time}"
+msgstr "Местное время: {time}"
 
 #. TRANSLATORS: A color name for RGB(45, 115, 190)
 msgid "Mariner"
 msgstr "Морской"
 
 msgid "Medium dark skin tone"
-msgstr "Средний темный оттенок"
+msgstr "Средне-тёмный оттенок кожи"
 
 msgid "Medium light skin tone"
-msgstr "Средний светлый оттенок"
+msgstr "Средне-светлый оттенок кожи"
 
 msgid "Medium skin tone"
-msgstr "Средний оттенок"
+msgstr "Средний оттенок кожи"
 
 msgid "Message limit of %n character reached"
 msgid_plural "Message limit of %n characters reached"
@@ -307,10 +334,13 @@ msgid "More items …"
 msgstr "Больше элементов …"
 
 msgid "More options"
-msgstr "Больше опций"
+msgstr "Дополнительные параметры"
 
 msgid "Neutral skin color"
-msgstr "Нейтральный оттенок"
+msgstr "Нейтральный оттенок кожи"
+
+msgid "New"
+msgstr "Новый"
 
 msgid "Next"
 msgstr "Следующее"
@@ -322,7 +352,7 @@ msgid "Next year"
 msgstr "Следующий год"
 
 msgid "Nextcloud blue"
-msgstr "Nextcloud голубой"
+msgstr "Голубой Nextcloud"
 
 msgid "No color"
 msgstr "Без цвета"
@@ -334,7 +364,7 @@ msgid "No link provider found"
 msgstr "Поставщик ссылок не найден"
 
 msgid "No results"
-msgstr "Результаты отсуствуют"
+msgstr "Ничего не найдено"
 
 msgid "Now"
 msgstr "Сейчас"
@@ -343,20 +373,20 @@ msgid "Objects"
 msgstr "Объекты"
 
 msgid "offline"
-msgstr "офлайн"
+msgstr "не в сети"
 
 #. TRANSLATORS: A color name for RGB(165, 184, 114)
 msgid "Olivine"
-msgstr " Оливковый"
+msgstr "Оливковый"
 
 msgid "online"
-msgstr "онлайн"
+msgstr "в сети"
 
 msgid "Open hours overlay"
 msgstr "Открыть окно выбора часов"
 
 msgid "Open link to \"{resourceName}\""
-msgstr "Открыть ссылку на \"{resourceName}\""
+msgstr "Открыть ссылку на «{resourceName}»"
 
 msgid "Open menu"
 msgstr "Открыть меню"
@@ -377,7 +407,7 @@ msgid "Open sidebar"
 msgstr "Открыть боковую панель"
 
 msgid "Open time picker"
-msgstr "Открыть средство выбора времени"
+msgstr "Открыть выбор времени"
 
 msgid "Open years overlay"
 msgstr "Открыть окно выбора года"
@@ -386,16 +416,20 @@ msgid "Options"
 msgstr "Варианты"
 
 msgid "Password is secure"
-msgstr "Пароль надежный"
+msgstr "Пароль надёжный"
 
 msgid "Pause slideshow"
-msgstr "Приостановить показ слйдов"
+msgstr "Приостановить показ слайдов"
+
+#. TRANSLATORS: State of the current upload - it is paused
+msgid "paused"
+msgstr "приостановлено"
 
 msgid "People & Body"
 msgstr "Люди и тело"
 
 msgid "Pick"
-msgstr "Выбор"
+msgstr "Выбрать"
 
 msgid "Pick an emoji"
 msgstr "Выберите эмодзи"
@@ -421,6 +455,9 @@ msgstr "Предыдущий месяц"
 msgid "Previous year"
 msgstr "Предыдущий год"
 
+msgid "Profile of {user}"
+msgstr "Профиль {user}"
+
 msgid "Provider icon"
 msgstr "Значок поставщика"
 
@@ -434,7 +471,7 @@ msgid "Related resources"
 msgstr "Связанные ресурсы"
 
 msgid "Related team resources"
-msgstr "Связанные командные ресурсы"
+msgstr "Связанные ресурсы команды"
 
 msgid "Rename project"
 msgstr "Переименовать проект"
@@ -500,24 +537,27 @@ msgstr "Выбрать год"
 msgid "Selected"
 msgstr "Выбрано"
 
+msgid "Send message"
+msgstr "Отправить сообщение"
+
 msgid "Settings"
 msgstr "Параметры"
 
 msgid "Settings navigation"
-msgstr "Навигация по настройкам"
+msgstr "Навигация по параметрам"
 
 #. TRANSLATORS: Shift key on keyboard
 msgid "Shift"
 msgstr "Shift"
 
 msgid "Show details"
-msgstr "Показать детали"
+msgstr "Показать подробности"
 
 msgid "Show password"
 msgstr "Показать пароль"
 
 msgid "Skin tone"
-msgstr "Оттенок скина"
+msgstr "Оттенок кожи"
 
 msgid "Skip to app navigation"
 msgstr "Перейти к навигации по приложению"
@@ -526,7 +566,7 @@ msgid "Skip to main content"
 msgstr "Перейти к основному содержанию"
 
 msgid "Smart Picker"
-msgstr "Умный выбор"
+msgstr "Умный подборщик"
 
 msgid "Smileys & Emotion"
 msgstr "Смайлики и эмоции"
@@ -535,6 +575,9 @@ msgstr "Смайлики и эмоции"
 msgid "Space"
 msgstr "Пробел"
 
+msgid "Start call"
+msgstr "Начать звонок"
+
 msgid "Start slideshow"
 msgstr "Начать показ слайдов"
 
@@ -542,7 +585,7 @@ msgid "Start typing to search"
 msgstr "Начните вводить текст для поиска"
 
 msgid "Submit"
-msgstr "Утвердить"
+msgstr "Отправить"
 
 msgid "Switch AM/PM mode"
 msgstr "Переключение режима AM/PM"
@@ -567,34 +610,43 @@ msgid "Travel & Places"
 msgstr "Путешествия и места"
 
 msgid "Type to search for existing projects"
-msgstr "Введите для поиска существующих проектов"
+msgstr "Введите название проекта для поиска"
 
 msgid "Type to search time zone"
-msgstr "Введите для поиска часового пояса"
+msgstr "Введите название часового пояса"
 
 msgid "Unable to search the group"
-msgstr "Невозможно найти группу"
+msgstr "Не удалось выполнить поиск в группе"
 
 msgid "Undo changes"
 msgstr "Отменить изменения"
 
 msgid "Upload file"
-msgstr "Загрузка файла"
+msgstr "Загрузить файл"
 
 msgid "Upload files"
-msgstr "Загрузка файлов"
+msgstr "Загрузить файлы"
 
 msgid "Upload folder"
-msgstr "Загрузка папки"
+msgstr "Загрузить папку"
+
+msgid "Upload from device"
+msgstr "Загрузить с устройства"
+
+msgid "Upload progress"
+msgstr "Ход загрузки"
 
 msgid "Uploading …"
-msgstr "Загрузка…"
+msgstr "Загрузка …"
 
 msgid "User status: {status}"
 msgstr "Статус пользователя: {status}"
 
+msgid "View profile"
+msgstr "Открыть профиль"
+
 msgid "View team"
-msgstr "Просмотр команды"
+msgstr "Открыть команду"
 
 msgid "W"
 msgstr "Н"
