@@ -51,7 +51,7 @@ msgstr "Siin kuvatakse kõik, mida jagatakse sama kasutajagrupiga"
 #. TRANSLATORS: State of the current upload - chunks of the uploaded files are
 #. being assembled into the final file
 msgid "assembling"
-msgstr "koostan üleslaaditud sisu üheks failiks"
+msgstr "koondan üleslaaditud sisu üheks failiks"
 
 msgid "Avatar of {displayName}"
 msgstr "Tunnuspilt: {displayName}"
