@@ -278,6 +278,15 @@ $content-inset: calc(3 * var(--default-grid-baseline));
 		max-width: 900px;
 	}
 
+	:deep(.modal-container__close) {
+		background-color: var(--color-primary-element-light) !important;
+
+		&:hover,
+		&:focus-visible {
+			background-color: var(--color-primary-element-light-hover) !important;
+		}
+	}
+
 	:deep(.dialog__name) {
 		position: absolute;
 		width: 1px;
@@ -342,6 +351,7 @@ $content-inset: calc(3 * var(--default-grid-baseline));
 			background-color: transparent;
 			border: none;
 			color: var(--color-main-text);
+			transition: background-color var(--animation-quick, 200ms) ease-in-out;
 
 			&:hover,
 			&:focus-visible {
@@ -364,11 +374,12 @@ $content-inset: calc(3 * var(--default-grid-baseline));
 				&::before {
 					content: '';
 					position: absolute;
-					inset-block: var(--default-grid-baseline);
+					inset-block: calc(var(--default-grid-baseline, 4px) * 2);
 					inset-inline-start: 0;
 					width: 3px;
 					background-color: var(--color-primary-element);
 					border-radius: 999px;
+					animation: nc-settings-pill-in var(--animation-quick, 200ms) ease-out;
 				}
 			}
 
@@ -473,6 +484,17 @@ $content-inset: calc(3 * var(--default-grid-baseline));
 				max-width: calc(var(--default-clickable-area) - 2 * var(--default-grid-baseline));
 			}
 		}
+	}
+}
+
+@keyframes nc-settings-pill-in {
+	from {
+		transform: scaleY(0);
+		opacity: 0;
+	}
+	to {
+		transform: scaleY(1);
+		opacity: 1;
 	}
 }
 </style>
