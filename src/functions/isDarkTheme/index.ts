@@ -10,18 +10,18 @@
  * @return Whether the dark theme is enabled via Nextcloud theme
  */
 export function checkIfDarkTheme(el: HTMLElement = document.body): boolean {
-	// Nextcloud uses --background-invert-if-dark for dark theme filters in CSS
-	// Values:
-	// - 'invert(100%)' for dark theme
-	// - 'no' for light theme
-	// This is the most reliable way to check for dark theme, including custom themes
-	const backgroundInvertIfDark = window.getComputedStyle(el).getPropertyValue('--background-invert-if-dark')
-	if (backgroundInvertIfDark !== undefined) {
-		return backgroundInvertIfDark === 'invert(100%)'
+	const styles = window.getComputedStyle(el)
+
+	// Nextcloud 36+ sets --nextcloud-theme-dark to 1 for dark themes and 0 otherwise
+	const themeDark = styles.getPropertyValue('--nextcloud-theme-dark').trim()
+	if (themeDark !== '') {
+		return themeDark === '1'
 	}
 
-	// There is no theme? Fallback to the light theme
-	return false
+	// Older servers: --background-invert-if-dark is 'invert(100%)' for dark themes, 'no' otherwise.
+	// Without any theme both are empty, which falls back to the light theme.
+	// TODO: remove this fallback once Nextcloud 35 is no longer supported
+	return styles.getPropertyValue('--background-invert-if-dark').trim() === 'invert(100%)'
 }
 
 /**
