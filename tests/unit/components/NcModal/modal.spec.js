@@ -56,6 +56,20 @@ describe('NcModal', () => {
 		})
 	})
 
+	// The server's theme selectors match on presence, so a `false` value
+	// would still pull in the other theme
+	describe('the header theme', () => {
+		it.each([
+			[false, 'data-theme-dark', 'data-theme-light'],
+			[true, 'data-theme-light', 'data-theme-dark'],
+		])('with `lightBackdrop` %s is only %s', (lightBackdrop, set, unset) => {
+			const wrapper = mount(NcModal, { props: { container: null, name: 'modal', lightBackdrop } })
+			const header = wrapper.find('.modal-header')
+			expect(header.attributes()).toHaveProperty(set)
+			expect(header.attributes()).not.toHaveProperty(unset)
+		})
+	})
+
 	describe('slideshow', () => {
 		const props = { container: null, name: 'modal', enableSlideshow: true, hasNext: true, slideshowDelay: 100 }
 
