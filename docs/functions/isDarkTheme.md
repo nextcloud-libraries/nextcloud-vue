@@ -16,6 +16,8 @@ You should not use `window.matchMedia.('(prefers-color-scheme: dark)')`. It chec
 
 You should not use `[data-themes*=dark]` or `[data-theme-dark]` attributes on the body. It checks for explicitly set dark theme, but a user may use the system or custom theme.
 
+The check reads the `--nextcloud-theme-dark` CSS variable on the element, which Nextcloud 36 and later set to `1` for a dark theme and `0` otherwise. On older servers it falls back to `--background-invert-if-dark`. That variable is deprecated: do not rely on it to detect the dark theme, the fallback will be removed once Nextcloud 35 is no longer supported.
+
 ## Definitions
 
 ```ts static
