@@ -1,11 +1,10 @@
-# 
 # Translators:
-# John Molakvoæ <skjnldsv@protonmail.com>, 2023
-# Liviu Milies, 2023
+# Joas Schilling, 2025
+# Ștefan Chelban, 2026
 # 
 msgid ""
 msgstr ""
-"Last-Translator: Liviu Milies, 2023\n"
+"Last-Translator: Ștefan Chelban, 2026\n"
 "Language-Team: Romanian (https://app.transifex.com/nextcloud/teams/64236/ro/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Language: ro\n"
@@ -18,19 +17,27 @@ msgid "{tag} (restricted)"
 msgstr "{tag} (restricționat)"
 
 msgid "A color with a HEX value {hex}"
-msgstr "O culoare în HEX value {hex}"
+msgstr "O culoare cu valoarea HEX {hex}"
 
 msgid "a few seconds ago"
 msgstr "acum câteva secunde"
 
+#. TRANSLATORS: A color name for RGB(110, 166, 143)
+msgid "Acapulco"
+msgstr "Verde salvie"
+
 msgid "Actions"
 msgstr "Acțiuni"
 
-msgid "Actions for item with name \"{name}\""
-msgstr "Acțiuni pentru elementul cu numele \"{name}\""
-
 msgid "Activities"
 msgstr "Activități"
+
+msgid "Add to a project"
+msgstr "Adaugă la un proiect"
+
+#. TRANSLATORS: Alt key on keyboard (Windows/Linux)
+msgid "Alt"
+msgstr "Alt"
 
 msgid "Animals & Nature"
 msgstr "Animale și natură"
@@ -42,44 +49,76 @@ msgid "Anything shared with the same group of people will show up here"
 msgstr ""
 "Tot ceea ce este partajat cu același grup de persoane va fi afișat aici"
 
+#. TRANSLATORS: State of the current upload - chunks of the uploaded files are
+#. being assembled into the final file
+msgid "assembling"
+msgstr "se asamblează"
+
 msgid "Avatar of {displayName}"
 msgstr "Avatarul lui {displayName}"
 
 msgid "Avatar of {displayName}, {status}"
 msgstr "Avatarul lui {displayName}, {status}"
 
+#. TRANSLATORS: User status if the user is currently away from keyboard
 msgid "away"
-msgstr "plecat"
+msgstr "absent"
 
 msgid "Back"
 msgstr "Înapoi"
 
 msgid "Back to provider selection"
-msgstr "Înapoi la selecția providerului"
+msgstr "Înapoi la selectarea furnizorului"
+
+msgid "Black"
+msgstr "Negru"
+
+#. TRANSLATORS: A color name for RGB(91, 100, 179)
+msgid "Blue Violet"
+msgstr "Albastru-violet"
+
+#. TRANSLATORS: A color name for RGB(55, 148, 172)
+msgid "Boston Blue"
+msgstr "Albastru-verzui"
+
+msgid "busy"
+msgstr "ocupat"
+
+msgid "Calendar icon"
+msgstr "Pictogramă calendar"
+
+msgid "Cancel"
+msgstr "Anulare"
 
 msgid "Cancel changes"
 msgstr "Anulează modificările"
+
+msgid "Cancel uploads"
+msgstr "Anulează încărcările"
 
 msgid "Change name"
 msgstr "Modifică numele"
 
 msgid "Choose"
-msgstr "Alegeți"
+msgstr "Alege"
 
 msgid "Clear search"
-msgstr "Șterge căutarea"
+msgstr "Golește căutarea"
 
 msgid "Clear selected"
 msgstr "Șterge selecția"
 
 msgid "Clear text"
-msgstr "Șterge textul"
+msgstr "Golește textul"
+
+msgid "Clear value"
+msgstr "Golește valoarea"
 
 msgid "Close"
-msgstr "Închideți"
+msgstr "Închide"
 
 msgid "Close navigation"
-msgstr "Închideți navigarea"
+msgstr "Închide navigarea"
 
 msgid "Close sidebar"
 msgstr "Închide bara laterală"
@@ -87,42 +126,120 @@ msgstr "Închide bara laterală"
 msgid "Close Smart Picker"
 msgstr "Închide Smart Picker"
 
+msgid "Close time Picker"
+msgstr "Închide selectorul de oră"
+
 msgid "Collapse menu"
 msgstr "Restrânge meniul"
 
+msgid "Color picker"
+msgstr "Selector de culori"
+
 msgid "Confirm changes"
-msgstr "Confirmați modificările"
+msgstr "Confirmă modificările"
+
+msgid "Connect items to a project to make them easier to find"
+msgstr "Conectează elemente la un proiect pentru a le găsi mai ușor"
+
+msgid "Copied"
+msgstr "Copiat"
+
+msgid "Copy to clipboard"
+msgstr "Copiază în clipboard"
+
+#. TRANSLATORS: Ctrl key on keyboard (Windows/Linux)
+msgid "Ctrl"
+msgstr "Ctrl"
 
 msgid "Custom"
 msgstr "Personalizat"
 
+msgid "Dark skin tone"
+msgstr "Ton de piele închis"
+
+msgid "Datepicker input"
+msgstr "Câmpul selectorului de dată"
+
+msgid "Datepicker menu"
+msgstr "Meniul selectorului de dată"
+
+msgid "Decrement hours"
+msgstr "Scade ora"
+
+msgid "Decrement minutes"
+msgstr "Scade minutele"
+
+msgid "Decrement seconds"
+msgstr "Scade secundele"
+
+#. TRANSLATORS: Delete key on keyboard
+msgid "Delete"
+msgstr "Delete"
+
+#. TRANSLATORS: A color name for RGB(136, 85, 168)
+msgid "Deluge"
+msgstr "Violet"
+
 msgid "Deselect {option}"
-msgstr "Deselctează {option}"
+msgstr "Deselectează {option}"
 
 msgid "do not disturb"
-msgstr "nu deranjați"
+msgstr "nu deranja"
 
 msgid "Edit item"
-msgstr "Editați elementul"
+msgstr "Editează elementul"
+
+msgid "Edit profile"
+msgstr "Editează profilul"
+
+msgid "Emoji picker"
+msgstr "Selector de emoji"
+
+msgid "Enable interactive view"
+msgstr "Activează vizualizarea interactivă"
+
+#. TRANSLATORS: Enter key on keyboard
+msgid "Enter"
+msgstr "Enter"
 
 msgid "Enter link"
-msgstr "Introduceți link-ul"
+msgstr "Introdu linkul"
 
 msgid ""
 "Error getting related resources. Please contact your system administrator if"
 " you have any questions."
 msgstr ""
-"Eroare la preluarea resurselor adiționale. Vă rugăm să contactați "
-"administratorul pentru întrebări."
+"Eroare la preluarea resurselor asociate. Contactează administratorul de "
+"sistem dacă ai întrebări."
 
-msgid "External documentation for {name}"
-msgstr "Documentație externă pentru {name}"
+#. TRANSLATORS: Escape key on keyboard
+msgid "Escape"
+msgstr "Escape"
+
+msgid "Estimating …"
+msgstr "Se estimează …"
+
+msgid "External documentation"
+msgstr "Documentație externă"
+
+msgid "Failed to add the item to the project"
+msgstr "Elementul nu a putut fi adăugat la proiect"
+
+msgid "Failed to create a project"
+msgstr "Crearea proiectului a eșuat"
+
+msgid "Failed to rename the project"
+msgstr "Redenumirea proiectului a eșuat"
 
 msgid "Favorite"
 msgstr "Favorit"
 
+#. TRANSLATORS: A color name for RGB(201, 136, 121)
+msgid "Feldspar"
+msgstr "Somon"
+
 msgid "Flags"
-msgstr "Marcaje"
+msgstr "Steaguri"
 
 msgid "Food & Drink"
 msgstr "Alimente și băuturi"
@@ -130,107 +247,213 @@ msgstr "Alimente și băuturi"
 msgid "Frequently used"
 msgstr "Utilizate frecvent"
 
-msgid "Global"
-msgstr "Global"
-
 msgid "Go back to the list"
-msgstr "Întoarceți-vă la listă"
+msgstr "Înapoi la listă"
 
 msgid "Gold"
-msgstr "Aur"
+msgstr "Auriu"
+
+msgid "Hide details"
+msgstr "Ascunde detaliile"
 
 msgid "Hide password"
 msgstr "Ascunde parola"
 
-msgid "Load more \"{options}\""
-msgstr "Încarcă mai multe \"{options}\""
+msgid "Increment hours"
+msgstr "Crește ora"
 
-msgid "Message limit of {count} characters reached"
-msgstr "Limita mesajului de {count} caractere a fost atinsă"
+msgid "Increment minutes"
+msgstr "Crește minutele"
+
+msgid "Increment seconds"
+msgstr "Crește secundele"
+
+msgid "Invalid date"
+msgstr "Dată invalidă"
+
+msgid "invisible"
+msgstr "invizibil"
+
+msgid "Keyboard navigation help"
+msgstr "Ajutor pentru navigarea cu tastatura"
+
+msgid "Keyboard shortcuts"
+msgstr "Scurtături de tastatură"
+
+msgid "Light skin tone"
+msgstr "Ton de piele deschis"
+
+msgid "Load more \"{options}\""
+msgstr "Încarcă mai multe „{options}”"
+
+#. TRANSLATORS: The button is in a loading state
+msgid "Loading …"
+msgstr "Se încarcă …"
+
+msgid "Loading actions"
+msgstr "Se încarcă acțiunile"
+
+msgid "Loading profile"
+msgstr "Se încarcă profilul"
+
+msgid "Local time: {time}"
+msgstr "Ora locală: {time}"
+
+#. TRANSLATORS: A color name for RGB(45, 115, 190)
+msgid "Mariner"
+msgstr "Albastru marin"
+
+msgid "Medium dark skin tone"
+msgstr "Ton de piele mediu-închis"
+
+msgid "Medium light skin tone"
+msgstr "Ton de piele mediu-deschis"
+
+msgid "Medium skin tone"
+msgstr "Ton de piele mediu"
+
+msgid "Message limit of %n character reached"
+msgid_plural "Message limit of %n characters reached"
+msgstr[0] "A fost atinsă limita mesajului de %n caracter"
+msgstr[1] "A fost atinsă limita mesajului de %n caractere"
+msgstr[2] "A fost atinsă limita mesajului de %n de caractere"
+
+msgid "Month picker"
+msgstr "Selector de lună"
+
+msgid "Month picker overlay"
+msgstr "Panoul selectorului de lună"
 
 msgid "More items …"
-msgstr "Mai multe articole ..."
+msgstr "Mai multe elemente …"
 
 msgid "More options"
 msgstr "Mai multe opțiuni"
 
+msgid "Neutral skin color"
+msgstr "Culoare neutră a pielii"
+
+msgid "New"
+msgstr "Nou"
+
 msgid "Next"
 msgstr "Următorul"
 
+msgid "Next month"
+msgstr "Luna următoare"
+
+msgid "Next year"
+msgstr "Anul următor"
+
 msgid "Nextcloud blue"
-msgstr "Nextcloud albastru"
+msgstr "Albastru Nextcloud"
+
+msgid "No color"
+msgstr "Nicio culoare"
 
 msgid "No emoji found"
 msgstr "Nu s-a găsit niciun emoji"
 
 msgid "No link provider found"
-msgstr "Nu s-a găsit un provider pentru linkuri"
+msgstr "Nu a fost găsit niciun furnizor de linkuri"
 
 msgid "No results"
-msgstr "Nu există rezultate"
+msgstr "Niciun rezultat"
+
+msgid "Now"
+msgstr "Acum"
 
 msgid "Objects"
 msgstr "Obiecte"
 
 msgid "offline"
-msgstr "deconectat"
+msgstr "offline"
+
+#. TRANSLATORS: A color name for RGB(165, 184, 114)
+msgid "Olivine"
+msgstr "Verde oliv"
 
 msgid "online"
 msgstr "online"
 
-msgid "Open contact menu"
-msgstr "Deschide meniul contacte"
+msgid "Open hours overlay"
+msgstr "Deschide panoul orelor"
 
 msgid "Open link to \"{resourceName}\""
-msgstr "Deschide linkul la  \"{resourceName}\""
+msgstr "Deschide linkul către „{resourceName}”"
 
 msgid "Open menu"
 msgstr "Deschide meniul"
 
-msgid "Open navigation"
-msgstr "Deschideți navigația"
+msgid "Open minutes overlay"
+msgstr "Deschide panoul minutelor"
 
-msgid "Open settings menu"
-msgstr "Deschide meniul pentru setări"
+msgid "Open months overlay"
+msgstr "Deschide panoul lunilor"
+
+msgid "Open navigation"
+msgstr "Deschide navigarea"
+
+msgid "Open seconds overlay"
+msgstr "Deschide panoul secundelor"
+
+msgid "Open sidebar"
+msgstr "Deschide bara laterală"
+
+msgid "Open time picker"
+msgstr "Deschide selectorul de oră"
+
+msgid "Open years overlay"
+msgstr "Deschide panoul anilor"
+
+msgid "Options"
+msgstr "Opțiuni"
 
 msgid "Password is secure"
 msgstr "Parola este sigură"
 
 msgid "Pause slideshow"
-msgstr "Pauză prezentare de diapozitive"
+msgstr "Întrerupe prezentarea"
+
+#. TRANSLATORS: State of the current upload - it is paused
+msgid "paused"
+msgstr "în pauză"
 
 msgid "People & Body"
 msgstr "Oameni și corp"
 
-msgid "Pick a date"
-msgstr "Selectați o dată"
-
-msgid "Pick a date and a time"
-msgstr "Selectați data și timpul"
-
-msgid "Pick a month"
-msgstr "Selectați o lună"
-
-msgid "Pick a time"
-msgstr "Selectați timpul"
-
-msgid "Pick a week"
-msgstr "Selectați o săptămână"
-
-msgid "Pick a year"
-msgstr "Selectați anul"
+msgid "Pick"
+msgstr "Alege"
 
 msgid "Pick an emoji"
 msgstr "Alege un emoji"
 
-msgid "Please select a time zone:"
-msgstr "Vă rugăm să selectați un fus orar:"
+msgid "Pick file"
+msgstr "Alege fișierul"
+
+msgid "Pick files"
+msgstr "Alege fișierele"
+
+msgid "Pick folder"
+msgstr "Alege dosarul"
+
+msgid "Please choose a date"
+msgstr "Alege o dată"
 
 msgid "Previous"
 msgstr "Anterior"
 
+msgid "Previous month"
+msgstr "Luna anterioară"
+
+msgid "Previous year"
+msgstr "Anul anterior"
+
+msgid "Profile of {user}"
+msgstr "Profilul lui {user}"
+
 msgid "Provider icon"
-msgstr "Provider pentru icon"
+msgstr "Pictograma furnizorului"
 
 msgid "Purple"
 msgstr "Purpuriu"
@@ -239,7 +462,17 @@ msgid "Raw link {options}"
 msgstr "Link brut {options}"
 
 msgid "Related resources"
-msgstr "Resurse legate"
+msgstr "Resurse asociate"
+
+msgid "Related team resources"
+msgstr "Resurse asociate echipei"
+
+msgid "Rename project"
+msgstr "Redenumește proiectul"
+
+#. TRANSLATORS: A color name for RGB(191, 103, 139)
+msgid "Rosy brown"
+msgstr "Roz-maroniu"
 
 msgid "Save changes"
 msgstr "Salvează modificările"
@@ -247,14 +480,14 @@ msgstr "Salvează modificările"
 msgid "Search"
 msgstr "Căutare"
 
+msgid "Search …"
+msgstr "Caută …"
+
 msgid "Search emoji"
 msgstr "Căutare emoji"
 
-msgid "Search for options"
-msgstr "Căutare opțiuni"
-
 msgid "Search for time zone"
-msgstr "Căutare zonă de timp"
+msgstr "Caută fusul orar"
 
 msgid "Search results"
 msgstr "Rezultatele căutării"
@@ -262,20 +495,44 @@ msgstr "Rezultatele căutării"
 #. FOR TRANSLATORS: If possible in your language an even shorter version of 'a
 #. few seconds ago'
 msgid "sec. ago"
-msgstr "sec. în urmă"
+msgstr "acum"
 
 #. FOR TRANSLATORS: Shorter version of 'a few seconds ago'
 msgid "seconds ago"
-msgstr "secunde în urmă"
+msgstr "acum câteva secunde"
 
 msgid "Select a tag"
-msgstr "Selectați o etichetă"
+msgstr "Selectează o etichetă"
+
+msgid "Select date"
+msgstr "Selectează data"
+
+msgid "Select date and time"
+msgstr "Selectează data și ora"
+
+msgid "Select month"
+msgstr "Selectează luna"
 
 msgid "Select provider"
-msgstr "Selectați providerul"
+msgstr "Selectează furnizorul"
+
+msgid "Select time"
+msgstr "Selectează ora"
+
+msgid "Select time range"
+msgstr "Selectează intervalul orar"
+
+msgid "Select week"
+msgstr "Selectează săptămâna"
+
+msgid "Select year"
+msgstr "Selectează anul"
 
 msgid "Selected"
 msgstr "Selectat"
+
+msgid "Send message"
+msgstr "Trimite mesajul"
 
 msgid "Settings"
 msgstr "Setări"
@@ -283,8 +540,24 @@ msgstr "Setări"
 msgid "Settings navigation"
 msgstr "Navigare setări"
 
+#. TRANSLATORS: Shift key on keyboard
+msgid "Shift"
+msgstr "Shift"
+
+msgid "Show details"
+msgstr "Arată detaliile"
+
 msgid "Show password"
 msgstr "Arată parola"
+
+msgid "Skin tone"
+msgstr "Ton de piele"
+
+msgid "Skip to app navigation"
+msgstr "Salt la navigarea aplicației"
+
+msgid "Skip to main content"
+msgstr "Salt la conținutul principal"
 
 msgid "Smart Picker"
 msgstr "Smart Picker"
@@ -292,32 +565,101 @@ msgstr "Smart Picker"
 msgid "Smileys & Emotion"
 msgstr "Zâmbete și emoții"
 
+#. TRANSLATORS: Space key on keyboard
+msgid "Space"
+msgstr "Spațiu"
+
+msgid "Start call"
+msgstr "Începe apelul"
+
 msgid "Start slideshow"
-msgstr "Începeți prezentarea de diapozitive"
+msgstr "Pornește prezentarea"
 
 msgid "Start typing to search"
-msgstr "Tastați pentru căutare"
+msgstr "Începe să tastezi pentru a căuta"
 
 msgid "Submit"
-msgstr "Trimiteți"
+msgstr "Trimite"
+
+msgid "Switch AM/PM mode"
+msgstr "Comută AM/PM"
 
 msgid "Symbols"
 msgstr "Simboluri"
 
+#. TRANSLATORS: Tab key on keyboard
+msgid "Tab"
+msgstr "Tab"
+
+msgid "Time picker"
+msgstr "Selector de oră"
+
+msgid "Time zone"
+msgstr "Fus orar"
+
+msgid "Toggle overlay"
+msgstr "Comută panoul"
+
 msgid "Travel & Places"
 msgstr "Călătorii și locuri"
 
+msgid "Type to search for existing projects"
+msgstr "Tastează pentru a căuta proiecte existente"
+
 msgid "Type to search time zone"
-msgstr "Tastați pentru a căuta fusul orar"
+msgstr "Tastează pentru a căuta fusul orar"
 
 msgid "Unable to search the group"
-msgstr "Imposibilitatea de a căuta în grup"
+msgstr "Căutarea în grup nu a reușit"
 
 msgid "Undo changes"
-msgstr "Anularea modificărilor"
+msgstr "Revino asupra modificărilor"
+
+msgid "Upload file"
+msgstr "Încarcă un fișier"
+
+msgid "Upload files"
+msgstr "Încarcă fișiere"
+
+msgid "Upload folder"
+msgstr "Încarcă un dosar"
+
+msgid "Upload from device"
+msgstr "Încarcă de pe dispozitiv"
+
+msgid "Upload progress"
+msgstr "Progresul încărcării"
+
+msgid "Uploading …"
+msgstr "Încărcare în curs …"
 
 msgid "User status: {status}"
-msgstr "Status utilizator: {status}"
+msgstr "Stare utilizator: {status}"
+
+msgid "View profile"
+msgstr "Vezi profilul"
+
+msgid "View team"
+msgstr "Vezi echipa"
+
+msgid "W"
+msgstr "S"
+
+#. TRANSLATORS: A color name for RGB(211, 169, 103)
+msgid "Whiskey"
+msgstr "Chihlimbar"
+
+msgid "White"
+msgstr "Alb"
+
+msgid "Widget height"
+msgstr "Înălțimea widgetului"
 
 msgid "Write a message …"
-msgstr "Scrieți un mesaj ..."
+msgstr "Scrie un mesaj …"
+
+msgid "Year picker"
+msgstr "Selector de an"
+
+msgid "Year picker overlay"
+msgstr "Panoul selectorului de an"
