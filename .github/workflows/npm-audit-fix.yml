@@ -11,15 +11,20 @@ name: Npm audit fix and compile
 on:
   workflow_dispatch:
   schedule:
-    # At 2:30 on Sundays
-    - cron: '30 2 * * 0'
+    # At 22:30 on Saturdays
+    - cron: '30 22 * * 6'
 
 permissions:
-  contents: read
+  contents: write
+  pull-requests: write
 
 jobs:
   build:
     runs-on: ubuntu-latest
+
+    env:
+      # env variable for maintainers: 'false' disables auto-merge for these pull requests
+      AUTOMERGE: true
 
     strategy:
       fail-fast: false
@@ -51,10 +56,11 @@ jobs:
 
       - name: Fix npm audit
         id: npm-audit
+        if: steps.freeze.outputs.active != 'true'
         uses: nextcloud-libraries/npm-audit-action@1b1728b2b4a7a78d69de65608efcf4db0e3e42d0 # v0.2.0
 
       - name: Run npm ci and npm run build
-        if: steps.checkout.outcome == 'success'
+        if: steps.freeze.outputs.active != 'true' && steps.checkout.outcome == 'success'
         env:
           CYPRESS_INSTALL_BINARY: 0
         run: |
@@ -62,7 +68,8 @@ jobs:
           npm run build --if-present
 
       - name: Create Pull Request
-        if: steps.checkout.outcome == 'success'
+        id: create-pull-request
+        if: steps.freeze.outputs.active != 'true' && steps.checkout.outcome == 'success'
         uses: peter-evans/create-pull-request@5f6978faf089d4d20b00c7766989d076bb2fc7f1 # v8.1.1
         with:
           token: ${{ secrets.COMMAND_BOT_PAT }}
@@ -76,3 +83,19 @@ jobs:
           labels: |
             dependencies
             3. to review
+
+      # Approve using the default GITHUB_TOKEN, as the PR itself was created
+      # using COMMAND_BOT_PAT and GitHub does not allow an account to approve its own PR
+      - name: GitHub actions bot approve
+        if: steps.freeze.outputs.active != 'true' && steps.create-pull-request.outputs.pull-request-operation != 'none'
+        run: gh pr review --approve "$PR_URL"
+        env:
+          PR_URL: ${{ steps.create-pull-request.outputs.pull-request-url }}
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Enable auto merge
+        if: steps.freeze.outputs.active != 'true' && steps.create-pull-request.outputs.pull-request-operation != 'none' && fromJSON(env.AUTOMERGE)
+        uses: peter-evans/enable-pull-request-automerge@a660677d5469627102a1c1e11409dd063606628d # v3.0.0
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          pull-request-number: ${{ steps.create-pull-request.outputs.pull-request-number }}
