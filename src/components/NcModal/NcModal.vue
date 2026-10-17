@@ -455,8 +455,8 @@ function clearFocusTrap() {
 						v-if="hasHeader"
 						class="modal-header"
 						:class="{ 'modal-header--name-start': size === 'full' }"
-						:data-theme-light="lightBackdrop"
-						:data-theme-dark="!lightBackdrop">
+						:data-theme-light="lightBackdrop || undefined"
+						:data-theme-dark="!lightBackdrop || undefined">
 						<h2
 							v-if="name.trim() !== ''"
 							:id="'modal-name-' + modalId"
