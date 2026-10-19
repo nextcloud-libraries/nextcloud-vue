@@ -110,14 +110,13 @@ export default {
 
 <template>
 	<nav
-		class="nc-pagination"
-		:class="{ 'nc-pagination--compact': compact }"
+		:class="[$style.ncPagination, { [$style.ncPagination_compact]: compact }]"
 		:aria-label="ariaLabel">
-		<span class="nc-pagination__info">
+		<span :class="$style.ncPagination__info">
 			{{ infoText }}
 		</span>
 
-		<div v-if="totalPages > 1" class="nc-pagination__nav">
+		<div v-if="totalPages > 1" :class="$style.ncPagination__nav">
 			<NcButton
 				v-if="!compact"
 				:aria-label="t('First page')"
@@ -140,11 +139,11 @@ export default {
 				</template>
 			</NcButton>
 
-			<ul v-if="!compact" class="nc-pagination__pages">
+			<ul v-if="!compact" :class="$style.ncPagination__pages">
 				<li v-for="item in visiblePages" :key="item">
 					<span
 						v-if="typeof item === 'string'"
-						class="nc-pagination__ellipsis"
+						:class="$style.ncPagination__ellipsis"
 						aria-hidden="true">
 						…
 					</span>
@@ -184,7 +183,7 @@ export default {
 
 		<NcSelect
 			v-if="!compact && pageSizeOptions.length > 0"
-			class="nc-pagination__page-size"
+			:class="$style.ncPagination__pageSize"
 			:clearable="false"
 			:inputLabel="t('Items per page')"
 			:modelValue="pageSize"
@@ -325,55 +324,56 @@ function setPageSize(size: number | null) {
 }
 </script>
 
-<style scoped lang="scss">
-.nc-pagination {
+<style lang="scss" module>
+.ncPagination {
 	display: flex;
 	flex-wrap: wrap;
 	align-items: center;
 	justify-content: space-between;
 	gap: calc(2 * var(--default-grid-baseline)) calc(4 * var(--default-grid-baseline));
+}
 
-	&__info {
-		color: var(--color-text-maxcontrast);
-		white-space: nowrap;
+.ncPagination__info {
+	color: var(--color-text-maxcontrast);
+	white-space: nowrap;
+}
+
+.ncPagination__nav {
+	display: flex;
+	flex-grow: 1;
+	align-items: center;
+	justify-content: center;
+	gap: var(--default-grid-baseline);
+}
+
+.ncPagination__pages {
+	display: flex;
+	align-items: center;
+	gap: var(--default-grid-baseline);
+}
+
+.ncPagination__ellipsis {
+	display: inline-block;
+	min-width: var(--default-clickable-area);
+	color: var(--color-text-maxcontrast);
+	text-align: center;
+}
+
+// NcSelect sets a 260px min-width on `.nc-select.v-select.select`, too wide for a page size
+.ncPagination__pageSize:global(.nc-select.v-select.select) {
+	min-width: calc(4 * var(--default-clickable-area));
+	margin: 0;
+}
+
+.ncPagination_compact {
+	flex-wrap: nowrap;
+
+	.ncPagination__info {
+		font-size: var(--font-size-small);
 	}
 
-	&__nav {
-		display: flex;
-		flex-grow: 1;
-		align-items: center;
-		justify-content: center;
-		gap: var(--default-grid-baseline);
-	}
-
-	&__pages {
-		display: flex;
-		align-items: center;
-		gap: var(--default-grid-baseline);
-	}
-
-	&__ellipsis {
-		display: inline-block;
-		min-width: var(--default-clickable-area);
-		color: var(--color-text-maxcontrast);
-		text-align: center;
-	}
-
-	&__page-size {
-		min-width: 120px;
-		margin: 0;
-	}
-
-	&--compact {
-		flex-wrap: nowrap;
-
-		.nc-pagination__info {
-			font-size: var(--font-size-small);
-		}
-
-		.nc-pagination__nav {
-			flex-grow: 0;
-		}
+	.ncPagination__nav {
+		flex-grow: 0;
 	}
 }
 </style>
