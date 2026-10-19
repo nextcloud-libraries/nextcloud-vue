@@ -14,7 +14,7 @@ import NcSelect from '../../../../src/components/NcSelect/NcSelect.vue'
  * @param wrapper - The mounted pagination
  */
 function pageItems(wrapper: ReturnType<typeof mount>) {
-	return wrapper.findAll('.nc-pagination__pages li').map((item) => item.text())
+	return wrapper.findAll('nav > div > ul > li').map((item) => item.text())
 }
 
 describe('NcPagination', () => {
@@ -26,13 +26,13 @@ describe('NcPagination', () => {
 
 	it('shows the current page and the number of pages', () => {
 		const wrapper = mount(NcPagination, { props: { totalItems: 95, page: 2, pageSize: 10 } })
-		expect(wrapper.get('.nc-pagination__info').text()).toBe('Page 2 of 10')
+		expect(wrapper.get('nav > span').text()).toBe('Page 2 of 10')
 	})
 
 	it('hides the page buttons when everything fits on one page', () => {
 		const wrapper = mount(NcPagination, { props: { totalItems: 5, pageSize: 10 } })
-		expect(wrapper.find('.nc-pagination__nav').exists()).toBe(false)
-		expect(wrapper.get('.nc-pagination__info').text()).toBe('Page 1 of 1')
+		expect(wrapper.find('button[aria-label="Next page"]').exists()).toBe(false)
+		expect(wrapper.get('nav > span').text()).toBe('Page 1 of 1')
 	})
 
 	it('shows every page when there are at most seven', () => {
@@ -158,23 +158,23 @@ describe('NcPagination', () => {
 	describe('compact', () => {
 		it('shows the visible item range instead of the page number', () => {
 			const wrapper = mount(NcPagination, { props: { totalItems: 42, pageSize: 5, page: 3, compact: true } })
-			expect(wrapper.get('.nc-pagination__info').text()).toBe('11–15 of 42')
+			expect(wrapper.get('nav > span').text()).toBe('11–15 of 42')
 		})
 
 		it('ends the range at the last item on the last page', () => {
 			const wrapper = mount(NcPagination, { props: { totalItems: 42, pageSize: 5, page: 9, compact: true } })
-			expect(wrapper.get('.nc-pagination__info').text()).toBe('41–42 of 42')
+			expect(wrapper.get('nav > span').text()).toBe('41–42 of 42')
 		})
 
 		it('shows an empty range without items', () => {
 			const wrapper = mount(NcPagination, { props: { totalItems: 0, compact: true } })
-			expect(wrapper.get('.nc-pagination__info').text()).toBe('0–0 of 0')
+			expect(wrapper.get('nav > span').text()).toBe('0–0 of 0')
 		})
 
 		it('only shows the previous and next buttons', () => {
 			const wrapper = mount(NcPagination, { props: { totalItems: 42, pageSize: 5, compact: true } })
 			expect(wrapper.findAll('button').map((button) => button.attributes('aria-label'))).toEqual(['Previous page', 'Next page'])
-			expect(wrapper.find('.nc-pagination__pages').exists()).toBe(false)
+			expect(wrapper.find('nav > div > ul').exists()).toBe(false)
 			expect(wrapper.findComponent(NcSelect).exists()).toBe(false)
 		})
 	})
