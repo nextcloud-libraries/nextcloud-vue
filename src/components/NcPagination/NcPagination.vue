@@ -52,9 +52,15 @@ export default {
 
 <style scoped>
 .items {
-	display: flex;
-	flex-wrap: wrap;
-	gap: 4px 16px;
+	margin: 0;
+	padding: 0;
+	list-style: none;
+	border-top: 1px solid var(--color-border);
+}
+
+.items li {
+	padding: calc(3 * var(--default-grid-baseline)) calc(4 * var(--default-grid-baseline));
+	border-bottom: 1px solid var(--color-border);
 }
 </style>
 ```
@@ -181,14 +187,16 @@ export default {
 			</NcButton>
 		</div>
 
-		<NcSelect
-			v-if="!compact && pageSizeOptions.length > 0"
-			:class="$style.ncPagination__pageSize"
-			:clearable="false"
-			:inputLabel="t('Items per page')"
-			:modelValue="pageSize"
-			:options="pageSizeOptions"
-			@update:modelValue="setPageSize" />
+		<div v-if="!compact" :class="$style.ncPagination__end">
+			<NcSelect
+				v-if="pageSizeOptions.length > 0"
+				:class="$style.ncPagination__pageSize"
+				:clearable="false"
+				:inputLabel="t('Items per page')"
+				:modelValue="pageSize"
+				:options="pageSizeOptions"
+				@update:modelValue="setPageSize" />
+		</div>
 	</nav>
 </template>
 
@@ -331,25 +339,38 @@ function setPageSize(size: number | null) {
 	align-items: center;
 	justify-content: space-between;
 	gap: calc(2 * var(--default-grid-baseline)) calc(4 * var(--default-grid-baseline));
+	padding-block: calc(3 * var(--default-grid-baseline));
 }
 
+// The info and the end share the space left of and right of the page buttons
+// equally, so the buttons stay centered whatever the two sides hold
 .ncPagination__info {
+	flex: 1 1 0;
 	color: var(--color-text-maxcontrast);
 	white-space: nowrap;
 }
 
 .ncPagination__nav {
 	display: flex;
-	flex-grow: 1;
+	flex: 0 1 auto;
 	align-items: center;
 	justify-content: center;
-	gap: var(--default-grid-baseline);
+	gap: calc(2 * var(--default-grid-baseline));
 }
 
 .ncPagination__pages {
 	display: flex;
 	align-items: center;
-	gap: var(--default-grid-baseline);
+	gap: calc(2 * var(--default-grid-baseline));
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+
+.ncPagination__end {
+	display: flex;
+	flex: 1 1 0;
+	justify-content: flex-end;
 }
 
 .ncPagination__ellipsis {
@@ -361,7 +382,7 @@ function setPageSize(size: number | null) {
 
 // NcSelect sets a 260px min-width on `.nc-select.v-select.select`, too wide for a page size
 .ncPagination__pageSize:global(.nc-select.v-select.select) {
-	min-width: calc(4 * var(--default-clickable-area));
+	min-width: calc(5 * var(--default-clickable-area));
 	margin: 0;
 }
 
