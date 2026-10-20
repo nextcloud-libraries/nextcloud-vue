@@ -271,7 +271,7 @@ export default {
 			@focus="moveCursorToEnd"
 			@input="onInput"
 			@keydown.esc.capture="onKeyEsc"
-			@keydown.enter.exact="onEnter"
+			@keydown.exact="onEnter"
 			@keydown.ctrl.enter.exact.stop.prevent="onCtrlEnter"
 			@paste="onPaste"
 			@keyup.stop.prevent.capture="onKeyUp"
@@ -850,6 +850,11 @@ export default {
 		 * @param {Event} event the keydown event
 		 */
 		onEnter(event) {
+			// Safari reports key "`\r" for Enter that commits a dead key
+			if (event.key !== 'Enter' && event.code !== 'Enter') {
+				return
+			}
+
 			// Prevent submitting if multiline
 			// or length is over maxlength
 			// or autocompletion menu is opened

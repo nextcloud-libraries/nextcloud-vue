@@ -123,6 +123,18 @@ describe('NcRichContenteditable', () => {
 		expect(wrapper.emitted('submit')).toHaveLength(1)
 	})
 
+	it('should emit "submit" on Enter committing a dead key (Safari)', async () => {
+		const { contentEditable, inputValue, wrapper } = mountNcRichContenteditable()
+
+		await contentEditable().trigger('compositionstart')
+		await inputValue('`')
+		await contentEditable().trigger('compositionend')
+		await contentEditable().trigger('keydown', { key: '`\r', code: 'Enter' }) // Enter, test-utils overrides code with keyCode
+
+		expect(wrapper.emitted('submit')).toBeDefined()
+		expect(wrapper.emitted('submit')).toHaveLength(1)
+	})
+
 	it('should proxy component events listeners to native event handlers', async () => {
 		const handlers = {
 			onFocus: vi.fn(),
