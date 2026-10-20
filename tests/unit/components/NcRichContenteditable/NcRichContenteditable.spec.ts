@@ -91,7 +91,7 @@ describe('NcRichContenteditable', () => {
 
 		await contentEditable().trigger('compositionstart')
 		await inputValue('猫')
-		await contentEditable().trigger('keydown', { keyCode: 13 }) // Enter
+		await contentEditable().trigger('keydown', { keyCode: 13, isComposing: true }) // Enter
 		await contentEditable().trigger('compositionend')
 		await inputValue(' - means "Cat"')
 		await contentEditable().trigger('keydown', { keyCode: 13 }) // Enter
@@ -107,6 +107,17 @@ describe('NcRichContenteditable', () => {
 		await inputValue('你')
 		await contentEditable().trigger('compositionend')
 		await contentEditable().trigger('keydown', { key: 'Enter', keyCode: 229 }) // Enter confirming IME candidate
+		await contentEditable().trigger('keydown', { key: 'Enter', keyCode: 13 }) // Enter
+
+		expect(wrapper.emitted('submit')).toBeDefined()
+		expect(wrapper.emitted('submit')).toHaveLength(1)
+	})
+
+	it('should emit "submit" on Enter when compositionend is missing', async () => {
+		const { contentEditable, inputValue, wrapper } = mountNcRichContenteditable()
+
+		await contentEditable().trigger('compositionstart')
+		await inputValue('`')
 		await contentEditable().trigger('keydown', { key: 'Enter', keyCode: 13 }) // Enter
 
 		expect(wrapper.emitted('submit')).toBeDefined()
