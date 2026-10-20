@@ -35,6 +35,45 @@ export default {
 </script>
 ```
 
+### Status
+
+Use `error`, `warning`, `success` and `info` for a status. With `light` the chip gets a light background, which reads better when many chips are shown together, for example one per row of a table. Use `size="small"` to fit a chip into a line of text or a table cell.
+
+```vue
+<template>
+	<div style="display: grid; gap: 12px;">
+		<div style="display: flex; gap: 8px; flex-wrap: wrap;">
+			<NcChip text="Overdue" variant="error" no-close />
+			<NcChip text="Waiting" variant="warning" no-close />
+			<NcChip text="Done" variant="success" no-close />
+			<NcChip text="New" variant="info" no-close />
+		</div>
+		<div style="display: flex; gap: 8px; flex-wrap: wrap;">
+			<NcChip text="Overdue" variant="error" light no-close />
+			<NcChip text="Waiting" variant="warning" light no-close />
+			<NcChip text="Done" variant="success" light no-close />
+			<NcChip text="New" variant="info" light no-close />
+		</div>
+		<div style="display: flex; gap: 8px; flex-wrap: wrap; align-items: center;">
+			<NcChip text="Overdue" variant="error" light size="small" no-close />
+			<NcChip text="Done" :icon-path="mdiCheck" variant="success" light size="small" no-close />
+			<NcChip text="Small" size="small" />
+		</div>
+	</div>
+</template>
+<script>
+import { mdiCheck } from '@mdi/js'
+
+export default {
+	setup() {
+		return {
+			mdiCheck,
+		}
+	},
+}
+</script>
+```
+
 ### Advanced usage
 
 It is also possible to use custom components for the icon by using the `icon` slot.
@@ -80,6 +119,8 @@ export default {
 		class="nc-chip"
 		:class="{
 			[`nc-chip--${variant}`]: true,
+			'nc-chip--small': size === 'small',
+			'nc-chip--light': light,
 			'nc-chip--no-actions': noClose && !hasActions(),
 			'nc-chip--no-icon': !hasIcon(),
 		}">
@@ -91,7 +132,7 @@ export default {
 					inline
 					:path="iconPath"
 					:svg="iconPath ? undefined : iconSvg"
-					:size="18" />
+					:size="size === 'small' ? 16 : 18" />
 			</slot>
 		</span>
 		<span class="nc-chip__text">
@@ -165,11 +206,29 @@ const props = withDefaults(defineProps<{
 	 * Set the chips design variant-
 	 *
 	 * This sets the background style of the chip, similar to NcButton's `variant`.
+	 * The `info` variant is available since 9.14.0.
 	 *
 	 * @default 'secondary'
 	 * @since 8.23.0
 	 */
-	variant?: 'primary' | 'secondary' | 'tertiary' | 'error' | 'warning' | 'success'
+	variant?: 'primary' | 'secondary' | 'tertiary' | 'error' | 'warning' | 'success' | 'info'
+
+	/**
+	 * The size of the chip. A small chip fits inline in a line of text or a table cell.
+	 *
+	 * @default 'normal'
+	 * @since 9.14.0
+	 */
+	size?: 'small' | 'normal'
+
+	/**
+	 * Use a light background for the `error`, `warning`, `success` and `info` variants,
+	 * for example to show the status of many items without every chip drawing the eye.
+	 * Other variants are not affected.
+	 *
+	 * @since 9.14.0
+	 */
+	light?: boolean
 }>(), {
 	ariaLabelClose: t('Close'),
 	actionsContainer: 'body',
@@ -177,6 +236,7 @@ const props = withDefaults(defineProps<{
 	iconSvg: undefined,
 	text: '',
 	variant: 'secondary',
+	size: 'normal',
 })
 
 const emit = defineEmits<{
@@ -246,6 +306,37 @@ const hasIcon = () => Boolean(props.iconPath || props.iconSvg || !!slots.icon)
 	&--success {
 		background-color: var(--color-success);
 		color: var(--color-success-text);
+	}
+
+	&--info {
+		background-color: var(--color-info);
+		color: var(--color-info-text);
+	}
+
+	&--small {
+		--chip-size: 20px;
+		font-size: var(--font-size-small);
+	}
+
+	// The status color mixed into the background, like NcNoteCard
+	&--light {
+		color: var(--color-main-text);
+
+		&.nc-chip--error {
+			background-color: color-mix(in srgb, var(--color-error), var(--color-main-background) 80%);
+		}
+
+		&.nc-chip--warning {
+			background-color: color-mix(in srgb, var(--color-warning), var(--color-main-background) 80%);
+		}
+
+		&.nc-chip--success {
+			background-color: color-mix(in srgb, var(--color-success), var(--color-main-background) 80%);
+		}
+
+		&.nc-chip--info {
+			background-color: color-mix(in srgb, var(--color-info), var(--color-main-background) 80%);
+		}
 	}
 
 	&--no-actions &__text {
