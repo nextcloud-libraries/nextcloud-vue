@@ -162,7 +162,7 @@ export default {
 		onProviderSelect(provider) {
 			this.selectedProvider = provider
 			// provider was deselected and we started with an inital one: just close the modal
-			if (provider === null && this.initialProvider !== null) {
+			if (provider === null && this.initialProvider !== null && this.show) {
 				this.onCancel()
 			}
 		},

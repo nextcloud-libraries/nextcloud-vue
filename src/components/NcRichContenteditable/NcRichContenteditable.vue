@@ -201,6 +201,8 @@ export default {
 
 ### Using public methods
 
+The example registers a demo reference provider with a custom picker element. To use it, type `/` and select "Demo provider".
+
 ```vue
 <template>
 	<div>
@@ -216,6 +218,23 @@ export default {
 	</div>
 </template>
 <script>
+// Demo provider with a custom picker element, as apps register them
+const providerId = 'demo-provider'
+if (!window._vue_richtext_reference_providers.some((p) => p.id === providerId)) {
+	window._vue_richtext_reference_providers.push({ id: providerId, title: 'Demo provider', icon_url: '', order: 0 })
+	window._registerCustomPickerElement(providerId, (el) => {
+		const button = document.createElement('button')
+		button.textContent = 'Pick https://example.com'
+		button.addEventListener('click', () => {
+			const link = 'https://example.com'
+			el.dispatchEvent(new CustomEvent('pick', { detail: { link } }))
+			el.dispatchEvent(new CustomEvent('submit', { detail: link }))
+		})
+		el.append(button)
+		return { element: el, object: {} }
+	})
+}
+
 export default {
 	data() {
 		return {
