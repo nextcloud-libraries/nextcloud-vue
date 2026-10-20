@@ -312,6 +312,13 @@ smilesCharacters.forEach((char) => {
 	textSmiles.push(':-' + char)
 })
 
+/**
+ * keyCode of a keydown event that an IME processed, also after compositionend in Safari
+ *
+ * @see https://developer.mozilla.org/en-US/docs/Web/API/Element/keydown_event#keydown_events_with_ime
+ */
+const IME_KEY_CODE = 229
+
 let isPlaintextOnlySupported = null
 
 export default {
@@ -852,10 +859,12 @@ export default {
 			// or length is over maxlength
 			// or autocompletion menu is opened
 			// or in a text composition session with IME
+			// or confirming an IME candidate
 			if (this.multiline
 				|| this.isOverMaxlength
 				|| this.tribute.isActive
-				|| this.isComposing) {
+				|| this.isComposing
+				|| event.keyCode === IME_KEY_CODE) {
 				return
 			}
 
