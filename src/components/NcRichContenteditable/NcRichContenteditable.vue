@@ -270,8 +270,6 @@ export default {
 			v-bind="$attrs"
 			@focus="moveCursorToEnd"
 			@input="onInput"
-			@compositionstart="isComposing = true"
-			@compositionend="isComposing = false"
 			@keydown.esc.capture="onKeyEsc"
 			@keydown.enter.exact="onEnter"
 			@keydown.ctrl.enter.exact.stop.prevent="onCtrlEnter"
@@ -484,9 +482,6 @@ export default {
 			// serves no other purpose than to check whether the
 			// content is empty or not
 			localValue: this.modelValue,
-
-			// Is in text composition session in IME
-			isComposing: false,
 
 			// Tribute autocomplete
 			isAutocompleteOpen: false,
@@ -863,7 +858,7 @@ export default {
 			if (this.multiline
 				|| this.isOverMaxlength
 				|| this.tribute.isActive
-				|| this.isComposing
+				|| event.isComposing
 				|| event.keyCode === IME_KEY_CODE) {
 				return
 			}
