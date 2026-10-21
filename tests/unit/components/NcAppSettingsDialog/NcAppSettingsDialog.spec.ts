@@ -145,3 +145,32 @@ describe('NcAppSettingsDialog: Sections registration', () => {
 		expect(wrapper.find('nav a').text()).toBe('test_name2')
 	})
 })
+
+describe('NcAppSettingsDialog: Navigation', () => {
+	it('moves focus to the section on navigation click', async () => {
+		const wrapper = mount(NcAppSettingsDialog, {
+			slots: {
+				default: () => h('section', { id: 'settings-section_test_id', tabindex: -1 }),
+			},
+			props: {
+				open: true,
+				showNavigation: true,
+			},
+			attachTo: document.body,
+			global: {
+				stubs: {
+					teleport: true,
+				},
+			},
+		})
+
+		wrapper.vm.registerSection('test_id', 'test_name', undefined)
+		await nextTick()
+		const section = document.getElementById('settings-section_test_id')!
+		section.scrollIntoView = vi.fn()
+
+		await wrapper.find('nav a').trigger('click')
+		expect(document.activeElement).toBe(section)
+		wrapper.unmount()
+	})
+})
