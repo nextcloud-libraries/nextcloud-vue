@@ -122,10 +122,13 @@ onBeforeUnmount(() => {
  */
 function handleSettingsNavigationClick(item: string) {
 	linkClicked.value = true
-	document.getElementById('settings-section_' + item)!.scrollIntoView({
+	const section = document.getElementById('settings-section_' + item)!
+	section.scrollIntoView({
 		behavior: 'smooth',
 		inline: 'nearest',
 	})
+	// Move keyboard focus to the section, so the next Tab reaches its content
+	section.focus({ preventScroll: true })
 	selectedSection.value = item
 	setTimeout(() => {
 		linkClicked.value = false

@@ -156,3 +156,33 @@ describe('NcAppSettingsDialog: Sections registration', () => {
 		expect(wrapper.find('nav a').text()).toBe('test_name2')
 	})
 })
+
+describe('NcAppSettingsDialog: Navigation', () => {
+	it('moves focus to the section on navigation click', async () => {
+		let context: ReturnType<typeof useAppSettingsDialog>
+		const wrapper = mount(NcAppSettingsDialog, {
+			propsData: {
+				open: true,
+				showNavigation: true,
+			},
+			slots: {
+				default: defineComponent({
+					setup() {
+						context = useAppSettingsDialog()
+						return (h: CreateElement) => h('section', { attrs: { id: 'settings-section_test_id', tabindex: -1 } })
+					},
+				}),
+			},
+			attachTo: document.body,
+		})
+
+		context!.registerSection('test_id', 'test_name')
+		await nextTick()
+		const section = document.getElementById('settings-section_test_id')!
+		section.scrollIntoView = jest.fn()
+
+		await wrapper.find('nav a').trigger('click')
+		expect(document.activeElement).toBe(section)
+		wrapper.destroy()
+	})
+})
