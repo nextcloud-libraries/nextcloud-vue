@@ -1,11 +1,10 @@
-#
 # Translators:
 # Joas Schilling, 2025
-# Café Tango, 2025
+# Café Tango, 2026
 #
 msgid ""
 msgstr ""
-"Last-Translator: Café Tango, 2025\n"
+"Last-Translator: Café Tango, 2026\n"
 "Language-Team: Chinese (Hong Kong) (https://app.transifex.com/nextcloud/"
 "teams/64236/zh_HK/)\n"
 "Language: zh_HK\n"
@@ -155,6 +154,9 @@ msgstr "請勿打擾"
 msgid "Edit item"
 msgstr "編輯項目"
 
+msgid "Edit profile"
+msgstr "編輯個人資料"
+
 msgid "Emoji picker"
 msgstr "表情符號選擇器"
 
@@ -205,9 +207,6 @@ msgstr "食物與飲料"
 msgid "Frequently used"
 msgstr "經常使用"
 
-msgid "Global"
-msgstr "全球的"
-
 msgid "Go back to the list"
 msgstr "返回清單"
 
@@ -219,6 +218,9 @@ msgstr "隱藏詳情"
 
 msgid "Hide password"
 msgstr "隱藏密碼"
+
+msgid "Invalid date"
+msgstr "無效日期"
 
 msgid "invisible"
 msgstr "隐藏的"
@@ -238,6 +240,15 @@ msgstr "載入更多 \"{options}\""
 #. TRANSLATORS: The button is in a loading state
 msgid "Loading …"
 msgstr "加載中 …"
+
+msgid "Loading actions"
+msgstr "正在載入操作"
+
+msgid "Loading profile"
+msgstr "正在載入個人資料"
+
+msgid "Local time: {time}"
+msgstr "當地時間：{time}"
 
 #. TRANSLATORS: A color name for RGB(45, 115, 190)
 msgid "Mariner"
@@ -341,11 +352,23 @@ msgstr "挑選年份"
 msgid "Pick an emoji"
 msgstr "選擇表情符號"
 
+msgid "Pick file"
+msgstr "選取檔案"
+
+msgid "Pick files"
+msgstr "選取多個檔案"
+
+msgid "Pick folder"
+msgstr "選取資料夾"
+
 msgid "Please select a time zone:"
 msgstr "請選擇時區："
 
 msgid "Previous"
 msgstr "上一個"
+
+msgid "Profile of {user}"
+msgstr "{user} 的個人資料"
 
 msgid "Provider icon"
 msgstr "提供者圖示"
@@ -407,6 +430,9 @@ msgstr "選擇提供者"
 msgid "Selected"
 msgstr "已選"
 
+msgid "Send message"
+msgstr "傳送訊息"
+
 msgid "Settings"
 msgstr "設定"
 
@@ -442,6 +468,9 @@ msgstr "表情"
 msgid "Space"
 msgstr "Space"
 
+msgid "Start call"
+msgstr "開始通話"
+
 msgid "Start slideshow"
 msgstr "開始幻燈片"
 
@@ -473,8 +502,23 @@ msgstr "無法搜尋群組"
 msgid "Undo changes"
 msgstr "取消更改"
 
+msgid "Upload file"
+msgstr "上傳檔案"
+
+msgid "Upload files"
+msgstr "上傳多個檔案"
+
+msgid "Upload folder"
+msgstr "上傳資料夾"
+
+msgid "Uploading …"
+msgstr "上傳中 ..."
+
 msgid "User status: {status}"
 msgstr "用戶狀態：{status}"
+
+msgid "View profile"
+msgstr "查看個人資料"
 
 msgid "View team"
 msgstr "查看團隊"
@@ -485,6 +529,9 @@ msgstr "威士忌"
 
 msgid "White"
 msgstr "白色"
+
+msgid "Widget height"
+msgstr "小工具高度"
 
 msgid "Write a message …"
 msgstr "編寫訊息 …"

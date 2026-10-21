@@ -155,6 +155,9 @@ msgstr "nerušit"
 msgid "Edit item"
 msgstr "Upravit položku"
 
+msgid "Edit profile"
+msgstr ""
+
 msgid "Emoji picker"
 msgstr "Výběr emotikon"
 
@@ -207,9 +210,6 @@ msgstr "Jídlo a pití"
 msgid "Frequently used"
 msgstr "Často používané"
 
-msgid "Global"
-msgstr "Globální"
-
 msgid "Go back to the list"
 msgstr "Jít zpět na seznam"
 
@@ -221,6 +221,9 @@ msgstr ""
 
 msgid "Hide password"
 msgstr "Skrýt heslo"
+
+msgid "Invalid date"
+msgstr ""
 
 msgid "invisible"
 msgstr "neviditelné"
@@ -239,6 +242,15 @@ msgstr "Načíst další „{options}“"
 
 #. TRANSLATORS: The button is in a loading state
 msgid "Loading …"
+msgstr ""
+
+msgid "Loading actions"
+msgstr ""
+
+msgid "Loading profile"
+msgstr ""
+
+msgid "Local time: {time}"
 msgstr ""
 
 #. TRANSLATORS: A color name for RGB(45, 115, 190)
@@ -346,11 +358,23 @@ msgstr "Vybrat rok"
 msgid "Pick an emoji"
 msgstr "Vybrat emoji"
 
+msgid "Pick file"
+msgstr ""
+
+msgid "Pick files"
+msgstr ""
+
+msgid "Pick folder"
+msgstr ""
+
 msgid "Please select a time zone:"
 msgstr "Vyberte časovou zónu:"
 
 msgid "Previous"
 msgstr "Předchozí"
+
+msgid "Profile of {user}"
+msgstr ""
 
 msgid "Provider icon"
 msgstr "Ikona poskytovatele"
@@ -412,6 +436,9 @@ msgstr "Vybrat poskytovatele"
 msgid "Selected"
 msgstr "Vybráno"
 
+msgid "Send message"
+msgstr ""
+
 msgid "Settings"
 msgstr "Nastavení"
 
@@ -447,6 +474,9 @@ msgstr "Úsměvy a emoce"
 msgid "Space"
 msgstr ""
 
+msgid "Start call"
+msgstr ""
+
 msgid "Start slideshow"
 msgstr "Spustit prezentaci"
 
@@ -478,8 +508,23 @@ msgstr "Nedaří se hledat skupinu"
 msgid "Undo changes"
 msgstr "Vzít změny zpět"
 
+msgid "Upload file"
+msgstr ""
+
+msgid "Upload files"
+msgstr ""
+
+msgid "Upload folder"
+msgstr ""
+
+msgid "Uploading …"
+msgstr ""
+
 msgid "User status: {status}"
 msgstr "Stav uživatele: {status}"
+
+msgid "View profile"
+msgstr ""
 
 msgid "View team"
 msgstr ""
@@ -489,6 +534,9 @@ msgid "Whiskey"
 msgstr "Whisky"
 
 msgid "White"
+msgstr ""
+
+msgid "Widget height"
 msgstr ""
 
 msgid "Write a message …"

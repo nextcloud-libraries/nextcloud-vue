@@ -2,10 +2,11 @@
 # Translators:
 # Joas Schilling, 2025
 # 黃柏諺 <s8321414@gmail.com>, 2025
+# NelsonSu, 2026
 #
 msgid ""
 msgstr ""
-"Last-Translator: 黃柏諺 <s8321414@gmail.com>, 2025\n"
+"Last-Translator: NelsonSu, 2026\n"
 "Language-Team: Chinese (Taiwan) (https://app.transifex.com/nextcloud/"
 "teams/64236/zh_TW/)\n"
 "Language: zh_TW\n"
@@ -39,7 +40,7 @@ msgstr "新增至專案中"
 
 #. TRANSLATORS: Alt key on keyboard (Windows/Linux)
 msgid "Alt"
-msgstr ""
+msgstr "Alt"
 
 msgid "Animals & Nature"
 msgstr "動物與自然"
@@ -67,7 +68,7 @@ msgid "Back to provider selection"
 msgstr "回到提供者選擇"
 
 msgid "Black"
-msgstr ""
+msgstr "黑色"
 
 #. TRANSLATORS: A color name for RGB(91, 100, 179)
 msgid "Blue Violet"
@@ -123,14 +124,14 @@ msgid "Connect items to a project to make them easier to find"
 msgstr "將項目連結至專案中以方便尋找"
 
 msgid "Copied"
-msgstr ""
+msgstr "已被複製"
 
 msgid "Copy to clipboard"
-msgstr ""
+msgstr "複製到剪貼簿"
 
 #. TRANSLATORS: Ctrl key on keyboard (Windows/Linux)
 msgid "Ctrl"
-msgstr ""
+msgstr "Ctrl"
 
 msgid "Custom"
 msgstr "自定義"
@@ -140,7 +141,7 @@ msgstr "深膚色"
 
 #. TRANSLATORS: Delete key on keyboard
 msgid "Delete"
-msgstr ""
+msgstr "Delete"
 
 #. TRANSLATORS: A color name for RGB(136, 85, 168)
 msgid "Deluge"
@@ -155,6 +156,9 @@ msgstr "請勿打擾"
 msgid "Edit item"
 msgstr "編輯項目"
 
+msgid "Edit profile"
+msgstr ""
+
 msgid "Emoji picker"
 msgstr "表情符號挑選器"
 
@@ -163,7 +167,7 @@ msgstr "啟用互動檢視"
 
 #. TRANSLATORS: Enter key on keyboard
 msgid "Enter"
-msgstr ""
+msgstr "Enter"
 
 msgid "Enter link"
 msgstr "輸入連結"
@@ -175,7 +179,7 @@ msgstr "取得相關資源時發生錯誤。如果有任何問題，請聯絡系
 
 #. TRANSLATORS: Escape key on keyboard
 msgid "Escape"
-msgstr ""
+msgstr "Esc"
 
 msgid "External documentation for {name}"
 msgstr "{name} 的外部文件"
@@ -205,9 +209,6 @@ msgstr "食物與飲料"
 msgid "Frequently used"
 msgstr "最近使用"
 
-msgid "Global"
-msgstr "全域"
-
 msgid "Go back to the list"
 msgstr "回到清單"
 
@@ -220,6 +221,9 @@ msgstr "隱藏詳細資料"
 msgid "Hide password"
 msgstr "隱藏密碼"
 
+msgid "Invalid date"
+msgstr ""
+
 msgid "invisible"
 msgstr "不可見"
 
@@ -227,7 +231,7 @@ msgid "Keyboard navigation help"
 msgstr "鍵盤導航說明"
 
 msgid "Keyboard shortcuts"
-msgstr ""
+msgstr "鍵盤快速鍵"
 
 msgid "Light skin tone"
 msgstr "淺膚色"
@@ -237,7 +241,16 @@ msgstr "載入更多「{options}」"
 
 #. TRANSLATORS: The button is in a loading state
 msgid "Loading …"
-msgstr "正在載入……"
+msgstr "載入中......"
+
+msgid "Loading actions"
+msgstr ""
+
+msgid "Loading profile"
+msgstr ""
+
+msgid "Local time: {time}"
+msgstr ""
 
 #. TRANSLATORS: A color name for RGB(45, 115, 190)
 msgid "Mariner"
@@ -254,7 +267,7 @@ msgstr "中等膚色"
 
 msgid "Message limit of %n character reached"
 msgid_plural "Message limit of %n characters reached"
-msgstr[0] ""
+msgstr[0] "已達到訊息最多 %n 字元限制"
 
 msgid "More items …"
 msgstr "更多項目……"
@@ -272,7 +285,7 @@ msgid "Nextcloud blue"
 msgstr "Nextcloud 藍色"
 
 msgid "No color"
-msgstr ""
+msgstr "沒有顏色"
 
 msgid "No emoji found"
 msgstr "未找到表情符號"
@@ -341,11 +354,23 @@ msgstr "挑選年份"
 msgid "Pick an emoji"
 msgstr "選擇表情符號"
 
+msgid "Pick file"
+msgstr "選取單一檔案"
+
+msgid "Pick files"
+msgstr "選取多個檔案"
+
+msgid "Pick folder"
+msgstr "選擇資料夾"
+
 msgid "Please select a time zone:"
 msgstr "請選取時區："
 
 msgid "Previous"
 msgstr "上一個"
+
+msgid "Profile of {user}"
+msgstr ""
 
 msgid "Provider icon"
 msgstr "提供者圖示"
@@ -376,13 +401,13 @@ msgid "Search"
 msgstr "搜尋"
 
 msgid "Search …"
-msgstr ""
+msgstr "搜尋......"
 
 msgid "Search emoji"
 msgstr "搜尋表情符號"
 
 msgid "Search for time zone"
-msgstr ""
+msgstr "搜尋時區"
 
 msgid "Search results"
 msgstr "搜尋結果"
@@ -407,6 +432,9 @@ msgstr "選取提供者"
 msgid "Selected"
 msgstr "已選取"
 
+msgid "Send message"
+msgstr ""
+
 msgid "Settings"
 msgstr "設定"
 
@@ -415,7 +443,7 @@ msgstr "設定值導覽"
 
 #. TRANSLATORS: Shift key on keyboard
 msgid "Shift"
-msgstr ""
+msgstr "Shift"
 
 msgid "Show details"
 msgstr "顯示詳細資訊"
@@ -440,6 +468,9 @@ msgstr "表情"
 
 #. TRANSLATORS: Space key on keyboard
 msgid "Space"
+msgstr "空白鍵"
+
+msgid "Start call"
 msgstr ""
 
 msgid "Start slideshow"
@@ -456,7 +487,7 @@ msgstr "標誌"
 
 #. TRANSLATORS: Tab key on keyboard
 msgid "Tab"
-msgstr ""
+msgstr "Tab鍵"
 
 msgid "Travel & Places"
 msgstr "旅遊與景點"
@@ -473,8 +504,23 @@ msgstr "無法搜尋群組"
 msgid "Undo changes"
 msgstr "還原變更"
 
+msgid "Upload file"
+msgstr "上傳單一檔案"
+
+msgid "Upload files"
+msgstr "上傳多個檔案"
+
+msgid "Upload folder"
+msgstr "上傳資料夾"
+
+msgid "Uploading …"
+msgstr "上傳中......"
+
 msgid "User status: {status}"
 msgstr "使用者狀態：{status}"
+
+msgid "View profile"
+msgstr ""
 
 msgid "View team"
 msgstr "檢視團隊"
@@ -484,6 +530,9 @@ msgid "Whiskey"
 msgstr "威士忌"
 
 msgid "White"
+msgstr "白色"
+
+msgid "Widget height"
 msgstr ""
 
 msgid "Write a message …"

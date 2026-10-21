@@ -157,6 +157,9 @@ msgstr "请勿打扰"
 msgid "Edit item"
 msgstr "编辑项目"
 
+msgid "Edit profile"
+msgstr ""
+
 msgid "Emoji picker"
 msgstr "表情拾取器"
 
@@ -207,9 +210,6 @@ msgstr "食物 & 饮品"
 msgid "Frequently used"
 msgstr "经常使用"
 
-msgid "Global"
-msgstr "全局"
-
 msgid "Go back to the list"
 msgstr "返回至列表"
 
@@ -221,6 +221,9 @@ msgstr "隐藏细节"
 
 msgid "Hide password"
 msgstr "隐藏密码"
+
+msgid "Invalid date"
+msgstr ""
 
 msgid "invisible"
 msgstr "隐藏的"
@@ -240,6 +243,15 @@ msgstr "加载更多 “{options}”"
 #. TRANSLATORS: The button is in a loading state
 msgid "Loading …"
 msgstr "加载中..."
+
+msgid "Loading actions"
+msgstr ""
+
+msgid "Loading profile"
+msgstr ""
+
+msgid "Local time: {time}"
+msgstr ""
 
 #. TRANSLATORS: A color name for RGB(45, 115, 190)
 msgid "Mariner"
@@ -343,11 +355,23 @@ msgstr "选择年份"
 msgid "Pick an emoji"
 msgstr "选择一个表情"
 
+msgid "Pick file"
+msgstr ""
+
+msgid "Pick files"
+msgstr ""
+
+msgid "Pick folder"
+msgstr ""
+
 msgid "Please select a time zone:"
 msgstr "请选择一个时区："
 
 msgid "Previous"
 msgstr "上一个"
+
+msgid "Profile of {user}"
+msgstr ""
 
 msgid "Provider icon"
 msgstr "提供者图标"
@@ -409,6 +433,9 @@ msgstr "选择提供者"
 msgid "Selected"
 msgstr "选择"
 
+msgid "Send message"
+msgstr ""
+
 msgid "Settings"
 msgstr "设置"
 
@@ -444,6 +471,9 @@ msgstr "笑脸 & 情感"
 msgid "Space"
 msgstr ""
 
+msgid "Start call"
+msgstr ""
+
 msgid "Start slideshow"
 msgstr "开始幻灯片"
 
@@ -475,8 +505,23 @@ msgstr "无法搜索分组"
 msgid "Undo changes"
 msgstr "撤销更改"
 
+msgid "Upload file"
+msgstr ""
+
+msgid "Upload files"
+msgstr ""
+
+msgid "Upload folder"
+msgstr ""
+
+msgid "Uploading …"
+msgstr ""
+
 msgid "User status: {status}"
 msgstr "用户状态：{status}"
+
+msgid "View profile"
+msgstr ""
 
 msgid "View team"
 msgstr "查看团队"
@@ -486,6 +531,9 @@ msgid "Whiskey"
 msgstr "威士忌"
 
 msgid "White"
+msgstr ""
+
+msgid "Widget height"
 msgstr ""
 
 msgid "Write a message …"

@@ -154,6 +154,9 @@ msgstr ""
 msgid "Edit item"
 msgstr "Editatu elementua"
 
+msgid "Edit profile"
+msgstr ""
+
 msgid "Emoji picker"
 msgstr ""
 
@@ -206,9 +209,6 @@ msgstr "Janaria eta edariak"
 msgid "Frequently used"
 msgstr "Askotan erabilia"
 
-msgid "Global"
-msgstr "Globala"
-
 msgid "Go back to the list"
 msgstr "Bueltatu zerrendara"
 
@@ -220,6 +220,9 @@ msgstr ""
 
 msgid "Hide password"
 msgstr "Ezkutatu pasahitza"
+
+msgid "Invalid date"
+msgstr ""
 
 msgid "invisible"
 msgstr ""
@@ -238,6 +241,15 @@ msgstr "Kargatu \"{options}\" gehiago"
 
 #. TRANSLATORS: The button is in a loading state
 msgid "Loading …"
+msgstr ""
+
+msgid "Loading actions"
+msgstr ""
+
+msgid "Loading profile"
+msgstr ""
+
+msgid "Local time: {time}"
 msgstr ""
 
 #. TRANSLATORS: A color name for RGB(45, 115, 190)
@@ -343,11 +355,23 @@ msgstr "Aukeratu urte bat"
 msgid "Pick an emoji"
 msgstr "Hautatu emoji bat"
 
+msgid "Pick file"
+msgstr ""
+
+msgid "Pick files"
+msgstr ""
+
+msgid "Pick folder"
+msgstr ""
+
 msgid "Please select a time zone:"
 msgstr "Mesedez hautatu ordu-zona bat:"
 
 msgid "Previous"
 msgstr "Aurrekoa"
+
+msgid "Profile of {user}"
+msgstr ""
 
 msgid "Provider icon"
 msgstr "Hornitzailearen ikonoa"
@@ -409,6 +433,9 @@ msgstr "Hautatu hornitzailea"
 msgid "Selected"
 msgstr "Hautatuta"
 
+msgid "Send message"
+msgstr ""
+
 msgid "Settings"
 msgstr "Ezarpenak"
 
@@ -444,6 +471,9 @@ msgstr "Smileyak eta emozioa"
 msgid "Space"
 msgstr ""
 
+msgid "Start call"
+msgstr ""
+
 msgid "Start slideshow"
 msgstr "Hasi diaporama"
 
@@ -475,7 +505,22 @@ msgstr "Ezin izan da taldea bilatu"
 msgid "Undo changes"
 msgstr "Aldaketak desegin"
 
+msgid "Upload file"
+msgstr ""
+
+msgid "Upload files"
+msgstr ""
+
+msgid "Upload folder"
+msgstr ""
+
+msgid "Uploading …"
+msgstr ""
+
 msgid "User status: {status}"
+msgstr ""
+
+msgid "View profile"
 msgstr ""
 
 msgid "View team"
@@ -486,6 +531,9 @@ msgid "Whiskey"
 msgstr ""
 
 msgid "White"
+msgstr ""
+
+msgid "Widget height"
 msgstr ""
 
 msgid "Write a message …"

@@ -1,10 +1,9 @@
-#
 # Translators:
-# bone NI, 2025
+# bounkirdni_2025, 2026
 #
 msgid ""
 msgstr ""
-"Last-Translator: bone NI, 2025\n"
+"Last-Translator: bounkirdni_2025, 2026\n"
 "Language-Team: Lao (https://app.transifex.com/nextcloud/teams/64236/lo/)\n"
 "Language: lo\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -153,6 +152,9 @@ msgstr "ຫ້າມລົບກວນ"
 msgid "Edit item"
 msgstr "ແກ້ໄຂລາຍການ"
 
+msgid "Edit profile"
+msgstr ""
+
 msgid "Emoji picker"
 msgstr "ໂຕເລືອກອີໂມຈິ"
 
@@ -204,9 +206,6 @@ msgstr "ອາຫານ ແລະ ເຄື່ອງດື່ມ"
 msgid "Frequently used"
 msgstr "ໃຊ້ງານເລື້ອຍໆ"
 
-msgid "Global"
-msgstr ""
-
 msgid "Go back to the list"
 msgstr "ກັບໄປທີ່ລາຍການ"
 
@@ -218,6 +217,9 @@ msgstr "ເຊື່ອງລາຍລະອຽດ"
 
 msgid "Hide password"
 msgstr "ເຊື່ອງລະຫັດຜ່ານ"
+
+msgid "Invalid date"
+msgstr ""
 
 msgid "invisible"
 msgstr "ບໍ່ສະແດງ"
@@ -237,6 +239,15 @@ msgstr "ໂຫຼດ “{options}” ເພີ່ມເຕີມ"
 #. TRANSLATORS: The button is in a loading state
 msgid "Loading …"
 msgstr "ກຳລັງໂຫຼດ…"
+
+msgid "Loading actions"
+msgstr ""
+
+msgid "Loading profile"
+msgstr ""
+
+msgid "Local time: {time}"
+msgstr ""
 
 #. TRANSLATORS: A color name for RGB(45, 115, 190)
 msgid "Mariner"
@@ -340,11 +351,23 @@ msgstr ""
 msgid "Pick an emoji"
 msgstr "ເລືອກອີໂມຈິ"
 
+msgid "Pick file"
+msgstr "ເລືອກໄຟລ໌"
+
+msgid "Pick files"
+msgstr "ເລືອກໄຟລ໌"
+
+msgid "Pick folder"
+msgstr "ເລືອກໂຟນເດີ"
+
 msgid "Please select a time zone:"
 msgstr ""
 
 msgid "Previous"
 msgstr "ກ່ອນໜ້າ"
+
+msgid "Profile of {user}"
+msgstr ""
 
 msgid "Provider icon"
 msgstr "ໄອຄອນຜູ້ໃຫ້ບໍລິການ"
@@ -381,7 +404,7 @@ msgid "Search emoji"
 msgstr "ຄົ້ນຫາອີໂມຈິ"
 
 msgid "Search for time zone"
-msgstr ""
+msgstr "ຄົ້ນຫາເຂດເວລາ"
 
 msgid "Search results"
 msgstr "ຜົນການຄົ້ນຫາ"
@@ -405,6 +428,9 @@ msgstr "ເລືອກຜູ້ໃຫ້ບໍລິການ"
 
 msgid "Selected"
 msgstr "ເລືອກແລ້ວ"
+
+msgid "Send message"
+msgstr ""
 
 msgid "Settings"
 msgstr "ການຕັ້ງຄ່າ"
@@ -441,6 +467,9 @@ msgstr "ໜ້າຍິ້ມ ແລະ ອາລົມ"
 msgid "Space"
 msgstr "Space"
 
+msgid "Start call"
+msgstr ""
+
 msgid "Start slideshow"
 msgstr "ເລີ່ມສະໄລ້ໂຊ"
 
@@ -472,8 +501,23 @@ msgstr "ບໍ່ສາມາດຄົ້ນຫາກຸ່ມໄດ້"
 msgid "Undo changes"
 msgstr "ຍ້ອນຄືນການປ່ຽນແປງ"
 
+msgid "Upload file"
+msgstr "ອັບໂຫຼດໄຟລ໌"
+
+msgid "Upload files"
+msgstr "ອັບໂຫຼດໄຟລ໌"
+
+msgid "Upload folder"
+msgstr "ອັບໂຫຼດໂຟນເດີ"
+
+msgid "Uploading …"
+msgstr "ກຳລັງອັບໂຫຼດ..."
+
 msgid "User status: {status}"
 msgstr "ສະຖານະຜູ້ໃຊ້: {status}"
+
+msgid "View profile"
+msgstr ""
 
 msgid "View team"
 msgstr "ເບິ່ງທີມ"
@@ -484,6 +528,9 @@ msgstr "Whiskey"
 
 msgid "White"
 msgstr "ສີຂາວ"
+
+msgid "Widget height"
+msgstr ""
 
 msgid "Write a message …"
 msgstr "ຂຽນຂໍ້ຄວາມ…"

@@ -1,11 +1,10 @@
-#
 # Translators:
 # Joas Schilling, 2025
-# Khurshid Ibatov <x.ibatov@dtsj.uz>, 2025
+# Khurshid Ibatov <x.ibatov@dtsj.uz>, 2026
 #
 msgid ""
 msgstr ""
-"Last-Translator: Khurshid Ibatov <x.ibatov@dtsj.uz>, 2025\n"
+"Last-Translator: Khurshid Ibatov <x.ibatov@dtsj.uz>, 2026\n"
 "Language-Team: Uzbek (https://app.transifex.com/nextcloud/teams/64236/uz/)\n"
 "Language: uz\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -122,10 +121,10 @@ msgid "Connect items to a project to make them easier to find"
 msgstr "Elementlarni topishni osonlashtirish uchun ularni loyihaga ulang"
 
 msgid "Copied"
-msgstr ""
+msgstr "Nusxalandi"
 
 msgid "Copy to clipboard"
-msgstr ""
+msgstr "Buferga nusxalash"
 
 #. TRANSLATORS: Ctrl key on keyboard (Windows/Linux)
 msgid "Ctrl"
@@ -153,6 +152,9 @@ msgstr "bezovta qilmang"
 
 msgid "Edit item"
 msgstr "Elementni tahrirlash"
+
+msgid "Edit profile"
+msgstr ""
 
 msgid "Emoji picker"
 msgstr "Emoji tanlagich"
@@ -206,9 +208,6 @@ msgstr "Oziq-ovqat va ichimliklar"
 msgid "Frequently used"
 msgstr "Tez-tez ishlatiladi"
 
-msgid "Global"
-msgstr "Global"
-
 msgid "Go back to the list"
 msgstr "Ro'yxatga qayting"
 
@@ -221,6 +220,9 @@ msgstr "Tafsilotlarni yashirish"
 msgid "Hide password"
 msgstr "Parolni yashirish"
 
+msgid "Invalid date"
+msgstr ""
+
 msgid "invisible"
 msgstr "ko'rinmas"
 
@@ -228,7 +230,7 @@ msgid "Keyboard navigation help"
 msgstr "Klaviatura navigatsiyasi yordami"
 
 msgid "Keyboard shortcuts"
-msgstr ""
+msgstr "Klaviatura yorliqlari"
 
 msgid "Light skin tone"
 msgstr "Yorug` rangdagi qoplama"
@@ -239,6 +241,15 @@ msgstr "Ko'proq yuklash \"{options}\""
 #. TRANSLATORS: The button is in a loading state
 msgid "Loading …"
 msgstr "Yuklanmoqda..."
+
+msgid "Loading actions"
+msgstr ""
+
+msgid "Loading profile"
+msgstr ""
+
+msgid "Local time: {time}"
+msgstr ""
 
 #. TRANSLATORS: A color name for RGB(45, 115, 190)
 msgid "Mariner"
@@ -342,11 +353,23 @@ msgstr "Yilni tanlang"
 msgid "Pick an emoji"
 msgstr "Emojini tanlang"
 
+msgid "Pick file"
+msgstr "Faylni tanlang"
+
+msgid "Pick files"
+msgstr "Fayllarni tanlang"
+
+msgid "Pick folder"
+msgstr "Jildni tanlang"
+
 msgid "Please select a time zone:"
 msgstr "Vaqt mintaqasini tanlang:"
 
 msgid "Previous"
 msgstr "Oldingi"
+
+msgid "Profile of {user}"
+msgstr ""
 
 msgid "Provider icon"
 msgstr "Provayder belgisi"
@@ -383,7 +406,7 @@ msgid "Search emoji"
 msgstr "Emoji qidirish"
 
 msgid "Search for time zone"
-msgstr "Vaqt mintaqasini qidiring"
+msgstr "Vaqt mintaqasini qidirish"
 
 msgid "Search results"
 msgstr "Qidiruv natijalari"
@@ -407,6 +430,9 @@ msgstr "Provayderni tanlang"
 
 msgid "Selected"
 msgstr "Tanlangan"
+
+msgid "Send message"
+msgstr ""
 
 msgid "Settings"
 msgstr "Sozlamalar"
@@ -443,6 +469,9 @@ msgstr "Smayllar va Hissiyotlar"
 msgid "Space"
 msgstr "Bo'shliq"
 
+msgid "Start call"
+msgstr ""
+
 msgid "Start slideshow"
 msgstr "Slayd-shouni boshlash"
 
@@ -474,8 +503,23 @@ msgstr "Guruhni qidirish imkonsiz"
 msgid "Undo changes"
 msgstr "O'zgarishlarni bekor qilish"
 
+msgid "Upload file"
+msgstr "Faylni yuklash"
+
+msgid "Upload files"
+msgstr "Fayllarni yuklash"
+
+msgid "Upload folder"
+msgstr "Yuklash jildi"
+
+msgid "Uploading …"
+msgstr "Yuklanmoqda…"
+
 msgid "User status: {status}"
 msgstr "Foydalanuvchi holati: {status}"
+
+msgid "View profile"
+msgstr ""
 
 msgid "View team"
 msgstr "Jamoani ko'rish"
@@ -486,6 +530,9 @@ msgstr "Whiskey"
 
 msgid "White"
 msgstr "Oq"
+
+msgid "Widget height"
+msgstr ""
 
 msgid "Write a message …"
 msgstr "Xabar yozish..."

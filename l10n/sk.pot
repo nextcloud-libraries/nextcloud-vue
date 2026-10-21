@@ -156,6 +156,9 @@ msgstr "nerušiť"
 msgid "Edit item"
 msgstr "Upraviť položku"
 
+msgid "Edit profile"
+msgstr ""
+
 msgid "Emoji picker"
 msgstr "Výber emodži"
 
@@ -208,9 +211,6 @@ msgstr "Jedlo a nápoje"
 msgid "Frequently used"
 msgstr "Často používané"
 
-msgid "Global"
-msgstr "Globálne"
-
 msgid "Go back to the list"
 msgstr "Späť na zoznam"
 
@@ -222,6 +222,9 @@ msgstr "Skryť detaily"
 
 msgid "Hide password"
 msgstr "Skryť heslo"
+
+msgid "Invalid date"
+msgstr ""
 
 msgid "invisible"
 msgstr "neviditeľný"
@@ -241,6 +244,15 @@ msgstr "Načítať viac \"{options}\""
 #. TRANSLATORS: The button is in a loading state
 msgid "Loading …"
 msgstr "Nahrávam ..."
+
+msgid "Loading actions"
+msgstr ""
+
+msgid "Loading profile"
+msgstr ""
+
+msgid "Local time: {time}"
+msgstr ""
 
 #. TRANSLATORS: A color name for RGB(45, 115, 190)
 msgid "Mariner"
@@ -347,11 +359,23 @@ msgstr "Vybrať rok"
 msgid "Pick an emoji"
 msgstr "Vybrať emodži"
 
+msgid "Pick file"
+msgstr ""
+
+msgid "Pick files"
+msgstr ""
+
+msgid "Pick folder"
+msgstr ""
+
 msgid "Please select a time zone:"
 msgstr "Prosím vyberte časovú zónu:"
 
 msgid "Previous"
 msgstr "Predchádzajúce"
+
+msgid "Profile of {user}"
+msgstr ""
 
 msgid "Provider icon"
 msgstr "Ikonka poskytovateľa"
@@ -413,6 +437,9 @@ msgstr "Vybrať poskytovateľa"
 msgid "Selected"
 msgstr "Vybraný"
 
+msgid "Send message"
+msgstr ""
+
 msgid "Settings"
 msgstr "Nastavenia"
 
@@ -448,6 +475,9 @@ msgstr "Smajlíky a emócie"
 msgid "Space"
 msgstr ""
 
+msgid "Start call"
+msgstr ""
+
 msgid "Start slideshow"
 msgstr "Začať prezentáciu"
 
@@ -479,8 +509,23 @@ msgstr "Skupinu sa nepodarilo nájsť"
 msgid "Undo changes"
 msgstr "Vrátiť zmeny"
 
+msgid "Upload file"
+msgstr ""
+
+msgid "Upload files"
+msgstr ""
+
+msgid "Upload folder"
+msgstr ""
+
+msgid "Uploading …"
+msgstr ""
+
 msgid "User status: {status}"
 msgstr "Stav užívateľa: {status}"
+
+msgid "View profile"
+msgstr ""
 
 msgid "View team"
 msgstr "Zobraziť tím"
@@ -490,6 +535,9 @@ msgid "Whiskey"
 msgstr "Whisky"
 
 msgid "White"
+msgstr ""
+
+msgid "Widget height"
 msgstr ""
 
 msgid "Write a message …"

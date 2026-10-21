@@ -1,18 +1,19 @@
-#
 # Translators:
 # Joas Schilling, 2025
 # XYZ, 2025
-# Corentin Noël <tintou@noel.tf>, 2025
 # Pascal Prugna, 2025
 # Charles Taborin, 2025
 # Caro Leviia, 2025
 # Erik DaSilva, 2025
 # Jérôme HERBINET, 2025
 # William Méauzoone, 2025
+# Sp P, 2026
+# Xavier, 2026
+# Yohan HARROCH, 2026
 #
 msgid ""
 msgstr ""
-"Last-Translator: William Méauzoone, 2025\n"
+"Last-Translator: Yohan HARROCH, 2026\n"
 "Language-Team: French (https://app.transifex.com/nextcloud/teams/64236/fr/)\n"
 "Language: fr\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -23,13 +24,13 @@ msgid "{tag} (invisible)"
 msgstr "{tag} (invisible)"
 
 msgid "{tag} (restricted)"
-msgstr "{tag} (restreint)"
+msgstr "{tag} (restreinte)"
 
 msgid "A color with a HEX value {hex}"
-msgstr "Une couleur de valeur HEX {hex}"
+msgstr "Une couleur dont la valeur hexadécimale est {hex}"
 
 msgid "a few seconds ago"
-msgstr "il y a quelques instants"
+msgstr "il y a quelques secondes"
 
 #. TRANSLATORS: A color name for RGB(110, 166, 143)
 msgid "Acapulco"
@@ -49,7 +50,7 @@ msgid "Alt"
 msgstr "Alt"
 
 msgid "Animals & Nature"
-msgstr "Animaux & Nature"
+msgstr "Animaux et nature"
 
 msgid "Any link"
 msgstr "N'importe quel lien"
@@ -113,7 +114,7 @@ msgid "Close navigation"
 msgstr "Fermer la navigation"
 
 msgid "Close sidebar"
-msgstr "Fermer la barre latérale"
+msgstr "Fermer le panneau latéral"
 
 msgid "Close Smart Picker"
 msgstr "Fermer le sélecteur intelligent"
@@ -161,7 +162,10 @@ msgid "do not disturb"
 msgstr "ne pas déranger"
 
 msgid "Edit item"
-msgstr "Éditer l'élément"
+msgstr "Modifier l’élément"
+
+msgid "Edit profile"
+msgstr "Modifier le profil"
 
 msgid "Emoji picker"
 msgstr "Sélecteur d'émojis"
@@ -180,12 +184,12 @@ msgid ""
 "Error getting related resources. Please contact your system administrator if "
 "you have any questions."
 msgstr ""
-"Erreur lors de la récupération des ressources liées. Contactez votre "
-"administrateur système pour répondre à vos éventuelles questions."
+"Erreur lors de la récupération des ressources liées. Si vous avez des "
+"questions, contactez votre administrateur système."
 
 #. TRANSLATORS: Escape key on keyboard
 msgid "Escape"
-msgstr "Echap"
+msgstr "Échap"
 
 msgid "External documentation for {name}"
 msgstr "Documentation externe pour {name}"
@@ -210,13 +214,10 @@ msgid "Flags"
 msgstr "Drapeaux"
 
 msgid "Food & Drink"
-msgstr "Nourriture & Boissons"
+msgstr "Nourriture et boissons"
 
 msgid "Frequently used"
 msgstr "Utilisés fréquemment"
-
-msgid "Global"
-msgstr "Global"
 
 msgid "Go back to the list"
 msgstr "Retourner à la liste"
@@ -228,13 +229,16 @@ msgid "Hide details"
 msgstr "Masquer les détails"
 
 msgid "Hide password"
-msgstr "Cacher le mot de passe"
+msgstr "Masquer le mot de passe"
+
+msgid "Invalid date"
+msgstr "Date non valide"
 
 msgid "invisible"
 msgstr "invisible"
 
 msgid "Keyboard navigation help"
-msgstr "Aide à la navigation du clavier"
+msgstr "Aide à la navigation au clavier"
 
 msgid "Keyboard shortcuts"
 msgstr "Raccourcis clavier"
@@ -243,11 +247,20 @@ msgid "Light skin tone"
 msgstr "Teint de peau clair"
 
 msgid "Load more \"{options}\""
-msgstr "Charger d'avantage \"{options}\""
+msgstr "Charger davantage « {options} »"
 
 #. TRANSLATORS: The button is in a loading state
 msgid "Loading …"
-msgstr "Chargement..."
+msgstr "Chargement…"
+
+msgid "Loading actions"
+msgstr "Chargement des actions"
+
+msgid "Loading profile"
+msgstr "Chargement du profil"
+
+msgid "Local time: {time}"
+msgstr "Heure locale : {time}"
 
 #. TRANSLATORS: A color name for RGB(45, 115, 190)
 msgid "Mariner"
@@ -264,12 +277,12 @@ msgstr "Teint de peau moyen"
 
 msgid "Message limit of %n character reached"
 msgid_plural "Message limit of %n characters reached"
-msgstr[0] "Limite de messages de %n caractère atteinte"
-msgstr[1] "Limite de messages de %n caractères atteinte"
-msgstr[2] "Limite de messages de %n caractères atteinte"
+msgstr[0] "La limite de %n caractère par message a été atteinte"
+msgstr[1] "La limite de %n caractères par message a été atteinte"
+msgstr[2] "La limite de %n caractères par message a été atteinte"
 
 msgid "More items …"
-msgstr "Plus d'éléments..."
+msgstr "Plus d’éléments…"
 
 msgid "More options"
 msgstr "Plus d'options"
@@ -309,7 +322,7 @@ msgid "online"
 msgstr "en ligne"
 
 msgid "Open link to \"{resourceName}\""
-msgstr "Ouvrir le lien vers \"{resourceName}\""
+msgstr "Ouvrir le lien vers « {resourceName} »"
 
 msgid "Open menu"
 msgstr "Ouvrir le menu"
@@ -318,7 +331,7 @@ msgid "Open navigation {shortcut}"
 msgstr "Ouvrir la navigation {shortcut}"
 
 msgid "Open sidebar"
-msgstr "Ouvrir la barre latérale"
+msgstr "Ouvrir le panneau latéral"
 
 msgid "Options"
 msgstr "Options"
@@ -330,7 +343,7 @@ msgid "Pause slideshow"
 msgstr "Mettre le diaporama en pause"
 
 msgid "People & Body"
-msgstr "Personnes & Corps"
+msgstr "Personnes et corps"
 
 msgid "Pick a date"
 msgstr "Sélectionner une date"
@@ -353,11 +366,23 @@ msgstr "Sélectionner une année"
 msgid "Pick an emoji"
 msgstr "Choisissez un émoji"
 
+msgid "Pick file"
+msgstr "Choisir un fichier"
+
+msgid "Pick files"
+msgstr "Choisir des fichiers"
+
+msgid "Pick folder"
+msgstr "Choisir un dossier"
+
 msgid "Please select a time zone:"
 msgstr "Sélectionnez un fuseau horaire : "
 
 msgid "Previous"
 msgstr "Précédent"
+
+msgid "Profile of {user}"
+msgstr "Profil de {user}"
 
 msgid "Provider icon"
 msgstr "Icône du fournisseur"
@@ -382,7 +407,7 @@ msgid "Rosy brown"
 msgstr "Brun rosé"
 
 msgid "Save changes"
-msgstr "Sauvegarder les changements"
+msgstr "Enregistrer les modifications"
 
 msgid "Search"
 msgstr "Rechercher"
@@ -391,10 +416,10 @@ msgid "Search …"
 msgstr "Rechercher…"
 
 msgid "Search emoji"
-msgstr "Rechercher un emoji"
+msgstr "Rechercher un émoji"
 
 msgid "Search for time zone"
-msgstr "Rechercher le fuseau horaire"
+msgstr "Rechercher un fuseau horaire"
 
 msgid "Search results"
 msgstr "Résultats de recherche"
@@ -405,10 +430,10 @@ msgstr "il y a qq. sec."
 
 #. FOR TRANSLATORS: Shorter version of 'a few seconds ago'
 msgid "seconds ago"
-msgstr "il y a quelques secondes"
+msgstr "il y a quelques sec."
 
 msgid "Select a tag"
-msgstr "Sélectionnez une balise"
+msgstr "Sélectionner une étiquette"
 
 msgid "Select account"
 msgstr ""
@@ -418,6 +443,9 @@ msgstr "Sélectionner un fournisseur"
 
 msgid "Selected"
 msgstr "sélectionné"
+
+msgid "Send message"
+msgstr "Envoyer un message"
 
 msgid "Settings"
 msgstr "Paramètres"
@@ -439,7 +467,7 @@ msgid "Skin tone"
 msgstr "Teint de peau"
 
 msgid "Skip to app navigation"
-msgstr "Passer à l'app navigation"
+msgstr "Passer à la navigation de l’application"
 
 msgid "Skip to main content"
 msgstr "Passer au contenu principal"
@@ -448,11 +476,14 @@ msgid "Smart Picker"
 msgstr "Sélecteur intelligent"
 
 msgid "Smileys & Emotion"
-msgstr "Smileys & Émotions"
+msgstr "Smileys et émotions"
 
 #. TRANSLATORS: Space key on keyboard
 msgid "Space"
 msgstr "Espace"
+
+msgid "Start call"
+msgstr "Lancer un appel"
 
 msgid "Start slideshow"
 msgstr "Démarrer le diaporama"
@@ -471,22 +502,37 @@ msgid "Tab"
 msgstr "Tab"
 
 msgid "Travel & Places"
-msgstr "Voyage & Lieux"
+msgstr "Voyage et lieux"
 
 msgid "Type to search for existing projects"
 msgstr "Tapez pour rechercher des projets existants"
 
 msgid "Type to search time zone"
-msgstr "Saisissez les premiers lettres pour rechercher un fuseau horaire"
+msgstr "Saisissez du texte pour rechercher un fuseau horaire"
 
 msgid "Unable to search the group"
 msgstr "Impossible de chercher le groupe"
 
 msgid "Undo changes"
-msgstr "Annuler les changements"
+msgstr "Annuler les modifications"
+
+msgid "Upload file"
+msgstr "Téléverser un fichier"
+
+msgid "Upload files"
+msgstr "Téléverser des fichiers"
+
+msgid "Upload folder"
+msgstr "Téléverser un dossier"
+
+msgid "Uploading …"
+msgstr "Téléversement en cours…"
 
 msgid "User status: {status}"
 msgstr "Statut de l'utilisateur : {status}"
+
+msgid "View profile"
+msgstr "Voir le profil"
 
 msgid "View team"
 msgstr "Voir l'équipe"
@@ -497,6 +543,9 @@ msgstr "Whiskey"
 
 msgid "White"
 msgstr "Blanc"
+
+msgid "Widget height"
+msgstr "Hauteur du widget"
 
 msgid "Write a message …"
 msgstr "Écrire un message…"

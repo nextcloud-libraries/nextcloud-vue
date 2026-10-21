@@ -1,10 +1,10 @@
 #
 # Translators:
-# Transifex Bot <>, 2023
+# Nenad Lazarić, 2026
 #
 msgid ""
 msgstr ""
-"Last-Translator: Transifex Bot <>, 2023\n"
+"Last-Translator: Nenad Lazarić, 2026\n"
 "Language-Team: Croatian (https://app.transifex.com/nextcloud/teams/64236/"
 "hr/)\n"
 "Language: hr\n"
@@ -13,314 +13,328 @@ msgstr ""
 "n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
 
 msgid "{tag} (invisible)"
-msgstr ""
+msgstr "{tag} (nevidljivo)"
 
 msgid "{tag} (restricted)"
-msgstr ""
+msgstr "{tag} (ograničeno)"
 
 msgid "A color with a HEX value {hex}"
-msgstr ""
+msgstr "Boja s HEX vrijednošću {hex}"
 
 msgid "a few seconds ago"
-msgstr ""
+msgstr "prije nekoliko sekundi"
 
 #. TRANSLATORS: A color name for RGB(110, 166, 143)
 msgid "Acapulco"
-msgstr ""
+msgstr "Acapulco"
 
 msgid "Actions"
-msgstr ""
+msgstr "Radnje"
 
 msgid "Activities"
-msgstr ""
+msgstr "Aktivnosti"
 
 msgid "Add to a project"
-msgstr ""
+msgstr "Dodaj u projekt"
 
 #. TRANSLATORS: Alt key on keyboard (Windows/Linux)
 msgid "Alt"
-msgstr ""
+msgstr "Alt"
 
 msgid "Animals & Nature"
-msgstr ""
+msgstr "Životinje i priroda"
 
 msgid "Any link"
-msgstr ""
+msgstr "Bilo koja poveznica"
 
 msgid "Anything shared with the same group of people will show up here"
-msgstr ""
+msgstr "Sve što je podijeljeno s istom grupom ljudi prikazat će se ovdje"
 
 msgid "Avatar of {displayName}"
-msgstr ""
+msgstr "Avatar od {displayName}"
 
 msgid "Avatar of {displayName}, {status}"
-msgstr ""
+msgstr "Avatar od {displayName}, {status}"
 
 #. TRANSLATORS: User status if the user is currently away from keyboard
 msgid "away"
-msgstr ""
+msgstr "odsutan"
 
 msgid "Back"
-msgstr ""
+msgstr "Natrag"
 
 msgid "Back to provider selection"
-msgstr ""
+msgstr "Natrag na odabir pružatelja"
 
 msgid "Black"
-msgstr ""
+msgstr "Crna"
 
 #. TRANSLATORS: A color name for RGB(91, 100, 179)
 msgid "Blue Violet"
-msgstr ""
+msgstr "Plavoljubičasta"
 
 #. TRANSLATORS: A color name for RGB(55, 148, 172)
 msgid "Boston Blue"
-msgstr ""
+msgstr "Bostonsko plava"
 
 msgid "busy"
-msgstr ""
+msgstr "zauzet"
 
 msgid "Cancel changes"
-msgstr ""
+msgstr "Otkaži promjene"
 
 msgid "Change name"
-msgstr ""
+msgstr "Promjeni naziv"
 
 msgid "Choose"
-msgstr ""
+msgstr "Odaberi"
 
 msgid "Clear search"
-msgstr ""
+msgstr "Očisti pretraživanje"
 
 msgid "Clear selected"
-msgstr ""
+msgstr "Očisti odabir"
 
 msgid "Clear text"
-msgstr ""
+msgstr "Očisti tekst"
 
 msgid "Close"
-msgstr ""
+msgstr "Zatvori"
 
 msgid "Close navigation"
-msgstr ""
+msgstr "Zatvori navigaciju"
 
 msgid "Close sidebar"
-msgstr ""
+msgstr "Zatvori bočnu traku"
 
 msgid "Close Smart Picker"
-msgstr ""
+msgstr "Zatvori pametni odabir"
 
 msgid "Collapse menu"
-msgstr ""
+msgstr "Sakrij izbornik"
 
 msgid "Color picker"
-msgstr ""
+msgstr "Odabir boje"
 
 msgid "Confirm changes"
-msgstr ""
+msgstr "Potvrdi promjene"
 
 msgid "Connect items to a project to make them easier to find"
-msgstr ""
+msgstr "Povežite stavke s projektom kako biste ih lakše pronašli"
 
 msgid "Copied"
-msgstr ""
+msgstr "Kopirano"
 
 msgid "Copy to clipboard"
-msgstr ""
+msgstr "Kopiraj u međuspremnik"
 
 #. TRANSLATORS: Ctrl key on keyboard (Windows/Linux)
 msgid "Ctrl"
-msgstr ""
+msgstr "Ctrl"
 
 msgid "Custom"
-msgstr ""
+msgstr "Prlagođeno"
 
 msgid "Dark skin tone"
-msgstr ""
+msgstr "Tamna nijansa"
 
 #. TRANSLATORS: Delete key on keyboard
 msgid "Delete"
-msgstr ""
+msgstr "Obriši"
 
 #. TRANSLATORS: A color name for RGB(136, 85, 168)
 msgid "Deluge"
-msgstr ""
+msgstr "Deluge"
 
 msgid "Deselect {option}"
-msgstr ""
+msgstr "Odznači {option}"
 
 msgid "do not disturb"
-msgstr ""
+msgstr "ne smetaj"
 
 msgid "Edit item"
+msgstr "Uredi stavku"
+
+msgid "Edit profile"
 msgstr ""
 
 msgid "Emoji picker"
-msgstr ""
+msgstr "Odabir emojija"
 
 msgid "Enable interactive view"
-msgstr ""
+msgstr "Omogući interaktivni prikaz"
 
 #. TRANSLATORS: Enter key on keyboard
 msgid "Enter"
-msgstr ""
+msgstr "Enter"
 
 msgid "Enter link"
-msgstr ""
+msgstr "Unesi poveznicu"
 
 msgid ""
 "Error getting related resources. Please contact your system administrator if "
 "you have any questions."
 msgstr ""
+"Pogreška pri dohvaćanju povezanih resursa. Ako imate pitanja, obratite se "
+"svom administratoru sustava."
 
 #. TRANSLATORS: Escape key on keyboard
 msgid "Escape"
-msgstr ""
+msgstr "Escape"
 
 msgid "External documentation for {name}"
 msgstr ""
 
 msgid "Failed to add the item to the project"
-msgstr ""
+msgstr "Neuspjelo dodavanje stavke u projekt"
 
 msgid "Failed to create a project"
-msgstr ""
+msgstr "Neuspjelo stvaranje projekta"
 
 msgid "Failed to rename the project"
-msgstr ""
+msgstr "Neuspjelo preimenovanje projekta"
 
 msgid "Favorite"
-msgstr ""
+msgstr "Favorit"
 
 #. TRANSLATORS: A color name for RGB(201, 136, 121)
 msgid "Feldspar"
-msgstr ""
+msgstr "Feldspar"
 
 msgid "Flags"
-msgstr ""
+msgstr "Zastavice"
 
 msgid "Food & Drink"
-msgstr ""
+msgstr "Hrana i piće"
 
 msgid "Frequently used"
-msgstr ""
-
-msgid "Global"
-msgstr ""
+msgstr "Često korišteno"
 
 msgid "Go back to the list"
-msgstr ""
+msgstr "Vrati se na popis"
 
 msgid "Gold"
-msgstr ""
+msgstr "Zlatna"
 
 msgid "Hide details"
-msgstr ""
+msgstr "Sakrij detalje"
 
 msgid "Hide password"
+msgstr "Sakrij lozinku"
+
+msgid "Invalid date"
 msgstr ""
 
 msgid "invisible"
-msgstr ""
+msgstr "nevidljiv"
 
 msgid "Keyboard navigation help"
-msgstr ""
+msgstr "Pomoć za navigaciju tipkovnicom"
 
 msgid "Keyboard shortcuts"
-msgstr ""
+msgstr "Tipkovnički prečaci"
 
 msgid "Light skin tone"
-msgstr ""
+msgstr "Svjetla nijansa"
 
 msgid "Load more \"{options}\""
-msgstr ""
+msgstr "Učitaj još „{options}”"
 
 #. TRANSLATORS: The button is in a loading state
 msgid "Loading …"
+msgstr "Učitavanje …"
+
+msgid "Loading actions"
+msgstr ""
+
+msgid "Loading profile"
+msgstr ""
+
+msgid "Local time: {time}"
 msgstr ""
 
 #. TRANSLATORS: A color name for RGB(45, 115, 190)
 msgid "Mariner"
-msgstr ""
+msgstr "Mariner"
 
 msgid "Medium dark skin tone"
-msgstr ""
+msgstr "Srednje tamna nijansa"
 
 msgid "Medium light skin tone"
-msgstr ""
+msgstr "Srednje svjetla nijansa"
 
 msgid "Medium skin tone"
-msgstr ""
+msgstr "Srednja nijansa"
 
 msgid "Message limit of %n character reached"
 msgid_plural "Message limit of %n characters reached"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "Dosegnuto je ograničenje poruke od %n znaka"
+msgstr[1] "Dosegnuto je ograničenje poruke od %n znaka"
+msgstr[2] "Dosegnuto je ograničenje poruke od %n znakova"
 
 msgid "More items …"
-msgstr ""
+msgstr "Još stavki …"
 
 msgid "More options"
-msgstr ""
+msgstr "Više mogućnosti"
 
 msgid "Neutral skin color"
-msgstr ""
+msgstr "Neutralna nijansa"
 
 msgid "Next"
-msgstr ""
+msgstr "Sljedeće"
 
 msgid "Nextcloud blue"
-msgstr ""
+msgstr "Nextcloud plava"
 
 msgid "No color"
-msgstr ""
+msgstr "Bez boje"
 
 msgid "No emoji found"
-msgstr ""
+msgstr "Nije pronađen nijedan emoji"
 
 msgid "No link provider found"
-msgstr ""
+msgstr "Nije pronađen nijedan pružatelj poveznica"
 
 msgid "No results"
-msgstr ""
+msgstr "Nema rezultata"
 
 msgid "Objects"
-msgstr ""
+msgstr "Objekti"
 
 msgid "offline"
-msgstr ""
+msgstr "izvan mreže"
 
 #. TRANSLATORS: A color name for RGB(165, 184, 114)
 msgid "Olivine"
-msgstr ""
+msgstr "Olivine"
 
 msgid "online"
-msgstr ""
+msgstr "na mreži"
 
 msgid "Open link to \"{resourceName}\""
-msgstr ""
+msgstr "Otvori poveznicu za \"{resourceName}\""
 
 msgid "Open menu"
-msgstr ""
+msgstr "Otvori izbornik"
 
 msgid "Open navigation {shortcut}"
 msgstr ""
 
 msgid "Open sidebar"
-msgstr ""
+msgstr "Otvori bočnu traku"
 
 msgid "Options"
-msgstr ""
+msgstr "Mogućnosti"
 
 msgid "Password is secure"
-msgstr ""
+msgstr "Lozinka je zaštićena"
 
 msgid "Pause slideshow"
-msgstr ""
+msgstr "Pauziraj dijaprojekciju"
 
 msgid "People & Body"
-msgstr ""
+msgstr "Ljudi i tijelo"
 
 msgid "Pick a date"
 msgstr ""
@@ -341,152 +355,189 @@ msgid "Pick a year"
 msgstr ""
 
 msgid "Pick an emoji"
-msgstr ""
+msgstr "Odaberi emoji"
+
+msgid "Pick file"
+msgstr "Odaberi datoteku"
+
+msgid "Pick files"
+msgstr "Odaberi datoteke"
+
+msgid "Pick folder"
+msgstr "Odaberi mapu"
 
 msgid "Please select a time zone:"
 msgstr ""
 
 msgid "Previous"
+msgstr "Prethodno"
+
+msgid "Profile of {user}"
 msgstr ""
 
 msgid "Provider icon"
-msgstr ""
+msgstr "Ikona pružatelja"
 
 msgid "Purple"
-msgstr ""
+msgstr "Ljubičasta"
 
 msgid "Raw link {options}"
-msgstr ""
+msgstr "Izravna poveznica {options}"
 
 msgid "Related resources"
-msgstr ""
+msgstr "Povezani resursi"
 
 msgid "Related team resources"
-msgstr ""
+msgstr "Povezani timski resursi"
 
 msgid "Rename project"
-msgstr ""
+msgstr "Preimenuj projekt"
 
 #. TRANSLATORS: A color name for RGB(191, 103, 139)
 msgid "Rosy brown"
-msgstr ""
+msgstr "Ružičastosmeđa"
 
 msgid "Save changes"
-msgstr ""
+msgstr "Spremi promjene"
 
 msgid "Search"
-msgstr ""
+msgstr "Traži"
 
 msgid "Search …"
-msgstr ""
+msgstr "Traži …"
 
 msgid "Search emoji"
-msgstr ""
+msgstr "Traži emoji"
 
 msgid "Search for time zone"
-msgstr ""
+msgstr "Pretraži vremensku zonu"
 
 msgid "Search results"
-msgstr ""
+msgstr "Rezultati pretraživanja"
 
 #. FOR TRANSLATORS: If possible in your language an even shorter version of 'a few seconds ago'
 msgid "sec. ago"
-msgstr ""
+msgstr "prije nek. sek."
 
 #. FOR TRANSLATORS: Shorter version of 'a few seconds ago'
 msgid "seconds ago"
-msgstr ""
+msgstr "prije nek. sek."
 
 msgid "Select a tag"
-msgstr ""
+msgstr "Odaberi oznaku"
 
 msgid "Select account"
 msgstr ""
 
 msgid "Select provider"
-msgstr ""
+msgstr "Odaberi pružatelja"
 
 msgid "Selected"
+msgstr "Odabrano"
+
+msgid "Send message"
 msgstr ""
 
 msgid "Settings"
-msgstr ""
+msgstr "Postavke"
 
 msgid "Settings navigation"
-msgstr ""
+msgstr "Navigacija postavki"
 
 #. TRANSLATORS: Shift key on keyboard
 msgid "Shift"
-msgstr ""
+msgstr "Shift"
 
 msgid "Show details"
-msgstr ""
+msgstr "Prikaži detalje"
 
 msgid "Show password"
-msgstr ""
+msgstr "Prikaži lozinku"
 
 msgid "Skin tone"
-msgstr ""
+msgstr "Nijansa"
 
 msgid "Skip to app navigation"
-msgstr ""
+msgstr "Preskoči na navigaciju aplikacije"
 
 msgid "Skip to main content"
-msgstr ""
+msgstr "Preskoči na glavni sadržaj"
 
 msgid "Smart Picker"
-msgstr ""
+msgstr "Pametni odabir"
 
 msgid "Smileys & Emotion"
-msgstr ""
+msgstr "Smajlići i emocije"
 
 #. TRANSLATORS: Space key on keyboard
 msgid "Space"
+msgstr "Space"
+
+msgid "Start call"
 msgstr ""
 
 msgid "Start slideshow"
-msgstr ""
+msgstr "Pokreni dijaprojekciju"
 
 msgid "Start typing to search"
-msgstr ""
+msgstr "Počnite tipkati za pretraživanje"
 
 msgid "Submit"
-msgstr ""
+msgstr "Pošalji"
 
 msgid "Symbols"
-msgstr ""
+msgstr "Simboli"
 
 #. TRANSLATORS: Tab key on keyboard
 msgid "Tab"
-msgstr ""
+msgstr "Tab"
 
 msgid "Travel & Places"
-msgstr ""
+msgstr "Putovanja i mjesta"
 
 msgid "Type to search for existing projects"
-msgstr ""
+msgstr "Upišite za pretraživanje postojećih projekata"
 
 msgid "Type to search time zone"
-msgstr ""
+msgstr "Upišite za pretraživanje vremenske zone"
 
 msgid "Unable to search the group"
-msgstr ""
+msgstr "Nije moguće pretražiti grupu"
 
 msgid "Undo changes"
-msgstr ""
+msgstr "Poništi promjene"
+
+msgid "Upload file"
+msgstr "Prenesi datoteku"
+
+msgid "Upload files"
+msgstr "Prenesi datoteke"
+
+msgid "Upload folder"
+msgstr "Prenesi mapu"
+
+msgid "Uploading …"
+msgstr "Prijenos u tijeku …"
 
 msgid "User status: {status}"
+msgstr "Status korisnika: {status}"
+
+msgid "View profile"
 msgstr ""
 
 msgid "View team"
-msgstr ""
+msgstr "Prikaži tim"
 
 #. TRANSLATORS: A color name for RGB(211, 169, 103)
 msgid "Whiskey"
-msgstr ""
+msgstr "Whiskey"
 
 msgid "White"
+msgstr "Bijela"
+
+msgid "Widget height"
 msgstr ""
 
 msgid "Write a message …"
-msgstr ""
+msgstr "Napiši poruku …"
+

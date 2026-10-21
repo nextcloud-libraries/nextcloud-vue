@@ -156,6 +156,9 @@ msgstr "не узнемиравај"
 msgid "Edit item"
 msgstr "Уреди ставку"
 
+msgid "Edit profile"
+msgstr ""
+
 msgid "Emoji picker"
 msgstr "Бирач емођија"
 
@@ -208,9 +211,6 @@ msgstr "Храна и пиће"
 msgid "Frequently used"
 msgstr "Често коришћено"
 
-msgid "Global"
-msgstr "Глобално"
-
 msgid "Go back to the list"
 msgstr "Назад на листу"
 
@@ -222,6 +222,9 @@ msgstr "Сакриј детаље"
 
 msgid "Hide password"
 msgstr "Сакриј лозинку"
+
+msgid "Invalid date"
+msgstr ""
 
 msgid "invisible"
 msgstr "невидљиво"
@@ -241,6 +244,15 @@ msgstr "Учитај још „{options}”"
 #. TRANSLATORS: The button is in a loading state
 msgid "Loading …"
 msgstr "Учитава се…"
+
+msgid "Loading actions"
+msgstr ""
+
+msgid "Loading profile"
+msgstr ""
+
+msgid "Local time: {time}"
+msgstr ""
 
 #. TRANSLATORS: A color name for RGB(45, 115, 190)
 msgid "Mariner"
@@ -346,11 +358,23 @@ msgstr "Изаберите годину"
 msgid "Pick an emoji"
 msgstr "Изаберите емођи"
 
+msgid "Pick file"
+msgstr ""
+
+msgid "Pick files"
+msgstr ""
+
+msgid "Pick folder"
+msgstr ""
+
 msgid "Please select a time zone:"
 msgstr "Молимо вас да изаберете временску зону:"
 
 msgid "Previous"
 msgstr "Претходно"
+
+msgid "Profile of {user}"
+msgstr ""
 
 msgid "Provider icon"
 msgstr "Икона пружаоца"
@@ -412,6 +436,9 @@ msgstr "Изаберите пружаоца"
 msgid "Selected"
 msgstr "Изабрано"
 
+msgid "Send message"
+msgstr ""
+
 msgid "Settings"
 msgstr "Поставке"
 
@@ -447,6 +474,9 @@ msgstr "Смајлији и емоције"
 msgid "Space"
 msgstr "Space"
 
+msgid "Start call"
+msgstr ""
+
 msgid "Start slideshow"
 msgstr "Покрени слајд шоу"
 
@@ -478,8 +508,23 @@ msgstr "Група не може да се претражи"
 msgid "Undo changes"
 msgstr "Поништи измене"
 
+msgid "Upload file"
+msgstr ""
+
+msgid "Upload files"
+msgstr ""
+
+msgid "Upload folder"
+msgstr ""
+
+msgid "Uploading …"
+msgstr ""
+
 msgid "User status: {status}"
 msgstr "Статус корисника: {status}"
+
+msgid "View profile"
+msgstr ""
 
 msgid "View team"
 msgstr "Прикажи тим"
@@ -490,6 +535,9 @@ msgstr "Виски"
 
 msgid "White"
 msgstr "Бело"
+
+msgid "Widget height"
+msgstr ""
 
 msgid "Write a message …"
 msgstr "Напишите поруку…"
