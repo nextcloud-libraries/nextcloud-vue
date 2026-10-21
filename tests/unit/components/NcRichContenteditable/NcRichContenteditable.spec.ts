@@ -100,6 +100,19 @@ describe('NcRichContenteditable', () => {
 		expect(wrapper.emitted('submit')).toHaveLength(1)
 	})
 
+	it('should not emit "submit" on Enter confirming IME composition after compositionend (Safari)', async () => {
+		const { contentEditable, inputValue, wrapper } = mountNcRichContenteditable()
+
+		await contentEditable().trigger('compositionstart')
+		await inputValue('你')
+		await contentEditable().trigger('compositionend')
+		await contentEditable().trigger('keydown', { key: 'Enter', keyCode: 229 }) // Enter confirming IME candidate
+		await contentEditable().trigger('keydown', { key: 'Enter', keyCode: 13 }) // Enter
+
+		expect(wrapper.emitted('submit')).toBeDefined()
+		expect(wrapper.emitted('submit')).toHaveLength(1)
+	})
+
 	it('should proxy component events listeners to native event handlers', async () => {
 		const handlers = {
 			focus: jest.fn(),
