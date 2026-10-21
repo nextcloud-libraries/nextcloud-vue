@@ -64,6 +64,30 @@ describe('NcBreadcrumbs', () => {
 			expect(wrapper.findAll('a').map((link) => link.attributes('href'))).toEqual(['#/folders/1'])
 		})
 
+		it('emits crumbClick with the crumb, its index and the event', async () => {
+			const wrapper = mount(NcBreadcrumbs, { props: { crumbs } })
+			await wrapper.findAll('a')[1].trigger('click')
+			const [crumb, index, event] = wrapper.emitted('crumbClick')![0] as [unknown, number, MouseEvent]
+			expect(crumb).toEqual(crumbs[1])
+			expect(index).toBe(1)
+			expect(event).toBeInstanceOf(MouseEvent)
+		})
+
+		it('lets a crumbClick listener keep the link from being followed', async () => {
+			let prevented = false
+			const wrapper = mount(NcBreadcrumbs, {
+				props: {
+					crumbs,
+					onCrumbClick: (_crumb: unknown, _index: number, event: MouseEvent) => {
+						event.preventDefault()
+						prevented = event.defaultPrevented
+					},
+				},
+			})
+			await wrapper.findAll('a')[0].trigger('click')
+			expect(prevented).toBe(true)
+		})
+
 		it('ignores the slot when crumbs are given', () => {
 			const wrapper = mount(NcBreadcrumbs, {
 				props: { crumbs },

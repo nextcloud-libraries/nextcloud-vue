@@ -122,25 +122,62 @@ export default {
 
 Instead of `NcBreadcrumb` components, the trail can be passed as an array in `crumbs`, root first. Each crumb has a `name`, and a `to` for vue-router or an `href` to link to, an optional `title` and an optional `iconPath`, for example one from `@mdi/js`. Like the `icon` slot of `NcBreadcrumb`, an icon is shown instead of the name, and the name becomes its accessible label. The last crumb is the current location: it is not linked and is marked with `aria-current="page"`. When `crumbs` is set, the `NcBreadcrumb` components in the default slot are not used.
 
+A click on a crumb emits `crumbClick` with the crumb, its index and the click event, for an app that navigates without vue-router. Call `preventDefault()` on the event to stop the link from being followed. In the example below, a click on a crumb goes up to that folder, and the buttons go back down.
+
 ```vue
 <template>
-	<NcBreadcrumbs :crumbs="crumbs" />
+	<div>
+		<NcBreadcrumbs :crumbs="crumbs" @crumb-click="goUp" />
+		<div v-if="deeper.length > 0" class="deeper">
+			<NcButton
+				v-for="(name, index) in deeper"
+				:key="name"
+				size="small"
+				variant="tertiary"
+				@click="depth += index + 1">
+				Go to {{ name }}
+			</NcButton>
+		</div>
+	</div>
 </template>
 
 <script>
 export default {
 	data() {
 		return {
-			crumbs: [
-				{ name: 'Home', href: '#' },
-				{ name: 'Team vault', href: '#' },
-				{ name: 'Secrets', href: '#' },
-				{ name: 'Production' },
-			],
+			trail: ['Home', 'Team vault', 'Secrets', 'Production'],
+			depth: 3,
 		}
+	},
+
+	computed: {
+		crumbs() {
+			return this.trail.slice(0, this.depth + 1).map((name) => ({ name, href: '#' }))
+		},
+
+		deeper() {
+			return this.trail.slice(this.depth + 1)
+		},
+	},
+
+	methods: {
+		goUp(crumb, index, event) {
+			// Stay on this page: the example only shows the trail
+			event.preventDefault()
+			this.depth = index
+		},
 	},
 }
 </script>
+
+<style scoped>
+.deeper {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 4px;
+	margin-top: 8px;
+}
+</style>
 ```
 </docs>
 
@@ -202,7 +239,7 @@ export default {
 		},
 	},
 
-	emits: ['dropped'],
+	emits: ['dropped', 'crumbClick'],
 	data() {
 		return {
 			/**
@@ -543,6 +580,18 @@ export default {
 					to: isCurrent ? undefined : crumb.to,
 					href: isCurrent ? undefined : crumb.href,
 					'aria-current': isCurrent ? 'page' : undefined,
+					onClick: (event) => {
+						/**
+						 * A crumb of the `crumbs` prop was clicked.
+						 * Call `preventDefault()` on the event to stop its link from being followed.
+						 *
+						 * @param {object} crumb The clicked crumb
+						 * @param {number} index Its index in `crumbs`
+						 * @param {MouseEvent} event The click event
+						 * @since 9.14.0
+						 */
+						this.$emit('crumbClick', crumb, index, event)
+					},
 				}, crumb.iconPath ? { icon: () => h(NcIconSvgWrapper, { path: crumb.iconPath, size: 20 }) } : undefined)
 			})
 		},
