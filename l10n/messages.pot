@@ -291,7 +291,13 @@ msgstr ""
 msgid "Locked by {user}"
 msgstr ""
 
+msgid "Locked by {user}. You cannot edit this until the lock is released."
+msgstr ""
+
 msgid "Locked by another user"
+msgstr ""
+
+msgid "Locked by another user. You cannot edit this until the lock is released."
 msgstr ""
 
 msgid "Locked by you"
@@ -587,6 +593,12 @@ msgstr ""
 msgid "Tab"
 msgstr ""
 
+msgid "The lock expires {time}"
+msgstr ""
+
+msgid "The lock has expired"
+msgstr ""
+
 msgid "Time picker"
 msgstr ""
 
@@ -609,6 +621,9 @@ msgid "Unable to search the group"
 msgstr ""
 
 msgid "Undo changes"
+msgstr ""
+
+msgid "Unlock"
 msgstr ""
 
 msgid "Upload file"
@@ -658,4 +673,7 @@ msgid "Year picker"
 msgstr ""
 
 msgid "Year picker overlay"
+msgstr ""
+
+msgid "You are editing this. Others cannot change it until you unlock it."
 msgstr ""
