@@ -78,7 +78,7 @@ function onUpdate() {
 		<input
 			:aria-labelledby="label ? labelId : undefined"
 			:aria-label="label ? undefined : ariaLabel"
-			class="hidden-visually"
+			:class="$style.radioGroupButton__input"
 			:checked="isChecked"
 			type="radio"
 			:disabled
@@ -95,6 +95,7 @@ function onUpdate() {
 	--radio-group-button--background-color: var(--color-primary-element-light);
 	--radio-group-button--background-color-hover: var(--color-primary-element-light-hover);
 	--radio-group-button--padding: 1px;
+	position: relative;
 	cursor: pointer;
 	color: var(--radio-group-button--color);
 	background-color: var(--radio-group-button--background-color);
@@ -116,6 +117,17 @@ function onUpdate() {
 
 	* {
 		cursor: pointer;
+	}
+
+	// Not .hidden-visually: its -10000px offset makes the browser scroll the container to the top on focus
+	&__input {
+		position: absolute;
+		inset-block-start: 0;
+		inset-inline-start: 0;
+		width: 1px;
+		height: 1px;
+		opacity: 0;
+		pointer-events: none;
 	}
 
 	&:has(&__label) {
