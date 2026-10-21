@@ -16,7 +16,7 @@ is dropped on a creadcrumb.
 ```vue
 <template>
 	<div>
-		<div class="container">
+		<div class="container" @click.capture="stayOnPage">
 			<NcBreadcrumbs @dropped="dropped">
 				<NcBreadcrumb name="Home"
 					title="Title of the Home folder"
@@ -68,15 +68,24 @@ is dropped on a creadcrumb.
 				</template>
 			</NcBreadcrumbs>
 		</div>
-		<br />
-		<div class="dragme" draggable="true" @dragstart="dragStart">
-			<span>Drag me onto the breadcrumbs.</span>
+		<div class="drag-area">
+			<div class="dragme" draggable="true" @dragstart="dragStart">
+				<DragVertical :size="20" />
+				<span>Drag me onto a folder</span>
+			</div>
+			<p class="drop-result" aria-live="polite">
+				{{ lastDrop }}
+				<template v-if="droppedOnHome">
+					<br>The Home crumb handled the drop itself as well.
+				</template>
+			</p>
 		</div>
 	</div>
 </template>
 
 <script>
 import Download from 'vue-material-design-icons/Download'
+import DragVertical from 'vue-material-design-icons/DragVertical'
 import Folder from 'vue-material-design-icons/Folder'
 import MenuDown from 'vue-material-design-icons/MenuDown'
 import Plus from 'vue-material-design-icons/Plus'
@@ -85,20 +94,35 @@ import ShareVariant from 'vue-material-design-icons/ShareVariant'
 export default {
 	components: {
 		Download,
+		DragVertical,
 		Folder,
 		MenuDown,
 		Plus,
 		ShareVariant,
 	},
+	data() {
+		return {
+			lastDrop: 'Not dropped yet. Folder 2 and Folder 5 do not accept drops.',
+			droppedOnHome: false,
+		}
+	},
 	methods: {
 		dropped(e, path) {
-			alert('Global drop on ' + path)
+			this.lastDrop = 'Dropped on ' + path
 		},
 		droppedOnCrumb(e, path) {
-			alert('Drop on crumb ' + path)
+			this.droppedOnHome = true
 		},
 		dragStart(e) {
 			e.dataTransfer.setData('text/plain', 'dragging')
+			this.lastDrop = 'Not dropped yet. Folder 2 and Folder 5 do not accept drops.'
+			this.droppedOnHome = false
+		},
+		// The example only shows the breadcrumbs, so their links do not leave the page
+		stayOnPage(e) {
+			if (e.target.closest('a')) {
+				e.preventDefault()
+			}
 		},
 	}
 }
@@ -109,11 +133,30 @@ export default {
 	width: 100%;
 }
 
+.drag-area {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	gap: 12px;
+	margin-top: 12px;
+}
+
 .dragme {
-	display: block;
-	width: 100px;
+	display: inline-flex;
+	align-items: center;
+	gap: 4px;
 	height: var(--default-clickable-area);
-	background-color: var(--color-background-dark);
+	padding: 0 12px 0 8px;
+	border: 2px dashed var(--color-border-maxcontrast);
+	border-radius: var(--border-radius-element);
+	background-color: var(--color-background-hover);
+	white-space: nowrap;
+	cursor: grab;
+}
+
+.drop-result {
+	margin: 0;
+	color: var(--color-text-maxcontrast);
 }
 </style>
 ```
