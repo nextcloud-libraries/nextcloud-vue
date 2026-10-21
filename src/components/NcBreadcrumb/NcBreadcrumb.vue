@@ -21,7 +21,7 @@ Renders a button element when given no redirection props, otherwise, renders <a/
 		draggable="false"
 		@dragstart.prevent="() => { /** Prevent the breadcrumb from being draggable. */ }"
 		@drop.prevent="dropped"
-		@dragover.prevent="() => {}"
+		@dragover.prevent="dragOver"
 		@dragenter="dragEnter"
 		@dragleave="dragLeave">
 		<NcButton
@@ -241,6 +241,18 @@ export default {
 			this.$parent.$emit('dropped', e, this.to || this.href)
 			this.hovering = false
 			return false
+		},
+
+		/**
+		 * Show the dragged item whether it can be dropped here: with dropping disabled,
+		 * the browser shows that it cannot and does not fire the drop.
+		 *
+		 * @param {DragEvent} e The drag-over event
+		 */
+		dragOver(e) {
+			if (this.disableDrop && e.dataTransfer) {
+				e.dataTransfer.dropEffect = 'none'
+			}
 		},
 
 		/**
