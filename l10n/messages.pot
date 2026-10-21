@@ -285,6 +285,18 @@ msgstr ""
 msgid "Local time: {time}"
 msgstr ""
 
+msgid "Locked"
+msgstr ""
+
+msgid "Locked by {user}"
+msgstr ""
+
+msgid "Locked by another user"
+msgstr ""
+
+msgid "Locked by you"
+msgstr ""
+
 #. TRANSLATORS: A color name for RGB(45, 115, 190)
 msgid "Mariner"
 msgstr ""
