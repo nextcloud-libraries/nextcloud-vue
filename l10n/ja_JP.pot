@@ -155,6 +155,9 @@ msgstr "邪魔をしないでください"
 msgid "Edit item"
 msgstr "編集"
 
+msgid "Edit profile"
+msgstr ""
+
 msgid "Emoji picker"
 msgstr "絵文字ピッカー"
 
@@ -207,9 +210,6 @@ msgstr "食べ物と飲み物"
 msgid "Frequently used"
 msgstr "よく使うもの"
 
-msgid "Global"
-msgstr "全体"
-
 msgid "Go back to the list"
 msgstr "リストに戻る"
 
@@ -221,6 +221,9 @@ msgstr ""
 
 msgid "Hide password"
 msgstr "パスワードを非表示"
+
+msgid "Invalid date"
+msgstr ""
 
 msgid "invisible"
 msgstr "不可視"
@@ -239,6 +242,15 @@ msgstr "\"{options}\" をもっと読み込む"
 
 #. TRANSLATORS: The button is in a loading state
 msgid "Loading …"
+msgstr ""
+
+msgid "Loading actions"
+msgstr ""
+
+msgid "Loading profile"
+msgstr ""
+
+msgid "Local time: {time}"
 msgstr ""
 
 #. TRANSLATORS: A color name for RGB(45, 115, 190)
@@ -343,11 +355,23 @@ msgstr "年を選択してください"
 msgid "Pick an emoji"
 msgstr "絵文字を選択"
 
+msgid "Pick file"
+msgstr ""
+
+msgid "Pick files"
+msgstr ""
+
+msgid "Pick folder"
+msgstr ""
+
 msgid "Please select a time zone:"
 msgstr "タイムゾーンを選んで下さい："
 
 msgid "Previous"
 msgstr "前"
+
+msgid "Profile of {user}"
+msgstr ""
 
 msgid "Provider icon"
 msgstr "プロバイダーのアイコン"
@@ -409,6 +433,9 @@ msgstr "プロバイダーを選択"
 msgid "Selected"
 msgstr "選択済み"
 
+msgid "Send message"
+msgstr ""
+
 msgid "Settings"
 msgstr "設定"
 
@@ -444,6 +471,9 @@ msgstr "感情表現"
 msgid "Space"
 msgstr ""
 
+msgid "Start call"
+msgstr ""
+
 msgid "Start slideshow"
 msgstr "スライドショーを開始"
 
@@ -475,8 +505,23 @@ msgstr "グループを検索できません"
 msgid "Undo changes"
 msgstr "変更を取り消し"
 
+msgid "Upload file"
+msgstr ""
+
+msgid "Upload files"
+msgstr ""
+
+msgid "Upload folder"
+msgstr ""
+
+msgid "Uploading …"
+msgstr ""
+
 msgid "User status: {status}"
 msgstr "ユーザのステータス: {status}"
+
+msgid "View profile"
+msgstr ""
 
 msgid "View team"
 msgstr "チームを表示"
@@ -486,6 +531,9 @@ msgid "Whiskey"
 msgstr "ウイスキー"
 
 msgid "White"
+msgstr ""
+
+msgid "Widget height"
 msgstr ""
 
 msgid "Write a message …"

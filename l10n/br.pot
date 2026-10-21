@@ -158,6 +158,9 @@ msgstr ""
 msgid "Edit item"
 msgstr ""
 
+msgid "Edit profile"
+msgstr ""
+
 msgid "Emoji picker"
 msgstr ""
 
@@ -208,9 +211,6 @@ msgstr "Boued & Evajoù"
 msgid "Frequently used"
 msgstr "Implijet alies"
 
-msgid "Global"
-msgstr ""
-
 msgid "Go back to the list"
 msgstr ""
 
@@ -221,6 +221,9 @@ msgid "Hide details"
 msgstr ""
 
 msgid "Hide password"
+msgstr ""
+
+msgid "Invalid date"
 msgstr ""
 
 msgid "invisible"
@@ -240,6 +243,15 @@ msgstr ""
 
 #. TRANSLATORS: The button is in a loading state
 msgid "Loading …"
+msgstr ""
+
+msgid "Loading actions"
+msgstr ""
+
+msgid "Loading profile"
+msgstr ""
+
+msgid "Local time: {time}"
 msgstr ""
 
 #. TRANSLATORS: A color name for RGB(45, 115, 190)
@@ -348,11 +360,23 @@ msgstr ""
 msgid "Pick an emoji"
 msgstr "Choaz un emoji"
 
+msgid "Pick file"
+msgstr ""
+
+msgid "Pick files"
+msgstr ""
+
+msgid "Pick folder"
+msgstr ""
+
 msgid "Please select a time zone:"
 msgstr ""
 
 msgid "Previous"
 msgstr "A-raok"
+
+msgid "Profile of {user}"
+msgstr ""
 
 msgid "Provider icon"
 msgstr ""
@@ -414,6 +438,9 @@ msgstr ""
 msgid "Selected"
 msgstr ""
 
+msgid "Send message"
+msgstr ""
+
 msgid "Settings"
 msgstr "Arventennoù"
 
@@ -449,6 +476,9 @@ msgstr "Smileyioù & Fromoù"
 msgid "Space"
 msgstr ""
 
+msgid "Start call"
+msgstr ""
+
 msgid "Start slideshow"
 msgstr "Kregiñ an diaporama"
 
@@ -480,7 +510,22 @@ msgstr "Dibosupl eo klask ar strollad"
 msgid "Undo changes"
 msgstr ""
 
+msgid "Upload file"
+msgstr ""
+
+msgid "Upload files"
+msgstr ""
+
+msgid "Upload folder"
+msgstr ""
+
+msgid "Uploading …"
+msgstr ""
+
 msgid "User status: {status}"
+msgstr ""
+
+msgid "View profile"
 msgstr ""
 
 msgid "View team"
@@ -491,6 +536,9 @@ msgid "Whiskey"
 msgstr ""
 
 msgid "White"
+msgstr ""
+
+msgid "Widget height"
 msgstr ""
 
 msgid "Write a message …"

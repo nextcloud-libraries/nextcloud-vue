@@ -1,14 +1,13 @@
-#
 # Translators:
 # Martin Wilichowski, 2025
 # Ferdinand Thiessen, 2025
 # Joas Schilling, 2025
-# Mark Ziegler <mark.ziegler@rakekniven.de>, 2025
-# Mario Siegmann <mario_siegmann@web.de>, 2025
+# Mario Siegmann <mario_siegmann@web.de>, 2026
+# Mark Ziegler <mark.ziegler@rakekniven.de>, 2026
 #
 msgid ""
 msgstr ""
-"Last-Translator: Mario Siegmann <mario_siegmann@web.de>, 2025\n"
+"Last-Translator: Mark Ziegler <mark.ziegler@rakekniven.de>, 2026\n"
 "Language-Team: German (https://app.transifex.com/nextcloud/teams/64236/de/)\n"
 "Language: de\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -159,6 +158,9 @@ msgstr "Bitte nicht stören"
 msgid "Edit item"
 msgstr "Element bearbeiten"
 
+msgid "Edit profile"
+msgstr "Profil bearbeiten"
+
 msgid "Emoji picker"
 msgstr "Emoji-Auswahl"
 
@@ -211,9 +213,6 @@ msgstr "Essen & Trinken"
 msgid "Frequently used"
 msgstr "Häufig verwendet"
 
-msgid "Global"
-msgstr "Global"
-
 msgid "Go back to the list"
 msgstr "Zurück zur Liste"
 
@@ -225,6 +224,9 @@ msgstr "Details ausblenden"
 
 msgid "Hide password"
 msgstr "Passwort verbergen"
+
+msgid "Invalid date"
+msgstr "Ungültiges Datum"
 
 msgid "invisible"
 msgstr "Unsichtbar"
@@ -244,6 +246,15 @@ msgstr "Weitere \"{options}\" laden"
 #. TRANSLATORS: The button is in a loading state
 msgid "Loading …"
 msgstr "Wird geladen …"
+
+msgid "Loading actions"
+msgstr "Aktionen werden geladen"
+
+msgid "Loading profile"
+msgstr "Profil wird geladen"
+
+msgid "Local time: {time}"
+msgstr "Ortszeit: {time}"
 
 #. TRANSLATORS: A color name for RGB(45, 115, 190)
 msgid "Mariner"
@@ -348,11 +359,23 @@ msgstr "Ein Jahr auswählen"
 msgid "Pick an emoji"
 msgstr "Ein Emoji auswählen"
 
+msgid "Pick file"
+msgstr "Datei auswählen"
+
+msgid "Pick files"
+msgstr "Dateien auswählen"
+
+msgid "Pick folder"
+msgstr "Ordner auswählen"
+
 msgid "Please select a time zone:"
 msgstr "Bitte eine Zeitzone auswählen:"
 
 msgid "Previous"
 msgstr "Vorherige"
+
+msgid "Profile of {user}"
+msgstr "Profil von {user}"
 
 msgid "Provider icon"
 msgstr "Anbietersymbol"
@@ -414,6 +437,9 @@ msgstr "Anbieter auswählen"
 msgid "Selected"
 msgstr "Ausgewählt"
 
+msgid "Send message"
+msgstr "Nachricht senden"
+
 msgid "Settings"
 msgstr "Einstellungen"
 
@@ -449,6 +475,9 @@ msgstr "Smileys & Emotionen"
 msgid "Space"
 msgstr "Leertaste"
 
+msgid "Start call"
+msgstr "Anruf starten"
+
 msgid "Start slideshow"
 msgstr "Diashow starten"
 
@@ -480,8 +509,23 @@ msgstr "Die Gruppe kann nicht durchsucht werden"
 msgid "Undo changes"
 msgstr "Änderungen rückgängig machen"
 
+msgid "Upload file"
+msgstr "Datei hochladen"
+
+msgid "Upload files"
+msgstr "Dateien hochladen"
+
+msgid "Upload folder"
+msgstr "Ordner hochladen"
+
+msgid "Uploading …"
+msgstr "Wird hochgeladen …"
+
 msgid "User status: {status}"
 msgstr "Benutzerstatus: {status}"
+
+msgid "View profile"
+msgstr "Profil anzeigen"
 
 msgid "View team"
 msgstr "Team anzeigen"
@@ -492,6 +536,9 @@ msgstr "Whiskey"
 
 msgid "White"
 msgstr "Weiß"
+
+msgid "Widget height"
+msgstr "Widget-Höhe"
 
 msgid "Write a message …"
 msgstr "Nachricht schreiben …"

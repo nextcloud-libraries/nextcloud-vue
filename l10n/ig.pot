@@ -153,6 +153,9 @@ msgstr ""
 msgid "Edit item"
 msgstr ""
 
+msgid "Edit profile"
+msgstr ""
+
 msgid "Emoji picker"
 msgstr ""
 
@@ -203,9 +206,6 @@ msgstr ""
 msgid "Frequently used"
 msgstr ""
 
-msgid "Global"
-msgstr ""
-
 msgid "Go back to the list"
 msgstr ""
 
@@ -216,6 +216,9 @@ msgid "Hide details"
 msgstr ""
 
 msgid "Hide password"
+msgstr ""
+
+msgid "Invalid date"
 msgstr ""
 
 msgid "invisible"
@@ -235,6 +238,15 @@ msgstr ""
 
 #. TRANSLATORS: The button is in a loading state
 msgid "Loading …"
+msgstr ""
+
+msgid "Loading actions"
+msgstr ""
+
+msgid "Loading profile"
+msgstr ""
+
+msgid "Local time: {time}"
 msgstr ""
 
 #. TRANSLATORS: A color name for RGB(45, 115, 190)
@@ -339,10 +351,22 @@ msgstr ""
 msgid "Pick an emoji"
 msgstr ""
 
+msgid "Pick file"
+msgstr ""
+
+msgid "Pick files"
+msgstr ""
+
+msgid "Pick folder"
+msgstr ""
+
 msgid "Please select a time zone:"
 msgstr ""
 
 msgid "Previous"
+msgstr ""
+
+msgid "Profile of {user}"
 msgstr ""
 
 msgid "Provider icon"
@@ -405,6 +429,9 @@ msgstr ""
 msgid "Selected"
 msgstr ""
 
+msgid "Send message"
+msgstr ""
+
 msgid "Settings"
 msgstr ""
 
@@ -440,6 +467,9 @@ msgstr ""
 msgid "Space"
 msgstr ""
 
+msgid "Start call"
+msgstr ""
+
 msgid "Start slideshow"
 msgstr ""
 
@@ -471,7 +501,22 @@ msgstr ""
 msgid "Undo changes"
 msgstr ""
 
+msgid "Upload file"
+msgstr ""
+
+msgid "Upload files"
+msgstr ""
+
+msgid "Upload folder"
+msgstr ""
+
+msgid "Uploading …"
+msgstr ""
+
 msgid "User status: {status}"
+msgstr ""
+
+msgid "View profile"
 msgstr ""
 
 msgid "View team"
@@ -482,6 +527,9 @@ msgid "Whiskey"
 msgstr ""
 
 msgid "White"
+msgstr ""
+
+msgid "Widget height"
 msgstr ""
 
 msgid "Write a message …"

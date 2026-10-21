@@ -155,6 +155,9 @@ msgstr "ekki ónáða"
 msgid "Edit item"
 msgstr "Breyta atriði"
 
+msgid "Edit profile"
+msgstr ""
+
 msgid "Emoji picker"
 msgstr "Emoji-táknmyndaval"
 
@@ -207,9 +210,6 @@ msgstr "Matur og drykkur"
 msgid "Frequently used"
 msgstr "Oftast notað"
 
-msgid "Global"
-msgstr "Almennt"
-
 msgid "Go back to the list"
 msgstr "Fara til baka í listann"
 
@@ -221,6 +221,9 @@ msgstr "Fela nánari upplýsingar"
 
 msgid "Hide password"
 msgstr "Fela lykilorð"
+
+msgid "Invalid date"
+msgstr ""
 
 msgid "invisible"
 msgstr "ósýnilegt"
@@ -240,6 +243,15 @@ msgstr "Hlaða inn fleiri \"{options}\""
 #. TRANSLATORS: The button is in a loading state
 msgid "Loading …"
 msgstr "Hleð inn …"
+
+msgid "Loading actions"
+msgstr ""
+
+msgid "Loading profile"
+msgstr ""
+
+msgid "Local time: {time}"
+msgstr ""
 
 #. TRANSLATORS: A color name for RGB(45, 115, 190)
 msgid "Mariner"
@@ -344,11 +356,23 @@ msgstr "Veldu ár"
 msgid "Pick an emoji"
 msgstr "Veldu tjáningartákn"
 
+msgid "Pick file"
+msgstr ""
+
+msgid "Pick files"
+msgstr ""
+
+msgid "Pick folder"
+msgstr ""
+
 msgid "Please select a time zone:"
 msgstr "Veldu tímabelti:"
 
 msgid "Previous"
 msgstr "Fyrri"
+
+msgid "Profile of {user}"
+msgstr ""
 
 msgid "Provider icon"
 msgstr "Táknmynd þjónustuveitu"
@@ -410,6 +434,9 @@ msgstr "Veldu þjónustuveitu"
 msgid "Selected"
 msgstr "Valið"
 
+msgid "Send message"
+msgstr ""
+
 msgid "Settings"
 msgstr "Stillingar"
 
@@ -445,6 +472,9 @@ msgstr "Broskallar og tilfinningar"
 msgid "Space"
 msgstr ""
 
+msgid "Start call"
+msgstr ""
+
 msgid "Start slideshow"
 msgstr "Byrja skyggnusýningu"
 
@@ -476,8 +506,23 @@ msgstr "Get ekki leitað í hópnum"
 msgid "Undo changes"
 msgstr "Afturkalla breytingar"
 
+msgid "Upload file"
+msgstr ""
+
+msgid "Upload files"
+msgstr ""
+
+msgid "Upload folder"
+msgstr ""
+
+msgid "Uploading …"
+msgstr ""
+
 msgid "User status: {status}"
 msgstr "Staða notanda: {status}"
+
+msgid "View profile"
+msgstr ""
 
 msgid "View team"
 msgstr "Skoða teymi"
@@ -487,6 +532,9 @@ msgid "Whiskey"
 msgstr "Viský"
 
 msgid "White"
+msgstr ""
+
+msgid "Widget height"
 msgstr ""
 
 msgid "Write a message …"

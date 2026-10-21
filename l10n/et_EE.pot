@@ -1,11 +1,10 @@
-#
 # Translators:
 # Joas Schilling, 2025
-# Priit Jõerüüt <transifex@joeruut.com>, 2025
+# Priit Jõerüüt <transifex@joeruut.com>, 2026
 #
 msgid ""
 msgstr ""
-"Last-Translator: Priit Jõerüüt <transifex@joeruut.com>, 2025\n"
+"Last-Translator: Priit Jõerüüt <transifex@joeruut.com>, 2026\n"
 "Language-Team: Estonian (Estonia) (https://app.transifex.com/nextcloud/"
 "teams/64236/et_EE/)\n"
 "Language: et_EE\n"
@@ -19,7 +18,7 @@ msgid "{tag} (restricted)"
 msgstr "{tag} (piiratud)"
 
 msgid "A color with a HEX value {hex}"
-msgstr "Värv hexi väärtusega {hex}"
+msgstr "Värv kuueteistkümnendarvuna {hex}"
 
 msgid "a few seconds ago"
 msgstr "mõni sekund tagasi"
@@ -51,10 +50,10 @@ msgid "Anything shared with the same group of people will show up here"
 msgstr "Siin kuvatakse kõik, mida jagatakse sama kasutajagrupiga"
 
 msgid "Avatar of {displayName}"
-msgstr "Avatar {displayName}"
+msgstr "Tunnuspilt: {displayName}"
 
 msgid "Avatar of {displayName}, {status}"
-msgstr "Avatar {displayName}, {status}"
+msgstr "Tunnuspilt: {displayName}, {status}"
 
 #. TRANSLATORS: User status if the user is currently away from keyboard
 msgid "away"
@@ -93,7 +92,7 @@ msgid "Clear search"
 msgstr "Tühjenda otsing"
 
 msgid "Clear selected"
-msgstr "Tühjenad valik"
+msgstr "Tühjenda valik"
 
 msgid "Clear text"
 msgstr "Kustuta tekst"
@@ -108,16 +107,16 @@ msgid "Close sidebar"
 msgstr "Sulge külgriba"
 
 msgid "Close Smart Picker"
-msgstr "Sulge nutikas valija"
+msgstr "Sulge nutivalija"
 
 msgid "Collapse menu"
-msgstr "Menüü kokkuklappimine"
+msgstr "Ahenda menüü"
 
 msgid "Color picker"
 msgstr "Värvivalija"
 
 msgid "Confirm changes"
-msgstr "Kinnitage muudatused"
+msgstr "Kinnita muudatused"
 
 msgid "Connect items to a project to make them easier to find"
 msgstr "Selleks, et objekte oleks lihtsam leida, seo nad projektiga"
@@ -155,6 +154,9 @@ msgstr "ära sega"
 msgid "Edit item"
 msgstr "Muuda objekti"
 
+msgid "Edit profile"
+msgstr "Muuda profiili"
+
 msgid "Emoji picker"
 msgstr "Emojide valija"
 
@@ -173,7 +175,7 @@ msgid ""
 "you have any questions."
 msgstr ""
 "Viga seotud ressursside saamisel. Küsimuste korral võtke ühendust oma "
-"süsteemiadministraatoriga."
+"süsteemi haldajaga."
 
 #. TRANSLATORS: Escape key on keyboard
 msgid "Escape"
@@ -207,9 +209,6 @@ msgstr "Söök ja jook"
 msgid "Frequently used"
 msgstr "Sageli kasutatud"
 
-msgid "Global"
-msgstr "Globaalne"
-
 msgid "Go back to the list"
 msgstr "Tagasi nimekirja juurde"
 
@@ -221,6 +220,9 @@ msgstr "Peida üksikasjad"
 
 msgid "Hide password"
 msgstr "Peida salasõna"
+
+msgid "Invalid date"
+msgstr "Vigane kuupäev"
 
 msgid "invisible"
 msgstr "nähtamatu"
@@ -239,7 +241,16 @@ msgstr "Laadi veel „{options}“"
 
 #. TRANSLATORS: The button is in a loading state
 msgid "Loading …"
-msgstr "Laadin …"
+msgstr "Laadin…"
+
+msgid "Loading actions"
+msgstr "Laadin tegevusi"
+
+msgid "Loading profile"
+msgstr "Laadin profiili"
+
+msgid "Local time: {time}"
+msgstr "Kohalik aeg: {time}"
 
 #. TRANSLATORS: A color name for RGB(45, 115, 190)
 msgid "Mariner"
@@ -260,7 +271,7 @@ msgstr[0] "Sõnumi piirarv %n tähemärk on käes"
 msgstr[1] "Sõnumi piirarv %n tähemärki on käes"
 
 msgid "More items …"
-msgstr "Vaata veel …"
+msgstr "Vaata veel…"
 
 msgid "More options"
 msgstr "Rohkem valikuid"
@@ -344,11 +355,23 @@ msgstr "Vali aasta"
 msgid "Pick an emoji"
 msgstr "Vali emoji"
 
+msgid "Pick file"
+msgstr "Vali fail"
+
+msgid "Pick files"
+msgstr "Vali failid"
+
+msgid "Pick folder"
+msgstr "Vali kaust"
+
 msgid "Please select a time zone:"
 msgstr "Vali ajatsoon"
 
 msgid "Previous"
 msgstr "Eelmine"
+
+msgid "Profile of {user}"
+msgstr "Kasutaja profiil: {user}"
 
 msgid "Provider icon"
 msgstr "Teenusepakkuja ikoon"
@@ -379,7 +402,7 @@ msgid "Search"
 msgstr "Otsing"
 
 msgid "Search …"
-msgstr "Otsi …"
+msgstr "Otsi…"
 
 msgid "Search emoji"
 msgstr "Otsi emojit"
@@ -410,11 +433,14 @@ msgstr "Vali teenuspakkuja"
 msgid "Selected"
 msgstr "Valitud"
 
+msgid "Send message"
+msgstr "Saada sõnum"
+
 msgid "Settings"
 msgstr "Seadistused"
 
 msgid "Settings navigation"
-msgstr "Seadistuste navigatsioon"
+msgstr "Liikumine seadistustes"
 
 #. TRANSLATORS: Shift key on keyboard
 msgid "Shift"
@@ -436,7 +462,7 @@ msgid "Skip to main content"
 msgstr "Suundu põhisisu juurde"
 
 msgid "Smart Picker"
-msgstr "Nutikas valija"
+msgstr "Nutivalija"
 
 msgid "Smileys & Emotion"
 msgstr "Smailid ja emotsioonid"
@@ -445,11 +471,14 @@ msgstr "Smailid ja emotsioonid"
 msgid "Space"
 msgstr "Tühikuklahv"
 
+msgid "Start call"
+msgstr "Helista"
+
 msgid "Start slideshow"
 msgstr "Alusta slaidiesitust"
 
 msgid "Start typing to search"
-msgstr "Alusta otsinguks sisestamist"
+msgstr "Otsimiseks kirjuta midagi"
 
 msgid "Submit"
 msgstr "Saada"
@@ -468,7 +497,7 @@ msgid "Type to search for existing projects"
 msgstr "Olemasolevate projektide otsimiseks kirjuta"
 
 msgid "Type to search time zone"
-msgstr "Kirjuta, et otsida ajavööndit"
+msgstr "Ajavööndi otsimiseks kirjuta midagi"
 
 msgid "Unable to search the group"
 msgstr "Gruppi ei ole võimalik otsida"
@@ -476,8 +505,23 @@ msgstr "Gruppi ei ole võimalik otsida"
 msgid "Undo changes"
 msgstr "Pööra muudatused tagasi"
 
+msgid "Upload file"
+msgstr "Laadi fail üles"
+
+msgid "Upload files"
+msgstr "Laadi failid üles"
+
+msgid "Upload folder"
+msgstr "Laadi kaust üles"
+
+msgid "Uploading …"
+msgstr "Üleslaadimisel…"
+
 msgid "User status: {status}"
 msgstr "Kasutaja olek: {status}"
+
+msgid "View profile"
+msgstr "Vaata profiili"
 
 msgid "View team"
 msgstr "Vaata tiimi"
@@ -489,6 +533,9 @@ msgstr "Viskikarva kollakaspruun"
 msgid "White"
 msgstr "Valge"
 
+msgid "Widget height"
+msgstr "Vidina kõrgus"
+
 msgid "Write a message …"
-msgstr "Koosta sõnum …"
+msgstr "Koosta sõnum…"
 

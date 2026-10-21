@@ -155,6 +155,9 @@ msgstr "μην ενοχλείτε"
 msgid "Edit item"
 msgstr "Επεξεργασία αντικειμένου"
 
+msgid "Edit profile"
+msgstr ""
+
 msgid "Emoji picker"
 msgstr "Επιλογέας emoji"
 
@@ -207,9 +210,6 @@ msgstr "Φαγητό & Ποτό"
 msgid "Frequently used"
 msgstr "Συχνά χρησιμοποιούμενο"
 
-msgid "Global"
-msgstr "Καθολικό"
-
 msgid "Go back to the list"
 msgstr "Επιστροφή στην αρχική λίστα"
 
@@ -221,6 +221,9 @@ msgstr "Απόκρυψη λεπτομερειών"
 
 msgid "Hide password"
 msgstr "Απόκρυψη συνθηματικού"
+
+msgid "Invalid date"
+msgstr ""
 
 msgid "invisible"
 msgstr "αόρατο"
@@ -240,6 +243,15 @@ msgstr "Φόρτωση περισσότερων \"{options}\""
 #. TRANSLATORS: The button is in a loading state
 msgid "Loading …"
 msgstr "Φόρτωση  …"
+
+msgid "Loading actions"
+msgstr ""
+
+msgid "Loading profile"
+msgstr ""
+
+msgid "Local time: {time}"
+msgstr ""
 
 #. TRANSLATORS: A color name for RGB(45, 115, 190)
 msgid "Mariner"
@@ -344,11 +356,23 @@ msgstr "Επιλέξτε έτος"
 msgid "Pick an emoji"
 msgstr "Επιλέξτε ένα emoji"
 
+msgid "Pick file"
+msgstr ""
+
+msgid "Pick files"
+msgstr ""
+
+msgid "Pick folder"
+msgstr ""
+
 msgid "Please select a time zone:"
 msgstr "Παρακαλούμε επιλέξτε μια ζώνη ώρας:"
 
 msgid "Previous"
 msgstr "Προηγούμενο"
+
+msgid "Profile of {user}"
+msgstr ""
 
 msgid "Provider icon"
 msgstr "Εικονίδιο παρόχου"
@@ -410,6 +434,9 @@ msgstr "Επιλογή παρόχου"
 msgid "Selected"
 msgstr "Επιλεγμένο"
 
+msgid "Send message"
+msgstr ""
+
 msgid "Settings"
 msgstr "Ρυθμίσεις"
 
@@ -445,6 +472,9 @@ msgstr "Φατσούλες & Συναίσθημα"
 msgid "Space"
 msgstr "Space"
 
+msgid "Start call"
+msgstr ""
+
 msgid "Start slideshow"
 msgstr "Έναρξη προβολής διαφανειών"
 
@@ -476,8 +506,23 @@ msgstr "Δεν είναι δυνατή η αναζήτηση της ομάδας
 msgid "Undo changes"
 msgstr "Αναίρεση Αλλαγών"
 
+msgid "Upload file"
+msgstr ""
+
+msgid "Upload files"
+msgstr ""
+
+msgid "Upload folder"
+msgstr ""
+
+msgid "Uploading …"
+msgstr ""
+
 msgid "User status: {status}"
 msgstr "Κατάσταση χρήστη: {status}"
+
+msgid "View profile"
+msgstr ""
 
 msgid "View team"
 msgstr "Προβολή ομάδας"
@@ -488,6 +533,9 @@ msgstr "Ουίσκι"
 
 msgid "White"
 msgstr "Λευκό"
+
+msgid "Widget height"
+msgstr ""
 
 msgid "Write a message …"
 msgstr "Γράψτε ένα μήνυμα …"

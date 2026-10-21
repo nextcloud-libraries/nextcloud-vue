@@ -154,6 +154,9 @@ msgstr "nun molestar"
 msgid "Edit item"
 msgstr "Editar l'elementu"
 
+msgid "Edit profile"
+msgstr ""
+
 msgid "Emoji picker"
 msgstr "Selector de fustaxes"
 
@@ -206,9 +209,6 @@ msgstr "Cómida y bébora"
 msgid "Frequently used"
 msgstr "D'usu frecuente"
 
-msgid "Global"
-msgstr "Global"
-
 msgid "Go back to the list"
 msgstr "Volver a la llista"
 
@@ -220,6 +220,9 @@ msgstr ""
 
 msgid "Hide password"
 msgstr "Anubrir la contraseña"
+
+msgid "Invalid date"
+msgstr ""
 
 msgid "invisible"
 msgstr "invisible"
@@ -238,6 +241,15 @@ msgstr "Cargar más «{options}»"
 
 #. TRANSLATORS: The button is in a loading state
 msgid "Loading …"
+msgstr ""
+
+msgid "Loading actions"
+msgstr ""
+
+msgid "Loading profile"
+msgstr ""
+
+msgid "Local time: {time}"
 msgstr ""
 
 #. TRANSLATORS: A color name for RGB(45, 115, 190)
@@ -343,11 +355,23 @@ msgstr "Escueyi un añu"
 msgid "Pick an emoji"
 msgstr "Escueyi un fustaxe"
 
+msgid "Pick file"
+msgstr ""
+
+msgid "Pick files"
+msgstr ""
+
+msgid "Pick folder"
+msgstr ""
+
 msgid "Please select a time zone:"
 msgstr "Seleiciona un fusu horariu:"
 
 msgid "Previous"
 msgstr "Anterior"
+
+msgid "Profile of {user}"
+msgstr ""
 
 msgid "Provider icon"
 msgstr "Iconu del fornidor"
@@ -409,6 +433,9 @@ msgstr "Seleicionar el fornidor"
 msgid "Selected"
 msgstr "Na seleición"
 
+msgid "Send message"
+msgstr ""
+
 msgid "Settings"
 msgstr "Configuración"
 
@@ -444,6 +471,9 @@ msgstr "Sorrises y emociones"
 msgid "Space"
 msgstr ""
 
+msgid "Start call"
+msgstr ""
+
 msgid "Start slideshow"
 msgstr "Aniciar la presentación de diapositives"
 
@@ -475,8 +505,23 @@ msgstr "Nun ye posible buscar el grupu"
 msgid "Undo changes"
 msgstr "Desfacer los cambeos"
 
+msgid "Upload file"
+msgstr ""
+
+msgid "Upload files"
+msgstr ""
+
+msgid "Upload folder"
+msgstr ""
+
+msgid "Uploading …"
+msgstr ""
+
 msgid "User status: {status}"
 msgstr "Estáu del usuariu: {status}"
+
+msgid "View profile"
+msgstr ""
 
 msgid "View team"
 msgstr "Ver l'equipu"
@@ -486,6 +531,9 @@ msgid "Whiskey"
 msgstr "Whiskey"
 
 msgid "White"
+msgstr ""
+
+msgid "Widget height"
 msgstr ""
 
 msgid "Write a message …"

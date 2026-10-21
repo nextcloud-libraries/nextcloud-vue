@@ -3,10 +3,11 @@
 # Joas Schilling, 2025
 # Hyogeol Lee, 2025
 # 이상오, 2025
+# OHORA YOON, 2026
 #
 msgid ""
 msgstr ""
-"Last-Translator: 이상오, 2025\n"
+"Last-Translator: OHORA YOON, 2026\n"
 "Language-Team: Korean (https://app.transifex.com/nextcloud/teams/64236/ko/)\n"
 "Language: ko\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -39,7 +40,7 @@ msgstr "프로젝트에 추가"
 
 #. TRANSLATORS: Alt key on keyboard (Windows/Linux)
 msgid "Alt"
-msgstr ""
+msgstr "Alt"
 
 msgid "Animals & Nature"
 msgstr "동물 & 자연"
@@ -67,7 +68,7 @@ msgid "Back to provider selection"
 msgstr "제공자 선택으로 돌아가기"
 
 msgid "Black"
-msgstr ""
+msgstr "검정"
 
 #. TRANSLATORS: A color name for RGB(91, 100, 179)
 msgid "Blue Violet"
@@ -123,14 +124,14 @@ msgid "Connect items to a project to make them easier to find"
 msgstr "항목을 더 쉽게 찾을 수 있도록 프로젝트에 연결하세요."
 
 msgid "Copied"
-msgstr ""
+msgstr "복사됨"
 
 msgid "Copy to clipboard"
-msgstr ""
+msgstr "클립보드로 복사"
 
 #. TRANSLATORS: Ctrl key on keyboard (Windows/Linux)
 msgid "Ctrl"
-msgstr ""
+msgstr "Ctrl"
 
 msgid "Custom"
 msgstr "맞춤 설정"
@@ -140,7 +141,7 @@ msgstr "어두운 피부 톤"
 
 #. TRANSLATORS: Delete key on keyboard
 msgid "Delete"
-msgstr ""
+msgstr "Delete"
 
 #. TRANSLATORS: A color name for RGB(136, 85, 168)
 msgid "Deluge"
@@ -155,6 +156,9 @@ msgstr "방해 금지"
 msgid "Edit item"
 msgstr "항목 수정"
 
+msgid "Edit profile"
+msgstr ""
+
 msgid "Emoji picker"
 msgstr "이모지 선택기"
 
@@ -163,7 +167,7 @@ msgstr "대화형 보기 활성화"
 
 #. TRANSLATORS: Enter key on keyboard
 msgid "Enter"
-msgstr ""
+msgstr "Enter"
 
 msgid "Enter link"
 msgstr "링크 입력"
@@ -177,7 +181,7 @@ msgstr ""
 
 #. TRANSLATORS: Escape key on keyboard
 msgid "Escape"
-msgstr ""
+msgstr "Escape"
 
 msgid "External documentation for {name}"
 msgstr "{name}의 외부 문서"
@@ -207,9 +211,6 @@ msgstr "음식 & 음료"
 msgid "Frequently used"
 msgstr "자주 쓰임"
 
-msgid "Global"
-msgstr "글로벌"
-
 msgid "Go back to the list"
 msgstr "목록으로 돌아가기"
 
@@ -222,6 +223,9 @@ msgstr "세부 사항 숨기기"
 msgid "Hide password"
 msgstr "암호 숨기기"
 
+msgid "Invalid date"
+msgstr ""
+
 msgid "invisible"
 msgstr "보이지 않음"
 
@@ -229,7 +233,7 @@ msgid "Keyboard navigation help"
 msgstr "키보드 탐색 도움말"
 
 msgid "Keyboard shortcuts"
-msgstr ""
+msgstr "키보드 바로가기"
 
 msgid "Light skin tone"
 msgstr "밝은 피부 톤"
@@ -239,7 +243,16 @@ msgstr "\"{options}\" 더 불러오기"
 
 #. TRANSLATORS: The button is in a loading state
 msgid "Loading …"
-msgstr "불러오는 중..."
+msgstr "로딩 중 ..."
+
+msgid "Loading actions"
+msgstr ""
+
+msgid "Loading profile"
+msgstr ""
+
+msgid "Local time: {time}"
+msgstr ""
 
 #. TRANSLATORS: A color name for RGB(45, 115, 190)
 msgid "Mariner"
@@ -259,7 +272,7 @@ msgid_plural "Message limit of %n characters reached"
 msgstr[0] "메시지 제한 %n자에 도달"
 
 msgid "More items …"
-msgstr "항목 더 보기..."
+msgstr "더 많은 아이템 ..."
 
 msgid "More options"
 msgstr "옵션 더 보기"
@@ -274,7 +287,7 @@ msgid "Nextcloud blue"
 msgstr "Nextcloud 파랑"
 
 msgid "No color"
-msgstr ""
+msgstr "색 없음"
 
 msgid "No emoji found"
 msgstr "이모지 없음"
@@ -343,11 +356,23 @@ msgstr "연도 선택"
 msgid "Pick an emoji"
 msgstr "이모지 선택"
 
+msgid "Pick file"
+msgstr ""
+
+msgid "Pick files"
+msgstr ""
+
+msgid "Pick folder"
+msgstr ""
+
 msgid "Please select a time zone:"
 msgstr "시간대를 선택하세요:"
 
 msgid "Previous"
 msgstr "이전"
+
+msgid "Profile of {user}"
+msgstr ""
 
 msgid "Provider icon"
 msgstr "제공자 아이콘"
@@ -378,13 +403,13 @@ msgid "Search"
 msgstr "검색"
 
 msgid "Search …"
-msgstr ""
+msgstr "찾는 중 ..."
 
 msgid "Search emoji"
 msgstr "이모지 검색"
 
 msgid "Search for time zone"
-msgstr "시간대 검색"
+msgstr "시간대 찾기"
 
 msgid "Search results"
 msgstr "검색 결과"
@@ -409,6 +434,9 @@ msgstr "제공자 선택"
 msgid "Selected"
 msgstr "선택됨"
 
+msgid "Send message"
+msgstr ""
+
 msgid "Settings"
 msgstr "선택"
 
@@ -417,7 +445,7 @@ msgstr "세팅 탐색"
 
 #. TRANSLATORS: Shift key on keyboard
 msgid "Shift"
-msgstr ""
+msgstr "Shift"
 
 msgid "Show details"
 msgstr "세부 사항 보기"
@@ -442,6 +470,9 @@ msgstr "스마일리 & 이모티콘"
 
 #. TRANSLATORS: Space key on keyboard
 msgid "Space"
+msgstr "Space"
+
+msgid "Start call"
 msgstr ""
 
 msgid "Start slideshow"
@@ -458,7 +489,7 @@ msgstr "기호"
 
 #. TRANSLATORS: Tab key on keyboard
 msgid "Tab"
-msgstr ""
+msgstr "Tab"
 
 msgid "Travel & Places"
 msgstr "여행 & 장소"
@@ -475,8 +506,23 @@ msgstr "그룹을 검색할 수 없음"
 msgid "Undo changes"
 msgstr "변경 되돌리기"
 
+msgid "Upload file"
+msgstr ""
+
+msgid "Upload files"
+msgstr ""
+
+msgid "Upload folder"
+msgstr ""
+
+msgid "Uploading …"
+msgstr ""
+
 msgid "User status: {status}"
 msgstr "사용자 상태: {status}"
+
+msgid "View profile"
+msgstr ""
 
 msgid "View team"
 msgstr "팀 보기"
@@ -486,8 +532,11 @@ msgid "Whiskey"
 msgstr "위스키"
 
 msgid "White"
+msgstr "하양"
+
+msgid "Widget height"
 msgstr ""
 
 msgid "Write a message …"
-msgstr "메시지 작성..."
+msgstr "메시지 쓰는 중 ..."
 

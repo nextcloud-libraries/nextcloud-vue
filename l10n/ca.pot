@@ -156,6 +156,9 @@ msgstr ""
 msgid "Edit item"
 msgstr "Edita l'element"
 
+msgid "Edit profile"
+msgstr ""
+
 msgid "Emoji picker"
 msgstr ""
 
@@ -206,9 +209,6 @@ msgstr "Menjar i begudes"
 msgid "Frequently used"
 msgstr "Utilitzats recentment"
 
-msgid "Global"
-msgstr "Global"
-
 msgid "Go back to the list"
 msgstr "Torna a la llista"
 
@@ -220,6 +220,9 @@ msgstr ""
 
 msgid "Hide password"
 msgstr "Amagar contrasenya"
+
+msgid "Invalid date"
+msgstr ""
 
 msgid "invisible"
 msgstr ""
@@ -238,6 +241,15 @@ msgstr ""
 
 #. TRANSLATORS: The button is in a loading state
 msgid "Loading …"
+msgstr ""
+
+msgid "Loading actions"
+msgstr ""
+
+msgid "Loading profile"
+msgstr ""
+
+msgid "Local time: {time}"
 msgstr ""
 
 #. TRANSLATORS: A color name for RGB(45, 115, 190)
@@ -343,11 +355,23 @@ msgstr ""
 msgid "Pick an emoji"
 msgstr "Trieu un emoji"
 
+msgid "Pick file"
+msgstr ""
+
+msgid "Pick files"
+msgstr ""
+
+msgid "Pick folder"
+msgstr ""
+
 msgid "Please select a time zone:"
 msgstr "Seleccioneu una zona horària:"
 
 msgid "Previous"
 msgstr "Anterior"
+
+msgid "Profile of {user}"
+msgstr ""
 
 msgid "Provider icon"
 msgstr ""
@@ -409,6 +433,9 @@ msgstr ""
 msgid "Selected"
 msgstr ""
 
+msgid "Send message"
+msgstr ""
+
 msgid "Settings"
 msgstr "Paràmetres"
 
@@ -444,6 +471,9 @@ msgstr "Cares i emocions"
 msgid "Space"
 msgstr ""
 
+msgid "Start call"
+msgstr ""
+
 msgid "Start slideshow"
 msgstr "Inicia la presentació"
 
@@ -475,7 +505,22 @@ msgstr "No es pot cercar el grup"
 msgid "Undo changes"
 msgstr "Desfés els canvis"
 
+msgid "Upload file"
+msgstr ""
+
+msgid "Upload files"
+msgstr ""
+
+msgid "Upload folder"
+msgstr ""
+
+msgid "Uploading …"
+msgstr ""
+
 msgid "User status: {status}"
+msgstr ""
+
+msgid "View profile"
 msgstr ""
 
 msgid "View team"
@@ -486,6 +531,9 @@ msgid "Whiskey"
 msgstr ""
 
 msgid "White"
+msgstr ""
+
+msgid "Widget height"
 msgstr ""
 
 msgid "Write a message …"

@@ -1,11 +1,10 @@
-#
 # Translators:
 # Joas Schilling, 2025
-# Pavel Borecki <pavel.borecki@gmail.com>, 2025
+# Pavel Borecki <pavel.borecki@gmail.com>, 2026
 #
 msgid ""
 msgstr ""
-"Last-Translator: Pavel Borecki <pavel.borecki@gmail.com>, 2025\n"
+"Last-Translator: Pavel Borecki <pavel.borecki@gmail.com>, 2026\n"
 "Language-Team: Czech (Czech Republic) (https://app.transifex.com/nextcloud/"
 "teams/64236/cs_CZ/)\n"
 "Language: cs_CZ\n"
@@ -79,7 +78,7 @@ msgid "Boston Blue"
 msgstr "Bostonská modrá"
 
 msgid "busy"
-msgstr "zaneprádněn(a)"
+msgstr "zaneprádněn/a"
 
 msgid "Cancel changes"
 msgstr "Zrušit změny"
@@ -156,6 +155,9 @@ msgstr "nerušit"
 msgid "Edit item"
 msgstr "Upravit položku"
 
+msgid "Edit profile"
+msgstr "Upravit profil"
+
 msgid "Emoji picker"
 msgstr "Výběr emotikon"
 
@@ -208,9 +210,6 @@ msgstr "Jídlo a pití"
 msgid "Frequently used"
 msgstr "Často používané"
 
-msgid "Global"
-msgstr "Globální"
-
 msgid "Go back to the list"
 msgstr "Jít zpět na seznam"
 
@@ -222,6 +221,9 @@ msgstr "Skrýt podrobnosti"
 
 msgid "Hide password"
 msgstr "Skrýt heslo"
+
+msgid "Invalid date"
+msgstr "Neplatné datum"
 
 msgid "invisible"
 msgstr "neviditelné"
@@ -241,6 +243,15 @@ msgstr "Načíst další „{options}“"
 #. TRANSLATORS: The button is in a loading state
 msgid "Loading …"
 msgstr "Načítání …"
+
+msgid "Loading actions"
+msgstr "Načítání akcí"
+
+msgid "Loading profile"
+msgstr "Načítání profilu"
+
+msgid "Local time: {time}"
+msgstr "Místní čas: {time}"
 
 #. TRANSLATORS: A color name for RGB(45, 115, 190)
 msgid "Mariner"
@@ -347,11 +358,23 @@ msgstr "Vybrat rok"
 msgid "Pick an emoji"
 msgstr "Vybrat emoji"
 
+msgid "Pick file"
+msgstr "Vybrat soubor"
+
+msgid "Pick files"
+msgstr "Vybrat soubory"
+
+msgid "Pick folder"
+msgstr "Vybrat složku"
+
 msgid "Please select a time zone:"
 msgstr "Vyberte časovou zónu:"
 
 msgid "Previous"
 msgstr "Předchozí"
+
+msgid "Profile of {user}"
+msgstr "Profil uživatele {user}"
 
 msgid "Provider icon"
 msgstr "Ikona poskytovatele"
@@ -413,6 +436,9 @@ msgstr "Vybrat poskytovatele"
 msgid "Selected"
 msgstr "Vybráno"
 
+msgid "Send message"
+msgstr "Odeslat zprávu"
+
 msgid "Settings"
 msgstr "Nastavení"
 
@@ -448,6 +474,9 @@ msgstr "Úsměvy a emoce"
 msgid "Space"
 msgstr "Mezerník"
 
+msgid "Start call"
+msgstr "Zahájit hovor"
+
 msgid "Start slideshow"
 msgstr "Spustit prezentaci"
 
@@ -479,8 +508,23 @@ msgstr "Nedaří se hledat skupinu"
 msgid "Undo changes"
 msgstr "Vzít změny zpět"
 
+msgid "Upload file"
+msgstr "Nahrát soubor"
+
+msgid "Upload files"
+msgstr "Nahrát soubory"
+
+msgid "Upload folder"
+msgstr "Nahrát složku"
+
+msgid "Uploading …"
+msgstr "Nahrávání …"
+
 msgid "User status: {status}"
 msgstr "Stav uživatele: {status}"
+
+msgid "View profile"
+msgstr "Zobrazit profil"
 
 msgid "View team"
 msgstr "Zobrazit kolektiv"
@@ -491,6 +535,9 @@ msgstr "Whisky"
 
 msgid "White"
 msgstr "Bílá"
+
+msgid "Widget height"
+msgstr "Výška ovládacího prvku"
 
 msgid "Write a message …"
 msgstr "Napište zprávu …"

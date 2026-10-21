@@ -1,11 +1,11 @@
-#
 # Translators:
 # Joas Schilling, 2025
-# Andi Chandler <andi@gowling.com>, 2025
+# Andi Chandler <andi@gowling.com>, 2026
+# Café Tango, 2026
 #
 msgid ""
 msgstr ""
-"Last-Translator: Andi Chandler <andi@gowling.com>, 2025\n"
+"Last-Translator: Café Tango, 2026\n"
 "Language-Team: English (United Kingdom) (https://app.transifex.com/nextcloud/"
 "teams/64236/en_GB/)\n"
 "Language: en_GB\n"
@@ -155,6 +155,9 @@ msgstr "do not disturb"
 msgid "Edit item"
 msgstr "Edit item"
 
+msgid "Edit profile"
+msgstr "Edit profile"
+
 msgid "Emoji picker"
 msgstr "Emoji picker"
 
@@ -207,9 +210,6 @@ msgstr "Food & Drink"
 msgid "Frequently used"
 msgstr "Frequently used"
 
-msgid "Global"
-msgstr "Global"
-
 msgid "Go back to the list"
 msgstr "Go back to the list"
 
@@ -221,6 +221,9 @@ msgstr "Hide details"
 
 msgid "Hide password"
 msgstr "Hide password"
+
+msgid "Invalid date"
+msgstr "Invalid date"
 
 msgid "invisible"
 msgstr "invisible"
@@ -240,6 +243,15 @@ msgstr "Load more \"{options}\""
 #. TRANSLATORS: The button is in a loading state
 msgid "Loading …"
 msgstr "Loading …"
+
+msgid "Loading actions"
+msgstr "Loading actions"
+
+msgid "Loading profile"
+msgstr "Loading profile"
+
+msgid "Local time: {time}"
+msgstr "Local time: {time}"
 
 #. TRANSLATORS: A color name for RGB(45, 115, 190)
 msgid "Mariner"
@@ -344,11 +356,23 @@ msgstr "Pick a year"
 msgid "Pick an emoji"
 msgstr "Pick an emoji"
 
+msgid "Pick file"
+msgstr "Pick file"
+
+msgid "Pick files"
+msgstr "Pick files"
+
+msgid "Pick folder"
+msgstr "Pick folder"
+
 msgid "Please select a time zone:"
 msgstr "Please select a time zone:"
 
 msgid "Previous"
 msgstr "Previous"
+
+msgid "Profile of {user}"
+msgstr "Profile of {user}"
 
 msgid "Provider icon"
 msgstr "Provider icon"
@@ -410,6 +434,9 @@ msgstr "Select provider"
 msgid "Selected"
 msgstr "Selected"
 
+msgid "Send message"
+msgstr "Send message"
+
 msgid "Settings"
 msgstr "Settings"
 
@@ -445,6 +472,9 @@ msgstr "Smileys & Emotion"
 msgid "Space"
 msgstr "Space"
 
+msgid "Start call"
+msgstr "Start call"
+
 msgid "Start slideshow"
 msgstr "Start slideshow"
 
@@ -476,8 +506,23 @@ msgstr "Unable to search the group"
 msgid "Undo changes"
 msgstr "Undo changes"
 
+msgid "Upload file"
+msgstr "Upload file"
+
+msgid "Upload files"
+msgstr "Upload files"
+
+msgid "Upload folder"
+msgstr "Upload folder"
+
+msgid "Uploading …"
+msgstr "Uploading …"
+
 msgid "User status: {status}"
 msgstr "User status: {status}"
+
+msgid "View profile"
+msgstr "View profile"
 
 msgid "View team"
 msgstr "View team"
@@ -488,6 +533,9 @@ msgstr "Whiskey"
 
 msgid "White"
 msgstr "White"
+
+msgid "Widget height"
+msgstr "Widget height"
 
 msgid "Write a message …"
 msgstr "Write a message …"

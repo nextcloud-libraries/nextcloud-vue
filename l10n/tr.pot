@@ -1,11 +1,10 @@
-#
 # Translators:
 # Joas Schilling, 2025
-# Kaya Zeren <kayazeren@gmail.com>, 2025
+# Kaya Zeren <kayazeren@gmail.com>, 2026
 #
 msgid ""
 msgstr ""
-"Last-Translator: Kaya Zeren <kayazeren@gmail.com>, 2025\n"
+"Last-Translator: Kaya Zeren <kayazeren@gmail.com>, 2026\n"
 "Language-Team: Turkish (https://app.transifex.com/nextcloud/teams/64236/"
 "tr/)\n"
 "Language: tr\n"
@@ -155,6 +154,9 @@ msgstr "Rahatsız etmeyin"
 msgid "Edit item"
 msgstr "Ögeyi düzenle"
 
+msgid "Edit profile"
+msgstr "Profili düzenle"
+
 msgid "Emoji picker"
 msgstr "Emoji seçici"
 
@@ -207,9 +209,6 @@ msgstr "Yeme ve içme"
 msgid "Frequently used"
 msgstr "Sık kullanılanlar"
 
-msgid "Global"
-msgstr "Evrensel"
-
 msgid "Go back to the list"
 msgstr "Listeye dön"
 
@@ -221,6 +220,9 @@ msgstr "Ayrıntıları gizle"
 
 msgid "Hide password"
 msgstr "Parolayı gizle"
+
+msgid "Invalid date"
+msgstr "Tarih geçersiz"
 
 msgid "invisible"
 msgstr "görünmez"
@@ -240,6 +242,15 @@ msgstr "Diğer \"{options}\""
 #. TRANSLATORS: The button is in a loading state
 msgid "Loading …"
 msgstr "Yükleniyor…"
+
+msgid "Loading actions"
+msgstr "İşlemler yükleniyor"
+
+msgid "Loading profile"
+msgstr "Profil yükleniyor"
+
+msgid "Local time: {time}"
+msgstr "Yerel zaman: {time}"
 
 #. TRANSLATORS: A color name for RGB(45, 115, 190)
 msgid "Mariner"
@@ -344,11 +355,23 @@ msgstr "Bir yıl seçin"
 msgid "Pick an emoji"
 msgstr "Bir emoji seçin"
 
+msgid "Pick file"
+msgstr "Dosyayı seçin"
+
+msgid "Pick files"
+msgstr "Dosyaları seçin"
+
+msgid "Pick folder"
+msgstr "Klasörü seçin"
+
 msgid "Please select a time zone:"
 msgstr "Lütfen bir saat dilimi seçin:"
 
 msgid "Previous"
 msgstr "Önceki"
+
+msgid "Profile of {user}"
+msgstr "{user} profili"
 
 msgid "Provider icon"
 msgstr "Hizmet sağlayıcı simgesi"
@@ -410,6 +433,9 @@ msgstr "Hizmet sağlayıcı seçin"
 msgid "Selected"
 msgstr "Seçilmiş"
 
+msgid "Send message"
+msgstr "İleti gönder"
+
 msgid "Settings"
 msgstr "Ayarlar"
 
@@ -445,6 +471,9 @@ msgstr "İfadeler ve duygular"
 msgid "Space"
 msgstr "Space"
 
+msgid "Start call"
+msgstr "Çağrı başlat"
+
 msgid "Start slideshow"
 msgstr "Slayt sunumunu başlat"
 
@@ -476,8 +505,23 @@ msgstr "Grupta arama yapılamadı"
 msgid "Undo changes"
 msgstr "Değişiklikleri geri al"
 
+msgid "Upload file"
+msgstr "Dosyayı yükle"
+
+msgid "Upload files"
+msgstr "Dosyaları yükle"
+
+msgid "Upload folder"
+msgstr "Klasörü yükle"
+
+msgid "Uploading …"
+msgstr "Yükleniyor…"
+
 msgid "User status: {status}"
 msgstr "Kullanıcı durumu: {status}"
+
+msgid "View profile"
+msgstr "Profili görüntüle"
 
 msgid "View team"
 msgstr "Takımı görüntüle"
@@ -488,6 +532,9 @@ msgstr "Viski"
 
 msgid "White"
 msgstr "Beyaz"
+
+msgid "Widget height"
+msgstr "Araç takımı yüksekliği"
 
 msgid "Write a message …"
 msgstr "Bir ileti yazın…"

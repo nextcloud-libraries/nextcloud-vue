@@ -156,6 +156,9 @@ msgstr ""
 msgid "Edit item"
 msgstr "Uredi predmet"
 
+msgid "Edit profile"
+msgstr ""
+
 msgid "Emoji picker"
 msgstr ""
 
@@ -206,9 +209,6 @@ msgstr "Hrana in Pijača"
 msgid "Frequently used"
 msgstr "Pogostost uporabe"
 
-msgid "Global"
-msgstr "Splošno"
-
 msgid "Go back to the list"
 msgstr "Vrni se na seznam"
 
@@ -220,6 +220,9 @@ msgstr ""
 
 msgid "Hide password"
 msgstr "Skrij geslo"
+
+msgid "Invalid date"
+msgstr ""
 
 msgid "invisible"
 msgstr ""
@@ -238,6 +241,15 @@ msgstr ""
 
 #. TRANSLATORS: The button is in a loading state
 msgid "Loading …"
+msgstr ""
+
+msgid "Loading actions"
+msgstr ""
+
+msgid "Loading profile"
+msgstr ""
+
+msgid "Local time: {time}"
 msgstr ""
 
 #. TRANSLATORS: A color name for RGB(45, 115, 190)
@@ -345,11 +357,23 @@ msgstr "Izbor leta"
 msgid "Pick an emoji"
 msgstr "Izbor izrazne ikone"
 
+msgid "Pick file"
+msgstr ""
+
+msgid "Pick files"
+msgstr ""
+
+msgid "Pick folder"
+msgstr ""
+
 msgid "Please select a time zone:"
 msgstr "Izbor časovnega pasu:"
 
 msgid "Previous"
 msgstr "Predhodni"
+
+msgid "Profile of {user}"
+msgstr ""
 
 msgid "Provider icon"
 msgstr ""
@@ -411,6 +435,9 @@ msgstr ""
 msgid "Selected"
 msgstr ""
 
+msgid "Send message"
+msgstr ""
+
 msgid "Settings"
 msgstr "Nastavitve"
 
@@ -446,6 +473,9 @@ msgstr "Izrazne ikone"
 msgid "Space"
 msgstr ""
 
+msgid "Start call"
+msgstr ""
+
 msgid "Start slideshow"
 msgstr "Začni predstavitev"
 
@@ -477,7 +507,22 @@ msgstr "Ni mogoče iskati po skupini"
 msgid "Undo changes"
 msgstr "Razveljavi spremembe"
 
+msgid "Upload file"
+msgstr ""
+
+msgid "Upload files"
+msgstr ""
+
+msgid "Upload folder"
+msgstr ""
+
+msgid "Uploading …"
+msgstr ""
+
 msgid "User status: {status}"
+msgstr ""
+
+msgid "View profile"
 msgstr ""
 
 msgid "View team"
@@ -488,6 +533,9 @@ msgid "Whiskey"
 msgstr ""
 
 msgid "White"
+msgstr ""
+
+msgid "Widget height"
 msgstr ""
 
 msgid "Write a message …"
