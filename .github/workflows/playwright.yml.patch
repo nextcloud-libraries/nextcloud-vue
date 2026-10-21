@@ -1,0 +1,15 @@
+diff --git a/.github/workflows/playwright.yml b/.github/workflows/playwright.yml
+index 5af7cf23d..1cbdcb9a3 100644
+--- a/.github/workflows/playwright.yml
++++ b/.github/workflows/playwright.yml
+@@ -24,8 +24,8 @@ jobs:
+     strategy:
+       fail-fast: false
+       matrix:
+-        shardIndex: [1, 2]
+-        shardTotal: [2]
++        shardIndex: [1, 2, 3, 4]
++        shardTotal: [4]
+     outputs:
+       node-version: ${{ steps.versions.outputs.node-version }}
+       package-manager-version: ${{ steps.versions.outputs.package-manager-version }}
