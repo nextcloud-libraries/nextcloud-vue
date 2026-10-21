@@ -22,6 +22,15 @@ updates:
         patterns:
           - "vitest"
           - "@vitest/*"
+      styleguide:
+        patterns:
+          - "@babel/*"
+          - "@nextcloud/babel-config"
+          - "@nextcloud/webpack-vue-config"
+          - "babel-loader-exclude-node-modules-except"
+          - "vue-styleguidist"
+          - "webpack"
+          - "webpack-merge"
 
   - package-ecosystem: github-actions
     directory: "/"
