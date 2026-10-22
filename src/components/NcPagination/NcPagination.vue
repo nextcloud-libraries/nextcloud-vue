@@ -12,7 +12,9 @@ The component does not load or slice any data itself. Pass the number of items i
 
 Long page ranges are shortened with ellipses, so at most seven page buttons are shown at a time. The pagination is a `nav` landmark, labeled "Pagination" unless `aria-label` is set.
 
-When the page size is changed with the selector, the pagination goes back to the first page. When the number of items shrinks so that the current page no longer exists, it moves to the last page there is. While `total-items` is `0`, for example while the items are still loading, the current page is left as it is.
+When the page size is changed with the selector, the pagination goes back to the first page. When the current page does not exist, because the number of items shrank or a page that does not exist was passed, it moves to the last page there is. While `total-items` is `0`, for example while the items are still loading, the current page is left as it is.
+
+When a page or first, previous, next or last button that has keyboard focus disappears or becomes disabled, the focus moves to the current page, or in the compact layout to the other button.
 
 ### Usage
 
@@ -112,10 +114,25 @@ export default {
 }
 </script>
 ```
+
+### Pages as links
+
+When the page is kept in the URL, pass `page-href` or, with Vue Router, `page-to`: a function that returns the link of a page. The pages and the first, previous, next and last buttons are then links that can be opened in a new tab or copied, and a disabled button is rendered without a link. A link does not change the page itself: pass the page from the URL as `page`. Only a changed page size, or a page that no longer exists, emits `update:page`, so replace the URL then.
+
+```html static
+<template>
+	<NcPagination
+		:page="Number($route.query.page ?? 1)"
+		:page-to="(page) => ({ query: { ...$route.query, page } })"
+		:total-items="totalItems"
+		@update:page="(page) => $router.replace({ query: { ...$route.query, page } })" />
+</template>
+```
 </docs>
 
 <template>
 	<nav
+		ref="nav"
 		:class="[$style.ncPagination, { [$style.ncPagination_compact]: compact }]"
 		:aria-label="ariaLabel">
 		<span :class="$style.ncPagination__info">
@@ -125,6 +142,7 @@ export default {
 		<div v-if="totalPages > 1" :class="$style.ncPagination__nav">
 			<NcButton
 				v-if="!compact"
+				v-bind="linkProps(1, isFirstPage)"
 				:aria-label="t('First page')"
 				:title="t('First page')"
 				:disabled="isFirstPage"
@@ -135,6 +153,7 @@ export default {
 				</template>
 			</NcButton>
 			<NcButton
+				v-bind="linkProps(page - 1, isFirstPage)"
 				:aria-label="t('Previous page')"
 				:title="t('Previous page')"
 				:disabled="isFirstPage"
@@ -146,15 +165,18 @@ export default {
 			</NcButton>
 
 			<ul v-if="!compact" :class="$style.ncPagination__pages">
-				<li v-for="item in visiblePages" :key="item">
+				<li
+					v-for="item in visiblePages"
+					:key="item"
+					:aria-hidden="typeof item === 'string' ? 'true' : undefined">
 					<span
 						v-if="typeof item === 'string'"
-						:class="$style.ncPagination__ellipsis"
-						aria-hidden="true">
+						:class="$style.ncPagination__ellipsis">
 						…
 					</span>
 					<NcButton
 						v-else
+						v-bind="linkProps(item)"
 						:aria-current="item === page ? 'page' : undefined"
 						:aria-label="t('Page {page}', { page: item })"
 						:variant="item === page ? 'primary' : 'tertiary'"
@@ -165,6 +187,7 @@ export default {
 			</ul>
 
 			<NcButton
+				v-bind="linkProps(page + 1, isLastPage)"
 				:aria-label="t('Next page')"
 				:title="t('Next page')"
 				:disabled="isLastPage"
@@ -176,6 +199,7 @@ export default {
 			</NcButton>
 			<NcButton
 				v-if="!compact"
+				v-bind="linkProps(totalPages, isLastPage)"
 				:aria-label="t('Last page')"
 				:title="t('Last page')"
 				:disabled="isLastPage"
@@ -201,8 +225,10 @@ export default {
 </template>
 
 <script setup lang="ts">
+import type { RouteLocationRaw } from 'vue-router'
+
 import { mdiChevronLeft, mdiChevronRight, mdiPageFirst, mdiPageLast } from '@mdi/js'
-import { computed, watch } from 'vue'
+import { computed, nextTick, useTemplateRef, watch, watchPostEffect } from 'vue'
 import NcButton from '../NcButton/NcButton.vue'
 import NcIconSvgWrapper from '../NcIconSvgWrapper/NcIconSvgWrapper.vue'
 import NcSelect from '../NcSelect/NcSelect.vue'
@@ -211,12 +237,18 @@ import { t } from '../../l10n.ts'
 /**
  * The current page, starting at 1.
  */
-const page = defineModel<number>('page', { default: 1 })
+const page = defineModel<number>('page', {
+	default: 1,
+	validator: (value: number) => Number.isInteger(value) && value >= 1,
+})
 
 /**
  * The number of items shown per page.
  */
-const pageSize = defineModel<number>('pageSize', { default: 20 })
+const pageSize = defineModel<number>('pageSize', {
+	default: 20,
+	validator: (value: number) => Number.isInteger(value) && value >= 1,
+})
 
 const props = withDefaults(defineProps<{
 	/**
@@ -244,9 +276,24 @@ const props = withDefaults(defineProps<{
 	 * @default 'Pagination'
 	 */
 	ariaLabel?: string
+
+	/**
+	 * Returns the URL of a page, to render the pages as links.
+	 * A link does not change the page itself: pass the page from the URL as `page`.
+	 */
+	pageHref?: (page: number) => string
+
+	/**
+	 * Returns the Vue Router route of a page, to render the pages as router links.
+	 * A link does not change the page itself: pass the page from the route as `page`.
+	 * Takes precedence over `pageHref`.
+	 */
+	pageTo?: (page: number) => RouteLocationRaw
 }>(), {
 	pageSizeOptions: () => [10, 20, 50, 100],
 	ariaLabel: t('Pagination'),
+	pageHref: undefined,
+	pageTo: undefined,
 })
 
 defineEmits<{
@@ -265,22 +312,46 @@ defineEmits<{
 	'update:pageSize': [pageSize: number]
 }>()
 
-const totalPages = computed(() => Math.max(1, Math.ceil(props.totalItems / pageSize.value)))
+const navElement = useTemplateRef<HTMLElement>('nav')
+
+const totalPages = computed(() => Math.max(1, Math.ceil(props.totalItems / Math.max(1, pageSize.value))))
 const isFirstPage = computed(() => page.value <= 1)
 const isLastPage = computed(() => page.value >= totalPages.value)
+const isLink = computed(() => Boolean(props.pageHref || props.pageTo))
 
-// Step back to the last page when the current one no longer exists. While there are
-// no items, for example while they load, a page from the URL is left alone. After
-// the render, so a page the parent has just changed is already passed down.
-watch(totalPages, (pages) => {
-	if (props.totalItems > 0 && page.value > pages) {
-		page.value = pages
+// Step back to the last page when the current one does not exist, also when mounted
+// with one. While there are no items, for example while they load, a page from the
+// URL is left alone. After the render, so a page the parent has just changed is
+// already passed down.
+watchPostEffect(() => {
+	if (props.totalItems > 0 && page.value > totalPages.value) {
+		page.value = totalPages.value
 	}
-}, { flush: 'post' })
+})
+
+// A focused button that becomes disabled or disappears with the new page drops the
+// focus to the body. Remember it before the render and move the focus to the current
+// page after, or in the compact layout to the button that is left.
+watch(page, async () => {
+	const focused = document.activeElement
+	if (!(focused instanceof HTMLElement) || !navElement.value?.contains(focused)) {
+		return
+	}
+
+	await nextTick()
+	if (focused.isConnected && !focused.matches(':disabled')) {
+		return
+	}
+	const target = navElement.value?.querySelector<HTMLElement>('[aria-current="page"]')
+		?? navElement.value?.querySelector<HTMLElement>('a[href], button:not(:disabled)')
+	target?.focus()
+})
 
 const infoText = computed(() => {
 	if (!props.compact) {
-		return t('Page {page} of {totalPages}', { page: page.value, totalPages: totalPages.value })
+		// While the items load, a page from the URL can lie beyond the single empty page
+		const total = props.totalItems === 0 ? Math.max(page.value, totalPages.value) : totalPages.value
+		return t('Page {page} of {totalPages}', { page: page.value, totalPages: total })
 	}
 
 	const from = props.totalItems === 0 ? 0 : (page.value - 1) * pageSize.value + 1
@@ -309,11 +380,29 @@ const visiblePages = computed<(number | string)[]>(() => {
 })
 
 /**
+ * The link props of a page button, when the pages are links.
+ * A disabled button gets no link, so it stays a disabled button.
+ *
+ * @param target - The page the button moves to
+ * @param disabled - Whether the button is disabled
+ */
+function linkProps(target: number, disabled = false) {
+	if (!isLink.value || disabled) {
+		return {}
+	}
+	return { href: props.pageHref?.(target), to: props.pageTo?.(target) }
+}
+
+/**
  * Move to a page, if it exists and is not the current page.
+ * Links navigate themselves, so then the page follows the URL instead.
  *
  * @param target - The page to move to
  */
 function goToPage(target: number) {
+	if (isLink.value) {
+		return
+	}
 	if (target !== page.value && target >= 1 && target <= totalPages.value) {
 		page.value = target
 	}
