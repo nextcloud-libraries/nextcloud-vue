@@ -50,7 +50,11 @@ This is a simple progress bar component.
 		:aria-valuenow="value"
 		:style="{ '--progress-bar-height': height + 'px' }"
 		:class="{ 'progress-bar--error': error }"
-		class="progress-bar progress-bar--circular">
+		:aria-label
+		:aria-labelledby
+		:aria-describedby
+		:aria-valuenow="value"
+		role="progressbar">
 		<svg
 			:height="height"
 			:width="height">
