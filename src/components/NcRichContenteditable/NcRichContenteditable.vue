@@ -271,10 +271,8 @@ export default {
 			v-on="listeners"
 			@focus="moveCursorToEnd"
 			@input="onInput"
-			@compositionstart="isComposing = true"
-			@compositionend="isComposing = false"
 			@keydown.esc.capture="onKeyEsc"
-			@keydown.enter.exact="onEnter"
+			@keydown.exact="onEnter"
 			@keydown.ctrl.enter.exact.stop.prevent="onCtrlEnter"
 			@paste="onPaste"
 			@keyup.stop.prevent.capture="onKeyUp"
@@ -504,9 +502,6 @@ export default {
 			// serves no other purpose than to check whether the
 			// content is empty or not
 			localValue: this.model,
-
-			// Is in text composition session in IME
-			isComposing: false,
 
 			// Tribute autocomplete
 			isAutocompleteOpen: false,
@@ -891,6 +886,11 @@ export default {
 		 * @param {Event} event the keydown event
 		 */
 		onEnter(event) {
+			// Safari reports key "`\r" for Enter that commits a dead key
+			if (event.key !== 'Enter' && event.code !== 'Enter') {
+				return
+			}
+
 			// Prevent submitting if multiline
 			// or length is over maxlength
 			// or autocompletion menu is opened
@@ -899,7 +899,7 @@ export default {
 			if (this.multiline
 				|| this.isOverMaxlength
 				|| this.tribute.isActive
-				|| this.isComposing
+				|| event.isComposing
 				|| event.keyCode === IME_KEY_CODE) {
 				return
 			}
