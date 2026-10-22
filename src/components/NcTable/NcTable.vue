@@ -65,6 +65,8 @@ export default {
 
 Override a cell with the `#cell-<key>` slot, which receives the row and its value. The `#rowActions` slot adds a trailing column, for example for an `NcActions` menu per row.
 
+A click on a row, outside the controls in it, emits `rowClick`. It is a shortcut for mouse users only: a row cannot be focused, so keyboard and screen reader users cannot click it. Always give a row a real link or button for its main action as well, for example in the name cell, and use a link when the action navigates, so it can be opened in a new tab. A click that ends a text selection does not emit `rowClick`.
+
 ```vue
 <template>
 	<div>
@@ -74,7 +76,13 @@ Override a cell with the `#cell-<key>` slot, which receives the row and its valu
 			caption="Documents"
 			selectable
 			:columns="columns"
-			:rows="rows">
+			:rows="rows"
+			@row-click="(row) => opened = row.name">
+			<template #cell-name="{ row, value }">
+				<NcButton variant="tertiary" @click="opened = row.name">
+					{{ value }}
+				</NcButton>
+			</template>
 			<template #cell-status="{ value }">
 				<NcChip :text="value" :variant="value === 'Published' ? 'success' : 'secondary'" no-close />
 			</template>
@@ -214,9 +222,10 @@ export default {
 						<tr
 							v-for="row in rows"
 							:key="keyOf(row)"
-							:class="[$style.ncTable__row, { [$style.ncTable__row_selected]: isSelected(row) }]"
+							:class="[$style.ncTable__row, { [$style.ncTable__row_selected]: isSelected(row), [$style.ncTable__row_clickable]: hasRowClickListener() }]"
 							@click="onRowClick(row, $event)">
-							<td v-if="selectable" :class="$style.ncTable__check">
+							<!-- A click on the checkbox lands on its visual box, not on the input, so it is stopped here -->
+							<td v-if="selectable" :class="$style.ncTable__check" @click.stop>
 								<NcCheckboxRadioSwitch
 									:modelValue="isSelected(row)"
 									:aria-label="t('Select row')"
@@ -246,7 +255,7 @@ export default {
 import type { Slot } from 'vue'
 
 import { mdiMenuDown, mdiMenuSwap, mdiMenuUp } from '@mdi/js'
-import { computed, onBeforeUnmount, onMounted, ref, useCssModule } from 'vue'
+import { computed, getCurrentInstance, onBeforeUnmount, onMounted, ref, useCssModule } from 'vue'
 import NcButton from '../NcButton/NcButton.vue'
 import NcCheckboxRadioSwitch from '../NcCheckboxRadioSwitch/NcCheckboxRadioSwitch.vue'
 import NcIconSvgWrapper from '../NcIconSvgWrapper/NcIconSvgWrapper.vue'
@@ -338,7 +347,8 @@ const emit = defineEmits<{
 	'update:selected': [selected: NcTableRowKey[]]
 
 	/**
-	 * A row was clicked, outside the controls in it.
+	 * A row was clicked, outside the controls in it. Only mouse users can do this,
+	 * so it must not be the only way to reach a row's action.
 	 *
 	 * @param row - The clicked row
 	 * @param event - The click event
@@ -527,8 +537,18 @@ function toggleAll(value: unknown) {
 	selected.value = value ? [...hidden, ...shown] : hidden
 }
 
+const instance = getCurrentInstance()
+
 /**
- * Report a click on a row, unless it was on a control inside it.
+ * Whether the parent listens to `rowClick`, so the rows show they can be clicked.
+ * Read during the render, so it follows the parent's current listeners.
+ */
+function hasRowClickListener(): boolean {
+	return Boolean(instance?.vnode.props?.onRowClick)
+}
+
+/**
+ * Report a click on a row, unless it was on a control inside it or ended a text selection.
  *
  * @param row - The row
  * @param event - The click event
@@ -536,6 +556,9 @@ function toggleAll(value: unknown) {
 function onRowClick(row: Record<string, unknown>, event: MouseEvent) {
 	const target = event.target as Element | null
 	if (target?.closest('a, button, input, select, textarea, label, [role="button"], [role="checkbox"]')) {
+		return
+	}
+	if (window.getSelection()?.toString()) {
 		return
 	}
 	emit('rowClick', row, event)
@@ -643,6 +666,10 @@ onBeforeUnmount(() => resizeObserver?.disconnect())
 
 .ncTable__row:hover > td {
 	background-color: var(--color-background-hover);
+}
+
+.ncTable__row_clickable {
+	cursor: pointer;
 }
 
 .ncTable__row_selected > td {

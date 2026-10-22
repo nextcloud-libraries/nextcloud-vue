@@ -232,5 +232,34 @@ describe('NcTable', () => {
 			await wrapper.get('tbody tr button').trigger('click')
 			expect(wrapper.emitted('rowClick')).toBeUndefined()
 		})
+
+		it('selects the row without reporting a row click when its checkbox is clicked', async () => {
+			const wrapper = mountBound({ selectable: true, onRowClick: () => {} })
+			await wrapper.findAll('tbody .checkbox-content')[0].trigger('click')
+			expect(wrapper.emitted('update:selected')).toEqual([[[1]]])
+			expect(wrapper.emitted('rowClick')).toBeUndefined()
+		})
+
+		it('ignores a click in the selection cell next to the checkbox', async () => {
+			const wrapper = mountBound({ selectable: true })
+			await wrapper.findAll('tbody td')[0].trigger('click')
+			expect(wrapper.emitted('rowClick')).toBeUndefined()
+		})
+
+		it('ignores a click that ends a text selection', async () => {
+			const wrapper = mount(NcTable, { attachTo: document.body, props: { columns, rows, caption: 'Team members' } })
+			const cell = wrapper.findAll('tbody td')[0]
+			window.getSelection()!.selectAllChildren(cell.element)
+			await cell.trigger('click')
+			window.getSelection()!.removeAllRanges()
+			expect(wrapper.emitted('rowClick')).toBeUndefined()
+			wrapper.unmount()
+		})
+
+		it('only shows the rows as clickable when rowClick is listened to', () => {
+			const clickable = (wrapper: ReturnType<typeof mount>) => wrapper.get('tbody tr').classes().some((name) => name.includes('clickable'))
+			expect(clickable(mountBound())).toBe(false)
+			expect(clickable(mountBound({ onRowClick: () => {} }))).toBe(true)
+		})
 	})
 })
