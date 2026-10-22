@@ -58,8 +58,9 @@ const colors = computed(() => {
 
 <template>
 	<span
-		:aria-label="name"
-		role="img"
+		:aria-label="name || undefined"
+		:aria-hidden="name ? undefined : 'true'"
+		:role="name ? 'img' : undefined"
 		class="material-design-icon loading-icon">
 		<svg
 			:width="size"

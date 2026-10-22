@@ -1603,8 +1603,9 @@ export default {
 		&.vs--loading,
 		&.vs--open {
 			.vs__selected {
-				// Fix color to be accessible while typing
-				opacity: 0.4;
+				// Dim the value while typing, but keep the text readable:
+				// `opacity` would drop the contrast below WCAG AA
+				color: var(--color-text-maxcontrast);
 			}
 		}
 
