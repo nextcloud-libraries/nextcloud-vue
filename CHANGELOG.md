@@ -7,6 +7,36 @@
 
 All notable changes to this project will be documented in this file.
 
+## [v9.14.0](https://github.com/nextcloud-libraries/nextcloud-vue/tree/v9.14.0) (2026-10-22)
+[Full Changelog](https://github.com/nextcloud-libraries/nextcloud-vue/compare/v9.13.1...v9.14.0)
+
+### 🚀 Enhancements
+* feat(NcModal): start the name of a full size modal at the leading edge [\#9026](https://github.com/nextcloud-libraries/nextcloud-vue/pull/9026) \([skjnldsv](https://github.com/skjnldsv)\)
+* feat(NcDateTimePickerNative): add 'clearable' prop [\#9038](https://github.com/nextcloud-libraries/nextcloud-vue/pull/9038) \([Antreesy](https://github.com/Antreesy)\)
+* feat(useHotKey): add `allowInInput` option to allow hotkey while focus is on an input field [\#9014](https://github.com/nextcloud-libraries/nextcloud-vue/pull/9014) \([SebastianKrupinski](https://github.com/SebastianKrupinski)\)
+
+### 🐛 Fixed bugs
+* fix(linkify): skip linkifying strings over 10000 characters [\#9013](https://github.com/nextcloud-libraries/nextcloud-vue/pull/9013) \([skjnldsv](https://github.com/skjnldsv)\)
+* fix(NcDateTimePickerNative): prevent changing on invalid input [\#9012](https://github.com/nextcloud-libraries/nextcloud-vue/pull/9012) \([kristian-zendato](https://github.com/kristian-zendato)\)
+* fix(styleguide): scroll to section from the URL hash [\#9046](https://github.com/nextcloud-libraries/nextcloud-vue/pull/9046) \([Antreesy](https://github.com/Antreesy)\)
+* fix(NcPopover): properly set fallback focus [\#9045](https://github.com/nextcloud-libraries/nextcloud-vue/pull/9045) \([susnux](https://github.com/susnux)\)
+* fix(NcAppContent): app name in page title is `[object Object]` [\#9051](https://github.com/nextcloud-libraries/nextcloud-vue/pull/9051) \([pringelmann](https://github.com/pringelmann)\)
+* fix(NcModal): only set the header theme attribute that applies [\#9084](https://github.com/nextcloud-libraries/nextcloud-vue/pull/9084) \([skjnldsv](https://github.com/skjnldsv)\)
+* fix(NcRichContenteditable): do not submit on Enter confirming IME [\#9093](https://github.com/nextcloud-libraries/nextcloud-vue/pull/9093) \([Antreesy](https://github.com/Antreesy)\)
+* fix(NcReferencePickerModal): don't cancel after a pick with initial provider [\#9095](https://github.com/nextcloud-libraries/nextcloud-vue/pull/9095) \([mejo-](https://github.com/mejo-)\)
+* fix(NcAppSettingsDialog): move focus to section on navigation click [\#9101](https://github.com/nextcloud-libraries/nextcloud-vue/pull/9101) \([Antreesy](https://github.com/Antreesy)\)
+* fix(NcRichContenteditable): align composition event confirmation between browsers [\#9096](https://github.com/nextcloud-libraries/nextcloud-vue/pull/9096) \([Antreesy](https://github.com/Antreesy)\)
+* fix(NcSelect): fix two accessibility violations (axe) on the selected value and the spinner [\#9098](https://github.com/nextcloud-libraries/nextcloud-vue/pull/9098) \([odolbeau](https://github.com/odolbeau)\)
+
+### Other Changes
+* docs: add "supported" statement to the library [\#9006](https://github.com/nextcloud-libraries/nextcloud-vue/pull/9006) \([susnux](https://github.com/susnux)\)
+* Updated dependencies
+* Updated translations
+
+## New Contributors
+* @SebastianKrupinski made their first contribution in https://github.com/nextcloud-libraries/nextcloud-vue/pull/9014
+* @odolbeau made their first contribution in https://github.com/nextcloud-libraries/nextcloud-vue/pull/9098
+
 ## [v9.13.1](https://github.com/nextcloud-libraries/nextcloud-vue/tree/v9.13.1) (2026-09-24)
 [Full Changelog](https://github.com/nextcloud-libraries/nextcloud-vue/compare/v9.13.0...v9.13.1)
 
