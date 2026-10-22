@@ -6,7 +6,7 @@
 import type { NcTableColumn, NcTableRowKey, NcTableSort } from '../../../../src/components/NcTable/index.ts'
 
 import { mount } from '@vue/test-utils'
-import { describe, expect, it } from 'vitest'
+import { describe, expect, it, vi } from 'vitest'
 import { h } from 'vue'
 import NcCheckboxRadioSwitch from '../../../../src/components/NcCheckboxRadioSwitch/NcCheckboxRadioSwitch.vue'
 import NcTable from '../../../../src/components/NcTable/NcTable.vue'
@@ -116,7 +116,7 @@ describe('NcTable', () => {
 	describe('slots', () => {
 		it('renders a cell slot with the row and its value', () => {
 			const wrapper = mount(NcTable, {
-				props: { columns, rows },
+				props: { caption: 'Team members', columns, rows },
 				slots: { 'cell-team.name': ({ row, value }: { row: { name: string }, value: unknown }) => `${row.name}: ${value ?? '-'}` },
 			})
 			expect(bodyText(wrapper).map((row) => row[1])).toEqual(['Alice: Files', 'Bram: Talk', 'Chen: -'])
@@ -124,7 +124,7 @@ describe('NcTable', () => {
 
 		it('replaces a header with its header slot', () => {
 			const wrapper = mount(NcTable, {
-				props: { columns, rows },
+				props: { caption: 'Team members', columns, rows },
 				slots: { 'header-name': ({ column }: { column: NcTableColumn }) => column.label.toUpperCase() },
 			})
 			expect(wrapper.get('thead th').text()).toBe('NAME')
@@ -133,7 +133,7 @@ describe('NcTable', () => {
 
 		it('adds an actions column with the row actions slot', () => {
 			const wrapper = mount(NcTable, {
-				props: { columns, rows },
+				props: { caption: 'Team members', columns, rows },
 				slots: { rowActions: ({ row }: { row: { id: number } }) => h('button', { type: 'button' }, `Open ${row.id}`) },
 			})
 			expect(wrapper.findAll('thead th')).toHaveLength(4)
@@ -157,7 +157,7 @@ describe('NcTable', () => {
 
 		it('shows the empty slot without rows', () => {
 			const wrapper = mount(NcTable, {
-				props: { columns, rows: [] },
+				props: { caption: 'Team members', columns, rows: [] },
 				slots: { empty: () => 'Nothing here yet' },
 			})
 			expect(wrapper.get('tbody td').text()).toBe('Nothing here yet')
@@ -165,7 +165,7 @@ describe('NcTable', () => {
 
 		it('spans the empty state over the selection and actions columns', () => {
 			const wrapper = mount(NcTable, {
-				props: { columns, rows: [], selectable: true },
+				props: { caption: 'Team members', columns, rows: [], selectable: true },
 				slots: { rowActions: () => 'x' },
 			})
 			expect(wrapper.get('tbody td').attributes('colspan')).toBe('5')
@@ -222,6 +222,13 @@ describe('NcTable', () => {
 			expect(wrapper.emitted('update:selected')).toEqual([[[99]]])
 		})
 
+		it('warns once when the rows have no key', () => {
+			const warn = vi.spyOn(console, 'warn').mockImplementation(() => {})
+			mountBound({ selectable: true, rows: [{ name: 'Alice' }, { name: 'Bram' }] })
+			expect(warn.mock.calls.filter(([message]) => String(message).includes('[NcTable] A row has no "id"'))).toHaveLength(1)
+			warn.mockRestore()
+		})
+
 		it('disables the select all checkbox without rows', () => {
 			const wrapper = mountBound({ selectable: true, rows: [] })
 			expect(wrapper.getComponent(NcCheckboxRadioSwitch).props('disabled')).toBe(true)
@@ -237,7 +244,7 @@ describe('NcTable', () => {
 
 		it('ignores a click on a control inside the row', async () => {
 			const wrapper = mount(NcTable, {
-				props: { columns, rows },
+				props: { caption: 'Team members', columns, rows },
 				slots: { rowActions: () => h('button', { type: 'button' }, 'Open') },
 			})
 			await wrapper.get('tbody tr button').trigger('click')
@@ -258,7 +265,7 @@ describe('NcTable', () => {
 		})
 
 		it('ignores a click that ends a text selection', async () => {
-			const wrapper = mount(NcTable, { attachTo: document.body, props: { columns, rows, caption: 'Team members' } })
+			const wrapper = mount(NcTable, { attachTo: document.body, props: { caption: 'Team members', columns, rows, caption: 'Team members' } })
 			const cell = wrapper.findAll('tbody td')[0]
 			window.getSelection()!.selectAllChildren(cell.element)
 			await cell.trigger('click')
