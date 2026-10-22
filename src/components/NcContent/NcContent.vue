@@ -204,7 +204,7 @@ export default {
 
 // New design (NC34+): divider only when an open navigation is present.
 @media only screen and (min-width: $breakpoint-mobile) {
-	.content:not(.content--legacy) .app-navigation:not(.app-navigation--close) ~ .app-content {
+	.content:not(.content--legacy) .app-navigation:not(.app-navigation--closed):not(.app-navigation--close) ~ .app-content {
 		border-inline-start: 1px solid var(--color-border);
 		border-start-start-radius: var(--body-container-radius);
 		border-end-start-radius: var(--body-container-radius);
