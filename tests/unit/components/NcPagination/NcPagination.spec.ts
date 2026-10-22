@@ -4,7 +4,8 @@
  */
 
 import { flushPromises, mount } from '@vue/test-utils'
-import { describe, expect, it } from 'vitest'
+import { afterEach, describe, expect, it } from 'vitest'
+import { createMemoryHistory, createRouter, RouterLink } from 'vue-router'
 import NcPagination from '../../../../src/components/NcPagination/NcPagination.vue'
 import NcSelect from '../../../../src/components/NcSelect/NcSelect.vue'
 
@@ -41,12 +42,26 @@ describe('NcPagination', () => {
 	})
 
 	it.each([
-		[1, ['1', '2', '3', '4', '5', '…', '20']],
-		[10, ['1', '…', '9', '10', '11', '…', '20']],
-		[20, ['1', '…', '16', '17', '18', '19', '20']],
-	])('shortens the page range around page %i', (page, expected) => {
-		const wrapper = mount(NcPagination, { props: { totalItems: 200, pageSize: 10, page } })
+		[1, 20, ['1', '2', '3', '4', '5', '…', '20']],
+		[4, 20, ['1', '2', '3', '4', '5', '…', '20']],
+		[5, 20, ['1', '…', '4', '5', '6', '…', '20']],
+		[10, 20, ['1', '…', '9', '10', '11', '…', '20']],
+		[16, 20, ['1', '…', '15', '16', '17', '…', '20']],
+		[17, 20, ['1', '…', '16', '17', '18', '19', '20']],
+		[20, 20, ['1', '…', '16', '17', '18', '19', '20']],
+		[1, 8, ['1', '2', '3', '4', '5', '…', '8']],
+		[4, 8, ['1', '2', '3', '4', '5', '…', '8']],
+		[5, 8, ['1', '…', '4', '5', '6', '7', '8']],
+	])('shortens the page range around page %i of %i', (page, pages, expected) => {
+		const wrapper = mount(NcPagination, { props: { totalItems: pages * 10, pageSize: 10, page } })
 		expect(pageItems(wrapper)).toEqual(expected)
+	})
+
+	it('hides the ellipses from assistive technology', () => {
+		const wrapper = mount(NcPagination, { props: { totalItems: 200, pageSize: 10, page: 10 } })
+		const items = wrapper.findAll('nav > div > ul > li')
+		expect(items.filter((item) => item.attributes('aria-hidden') === 'true').map((item) => item.text())).toEqual(['…', '…'])
+		expect(items[0].attributes('aria-hidden')).toBeUndefined()
 	})
 
 	it('marks the current page', () => {
@@ -116,11 +131,12 @@ describe('NcPagination', () => {
 	 * @param props.page - The current page
 	 */
 	function mountBound(props: { totalItems: number, pageSize: number, page: number }) {
+		// A page that does not exist is corrected while mounting, before `wrapper` is assigned
 		const wrapper = mount(NcPagination, {
 			props: {
 				...props,
-				'onUpdate:page': (page: number) => wrapper.setProps({ page }),
-				'onUpdate:pageSize': (pageSize: number) => wrapper.setProps({ pageSize }),
+				'onUpdate:page': (page: number) => Promise.resolve().then(() => wrapper.setProps({ page })),
+				'onUpdate:pageSize': (pageSize: number) => Promise.resolve().then(() => wrapper.setProps({ pageSize })),
 			},
 		})
 		return wrapper
@@ -146,6 +162,24 @@ describe('NcPagination', () => {
 		await wrapper.setProps({ totalItems: 0 })
 		await flushPromises()
 		expect(wrapper.emitted('update:page')).toBeUndefined()
+		expect(wrapper.get('nav > span').text()).toBe('Page 20 of 20')
+	})
+
+	it('moves to the last page when the items arrive after there were none', async () => {
+		const wrapper = mountBound({ totalItems: 237, pageSize: 10, page: 20 })
+		await wrapper.setProps({ totalItems: 0 })
+		await flushPromises()
+		await wrapper.setProps({ totalItems: 5 })
+		await flushPromises()
+		expect(wrapper.emitted('update:page')).toEqual([[1]])
+		expect(wrapper.get('nav > span').text()).toBe('Page 1 of 1')
+	})
+
+	it('moves to the last page when mounted with a page that does not exist', async () => {
+		const wrapper = mountBound({ totalItems: 100, pageSize: 10, page: 50 })
+		await flushPromises()
+		expect(wrapper.emitted('update:page')).toEqual([[10]])
+		expect(wrapper.get('button[aria-label="Page 10"]').attributes('aria-current')).toBe('page')
 	})
 
 	it('keeps the current page when it still exists', async () => {
@@ -153,6 +187,117 @@ describe('NcPagination', () => {
 		await wrapper.setProps({ totalItems: 150 })
 		await flushPromises()
 		expect(wrapper.emitted('update:page')).toBeUndefined()
+	})
+
+	describe('keyboard focus', () => {
+		afterEach(() => {
+			document.body.innerHTML = ''
+		})
+
+		/**
+		 * Mount the pagination in the document, with the page bound like v-model does.
+		 *
+		 * @param props - The initial props
+		 */
+		function mountFocusable(props: Record<string, unknown>) {
+			const wrapper = mount(NcPagination, {
+				attachTo: document.body,
+				props: {
+					...props,
+					'onUpdate:page': (page: number) => wrapper.setProps({ page }),
+				},
+			})
+			return wrapper
+		}
+
+		/**
+		 * Click a button that has keyboard focus, and wait for the new page.
+		 *
+		 * @param wrapper - The mounted pagination
+		 * @param label - The label of the button
+		 */
+		async function clickFocused(wrapper: ReturnType<typeof mount>, label: string) {
+			const button = wrapper.get<HTMLButtonElement>(`button[aria-label="${label}"]`)
+			button.element.focus()
+			await button.trigger('click')
+			await flushPromises()
+		}
+
+		it.each([
+			['Next page', 2, 'Page 3'],
+			['Last page', 1, 'Page 3'],
+			['Previous page', 2, 'Page 1'],
+			['First page', 3, 'Page 1'],
+		])('moves to the current page when "%s" becomes disabled', async (label, page, expected) => {
+			const wrapper = mountFocusable({ totalItems: 30, pageSize: 10, page })
+			await clickFocused(wrapper, label)
+			expect(document.activeElement?.getAttribute('aria-label')).toBe(expected)
+		})
+
+		it('keeps the focus on a button that stays enabled', async () => {
+			const wrapper = mountFocusable({ totalItems: 50, pageSize: 10, page: 2 })
+			await clickFocused(wrapper, 'Next page')
+			expect(document.activeElement?.getAttribute('aria-label')).toBe('Next page')
+		})
+
+		it('moves to the other button in the compact layout', async () => {
+			const wrapper = mountFocusable({ totalItems: 42, pageSize: 5, page: 8, compact: true })
+			await clickFocused(wrapper, 'Next page')
+			expect(document.activeElement?.getAttribute('aria-label')).toBe('Previous page')
+		})
+	})
+
+	describe('pages as links', () => {
+		it('renders the pages as links with "pageHref"', () => {
+			const wrapper = mount(NcPagination, {
+				props: { totalItems: 30, pageSize: 10, page: 2, pageHref: (page: number) => `?page=${page}` },
+			})
+			expect(wrapper.findAll('a').map((link) => [link.attributes('aria-label'), link.attributes('href')])).toEqual([
+				['First page', '?page=1'],
+				['Previous page', '?page=1'],
+				['Page 1', '?page=1'],
+				['Page 2', '?page=2'],
+				['Page 3', '?page=3'],
+				['Next page', '?page=3'],
+				['Last page', '?page=3'],
+			])
+			expect(wrapper.get('a[aria-current="page"]').text()).toBe('2')
+		})
+
+		it('renders a disabled button without a link', () => {
+			const wrapper = mount(NcPagination, {
+				props: { totalItems: 30, pageSize: 10, page: 1, pageHref: (page: number) => `?page=${page}` },
+			})
+			for (const label of ['First page', 'Previous page']) {
+				const button = wrapper.get(`[aria-label="${label}"]`)
+				expect(button.element.tagName).toBe('BUTTON')
+				expect(button.attributes('disabled')).toBeDefined()
+				expect(button.attributes('href')).toBeUndefined()
+			}
+		})
+
+		it('leaves the page to the URL when a link is clicked', async () => {
+			const wrapper = mount(NcPagination, {
+				props: { totalItems: 30, pageSize: 10, page: 1, pageHref: (page: number) => `#page=${page}` },
+			})
+			await wrapper.get('a[aria-label="Page 3"]').trigger('click')
+			expect(wrapper.emitted('update:page')).toBeUndefined()
+		})
+
+		it('renders router links with "pageTo"', async () => {
+			const router = createRouter({
+				history: createMemoryHistory(),
+				routes: [{ path: '/', component: { template: 'List' } }],
+			})
+			await router.push('/')
+			const wrapper = mount(NcPagination, {
+				global: { plugins: [router] },
+				props: { totalItems: 30, pageSize: 10, page: 1, pageTo: (page: number) => ({ query: { page } }) },
+			})
+			const link = wrapper.findAllComponents(RouterLink).find((item) => item.attributes('aria-label') === 'Page 3')
+			expect(link?.props('to')).toEqual({ query: { page: 3 } })
+			expect(link?.attributes('href')).toBe('/?page=3')
+		})
 	})
 
 	describe('compact', () => {
