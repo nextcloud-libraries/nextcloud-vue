@@ -89,7 +89,7 @@ export default {
 <script setup lang="ts">
 import type { Slot } from 'vue'
 
-import { computed, nextTick, ref, useCssModule } from 'vue'
+import { computed, nextTick, ref, useCssModule, watch } from 'vue'
 import { createElementId } from '../../utils/createElementId.ts'
 import { isLegacy34 } from '../../utils/legacy.ts'
 import { isRtl } from '../../utils/rtl.ts'
@@ -111,7 +111,7 @@ export interface NcTabsTab {
 
 /**
  * The `id` of the selected tab.
- * When it does not match an enabled tab, the first enabled tab is shown.
+ * When it does not match an enabled tab, the first enabled tab is shown and becomes the model.
  */
 const modelValue = defineModel<string>()
 
@@ -125,8 +125,15 @@ const props = withDefaults(defineProps<{
 	 * The name of the tabs for assistive technology, for example the name of the item they belong to.
 	 */
 	ariaLabel?: string
+
+	/**
+	 * The id of an element that names the tabs, for example a visible heading.
+	 * Takes precedence over `ariaLabel`.
+	 */
+	ariaLabelledby?: string
 }>(), {
 	ariaLabel: undefined,
+	ariaLabelledby: undefined,
 })
 
 defineEmits<{
@@ -152,6 +159,14 @@ const tabElements = ref<HTMLButtonElement[]>([])
 const enabledTabs = computed(() => props.tabs.filter((tab) => !tab.disabled))
 
 const activeTab = computed(() => enabledTabs.value.find((tab) => tab.id === modelValue.value) ?? enabledTabs.value[0])
+
+// When the model is a disabled, unknown or removed tab, another tab is shown: make that
+// the model, so the parent, and for example the URL, hold the tab that is shown
+watch(activeTab, (tab) => {
+	if (tab && tab.id !== modelValue.value) {
+		modelValue.value = tab.id
+	}
+}, { immediate: true })
 
 /**
  * The id of the tab element of a tab.
@@ -242,6 +257,7 @@ function tabClass(tab: NcTabsTab) {
 		<div
 			role="tablist"
 			:aria-label="ariaLabel"
+			:aria-labelledby="ariaLabelledby"
 			:class="[$style.ncTabs__list, { [$style.ncTabs__list_legacy]: isLegacy34 }]"
 			@keydown="onKeydown">
 			<button
@@ -291,6 +307,9 @@ function tabClass(tab: NcTabsTab) {
 .ncTabs__list {
 	display: flex;
 	gap: var(--default-grid-baseline);
+	// The row scrolls, so it clips what is outside it: leave room for the focus outline
+	padding-block-start: 4px;
+	padding-inline: 4px;
 	padding-block-end: var(--default-grid-baseline);
 	overflow-x: auto;
 	border-block-end: 1px solid var(--color-border);
@@ -364,7 +383,16 @@ function tabClass(tab: NcTabsTab) {
 	}
 }
 
-// Nextcloud before 34: a line below the selected tab, as the sidebar tabs there
+// Forced colors replace the backgrounds that mark the selected tab, so draw its bar in the
+// system highlight color
+@media (forced-colors: active) {
+	.ncTabs__tab_selected::after {
+		background-color: Highlight;
+		forced-color-adjust: none;
+	}
+}
+
+// Nextcloud before 34: a line below the selected tab, as the sidebar tabs there.
 .ncTabs__tab_legacy {
 	padding: var(--border-radius-small);
 	border-block-end: var(--default-grid-baseline) solid transparent;
@@ -396,14 +424,11 @@ function tabClass(tab: NcTabsTab) {
 	display: flex;
 	align-items: center;
 	gap: var(--default-grid-baseline);
-	max-width: 100%;
 }
 
+// A tab is never narrower than its name, the row scrolls instead
 .ncTabs__name {
-	overflow: hidden;
 	font-weight: var(--font-weight-element, normal);
-	white-space: nowrap;
-	text-overflow: ellipsis;
 }
 
 .ncTabs__tab_legacy.ncTabs__tab_selected .ncTabs__name {
