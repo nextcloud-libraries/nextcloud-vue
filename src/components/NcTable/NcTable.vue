@@ -12,7 +12,7 @@ Pass the columns as `columns` and the data as `rows`. Each row needs a unique va
 
 The component does not load, sort or filter any data itself. Bind the sorting with `v-model:sort`: a click on a sortable header cycles it through ascending, descending and unsorted, and the table emits the new sorting. Sort or load the rows accordingly.
 
-With `selectable`, every row gets a checkbox and the header a checkbox for all rows. Bind the keys of the selected rows with `v-model:selected`.
+With `selectable`, every row gets a checkbox and the header a checkbox for all rows. Bind the keys of the selected rows with `v-model:selected`. Each checkbox is labeled with the name of its row, the value of the first column unless `row-label` returns another one. The selection outlives `rows`: keys of rows that are filtered out or on another page stay selected, also when all rows are selected or deselected, and the checkbox for all rows only looks at the rows that are shown. Remove those keys from `selected` when the selection should only hold rows that are shown.
 
 Give every table a `caption`. It names the table for assistive technology and is not shown. When the table is wider than its container, it scrolls sideways and can be reached with the keyboard to do so.
 
@@ -228,7 +228,7 @@ export default {
 							<td v-if="selectable" :class="$style.ncTable__check" @click.stop>
 								<NcCheckboxRadioSwitch
 									:modelValue="isSelected(row)"
-									:aria-label="t('Select row')"
+									:aria-label="checkboxLabel(row)"
 									@update:modelValue="toggleRow(row, $event)" />
 							</td>
 							<td
@@ -326,9 +326,16 @@ const props = withDefaults(defineProps<{
 	 * Whether rows can be selected with a checkbox.
 	 */
 	selectable?: boolean
+
+	/**
+	 * Returns the name of a row, used in the label of its checkbox, such as "Select Annual report.md".
+	 * Defaults to the value of the first column.
+	 */
+	rowLabel?: (row: Record<string, unknown>) => string
 }>(), {
 	rowKey: 'id',
 	caption: undefined,
+	rowLabel: undefined,
 })
 
 const emit = defineEmits<{
@@ -512,6 +519,19 @@ const someSelected = computed(() => selectedCount.value > 0 && !allSelected.valu
  */
 function isSelected(row: Record<string, unknown>): boolean {
 	return selectedSet.value.has(keyOf(row))
+}
+
+/**
+ * The label of a row's checkbox, naming the row so the checkboxes can be told apart.
+ *
+ * @param row - The row
+ */
+function checkboxLabel(row: Record<string, unknown>): string {
+	const firstColumn = props.columns[0]
+	const name = props.rowLabel
+		? props.rowLabel(row)
+		: (firstColumn ? displayValue(valueOf(row, firstColumn)) : '')
+	return name ? t('Select {row}', { row: name }) : t('Select row')
 }
 
 /**

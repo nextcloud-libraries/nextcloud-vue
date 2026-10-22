@@ -176,7 +176,18 @@ describe('NcTable', () => {
 		it('adds a checkbox per row and one for all rows', () => {
 			const wrapper = mountBound({ selectable: true })
 			const labels = wrapper.findAllComponents(NcCheckboxRadioSwitch).map((checkbox) => checkbox.props('ariaLabel'))
-			expect(labels).toEqual(['Select all rows', 'Select row', 'Select row', 'Select row'])
+			expect(labels).toEqual(['Select all rows', 'Select Alice', 'Select Bram', 'Select Chen'])
+		})
+
+		it('names the rows in the checkbox labels with "rowLabel"', () => {
+			const wrapper = mountBound({ selectable: true, rowLabel: (row: { name: string, tickets: number }) => `${row.name} (${row.tickets})` })
+			const labels = wrapper.findAllComponents(NcCheckboxRadioSwitch).map((checkbox) => checkbox.props('ariaLabel'))
+			expect(labels).toEqual(['Select all rows', 'Select Alice (4)', 'Select Bram (12)', 'Select Chen (0)'])
+		})
+
+		it('falls back to a generic checkbox label for a row without a name', () => {
+			const wrapper = mountBound({ selectable: true, rows: [{ id: 1, name: '' }] })
+			expect(wrapper.findAllComponents(NcCheckboxRadioSwitch)[1].props('ariaLabel')).toBe('Select row')
 		})
 
 		it('selects and deselects a row', async () => {

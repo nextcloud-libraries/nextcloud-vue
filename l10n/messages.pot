@@ -485,6 +485,9 @@ msgstr ""
 msgid "seconds ago"
 msgstr ""
 
+msgid "Select {row}"
+msgstr ""
+
 msgid "Select a tag"
 msgstr ""
 
