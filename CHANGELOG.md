@@ -5,6 +5,36 @@
 
 # Changelog
 
+## [v8.42.0](https://github.com/nextcloud-libraries/nextcloud-vue/tree/v8.42.0) (2026-10-22)
+[Full Changelog](https://github.com/nextcloud-libraries/nextcloud-vue/compare/v8.41.0...v8.42.0)
+
+### 🚀 Enhancements
+* [stable8] feat(NcSelect): add helperText support [\#8894](https://github.com/nextcloud-libraries/nextcloud-vue/pull/8894)
+* [stable8] feat(useHotKey): add new option `allowInModal` [\#8902](https://github.com/nextcloud-libraries/nextcloud-vue/pull/8902)
+* [stable8] feat(useHotKey): add `allowInInput` option to allow hotkey while focus is on an input field [\#9068](https://github.com/nextcloud-libraries/nextcloud-vue/pull/9068)
+
+### 🐛 Fixed bugs
+* [stable8] fix(NcActionInput): display arrow icon for submit [\#8886](https://github.com/nextcloud-libraries/nextcloud-vue/pull/8886)
+* [stable8] fix: modal height in small screen [\#8913](https://github.com/nextcloud-libraries/nextcloud-vue/pull/8913)
+* [stable8] fix(actions): top-align icons with multi-line action labels [\#8736](https://github.com/nextcloud-libraries/nextcloud-vue/pull/8736)
+* [stable8] fix(NcAppNavigationItem): tabbing on editable items [\#8815](https://github.com/nextcloud-libraries/nextcloud-vue/pull/8815)
+* [stable8] fix(dialog): specificity of mobile selector [\#8960](https://github.com/nextcloud-libraries/nextcloud-vue/pull/8960)
+* [stable8] fix(NcAppNavigationItem): backwards tabbing action selection [\#8896](https://github.com/nextcloud-libraries/nextcloud-vue/pull/8896)
+* [stable8] fix(NcAvatar): pick the avatar variant a display actually needs [\#8953](https://github.com/nextcloud-libraries/nextcloud-vue/pull/8953)
+* [stable8] fix(NcReferenceWidget): show description even on smaller embeds [\#9005](https://github.com/nextcloud-libraries/nextcloud-vue/pull/9005)
+* [stable8] fix(NcAppNavigationItem): close mobile navigation on router-link click [\#8760](https://github.com/nextcloud-libraries/nextcloud-vue/pull/8760)
+* [stable8] fix(NcDateTimePickerNative): prevent changing on invalid input [\#9016](https://github.com/nextcloud-libraries/nextcloud-vue/pull/9016) \([kristian-zendato](https://github.com/kristian-zendato)\)
+* [stable8] fix(styleguide): scroll to section from the URL hash [\#9049](https://github.com/nextcloud-libraries/nextcloud-vue/pull/9049)
+* [stable8] fix(NcPopover): properly set fallback focus [\#9050](https://github.com/nextcloud-libraries/nextcloud-vue/pull/9050)
+* [stable8] fix(NcRichContenteditable): do not submit on Enter confirming IME [\#9097](https://github.com/nextcloud-libraries/nextcloud-vue/pull/9097)
+* [stable8] fix(NcAppSettingsDialog): move focus to section on navigation click [\#9108](https://github.com/nextcloud-libraries/nextcloud-vue/pull/9108)
+* [stable8] fix(NcRichContenteditable): align composition event confirmation between browsers [\#9109](https://github.com/nextcloud-libraries/nextcloud-vue/pull/9109)
+
+### Other Changes
+* [stable8] fix: update profile hovercard content data [\#8932](https://github.com/nextcloud-libraries/nextcloud-vue/pull/8932)
+* [stable8] chore(l10n): sync translations from main branch [\#9102](https://github.com/nextcloud-libraries/nextcloud-vue/pull/9102) \([Antreesy](https://github.com/Antreesy)\)
+* Updated dependencies
+
 ## [v8.41.0](https://github.com/nextcloud-libraries/nextcloud-vue/tree/v8.41.0) (2026-08-25)
 [Full Changelog](https://github.com/nextcloud-libraries/nextcloud-vue/compare/v8.40.0...v8.41.0)
 ### 🚀 Enhancements
