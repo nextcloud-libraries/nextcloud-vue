@@ -28,8 +28,9 @@ test('light colors the icon of a status chip with the status color', async ({ mo
 test('the close button of a small chip can be clicked on 24px without making the chip taller', async ({ mount, page }) => {
 	const chip = await mount(NcChip, { props: { text: 'Small', size: 'small' } })
 	const button = page.getByRole('button')
+	// Rounded, as Firefox measures the 24px button as 23.999996px
 	const box = await button.boundingBox()
-	expect(box!.width).toBeGreaterThanOrEqual(24)
-	expect(box!.height).toBeGreaterThanOrEqual(24)
+	expect(Math.round(box!.width)).toBeGreaterThanOrEqual(24)
+	expect(Math.round(box!.height)).toBeGreaterThanOrEqual(24)
 	await expect(chip).toHaveCSS('height', '20px')
 })
