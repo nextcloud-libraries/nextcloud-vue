@@ -7,7 +7,7 @@ import type { NcTableColumn, NcTableRowKey, NcTableSort } from '../../../../src/
 
 import { mount } from '@vue/test-utils'
 import { describe, expect, it, vi } from 'vitest'
-import { h } from 'vue'
+import { h, nextTick } from 'vue'
 import NcCheckboxRadioSwitch from '../../../../src/components/NcCheckboxRadioSwitch/NcCheckboxRadioSwitch.vue'
 import NcTable from '../../../../src/components/NcTable/NcTable.vue'
 
@@ -77,6 +77,41 @@ describe('NcTable', () => {
 		expect(wrapper.get('thead th').attributes('title')).toBe('The full name')
 	})
 
+	it('describes a column with its description, outside its name', () => {
+		const wrapper = mountBound({
+			columns: [
+				{ key: 'name', label: 'Name', description: 'The full name' },
+				{ key: 'tickets', label: 'Tickets', sortable: true, description: 'Open tickets only' },
+			],
+		})
+		const [plain, sortable] = wrapper.findAll('thead th')
+		expect(plain.text()).toBe('Name')
+		expect(wrapper.get(`#${plain.attributes('aria-describedby')}`).text()).toBe('The full name')
+		expect(sortable.attributes('aria-describedby')).toBeUndefined()
+		expect(wrapper.get(`#${sortable.get('button').attributes('aria-describedby')}`).text()).toBe('Open tickets only')
+	})
+
+	it('makes the scroll area a named keyboard stop only when the table overflows', async () => {
+		const scrollWidth = vi.spyOn(HTMLElement.prototype, 'scrollWidth', 'get').mockReturnValue(800)
+		const clientWidth = vi.spyOn(HTMLElement.prototype, 'clientWidth', 'get').mockReturnValue(400)
+		const wrapper = mountBound()
+		await nextTick()
+		const scroll = wrapper.get('table').element.parentElement!
+		expect(scroll.getAttribute('tabindex')).toBe('0')
+		expect(scroll.getAttribute('role')).toBe('group')
+		expect(scroll.getAttribute('aria-label')).toBe('Team members')
+
+		clientWidth.mockReturnValue(800)
+		const fitting = mountBound()
+		await nextTick()
+		const fittingScroll = fitting.get('table').element.parentElement!
+		expect(fittingScroll.hasAttribute('tabindex')).toBe(false)
+		expect(fittingScroll.hasAttribute('role')).toBe(false)
+		expect(fittingScroll.hasAttribute('aria-label')).toBe(false)
+		scrollWidth.mockRestore()
+		clientWidth.mockRestore()
+	})
+
 	describe('sorting', () => {
 		it('only gives sortable columns a sort button', () => {
 			const wrapper = mountBound()
@@ -131,6 +166,25 @@ describe('NcTable', () => {
 			expect(wrapper.get('thead th').find('button').exists()).toBe(false)
 		})
 
+		it('replaces the header of a column that is not sortable', () => {
+			const wrapper = mount(NcTable, {
+				props: { caption: 'Team members', columns, rows },
+				slots: { 'header-team.name': ({ column }: { column: NcTableColumn }) => `${column.label}!` },
+			})
+			expect(wrapper.findAll('thead th')[1].text()).toBe('Team!')
+		})
+
+		it('passes the sort state and a sort toggle to a header slot', async () => {
+			const headerSlot = vi.fn(({ toggleSort }: { toggleSort: () => void }) => h('button', { type: 'button', onClick: toggleSort }, 'Sort'))
+			const slotted = mount(NcTable, {
+				props: { caption: 'Team members', columns, rows, sort: { key: 'name', order: 'asc' } },
+				slots: { 'header-name': headerSlot },
+			})
+			expect(headerSlot.mock.calls[0][0]).toMatchObject({ sorted: true, sort: { key: 'name', order: 'asc' } })
+			await slotted.get('thead th button').trigger('click')
+			expect(slotted.emitted('update:sort')).toEqual([[{ key: 'name', order: 'desc' }]])
+		})
+
 		it('adds an actions column with the row actions slot', () => {
 			const wrapper = mount(NcTable, {
 				props: { caption: 'Team members', columns, rows },
@@ -148,6 +202,19 @@ describe('NcTable', () => {
 			expect(wrapper.get('table').attributes('aria-busy')).toBe('true')
 			expect(wrapper.findAll('tbody tr')).toHaveLength(1)
 			expect(wrapper.get('tbody td').attributes('colspan')).toBe('3')
+		})
+
+		it('shows the loading slot while loading', () => {
+			const wrapper = mount(NcTable, {
+				props: { caption: 'Team members', columns, rows, loading: true },
+				slots: { loading: () => 'Fetching members' },
+			})
+			expect(wrapper.get('tbody td').text()).toBe('Fetching members')
+		})
+
+		it('is not busy when not loading', () => {
+			const wrapper = mountBound()
+			expect(wrapper.get('table').attributes('aria-busy')).toBeUndefined()
 		})
 
 		it('shows the empty state without rows', () => {
