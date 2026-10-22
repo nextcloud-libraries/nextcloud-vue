@@ -54,6 +54,7 @@ onBeforeUnmount(() => {
 	<section
 		:id="htmlId"
 		:aria-labelledby="`${htmlId}--label`"
+		tabindex="-1"
 		class="app-settings-section"
 		:class="{ 'app-settings-section__legacy': legacy }">
 		<h3 :id="`${htmlId}--label`" class="app-settings-section__name">

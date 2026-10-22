@@ -242,6 +242,7 @@ function reset() {
 			:accept="accept?.join(', ')"
 			aria-hidden="true"
 			class="hidden-visually"
+			tabindex="-1"
 			:multiple="multiple"
 			type="file"
 			@change="onPick">
