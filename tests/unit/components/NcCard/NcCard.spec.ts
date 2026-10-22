@@ -86,6 +86,21 @@ describe('NcCard', () => {
 		expect(wrapper.get('h3 a').attributes('href')).toBe('#/teams/design')
 	})
 
+	it('opens the link in the target, without access to this page', () => {
+		const wrapper = mount(NcCard, { props: { name: 'Design', href: 'https://example.com', target: '_blank' } })
+		const link = wrapper.get('h3 a')
+		expect(link.attributes('target')).toBe('_blank')
+		expect(link.attributes('rel')).toBe('nofollow noreferrer noopener')
+	})
+
+	it('marks the link of an active card as the current one', () => {
+		const inactive = mount(NcCard, { props: { name: 'Design', href: '/teams/design' } })
+		expect(inactive.get('h3 a').attributes('aria-current')).toBeUndefined()
+
+		const active = mount(NcCard, { props: { name: 'Design', href: '/teams/design', active: true } })
+		expect(active.get('h3 a').attributes('aria-current')).toBe('true')
+	})
+
 	it('falls back to href when to is set without a router', () => {
 		const wrapper = mount(NcCard, { props: { name: 'Design', to: { name: 'team' }, href: '/teams/design' } })
 		expect(wrapper.get('h3 a').attributes('href')).toBe('/teams/design')
