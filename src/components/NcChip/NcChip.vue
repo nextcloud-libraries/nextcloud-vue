@@ -37,7 +37,7 @@ export default {
 
 ### Status
 
-Use `error`, `warning`, `success` and `info` for a status. With `light` the chip gets a light background, which reads better when many chips are shown together, for example one per row of a table. Use `size="small"` to fit a chip into a line of text or a table cell.
+Use `error`, `warning`, `success` and `info` for a status. With `light` the chip gets a light background and its icon the status color, which reads better when many chips are shown together, for example one per row of a table. Use `size="small"` to fit a chip into a line of text or a table cell. The close button of a small chip keeps a clickable area of `24px`, so it reaches a little beyond the chip.
 
 ```vue
 <template>
@@ -318,24 +318,46 @@ const hasIcon = () => Boolean(props.iconPath || props.iconSvg || !!slots.icon)
 		font-size: var(--font-size-small);
 	}
 
-	// The status color mixed into the background, like NcNoteCard
+	// The status color mixed into the background and the icon in the status text color,
+	// like NcNoteCard. Only the status variants, the others keep their own colors.
 	&--light {
-		color: var(--color-main-text);
+		&.nc-chip--error,
+		&.nc-chip--warning,
+		&.nc-chip--success,
+		&.nc-chip--info {
+			color: var(--color-main-text);
+		}
 
 		&.nc-chip--error {
 			background-color: color-mix(in srgb, var(--color-error), var(--color-main-background) 80%);
+
+			.nc-chip__icon {
+				color: var(--color-error-text);
+			}
 		}
 
 		&.nc-chip--warning {
 			background-color: color-mix(in srgb, var(--color-warning), var(--color-main-background) 80%);
+
+			.nc-chip__icon {
+				color: var(--color-warning-text);
+			}
 		}
 
 		&.nc-chip--success {
 			background-color: color-mix(in srgb, var(--color-success), var(--color-main-background) 80%);
+
+			.nc-chip__icon {
+				color: var(--color-success-text);
+			}
 		}
 
 		&.nc-chip--info {
 			background-color: color-mix(in srgb, var(--color-info), var(--color-main-background) 80%);
+
+			.nc-chip__icon {
+				color: var(--color-info-text);
+			}
 		}
 	}
 
@@ -376,10 +398,13 @@ const hasIcon = () => Boolean(props.iconPath || props.iconSvg || !!slots.icon)
 	}
 
 	&__actions {
+		// Adjust action size to match chip size, but keep it at least 24px to click or
+		// tap; on a smaller chip it overlaps the edges without making the chip taller
+		--chip-actions-size: max(24px, var(--chip-size));
 		// Do neither grow nor shrink, size is fixed
-		flex: 0 0 var(--chip-size);
-		// Adjust action size to match chip size
-		--default-clickable-area: var(--chip-size);
+		flex: 0 0 var(--chip-actions-size);
+		margin-block: calc((var(--chip-size) - var(--chip-actions-size)) / 2);
+		--default-clickable-area: var(--chip-actions-size);
 		--border-radius-element: var(--chip-radius);
 	}
 }
