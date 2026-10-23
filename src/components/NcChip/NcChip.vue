@@ -206,7 +206,7 @@ const props = withDefaults(defineProps<{
 	 * Set the chips design variant-
 	 *
 	 * This sets the background style of the chip, similar to NcButton's `variant`.
-	 * The `info` variant is available since 9.14.0.
+	 * The `info` variant is available since 9.15.0.
 	 *
 	 * @default 'secondary'
 	 * @since 8.23.0
@@ -217,7 +217,7 @@ const props = withDefaults(defineProps<{
 	 * The size of the chip. A small chip fits inline in a line of text or a table cell.
 	 *
 	 * @default 'normal'
-	 * @since 9.14.0
+	 * @since 9.15.0
 	 */
 	size?: 'small' | 'normal'
 
@@ -226,7 +226,7 @@ const props = withDefaults(defineProps<{
 	 * for example to show the status of many items without every chip drawing the eye.
 	 * Other variants are not affected.
 	 *
-	 * @since 9.14.0
+	 * @since 9.15.0
 	 */
 	light?: boolean
 }>(), {
@@ -405,7 +405,8 @@ const hasIcon = () => Boolean(props.iconPath || props.iconSvg || !!slots.icon)
 		flex: 0 0 var(--chip-actions-size);
 		margin-block: calc((var(--chip-size) - var(--chip-actions-size)) / 2);
 		--default-clickable-area: var(--chip-actions-size);
-		--border-radius-element: var(--chip-radius);
+		// Half of its own size, so it stays round when it is larger than a small chip
+		--border-radius-element: calc(var(--chip-actions-size) / 2);
 	}
 }
 </style>

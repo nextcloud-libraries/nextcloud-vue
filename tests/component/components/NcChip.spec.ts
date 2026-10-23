@@ -34,3 +34,8 @@ test('the close button of a small chip can be clicked on 24px without making the
 	expect(Math.round(box!.height)).toBeGreaterThanOrEqual(24)
 	await expect(chip).toHaveCSS('height', '20px')
 })
+
+test('the close button of a small chip stays round', async ({ mount, page }) => {
+	await mount(NcChip, { props: { text: 'Small', size: 'small' } })
+	await expect(page.getByRole('button')).toHaveCSS('border-radius', '12px')
+})
