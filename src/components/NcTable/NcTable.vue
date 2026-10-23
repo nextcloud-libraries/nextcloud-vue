@@ -65,7 +65,7 @@ export default {
 
 Override a cell with the `#cell-<key>` slot, which receives the row and its value. The `#rowActions` slot adds a trailing column, for example for an `NcActions` menu per row.
 
-A click on a row, outside the controls in it, emits `rowClick`. It is a shortcut for mouse users only: a row cannot be focused, so keyboard and screen reader users cannot click it. Always give a row a real link or button for its main action as well, for example in the name cell, and use a link when the action navigates, so it can be opened in a new tab. A click that ends a text selection does not emit `rowClick`.
+A click on a row, outside the controls in it, emits `rowClick`. It is a shortcut for mouse users only: a row cannot be focused, so keyboard and screen reader users cannot click it. Always give a row a real link or button for its main action as well, for example in the name cell, and use a link when the action navigates, so it can be opened in a new tab. A click that ends a text selection does not emit `rowClick`. The rows show a pointer when `rowClick` is listened to; a listener that is added or removed later only shows once the table renders again.
 
 ```vue
 <template>
@@ -231,8 +231,7 @@ export default {
 							:key="keyOf(row)"
 							:class="[$style.ncTable__row, { [$style.ncTable__row_selected]: isSelected(row), [$style.ncTable__row_clickable]: hasRowClickListener() }]"
 							@click="onRowClick(row, $event)">
-							<!-- A click on the checkbox lands on its visual box, not on the input, so it is stopped here -->
-							<td v-if="selectable" :class="$style.ncTable__check" @click.stop>
+							<td v-if="selectable" :class="$style.ncTable__check">
 								<NcCheckboxRadioSwitch
 									:modelValue="isSelected(row)"
 									:aria-label="checkboxLabel(row)"
@@ -607,7 +606,9 @@ function hasRowClickListener(): boolean {
  */
 function onRowClick(row: Row, event: MouseEvent) {
 	const target = event.target as Element | null
-	if (target?.closest('a, button, input, select, textarea, label, [role="button"], [role="checkbox"]')) {
+	// A click on a checkbox lands on its visual box, not on the input, so the whole
+	// selection cell counts as a control
+	if (target?.closest(`a, button, input, select, textarea, label, [role="button"], [role="checkbox"], .${style.ncTable__check}`)) {
 		return
 	}
 	if (window.getSelection()?.toString()) {
