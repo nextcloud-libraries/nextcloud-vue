@@ -8,9 +8,11 @@
 
 This component renders a banner that says an item is locked and by whom, for example at the top of the page of the item. It looks like an `NcNoteCard`.
 
-A lock held by someone else is shown as an error, because the item cannot be edited until the lock is released. A lock the current user holds is shown as a neutral note with an **Unlock** button, so they can release a lock they may have forgotten about. The button emits `unlock`; release the lock in the app and set `unlocking` while that is in progress.
+A lock held by someone else is shown as an error, because the item cannot be edited until the lock is released. A lock the current user holds is shown as a neutral note with an **Unlock** button, so they can release a lock they may have forgotten about. The button emits `unlock`; release the lock in the app and set `unlocking` while that is in progress. The button keeps the keyboard focus while unlocking, but once the banner is removed, move the focus somewhere sensible, for example to the editor.
 
-With `expires-at` the banner also says when the lock expires, as a relative time that updates by itself. Render the banner only for a locked item, for example with `v-if`.
+With `expires-at` the banner also says when the lock expires, as a relative time that updates by itself. It takes a `Date`, an ISO date string or a timestamp in milliseconds; convert Unix seconds to milliseconds first.
+
+A lock held by someone else is announced to assistive technology right away, a lock the current user holds is not. The expiry line is not announced as it updates. Render the banner only for a locked item, for example with `v-if`.
 
 ### Usage
 
@@ -79,12 +81,12 @@ const props = withDefaults(defineProps<{
 	lockedByMe?: boolean
 
 	/**
-	 * When the lock expires, as a date or a timestamp in milliseconds.
+	 * When the lock expires, as a date, an ISO date string or a timestamp in milliseconds.
 	 */
-	expiresAt?: Date | number
+	expiresAt?: Date | string | number
 
 	/**
-	 * Whether the lock is being released. Disables the unlock button and shows a loading icon on it.
+	 * Whether the lock is being released. The unlock button then ignores clicks and shows a loading icon.
 	 */
 	unlocking?: boolean
 
@@ -104,7 +106,11 @@ const emit = defineEmits<{
 	unlock: []
 }>()
 
-const relativeExpiry = useFormatRelativeTime(() => props.expiresAt ?? Date.now())
+// Without an expiry there is nothing to show, so the time does not need to update
+const relativeExpiry = useFormatRelativeTime(
+	() => (props.expiresAt === undefined ? Date.now() : new Date(props.expiresAt)),
+	() => ({ update: props.expiresAt !== undefined }),
+)
 
 const message = computed(() => {
 	if (props.lockedByMe) {
@@ -125,20 +131,32 @@ const expiry = computed(() => {
 	if (new Date(props.expiresAt).getTime() <= Date.now()) {
 		return t('The lock has expired')
 	}
+	// TRANSLATORS: {time} is a relative time, for example "in 20 minutes"
 	return t('The lock expires {time}', { time })
 })
+
+/**
+ * Ask to release the lock, unless that is already in progress. The button is not
+ * disabled meanwhile, so it keeps the keyboard focus.
+ */
+function onUnlock() {
+	if (!props.unlocking) {
+		emit('unlock')
+	}
+}
 </script>
 
 <template>
 	<div
 		:class="[$style.ncLockedBanner, lockedByMe ? $style.ncLockedBanner_mine : $style.ncLockedBanner_other, { [$style.ncLockedBanner_legacy]: isLegacy }]"
-		:role="lockedByMe ? 'status' : 'alert'">
+		:role="lockedByMe ? 'note' : undefined">
 		<NcIconSvgWrapper
 			:class="$style.ncLockedBanner__icon"
 			:path="lockedByMe ? mdiLockOutline : mdiLockAlertOutline"
 			:size="20" />
 		<div :class="$style.ncLockedBanner__text">
-			<p :class="$style.ncLockedBanner__message">
+			<!-- Only the message is a live region: the expiry line below it updates by itself -->
+			<p :class="$style.ncLockedBanner__message" :role="lockedByMe ? undefined : 'alert'">
 				{{ message }}
 			</p>
 			<p v-if="expiry" :class="$style.ncLockedBanner__expiry">
@@ -148,10 +166,10 @@ const expiry = computed(() => {
 		<NcButton
 			v-if="lockedByMe && !hideUnlock"
 			:class="$style.ncLockedBanner__action"
-			:disabled="unlocking"
-			@click="emit('unlock')">
+			:aria-disabled="unlocking ? 'true' : undefined"
+			@click="onUnlock">
 			<template #icon>
-				<NcLoadingIcon v-if="unlocking" :size="20" />
+				<NcLoadingIcon v-if="unlocking" :name="t('Unlocking …')" :size="20" />
 				<NcIconSvgWrapper v-else :path="mdiLockOpenVariantOutline" :size="20" />
 			</template>
 			{{ t('Unlock') }}

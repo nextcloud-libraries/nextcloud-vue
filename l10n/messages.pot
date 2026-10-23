@@ -626,6 +626,9 @@ msgstr ""
 msgid "Unlock"
 msgstr ""
 
+msgid "Unlocking …"
+msgstr ""
+
 msgid "Upload file"
 msgstr ""
 
