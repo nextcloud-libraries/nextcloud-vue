@@ -70,6 +70,22 @@ describe('NcCard', () => {
 		expect(link.text()).toBe('Design')
 	})
 
+	it('keeps the aria-current of a router link to the current route', async () => {
+		const router = createRouter({
+			history: createWebHashHistory(),
+			routes: [
+				{ path: '/', name: 'root', component: { template: '<div />' } },
+				{ path: '/teams/:id', name: 'team', component: { template: '<div />' } },
+			],
+		})
+		await router.push({ name: 'team', params: { id: 'design' } })
+		const wrapper = mount(NcCard, {
+			props: { name: 'Design', to: { name: 'team', params: { id: 'design' } } },
+			global: { plugins: [router] },
+		})
+		expect(wrapper.get('h3 a').attributes('aria-current')).toBe('page')
+	})
+
 	it('turns the heading into a router link when to is set and a router is available', async () => {
 		const router = createRouter({
 			history: createWebHashHistory(),

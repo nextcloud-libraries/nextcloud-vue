@@ -208,11 +208,14 @@ const linkTag = computed(() => {
 })
 
 const linkAttrs = computed(() => {
+	// Only when active: an `aria-current` key without a value would also remove the one
+	// RouterLink sets itself on a link to the current route
+	const current = props.active ? { 'aria-current': 'true' } : {}
 	if (linkTag.value === 'RouterLink') {
-		return { to: props.to }
+		return { to: props.to, ...current }
 	}
 	// Like NcButton, so a page opened in a new tab gets no access to this one
-	return { href: props.href, target: props.target, rel: 'nofollow noreferrer noopener' }
+	return { href: props.href, target: props.target, rel: 'nofollow noreferrer noopener', ...current }
 })
 </script>
 
@@ -229,7 +232,6 @@ const linkAttrs = computed(() => {
 					:is="linkTag"
 					v-if="linkTag"
 					:class="$style.ncCard__link"
-					:aria-current="active ? 'true' : undefined"
 					v-bind="linkAttrs">
 					{{ name }}
 				</component>
