@@ -163,9 +163,9 @@ export default {
 
 ### Breadcrumbs as data
 
-Instead of `NcBreadcrumb` components, the trail can be passed as an array in `crumbs`, root first. Each crumb has a `name`, and a `to` for vue-router or an `href` to link to, an optional `title` and an optional `iconPath`, for example one from `@mdi/js`. Like the `icon` slot of `NcBreadcrumb`, an icon is shown instead of the name, and the name becomes its accessible label. The last crumb is the current location: it is not linked and is marked with `aria-current="page"`. When `crumbs` is set, the `NcBreadcrumb` components in the default slot are not used.
+Instead of `NcBreadcrumb` components, the trail can be passed as an array in `crumbs`, root first. Each crumb has a `name`, and a `to` for vue-router or an `href` to link to, an optional `title`, an optional `iconPath`, for example one from `@mdi/js`, and `disableDrop` to not accept drops on it. Like the `icon` slot of `NcBreadcrumb`, an icon is shown instead of the name, and the name becomes its accessible label. The first crumb gets the `root-icon` the same way, unless it has an `iconPath`. The last crumb is the current location and is marked with `aria-current="page"`. Give it its link as well: it then stays a link, as the breadcrumb pattern asks, keeps the keyboard focus when a click on a crumb makes that one the last, and reports its link when something is dropped on it. When `crumbs` is set, the `NcBreadcrumb` components in the default slot are not used.
 
-A click on a crumb emits `crumbClick` with the crumb, its index and the click event, for an app that navigates without vue-router. Call `preventDefault()` on the event to stop the link from being followed. In the example below, a click on a crumb goes up to that folder, and the buttons go back down.
+A click on a crumb emits `crumbClick` with the crumb, its index and the click event, for an app that navigates without vue-router. Call `preventDefault()` on the event to stop the link from being followed, with `href` and with `to`. In the example below, a click on a crumb goes up to that folder, and the buttons go back down.
 
 ```vue
 <template>
@@ -270,10 +270,10 @@ export default {
 		/**
 		 * The breadcrumbs as data instead of `NcBreadcrumb` components, root first.
 		 * An `iconPath` is shown instead of the name, like the `icon` slot of `NcBreadcrumb`.
-		 * The last crumb is the current location: it is not linked and gets `aria-current="page"`.
+		 * The last crumb is the current location and gets `aria-current="page"`.
 		 * When set, the `NcBreadcrumb` components in the default slot are not used.
 		 *
-		 * @type {Array<{name: string, to?: string|object, href?: string, title?: string, iconPath?: string}>}
+		 * @type {Array<{name: string, to?: string|object, href?: string, title?: string, iconPath?: string, disableDrop?: boolean}>}
 		 * @since 9.14.0
 		 */
 		crumbs: {
@@ -609,7 +609,7 @@ export default {
 
 		/**
 		 * Create the NcBreadcrumb components for the `crumbs` prop.
-		 * The last crumb is the current location, so it is not linked.
+		 * The last crumb is the current location, still linked like the others.
 		 *
 		 * @return {Array} The created VNodes
 		 */
@@ -620,10 +620,13 @@ export default {
 					key: `crumb-${index}`,
 					name: crumb.name,
 					title: crumb.title ?? null,
-					to: isCurrent ? undefined : crumb.to,
-					href: isCurrent ? undefined : crumb.href,
+					to: crumb.to,
+					href: crumb.href,
+					disableDrop: crumb.disableDrop ?? false,
 					'aria-current': isCurrent ? 'page' : undefined,
-					onClick: (event) => {
+					// Capture, so the listener runs before a RouterLink starts to navigate
+					// and preventDefault() can still stop it
+					onClickCapture: (event) => {
 						/**
 						 * A crumb of the `crumbs` prop was clicked.
 						 * Call `preventDefault()` on the event to stop its link from being followed.
