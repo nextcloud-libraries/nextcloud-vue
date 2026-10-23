@@ -35,13 +35,16 @@ describe('NcLockIndicator', () => {
 		expect(mine.classes().some((name) => name.includes('ncLockIndicator_other'))).toBe(false)
 	})
 
-	it('shows the short label only when asked, hidden from assistive technology', () => {
+	it('shows who holds the lock only when asked, as its visible name', () => {
 		const without = mount(NcLockIndicator, { props: { lockedBy: 'Jane Doe' } })
 		expect(without.text()).toBe('')
 
 		const withLabel = mount(NcLockIndicator, { props: { lockedBy: 'Jane Doe', showLabel: true } })
-		const label = withLabel.findAll('span').filter((span) => span.text() === 'Locked').at(-1)
-		expect(label?.attributes('aria-hidden')).toBe('true')
+		expect(withLabel.text()).toBe('Locked by Jane Doe')
+		expect(withLabel.attributes('role')).toBeUndefined()
+		expect(withLabel.attributes('aria-label')).toBeUndefined()
+		expect(withLabel.attributes('title')).toBeUndefined()
+		expect(withLabel.getComponent(NcIconSvgWrapper).attributes('aria-hidden')).toBe('true')
 	})
 
 	it('draws the padlock at the given size', () => {

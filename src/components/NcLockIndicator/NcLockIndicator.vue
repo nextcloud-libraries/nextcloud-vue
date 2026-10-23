@@ -6,9 +6,9 @@
 <docs>
 ### General description
 
-This component renders a padlock that says an item is locked, for example in a list, a table row or a card. Its tooltip and accessible name say who holds the lock.
+This component renders a padlock that says an item is locked, for example in a list, a table row or a card. Its accessible name says who holds the lock.
 
-A lock held by someone else is shown in the warning color, because the item cannot be edited now. A lock the current user holds is shown in a neutral color, because it is no obstacle to them. With `show-label` a short word is shown next to the padlock.
+A lock held by someone else is shown in the warning color, because the item cannot be edited now. A lock the current user holds is shown in a neutral color, because it is no obstacle to them. With `show-label` the padlock is followed by who holds the lock, such as "Locked by Jane Doe". Without it, who holds the lock is only shown in a tooltip on mouse hover, which keyboard and touch users cannot reach, so then show it elsewhere, for example where the item is opened.
 
 The component only shows the lock; it does not stop anyone from opening the item. Render it only for a locked item, for example with `v-if`.
 
@@ -97,7 +97,7 @@ const props = withDefaults(defineProps<{
 	lockedByMe?: boolean
 
 	/**
-	 * Show a short word next to the padlock.
+	 * Show who holds the lock next to the padlock, such as "Locked by Jane Doe".
 	 */
 	showLabel?: boolean
 
@@ -124,11 +124,12 @@ const label = computed(() => {
 <template>
 	<span
 		:class="[$style.ncLockIndicator, lockedByMe ? $style.ncLockIndicator_mine : $style.ncLockIndicator_other]"
-		role="img"
-		:aria-label="label"
-		:title="label">
+		:role="showLabel ? undefined : 'img'"
+		:aria-label="showLabel ? undefined : label"
+		:title="showLabel ? undefined : label">
+		<!-- With the label shown, the visible text is the name; without it, the padlock is an image named by the label -->
 		<NcIconSvgWrapper :path="lockedByMe ? mdiLockOutline : mdiLockAlertOutline" :size="size" />
-		<span v-if="showLabel" :class="$style.ncLockIndicator__label" aria-hidden="true">{{ t('Locked') }}</span>
+		<span v-if="showLabel" :class="$style.ncLockIndicator__label">{{ label }}</span>
 	</span>
 </template>
 
@@ -142,7 +143,7 @@ const label = computed(() => {
 }
 
 .ncLockIndicator_other {
-	color: var(--color-text-warning, var(--color-warning-text));
+	color: var(--color-warning-text);
 }
 
 .ncLockIndicator_mine {

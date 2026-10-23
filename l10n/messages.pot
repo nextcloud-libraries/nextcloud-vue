@@ -285,9 +285,6 @@ msgstr ""
 msgid "Local time: {time}"
 msgstr ""
 
-msgid "Locked"
-msgstr ""
-
 msgid "Locked by {user}"
 msgstr ""
 
