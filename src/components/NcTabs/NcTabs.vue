@@ -8,7 +8,7 @@
 
 This component renders a row of tabs and the panel of the selected tab, for switching between views of the same content in the app content, such as the details, the history and the comments of an item. For the tabs of the sidebar, use `NcAppSidebarTab` instead.
 
-Pass the tabs in `tabs` and bind the selected tab's `id` with `v-model`. The content of a tab goes in the slot `panel-<id>`, for example `#panel-details`. Only the panel of the selected tab is rendered.
+Pass the tabs in `tabs` and bind the selected tab's `id` with `v-model`. The content of a tab goes in the slot `panel-<id>`, for example `#panel-details`. Only the panel of the selected tab is rendered, so a panel starts afresh each time its tab is selected: keep state that must survive switching tabs, such as an unsaved form, outside the panel.
 
 A tab can have an icon, a count shown in a counter bubble, and can be disabled. The tabs follow the [ARIA tabs pattern](https://www.w3.org/WAI/ARIA/apg/patterns/tabs/): the arrow keys move between the tabs and select them, `Home` and `End` go to the first and last tab, and `Tab` moves on into the panel.
 
@@ -174,7 +174,8 @@ watch(activeTab, (tab) => {
  * @param tab - The tab
  */
 function tabElementId(tab: NcTabsTab): string {
-	return `${idPrefix}-tab-${tab.id}`
+	// By position, as an id with whitespace would break aria-controls and aria-labelledby
+	return `${idPrefix}-tab-${props.tabs.indexOf(tab)}`
 }
 
 /**
@@ -183,7 +184,7 @@ function tabElementId(tab: NcTabsTab): string {
  * @param tab - The tab
  */
 function panelElementId(tab: NcTabsTab): string {
-	return `${idPrefix}-panel-${tab.id}`
+	return `${idPrefix}-panel-${props.tabs.indexOf(tab)}`
 }
 
 /**

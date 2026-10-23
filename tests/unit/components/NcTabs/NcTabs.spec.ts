@@ -97,6 +97,20 @@ describe('NcTabs', () => {
 		wrapper.unmount()
 	})
 
+	it('keeps the tab and its panel linked when the tab id has whitespace', () => {
+		const wrapper = mount(NcTabs, {
+			props: { tabs: [{ id: 'my tab', name: 'Mine' }], modelValue: 'my tab' },
+			slots: { 'panel-my tab': '<p>My panel</p>' },
+		})
+		const tab = wrapper.get('[role="tab"]')
+		const panel = wrapper.get('[role="tabpanel"]')
+		expect(tab.attributes('id')).not.toMatch(/\s/)
+		expect(tab.attributes('aria-controls')).toBe(panel.attributes('id'))
+		expect(panel.attributes('aria-labelledby')).toBe(tab.attributes('id'))
+		expect(panel.text()).toBe('My panel')
+		wrapper.unmount()
+	})
+
 	it('can name the tablist by another element', () => {
 		const wrapper = mount(NcTabs, { props: { tabs, modelValue: 'details', ariaLabelledby: 'heading' }, slots })
 		expect(wrapper.get('[role="tablist"]').attributes('aria-labelledby')).toBe('heading')
