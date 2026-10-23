@@ -274,7 +274,7 @@ export default {
 		 * When set, the `NcBreadcrumb` components in the default slot are not used.
 		 *
 		 * @type {Array<{name: string, to?: string|object, href?: string, title?: string, iconPath?: string, disableDrop?: boolean}>}
-		 * @since 9.14.0
+		 * @since 9.15.0
 		 */
 		crumbs: {
 			type: Array,
@@ -634,7 +634,7 @@ export default {
 						 * @param {object} crumb The clicked crumb
 						 * @param {number} index Its index in `crumbs`
 						 * @param {MouseEvent} event The click event
-						 * @since 9.14.0
+						 * @since 9.15.0
 						 */
 						this.$emit('crumbClick', crumb, index, event)
 					},
