@@ -284,6 +284,15 @@ describe('NcPagination', () => {
 			expect(wrapper.emitted('update:page')).toBeUndefined()
 		})
 
+		it('keeps working buttons with "pageTo" but without a router', async () => {
+			const wrapper = mount(NcPagination, {
+				props: { totalItems: 30, pageSize: 10, page: 1, pageTo: (page: number) => ({ query: { page } }) },
+			})
+			expect(wrapper.find('a').exists()).toBe(false)
+			await wrapper.get('button[aria-label="Page 3"]').trigger('click')
+			expect(wrapper.emitted('update:page')).toEqual([[3]])
+		})
+
 		it('renders router links with "pageTo"', async () => {
 			const router = createRouter({
 				history: createMemoryHistory(),
