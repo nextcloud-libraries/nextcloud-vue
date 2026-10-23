@@ -195,6 +195,9 @@ function onUnlock() {
 .ncLockedBanner_other {
 	--locked-banner-tone-accent: var(--color-error-text);
 	--locked-banner-tone-background: var(--color-error);
+	// The grey of --color-text-maxcontrast is too light on the error background before
+	// Nextcloud 32 and only just enough after, so the expiry takes the text color
+	--locked-banner-tone-expiry: var(--color-main-text);
 }
 
 // Before Nextcloud 32 the error color is strong, so it is mixed into the background like NcNoteCard does
@@ -206,6 +209,7 @@ function onUnlock() {
 .ncLockedBanner_mine {
 	--locked-banner-tone-accent: var(--color-border-maxcontrast);
 	--locked-banner-tone-background: var(--color-background-hover);
+	--locked-banner-tone-expiry: var(--color-text-maxcontrast);
 }
 
 .ncLockedBanner__icon {
@@ -225,7 +229,7 @@ function onUnlock() {
 
 .ncLockedBanner__expiry {
 	margin: var(--default-grid-baseline) 0 0;
-	color: var(--color-text-maxcontrast);
+	color: var(--locked-banner-tone-expiry);
 }
 
 .ncLockedBanner__action {
