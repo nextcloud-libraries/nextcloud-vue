@@ -213,7 +213,8 @@ module.exports = async () => {
 					'src/components/NcSettings*/*.vue',
 					'src/components/NcTextArea/*.vue',
 					'src/components/NcUserBubble/NcUserBubbleDiv.vue',
-					'src/components/NcFormBox/NcFormBoxItem.vue',
+					'src/components/NcFormBox*/*.vue',
+					'src/components/NcFormGroup/NcFormGroup.vue',
 					'src/components/NcIconToggleSwitch/NcIconToggleSwitch.vue',
 				],
 				sections: [
@@ -294,6 +295,15 @@ module.exports = async () => {
 						components: [
 							'src/components/Nc*Field/*.vue',
 							'src/components/NcTextArea/*.vue',
+						],
+					},
+					{
+						name: 'NcFormBox',
+						components: [
+							// Put FormBox component first
+							'src/components/NcFormBox/NcFormBox.vue',
+							'src/components/NcFormBox[A-Z]*/*.vue',
+							'src/components/NcFormGroup/NcFormGroup.vue',
 						],
 					},
 					{
