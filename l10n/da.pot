@@ -21,7 +21,7 @@ msgid "A color with a HEX value {hex}"
 msgstr "En farve med en HEX-værdi {hex}"
 
 msgid "a few seconds ago"
-msgstr "et par sekunder siden"
+msgstr "for et par sekunder siden"
 
 #. TRANSLATORS: A color name for RGB(110, 166, 143)
 msgid "Acapulco"
@@ -62,7 +62,7 @@ msgstr "Avatar af {displayName}, {status}"
 
 #. TRANSLATORS: User status if the user is currently away from keyboard
 msgid "away"
-msgstr "væk"
+msgstr "ikke til stede"
 
 msgid "Back"
 msgstr "Tilbage"
@@ -130,7 +130,7 @@ msgid "Close time Picker"
 msgstr "Luk tidsvælger"
 
 msgid "Collapse menu"
-msgstr "Skjul menuen"
+msgstr "Fold menuen sammen"
 
 msgid "Color picker"
 msgstr "Farvevælger"
@@ -345,7 +345,7 @@ msgid "Next year"
 msgstr "Næste år"
 
 msgid "Nextcloud blue"
-msgstr "Nextcloud blue"
+msgstr "Nextcloud-blå"
 
 msgid "No color"
 msgstr "Ingen farve"
@@ -406,7 +406,7 @@ msgid "Open years overlay"
 msgstr "Åbn oversigt over år"
 
 msgid "Options"
-msgstr "Indstillinger"
+msgstr "Valgmuligheder"
 
 msgid "Password is secure"
 msgstr "Adgangskoden er sikker"
@@ -494,11 +494,11 @@ msgstr "Søgeresultater"
 #. FOR TRANSLATORS: If possible in your language an even shorter version of 'a
 #. few seconds ago'
 msgid "sec. ago"
-msgstr "sek. siden"
+msgstr "for få sek. siden"
 
 #. FOR TRANSLATORS: Shorter version of 'a few seconds ago'
 msgid "seconds ago"
-msgstr "sekunder siden"
+msgstr "for få sekunder siden"
 
 msgid "Select a tag"
 msgstr "Vælg et mærke"
@@ -519,7 +519,7 @@ msgid "Select time"
 msgstr "Vælg tidspunkt"
 
 msgid "Select time range"
-msgstr "Vælg tidsinterval"
+msgstr "Vælg tidsrum"
 
 msgid "Select week"
 msgstr "Vælg uge"
