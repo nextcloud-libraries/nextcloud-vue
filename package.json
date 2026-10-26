@@ -161,7 +161,7 @@
     "vue-material-design-icons": "^5.4.0",
     "vue-styleguidist": "^4.72.4",
     "vue-tsc": "^3.3.13",
-    "webpack": "^5.112.0",
+    "webpack": "^5.112.1",
     "webpack-merge": "^6.0.1"
   },
   "peerDependencies": {
