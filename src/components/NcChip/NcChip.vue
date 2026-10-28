@@ -398,9 +398,9 @@ const hasIcon = () => Boolean(props.iconPath || props.iconSvg || !!slots.icon)
 	}
 
 	&__actions {
-		// Adjust action size to match chip size, but keep it at least 24px to click or
+		// Adjust action size to match chip size, but keep it at least --clickable-area-small to click or
 		// tap; on a smaller chip it overlaps the edges without making the chip taller
-		--chip-actions-size: max(24px, var(--chip-size));
+		--chip-actions-size: max(var(--clickable-area-small), var(--chip-size));
 		// Do neither grow nor shrink, size is fixed
 		flex: 0 0 var(--chip-actions-size);
 		margin-block: calc((var(--chip-size) - var(--chip-actions-size)) / 2);
