@@ -7,6 +7,19 @@
 
 All notable changes to this project will be documented in this file.
 
+## [v9.14.1](https://github.com/nextcloud-libraries/nextcloud-vue/tree/v9.14.1) (2026-10-29)
+[Full Changelog](https://github.com/nextcloud-libraries/nextcloud-vue/compare/v9.14.0...v9.14.1)
+
+### 🐛 Fixed bugs
+* fix(isDarkTheme): read the native color-scheme (Nextcloud 36+) [\#9078](https://github.com/nextcloud-libraries/nextcloud-vue/pull/9078) \([skjnldsv](https://github.com/skjnldsv)\)
+
+### Other Changes
+* docs: group NcFormBox components in one section [\#9117](https://github.com/nextcloud-libraries/nextcloud-vue/pull/9117) \([skjnldsv](https://github.com/skjnldsv)\)
+* chore: include Assisted-by checkbox in PR template [\#9094](https://github.com/nextcloud-libraries/nextcloud-vue/pull/9094) \([Antreesy](https://github.com/Antreesy)\)
+* chore(deps): allow for peerDependency `@nextcloud/dialogs: ^7.4.0 || ^8.0.0` [\#9130](https://github.com/nextcloud-libraries/nextcloud-vue/pull/9130) \([Antreesy](https://github.com/Antreesy)\)
+* Updated dependencies
+* Updated translations
+
 ## [v9.14.0](https://github.com/nextcloud-libraries/nextcloud-vue/tree/v9.14.0) (2026-10-22)
 [Full Changelog](https://github.com/nextcloud-libraries/nextcloud-vue/compare/v9.13.1...v9.14.0)
 
