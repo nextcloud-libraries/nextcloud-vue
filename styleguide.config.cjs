@@ -357,6 +357,11 @@ module.exports = async () => {
 			url: 'https://github.com/nextcloud-libraries/nextcloud-vue',
 		},
 
+		styleguideComponents: {
+			// Its own name, so it no longer shares a cached stylesheet with the props table
+			'Markdown/Table/TableRenderer$': path.join(__dirname, 'styleguide/components/MarkdownTableRenderer.js'),
+		},
+
 		// see https://github.com/styleguidist/react-styleguidist/blob/master/src/client/styles/theme.js
 		theme: {
 			maxWidth: '900px',
