@@ -213,7 +213,11 @@ const iconPath = computed(() => {
 		display: flex;
 		flex-shrink: 0;
 		align-items: center;
+		align-self: center;
 		gap: var(--default-grid-baseline);
+		// Only one line tall, sticking out into the padding, so a button does not make the
+		// note card taller and is centered on the text like the icon
+		margin-block: calc((1lh - var(--default-clickable-area)) / 2);
 	}
 
 	&__icon {
