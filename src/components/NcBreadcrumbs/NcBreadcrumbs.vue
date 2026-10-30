@@ -16,7 +16,7 @@ is dropped on a creadcrumb.
 ```vue
 <template>
 	<div>
-		<div class="container">
+		<div class="container" @click.capture="stayOnPage">
 			<NcBreadcrumbs @dropped="dropped">
 				<NcBreadcrumb name="Home"
 					title="Title of the Home folder"
@@ -68,15 +68,24 @@ is dropped on a creadcrumb.
 				</template>
 			</NcBreadcrumbs>
 		</div>
-		<br />
-		<div class="dragme" draggable="true" @dragstart="dragStart">
-			<span>Drag me onto the breadcrumbs.</span>
+		<div class="drag-area">
+			<div class="dragme" draggable="true" @dragstart="dragStart">
+				<DragVertical :size="20" />
+				<span>Drag me onto a folder</span>
+			</div>
+			<p class="drop-result" aria-live="polite">
+				{{ lastDrop }}
+				<template v-if="droppedOnHome">
+					<br>The Home crumb handled the drop itself as well.
+				</template>
+			</p>
 		</div>
 	</div>
 </template>
 
 <script>
 import Download from 'vue-material-design-icons/Download'
+import DragVertical from 'vue-material-design-icons/DragVertical'
 import Folder from 'vue-material-design-icons/Folder'
 import MenuDown from 'vue-material-design-icons/MenuDown'
 import Plus from 'vue-material-design-icons/Plus'
@@ -85,20 +94,35 @@ import ShareVariant from 'vue-material-design-icons/ShareVariant'
 export default {
 	components: {
 		Download,
+		DragVertical,
 		Folder,
 		MenuDown,
 		Plus,
 		ShareVariant,
 	},
+	data() {
+		return {
+			lastDrop: 'Not dropped yet. Folder 2 and Folder 5 do not accept drops.',
+			droppedOnHome: false,
+		}
+	},
 	methods: {
 		dropped(e, path) {
-			alert('Global drop on ' + path)
+			this.lastDrop = 'Dropped on ' + path
 		},
 		droppedOnCrumb(e, path) {
-			alert('Drop on crumb ' + path)
+			this.droppedOnHome = true
 		},
 		dragStart(e) {
 			e.dataTransfer.setData('text/plain', 'dragging')
+			this.lastDrop = 'Not dropped yet. Folder 2 and Folder 5 do not accept drops.'
+			this.droppedOnHome = false
+		},
+		// The example only shows the breadcrumbs, so their links do not leave the page
+		stayOnPage(e) {
+			if (e.target.closest('a')) {
+				e.preventDefault()
+			}
 		},
 	}
 }
@@ -109,11 +133,92 @@ export default {
 	width: 100%;
 }
 
+.drag-area {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	gap: 12px;
+	margin-top: 12px;
+}
+
 .dragme {
-	display: block;
-	width: 100px;
+	display: inline-flex;
+	align-items: center;
+	gap: 4px;
 	height: var(--default-clickable-area);
-	background-color: var(--color-background-dark);
+	padding: 0 12px 0 8px;
+	border: 2px dashed var(--color-border-maxcontrast);
+	border-radius: var(--border-radius-element);
+	background-color: var(--color-background-hover);
+	white-space: nowrap;
+	cursor: grab;
+}
+
+.drop-result {
+	margin: 0;
+	color: var(--color-text-maxcontrast);
+}
+</style>
+```
+
+### Breadcrumbs as data
+
+Instead of `NcBreadcrumb` components, the trail can be passed as an array in `crumbs`, root first. Each crumb has a `name`, and a `to` for vue-router or an `href` to link to, an optional `title`, an optional `iconPath`, for example one from `@mdi/js`, and `disableDrop` to not accept drops on it. Like the `icon` slot of `NcBreadcrumb`, an icon is shown instead of the name, and the name becomes its accessible label. The first crumb gets the `root-icon` the same way, unless it has an `iconPath`. The last crumb is the current location and is marked with `aria-current="page"`. Give it its link as well: it then stays a link, as the breadcrumb pattern asks, keeps the keyboard focus when a click on a crumb makes that one the last, and reports its link when something is dropped on it. When `crumbs` is set, the `NcBreadcrumb` components in the default slot are not used.
+
+A click on a crumb emits `crumbClick` with the crumb, its index and the click event, for an app that navigates without vue-router. Call `preventDefault()` on the event to stop the link from being followed, with `href` and with `to`. In the example below, a click on a crumb goes up to that folder, and the buttons go back down.
+
+```vue
+<template>
+	<div>
+		<NcBreadcrumbs :crumbs="crumbs" @crumb-click="goUp" />
+		<div v-if="deeper.length > 0" class="deeper">
+			<NcButton
+				v-for="(name, index) in deeper"
+				:key="name"
+				size="small"
+				variant="tertiary"
+				@click="depth += index + 1">
+				Go to {{ name }}
+			</NcButton>
+		</div>
+	</div>
+</template>
+
+<script>
+export default {
+	data() {
+		return {
+			trail: ['Home', 'Team vault', 'Secrets', 'Production'],
+			depth: 3,
+		}
+	},
+
+	computed: {
+		crumbs() {
+			return this.trail.slice(0, this.depth + 1).map((name) => ({ name, href: '#' }))
+		},
+
+		deeper() {
+			return this.trail.slice(this.depth + 1)
+		},
+	},
+
+	methods: {
+		goUp(crumb, index, event) {
+			// Stay on this page: the example only shows the trail
+			event.preventDefault()
+			this.depth = index
+		},
+	},
+}
+</script>
+
+<style scoped>
+.deeper {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 4px;
+	margin-top: 8px;
 }
 </style>
 ```
@@ -130,6 +235,7 @@ import NcActionLink from '../NcActionLink/index.js'
 import NcActionRouter from '../NcActionRouter/index.js'
 import NcActions from '../NcActions/index.js'
 import NcBreadcrumb from '../NcBreadcrumb/index.js'
+import NcIconSvgWrapper from '../NcIconSvgWrapper/index.ts'
 
 const crumbClass = 'vue-crumb'
 
@@ -160,9 +266,23 @@ export default {
 			type: String,
 			default: null,
 		},
+
+		/**
+		 * The breadcrumbs as data instead of `NcBreadcrumb` components, root first.
+		 * An `iconPath` is shown instead of the name, like the `icon` slot of `NcBreadcrumb`.
+		 * The last crumb is the current location and gets `aria-current="page"`.
+		 * When set, the `NcBreadcrumb` components in the default slot are not used.
+		 *
+		 * @type {Array<{name: string, to?: string|object, href?: string, title?: string, iconPath?: string, disableDrop?: boolean}>}
+		 * @since 9.15.0
+		 */
+		crumbs: {
+			type: Array,
+			default: () => [],
+		},
 	},
 
-	emits: ['dropped'],
+	emits: ['dropped', 'crumbClick'],
 	data() {
 		return {
 			/**
@@ -486,6 +606,41 @@ export default {
 		isBreadcrumb(vnode) {
 			return vnode?.type?.name === 'NcBreadcrumb'
 		},
+
+		/**
+		 * Create the NcBreadcrumb components for the `crumbs` prop.
+		 * The last crumb is the current location, still linked like the others.
+		 *
+		 * @return {Array} The created VNodes
+		 */
+		crumbsFromProp() {
+			return this.crumbs.map((crumb, index) => {
+				const isCurrent = index === this.crumbs.length - 1
+				return h(NcBreadcrumb, {
+					key: `crumb-${index}`,
+					name: crumb.name,
+					title: crumb.title ?? null,
+					to: crumb.to,
+					href: crumb.href,
+					disableDrop: crumb.disableDrop ?? false,
+					'aria-current': isCurrent ? 'page' : undefined,
+					// Capture, so the listener runs before a RouterLink starts to navigate
+					// and preventDefault() can still stop it
+					onClickCapture: (event) => {
+						/**
+						 * A crumb of the `crumbs` prop was clicked.
+						 * Call `preventDefault()` on the event to stop its link from being followed.
+						 *
+						 * @param {object} crumb The clicked crumb
+						 * @param {number} index Its index in `crumbs`
+						 * @param {MouseEvent} event The click event
+						 * @since 9.15.0
+						 */
+						this.$emit('crumbClick', crumb, index, event)
+					},
+				}, crumb.iconPath ? { icon: () => h(NcIconSvgWrapper, { path: crumb.iconPath, size: 20 }) } : undefined)
+			})
+		},
 	},
 
 	/**
@@ -494,10 +649,11 @@ export default {
 	 * @return {object|undefined} The created VNode
 	 */
 	render() {
-		// Get the breadcrumbs
-		let breadcrumbs = []
+		// Get the breadcrumbs, from the crumbs prop or else from the slot
+		let breadcrumbs = this.crumbs.length > 0 ? this.crumbsFromProp() : []
 		// We have to iterate over all slot elements
-		this.$slots.default?.().forEach((vnode) => {
+		const slotNodes = this.crumbs.length > 0 ? [] : (this.$slots.default?.() ?? [])
+		slotNodes.forEach((vnode) => {
 			if (this.isBreadcrumb(vnode)) {
 				breadcrumbs.push(vnode)
 				return
