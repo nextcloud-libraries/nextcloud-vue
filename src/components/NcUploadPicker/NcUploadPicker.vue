@@ -18,6 +18,7 @@ import NcButton from '../NcButton/NcButton.vue'
 import NcFilePicker from '../NcFilePicker/NcFilePicker.vue'
 import NcIconSvgWrapper from '../NcIconSvgWrapper/NcIconSvgWrapper.vue'
 import NcProgressBar from '../NcProgressBar/NcProgressBar.vue'
+import UploadManager from './UploadManager.vue'
 import { useFormatRelativeTime } from '../../composables/index.ts'
 import { t } from '../../l10n.ts'
 import { createElementId } from '../../utils/createElementId.ts'
@@ -136,6 +137,7 @@ onUnmounted(() => {
 watch(() => props.destination, () => setDestination(props.destination), { immediate: true })
 
 const isPaused = ref(uploadManager.status === UploaderStatus.PAUSED)
+const isPreparing = ref(false)
 /** Handle uploader paused event */
 function onUploaderPaused() {
 	updateUploadStatus()
@@ -196,8 +198,10 @@ const etaTimeFormatted = useFormatRelativeTime(etaTimeRaw, { ignoreSeconds: true
 const etaTime = computed(() => etaTimeRaw.value === Infinity ? t('Estimating …') : etaTimeFormatted.value)
 /** Update the ETA and speed values */
 function updateEta() {
-	etaRaw.value = uploadManager.statistics.eta === Infinity ? Infinity : (uploadManager.statistics.eta * 1000)
-	etaSpeed.value = uploadManager.statistics.speedReadable
+	updateUploadStatus()
+	const statistics = uploadManager.statistics
+	etaRaw.value = Number.isFinite(statistics.eta) && statistics.eta >= 0 ? statistics.eta * 1000 : Infinity
+	etaSpeed.value = statistics.speed > 0 && Number.isFinite(statistics.speed) ? statistics.speedReadable : ''
 	etaProgress.value = uploadManager.statistics.progress
 }
 
@@ -225,6 +229,7 @@ function onUploadFinished(event: CustomEvent<IUpload>) {
  * @param event - The upload started event
  */
 function onUploadStarted(event: CustomEvent<IUpload>) {
+	isPreparing.value = false
 	updateUploadStatus()
 	emit('upload:started', event.detail)
 }
@@ -235,12 +240,14 @@ function onUploadStarted(event: CustomEvent<IUpload>) {
  * @param files - The files to upload
  */
 async function onPick(files: File[]) {
+	isPreparing.value = true
 	try {
 		await uploadManager
 			.batchUpload('', files, { callback: handleConflicts })
 	} catch (error) {
 		logger.debug('Error while uploading', { error })
 	} finally {
+		isPreparing.value = false
 		reset()
 	}
 }
@@ -323,34 +330,36 @@ function onBeforePageUnload(event: BeforeUnloadEvent) {
 		</template>
 
 		<!-- Progressbar and status -->
-		<div
-			v-show="isUploading"
-			:class="[$style.uploadPicker_progress, {
-				[$style.uploadPicker_progress__uploading]: isUploading,
-				[$style.uploadPicker_progress__paused]: isPaused,
-			}]">
-			<NcProgressBar
-				:ariaLabel="t('Upload progress')"
-				:ariaDescribedby="progressTimeId"
-				:error="hasFailure"
-				:value="etaProgress"
-				size="medium" />
-			<p :id="progressTimeId" :class="$style.uploadPicker_progressLabel">
-				<span v-if="isPaused">
-					{{ t('paused') /* TRANSLATORS: State of the current upload - it is paused */ }}
-				</span>
-				<span v-else-if="isOnlyAssembling">
-					{{ t('assembling') /* TRANSLATORS: State of the current upload - chunks of the uploaded files are being assembled into the final file */ }}
-				</span>
-				<span v-else :title="`${etaTime} (${etaSpeed})`">
-					{{ etaTime }}
-					<!-- the speed is included in the tooltip / title so we only show it in the text content if there is enough space (not showing "a few seconds left") -->
-					<span v-if="etaSpeed && etaRaw > 31000" :class="$style.uploadPicker_progressLabelSpeed">
-						({{ etaSpeed }})
+		<UploadManager v-slot="{ progress }" :preparing="isPreparing" :uploading="isUploading">
+			<div
+				v-show="isUploading"
+				:class="[$style.uploadPicker_progress, {
+					[$style.uploadPicker_progress__uploading]: isUploading,
+					[$style.uploadPicker_progress__paused]: isPaused,
+				}]">
+				<NcProgressBar
+					:ariaLabel="t('Upload progress')"
+					:ariaDescribedby="progressTimeId"
+					:error="hasFailure"
+					:value="progress ?? etaProgress"
+					size="medium" />
+				<p :id="progressTimeId" :class="$style.uploadPicker_progressLabel">
+					<span v-if="isPaused">
+						{{ t('paused') /* TRANSLATORS: State of the current upload - it is paused */ }}
 					</span>
-				</span>
-			</p>
-		</div>
+					<span v-else-if="isOnlyAssembling">
+						{{ t('assembling') /* TRANSLATORS: State of the current upload - chunks of the uploaded files are being assembled into the final file */ }}
+					</span>
+					<span v-else :title="`${etaTime} (${etaSpeed})`">
+						{{ etaTime }}
+						<!-- the speed is included in the tooltip / title so we only show it in the text content if there is enough space (not showing "a few seconds left") -->
+						<span v-if="etaSpeed && etaRaw > 31000" :class="$style.uploadPicker_progressLabelSpeed">
+							({{ etaSpeed }})
+						</span>
+					</span>
+				</p>
+			</div>
+		</UploadManager>
 
 		<!-- Cancel upload button -->
 		<NcButton
@@ -369,7 +378,7 @@ function onBeforePageUnload(event: BeforeUnloadEvent) {
 <style module>
 .uploadPicker_progress {
 	--upload-picker-progress-width: 200px;
-	width: var(--upload-picker-progress-width);
+	width: 100%;
 	/* Animate show/hide */
 	max-width: 0;
 	transition: max-width var(--animation-quick) ease-in-out;
@@ -381,7 +390,7 @@ function onBeforePageUnload(event: BeforeUnloadEvent) {
 	max-width: var(--upload-picker-progress-width);
 
 	/* Visually more pleasing spacing */
-	margin-inline: 8px 20px;
+	margin-inline: 0;
 }
 
 .uploadPicker_progress__paused {
@@ -389,9 +398,8 @@ function onBeforePageUnload(event: BeforeUnloadEvent) {
 }
 
 .uploadPicker_progressLabel {
-	overflow: hidden;
-	white-space: nowrap;
-	text-overflow: ellipsis;
+	white-space: normal;
+	overflow-wrap: anywhere;
 }
 
 .uploadPicker_progressLabelSpeed{
