@@ -161,6 +161,40 @@ describe('NcUploadPicker: uploading', () => {
 
 	const file = () => new File(['content'], 'file.txt', { type: 'text/plain' })
 
+	it('shows preparation immediately and clears it when the queue starts', async () => {
+		let finish!: (uploads: IUpload[]) => void
+		uploader.batchUpload.mockImplementationOnce(() => new Promise((resolve) => {
+			finish = resolve
+		}))
+		const wrapper = mountPicker()
+		await pickFiles(wrapper, file())
+		expect(wrapper.text()).toContain('Preparing uploads')
+		uploader.status = UploaderStatus.UPLOADING
+		await uploader.emit('uploadStarted', { source: 'file.txt' })
+		expect(wrapper.text()).not.toContain('Preparing uploads')
+		finish([])
+		await nextTick()
+	})
+
+	it.each([NaN, 0, 0.1, -1, Infinity])('ignores unusable transfer estimate %s', async (eta) => {
+		const wrapper = mountPicker()
+		uploader.status = UploaderStatus.UPLOADING
+		await uploader.emit('uploadStarted', { source: 'file.txt' })
+		uploader.statistics = { eta, progress: 10, speed: Infinity, speedReadable: 'invalid speed' }
+		await uploader.emit('uploadProgress')
+		expect(progressLabel(wrapper)).toBe('Estimating …')
+		expect(wrapper.text()).not.toContain('invalid speed')
+	})
+
+	it('formats a short remaining time as a future duration', async () => {
+		const wrapper = mountPicker()
+		uploader.status = UploaderStatus.UPLOADING
+		await uploader.emit('uploadStarted', { source: 'file.txt' })
+		uploader.statistics = { eta: 20, progress: 10, speed: 1000, speedReadable: '1 KB/s' }
+		await uploader.emit('uploadProgress')
+		expect(progressLabel(wrapper)).toBe('in 20 seconds')
+	})
+
 	it('uploads the picked files to the destination', async () => {
 		const wrapper = mountPicker()
 
