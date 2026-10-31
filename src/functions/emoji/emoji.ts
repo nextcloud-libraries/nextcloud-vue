@@ -87,6 +87,21 @@ export function emojiAddRecent(emojiOrEmojiData: EmojiData | string | null): voi
 }
 
 /**
+ * Get the short name of a native emoji, e.g. `sweat_smile` for 😅
+ *
+ * @param native the native unicode emoji
+ * @return the short name, or null if the emoji is unknown
+ */
+export function emojiGetShortName(native: string): string | null {
+	if (!emojiIndex) {
+		emojiIndex = new EmojiIndex(data)
+	}
+	// Emojis may be typed without the emoji presentation selector (U+FE0F), e.g. ❤ instead of ❤️
+	const emoji = emojiIndex.nativeEmoji(native) ?? emojiIndex.nativeEmoji(native + '️')
+	return emoji?.short_name ?? null
+}
+
+/**
  * Get the current skin tone index used for emojis
  *
  * @return The skin tone
