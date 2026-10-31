@@ -47,7 +47,7 @@ declare function emojiAddRecent(emojiData: { id: string }): void
  * @param native the native unicode emoji
  * @return the short name, or null if the emoji is unknown
  */
-declare function emojiGetShortName(native: string): string | null
+declare function emojiGetShortName(native: string): Promise<string | null>
 
 /**
  * Get the current skin tone index used for emojis

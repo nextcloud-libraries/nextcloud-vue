@@ -92,7 +92,7 @@ export function emojiAddRecent(emojiOrEmojiData: EmojiData | string | null): voi
  * @param native the native unicode emoji
  * @return the short name, or null if the emoji is unknown
  */
-export function emojiGetShortName(native: string): string | null {
+export async function emojiGetShortName(native: string): Promise<string | null> {
 	if (!emojiIndex) {
 		emojiIndex = new EmojiIndex(data)
 	}
