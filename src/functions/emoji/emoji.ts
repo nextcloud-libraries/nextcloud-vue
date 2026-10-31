@@ -96,8 +96,8 @@ export function emojiGetShortName(native: string): string | null {
 	if (!emojiIndex) {
 		emojiIndex = new EmojiIndex(data)
 	}
-	// Emojis may be typed without the emoji presentation selector (U+FE0F), e.g. ❤ instead of ❤️
-	const emoji = emojiIndex.nativeEmoji(native) ?? emojiIndex.nativeEmoji(native + '️')
+	// Emojis may be typed without the emoji presentation selector, e.g. U+2764 instead of U+2764 U+FE0F
+	const emoji = emojiIndex.nativeEmoji(native) ?? emojiIndex.nativeEmoji(native + '\uFE0F')
 	return emoji?.short_name ?? null
 }
 

@@ -13,6 +13,9 @@ describe('emoji: emojiGetShortName', () => {
 		['👨‍👩‍👧', 'man-woman-girl'],
 		['❤️', 'heart'],
 		['❤', 'heart'],
+		['❤\uFE0F', 'heart'],
+		['\u2764\uFE0F', 'heart'],
+		['\u2764', 'heart'],
 	])('returns the short name of %s', (native, shortName) => {
 		expect(emojiGetShortName(native)).toBe(shortName)
 	})
