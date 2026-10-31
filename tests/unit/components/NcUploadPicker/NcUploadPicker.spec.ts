@@ -176,14 +176,23 @@ describe('NcUploadPicker: uploading', () => {
 		await nextTick()
 	})
 
-	it('ignores invalid transfer estimates', async () => {
+	it.each([NaN, 0, 0.1, -1, Infinity])('ignores unusable transfer estimate %s', async (eta) => {
 		const wrapper = mountPicker()
 		uploader.status = UploaderStatus.UPLOADING
 		await uploader.emit('uploadStarted', { source: 'file.txt' })
-		uploader.statistics = { eta: NaN, progress: 10, speed: Infinity, speedReadable: 'invalid speed' }
+		uploader.statistics = { eta, progress: 10, speed: Infinity, speedReadable: 'invalid speed' }
 		await uploader.emit('uploadProgress')
 		expect(progressLabel(wrapper)).toBe('Estimating …')
 		expect(wrapper.text()).not.toContain('invalid speed')
+	})
+
+	it('formats a short remaining time as a future duration', async () => {
+		const wrapper = mountPicker()
+		uploader.status = UploaderStatus.UPLOADING
+		await uploader.emit('uploadStarted', { source: 'file.txt' })
+		uploader.statistics = { eta: 20, progress: 10, speed: 1000, speedReadable: '1 KB/s' }
+		await uploader.emit('uploadProgress')
+		expect(progressLabel(wrapper)).toBe('in 20 seconds')
 	})
 
 	it('uploads the picked files to the destination', async () => {

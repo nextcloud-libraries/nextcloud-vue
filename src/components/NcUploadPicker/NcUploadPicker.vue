@@ -194,13 +194,13 @@ const etaProgress = ref(0)
 const etaSpeed = ref('')
 const etaRaw = ref<number>(Infinity)
 const etaTimeRaw = computed(() => etaRaw.value === Infinity ? Infinity : new Date(Date.now() + etaRaw.value))
-const etaTimeFormatted = useFormatRelativeTime(etaTimeRaw, { ignoreSeconds: true })
-const etaTime = computed(() => etaTimeRaw.value === Infinity ? t('Estimating …') : etaTimeFormatted.value)
+const etaTimeFormatted = useFormatRelativeTime(etaTimeRaw)
+const etaTime = computed(() => etaTimeRaw.value === Infinity || Number(etaTimeRaw.value) <= Date.now() ? t('Estimating …') : etaTimeFormatted.value)
 /** Update the ETA and speed values */
 function updateEta() {
 	updateUploadStatus()
 	const statistics = uploadManager.statistics
-	etaRaw.value = Number.isFinite(statistics.eta) && statistics.eta >= 0 ? statistics.eta * 1000 : Infinity
+	etaRaw.value = Number.isFinite(statistics.eta) && statistics.eta >= 1 ? statistics.eta * 1000 : Infinity
 	etaSpeed.value = statistics.speed > 0 && Number.isFinite(statistics.speed) ? statistics.speedReadable : ''
 	etaProgress.value = uploadManager.statistics.progress
 }
