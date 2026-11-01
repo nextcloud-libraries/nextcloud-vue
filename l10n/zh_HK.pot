@@ -248,7 +248,7 @@ msgid "Go back to the list"
 msgstr "返回清單"
 
 msgid "Gold"
-msgstr "Gold"
+msgstr "金色"
 
 msgid "Hide details"
 msgstr "隱藏詳情"
