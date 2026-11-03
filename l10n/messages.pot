@@ -125,6 +125,9 @@ msgstr ""
 msgid "Color picker"
 msgstr ""
 
+msgid "Completed"
+msgstr ""
+
 msgid "Confirm changes"
 msgstr ""
 
@@ -560,6 +563,9 @@ msgid "Start slideshow"
 msgstr ""
 
 msgid "Start typing to search"
+msgstr ""
+
+msgid "Steps"
 msgstr ""
 
 msgid "Submit"
