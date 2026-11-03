@@ -78,6 +78,18 @@ window.OC = {
 }
 window.OCA = {}
 
+// Icons as provided by the server, the styleguide sprite contains all icons
+const iconsState = document.createElement('input')
+iconsState.type = 'hidden'
+iconsState.id = 'initial-state-core-icons'
+iconsState.value = btoa(JSON.stringify({
+	iconUrl: '/core/img/icons/{name}.svg',
+	spriteUrl: '/core/img/icons.svg',
+	// eslint-disable-next-line no-undef -- added by webpack
+	spriteIcons: NEXTCLOUD_ICONS,
+}))
+document.documentElement.append(iconsState)
+
 /**
  * From server util.js
  *

@@ -6,8 +6,8 @@
 <script setup lang="ts">
 import type { NcIconName } from './types.d.ts'
 
-import { generateFilePath } from '@nextcloud/router'
 import { computed } from 'vue'
+import { getIconHref } from './iconHref.ts'
 
 const props = withDefaults(defineProps<{
 	/**
@@ -43,7 +43,7 @@ const props = withDefaults(defineProps<{
 	size: 20,
 })
 
-const href = computed(() => generateFilePath('core', 'img', 'icons.svg') + `#i-${props.icon}`)
+const href = computed(() => getIconHref(props.icon))
 const cssSize = computed(() => `${props.size}px`)
 </script>
 
@@ -59,7 +59,7 @@ const cssSize = computed(() => `${props.size}px`)
 		<svg
 			:class="$style.icon__svg"
 			xmlns="http://www.w3.org/2000/svg">
-			<use :href />
+			<use v-if="href" :href />
 		</svg>
 	</span>
 </template>
