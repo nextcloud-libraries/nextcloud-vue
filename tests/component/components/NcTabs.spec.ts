@@ -43,6 +43,18 @@ for (const key of ['Enter', ' ']) {
 	})
 }
 
+test('reaches a disabled tab with the arrow keys and shows its focus outline in full', async ({ mount, page }) => {
+	await mount(NcTabs, {
+		props: { tabs: [...tabs, { id: 'history', name: 'History', disabled: true }], modelValue: 'details', ariaLabel: 'Document' },
+	})
+	await page.keyboard.press('Tab')
+	await page.keyboard.press('End')
+	const history = page.getByRole('tab', { name: 'History' })
+	await expect(history).toBeFocused()
+	await expect(history).toHaveCSS('opacity', '1')
+	await expect(history).toHaveCSS('outline-style', 'solid')
+})
+
 test('marks the selected tab in forced colors', async ({ mount, page }) => {
 	await page.emulateMedia({ forcedColors: 'active' })
 	await mount(NcTabs, { props: { tabs, modelValue: 'details', ariaLabel: 'Document' } })

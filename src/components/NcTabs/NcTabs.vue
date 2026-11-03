@@ -353,9 +353,13 @@ function tabClass(tab: NcTabsTab) {
 		outline-offset: 2px;
 	}
 
+	// Only the content is faded, so the focus outline of a disabled tab stays visible
 	&[aria-disabled='true'] {
 		cursor: default;
-		opacity: .5;
+
+		> * {
+			opacity: .5;
+		}
 	}
 }
 
