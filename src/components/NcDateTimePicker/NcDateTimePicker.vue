@@ -136,6 +136,49 @@ export default {
 </style>
 ```
 
+### Presets
+
+With `presets` the picker shows quick choices next to the calendar, such as "Last 7 days" or "This month".
+Each preset has a `label` and a `value` with the same shape as the model value, so a `[Date, Date]` for a range picker.
+The app computes the dates, so they can follow its own rules, for example where a week starts.
+
+```vue
+<template>
+	<div>
+		<NcDateTimePicker
+			v-model="range"
+			type="date-range"
+			:presets />
+		<p>Start: {{ range[0].toDateString() }}, end: {{ range[1].toDateString() }}</p>
+	</div>
+</template>
+<script>
+/**
+ * @param {number} days - The number of days from today, negative for the past
+ */
+function fromToday(days) {
+	const date = new Date()
+	date.setDate(date.getDate() + days)
+	return date
+}
+
+export default {
+	data() {
+		const today = new Date()
+		return {
+			range: [fromToday(-6), today],
+			presets: [
+				{ label: 'Last 7 days', value: [fromToday(-6), today] },
+				{ label: 'Last 30 days', value: [fromToday(-29), today] },
+				{ label: 'This month', value: [new Date(today.getFullYear(), today.getMonth(), 1), new Date(today.getFullYear(), today.getMonth() + 1, 0)] },
+				{ label: 'This year', value: [new Date(today.getFullYear(), 0, 1), new Date(today.getFullYear(), 11, 31)] },
+			],
+		}
+	},
+}
+</script>
+```
+
 ### Time zone aware date picker
 
 The datepicker can optionally include a picker for the preferred time zone. The selected time does not factor in the
@@ -301,6 +344,13 @@ import useDateFnsLocale from './useDateFnsLocale.ts'
 type LibraryFormatOptions = VueDatePickerProps['format']
 type LibraryTextInputOptions = VueDatePickerProps['textInput']
 
+export interface NcDateTimePickerPreset {
+	/** The name of the preset, shown on its button */
+	label: string
+	/** The date, or for a range picker the start and end date, the preset selects */
+	value: Date | [Date, Date]
+}
+
 /**
  * The preselected IANA time zone ID for the time zone picker,
  * only relevant in combination with `show-timezone-select`.
@@ -398,6 +448,15 @@ const props = withDefaults(defineProps<{
 	placeholder?: string
 
 	/**
+	 * Quick choices shown next to the calendar, for example "Last 7 days".
+	 * The value of a preset has the same shape as the model value: a `Date`, or for a range picker `[Date, Date]`.
+	 * Only used by the `date`, `datetime`, `date-range` and `datetime-range` types.
+	 *
+	 * @since 9.15.0
+	 */
+	presets?: NcDateTimePickerPreset[]
+
+	/**
 	 * Include a timezone picker within the menu.
 	 * Please note that the dates are still bound to the locale timezone
 	 * and any conversion needs to be done by the app itself.
@@ -442,6 +501,7 @@ const props = withDefaults(defineProps<{
 	modelValue: null,
 	// set by fallbackPlaceholder
 	placeholder: undefined,
+	presets: () => [],
 	type: 'date',
 	inline: false,
 })
@@ -657,6 +717,24 @@ const pickerType = computed(() => ({
 		: undefined,
 }))
 
+/**
+ * The presets in the shape of the library.
+ * The other types take a different model value in the library, so presets are only passed for these.
+ */
+const presetTypes = ['date', 'datetime', 'date-range', 'datetime-range']
+const presetDates = computed(() => {
+	if (!presetTypes.includes(props.type)) {
+		return []
+	}
+	return props.presets.map(({ label, value }) => ({ label, value }))
+})
+
+watchEffect(() => {
+	if (props.presets.length > 0 && !presetTypes.includes(props.type)) {
+		warn(`[NcDateTimePicker] The \`presets\` property is only used by the ${presetTypes.join(', ')} types, not by "${props.type}".`)
+	}
+})
+
 // Convert min/max Date into VueDatePicker's time object shape
 const minTime = computed(() => props.min && { hours: props.min.getHours(), minutes: props.min.getMinutes(), seconds: props.min.getSeconds() })
 const maxTime = computed(() => props.max && { hours: props.max.getHours(), minutes: props.max.getMinutes(), seconds: props.max.getSeconds() })
@@ -849,6 +927,7 @@ function sameDay(a: Date, b: Date): boolean {
 			:clearable
 			:dayNames
 			:placeholder="placeholder ?? placeholderFallback"
+			:presetDates
 			:format="realFormat"
 			:locale="realLocale"
 			:formatLocale="dateFnsLocale"
