@@ -3,6 +3,7 @@
  * SPDX-License-Identifier: AGPL-3.0-or-later
  */
 
+import { mdiPaletteOutline } from '@mdi/js'
 import { expect, test } from '@playwright/experimental-ct-vue'
 import NcCard from '../../../src/components/NcCard/NcCard.vue'
 
@@ -23,6 +24,17 @@ test('follows the link from the empty space of the content and the footer, but n
 	await page.evaluate(() => history.replaceState(null, '', '#'))
 	await card.locator('.footer-button').click()
 	await expect(page).not.toHaveURL(/#followed$/)
+})
+
+test('lines up the icon with the description below it', async ({ mount }) => {
+	const card = await mount(NcCard, {
+		props: { name: 'Design', description: 'The design team', iconPath: mdiPaletteOutline, style: 'width: 400px' },
+	})
+	const [icon, description] = await Promise.all([
+		card.locator('svg').boundingBox(),
+		card.getByText('The design team').boundingBox(),
+	])
+	expect(icon!.x).toBeCloseTo(description!.x, 0)
 })
 
 test('marks the active card in forced colors', async ({ mount, page }) => {

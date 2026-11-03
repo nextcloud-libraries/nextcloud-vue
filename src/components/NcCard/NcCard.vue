@@ -224,7 +224,8 @@ const linkAttrs = computed(() => {
 		<div :class="$style.ncCard__header">
 			<div v-if="slots.icon || iconPath" :class="$style.ncCard__icon">
 				<slot name="icon">
-					<NcIconSvgWrapper :path="iconPath" />
+					<!-- Inline, so the icon is not centered in a clickable area and lines up with the text below -->
+					<NcIconSvgWrapper inline :path="iconPath" />
 				</slot>
 			</div>
 			<component :is="headingTag" :class="$style.ncCard__name">
