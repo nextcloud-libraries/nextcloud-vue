@@ -10,7 +10,9 @@ This component renders a row of tabs and the panel of the selected tab, for swit
 
 Pass the tabs in `tabs` and bind the selected tab's `id` with `v-model`. The content of a tab goes in the slot `panel-<id>`, for example `#panel-details`. Only the panel of the selected tab is rendered, so a panel starts afresh each time its tab is selected: keep state that must survive switching tabs, such as an unsaved form, outside the panel.
 
-A tab can have an icon, a count shown in a counter bubble, and can be disabled. The tabs follow the [ARIA tabs pattern](https://www.w3.org/WAI/ARIA/apg/patterns/tabs/): the arrow keys move between the tabs and select them, `Home` and `End` go to the first and last tab, and `Tab` moves on into the panel.
+When `v-model` does not match an enabled tab, for example a tab that is disabled while its content loads, the first enabled tab is shown, but the model is left as it is. The tab is shown once it matches an enabled tab.
+
+A tab can have an icon, a count shown in a counter bubble, and can be disabled. A disabled tab can still be reached with the arrow keys, so it is announced, but cannot be selected. The tabs follow the [ARIA tabs pattern](https://www.w3.org/WAI/ARIA/apg/patterns/tabs/) with manual activation: the arrow keys move the focus between the tabs, `Home` and `End` go to the first and last tab, `Enter` or `Space` selects the focused tab, and `Tab` moves on into the panel. So a panel is only rendered when its tab is selected, not each time the focus passes it.
 
 The tabs look like the tabs of the sidebar: the icon above the name, and the tabs share the width of the row. When the tabs do not fit, the row scrolls horizontally.
 
@@ -89,7 +91,7 @@ export default {
 <script setup lang="ts">
 import type { Slot } from 'vue'
 
-import { computed, nextTick, ref, useCssModule, watch } from 'vue'
+import { computed, ref, useCssModule } from 'vue'
 import { createElementId } from '../../utils/createElementId.ts'
 import { isLegacy34 } from '../../utils/legacy.ts'
 import { isRtl } from '../../utils/rtl.ts'
@@ -111,7 +113,7 @@ export interface NcTabsTab {
 
 /**
  * The `id` of the selected tab.
- * When it does not match an enabled tab, the first enabled tab is shown and becomes the model.
+ * When it does not match an enabled tab, the first enabled tab is shown.
  */
 const modelValue = defineModel<string>()
 
@@ -136,15 +138,6 @@ const props = withDefaults(defineProps<{
 	ariaLabelledby: undefined,
 })
 
-defineEmits<{
-	/**
-	 * Another tab was selected.
-	 *
-	 * @param id - The `id` of the selected tab
-	 */
-	'update:modelValue': [id: string]
-}>()
-
 defineSlots<{
 	/**
 	 * The panel of the tab with id `<id>`, for example `#panel-details`.
@@ -158,15 +151,9 @@ const tabElements = ref<HTMLButtonElement[]>([])
 
 const enabledTabs = computed(() => props.tabs.filter((tab) => !tab.disabled))
 
+// The model is not replaced by the fallback, so a tab that is disabled while it loads, for
+// example one opened from a link, is shown once it is enabled
 const activeTab = computed(() => enabledTabs.value.find((tab) => tab.id === modelValue.value) ?? enabledTabs.value[0])
-
-// When the model is a disabled, unknown or removed tab, another tab is shown: make that
-// the model, so the parent, and for example the URL, hold the tab that is shown
-watch(activeTab, (tab) => {
-	if (tab && tab.id !== modelValue.value) {
-		modelValue.value = tab.id
-	}
-}, { immediate: true })
 
 /**
  * The id of the tab element of a tab.
@@ -199,27 +186,29 @@ function select(tab: NcTabsTab) {
 }
 
 /**
- * Select a tab and move the focus to it.
+ * The tab element of a tab.
  *
- * @param tab - The tab to select
+ * @param tab - The tab
  */
-async function selectAndFocus(tab: NcTabsTab) {
-	select(tab)
-	await nextTick()
-	tabElements.value.find((element) => element.id === tabElementId(tab))?.focus()
+function tabElement(tab: NcTabsTab): HTMLButtonElement | undefined {
+	return tabElements.value.find((element) => element.id === tabElementId(tab))
 }
 
 /**
- * Move between the tabs with the keyboard.
+ * Move the focus between the tabs with the keyboard, including the disabled ones.
+ * Selecting the focused tab is left to `Enter` and `Space`, which click the button.
  *
  * @param event - The keydown event
  */
 function onKeydown(event: KeyboardEvent) {
-	const tabs = enabledTabs.value
-	const current = activeTab.value ? tabs.indexOf(activeTab.value) : -1
+	const tabs = props.tabs
 	if (tabs.length === 0 || event.altKey || event.ctrlKey || event.metaKey || event.shiftKey) {
 		return
 	}
+
+	const focused = tabs.findIndex((tab) => tabElement(tab) === document.activeElement)
+	const shown = activeTab.value ? tabs.indexOf(activeTab.value) : -1
+	const current = focused !== -1 ? focused : shown
 
 	const forward = isRtl ? 'ArrowLeft' : 'ArrowRight'
 	const backward = isRtl ? 'ArrowRight' : 'ArrowLeft'
@@ -236,7 +225,7 @@ function onKeydown(event: KeyboardEvent) {
 
 	if (next) {
 		event.preventDefault()
-		selectAndFocus(next)
+		tabElement(next)?.focus()
 	}
 }
 
@@ -273,7 +262,7 @@ function tabClass(tab: NcTabsTab) {
 				:aria-selected="tab === activeTab ? 'true' : 'false'"
 				:aria-controls="tab === activeTab ? panelElementId(tab) : undefined"
 				:tabindex="tab === activeTab ? 0 : -1"
-				:disabled="tab.disabled"
+				:aria-disabled="tab.disabled ? 'true' : undefined"
 				@click="select(tab)">
 				<NcIconSvgWrapper v-if="tab.iconPath" :path="tab.iconPath" :size="20" />
 				<span :class="$style.ncTabs__label">
@@ -355,7 +344,7 @@ function tabClass(tab: NcTabsTab) {
 		transition: inset-inline var(--animation-quick), opacity var(--animation-quick);
 	}
 
-	&:hover:not(:disabled) {
+	&:hover:not([aria-disabled='true']) {
 		background-color: var(--color-background-hover);
 	}
 
@@ -364,7 +353,7 @@ function tabClass(tab: NcTabsTab) {
 		outline-offset: 2px;
 	}
 
-	&:disabled {
+	&[aria-disabled='true'] {
 		cursor: default;
 		opacity: .5;
 	}
@@ -374,7 +363,7 @@ function tabClass(tab: NcTabsTab) {
 	cursor: default;
 
 	&,
-	&:hover:not(:disabled) {
+	&:hover:not([aria-disabled='true']) {
 		background-color: color-mix(in srgb, var(--color-primary-element) 8%, transparent);
 	}
 
@@ -410,11 +399,11 @@ function tabClass(tab: NcTabsTab) {
 		border-end-end-radius: 0;
 
 		&,
-		&:hover:not(:disabled) {
+		&:hover:not([aria-disabled='true']) {
 			background-color: var(--color-main-background);
 		}
 
-		&:hover:not(:disabled) {
+		&:hover:not([aria-disabled='true']) {
 			color: var(--color-primary-element-light-text);
 			background-color: var(--color-primary-element-light-hover);
 		}

@@ -26,6 +26,23 @@ test('leaves room in the scrolling row for the focus outline of a tab', async ({
 	expect(focused!.x - list!.x).toBeGreaterThanOrEqual(4)
 })
 
+for (const key of ['Enter', ' ']) {
+	test(`selects the focused tab with ${key === ' ' ? 'Space' : key}, not with the arrow keys`, async ({ mount, page }) => {
+		const selected: string[] = []
+		await mount(NcTabs, {
+			props: { tabs, modelValue: 'details', ariaLabel: 'Document' },
+			on: { 'update:modelValue': (id: string) => selected.push(id) },
+		})
+		await page.keyboard.press('Tab')
+		await page.keyboard.press('ArrowRight')
+		await expect(page.getByRole('tab', { name: 'Comments' })).toBeFocused()
+		expect(selected).toEqual([])
+
+		await page.keyboard.press(key)
+		await expect.poll(() => selected).toEqual(['comments'])
+	})
+}
+
 test('marks the selected tab in forced colors', async ({ mount, page }) => {
 	await page.emulateMedia({ forcedColors: 'active' })
 	await mount(NcTabs, { props: { tabs, modelValue: 'details', ariaLabel: 'Document' } })

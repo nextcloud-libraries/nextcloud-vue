@@ -5,9 +5,8 @@
 
 import type { NcTabsTab } from '../../../../src/components/NcTabs/NcTabs.vue'
 
-import { flushPromises, mount } from '@vue/test-utils'
+import { mount } from '@vue/test-utils'
 import { describe, expect, it } from 'vitest'
-import { nextTick } from 'vue'
 import NcTabs from '../../../../src/components/NcTabs/NcTabs.vue'
 
 const tabs: NcTabsTab[] = [
@@ -29,13 +28,12 @@ const slots = {
  * @param modelValue - The selected tab id
  */
 function mountTabs(modelValue?: string) {
-	// A model that does not match an enabled tab is replaced while mounting, before `wrapper` is assigned
 	const wrapper = mount(NcTabs, {
 		props: {
 			tabs,
 			modelValue,
 			ariaLabel: 'Document',
-			'onUpdate:modelValue': (id: unknown) => Promise.resolve().then(() => wrapper.setProps({ modelValue: id as string })),
+			'onUpdate:modelValue': (id: unknown) => wrapper.setProps({ modelValue: id as string }),
 		},
 		slots,
 		attachTo: document.body,
@@ -76,23 +74,26 @@ describe('NcTabs', () => {
 		['an unknown tab', 'unknown'],
 		['a disabled tab', 'history'],
 		['no tab', undefined],
-	])('makes the shown tab the model when the model is %s', (_, modelValue) => {
+		['an enabled tab', 'sharing'],
+	])('does not change the model when it is %s', (_, modelValue) => {
 		const wrapper = mount(NcTabs, { props: { tabs, modelValue }, slots })
-		expect(wrapper.emitted('update:modelValue')).toEqual([['details']])
+		expect(wrapper.emitted('update:modelValue')).toBeUndefined()
 		wrapper.unmount()
 	})
 
-	it('makes the shown tab the model when the selected tab is removed', async () => {
+	it('shows the tab of the model once it is enabled', async () => {
+		const wrapper = mountTabs('history')
+		expect(wrapper.get('[aria-selected="true"]').text()).toBe('Details')
+		await wrapper.setProps({ tabs: tabs.map((tab) => ({ ...tab, disabled: false })) })
+		expect(wrapper.get('[aria-selected="true"]').text()).toBe('History')
+		expect(wrapper.emitted('update:modelValue')).toBeUndefined()
+		wrapper.unmount()
+	})
+
+	it('shows the first enabled tab when the selected tab is removed', async () => {
 		const wrapper = mountTabs('comments')
 		await wrapper.setProps({ tabs: tabs.filter((tab) => tab.id !== 'comments') })
-		await flushPromises()
-		expect(wrapper.emitted('update:modelValue')).toEqual([['details']])
 		expect(wrapper.get('[aria-selected="true"]').text()).toBe('Details')
-		wrapper.unmount()
-	})
-
-	it('does not change a model that matches an enabled tab', () => {
-		const wrapper = mountTabs('sharing')
 		expect(wrapper.emitted('update:modelValue')).toBeUndefined()
 		wrapper.unmount()
 	})
@@ -131,32 +132,36 @@ describe('NcTabs', () => {
 		wrapper.unmount()
 	})
 
-	it('does not select a disabled tab', async () => {
+	it('marks a disabled tab without taking it out of the keyboard order, and does not select it', async () => {
 		const wrapper = mountTabs('details')
 		const history = wrapper.findAll('[role="tab"]')[1]
-		expect(history.attributes('disabled')).toBeDefined()
+		expect(history.attributes('aria-disabled')).toBe('true')
+		expect(history.attributes('disabled')).toBeUndefined()
 		await history.trigger('click')
 		expect(wrapper.emitted('update:modelValue')).toBeUndefined()
 		wrapper.unmount()
 	})
 
-	it('moves between the enabled tabs with the arrow keys and wraps around', async () => {
+	it('moves the focus between all tabs with the arrow keys and wraps around, without selecting', async () => {
 		const wrapper = mountTabs('details')
 		const list = wrapper.get('[role="tablist"]')
+		const focusedText = () => document.activeElement?.textContent
 
 		await list.trigger('keydown', { key: 'ArrowRight' })
-		await nextTick()
-		expect(wrapper.get('[aria-selected="true"]').text()).toContain('Comments')
-		expect(document.activeElement?.textContent).toContain('Comments')
+		expect(focusedText()).toBe('History')
+
+		await list.trigger('keydown', { key: 'ArrowRight' })
+		expect(focusedText()).toContain('Comments')
 
 		await list.trigger('keydown', { key: 'ArrowRight' })
 		await list.trigger('keydown', { key: 'ArrowRight' })
-		await nextTick()
-		expect(wrapper.get('[aria-selected="true"]').text()).toBe('Details')
+		expect(focusedText()).toBe('Details')
 
 		await list.trigger('keydown', { key: 'ArrowLeft' })
-		await nextTick()
-		expect(wrapper.get('[aria-selected="true"]').text()).toBe('Sharing')
+		expect(focusedText()).toBe('Sharing')
+
+		expect(wrapper.emitted('update:modelValue')).toBeUndefined()
+		expect(wrapper.get('[aria-selected="true"]').text()).toBe('Details')
 		wrapper.unmount()
 	})
 
@@ -165,19 +170,18 @@ describe('NcTabs', () => {
 		const list = wrapper.get('[role="tablist"]')
 
 		await list.trigger('keydown', { key: 'End' })
-		await nextTick()
-		expect(wrapper.get('[aria-selected="true"]').text()).toBe('Sharing')
+		expect(document.activeElement?.textContent).toBe('Sharing')
 
 		await list.trigger('keydown', { key: 'Home' })
-		await nextTick()
-		expect(wrapper.get('[aria-selected="true"]').text()).toBe('Details')
+		expect(document.activeElement?.textContent).toBe('Details')
+		expect(wrapper.emitted('update:modelValue')).toBeUndefined()
 		wrapper.unmount()
 	})
 
 	it('ignores arrow keys with a modifier', async () => {
 		const wrapper = mountTabs('details')
 		await wrapper.get('[role="tablist"]').trigger('keydown', { key: 'ArrowRight', ctrlKey: true })
-		expect(wrapper.emitted('update:modelValue')).toBeUndefined()
+		expect(document.activeElement).toBe(document.body)
 		wrapper.unmount()
 	})
 
