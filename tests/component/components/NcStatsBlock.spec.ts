@@ -29,6 +29,23 @@ for (const value of [42, 1234567]) {
 	})
 }
 
+test('wraps a long label instead of cutting it off', async ({ mount, page }) => {
+	const block = await mount(NcStatsBlock, {
+		props: {
+			name: 'Documents',
+			value: 12,
+			label: 'added since the start of this year',
+			iconPath: mdiFileDocumentOutline,
+			style: 'width: 180px',
+		},
+	})
+	const cell = (await block.boundingBox())!
+	const label = page.getByText('added since the start of this year')
+	expect(await label.evaluate((element) => element.scrollWidth <= element.clientWidth)).toBe(true)
+	const box = (await label.boundingBox())!
+	expect(box.x + box.width).toBeLessThanOrEqual(cell.x + cell.width)
+})
+
 test('keeps its height while loading', async ({ mount }) => {
 	const style = 'width: 300px'
 	const loaded = await mount(NcStatsBlock, { props: { name: 'Documents', value: 12, style } })

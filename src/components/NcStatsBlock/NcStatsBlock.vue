@@ -10,9 +10,9 @@ This component renders a single statistic, such as a number of items on a dashbo
 
 A number is formatted for the user's locale, so `1234` reads as `1,234` or `1.234`. Pass a string instead, for example `'€1,234'` or `'98%'`, to show a value that is already formatted. Extra content, such as a short breakdown, can be put in the default slot below the value.
 
-In a narrow space the name wraps, the label moves below the value, and the value moves below the icon when it does not fit next to it.
+In a narrow space the name and the label wrap, the label moves below the value, and the value moves below the icon when it does not fit next to it.
 
-The `variant` colors the icon and the value. With `href` or `to` the whole statistic becomes a link, for example to the list the number counts. The default slot is then inside the link too, so it must not contain links or buttons. While `loading` is set, a loading icon is shown instead of the value.
+The `variant` colors the icon and the value. With `href` or `to` the whole statistic becomes a link, for example to the list the number counts. The default slot is then inside the link too, so it must not contain links or buttons. While `loading` is set, a loading icon is shown instead of the value, so the value can be left out until it has loaded.
 
 The statistic draws no box of its own, so it fits into a card, a dashboard widget or a grid. Put several next to each other with a CSS grid or flexbox.
 
@@ -99,7 +99,6 @@ export default {
 			:icon-path="mdiEmailOutline" />
 		<NcStatsBlock
 			name="Storage"
-			:value="0"
 			loading
 			:icon-path="mdiHarddisk" />
 		<NcStatsBlock
@@ -163,8 +162,9 @@ const props = withDefaults(defineProps<{
 	/**
 	 * The value of the statistic.
 	 * A number is formatted for the user's locale, a string is shown as it is.
+	 * It can be left out while `loading` is set.
 	 */
-	value: number | string
+	value?: number | string
 
 	/**
 	 * A short label shown next to the value, for example a unit or "this week".
@@ -198,6 +198,7 @@ const props = withDefaults(defineProps<{
 	 */
 	to?: RouteLocationRaw
 }>(), {
+	value: undefined,
 	label: undefined,
 	iconPath: undefined,
 	variant: 'primary',
@@ -367,9 +368,8 @@ const formattedValue = computed(() => {
 
 .ncStatsBlock__label {
 	min-width: 0;
-	overflow: hidden;
 	color: var(--color-text-maxcontrast);
-	white-space: nowrap;
-	text-overflow: ellipsis;
+	// Wraps instead of being cut off; breaking anywhere keeps it out of the width the body needs
+	overflow-wrap: anywhere;
 }
 </style>

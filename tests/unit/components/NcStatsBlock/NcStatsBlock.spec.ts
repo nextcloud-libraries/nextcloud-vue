@@ -72,6 +72,12 @@ describe('NcStatsBlock', () => {
 		expect(wrapper.text()).not.toContain('0')
 	})
 
+	it('does not need a value while loading', () => {
+		const wrapper = mount(NcStatsBlock, { props: { name: 'Storage', loading: true } })
+		expect(wrapper.attributes('aria-busy')).toBe('true')
+		expect(wrapper.find('[role="img"]').exists()).toBe(true)
+	})
+
 	it('renders the default slot below the value', () => {
 		const wrapper = mount(NcStatsBlock, {
 			props: { name: 'Tasks', value: 24 },
