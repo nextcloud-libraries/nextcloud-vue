@@ -43,6 +43,15 @@ test('keeps a name with a long word next to the icon', async ({ mount, page }) =
 	expect(name.x).toBeGreaterThan(icon.x + icon.width)
 })
 
+test('hyphenates a long word in the name and the label by the rules of the language', async ({ mount, page }) => {
+	await mount(NcStatsBlock, {
+		props: { name: 'Donaudampfschifffahrtsgesellschaft', value: 7, label: 'Schifffahrtsgesellschaften', lang: 'de', style: 'width: 160px' },
+	})
+	for (const text of ['Donaudampfschifffahrtsgesellschaft', 'Schifffahrtsgesellschaften']) {
+		await expect(page.getByText(text)).toHaveCSS('hyphens', 'auto')
+	}
+})
+
 test('wraps a long label instead of cutting it off', async ({ mount, page }) => {
 	const block = await mount(NcStatsBlock, {
 		props: {
