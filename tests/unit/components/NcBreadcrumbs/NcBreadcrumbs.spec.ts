@@ -4,8 +4,8 @@
  */
 
 import { flushPromises, mount } from '@vue/test-utils'
-import { describe, expect, it } from 'vitest'
-import { h, nextTick } from 'vue'
+import { afterEach, describe, expect, it, vi } from 'vitest'
+import { Fragment, h, nextTick } from 'vue'
 import { createMemoryHistory, createRouter, createWebHashHistory } from 'vue-router'
 import NcBreadcrumb from '../../../../src/components/NcBreadcrumb/NcBreadcrumb.vue'
 import NcBreadcrumbs from '../../../../src/components/NcBreadcrumbs/NcBreadcrumbs.vue'
@@ -155,5 +155,103 @@ describe('NcBreadcrumbs', () => {
 			slots: { default: () => [h(NcBreadcrumb, { name: 'Home', href: '/' }), h(NcBreadcrumb, { name: 'Folder' })] },
 		})
 		expect(wrapper.findAllComponents(NcBreadcrumb).map((item) => item.props('name'))).toEqual(['Home', 'Folder'])
+	})
+
+	it('renders the breadcrumbs of a fragment in the slot, as from a v-for', () => {
+		const wrapper = mount(NcBreadcrumbs, {
+			slots: { default: () => [h(Fragment, [h(NcBreadcrumb, { name: 'Home', href: '/' }), h('span'), h(NcBreadcrumb, { name: 'Folder' })])] },
+		})
+		expect(wrapper.findAllComponents(NcBreadcrumb).map((item) => item.props('name'))).toEqual(['Home', 'Folder'])
+	})
+
+	it('renders nothing without breadcrumbs', () => {
+		const wrapper = mount(NcBreadcrumbs)
+		expect(wrapper.find('nav').exists()).toBe(false)
+	})
+
+	it('renders the actions slot next to the breadcrumbs', () => {
+		const wrapper = mount(NcBreadcrumbs, {
+			props: { crumbs },
+			slots: { actions: () => h('button', { class: 'new' }, 'New') },
+		})
+		expect(wrapper.get('.breadcrumb__actions .new').text()).toBe('New')
+	})
+
+	describe('when the breadcrumbs do not fit', () => {
+		const manyCrumbs = [
+			{ name: 'Home', href: '/home' },
+			{ name: 'Projects', href: '/home/projects' },
+			{ name: 'Archive' },
+			{ name: 'Team vault', to: '/home/projects/archive/vault' },
+			{ name: 'Production', href: '/home/projects/archive/vault/production' },
+		]
+
+		/**
+		 * Mount the breadcrumbs in a container of 300px with crumbs of 100px each, so three have to be hidden.
+		 */
+		async function mountNarrow() {
+			vi.spyOn(HTMLElement.prototype, 'offsetWidth', 'get').mockImplementation(function(this: HTMLElement) {
+				return this.classList.contains('breadcrumb') ? 300 : 100
+			})
+			const router = createRouter({
+				history: createMemoryHistory(),
+				routes: [{ path: '/:path(.*)*', component: { template: '<div />' } }],
+			})
+			const wrapper = mount(NcBreadcrumbs, {
+				props: { crumbs: manyCrumbs },
+				global: { plugins: [router] },
+				attachTo: document.body,
+			})
+			await router.isReady()
+			await flushPromises()
+			return wrapper
+		}
+
+		afterEach(() => {
+			vi.restoreAllMocks()
+			document.body.innerHTML = ''
+		})
+
+		it('hides the middle breadcrumbs and keeps the first and the last', async () => {
+			const wrapper = await mountNarrow()
+			const hidden = wrapper.findAll('nav > ul > li.vue-crumb--hidden')
+			expect(hidden).toHaveLength(3)
+			expect(wrapper.classes()).toContain('breadcrumb--collapsed')
+			const visible = wrapper.findAllComponents(NcBreadcrumb).filter((crumb) => !crumb.classes('vue-crumb--hidden') && !crumb.classes('dropdown'))
+			expect(visible.map((crumb) => crumb.props('name'))).toEqual(['Home', 'Production'])
+			wrapper.unmount()
+		})
+
+		it('shows the hidden breadcrumbs in a menu, as a link, a button or a router link', async () => {
+			const wrapper = await mountNarrow()
+			await wrapper.get('nav > ul > li.dropdown button').trigger('click')
+			await flushPromises()
+			const items = [...document.querySelectorAll('.vue-crumb.action')]
+			expect(items.map((item) => item.textContent?.trim())).toEqual(['Projects', 'Archive', 'Team vault'])
+			expect(items[0].querySelector('a')?.getAttribute('href')).toBe('/home/projects')
+			expect(items[1].querySelector('button')).not.toBeNull()
+			expect(items[2].querySelector('a')?.getAttribute('href')).toBe('/home/projects/archive/vault')
+			wrapper.unmount()
+		})
+
+		it('accepts a drop on a breadcrumb in the menu and closes the menu', async () => {
+			const wrapper = await mountNarrow()
+			await wrapper.get('nav > ul > li.dropdown button').trigger('click')
+			await flushPromises()
+			const projects = document.querySelector('.vue-crumb.action')!
+
+			projects.dispatchEvent(new Event('dragenter', { bubbles: true }))
+			expect(projects.classList).toContain('vue-crumb--hovered')
+			projects.dispatchEvent(new Event('dragleave', { bubbles: true }))
+			expect(projects.classList).not.toContain('vue-crumb--hovered')
+
+			projects.dispatchEvent(new Event('dragover', { bubbles: true, cancelable: true }))
+			projects.dispatchEvent(new Event('drop', { bubbles: true, cancelable: true }))
+			await flushPromises()
+			expect(wrapper.emitted('dropped')?.[0][1]).toBe('/home/projects')
+			const menu = wrapper.findAllComponents(NcBreadcrumb).find((crumb) => crumb.classes('dropdown'))!
+			expect(menu.props('open')).toBe(false)
+			wrapper.unmount()
+		})
 	})
 })
