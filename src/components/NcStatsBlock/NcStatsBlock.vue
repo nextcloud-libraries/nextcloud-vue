@@ -341,7 +341,8 @@ const formattedValue = computed(() => {
 .ncStatsBlock__name {
 	margin: 0;
 	font-weight: bold;
-	overflow-wrap: break-word;
+	// Breaking anywhere keeps a long word from moving the body under the icon
+	overflow-wrap: anywhere;
 }
 
 .ncStatsBlock__value {

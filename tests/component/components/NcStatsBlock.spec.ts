@@ -29,6 +29,20 @@ for (const value of [42, 1234567]) {
 	})
 }
 
+test('keeps a name with a long word next to the icon', async ({ mount, page }) => {
+	const block = await mount(NcStatsBlock, {
+		props: {
+			name: 'Documentsandattachments of this year',
+			value: 12,
+			iconPath: mdiFileDocumentOutline,
+			style: 'width: 220px',
+		},
+	})
+	const icon = (await block.locator('svg').boundingBox())!
+	const name = (await page.getByText('Documentsandattachments of this year').boundingBox())!
+	expect(name.x).toBeGreaterThan(icon.x + icon.width)
+})
+
 test('wraps a long label instead of cutting it off', async ({ mount, page }) => {
 	const block = await mount(NcStatsBlock, {
 		props: {
