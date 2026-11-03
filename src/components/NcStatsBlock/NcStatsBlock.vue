@@ -96,7 +96,7 @@ Hyphenation needs a language. This page sets none, so each statistic here sets i
 	<div class="stats">
 		<NcStatsBlock
 			lang="en"
-			name="Internationalization"
+			name="Antidisestablishmentarianism"
 			:value="42"
 			:icon-path="mdiFileDocumentOutline" />
 		<NcStatsBlock
