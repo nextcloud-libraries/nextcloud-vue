@@ -12,6 +12,8 @@ The heading is an `h3` by default, one level below the `h2` of a page header. Se
 
 With `href` or `to` the heading becomes a link that covers the whole card, so the whole card can be clicked, or opened with `Enter` or `Space`, while it is announced to assistive technology as a single link with the name of the card. Set `target` to open it in another tab or window. Links, buttons and other controls in the `actions` slot, the content and the footer stay clickable on their own. As the rest of the content is part of the link, its text cannot be selected. The `active` prop highlights a card, for example the selected one, and marks its link as the current one for assistive technology.
 
+Cards can also frame the sections of a page, such as the sections of a detail page. With `collapsible` the heading becomes a button that shows and hides the description, the content and the footer; bind `v-model:expanded` to keep or set that state. A card with `href` or `to` cannot be collapsible, as its heading is the link. With `flush` the content runs to the edges of the card, for example for a table or a list.
+
 ### Usage
 
 ```vue
@@ -112,15 +114,93 @@ export default {
 }
 </style>
 ```
+
+### Sections of a page
+
+```vue
+<template>
+	<div class="sections">
+		<NcCard
+			v-model:expanded="expanded"
+			name="Details"
+			:icon-path="mdiInformationOutline"
+			collapsible>
+			<template #actions>
+				<NcActions>
+					<NcActionButton close-after-click>
+						Edit
+					</NcActionButton>
+				</NcActions>
+			</template>
+			<p>Created on 3 November by Jane Doe.</p>
+		</NcCard>
+		<NcCard name="Members" :icon-path="mdiAccountGroupOutline" flush>
+			<ul class="members">
+				<li v-for="member in members" :key="member">
+					{{ member }}
+				</li>
+			</ul>
+		</NcCard>
+		<p>The details are {{ expanded ? 'shown' : 'hidden' }}.</p>
+	</div>
+</template>
+
+<script>
+import { mdiAccountGroupOutline, mdiInformationOutline } from '@mdi/js'
+
+export default {
+	setup() {
+		return {
+			mdiAccountGroupOutline,
+			mdiInformationOutline,
+		}
+	},
+
+	data() {
+		return {
+			expanded: true,
+			members: ['Jane Doe', 'John Doe', 'Alex Smith'],
+		}
+	},
+}
+</script>
+
+<style scoped>
+.sections {
+	display: flex;
+	flex-direction: column;
+	gap: 16px;
+	max-width: 500px;
+}
+
+.members {
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+
+.members li {
+	padding: 8px 16px;
+	border-top: 1px solid var(--color-border);
+}
+</style>
+```
 </docs>
 
 <script setup lang="ts">
 import type { Slot } from 'vue'
 import type { RouteLocationRaw } from 'vue-router'
 
+import { mdiChevronDown } from '@mdi/js'
 import { computed, inject } from 'vue'
 import { routerKey } from 'vue-router'
+import { createElementId } from '../../utils/createElementId.ts'
 import NcIconSvgWrapper from '../NcIconSvgWrapper/index.ts'
+
+/**
+ * Whether the description, the content and the footer of a collapsible card are shown.
+ */
+const expanded = defineModel<boolean>('expanded', { default: true })
 
 const props = withDefaults(defineProps<{
 	/**
@@ -164,6 +244,18 @@ const props = withDefaults(defineProps<{
 	 * Where the `href` link opens, for example `_blank` for a new tab.
 	 */
 	target?: string
+
+	/**
+	 * Lets the heading show and hide the description, the content and the footer.
+	 * Not used for a card with `href` or `to`, as its heading is the link,
+	 * nor for a card without a description, content or footer, as there is nothing to hide.
+	 */
+	collapsible?: boolean
+
+	/**
+	 * Lets the content run to the edges of the card, for example for a table or a list.
+	 */
+	flush?: boolean
 }>(), {
 	description: undefined,
 	iconPath: undefined,
@@ -218,6 +310,15 @@ const linkAttrs = computed(() => {
 	return { href: props.href, target: props.target, rel: 'nofollow noreferrer noopener', ...current }
 })
 
+// The description, the content and the footer, the part a collapsible card shows and hides
+const hasBody = computed(() => Boolean(props.description || slots.default || slots.footer))
+
+// The heading of a link card is the link, so it cannot also toggle the card. Without a body
+// there is nothing to toggle, and the button would control an element that is not there.
+const isCollapsible = computed(() => props.collapsible && !linkTag.value && hasBody.value)
+
+const bodyId = createElementId()
+
 /**
  * Follow the link with `Space` too, as the whole card looks and acts like one control.
  *
@@ -235,7 +336,7 @@ function onLinkKeydown(event: KeyboardEvent) {
 </script>
 
 <template>
-	<article :class="[$style.ncCard, { [$style.ncCard_active]: active, [$style.ncCard_link]: linkTag }]">
+	<article :class="[$style.ncCard, { [$style.ncCard_active]: active, [$style.ncCard_link]: linkTag, [$style.ncCard_flush]: flush }]">
 		<div :class="$style.ncCard__header">
 			<div v-if="slots.icon || iconPath" :class="$style.ncCard__icon">
 				<slot name="icon">
@@ -252,6 +353,20 @@ function onLinkKeydown(event: KeyboardEvent) {
 					@keydown="onLinkKeydown">
 					{{ name }}
 				</component>
+				<button
+					v-else-if="isCollapsible"
+					type="button"
+					class="button-vue"
+					:class="$style.ncCard__toggle"
+					:aria-expanded="expanded ? 'true' : 'false'"
+					:aria-controls="bodyId"
+					@click="expanded = !expanded">
+					<span :class="$style.ncCard__toggleName">{{ name }}</span>
+					<NcIconSvgWrapper
+						inline
+						:class="[$style.ncCard__chevron, { [$style.ncCard__chevron_expanded]: expanded }]"
+						:path="mdiChevronDown" />
+				</button>
 				<template v-else>
 					{{ name }}
 				</template>
@@ -260,14 +375,20 @@ function onLinkKeydown(event: KeyboardEvent) {
 				<slot name="actions" />
 			</div>
 		</div>
-		<p v-if="description" :class="$style.ncCard__description">
-			{{ description }}
-		</p>
-		<div v-if="slots.default" :class="$style.ncCard__content">
-			<slot />
-		</div>
-		<div v-if="slots.footer" :class="$style.ncCard__footer">
-			<slot name="footer" />
+		<div
+			v-if="hasBody"
+			v-show="!isCollapsible || expanded"
+			:id="bodyId"
+			:class="$style.ncCard__body">
+			<p v-if="description" :class="$style.ncCard__description">
+				{{ description }}
+			</p>
+			<div v-if="slots.default" :class="$style.ncCard__content">
+				<slot />
+			</div>
+			<div v-if="slots.footer" :class="$style.ncCard__footer">
+				<slot name="footer" />
+			</div>
 		</div>
 	</article>
 </template>
@@ -376,6 +497,60 @@ function onLinkKeydown(event: KeyboardEvent) {
 	margin-inline-end: calc(-2 * var(--default-grid-baseline));
 }
 
+// The heading of a collapsible card: a button with the name and a chevron
+.ncCard__toggle {
+	display: flex;
+	align-items: center;
+	gap: var(--default-grid-baseline);
+	width: 100%;
+	min-height: var(--default-clickable-area);
+	margin: 0;
+	padding: 0;
+	border: none;
+	border-radius: var(--border-radius-element);
+	color: inherit;
+	background: none;
+	font: inherit;
+	text-align: start;
+	cursor: pointer;
+
+	&:focus-visible {
+		outline: 2px solid var(--color-main-text);
+		outline-offset: 2px;
+	}
+}
+
+.ncCard__toggleName {
+	flex: 1 1 auto;
+	min-width: 0;
+}
+
+// Points to the side while collapsed and down while expanded
+.ncCard__chevron {
+	flex-shrink: 0;
+	transform: rotate(-90deg);
+	transition: transform var(--animation-quick);
+
+	&:dir(rtl) {
+		transform: rotate(90deg);
+	}
+}
+
+.ncCard__chevron_expanded {
+	&,
+	&:dir(rtl) {
+		transform: none;
+	}
+}
+
+.ncCard__body {
+	display: flex;
+	flex: 1 1 auto;
+	flex-direction: column;
+	gap: calc(2 * var(--default-grid-baseline));
+	min-width: 0;
+}
+
 .ncCard__description {
 	margin: 0;
 	color: var(--color-text-maxcontrast);
@@ -383,6 +558,18 @@ function onLinkKeydown(event: KeyboardEvent) {
 
 .ncCard__content {
 	min-width: 0;
+}
+
+// The content runs to the sides of the card, and to its bottom when it comes last
+.ncCard_flush .ncCard__content {
+	margin-inline: calc(-4 * var(--default-grid-baseline));
+
+	&:last-child {
+		margin-block-end: calc(-4 * var(--default-grid-baseline));
+		overflow: hidden;
+		border-end-start-radius: var(--border-radius-large);
+		border-end-end-radius: var(--border-radius-large);
+	}
 }
 
 .ncCard__footer {

@@ -47,6 +47,18 @@ test('lines up the icon with the description below it', async ({ mount }) => {
 	expect(icon!.x).toBeCloseTo(description!.x, 0)
 })
 
+test('lets flush content run to the edges of the card', async ({ mount }) => {
+	const card = await mount(NcCard, {
+		props: { name: 'Members', flush: true, style: 'width: 400px' },
+		slots: { default: '<ul class="list" style="margin: 0"><li>Jane Doe</li></ul>' },
+	})
+	const [box, list] = await Promise.all([card.boundingBox(), card.locator('.list').boundingBox()])
+	// Inside the 1px border of the card
+	expect(list!.x).toBeCloseTo(box!.x + 1, 0)
+	expect(list!.x + list!.width).toBeCloseTo(box!.x + box!.width - 1, 0)
+	expect(list!.y + list!.height).toBeCloseTo(box!.y + box!.height - 1, 0)
+})
+
 test('marks the active card in forced colors', async ({ mount, page }) => {
 	await page.emulateMedia({ forcedColors: 'active' })
 	const card = await mount(NcCard, { props: { name: 'Design', active: true } })

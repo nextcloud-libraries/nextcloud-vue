@@ -129,4 +129,72 @@ describe('NcCard', () => {
 		const active = mount(NcCard, { props: { name: 'Design', active: true } })
 		expect(active.classes().some((name) => name.includes('ncCard_active'))).toBe(true)
 	})
+
+	describe('collapsible', () => {
+		it('makes the heading a button that controls the rest of the card', () => {
+			const wrapper = mount(NcCard, {
+				props: { name: 'Details', description: 'About the item', collapsible: true },
+				slots: { default: '<p>Content</p>' },
+			})
+			const toggle = wrapper.get('h3 > button')
+			expect(toggle.text()).toBe('Details')
+			expect(toggle.attributes('aria-expanded')).toBe('true')
+			const body = wrapper.get(`#${toggle.attributes('aria-controls')}`)
+			expect(body.text()).toContain('About the item')
+			expect(body.text()).toContain('Content')
+		})
+
+		it('hides and shows the rest of the card and emits the state', async () => {
+			const wrapper = mount(NcCard, {
+				props: { name: 'Details', description: 'About the item', collapsible: true, 'onUpdate:expanded': (expanded: boolean) => wrapper.setProps({ expanded }) },
+				attachTo: document.body,
+			})
+			const toggle = wrapper.get('h3 > button')
+			await toggle.trigger('click')
+			expect(wrapper.emitted('update:expanded')).toEqual([[false]])
+			expect(toggle.attributes('aria-expanded')).toBe('false')
+			expect(wrapper.get(`#${toggle.attributes('aria-controls')}`).isVisible()).toBe(false)
+
+			await toggle.trigger('click')
+			expect(toggle.attributes('aria-expanded')).toBe('true')
+			expect(wrapper.get(`#${toggle.attributes('aria-controls')}`).isVisible()).toBe(true)
+			wrapper.unmount()
+		})
+
+		it('starts collapsed when expanded is false', () => {
+			const wrapper = mount(NcCard, { props: { name: 'Details', description: 'About the item', collapsible: true, expanded: false }, attachTo: document.body })
+			expect(wrapper.get('h3 > button').attributes('aria-expanded')).toBe('false')
+			expect(wrapper.find('p').isVisible()).toBe(false)
+			wrapper.unmount()
+		})
+
+		it('keeps the link of a link card instead of a toggle', () => {
+			const wrapper = mount(NcCard, { props: { name: 'Design', href: '/teams/design', description: '6 members', collapsible: true }, attachTo: document.body })
+			expect(wrapper.find('h3 > button').exists()).toBe(false)
+			expect(wrapper.get('h3 > a').attributes('href')).toBe('/teams/design')
+			expect(wrapper.get('p').isVisible()).toBe(true)
+			wrapper.unmount()
+		})
+
+		it('is not a toggle when there is nothing to hide', () => {
+			const wrapper = mount(NcCard, { props: { name: 'Details', collapsible: true } })
+			expect(wrapper.find('button').exists()).toBe(false)
+			expect(wrapper.find('[aria-controls]').exists()).toBe(false)
+			expect(wrapper.get('h3').text()).toBe('Details')
+		})
+
+		it('is not a toggle without collapsible', () => {
+			const wrapper = mount(NcCard, { props: { name: 'Details', description: 'About the item' } })
+			expect(wrapper.find('button').exists()).toBe(false)
+			expect(wrapper.get('h3').text()).toBe('Details')
+		})
+	})
+
+	it('adds the flush class only when flush', () => {
+		const normal = mount(NcCard, { props: { name: 'Members' } })
+		expect(normal.classes().some((name) => name.includes('ncCard_flush'))).toBe(false)
+
+		const flush = mount(NcCard, { props: { name: 'Members', flush: true } })
+		expect(flush.classes().some((name) => name.includes('ncCard_flush'))).toBe(true)
+	})
 })
