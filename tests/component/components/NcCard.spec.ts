@@ -26,6 +26,16 @@ test('follows the link from the empty space of the content and the footer, but n
 	await expect(page).not.toHaveURL(/#followed$/)
 })
 
+for (const key of ['Enter', ' ']) {
+	test(`follows the link with ${key === ' ' ? 'Space' : key}`, async ({ mount, page }) => {
+		await mount(NcCard, { props: { name: 'Design', href: '#followed' } })
+		await page.keyboard.press('Tab')
+		await expect(page.getByRole('link', { name: 'Design' })).toBeFocused()
+		await page.keyboard.press(key)
+		await expect(page).toHaveURL(/#followed$/)
+	})
+}
+
 test('lines up the icon with the description below it', async ({ mount }) => {
 	const card = await mount(NcCard, {
 		props: { name: 'Design', description: 'The design team', iconPath: mdiPaletteOutline, style: 'width: 400px' },

@@ -10,7 +10,7 @@ This component renders a card: a bordered box with a heading, an optional icon i
 
 The heading is an `h3` by default, one level below the `h2` of a page header. Set `heading-level` to the level that fits where the cards are shown.
 
-With `href` or `to` the heading becomes a link that covers the whole card, so the whole card can be clicked, while it is announced to assistive technology as a single link with the name of the card. Set `target` to open it in another tab or window. Links, buttons and other controls in the `actions` slot, the content and the footer stay clickable on their own. As the rest of the content is part of the link, its text cannot be selected. The `active` prop highlights a card, for example the selected one, and marks its link as the current one for assistive technology.
+With `href` or `to` the heading becomes a link that covers the whole card, so the whole card can be clicked, or opened with `Enter` or `Space`, while it is announced to assistive technology as a single link with the name of the card. Set `target` to open it in another tab or window. Links, buttons and other controls in the `actions` slot, the content and the footer stay clickable on their own. As the rest of the content is part of the link, its text cannot be selected. The `active` prop highlights a card, for example the selected one, and marks its link as the current one for assistive technology.
 
 ### Usage
 
@@ -217,6 +217,21 @@ const linkAttrs = computed(() => {
 	// Like NcButton, so a page opened in a new tab gets no access to this one
 	return { href: props.href, target: props.target, rel: 'nofollow noreferrer noopener', ...current }
 })
+
+/**
+ * Follow the link with `Space` too, as the whole card looks and acts like one control.
+ *
+ * @param event - The keydown event
+ */
+function onLinkKeydown(event: KeyboardEvent) {
+	if (event.key !== ' ' || event.repeat || event.altKey || event.ctrlKey || event.metaKey || event.shiftKey) {
+		return
+	}
+	// Without this, Space would scroll the page
+	event.preventDefault()
+	const link = event.currentTarget as HTMLElement
+	link.click()
+}
 </script>
 
 <template>
@@ -233,7 +248,8 @@ const linkAttrs = computed(() => {
 					:is="linkTag"
 					v-if="linkTag"
 					:class="$style.ncCard__link"
-					v-bind="linkAttrs">
+					v-bind="linkAttrs"
+					@keydown="onLinkKeydown">
 					{{ name }}
 				</component>
 				<template v-else>
