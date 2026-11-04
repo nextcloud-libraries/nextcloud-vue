@@ -9,7 +9,7 @@ import NcCard from '../../../src/components/NcCard/NcCard.vue'
 
 test('follows the link from the empty space of the content and the footer, but not from their controls', async ({ mount, page }) => {
 	const card = await mount(NcCard, {
-		props: { name: 'Design', href: '#followed', style: 'width: 400px' },
+		props: { label: 'Design', href: '#followed', style: 'width: 400px' },
 		slots: {
 			default: '<p class="content">Six members</p>',
 			footer: '<button type="button" class="footer-button">Join</button>',
@@ -28,7 +28,7 @@ test('follows the link from the empty space of the content and the footer, but n
 
 for (const key of ['Enter', ' ']) {
 	test(`follows the link with ${key === ' ' ? 'Space' : key}`, async ({ mount, page }) => {
-		await mount(NcCard, { props: { name: 'Design', href: '#followed' } })
+		await mount(NcCard, { props: { label: 'Design', href: '#followed' } })
 		await page.keyboard.press('Tab')
 		await expect(page.getByRole('link', { name: 'Design' })).toBeFocused()
 		await page.keyboard.press(key)
@@ -38,7 +38,7 @@ for (const key of ['Enter', ' ']) {
 
 test('lines up the icon with the description below it', async ({ mount }) => {
 	const card = await mount(NcCard, {
-		props: { name: 'Design', description: 'The design team', iconPath: mdiPaletteOutline, style: 'width: 400px' },
+		props: { label: 'Design', description: 'The design team', iconPath: mdiPaletteOutline, style: 'width: 400px' },
 	})
 	const [icon, description] = await Promise.all([
 		card.locator('svg').boundingBox(),
@@ -49,7 +49,7 @@ test('lines up the icon with the description below it', async ({ mount }) => {
 
 test('lets flush content run to the edges of the card', async ({ mount }) => {
 	const card = await mount(NcCard, {
-		props: { name: 'Members', flush: true, style: 'width: 400px' },
+		props: { label: 'Members', flush: true, style: 'width: 400px' },
 		slots: { default: '<ul class="list" style="margin: 0"><li>Jane Doe</li></ul>' },
 	})
 	const [box, list] = await Promise.all([card.boundingBox(), card.locator('.list').boundingBox()])
@@ -61,7 +61,7 @@ test('lets flush content run to the edges of the card', async ({ mount }) => {
 
 test('marks the active card in forced colors', async ({ mount, page }) => {
 	await page.emulateMedia({ forcedColors: 'active' })
-	const card = await mount(NcCard, { props: { name: 'Design', active: true } })
+	const card = await mount(NcCard, { props: { label: 'Design', active: true } })
 	const highlight = await page.evaluate(() => {
 		const probe = document.createElement('div')
 		probe.style.color = 'Highlight'
@@ -73,7 +73,7 @@ test('marks the active card in forced colors', async ({ mount, page }) => {
 })
 
 test('rounds the corners of the clickable area like the card', async ({ mount }) => {
-	const card = await mount(NcCard, { props: { name: 'Design', href: '#' } })
+	const card = await mount(NcCard, { props: { label: 'Design', href: '#' } })
 	const radius = await card.locator('a').evaluate((element) => getComputedStyle(element, '::after').borderTopLeftRadius)
 	expect(radius).not.toBe('0px')
 	await expect(card).toHaveCSS('border-top-left-radius', radius)
