@@ -6,11 +6,9 @@
 <docs>
 ### General description
 
-This component renders a card: a bordered box with a heading, an optional icon in front of it, actions at the end of the heading row, an optional description, content and a footer. Cards are meant to be shown side by side in a grid, for example one card per item of an overview.
+This component shows a card: a heading with an optional icon, description, actions, content and footer, for example one card per item in a grid.
 
-The heading is an `h3` by default, one level below the `h2` of a page header. Set `heading-level` to the level that fits where the cards are shown.
-
-With `href` or `to` the heading becomes a link that covers the whole card, so the whole card can be clicked, or opened with `Enter` or `Space`, while it is announced to assistive technology as a single link with the name of the card. Set `target` to open it in another tab or window. Links, buttons and other controls in the `actions` slot, the content and the footer stay clickable on their own. As the rest of the content is part of the link, its text cannot be selected. The `active` prop highlights a card, for example the selected one, and marks its link as the current one for assistive technology.
+With `href` or `to` the whole card becomes one link, while the controls in its actions, content and footer stay clickable.
 
 ### Usage
 
@@ -145,12 +143,13 @@ const props = withDefaults(defineProps<{
 	headingLevel?: 2 | 3 | 4 | 5 | 6
 
 	/**
-	 * Highlights the card, for example the selected one.
+	 * Highlights the card, for example the selected one, and marks its link as the current one.
 	 */
 	active?: boolean
 
 	/**
-	 * Turns the card into a link to this address.
+	 * Turns the card into a link to this address. The whole card can then be clicked or opened with `Enter` or `Space`,
+	 * and its text cannot be selected.
 	 */
 	href?: string
 
