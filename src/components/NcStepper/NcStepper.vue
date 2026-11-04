@@ -33,11 +33,12 @@ const props = withDefaults(defineProps<{
 
 	/**
 	 * Show the steps in a row, or below each other.
+	 * A row that does not fit scrolls sideways; below each other leaves room for a `description` per step and fits a narrow space.
 	 */
 	orientation?: 'horizontal' | 'vertical'
 
 	/**
-	 * Let the user go back to a completed step.
+	 * Let the user go back to a completed step. Steps after the current one can never be selected.
 	 */
 	allowGoBack?: boolean
 
@@ -316,15 +317,9 @@ function goBackTo(step: NcStepperStep, index: number) {
 <docs>
 ### General description
 
-This component shows a sequence of steps and where the user is in it, for example the steps of a form that is filled in over several pages, or the stages an item goes through. Completed steps are marked with a check, the current step is highlighted and the steps after it are shown as upcoming.
+This component shows a sequence of steps and where the user is in it, such as the pages of a form or the stages an item goes through.
 
-Pass the steps in `steps` and bind the `id` of the current step with `v-model`. The component only shows the steps: moving to the next step, for example with a "Next" button, is up to the app.
-
-With `allow-go-back` the completed steps become buttons, so the user can go back to one of them. Steps after the current one can never be selected, as they may depend on the steps before them.
-
-The steps are shown in a row by default. When they do not fit, the row scrolls sideways, as a name is never broken inside a word. With `orientation="vertical"` they are shown below each other, which leaves room for a `description` per step and fits a sidebar or a narrow space, such as a phone screen with many steps.
-
-The steps are an ordered list, the current step is marked with `aria-current="step"` and completed steps are announced as completed.
+It only shows the steps: moving to another step, for example with a "Next" button, is up to the app.
 
 ### Usage
 
