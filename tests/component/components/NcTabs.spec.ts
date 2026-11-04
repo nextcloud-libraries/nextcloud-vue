@@ -7,8 +7,8 @@ import { expect, test } from '@playwright/experimental-ct-vue'
 import NcTabs from '../../../src/components/NcTabs/NcTabs.vue'
 
 const tabs = [
-	{ id: 'details', name: 'Details' },
-	{ id: 'comments', name: 'Comments' },
+	{ id: 'details', label: 'Details' },
+	{ id: 'comments', label: 'Comments' },
 ]
 
 test('leaves room in the scrolling row for the focus outline of a tab', async ({ mount, page }) => {
@@ -45,7 +45,7 @@ for (const key of ['Enter', ' ']) {
 
 test('reaches a disabled tab with the arrow keys and shows its focus outline in full', async ({ mount, page }) => {
 	await mount(NcTabs, {
-		props: { tabs: [...tabs, { id: 'history', name: 'History', disabled: true }], modelValue: 'details', ariaLabel: 'Document' },
+		props: { tabs: [...tabs, { id: 'history', label: 'History', disabled: true }], modelValue: 'details', ariaLabel: 'Document' },
 	})
 	await page.keyboard.press('Tab')
 	await page.keyboard.press('End')

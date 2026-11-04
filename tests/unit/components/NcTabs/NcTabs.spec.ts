@@ -10,10 +10,10 @@ import { describe, expect, it } from 'vitest'
 import NcTabs from '../../../../src/components/NcTabs/NcTabs.vue'
 
 const tabs: NcTabsTab[] = [
-	{ id: 'details', name: 'Details' },
-	{ id: 'history', name: 'History', disabled: true },
-	{ id: 'comments', name: 'Comments', count: 3 },
-	{ id: 'sharing', name: 'Sharing' },
+	{ id: 'details', label: 'Details' },
+	{ id: 'history', label: 'History', disabled: true },
+	{ id: 'comments', label: 'Comments', count: 3 },
+	{ id: 'sharing', label: 'Sharing' },
 ]
 
 const slots = {
@@ -100,7 +100,7 @@ describe('NcTabs', () => {
 
 	it('keeps the tab and its panel linked when the tab id has whitespace', () => {
 		const wrapper = mount(NcTabs, {
-			props: { tabs: [{ id: 'my tab', name: 'Mine' }], modelValue: 'my tab' },
+			props: { tabs: [{ id: 'my tab', label: 'Mine' }], modelValue: 'my tab' },
 			slots: { 'panel-my tab': '<p>My panel</p>' },
 		})
 		const tab = wrapper.get('[role="tab"]')

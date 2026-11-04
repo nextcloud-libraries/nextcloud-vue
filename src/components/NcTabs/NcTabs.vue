@@ -42,9 +42,9 @@ export default {
 		return {
 			active: 'details',
 			tabs: [
-				{ id: 'details', name: 'Details' },
-				{ id: 'history', name: 'History' },
-				{ id: 'comments', name: 'Comments', count: 3 },
+				{ id: 'details', label: 'Details' },
+				{ id: 'history', label: 'History' },
+				{ id: 'comments', label: 'Comments', count: 3 },
 			],
 		}
 	},
@@ -77,9 +77,9 @@ export default {
 		return {
 			active: 'general',
 			tabs: [
-				{ id: 'general', name: 'General', iconPath: mdiCogOutline },
-				{ id: 'sharing', name: 'Sharing', iconPath: mdiShareVariantOutline, count: 12 },
-				{ id: 'security', name: 'Security', iconPath: mdiShieldLockOutline, disabled: true },
+				{ id: 'general', label: 'General', iconPath: mdiCogOutline },
+				{ id: 'sharing', label: 'Sharing', iconPath: mdiShareVariantOutline, count: 12 },
+				{ id: 'security', label: 'Security', iconPath: mdiShieldLockOutline, disabled: true },
 			],
 		}
 	},
@@ -101,11 +101,11 @@ import NcIconSvgWrapper from '../NcIconSvgWrapper/index.ts'
 export interface NcTabsTab {
 	/** The unique id of the tab, also the name of its panel slot `panel-<id>` */
 	id: string
-	/** The name shown on the tab */
-	name: string
-	/** The SVG path of an icon shown before the name, for example one from `@mdi/js` */
+	/** The label shown on the tab */
+	label: string
+	/** The SVG path of an icon shown before the label, for example one from `@mdi/js` */
 	iconPath?: string
-	/** A number shown in a counter bubble after the name */
+	/** A number shown in a counter bubble after the label */
 	count?: number
 	/** Whether the tab cannot be selected */
 	disabled?: boolean
@@ -266,7 +266,7 @@ function tabClass(tab: NcTabsTab) {
 				@click="select(tab)">
 				<NcIconSvgWrapper v-if="tab.iconPath" :path="tab.iconPath" :size="20" />
 				<span :class="$style.ncTabs__label">
-					<span :class="$style.ncTabs__name">{{ tab.name }}</span>
+					<span :class="$style.ncTabs__name">{{ tab.label }}</span>
 					<NcCounterBubble
 						v-if="tab.count !== undefined"
 						:count="tab.count" />
