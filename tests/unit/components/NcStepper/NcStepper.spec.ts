@@ -6,7 +6,7 @@
 import type { NcStepperStep } from '../../../../src/components/NcStepper/NcStepper.vue'
 
 import { mount } from '@vue/test-utils'
-import { describe, expect, it } from 'vitest'
+import { afterEach, describe, expect, it, vi } from 'vitest'
 import NcStepper from '../../../../src/components/NcStepper/NcStepper.vue'
 
 const steps: NcStepperStep[] = [
@@ -93,5 +93,64 @@ describe('NcStepper', () => {
 		const vertical = mountStepper('details', { orientation: 'vertical' })
 		expect(vertical.text()).toContain('About the team')
 		expect(vertical.classes().some((name) => name.includes('ncStepper_vertical'))).toBe(true)
+	})
+
+	it('does nothing when a step that cannot be gone back to is clicked', async () => {
+		const wrapper = mountStepper('details', { allowGoBack: true })
+		// The upcoming step is not a button, but it still has the click listener
+		await wrapper.findAll('li')[2].get('div').trigger('click')
+		expect(wrapper.emitted('update:modelValue')).toBeUndefined()
+	})
+
+	describe('in a row that scrolls', () => {
+		afterEach(() => {
+			vi.restoreAllMocks()
+		})
+
+		/**
+		 * Lay the row out as 200px wide with steps of 150px each, so the steps do not fit.
+		 *
+		 * @param scrollWidth - The width of all steps together
+		 */
+		function fakeLayout(scrollWidth = 450) {
+			vi.spyOn(HTMLElement.prototype, 'scrollWidth', 'get').mockImplementation(function(this: HTMLElement) {
+				return this.tagName === 'OL' ? scrollWidth : 0
+			})
+			vi.spyOn(HTMLElement.prototype, 'clientWidth', 'get').mockImplementation(function(this: HTMLElement) {
+				return this.tagName === 'OL' ? 200 : 0
+			})
+			vi.spyOn(HTMLElement.prototype, 'getBoundingClientRect').mockImplementation(function(this: HTMLElement) {
+				if (this.tagName === 'OL') {
+					return DOMRect.fromRect({ x: 0, y: 0, width: 200, height: 50 })
+				}
+				const index = [...this.parentElement!.children].indexOf(this)
+				const scrollLeft = (this.parentElement as HTMLElement).scrollLeft
+				return DOMRect.fromRect({ x: index * 150 - scrollLeft, y: 0, width: 150, height: 50 })
+			})
+		}
+
+		it('scrolls the current step to the middle when it is out of view', async () => {
+			fakeLayout()
+			const wrapper = mountStepper('name')
+			expect(wrapper.element.scrollLeft).toBe(0)
+
+			await wrapper.setProps({ modelValue: 'members' })
+			// The last step, at 300 to 450, has its middle at 375; the middle of the row is at 100
+			expect(wrapper.element.scrollLeft).toBe(275)
+		})
+
+		it('leaves the row alone when the current step is in view', async () => {
+			fakeLayout()
+			const wrapper = mountStepper('name')
+			await wrapper.setProps({ modelValue: 'name' })
+			expect(wrapper.element.scrollLeft).toBe(0)
+		})
+
+		it('leaves a row alone that fits', async () => {
+			fakeLayout(200)
+			const wrapper = mountStepper('name')
+			await wrapper.setProps({ modelValue: 'members' })
+			expect(wrapper.element.scrollLeft).toBe(0)
+		})
 	})
 })
