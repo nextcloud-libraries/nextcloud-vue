@@ -6,13 +6,9 @@
 <docs>
 ### General description
 
-This component lets the user pick an icon, for example for something they created such as a project, a menu item or a widget. Like `NcEmojiPicker` and `NcColorPicker`, it opens from a trigger passed in the default slot, and shows a search field and a grid of icons.
+This component lets the user pick an icon, for example for a project or a menu item. Like `NcEmojiPicker` and `NcColorPicker`, it opens from a trigger in the default slot, with a search field and a grid of icons.
 
-The app passes the icons to choose from in `icons`: each icon has a `name`, the SVG `path`, and optionally a `label` and `aliases` to search by. So only the icons the app offers end up in its bundle, for example a selection from `@mdi/js`. The picker stores nothing itself: the `name` of the chosen icon is bound with `v-model` and also emitted with the `select` event, and the app looks up the icon by that name when it shows it.
-
-The picker closes when an icon is picked. Set `keep-open` to leave it open, for example to try a few icons.
-
-The icons are a listbox: the arrow keys move between the icons, `Home` and `End` go to the first and last icon, and `Enter` or `Space` picks the focused icon. From the search field, the arrow down key moves into the icons, and from the first row of icons the arrow up key moves back. While searching, the number of icons found is announced to assistive technology.
+The app passes the icons to offer in `icons`, so only those end up in its bundle. The picker stores nothing itself: the app keeps the `name` of the picked icon.
 
 ### Usage
 
