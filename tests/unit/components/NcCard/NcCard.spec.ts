@@ -122,6 +122,42 @@ describe('NcCard', () => {
 		expect(wrapper.get('h3 a').attributes('href')).toBe('/teams/design')
 	})
 
+	describe('following the link with Space', () => {
+		/**
+		 * Mount a link card and count the clicks on its link.
+		 */
+		function mountLinkCard() {
+			const wrapper = mount(NcCard, { props: { label: 'Design', href: '#design' } })
+			const link = wrapper.get('a')
+			let clicks = 0
+			link.element.addEventListener('click', (event) => {
+				clicks++
+				event.preventDefault()
+			})
+			return { link, clicks: () => clicks }
+		}
+
+		it('clicks the link and keeps the page from scrolling', () => {
+			const { link, clicks } = mountLinkCard()
+			const event = new KeyboardEvent('keydown', { key: ' ', bubbles: true, cancelable: true })
+			link.element.dispatchEvent(event)
+			expect(clicks()).toBe(1)
+			expect(event.defaultPrevented).toBe(true)
+		})
+
+		it.each([
+			['another key', { key: 'a' }],
+			['a held down key', { key: ' ', repeat: true }],
+			['a modifier', { key: ' ', ctrlKey: true }],
+		])('ignores %s', (_, init) => {
+			const { link, clicks } = mountLinkCard()
+			const event = new KeyboardEvent('keydown', { ...init, bubbles: true, cancelable: true })
+			link.element.dispatchEvent(event)
+			expect(clicks()).toBe(0)
+			expect(event.defaultPrevented).toBe(false)
+		})
+	})
+
 	it('adds the active class only when active', () => {
 		const inactive = mount(NcCard, { props: { label: 'Design' } })
 		expect(inactive.classes().some((name) => name.includes('ncCard_active'))).toBe(false)
