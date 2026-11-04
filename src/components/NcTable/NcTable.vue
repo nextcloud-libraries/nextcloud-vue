@@ -6,15 +6,9 @@
 <docs>
 ### General description
 
-This component renders a table of rows and columns, with sortable column headers, selectable rows, and loading and empty states. Use it for lists of records where people compare values across rows; for a simple list of items, use `NcListItem` instead.
+This component shows a table with sortable columns, selectable rows, and loading and empty states. For a simple list of items, use `NcListItem` instead.
 
-Pass the columns as `columns` and the data as `rows`. Each row needs a unique value under `row-key`, `id` by default. A column `key` may be a dotted path such as `owner.name`.
-
-The component does not load, sort or filter any data itself. Bind the sorting with `v-model:sort`: a click on a sortable header cycles it through ascending, descending and unsorted, and the table emits the new sorting. Sort or load the rows accordingly.
-
-With `selectable`, every row gets a checkbox and the header a checkbox for all rows. Bind the keys of the selected rows with `v-model:selected`. Each checkbox is labeled with the name of its row, the value of the first column unless `row-label` returns another one. The selection outlives `rows`: keys of rows that are filtered out or on another page stay selected, also when all rows are selected or deselected, and the checkbox for all rows only looks at the rows that are shown. Remove those keys from `selected` when the selection should only hold rows that are shown.
-
-Give every table a `caption`. It names the table for assistive technology and is not shown. When the table is wider than its container, it scrolls sideways and can be reached with the keyboard to do so.
+The table does not load, sort or filter any data itself: it shows the `rows` it gets and emits the sorting and the selection, for the app to act on. Give every table a `caption`, which names it for assistive technology.
 
 ### Usage
 
@@ -299,11 +293,13 @@ export interface NcTableSort {
 
 /**
  * The current sorting, or `null` when the rows are not sorted.
+ * A click on a sortable header cycles it through ascending, descending and unsorted.
  */
 const sort = defineModel<NcTableSort | null>('sort', { default: null })
 
 /**
  * The keys of the selected rows.
+ * Keys of rows that are not shown, for example on another page, stay selected; remove them when the selection should only hold the rows that are shown.
  */
 const selected = defineModel<NcTableRowKey[]>('selected', { default: () => [] })
 
