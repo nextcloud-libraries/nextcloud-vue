@@ -6,15 +6,9 @@
 <docs>
 ### General description
 
-This component renders the pagination of a paged list or table. It shows the current position, buttons to move to the first, previous, next or last page or to a numbered page, and a selector for the number of items per page. When all items fit on one page, only the position and the page size selector are shown.
+This component shows the pagination of a paged list or table: the current position, buttons to the first, previous, next, last and numbered pages, and a selector for the page size.
 
-The component does not load or slice any data itself. Pass the number of items in `total-items`, bind the current page with `v-model:page` and the page size with `v-model:page-size`, and load or slice the items accordingly.
-
-Long page ranges are shortened with ellipses, so at most seven page buttons are shown at a time. The pagination is a `nav` landmark, labeled "Pagination" unless `aria-label` is set.
-
-When the page size is changed with the selector, the pagination goes back to the first page. When the current page does not exist, because the number of items shrank or a page that does not exist was passed, it moves to the last page there is. While `total-items` is `0`, for example while the items are still loading, the current page is left as it is.
-
-When a page or first, previous, next or last button that has keyboard focus disappears or becomes disabled, the focus moves to the current page, or in the compact layout to the other button.
+It does not load or slice any data itself: pass `total-items`, bind `v-model:page` and `v-model:page-size`, and show the items of that page.
 
 ### Usage
 
@@ -237,6 +231,7 @@ import { t } from '../../l10n.ts'
 
 /**
  * The current page, starting at 1.
+ * When the page does not exist, it moves to the last page there is, except while `totalItems` is `0`, for example while the items load.
  */
 const page = defineModel<number>('page', {
 	default: 1,
@@ -244,7 +239,7 @@ const page = defineModel<number>('page', {
 })
 
 /**
- * The number of items shown per page.
+ * The number of items shown per page. Changing it with the selector goes back to the first page.
  */
 const pageSize = defineModel<number>('pageSize', {
 	default: 20,
