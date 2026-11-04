@@ -6,7 +6,7 @@
 <docs>
 ### General description
 
-This component renders a single statistic, such as a number of items on a dashboard: an optional icon in a tinted circle, the name of the statistic, its value in large type and an optional label next to the value.
+This component renders a single statistic, such as a number of items on a dashboard: an optional icon in a tinted circle, the label of the statistic, its value in large type and an optional `value-label` next to the value, such as a unit or "this year".
 
 A number is formatted for the user's locale, so `1234` reads as `1,234` or `1.234`. Pass a string instead, for example `'€1,234'` or `'98%'`, to show a value that is already formatted. Extra content, such as a short breakdown, can be put in the default slot below the value.
 
@@ -21,9 +21,9 @@ The statistic draws no box of its own, so it fits into a card, a dashboard widge
 ```vue
 <template>
 	<div class="stats">
-		<NcStatsBlock name="Open cases" :value="42" />
-		<NcStatsBlock name="Documents" :value="12873" label="this year" :icon-path="mdiFileDocumentOutline" />
-		<NcStatsBlock name="Budget used" value="78%" variant="warning" :icon-path="mdiCashMultiple" />
+		<NcStatsBlock label="Open cases" :value="42" />
+		<NcStatsBlock label="Documents" :value="12873" value-label="this year" :icon-path="mdiFileDocumentOutline" />
+		<NcStatsBlock label="Budget used" value="78%" variant="warning" :icon-path="mdiCashMultiple" />
 	</div>
 </template>
 
@@ -54,11 +54,11 @@ export default {
 ```vue
 <template>
 	<div class="stats">
-		<NcStatsBlock name="Primary" :value="12" :icon-path="mdiChartBar" />
-		<NcStatsBlock name="Info" :value="3" variant="info" :icon-path="mdiInformationOutline" />
-		<NcStatsBlock name="Success" :value="98" variant="success" :icon-path="mdiCheckCircleOutline" />
-		<NcStatsBlock name="Warning" :value="7" variant="warning" :icon-path="mdiAlertOutline" />
-		<NcStatsBlock name="Error" :value="1" variant="error" :icon-path="mdiAlertCircleOutline" />
+		<NcStatsBlock label="Primary" :value="12" :icon-path="mdiChartBar" />
+		<NcStatsBlock label="Info" :value="3" variant="info" :icon-path="mdiInformationOutline" />
+		<NcStatsBlock label="Success" :value="98" variant="success" :icon-path="mdiCheckCircleOutline" />
+		<NcStatsBlock label="Warning" :value="7" variant="warning" :icon-path="mdiAlertOutline" />
+		<NcStatsBlock label="Error" :value="1" variant="error" :icon-path="mdiAlertCircleOutline" />
 	</div>
 </template>
 
@@ -96,17 +96,17 @@ Hyphenation needs a language. This page sets none, so each statistic here sets i
 	<div class="stats">
 		<NcStatsBlock
 			lang="en"
-			name="Antidisestablishmentarianism"
+			label="Antidisestablishmentarianism"
 			:value="42"
 			:icon-path="mdiFileDocumentOutline" />
 		<NcStatsBlock
 			lang="de"
-			name="Donaudampfschifffahrtsgesellschaft"
+			label="Donaudampfschifffahrtsgesellschaft"
 			:value="7"
 			:icon-path="mdiFileDocumentOutline" />
 		<NcStatsBlock
 			lang="nl"
-			name="Arbeidsongeschiktheidsverzekeringen"
+			label="Arbeidsongeschiktheidsverzekeringen"
 			:value="128"
 			:icon-path="mdiFileDocumentOutline" />
 	</div>
@@ -139,18 +139,18 @@ export default {
 <template>
 	<div class="stats">
 		<NcStatsBlock
-			name="Unread messages"
+			label="Unread messages"
 			:value="5"
 			href="#"
 			:icon-path="mdiEmailOutline" />
 		<NcStatsBlock
-			name="Storage"
+			label="Storage"
 			loading
 			:icon-path="mdiHarddisk" />
 		<NcStatsBlock
-			name="Tasks"
+			label="Tasks"
 			:value="24"
-			label="in total"
+			value-label="in total"
 			:icon-path="mdiCheckboxMarkedOutline">
 			<p class="breakdown">
 				18 done, 6 open
@@ -201,9 +201,9 @@ import NcLoadingIcon from '../NcLoadingIcon/index.ts'
 
 const props = withDefaults(defineProps<{
 	/**
-	 * The name of the statistic, shown above the value.
+	 * The label of the statistic, shown above the value.
 	 */
-	name: string
+	label: string
 
 	/**
 	 * The value of the statistic.
@@ -215,7 +215,7 @@ const props = withDefaults(defineProps<{
 	/**
 	 * A short label shown next to the value, for example a unit or "this week".
 	 */
-	label?: string
+	valueLabel?: string
 
 	/**
 	 * The SVG path of an icon, for example one from `@mdi/js`.
@@ -245,7 +245,7 @@ const props = withDefaults(defineProps<{
 	to?: RouteLocationRaw
 }>(), {
 	value: undefined,
-	label: undefined,
+	valueLabel: undefined,
 	iconPath: undefined,
 	variant: 'primary',
 	href: undefined,
@@ -306,14 +306,14 @@ const formattedValue = computed(() => {
 		</div>
 		<div :class="$style.ncStatsBlock__body">
 			<p :class="$style.ncStatsBlock__name">
-				{{ name }}
+				{{ label }}
 			</p>
 			<p v-if="loading" :class="$style.ncStatsBlock__value">
 				<NcLoadingIcon :name="t('Loading …')" />
 			</p>
 			<p v-else :class="$style.ncStatsBlock__value">
 				<span :class="$style.ncStatsBlock__number">{{ formattedValue }}</span>
-				<span v-if="label" :class="$style.ncStatsBlock__label">{{ label }}</span>
+				<span v-if="valueLabel" :class="$style.ncStatsBlock__label">{{ valueLabel }}</span>
 			</p>
 			<slot />
 		</div>

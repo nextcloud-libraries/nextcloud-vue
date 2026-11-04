@@ -11,9 +11,9 @@ for (const value of [42, 1234567]) {
 	test(`shows the whole name and keeps ${value} inside a narrow cell`, async ({ mount, page }) => {
 		const block = await mount(NcStatsBlock, {
 			props: {
-				name: 'Open cases past deadline',
+				label: 'Open cases past deadline',
 				value,
-				label: 'this year',
+				valueLabel: 'this year',
 				iconPath: mdiFileDocumentOutline,
 				style: 'width: 180px',
 			},
@@ -32,7 +32,7 @@ for (const value of [42, 1234567]) {
 test('keeps a name with a long word next to the icon', async ({ mount, page }) => {
 	const block = await mount(NcStatsBlock, {
 		props: {
-			name: 'Documentsandattachments of this year',
+			label: 'Documentsandattachments of this year',
 			value: 12,
 			iconPath: mdiFileDocumentOutline,
 			style: 'width: 220px',
@@ -45,7 +45,7 @@ test('keeps a name with a long word next to the icon', async ({ mount, page }) =
 
 test('hyphenates a long word in the name and the label by the rules of the language', async ({ mount, page }) => {
 	await mount(NcStatsBlock, {
-		props: { name: 'Donaudampfschifffahrtsgesellschaft', value: 7, label: 'Schifffahrtsgesellschaften', lang: 'de', style: 'width: 160px' },
+		props: { label: 'Donaudampfschifffahrtsgesellschaft', value: 7, valueLabel: 'Schifffahrtsgesellschaften', lang: 'de', style: 'width: 160px' },
 	})
 	for (const text of ['Donaudampfschifffahrtsgesellschaft', 'Schifffahrtsgesellschaften']) {
 		await expect(page.getByText(text)).toHaveCSS('hyphens', 'auto')
@@ -55,9 +55,9 @@ test('hyphenates a long word in the name and the label by the rules of the langu
 test('wraps a long label instead of cutting it off', async ({ mount, page }) => {
 	const block = await mount(NcStatsBlock, {
 		props: {
-			name: 'Documents',
+			label: 'Documents',
 			value: 12,
-			label: 'added since the start of this year',
+			valueLabel: 'added since the start of this year',
 			iconPath: mdiFileDocumentOutline,
 			style: 'width: 180px',
 		},
@@ -71,10 +71,10 @@ test('wraps a long label instead of cutting it off', async ({ mount, page }) => 
 
 test('keeps its height while loading', async ({ mount }) => {
 	const style = 'width: 300px'
-	const loaded = await mount(NcStatsBlock, { props: { name: 'Documents', value: 12, style } })
+	const loaded = await mount(NcStatsBlock, { props: { label: 'Documents', value: 12, style } })
 	const height = (await loaded.boundingBox())!.height
 	await loaded.unmount()
 
-	const loading = await mount(NcStatsBlock, { props: { name: 'Documents', value: 12, loading: true, style } })
+	const loading = await mount(NcStatsBlock, { props: { label: 'Documents', value: 12, loading: true, style } })
 	expect((await loading.boundingBox())!.height).toBeCloseTo(height, 0)
 })
