@@ -163,9 +163,7 @@ export default {
 
 ### Breadcrumbs as data
 
-Instead of `NcBreadcrumb` components, the trail can be passed as an array in `crumbs`, root first. Each crumb has a `name`, and a `to` for vue-router or an `href` to link to, an optional `title`, an optional `iconPath`, for example one from `@mdi/js`, and `disableDrop` to not accept drops on it. Like the `icon` slot of `NcBreadcrumb`, an icon is shown instead of the name, and the name becomes its accessible label. The first crumb gets the `root-icon` the same way, unless it has an `iconPath`. The last crumb is the current location and is marked with `aria-current="page"`. Give it its link as well: it then stays a link, as the breadcrumb pattern asks, keeps the keyboard focus when a click on a crumb makes that one the last, and reports its link when something is dropped on it. When `crumbs` is set, the `NcBreadcrumb` components in the default slot are not used.
-
-A click on a crumb emits `crumbClick` with the crumb, its index and the click event, for an app that navigates without vue-router. Call `preventDefault()` on the event to stop the link from being followed, with `href` and with `to`. In the example below, a click on a crumb goes up to that folder, and the buttons go back down.
+Instead of `NcBreadcrumb` components, the trail can be passed as an array in `crumbs`, root first, with the current location last. A click on a crumb emits `crumbClick`, for an app that navigates without vue-router. In the example below, a click on a crumb goes up to that folder, and the buttons go back down.
 
 ```vue
 <template>
@@ -270,7 +268,8 @@ export default {
 		/**
 		 * The breadcrumbs as data instead of `NcBreadcrumb` components, root first.
 		 * An `iconPath` is shown instead of the name, like the `icon` slot of `NcBreadcrumb`.
-		 * The last crumb is the current location and gets `aria-current="page"`.
+		 * The last crumb is the current location and gets `aria-current="page"`. Give it its link as well, so it stays a link,
+		 * as the breadcrumb pattern asks, and keeps the keyboard focus when a click makes another crumb the last.
 		 * When set, the `NcBreadcrumb` components in the default slot are not used.
 		 *
 		 * @type {Array<{name: string, to?: string|object, href?: string, title?: string, iconPath?: string, disableDrop?: boolean}>}
@@ -629,7 +628,7 @@ export default {
 					onClickCapture: (event) => {
 						/**
 						 * A crumb of the `crumbs` prop was clicked.
-						 * Call `preventDefault()` on the event to stop its link from being followed.
+						 * Call `preventDefault()` on the event to stop its link from being followed, with `href` and with `to`.
 						 *
 						 * @param {object} crumb The clicked crumb
 						 * @param {number} index Its index in `crumbs`
