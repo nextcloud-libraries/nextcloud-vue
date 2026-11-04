@@ -6,7 +6,7 @@
 import type { NcTableColumn, NcTableRowKey, NcTableSort } from '../../../../src/components/NcTable/index.ts'
 
 import { mount } from '@vue/test-utils'
-import { describe, expect, it, vi } from 'vitest'
+import { afterEach, describe, expect, it, vi } from 'vitest'
 import { h, nextTick } from 'vue'
 import NcCheckboxRadioSwitch from '../../../../src/components/NcCheckboxRadioSwitch/NcCheckboxRadioSwitch.vue'
 import NcTable from '../../../../src/components/NcTable/NcTable.vue'
@@ -345,6 +345,66 @@ describe('NcTable', () => {
 			const clickable = (wrapper: ReturnType<typeof mount>) => wrapper.get('tbody tr').classes().some((name) => name.includes('clickable'))
 			expect(clickable(mountBound())).toBe(false)
 			expect(clickable(mountBound({ onRowClick: () => {} }))).toBe(true)
+		})
+	})
+
+	it('shows an empty value as an empty cell and a list as its items, separated by commas', () => {
+		const wrapper = mount(NcTable, {
+			props: {
+				columns: [{ key: 'name', label: 'Name' }, { key: 'tags', label: 'Tags' }],
+				rows: [{ id: 1, name: 'Alice', tags: ['design', 'files'] }, { id: 2, name: 'Bram', tags: undefined }],
+				caption: 'Team members',
+			},
+		})
+		expect(bodyText(wrapper)).toEqual([['Alice', 'design, files'], ['Bram', '']])
+	})
+
+	it('centers the header and the cells of a centered column', () => {
+		const wrapper = mount(NcTable, {
+			props: {
+				columns: [{ key: 'name', label: 'Name', sortable: true, align: 'center' }],
+				rows: [{ id: 1, name: 'Alice' }],
+				caption: 'Team members',
+			},
+		})
+		expect(wrapper.get('th').classes().some((name) => name.includes('alignCenter'))).toBe(true)
+		expect(wrapper.get('td').classes().some((name) => name.includes('alignCenter'))).toBe(true)
+	})
+
+	describe('when the table is wider than its container', () => {
+		afterEach(() => {
+			vi.unstubAllGlobals()
+			vi.restoreAllMocks()
+		})
+
+		it('measures again on a resize and then makes the scroll area a named keyboard stop', async () => {
+			const observed: Element[] = []
+			let onResize = () => {}
+			vi.stubGlobal('ResizeObserver', class {
+				constructor(callback: () => void) {
+					onResize = callback
+				}
+
+				observe(element: Element) {
+					observed.push(element)
+				}
+
+				disconnect() {}
+			})
+			const wrapper = mount(NcTable, { props: { columns, rows, caption: 'Team members' } })
+			const scroll = wrapper.get('table').element.parentElement!
+			// The scroll area and the table in it
+			expect(observed).toEqual([scroll, wrapper.get('table').element])
+			expect(scroll.hasAttribute('tabindex')).toBe(false)
+
+			vi.spyOn(scroll, 'scrollWidth', 'get').mockReturnValue(800)
+			vi.spyOn(scroll, 'clientWidth', 'get').mockReturnValue(400)
+			onResize()
+			await nextTick()
+			expect(scroll.getAttribute('tabindex')).toBe('0')
+			expect(scroll.getAttribute('role')).toBe('group')
+			expect(scroll.getAttribute('aria-label')).toBe('Team members')
+			wrapper.unmount()
 		})
 	})
 })
