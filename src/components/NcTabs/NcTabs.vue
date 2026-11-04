@@ -6,15 +6,9 @@
 <docs>
 ### General description
 
-This component renders a row of tabs and the panel of the selected tab, for switching between views of the same content in the app content, such as the details, the history and the comments of an item. For the tabs of the sidebar, use `NcAppSidebarTab` instead.
+This component shows a row of tabs and the panel of the selected tab, to switch between views of the same content in the app content. For the tabs of the sidebar, use `NcAppSidebarTab` instead.
 
-Pass the tabs in `tabs` and bind the selected tab's `id` with `v-model`. The content of a tab goes in the slot `panel-<id>`, for example `#panel-details`. Only the panel of the selected tab is rendered, so a panel starts afresh each time its tab is selected: keep state that must survive switching tabs, such as an unsaved form, outside the panel.
-
-When `v-model` does not match an enabled tab, for example a tab that is disabled while its content loads, the first enabled tab is shown, but the model is left as it is. The tab is shown once it matches an enabled tab.
-
-A tab can have an icon, a count shown in a counter bubble, and can be disabled. A disabled tab can still be reached with the arrow keys, so it is announced, but cannot be selected. The tabs follow the [ARIA tabs pattern](https://www.w3.org/WAI/ARIA/apg/patterns/tabs/) with manual activation: the arrow keys move the focus between the tabs, `Home` and `End` go to the first and last tab, `Enter` or `Space` selects the focused tab, and `Tab` moves on into the panel. So a panel is only rendered when its tab is selected, not each time the focus passes it.
-
-The tabs look like the tabs of the sidebar: the icon above the name, and the tabs share the width of the row. When the tabs do not fit, the row scrolls horizontally.
+The content of a tab goes in its `panel-<id>` slot. Only the panel of the selected tab is rendered, so keep state that must survive switching tabs outside the panel. The tabs follow the [ARIA tabs pattern](https://www.w3.org/WAI/ARIA/apg/patterns/tabs/) with manual activation.
 
 ### Usage
 
@@ -107,13 +101,13 @@ export interface NcTabsTab {
 	iconPath?: string
 	/** A number shown in a counter bubble after the label */
 	count?: number
-	/** Whether the tab cannot be selected */
+	/** Whether the tab cannot be selected. It can still be reached with the keyboard, so it is announced. */
 	disabled?: boolean
 }
 
 /**
  * The `id` of the selected tab.
- * When it does not match an enabled tab, the first enabled tab is shown.
+ * When it does not match an enabled tab, the first enabled tab is shown, without changing the model.
  */
 const modelValue = defineModel<string>()
 
