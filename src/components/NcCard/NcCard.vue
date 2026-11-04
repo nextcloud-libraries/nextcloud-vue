@@ -18,14 +18,14 @@ With `href` or `to` the heading becomes a link that covers the whole card, so th
 <template>
 	<div class="cards">
 		<NcCard
-			name="Meeting notes"
+			label="Meeting notes"
 			description="The notes of the weekly team meeting, with the decisions and the action points.">
 			<template #footer>
 				<NcChip text="Published" variant="success" no-close />
 			</template>
 		</NcCard>
 		<NcCard
-			name="Budget 2026"
+			label="Budget 2026"
 			description="The budget proposal for next year."
 			:icon-path="mdiFileChartOutline">
 			<template #actions>
@@ -72,7 +72,7 @@ export default {
 		<NcCard
 			v-for="team in teams"
 			:key="team.id"
-			:name="team.name"
+			:label="team.label"
 			:description="team.description"
 			:icon-path="mdiAccountGroupOutline"
 			:active="team.id === selected"
@@ -95,9 +95,9 @@ export default {
 		return {
 			selected: 'design',
 			teams: [
-				{ id: 'design', name: 'Design', description: '6 members' },
-				{ id: 'development', name: 'Development', description: '14 members' },
-				{ id: 'support', name: 'Support', description: '4 members' },
+				{ id: 'design', label: 'Design', description: '6 members' },
+				{ id: 'development', label: 'Development', description: '14 members' },
+				{ id: 'support', label: 'Support', description: '4 members' },
 			],
 		}
 	},
@@ -124,9 +124,9 @@ import NcIconSvgWrapper from '../NcIconSvgWrapper/index.ts'
 
 const props = withDefaults(defineProps<{
 	/**
-	 * The name of the card, shown as its heading.
+	 * The label of the card, shown as its heading.
 	 */
-	name: string
+	label: string
 
 	/**
 	 * A short description shown below the heading.
@@ -250,10 +250,10 @@ function onLinkKeydown(event: KeyboardEvent) {
 					:class="$style.ncCard__link"
 					v-bind="linkAttrs"
 					@keydown="onLinkKeydown">
-					{{ name }}
+					{{ label }}
 				</component>
 				<template v-else>
-					{{ name }}
+					{{ label }}
 				</template>
 			</component>
 			<div v-if="slots.actions" :class="$style.ncCard__actions">

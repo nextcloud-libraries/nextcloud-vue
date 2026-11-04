@@ -9,40 +9,40 @@ import { createRouter, createWebHashHistory } from 'vue-router'
 import NcCard from '../../../../src/components/NcCard/NcCard.vue'
 
 describe('NcCard', () => {
-	it('renders an article with the name as a level 3 heading by default', () => {
-		const wrapper = mount(NcCard, { props: { name: 'Meeting notes' } })
+	it('renders an article with the label as a level 3 heading by default', () => {
+		const wrapper = mount(NcCard, { props: { label: 'Meeting notes' } })
 		expect(wrapper.element.tagName).toBe('ARTICLE')
 		expect(wrapper.get('h3').text()).toBe('Meeting notes')
 		expect(wrapper.find('a').exists()).toBe(false)
 	})
 
 	it('renders the heading at the given level, but never as h1', () => {
-		const wrapper = mount(NcCard, { props: { name: 'Meeting notes', headingLevel: 2 } })
+		const wrapper = mount(NcCard, { props: { label: 'Meeting notes', headingLevel: 2 } })
 		expect(wrapper.get('h2').text()).toBe('Meeting notes')
 
 		// @ts-expect-error -- level 1 is not part of the type, but can still be passed at runtime
-		const level1 = mount(NcCard, { props: { name: 'Meeting notes', headingLevel: 1 } })
+		const level1 = mount(NcCard, { props: { label: 'Meeting notes', headingLevel: 1 } })
 		expect(level1.find('h1').exists()).toBe(false)
 		expect(level1.get('h2').text()).toBe('Meeting notes')
 	})
 
 	it('renders the description only when it is set', () => {
-		const without = mount(NcCard, { props: { name: 'Meeting notes' } })
+		const without = mount(NcCard, { props: { label: 'Meeting notes' } })
 		expect(without.find('p').exists()).toBe(false)
 
-		const withDescription = mount(NcCard, { props: { name: 'Meeting notes', description: 'Weekly notes' } })
+		const withDescription = mount(NcCard, { props: { label: 'Meeting notes', description: 'Weekly notes' } })
 		expect(withDescription.get('p').text()).toBe('Weekly notes')
 	})
 
 	it('renders the icon only when an icon path or icon slot is given', () => {
-		const without = mount(NcCard, { props: { name: 'Budget' } })
+		const without = mount(NcCard, { props: { label: 'Budget' } })
 		expect(without.find('svg').exists()).toBe(false)
 
-		const withPath = mount(NcCard, { props: { name: 'Budget', iconPath: 'M0 0h24v24H0z' } })
+		const withPath = mount(NcCard, { props: { label: 'Budget', iconPath: 'M0 0h24v24H0z' } })
 		expect(withPath.find('svg path').attributes('d')).toBe('M0 0h24v24H0z')
 
 		const withSlot = mount(NcCard, {
-			props: { name: 'Budget', iconPath: 'M0 0h24v24H0z' },
+			props: { label: 'Budget', iconPath: 'M0 0h24v24H0z' },
 			slots: { icon: '<span class="custom-icon" />' },
 		})
 		expect(withSlot.find('.custom-icon').exists()).toBe(true)
@@ -51,7 +51,7 @@ describe('NcCard', () => {
 
 	it('renders the actions, the content and the footer slots', () => {
 		const wrapper = mount(NcCard, {
-			props: { name: 'Budget' },
+			props: { label: 'Budget' },
 			slots: {
 				actions: '<button type="button">Rename</button>',
 				default: '<p class="content">Last changed by Jane Doe.</p>',
@@ -64,7 +64,7 @@ describe('NcCard', () => {
 	})
 
 	it('turns the heading into a link when href is set', () => {
-		const wrapper = mount(NcCard, { props: { name: 'Design', href: '/teams/design' } })
+		const wrapper = mount(NcCard, { props: { label: 'Design', href: '/teams/design' } })
 		const link = wrapper.get('h3 a')
 		expect(link.attributes('href')).toBe('/teams/design')
 		expect(link.text()).toBe('Design')
@@ -80,7 +80,7 @@ describe('NcCard', () => {
 		})
 		await router.push({ name: 'team', params: { id: 'design' } })
 		const wrapper = mount(NcCard, {
-			props: { name: 'Design', to: { name: 'team', params: { id: 'design' } } },
+			props: { label: 'Design', to: { name: 'team', params: { id: 'design' } } },
 			global: { plugins: [router] },
 		})
 		expect(wrapper.get('h3 a').attributes('aria-current')).toBe('page')
@@ -95,7 +95,7 @@ describe('NcCard', () => {
 			],
 		})
 		const wrapper = mount(NcCard, {
-			props: { name: 'Design', to: { name: 'team', params: { id: 'design' } }, href: '/ignored' },
+			props: { label: 'Design', to: { name: 'team', params: { id: 'design' } }, href: '/ignored' },
 			global: { plugins: [router] },
 		})
 		await router.isReady()
@@ -103,30 +103,30 @@ describe('NcCard', () => {
 	})
 
 	it('opens the link in the target, without access to this page', () => {
-		const wrapper = mount(NcCard, { props: { name: 'Design', href: 'https://example.com', target: '_blank' } })
+		const wrapper = mount(NcCard, { props: { label: 'Design', href: 'https://example.com', target: '_blank' } })
 		const link = wrapper.get('h3 a')
 		expect(link.attributes('target')).toBe('_blank')
 		expect(link.attributes('rel')).toBe('nofollow noreferrer noopener')
 	})
 
 	it('marks the link of an active card as the current one', () => {
-		const inactive = mount(NcCard, { props: { name: 'Design', href: '/teams/design' } })
+		const inactive = mount(NcCard, { props: { label: 'Design', href: '/teams/design' } })
 		expect(inactive.get('h3 a').attributes('aria-current')).toBeUndefined()
 
-		const active = mount(NcCard, { props: { name: 'Design', href: '/teams/design', active: true } })
+		const active = mount(NcCard, { props: { label: 'Design', href: '/teams/design', active: true } })
 		expect(active.get('h3 a').attributes('aria-current')).toBe('true')
 	})
 
 	it('falls back to href when to is set without a router', () => {
-		const wrapper = mount(NcCard, { props: { name: 'Design', to: { name: 'team' }, href: '/teams/design' } })
+		const wrapper = mount(NcCard, { props: { label: 'Design', to: { name: 'team' }, href: '/teams/design' } })
 		expect(wrapper.get('h3 a').attributes('href')).toBe('/teams/design')
 	})
 
 	it('adds the active class only when active', () => {
-		const inactive = mount(NcCard, { props: { name: 'Design' } })
+		const inactive = mount(NcCard, { props: { label: 'Design' } })
 		expect(inactive.classes().some((name) => name.includes('ncCard_active'))).toBe(false)
 
-		const active = mount(NcCard, { props: { name: 'Design', active: true } })
+		const active = mount(NcCard, { props: { label: 'Design', active: true } })
 		expect(active.classes().some((name) => name.includes('ncCard_active'))).toBe(true)
 	})
 })
