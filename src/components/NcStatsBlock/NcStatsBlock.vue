@@ -6,15 +6,9 @@
 <docs>
 ### General description
 
-This component renders a single statistic, such as a number of items on a dashboard: an optional icon in a tinted circle, the label of the statistic, its value in large type and an optional `value-label` next to the value, such as a unit or "this year".
+This component shows a single statistic, such as a number of items on a dashboard: a label, the value in large type and an optional icon. It draws no box of its own, so it fits in a card or a grid.
 
-A number is formatted for the user's locale, so `1234` reads as `1,234` or `1.234`. Pass a string instead, for example `'€1,234'` or `'98%'`, to show a value that is already formatted. Extra content, such as a short breakdown, can be put in the default slot below the value.
-
-In a narrow space the name and the label wrap, the label moves below the value, and the value moves below the icon when it does not fit next to it. A word that is too long for the line is hyphenated by the rules of its language. The browser takes the language from the `lang` attribute of the page, which Nextcloud sets to the language of the user. Set `lang` on the statistic when its text is in another language. When the browser has no hyphenation rules for the language, or there is no language set, the word is broken without a hyphen.
-
-The `variant` colors the icon and the value. With `href` or `to` the whole statistic becomes a link, for example to the list the number counts. The default slot is then inside the link too, so it must not contain links or buttons. While `loading` is set, a loading icon is shown instead of the value, so the value can be left out until it has loaded.
-
-The statistic draws no box of its own, so it fits into a card, a dashboard widget or a grid. Put several next to each other with a CSS grid or flexbox.
+Long words are hyphenated by the rules of the language of the page, or of a `lang` attribute set on the statistic.
 
 ### Usage
 
