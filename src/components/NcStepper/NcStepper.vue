@@ -3,131 +3,6 @@
   - SPDX-License-Identifier: AGPL-3.0-or-later
 -->
 
-<docs>
-### General description
-
-This component shows a sequence of steps and where the user is in it, for example the steps of a form that is filled in over several pages, or the stages an item goes through. Completed steps are marked with a check, the current step is highlighted and the steps after it are shown as upcoming.
-
-Pass the steps in `steps` and bind the `id` of the current step with `v-model`. The component only shows the steps: moving to the next step, for example with a "Next" button, is up to the app.
-
-With `allow-go-back` the completed steps become buttons, so the user can go back to one of them. Steps after the current one can never be selected, as they may depend on the steps before them.
-
-The steps are shown in a row by default. When they do not fit, the row scrolls sideways, as a name is never broken inside a word. With `orientation="vertical"` they are shown below each other, which leaves room for a `description` per step and fits a sidebar or a narrow space, such as a phone screen with many steps.
-
-The steps are an ordered list, the current step is marked with `aria-current="step"` and completed steps are announced as completed.
-
-### Usage
-
-```vue
-<template>
-	<div class="stepper-example">
-		<NcStepper v-model="current" :steps="steps" aria-label="Create a team" />
-		<div class="stepper-example__buttons">
-			<NcButton :disabled="index === 0" @click="current = steps[index - 1].id">
-				Back
-			</NcButton>
-			<NcButton variant="primary" :disabled="index === steps.length - 1" @click="current = steps[index + 1].id">
-				Next
-			</NcButton>
-		</div>
-	</div>
-</template>
-
-<script>
-export default {
-	data() {
-		return {
-			current: 'details',
-			steps: [
-				{ id: 'name', name: 'Name' },
-				{ id: 'details', name: 'Details' },
-				{ id: 'members', name: 'Members' },
-				{ id: 'review', name: 'Review' },
-			],
-		}
-	},
-
-	computed: {
-		index() {
-			return this.steps.findIndex((step) => step.id === this.current)
-		},
-	},
-}
-</script>
-
-<style scoped>
-.stepper-example {
-	display: flex;
-	flex-direction: column;
-	gap: 16px;
-}
-
-.stepper-example__buttons {
-	display: flex;
-	gap: 8px;
-}
-</style>
-```
-
-### Going back to a completed step
-
-```vue
-<template>
-	<div>
-		<NcStepper
-			v-model="current"
-			:steps="steps"
-			allow-go-back
-			aria-label="Order" />
-		<p>Current step: {{ current }}</p>
-	</div>
-</template>
-
-<script>
-export default {
-	data() {
-		return {
-			current: 'payment',
-			steps: [
-				{ id: 'cart', name: 'Cart' },
-				{ id: 'address', name: 'Address' },
-				{ id: 'payment', name: 'Payment' },
-				{ id: 'confirm', name: 'Confirmation' },
-			],
-		}
-	},
-}
-</script>
-```
-
-### Vertical, with descriptions
-
-```vue
-<template>
-	<NcStepper
-		v-model="current"
-		:steps="steps"
-		orientation="vertical"
-		aria-label="Application" />
-</template>
-
-<script>
-export default {
-	data() {
-		return {
-			current: 'review',
-			steps: [
-				{ id: 'submitted', name: 'Submitted', description: 'Received on 3 November' },
-				{ id: 'review', name: 'In review', description: 'A colleague checks the application' },
-				{ id: 'decision', name: 'Decision', description: 'Usually within two weeks' },
-			],
-		}
-	},
-}
-</script>
-```
-</docs>
-
 <script setup lang="ts">
 import { mdiCheck } from '@mdi/js'
 import { useResizeObserver } from '@vueuse/core'
@@ -138,9 +13,9 @@ import NcIconSvgWrapper from '../NcIconSvgWrapper/index.ts'
 export interface NcStepperStep {
 	/** The unique id of the step */
 	id: string
-	/** The name of the step */
-	name: string
-	/** A short description, shown below the name in the vertical orientation */
+	/** The label of the step */
+	label: string
+	/** A short description, shown below the label in the vertical orientation */
 	description?: string
 }
 
@@ -264,7 +139,7 @@ function goBackTo(step: NcStepperStep, index: number) {
 				</span>
 				<span :class="$style.ncStepper__text">
 					<span :class="$style.ncStepper__name">
-						{{ step.name }}
+						{{ step.label }}
 						<span v-if="stateOf(index) === 'completed'" class="hidden-visually">{{ t('Completed') }}</span>
 					</span>
 					<span v-if="orientation === 'vertical' && step.description" :class="$style.ncStepper__description">
@@ -437,3 +312,128 @@ function goBackTo(step: NcStepperStep, index: number) {
 	}
 }
 </style>
+
+<docs>
+### General description
+
+This component shows a sequence of steps and where the user is in it, for example the steps of a form that is filled in over several pages, or the stages an item goes through. Completed steps are marked with a check, the current step is highlighted and the steps after it are shown as upcoming.
+
+Pass the steps in `steps` and bind the `id` of the current step with `v-model`. The component only shows the steps: moving to the next step, for example with a "Next" button, is up to the app.
+
+With `allow-go-back` the completed steps become buttons, so the user can go back to one of them. Steps after the current one can never be selected, as they may depend on the steps before them.
+
+The steps are shown in a row by default. When they do not fit, the row scrolls sideways, as a name is never broken inside a word. With `orientation="vertical"` they are shown below each other, which leaves room for a `description` per step and fits a sidebar or a narrow space, such as a phone screen with many steps.
+
+The steps are an ordered list, the current step is marked with `aria-current="step"` and completed steps are announced as completed.
+
+### Usage
+
+```vue
+<template>
+	<div class="stepper-example">
+		<NcStepper v-model="current" :steps="steps" aria-label="Create a team" />
+		<div class="stepper-example__buttons">
+			<NcButton :disabled="index === 0" @click="current = steps[index - 1].id">
+				Back
+			</NcButton>
+			<NcButton variant="primary" :disabled="index === steps.length - 1" @click="current = steps[index + 1].id">
+				Next
+			</NcButton>
+		</div>
+	</div>
+</template>
+
+<script>
+export default {
+	data() {
+		return {
+			current: 'details',
+			steps: [
+				{ id: 'name', label: 'Name' },
+				{ id: 'details', label: 'Details' },
+				{ id: 'members', label: 'Members' },
+				{ id: 'review', label: 'Review' },
+			],
+		}
+	},
+
+	computed: {
+		index() {
+			return this.steps.findIndex((step) => step.id === this.current)
+		},
+	},
+}
+</script>
+
+<style scoped>
+.stepper-example {
+	display: flex;
+	flex-direction: column;
+	gap: 16px;
+}
+
+.stepper-example__buttons {
+	display: flex;
+	gap: 8px;
+}
+</style>
+```
+
+### Going back to a completed step
+
+```vue
+<template>
+	<div>
+		<NcStepper
+			v-model="current"
+			:steps="steps"
+			allow-go-back
+			aria-label="Order" />
+		<p>Current step: {{ current }}</p>
+	</div>
+</template>
+
+<script>
+export default {
+	data() {
+		return {
+			current: 'payment',
+			steps: [
+				{ id: 'cart', label: 'Cart' },
+				{ id: 'address', label: 'Address' },
+				{ id: 'payment', label: 'Payment' },
+				{ id: 'confirm', label: 'Confirmation' },
+			],
+		}
+	},
+}
+</script>
+```
+
+### Vertical, with descriptions
+
+```vue
+<template>
+	<NcStepper
+		v-model="current"
+		:steps="steps"
+		orientation="vertical"
+		aria-label="Application" />
+</template>
+
+<script>
+export default {
+	data() {
+		return {
+			current: 'review',
+			steps: [
+				{ id: 'submitted', label: 'Submitted', description: 'Received on 3 November' },
+				{ id: 'review', label: 'In review', description: 'A colleague checks the application' },
+				{ id: 'decision', label: 'Decision', description: 'Usually within two weeks' },
+			],
+		}
+	},
+}
+</script>
+```
+</docs>

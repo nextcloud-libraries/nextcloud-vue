@@ -10,9 +10,9 @@ import { describe, expect, it } from 'vitest'
 import NcStepper from '../../../../src/components/NcStepper/NcStepper.vue'
 
 const steps: NcStepperStep[] = [
-	{ id: 'name', name: 'Name' },
-	{ id: 'details', name: 'Details', description: 'About the team' },
-	{ id: 'members', name: 'Members' },
+	{ id: 'name', label: 'Name' },
+	{ id: 'details', label: 'Details', description: 'About the team' },
+	{ id: 'members', label: 'Members' },
 ]
 
 /**

@@ -9,9 +9,9 @@ import { expect, test } from '@playwright/experimental-ct-vue'
 import NcStepper from '../../../src/components/NcStepper/NcStepper.vue'
 
 const steps = [
-	{ id: 'name', name: 'Name' },
-	{ id: 'details', name: 'Details' },
-	{ id: 'members', name: 'Members' },
+	{ id: 'name', label: 'Name' },
+	{ id: 'details', label: 'Details' },
+	{ id: 'members', label: 'Members' },
 ]
 
 /**
@@ -66,7 +66,7 @@ test('draws the line below each other between the markers', async ({ mount, page
 })
 
 test('does not break a name inside a word in a narrow row, and scrolls instead', async ({ mount, page }) => {
-	const many = ['Account', 'Organisation', 'Members', 'Permissions', 'Notifications', 'Review'].map((name) => ({ id: name.toLowerCase(), name }))
+	const many = ['Account', 'Organisation', 'Members', 'Permissions', 'Notifications', 'Review'].map((label) => ({ id: label.toLowerCase(), label }))
 	const stepper = await mount(NcStepper, { props: { steps: many, modelValue: 'members', style: 'width: 360px' } })
 	// Upcoming steps, so their text is only the name
 	for (const name of ['Permissions', 'Notifications']) {
@@ -80,7 +80,7 @@ test('does not break a name inside a word in a narrow row, and scrolls instead',
 for (const dir of ['ltr', 'rtl']) {
 	test(`keeps the current step in view in a row that scrolls, ${dir}`, async ({ mount, page }) => {
 		await page.evaluate((dir) => document.documentElement.setAttribute('dir', dir), dir)
-		const many = ['Account', 'Organisation', 'Members', 'Permissions', 'Notifications', 'Review'].map((name) => ({ id: name.toLowerCase(), name }))
+		const many = ['Account', 'Organisation', 'Members', 'Permissions', 'Notifications', 'Review'].map((label) => ({ id: label.toLowerCase(), label }))
 		const stepper = await mount(NcStepper, { props: { steps: many, modelValue: 'review', style: 'width: 360px' } })
 		const inView = async (name: string) => {
 			const [list, step] = await Promise.all([stepper.boundingBox(), page.getByText(name, { exact: true }).boundingBox()])
