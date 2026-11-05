@@ -2024,11 +2024,12 @@ export default {
 <style lang="scss">
 // We overwrote the popover base class, so we can style
 // the popover__inner for actions only.
-.v-popper--theme-nc-popover-9.v-popper__popper.action-item__popper .v-popper__wrapper {
-	border-radius: var(--border-radius-element);
+// The class is repeated to win over the NcPopover defaults regardless of the CSS order.
+.v-popper--theme-nc-popover-9.v-popper__popper.action-item__popper.action-item__popper .v-popper__wrapper {
+	border-radius: var(--border-radius-container);
 
 	.v-popper__inner {
-		border-radius: var(--border-radius-element);
+		border-radius: var(--border-radius-container);
 		padding: 4px;
 		max-height: calc(100vh - var(--header-height));
 		overflow: auto;
