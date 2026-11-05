@@ -37,7 +37,7 @@ export default {
 
 ### Status
 
-Use `error`, `warning`, `success` and `info` for a status. With `light` the chip gets a light background and its icon the status color, which reads better when many chips are shown together, for example one per row of a table. Use `size="small"` to fit a chip into a line of text or a table cell. The close button of a small chip keeps a clickable area of `24px`, so it reaches a little beyond the chip.
+Use `error`, `warning`, `success` and `info` for a status. Use `size="small"` to fit a chip into a line of text or a table cell. The close button of a small chip keeps a clickable area of `24px`, so it reaches a little beyond the chip.
 
 ```vue
 <template>
@@ -48,15 +48,9 @@ Use `error`, `warning`, `success` and `info` for a status. With `light` the chip
 			<NcChip text="Done" variant="success" no-close />
 			<NcChip text="New" variant="info" no-close />
 		</div>
-		<div style="display: flex; gap: 8px; flex-wrap: wrap;">
-			<NcChip text="Overdue" variant="error" light no-close />
-			<NcChip text="Waiting" variant="warning" light no-close />
-			<NcChip text="Done" variant="success" light no-close />
-			<NcChip text="New" variant="info" light no-close />
-		</div>
 		<div style="display: flex; gap: 8px; flex-wrap: wrap; align-items: center;">
-			<NcChip text="Overdue" variant="error" light size="small" no-close />
-			<NcChip text="Done" :icon-path="mdiCheck" variant="success" light size="small" no-close />
+			<NcChip text="Overdue" variant="error" size="small" no-close />
+			<NcChip text="Done" :icon-path="mdiCheck" variant="success" size="small" no-close />
 			<NcChip text="Small" size="small" />
 		</div>
 	</div>
@@ -120,7 +114,6 @@ export default {
 		:class="{
 			[`nc-chip--${variant}`]: true,
 			'nc-chip--small': size === 'small',
-			'nc-chip--light': light,
 			'nc-chip--no-actions': noClose && !hasActions(),
 			'nc-chip--no-icon': !hasIcon(),
 		}">
@@ -220,15 +213,6 @@ const props = withDefaults(defineProps<{
 	 * @since 9.15.0
 	 */
 	size?: 'small' | 'normal'
-
-	/**
-	 * Use a light background for the `error`, `warning`, `success` and `info` variants,
-	 * for example to show the status of many items without every chip drawing the eye.
-	 * Other variants are not affected.
-	 *
-	 * @since 9.15.0
-	 */
-	light?: boolean
 }>(), {
 	ariaLabelClose: t('Close'),
 	actionsContainer: 'body',
@@ -316,49 +300,6 @@ const hasIcon = () => Boolean(props.iconPath || props.iconSvg || !!slots.icon)
 	&--small {
 		--chip-size: 20px;
 		font-size: var(--font-size-small);
-	}
-
-	// The status color mixed into the background and the icon in the status text color,
-	// like NcNoteCard. Only the status variants, the others keep their own colors.
-	&--light {
-		&.nc-chip--error,
-		&.nc-chip--warning,
-		&.nc-chip--success,
-		&.nc-chip--info {
-			color: var(--color-main-text);
-		}
-
-		&.nc-chip--error {
-			background-color: color-mix(in srgb, var(--color-error), var(--color-main-background) 80%);
-
-			.nc-chip__icon {
-				color: var(--color-error-text);
-			}
-		}
-
-		&.nc-chip--warning {
-			background-color: color-mix(in srgb, var(--color-warning), var(--color-main-background) 80%);
-
-			.nc-chip__icon {
-				color: var(--color-warning-text);
-			}
-		}
-
-		&.nc-chip--success {
-			background-color: color-mix(in srgb, var(--color-success), var(--color-main-background) 80%);
-
-			.nc-chip__icon {
-				color: var(--color-success-text);
-			}
-		}
-
-		&.nc-chip--info {
-			background-color: color-mix(in srgb, var(--color-info), var(--color-main-background) 80%);
-
-			.nc-chip__icon {
-				color: var(--color-info-text);
-			}
-		}
 	}
 
 	&--no-actions &__text {

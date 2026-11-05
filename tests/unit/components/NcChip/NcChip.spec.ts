@@ -38,16 +38,4 @@ describe('NcChip', () => {
 			expect(wrapper.getComponent(NcIconSvgWrapper).props('size')).toBe(16)
 		})
 	})
-
-	describe('light', () => {
-		it('is off by default', () => {
-			const wrapper = mount(NcChip, { props: { text: 'Done', variant: 'success' } })
-			expect(wrapper.classes()).not.toContain('nc-chip--light')
-		})
-
-		it('marks the chip as light', () => {
-			const wrapper = mount(NcChip, { props: { text: 'Done', variant: 'success', light: true } })
-			expect(wrapper.classes()).toEqual(expect.arrayContaining(['nc-chip--success', 'nc-chip--light']))
-		})
-	})
 })
