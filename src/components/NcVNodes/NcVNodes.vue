@@ -73,7 +73,17 @@ const slots = defineSlots<{
  * Render the given vnodes or the default slot
  */
 function render() {
-	return props.vnodes || slots.default?.({})
+	const vnodes = props.vnodes || slots.default?.({})
+	return Array.isArray(vnodes) ? preferSingleVNode(vnodes) : vnodes
+}
+
+/**
+ * Single root lets the parent scope id reach the element, like RouterLink custom
+ *
+ * @param vnodes - The vnodes to render
+ */
+function preferSingleVNode(vnodes: VNode[]) {
+	return vnodes.length === 1 ? vnodes[0] : vnodes
 }
 </script>
 
