@@ -35,6 +35,39 @@ export default {
 </script>
 ```
 
+### Status
+
+Use `error`, `warning`, `success` and `info` for a status. Use `size="small"` to fit a chip into a line of text or a table cell. The close button of a small chip keeps a clickable area of `24px`, so it reaches a little beyond the chip.
+
+```vue
+<template>
+	<div style="display: grid; gap: 12px;">
+		<div style="display: flex; gap: 8px; flex-wrap: wrap;">
+			<NcChip text="Overdue" variant="error" no-close />
+			<NcChip text="Waiting" variant="warning" no-close />
+			<NcChip text="Done" variant="success" no-close />
+			<NcChip text="New" variant="info" no-close />
+		</div>
+		<div style="display: flex; gap: 8px; flex-wrap: wrap; align-items: center;">
+			<NcChip text="Overdue" variant="error" size="small" no-close />
+			<NcChip text="Done" :icon-path="mdiCheck" variant="success" size="small" no-close />
+			<NcChip text="Small" size="small" />
+		</div>
+	</div>
+</template>
+<script>
+import { mdiCheck } from '@mdi/js'
+
+export default {
+	setup() {
+		return {
+			mdiCheck,
+		}
+	},
+}
+</script>
+```
+
 ### Advanced usage
 
 It is also possible to use custom components for the icon by using the `icon` slot.
@@ -80,6 +113,7 @@ export default {
 		class="nc-chip"
 		:class="{
 			[`nc-chip--${variant}`]: true,
+			'nc-chip--small': size === 'small',
 			'nc-chip--no-actions': noClose && !hasActions(),
 			'nc-chip--no-icon': !hasIcon(),
 		}">
@@ -91,7 +125,7 @@ export default {
 					inline
 					:path="iconPath"
 					:svg="iconPath ? undefined : iconSvg"
-					:size="18" />
+					:size="size === 'small' ? 16 : 18" />
 			</slot>
 		</span>
 		<span class="nc-chip__text">
@@ -165,11 +199,20 @@ const props = withDefaults(defineProps<{
 	 * Set the chips design variant-
 	 *
 	 * This sets the background style of the chip, similar to NcButton's `variant`.
+	 * The `info` variant is available since 9.15.0.
 	 *
 	 * @default 'secondary'
 	 * @since 8.23.0
 	 */
-	variant?: 'primary' | 'secondary' | 'tertiary' | 'error' | 'warning' | 'success'
+	variant?: 'primary' | 'secondary' | 'tertiary' | 'error' | 'warning' | 'success' | 'info'
+
+	/**
+	 * The size of the chip. A small chip fits inline in a line of text or a table cell.
+	 *
+	 * @default 'normal'
+	 * @since 9.15.0
+	 */
+	size?: 'small' | 'normal'
 }>(), {
 	ariaLabelClose: t('Close'),
 	actionsContainer: 'body',
@@ -177,6 +220,7 @@ const props = withDefaults(defineProps<{
 	iconSvg: undefined,
 	text: '',
 	variant: 'secondary',
+	size: 'normal',
 })
 
 const emit = defineEmits<{
@@ -248,6 +292,16 @@ const hasIcon = () => Boolean(props.iconPath || props.iconSvg || !!slots.icon)
 		color: var(--color-success-text);
 	}
 
+	&--info {
+		background-color: var(--color-info);
+		color: var(--color-info-text);
+	}
+
+	&--small {
+		--chip-size: 20px;
+		font-size: var(--font-size-small);
+	}
+
 	&--no-actions &__text {
 		// If there are no actions we need to add some padding to ensure the text is not cut-off
 		padding-inline-end: calc(2 * var(--default-grid-baseline));
@@ -285,11 +339,15 @@ const hasIcon = () => Boolean(props.iconPath || props.iconSvg || !!slots.icon)
 	}
 
 	&__actions {
+		// Adjust action size to match chip size, but keep it at least --clickable-area-small to click or
+		// tap; on a smaller chip it overlaps the edges without making the chip taller
+		--chip-actions-size: max(var(--clickable-area-small), var(--chip-size));
 		// Do neither grow nor shrink, size is fixed
-		flex: 0 0 var(--chip-size);
-		// Adjust action size to match chip size
-		--default-clickable-area: var(--chip-size);
-		--border-radius-element: var(--chip-radius);
+		flex: 0 0 var(--chip-actions-size);
+		margin-block: calc((var(--chip-size) - var(--chip-actions-size)) / 2);
+		--default-clickable-area: var(--chip-actions-size);
+		// Half of its own size, so it stays round when it is larger than a small chip
+		--border-radius-element: calc(var(--chip-actions-size) / 2);
 	}
 }
 </style>
