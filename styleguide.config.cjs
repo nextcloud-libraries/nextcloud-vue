@@ -47,6 +47,7 @@ module.exports = async () => {
 			plugins: [
 				new webpack.DefinePlugin({
 					NEXTCLOUD_VERSION: JSON.stringify(`${!process.env.NEXTCLOUD_LEGACY ? '32' : '31'}.0.0`),
+					NEXTCLOUD_ICONS: JSON.stringify(Object.keys(require('./styleguide/assets/img/icons-metadata.json'))),
 				}),
 			],
 			// https://webpack.js.org/configuration/dev-server/#devserverproxy
