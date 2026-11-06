@@ -202,3 +202,61 @@ test('Pick a date', async ({ mount, page }) => {
 	expect(value).not.toBeUndefined()
 	expect((value as Date).getDate()).toBe(13)
 })
+
+test('Pick a range with a preset', async ({ mount, page }) => {
+	let value: [Date, Date] | undefined
+
+	await mount(NcDateTimePicker, {
+		props: {
+			type: 'date-range',
+			modelValue: [new Date(2000, 0, 1), new Date(2000, 0, 7)],
+			presets: [
+				{ label: 'First week of March', value: [new Date(2000, 2, 1), new Date(2000, 2, 7)] },
+				{ label: 'Whole of April', value: [new Date(2000, 3, 1), new Date(2000, 3, 30)] },
+			],
+		},
+		on: {
+			'update:modelValue': (v) => { value = v },
+		},
+	})
+
+	await page.getByRole('textbox').click()
+	const menu = page.getByRole('dialog', { name: 'Datepicker menu' })
+	await expect(menu.getByRole('button', { name: 'First week of March' })).toBeVisible()
+	await menu.getByRole('button', { name: 'Whole of April' }).click()
+
+	await expect.poll(() => value?.map((date) => date.getDate())).toEqual([1, 30])
+	expect(value!.map((date) => date.getMonth())).toEqual([3, 3])
+})
+
+test('Pick a date with a preset', async ({ mount, page }) => {
+	let value: Date | undefined
+
+	await mount(NcDateTimePicker, {
+		props: {
+			type: 'date',
+			modelValue: new Date(2000, 0, 1),
+			presets: [{ label: 'New year 2001', value: new Date(2001, 0, 1) }],
+		},
+		on: {
+			'update:modelValue': (v) => { value = v },
+		},
+	})
+
+	await page.getByRole('textbox').click()
+	await page.getByRole('dialog', { name: 'Datepicker menu' }).getByRole('button', { name: 'New year 2001' }).click()
+	await expect.poll(() => value?.getFullYear()).toBe(2001)
+})
+
+test('Shows no presets for a type that does not support them', async ({ mount, page }) => {
+	await mount(NcDateTimePicker, {
+		props: {
+			type: 'time-range',
+			presets: [{ label: 'Morning', value: [new Date(2000, 0, 1, 8), new Date(2000, 0, 1, 12)] }],
+		},
+	})
+
+	await page.getByRole('textbox').click()
+	await expect(page.getByRole('dialog', { name: 'Datepicker menu' })).toBeVisible()
+	await expect(page.getByRole('button', { name: 'Morning' })).toHaveCount(0)
+})
