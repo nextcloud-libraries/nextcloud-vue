@@ -6,35 +6,74 @@
 <script setup lang="ts">
 import type { IUpload } from '@nextcloud/files/upload'
 
-import { getUploader, UploaderStatus, UploadStatus } from '@nextcloud/files/upload'
+import { mdiAlertCircle, mdiCheckCircle, mdiChevronDown, mdiChevronUp, mdiCloseCircle, mdiFile, mdiFolder } from '@mdi/js'
+import { getUploader, UploadStatus } from '@nextcloud/files/upload'
 import { basename } from '@nextcloud/paths'
 import { computed, onMounted, onUnmounted, ref, shallowRef, triggerRef } from 'vue'
 import NcButton from '../NcButton/NcButton.vue'
+import NcIconSvgWrapper from '../NcIconSvgWrapper/NcIconSvgWrapper.vue'
+import NcLoadingIcon from '../NcLoadingIcon/NcLoadingIcon.vue'
+import NcPopover from '../NcPopover/NcPopover.vue'
 import NcProgressBar from '../NcProgressBar/NcProgressBar.vue'
-import { t } from '../../l10n.ts'
-import { createElementId } from '../../utils/createElementId.ts'
+import { n, t } from '../../l10n.ts'
 
-defineProps<{
+interface IUploadRow {
+	/** Stable key of the row */
+	key: number
+	/** Name of the file or folder */
+	name: string
+	/** Whether the row summarizes a folder */
+	folder: boolean
+	/** Effective upload status */
+	status: number
+	/** Progress in percent */
+	progress: number
+	/** Finished files of a folder */
+	done: number
+	/** All files of a folder */
+	total: number
+}
+
+const props = defineProps<{
+	/** Formatted remaining time of the current batch. */
+	eta: string
+	/** Whether the uploader is paused. */
+	paused: boolean
 	/** Whether the file picker is preparing a new batch. */
 	preparing: boolean
-	/** Whether the uploader has active work without file entries yet. */
-	uploading?: boolean
+	/** Whether the uploader has active work. */
+	uploading: boolean
+}>()
+
+const emit = defineEmits<{
+	/** The user asked to cancel all running uploads. */
+	cancel: []
 }>()
 
 const uploader = getUploader()
-const trigger = ref<HTMLButtonElement>()
 const open = ref(false)
-const panelId = createElementId()
 const limit = ref(50)
 const uploads = shallowRef<IUpload[]>([])
-const paused = ref(false)
 const tracked = new Set<IUpload>()
+const keys = new WeakMap<IUpload, number>()
+let nextKey = 0
+
+/**
+ * Stable identity of an upload, to not re-render all rows on every update.
+ *
+ * @param upload - The upload
+ */
+function keyOf(upload: IUpload): number {
+	if (!keys.has(upload)) {
+		keys.set(upload, nextKey++)
+	}
+	return keys.get(upload)!
+}
 
 /**
  * Capture queue membership while retaining terminal results after a reset.
  */
 function synchronize() {
-	paused.value = uploader.status === UploaderStatus.PAUSED
 	let added = false
 	for (const upload of uploader.queue) {
 		if (!upload.source || tracked.has(upload)) {
@@ -49,36 +88,140 @@ function synchronize() {
 	triggerRef(uploads)
 }
 
-const rows = computed(() => {
-	return uploads.value.filter((upload) => !upload.children?.length || upload.status === UploadStatus.FAILED).map((upload) => {
-		const status = upload.signal?.aborted && upload.status < UploadStatus.FINISHED
-			? UploadStatus.CANCELLED
-			: upload.status
-		return {
-			upload,
-			name: basename(upload.source) || t('Upload preparation'),
-			status,
-			progress: status === UploadStatus.FINISHED
-				? 100
-				: upload.totalBytes > 0
-					? Math.max(0, Math.min(100, Math.floor(100 * upload.uploadedBytes / upload.totalBytes)))
-					: 0,
+/**
+ * Status of an upload, an aborted but unfinished upload counts as cancelled.
+ *
+ * @param upload - The upload
+ */
+function statusOf(upload: IUpload): number {
+	return upload.signal?.aborted && upload.status < UploadStatus.FINISHED
+		? UploadStatus.CANCELLED
+		: upload.status
+}
+
+/**
+ * Get all uploads of a tree that do not have children, so all files and empty folders.
+ *
+ * @param upload - The upload
+ */
+function leavesOf(upload: IUpload): IUpload[] {
+	const children = upload.children ?? []
+	return children.length > 0 ? children.flatMap(leavesOf) : [upload]
+}
+
+/**
+ * Combine the status of many uploads: failures first, then running uploads, then the least advanced one.
+ *
+ * @param statuses - The status of all leaves
+ */
+function combineStatus(statuses: number[]): number {
+	if (statuses.includes(UploadStatus.FAILED)) {
+		return UploadStatus.FAILED
+	}
+	if (statuses.every((status) => status === UploadStatus.FINISHED)) {
+		return UploadStatus.FINISHED
+	}
+	if (statuses.includes(UploadStatus.UPLOADING)) {
+		return UploadStatus.UPLOADING
+	}
+	if (statuses.includes(UploadStatus.ASSEMBLING)) {
+		return UploadStatus.ASSEMBLING
+	}
+	const unfinished = statuses.filter((status) => status < UploadStatus.FINISHED)
+	return unfinished.length > 0 ? Math.min(...unfinished) : UploadStatus.CANCELLED
+}
+
+/**
+ * Byte-weighted progress in percent, or the share of finished entries if the sizes are unknown.
+ *
+ * @param leaves - The file uploads
+ */
+function progressOf(leaves: IUpload[]): number {
+	const total = leaves.reduce((sum, upload) => sum + Math.max(0, upload.totalBytes), 0)
+	if (total === 0) {
+		const done = leaves.filter((upload) => statusOf(upload) === UploadStatus.FINISHED).length
+		return leaves.length > 0 ? Math.floor(100 * done / leaves.length) : 0
+	}
+	const bytes = leaves.reduce((sum, upload) => sum + (statusOf(upload) === UploadStatus.FINISHED
+		? Math.max(0, upload.totalBytes)
+		: Math.max(0, Math.min(upload.totalBytes, upload.uploadedBytes))), 0)
+	return Math.max(0, Math.min(100, Math.floor(100 * bytes / total)))
+}
+
+/**
+ * Create the row for a single upload, folders are summarized by their files.
+ *
+ * @param upload - The upload
+ */
+function createRow(upload: IUpload): IUploadRow {
+	const leaves = leavesOf(upload)
+	const folder = (upload.children?.length ?? 0) > 0
+	const statuses = leaves.map(statusOf)
+	if (folder && statusOf(upload) === UploadStatus.FAILED) {
+		// the folder itself could not be prepared
+		statuses.push(UploadStatus.FAILED)
+	}
+	return {
+		key: keyOf(upload),
+		name: basename(upload.source) || t('Upload preparation'),
+		folder,
+		status: combineStatus(statuses),
+		progress: progressOf(leaves),
+		done: statuses.filter((status) => status === UploadStatus.FINISHED).length,
+		total: leaves.length,
+	}
+}
+
+/**
+ * All uploads that are part of a tracked tree, so not top level entries.
+ */
+const nested = computed(() => {
+	const set = new Set<IUpload>()
+	for (const upload of uploads.value) {
+		for (const child of upload.children ?? []) {
+			set.add(child)
 		}
-	})
+	}
+	return set
 })
-const files = computed(() => rows.value.filter((row) => !row.upload.children?.length))
-const completed = computed(() => files.value.filter((row) => row.status === UploadStatus.FINISHED).length)
-const failed = computed(() => rows.value.some((row) => row.status === UploadStatus.FAILED))
+
+/**
+ * One row per picked file or folder. The root of a batch is only shown if it failed itself.
+ */
+const rows = computed<IUploadRow[]>(() => {
+	const result: IUploadRow[] = []
+	for (const root of uploads.value) {
+		if (nested.value.has(root)) {
+			continue
+		}
+		const children = root.children ?? []
+		if (children.length === 0) {
+			result.push(createRow(root))
+			continue
+		}
+		if (statusOf(root) === UploadStatus.FAILED) {
+			result.push({ ...createRow(root), folder: false, total: 0 })
+		}
+		result.push(...children.map(createRow))
+	}
+	return result
+})
+
 const active = computed(() => rows.value.some((row) => row.status < UploadStatus.FINISHED))
-const progress = computed(() => {
-	const total = files.value.reduce((sum, row) => sum + Math.max(0, row.upload.totalBytes), 0)
-	const bytes = files.value.reduce((sum, row) => sum + (row.status === UploadStatus.FINISHED
-		? Math.max(0, row.upload.totalBytes)
-		: Math.max(0, Math.min(row.upload.totalBytes, row.upload.uploadedBytes))), 0)
-	return total > 0
-		? Math.floor(100 * bytes / total)
-		: files.value.length > 0 ? Math.floor(100 * completed.value / files.value.length) : 0
+const failed = computed(() => rows.value.some((row) => row.status === UploadStatus.FAILED))
+const visible = computed(() => props.preparing || props.uploading || rows.value.length > 0)
+const title = computed(() => {
+	if (props.preparing && rows.value.length === 0) {
+		return t('Preparing uploads')
+	}
+	if (active.value) {
+		return n('Uploading {count} item', 'Uploading {count} items', rows.value.length, { count: rows.value.length })
+	}
+	return failed.value
+		? t('Some uploads failed')
+		: n('{count} item uploaded', '{count} items uploaded', rows.value.length, { count: rows.value.length })
 })
+const triggerIcon = computed(() => failed.value ? mdiAlertCircle : open.value ? mdiChevronUp : mdiChevronDown)
 
 /**
  * Translate the transport state without treating queued files as paused.
@@ -87,8 +230,8 @@ const progress = computed(() => {
  */
 function statusLabel(status: number) {
 	switch (status) {
-		case UploadStatus.INITIALIZED: return paused.value ? t('Paused') : t('Preparing')
-		case UploadStatus.SCHEDULED: return paused.value ? t('Paused') : t('Waiting for upload')
+		case UploadStatus.INITIALIZED: return props.paused ? t('Paused') : t('Preparing')
+		case UploadStatus.SCHEDULED: return props.paused ? t('Paused') : t('Waiting for upload')
 		case UploadStatus.UPLOADING: return t('Uploading')
 		case UploadStatus.ASSEMBLING: return t('Assembling')
 		case UploadStatus.FINISHED: return t('Completed')
@@ -108,14 +251,6 @@ function clear() {
 	open.value = false
 }
 
-/**
- * Close the panel and return keyboard focus to its trigger.
- */
-function close() {
-	open.value = false
-	trigger.value?.focus()
-}
-
 const events = ['uploadStarted', 'uploadProgress', 'uploadFinished', 'finished', 'reset', 'paused', 'resumed'] as const
 onMounted(() => {
 	synchronize()
@@ -131,97 +266,170 @@ onUnmounted(() => {
 </script>
 
 <template>
-	<div
-		v-show="preparing || uploading || rows.length > 0"
-		:class="$style.manager"
-		@keydown.esc.stop="close">
-		<button
-			ref="trigger"
-			type="button"
-			:class="$style.summary"
-			:aria-label="t('Upload manager')"
-			:aria-expanded="open"
-			:aria-controls="panelId"
-			@click="open = !open">
-			<span v-if="preparing" role="status">{{ t('Preparing uploads') }}</span>
-			<span v-else-if="uploading && !rows.length">{{ t('Uploading') }}</span>
-			<span v-if="files.length">{{ t('{completed} of {total} files uploaded', { completed, total: files.length }) }} · {{ progress }} %</span>
-			<span v-if="failed" role="status">{{ t('Some uploads failed') }}</span>
-		</button>
-		<slot :progress="rows.length ? progress : undefined" />
-		<section
-			v-show="open"
-			:id="panelId"
-			:class="$style.panel"
-			:aria-label="t('Upload manager')">
-			<h2>{{ t('Upload manager') }}</h2>
-			<ul :class="$style.list">
-				<li
-					v-for="(row, index) in rows.slice(0, limit)"
-					:key="index"
-					v-memo="[row.name, row.status, row.progress, paused]"
-					:class="$style.row">
-					<span dir="auto">{{ row.name }}</span>
-					<span>{{ statusLabel(row.status) }} · {{ row.progress }} %</span>
-					<NcProgressBar :value="row.progress" :error="row.status === UploadStatus.FAILED" :ariaLabel="row.name" />
-					<span v-if="row.status === UploadStatus.FAILED">{{ t('Upload failed. Select this file again to retry.') }}</span>
-				</li>
-			</ul>
-			<NcButton v-if="rows.length > limit" @click="limit += 50">
-				{{ t('Show more') }}
-			</NcButton>
-			<NcButton v-if="!active && !preparing" @click="clear">
-				{{ t('Clear completed uploads') }}
-			</NcButton>
-		</section>
+	<div v-if="visible" :class="$style.manager">
+		<NcPopover
+			popupRole="dialog"
+			placement="bottom-end"
+			@update:shown="open = $event">
+			<template #trigger>
+				<NcButton
+					:aria-label="t('Upload manager')"
+					:title="title"
+					variant="tertiary">
+					<template #icon>
+						<NcIconSvgWrapper :path="triggerIcon" />
+					</template>
+				</NcButton>
+			</template>
+
+			<div
+				:class="$style.popover"
+				role="dialog"
+				:aria-label="t('Upload manager')">
+				<h2 :class="$style.title">
+					{{ title }}
+				</h2>
+				<div v-if="uploading || (!active && !preparing)" :class="$style.header">
+					<template v-if="uploading">
+						<span :class="$style.eta">{{ paused ? t('Paused') : eta }}</span>
+						<NcButton variant="tertiary" @click="emit('cancel')">
+							{{ t('Cancel') }}
+						</NcButton>
+					</template>
+					<NcButton v-else variant="tertiary" @click="clear">
+						{{ t('Clear completed uploads') }}
+					</NcButton>
+				</div>
+				<ul :class="$style.list">
+					<li
+						v-for="row in rows.slice(0, limit)"
+						:key="row.key"
+						:class="$style.row">
+						<NcIconSvgWrapper :class="$style.kind" :path="row.folder ? mdiFolder : mdiFile" />
+						<span :class="$style.name" dir="auto" :title="row.name">{{ row.name }}</span>
+						<span v-if="row.folder" :class="$style.count">
+							{{ t('{done} of {total}', { done: row.done, total: row.total }) }}
+						</span>
+						<span :class="$style.status" role="img" :aria-label="statusLabel(row.status)">
+							<NcIconSvgWrapper v-if="row.status === UploadStatus.FINISHED" :class="$style.success" :path="mdiCheckCircle" />
+							<NcIconSvgWrapper v-else-if="row.status === UploadStatus.FAILED" :class="$style.error" :path="mdiAlertCircle" />
+							<NcIconSvgWrapper v-else-if="row.status === UploadStatus.CANCELLED" :path="mdiCloseCircle" />
+							<NcLoadingIcon v-else-if="row.status === UploadStatus.ASSEMBLING" :size="20" />
+							<NcProgressBar
+								v-else
+								type="circular"
+								:size="20"
+								:value="row.status === UploadStatus.UPLOADING ? row.progress : 0" />
+						</span>
+						<span v-if="row.status === UploadStatus.FAILED" :class="$style.failure">
+							{{ t('Upload failed. Select this file again to retry.') }}
+						</span>
+					</li>
+				</ul>
+				<NcButton v-if="rows.length > limit" variant="tertiary" @click="limit += 50">
+					{{ t('Show more') }}
+				</NcButton>
+			</div>
+		</NcPopover>
+		<span v-if="failed" role="status" :class="$style.hidden">{{ t('Some uploads failed') }}</span>
 	</div>
 </template>
 
 <style module>
 .manager {
-	position: relative;
-	min-width: 0;
-	max-width: 100%;
-	flex: 0 1 260px;
+	flex: 0 0 auto;
 }
 
-.summary {
-	cursor: pointer;
-	padding: 4px 8px;
-	overflow-wrap: anywhere;
-	color: var(--color-main-text);
-	background: transparent;
-	border: 0;
-}
-
-.summary > span {
-	display: block;
-}
-
-.panel {
-	position: fixed;
-	z-index: 1000;
-	inset-inline: 16px;
-	margin-inline: auto;
-	width: min(420px, calc(100vw - 32px));
+.popover {
+	box-sizing: border-box;
+	width: min(360px, calc(100vw - 32px));
 	max-height: min(480px, 60vh);
 	overflow: auto;
-	padding: 16px;
-	background: var(--color-main-background);
-	border-radius: var(--border-radius-large);
-	box-shadow: 0 2px 8px var(--color-box-shadow);
+	padding: 8px 16px 16px;
+}
+
+.title {
+	margin: 8px 0;
+	font-size: var(--default-font-size);
+	font-weight: bold;
+}
+
+.header {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	gap: 8px;
+	margin-inline: -16px;
+	padding: 0 16px;
+	background-color: var(--color-background-hover);
+}
+
+.eta {
+	color: var(--color-text-maxcontrast);
+	overflow-wrap: anywhere;
 }
 
 .list {
 	list-style: none;
 	padding: 0;
-	margin: 0;
+	margin: 8px 0 0;
 }
 
 .row {
-	display: grid;
-	gap: 4px;
-	padding-block: 8px;
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	gap: 8px;
+	min-height: var(--default-clickable-area);
+}
+
+.kind {
+	flex: 0 0 auto;
+	color: var(--color-text-maxcontrast);
+}
+
+.name {
+	flex: 1 1 0;
+	min-width: 0;
+	overflow: hidden;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+}
+
+.count {
+	flex: 0 0 auto;
+	color: var(--color-text-maxcontrast);
+}
+
+.status {
+	display: flex;
+	flex: 0 0 auto;
+	align-items: center;
+	justify-content: center;
+	width: var(--default-clickable-area);
+}
+
+.success {
+	color: var(--color-element-success);
+}
+
+.error {
+	color: var(--color-element-error);
+}
+
+.failure {
+	flex: 1 0 100%;
+	padding-inline-start: 32px;
+	color: var(--color-text-error);
 	overflow-wrap: anywhere;
+}
+
+.hidden {
+	position: absolute;
+	width: 1px;
+	height: 1px;
+	overflow: hidden;
+	clip-path: inset(50%);
+	white-space: nowrap;
 }
 </style>

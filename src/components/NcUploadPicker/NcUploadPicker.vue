@@ -194,14 +194,12 @@ const etaProgress = ref(0)
 const etaSpeed = ref('')
 const etaRaw = ref<number>(Infinity)
 const etaTimeRaw = computed(() => etaRaw.value === Infinity ? Infinity : new Date(Date.now() + etaRaw.value))
-const etaTimeFormatted = useFormatRelativeTime(etaTimeRaw)
-const etaTime = computed(() => etaTimeRaw.value === Infinity || Number(etaTimeRaw.value) <= Date.now() ? t('Estimating …') : etaTimeFormatted.value)
+const etaTimeFormatted = useFormatRelativeTime(etaTimeRaw, { ignoreSeconds: true })
+const etaTime = computed(() => etaTimeRaw.value === Infinity ? t('Estimating …') : etaTimeFormatted.value)
 /** Update the ETA and speed values */
 function updateEta() {
-	updateUploadStatus()
-	const statistics = uploadManager.statistics
-	etaRaw.value = Number.isFinite(statistics.eta) && statistics.eta >= 1 ? statistics.eta * 1000 : Infinity
-	etaSpeed.value = statistics.speed > 0 && Number.isFinite(statistics.speed) ? statistics.speedReadable : ''
+	etaRaw.value = uploadManager.statistics.eta === Infinity ? Infinity : (uploadManager.statistics.eta * 1000)
+	etaSpeed.value = uploadManager.statistics.speedReadable
 	etaProgress.value = uploadManager.statistics.progress
 }
 
@@ -330,36 +328,45 @@ function onBeforePageUnload(event: BeforeUnloadEvent) {
 		</template>
 
 		<!-- Progressbar and status -->
-		<UploadManager v-slot="{ progress }" :preparing="isPreparing" :uploading="isUploading">
-			<div
-				v-show="isUploading"
-				:class="[$style.uploadPicker_progress, {
-					[$style.uploadPicker_progress__uploading]: isUploading,
-					[$style.uploadPicker_progress__paused]: isPaused,
-				}]">
-				<NcProgressBar
-					:ariaLabel="t('Upload progress')"
-					:ariaDescribedby="progressTimeId"
-					:error="hasFailure"
-					:value="progress ?? etaProgress"
-					size="medium" />
-				<p :id="progressTimeId" :class="$style.uploadPicker_progressLabel">
-					<span v-if="isPaused">
-						{{ t('paused') /* TRANSLATORS: State of the current upload - it is paused */ }}
+		<div
+			v-show="isUploading || isPreparing"
+			:class="[$style.uploadPicker_progress, {
+				[$style.uploadPicker_progress__uploading]: isUploading || isPreparing,
+				[$style.uploadPicker_progress__paused]: isPaused,
+			}]">
+			<NcProgressBar
+				:ariaLabel="t('Upload progress')"
+				:ariaDescribedby="progressTimeId"
+				:error="hasFailure"
+				:value="etaProgress"
+				size="medium" />
+			<p :id="progressTimeId" :class="$style.uploadPicker_progressLabel">
+				<span v-if="isPreparing && !isUploading">
+					{{ t('Preparing uploads') }}
+				</span>
+				<span v-else-if="isPaused">
+					{{ t('paused') /* TRANSLATORS: State of the current upload - it is paused */ }}
+				</span>
+				<span v-else-if="isOnlyAssembling">
+					{{ t('assembling') /* TRANSLATORS: State of the current upload - chunks of the uploaded files are being assembled into the final file */ }}
+				</span>
+				<span v-else :title="`${etaTime} (${etaSpeed})`">
+					{{ etaTime }}
+					<!-- the speed is included in the tooltip / title so we only show it in the text content if there is enough space (not showing "a few seconds left") -->
+					<span v-if="etaSpeed && etaRaw > 31000" :class="$style.uploadPicker_progressLabelSpeed">
+						({{ etaSpeed }})
 					</span>
-					<span v-else-if="isOnlyAssembling">
-						{{ t('assembling') /* TRANSLATORS: State of the current upload - chunks of the uploaded files are being assembled into the final file */ }}
-					</span>
-					<span v-else :title="`${etaTime} (${etaSpeed})`">
-						{{ etaTime }}
-						<!-- the speed is included in the tooltip / title so we only show it in the text content if there is enough space (not showing "a few seconds left") -->
-						<span v-if="etaSpeed && etaRaw > 31000" :class="$style.uploadPicker_progressLabelSpeed">
-							({{ etaSpeed }})
-						</span>
-					</span>
-				</p>
-			</div>
-		</UploadManager>
+				</span>
+			</p>
+		</div>
+
+		<!-- List of all running and finished uploads -->
+		<UploadManager
+			:eta="etaTime"
+			:paused="isPaused"
+			:preparing="isPreparing"
+			:uploading="isUploading"
+			@cancel="onCancel" />
 
 		<!-- Cancel upload button -->
 		<NcButton
@@ -378,7 +385,7 @@ function onBeforePageUnload(event: BeforeUnloadEvent) {
 <style module>
 .uploadPicker_progress {
 	--upload-picker-progress-width: 200px;
-	width: 100%;
+	width: var(--upload-picker-progress-width);
 	/* Animate show/hide */
 	max-width: 0;
 	transition: max-width var(--animation-quick) ease-in-out;
@@ -390,7 +397,7 @@ function onBeforePageUnload(event: BeforeUnloadEvent) {
 	max-width: var(--upload-picker-progress-width);
 
 	/* Visually more pleasing spacing */
-	margin-inline: 0;
+	margin-inline: 8px 4px;
 }
 
 .uploadPicker_progress__paused {
@@ -398,8 +405,9 @@ function onBeforePageUnload(event: BeforeUnloadEvent) {
 }
 
 .uploadPicker_progressLabel {
-	white-space: normal;
-	overflow-wrap: anywhere;
+	overflow: hidden;
+	white-space: nowrap;
+	text-overflow: ellipsis;
 }
 
 .uploadPicker_progressLabelSpeed{
@@ -434,6 +442,10 @@ To use the `NcUploadPicker` component, you need to install the following package
 The upload picker lets users pick files – or whole directories – from their device and uploads them
 to a folder on the Nextcloud server, using the shared uploader of `@nextcloud/files/upload`.
 While uploading it shows the progress, the estimated remaining time and a button to cancel all queued uploads.
+A chevron next to the progress bar opens a popover with all running and finished uploads:
+one row per picked file or folder, folders showing how many of their files are done.
+Finished and failed uploads stay in the list after the uploader reset its queue, until they are cleared in the popover.
+Failed uploads are marked, because the uploader does not provide a reason or a way to retry them – the user has to select the file again.
 
 Two props are required to set it up:
 
