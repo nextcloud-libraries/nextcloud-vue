@@ -177,7 +177,7 @@ See: https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Attributes/
 <template>
 	<Dropdown
 		ref="popover"
-		v-model:shown="internalShown"
+		:shown="internalShown"
 		:autoHide="!noCloseOnClickOutside && closeOnClickOutside"
 		:boundary="boundary || undefined"
 		:container
@@ -194,7 +194,7 @@ See: https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Attributes/
 		:triggers="internalTriggers"
 		:hideTriggers
 		:showTriggers
-		@update:shown="internalShown = $event"
+		@update:shown="onDropdownShownUpdate"
 		@applyShow="afterShow"
 		@applyHide="afterHide">
 		<NcPopoverTriggerProvider v-slot="slotProps" :shown="internalShown" :popupRole="popupRole">
@@ -388,10 +388,30 @@ export default {
 	data() {
 		return {
 			internalShown: this.shown,
+			/**
+			 * Briefly ignore hover-driven hides after a right-click.
+			 * Firefox fires a spurious mouseleave when the native context menu opens
+			 * (https://bugzilla.mozilla.org/show_bug.cgi?id=1829500), which would
+			 * otherwise close hover popovers such as the profile hovercard.
+			 */
+			suppressHoverHide: false,
+			suppressHoverHideTimeout: null,
+			hoverGuardElements: [],
 		}
 	},
 
 	computed: {
+		/**
+		 * Whether mouseleave is registered as a hide trigger on the reference
+		 * and/or the popover content.
+		 *
+		 * @return {boolean}
+		 */
+		isHoverHideEnabled() {
+			return includesHoverTrigger(this.triggers)
+				|| includesHoverTrigger(this.popoverTriggers)
+		},
+
 		popperTriggers() {
 			if (this.popoverTriggers && Array.isArray(this.popoverTriggers)) {
 				return this.popoverTriggers
@@ -459,11 +479,73 @@ export default {
 	},
 
 	beforeUnmount() {
+		this.clearContextMenuHoverGuard()
 		this.clearFocusTrap()
 		this.clearEscapeStopPropagation()
 	},
 
 	methods: {
+		/**
+		 * Sync floating-vue shown state, keeping hover popovers open across
+		 * Firefox's spurious mouseleave on context menu open.
+		 *
+		 * @param {boolean} shown New visibility from floating-vue
+		 */
+		onDropdownShownUpdate(shown) {
+			if (!shown && this.suppressHoverHide) {
+				// Cancel the pending hide before applyHide runs (hide delay uses setTimeout).
+				this.$refs.popover?.show?.({ skipDelay: true })
+				return
+			}
+			this.internalShown = shown
+		},
+
+		/**
+		 * Listen for right-clicks so the following spurious mouseleave is ignored.
+		 */
+		addContextMenuHoverGuard() {
+			if (!this.isHoverHideEnabled) {
+				return
+			}
+			this.clearContextMenuHoverGuard()
+			this.hoverGuardElements = [
+				this.getPopoverContentElement(),
+				this.getPopoverTriggerContainerElement(),
+			].filter(Boolean)
+			for (const el of this.hoverGuardElements) {
+				el.addEventListener('pointerdown', this.onHoverHideGuardPointerDown, true)
+			}
+		},
+
+		/**
+		 * Remove right-click listeners and clear the suppress flag.
+		 */
+		clearContextMenuHoverGuard() {
+			for (const el of this.hoverGuardElements) {
+				el.removeEventListener('pointerdown', this.onHoverHideGuardPointerDown, true)
+			}
+			this.hoverGuardElements = []
+			clearTimeout(this.suppressHoverHideTimeout)
+			this.suppressHoverHideTimeout = null
+			this.suppressHoverHide = false
+		},
+
+		/**
+		 * @param {PointerEvent} event Native pointerdown
+		 */
+		onHoverHideGuardPointerDown(event) {
+			// Secondary button only (right-click). pointerdown runs before mouseleave.
+			if (event.button !== 2) {
+				return
+			}
+			this.suppressHoverHide = true
+			clearTimeout(this.suppressHoverHideTimeout)
+			this.suppressHoverHideTimeout = setTimeout(() => {
+				this.suppressHoverHide = false
+				this.suppressHoverHideTimeout = null
+			}, 300)
+		},
+
 		/**
 		 * Check if the trigger has all required a11y attributes.
 		 * Important to check custom trigger button.
@@ -596,6 +678,7 @@ export default {
 			await this.$nextTick()
 			await this.useFocusTrap()
 			this.addEscapeStopPropagation()
+			this.addContextMenuHoverGuard()
 		},
 
 		afterHide() {
@@ -608,6 +691,8 @@ export default {
 			 * 3. Actually removes <Dropdown> node
 			 * 4. Triggers <Dropdown> `unmounted`
 			 */
+			this.clearContextMenuHoverGuard()
+
 			this.getPopoverContentElement()?.addEventListener('transitionend', () => {
 				/**
 				 * Triggered after the tooltip was visually hidden.
@@ -623,6 +708,26 @@ export default {
 			this.clearEscapeStopPropagation()
 		},
 	},
+}
+
+/**
+ * @param {Array|object|null|undefined} triggers NcPopover triggers / popoverTriggers value
+ * @return {boolean}
+ */
+function includesHoverTrigger(triggers) {
+	if (Array.isArray(triggers)) {
+		return triggers.includes('hover')
+	}
+	if (triggers && typeof triggers === 'object') {
+		const { hide } = triggers
+		if (typeof hide === 'function') {
+			return hide(['hover', 'focus', 'click', 'touch']).includes('hover')
+		}
+		if (Array.isArray(hide)) {
+			return hide.includes('hover')
+		}
+	}
+	return false
 }
 </script>
 
