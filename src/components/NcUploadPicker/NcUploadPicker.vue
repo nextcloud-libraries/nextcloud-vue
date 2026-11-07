@@ -392,6 +392,8 @@ function onBeforePageUnload(event: BeforeUnloadEvent) {
 	box-sizing: border-box;
 	/* Bar and label together are as high as the button next to them */
 	height: var(--default-clickable-area);
+	/* The label has some space below its text, so move bar and text down to center them visually */
+	padding-top: calc(0.5 * var(--default-grid-baseline));
 	width: var(--upload-picker-progress-width);
 	/* Animate show/hide */
 	max-width: 0;
@@ -411,8 +413,8 @@ function onBeforePageUnload(event: BeforeUnloadEvent) {
 
 .uploadPicker_progressLabel {
 	margin: 0;
-	/* The medium bar (1.5 baselines) and the gap (1 baseline) take the rest of the clickable area */
-	line-height: calc(var(--default-clickable-area) - 2.5 * var(--default-grid-baseline));
+	/* The padding (0.5 baselines), the medium bar (1.5 baselines) and the gap (1 baseline) take the rest of the clickable area */
+	line-height: calc(var(--default-clickable-area) - 3 * var(--default-grid-baseline));
 	overflow: hidden;
 	white-space: nowrap;
 	text-overflow: ellipsis;
