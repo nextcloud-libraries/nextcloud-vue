@@ -161,6 +161,21 @@ describe('NcUploadPicker: uploading', () => {
 
 	const file = () => new File(['content'], 'file.txt', { type: 'text/plain' })
 
+	it('shows preparation immediately and clears it when the queue starts', async () => {
+		let finish!: (uploads: IUpload[]) => void
+		uploader.batchUpload.mockImplementationOnce(() => new Promise((resolve) => {
+			finish = resolve
+		}))
+		const wrapper = mountPicker()
+		await pickFiles(wrapper, file())
+		expect(wrapper.text()).toContain('Preparing uploads')
+		uploader.status = UploaderStatus.UPLOADING
+		await uploader.emit('uploadStarted', { source: 'file.txt' })
+		expect(wrapper.text()).not.toContain('Preparing uploads')
+		finish([])
+		await nextTick()
+	})
+
 	it('uploads the picked files to the destination', async () => {
 		const wrapper = mountPicker()
 
