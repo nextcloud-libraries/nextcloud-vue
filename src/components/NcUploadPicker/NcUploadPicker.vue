@@ -385,12 +385,17 @@ function onBeforePageUnload(event: BeforeUnloadEvent) {
 <style module>
 .uploadPicker_progress {
 	--upload-picker-progress-width: 200px;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	gap: var(--default-grid-baseline);
+	box-sizing: border-box;
+	/* Bar and label together are as high as the button next to them */
+	height: var(--default-clickable-area);
 	width: var(--upload-picker-progress-width);
 	/* Animate show/hide */
 	max-width: 0;
 	transition: max-width var(--animation-quick) ease-in-out;
-	/* Align progress/text separation with the middle */
-	margin-top: 8px;
 }
 
 .uploadPicker_progress__uploading {
@@ -405,6 +410,9 @@ function onBeforePageUnload(event: BeforeUnloadEvent) {
 }
 
 .uploadPicker_progressLabel {
+	margin: 0;
+	/* The medium bar (1.5 baselines) and the gap (1 baseline) take the rest of the clickable area */
+	line-height: calc(var(--default-clickable-area) - 2.5 * var(--default-grid-baseline));
 	overflow: hidden;
 	white-space: nowrap;
 	text-overflow: ellipsis;
