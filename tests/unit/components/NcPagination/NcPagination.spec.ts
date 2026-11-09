@@ -3,20 +3,42 @@
  * SPDX-License-Identifier: AGPL-3.0-or-later
  */
 
-import { flushPromises, mount } from '@vue/test-utils'
-import { afterEach, describe, expect, it } from 'vitest'
+import { enableAutoUnmount, flushPromises, mount } from '@vue/test-utils'
+import { afterEach, describe, expect, it, vi } from 'vitest'
 import { createMemoryHistory, createRouter, RouterLink } from 'vue-router'
+import NcActionInput from '../../../../src/components/NcActionInput/NcActionInput.vue'
+import NcActionRadio from '../../../../src/components/NcActionRadio/NcActionRadio.vue'
+import NcActions from '../../../../src/components/NcActions/NcActions.vue'
+import NcButton from '../../../../src/components/NcButton/NcButton.vue'
 import NcPagination from '../../../../src/components/NcPagination/NcPagination.vue'
-import NcSelect from '../../../../src/components/NcSelect/NcSelect.vue'
 
 /**
- * The labels of the numbered page buttons and ellipses, in order.
+ * The labels of the numbered page buttons, with "…" for the menus of the skipped pages, in order.
  *
  * @param wrapper - The mounted pagination
  */
 function pageItems(wrapper: ReturnType<typeof mount>) {
-	return wrapper.findAll('nav > div > ul > li').map((item) => item.text())
+	return wrapper.findAll('nav > div > ul > li').map((item) => (item.find('[aria-label="Go to page"]').exists() ? '…' : item.text()))
 }
+
+/**
+ * Open the menu of the skipped pages and enter a page in it.
+ *
+ * @param wrapper - The mounted pagination
+ * @param target - The page to enter
+ */
+async function jumpTo(wrapper: ReturnType<typeof mount>, target: number | string) {
+	wrapper.getComponent(NcActions).vm.$emit('update:open', true)
+	// The menu renders its content a moment after it opens
+	const input = await vi.waitFor(() => wrapper.getComponent(NcActionInput))
+	input.vm.$emit('update:modelValue', target)
+	await flushPromises()
+	input.vm.$emit('submit', new Event('submit'))
+	await flushPromises()
+}
+
+// An opened menu moves the focus a moment later, so unmount every pagination before the next test
+enableAutoUnmount(afterEach)
 
 describe('NcPagination', () => {
 	it('renders a labeled navigation landmark', () => {
@@ -25,15 +47,19 @@ describe('NcPagination', () => {
 		expect(wrapper.attributes('aria-label')).toBe('Pagination')
 	})
 
-	it('shows the current page and the number of pages', () => {
+	it('shows no text next to the page buttons', () => {
 		const wrapper = mount(NcPagination, { props: { totalItems: 95, page: 2, pageSize: 10 } })
-		expect(wrapper.get('nav > span').text()).toBe('Page 2 of 10')
+		expect(wrapper.find('nav > span').exists()).toBe(false)
 	})
 
 	it('hides the page buttons when everything fits on one page', () => {
 		const wrapper = mount(NcPagination, { props: { totalItems: 5, pageSize: 10 } })
 		expect(wrapper.find('button[aria-label="Next page"]').exists()).toBe(false)
-		expect(wrapper.get('nav > span').text()).toBe('Page 1 of 1')
+	})
+
+	it('holds 25 items per page by default', () => {
+		const wrapper = mount(NcPagination, { props: { totalItems: 100 } })
+		expect(pageItems(wrapper)).toEqual(['1', '2', '3', '4'])
 	})
 
 	it('shows every page when there are at most seven', () => {
@@ -57,19 +83,48 @@ describe('NcPagination', () => {
 		expect(pageItems(wrapper)).toEqual(expected)
 	})
 
-	it('hides the ellipses from assistive technology', () => {
-		const wrapper = mount(NcPagination, { props: { totalItems: 200, pageSize: 10, page: 10 } })
-		const items = wrapper.findAll('nav > div > ul > li')
-		expect(items.filter((item) => item.attributes('aria-hidden') === 'true').map((item) => item.text())).toEqual(['…', '…'])
-		expect(items[0].attributes('aria-hidden')).toBeUndefined()
-	})
-
-	it('marks the current page', () => {
+	it('marks the current page, as a secondary button', () => {
 		const wrapper = mount(NcPagination, { props: { totalItems: 50, pageSize: 10, page: 3 } })
 		const current = wrapper.findAll('[aria-current="page"]')
 		expect(current).toHaveLength(1)
 		expect(current[0].text()).toBe('3')
 		expect(current[0].attributes('aria-label')).toBe('Page 3')
+		const variants = wrapper.findAllComponents(NcButton)
+			.filter((button) => /^Page \d+$/.test(button.attributes('aria-label') ?? ''))
+			.map((button) => button.props('variant'))
+		expect(variants).toEqual(['tertiary', 'tertiary', 'secondary', 'tertiary', 'tertiary'])
+	})
+
+	describe('going to a skipped page', () => {
+		it('goes to the page entered in the menu of the skipped pages', async () => {
+			const wrapper = mount(NcPagination, { props: { totalItems: 200, pageSize: 10, page: 1 } })
+			await jumpTo(wrapper, '14')
+			expect(wrapper.emitted('update:page')).toEqual([[14]])
+			expect(wrapper.getComponent(NcActions).props('open')).toBe(false)
+		})
+
+		it.each([0, 21, 2.5, ''])('ignores the page %j', async (target) => {
+			const wrapper = mount(NcPagination, { props: { totalItems: 200, pageSize: 10, page: 1 } })
+			await jumpTo(wrapper, target)
+			expect(wrapper.emitted('update:page')).toBeUndefined()
+		})
+
+		it('limits the field to the pages there are', async () => {
+			const wrapper = mount(NcPagination, { props: { totalItems: 200, pageSize: 10, page: 1 } })
+			wrapper.getComponent(NcActions).vm.$emit('update:open', true)
+			const input = await vi.waitFor(() => wrapper.getComponent(NcActionInput).get('input'))
+			expect(input.attributes('type')).toBe('number')
+			expect(input.attributes('min')).toBe('1')
+			expect(input.attributes('max')).toBe('20')
+		})
+
+		it('emits the page when the pages are links, as there is no link to follow', async () => {
+			const wrapper = mount(NcPagination, {
+				props: { totalItems: 200, pageSize: 10, page: 1, pageHref: (page: number) => `?page=${page}` },
+			})
+			await jumpTo(wrapper, 14)
+			expect(wrapper.emitted('update:page')).toEqual([[14]])
+		})
 	})
 
 	it.each([
@@ -107,19 +162,33 @@ describe('NcPagination', () => {
 		expect(wrapper.get('button[aria-label="Previous page"]').attributes('disabled')).toBeUndefined()
 	})
 
-	it('emits the new page size when another size is selected', async () => {
-		const wrapper = mount(NcPagination, { props: { totalItems: 100, pageSize: 20 } })
-		const select = wrapper.getComponent(NcSelect)
-		expect(select.props('options')).toEqual([10, 20, 50, 100])
-		expect(select.props('modelValue')).toBe(20)
+	/**
+	 * Open the page size menu and return its options.
+	 *
+	 * @param wrapper - The mounted pagination
+	 */
+	async function pageSizeOptions(wrapper: ReturnType<typeof mount>) {
+		wrapper.findAllComponents(NcActions).at(-1)!.vm.$emit('update:open', true)
+		return vi.waitFor(() => {
+			const options = wrapper.findAllComponents(NcActionRadio)
+			expect(options).not.toHaveLength(0)
+			return options
+		})
+	}
 
-		select.vm.$emit('update:modelValue', 50)
+	it('offers the page sizes in a menu and emits the chosen one', async () => {
+		const wrapper = mount(NcPagination, { props: { totalItems: 100, pageSize: 25, pageSizeOptions: [10, 25, 50] } })
+		const options = await pageSizeOptions(wrapper)
+		expect(options.map((option) => option.props('value'))).toEqual([10, 25, 50])
+		expect(options.map((option) => option.props('modelValue'))).toEqual([25, 25, 25])
+
+		options[2].vm.$emit('update:modelValue', 50)
 		expect(wrapper.emitted('update:pageSize')).toEqual([[50]])
 	})
 
-	it('hides the page size selector without page size options', () => {
-		const wrapper = mount(NcPagination, { props: { totalItems: 100, pageSizeOptions: [] } })
-		expect(wrapper.findComponent(NcSelect).exists()).toBe(false)
+	it('has no page size menu by default', () => {
+		const wrapper = mount(NcPagination, { props: { totalItems: 100 } })
+		expect(wrapper.find('[aria-label="Items per page"]').exists()).toBe(false)
 	})
 
 	/**
@@ -129,8 +198,9 @@ describe('NcPagination', () => {
 	 * @param props.totalItems - The number of items
 	 * @param props.pageSize - The page size
 	 * @param props.page - The current page
+	 * @param props.pageSizeOptions - The page sizes to offer
 	 */
-	function mountBound(props: { totalItems: number, pageSize: number, page: number }) {
+	function mountBound(props: { totalItems: number, pageSize: number, page: number, pageSizeOptions?: number[] }) {
 		// A page that does not exist is corrected while mounting, before `wrapper` is assigned
 		const wrapper = mount(NcPagination, {
 			props: {
@@ -142,9 +212,10 @@ describe('NcPagination', () => {
 		return wrapper
 	}
 
-	it('goes back to the first page when another page size is selected', async () => {
-		const wrapper = mountBound({ totalItems: 237, pageSize: 10, page: 20 })
-		wrapper.getComponent(NcSelect).vm.$emit('update:modelValue', 100)
+	it('goes back to the first page when another page size is chosen', async () => {
+		const wrapper = mountBound({ totalItems: 237, pageSize: 10, page: 20, pageSizeOptions: [10, 100] })
+		const options = await pageSizeOptions(wrapper)
+		options[1].vm.$emit('update:modelValue', 100)
 		await flushPromises()
 		expect(wrapper.emitted('update:pageSize')).toEqual([[100]])
 		expect(wrapper.emitted('update:page')).toEqual([[1]])
@@ -162,7 +233,6 @@ describe('NcPagination', () => {
 		await wrapper.setProps({ totalItems: 0 })
 		await flushPromises()
 		expect(wrapper.emitted('update:page')).toBeUndefined()
-		expect(wrapper.get('nav > span').text()).toBe('Page 20 of 20')
 	})
 
 	it('moves to the last page when the items arrive after there were none', async () => {
@@ -172,7 +242,6 @@ describe('NcPagination', () => {
 		await wrapper.setProps({ totalItems: 5 })
 		await flushPromises()
 		expect(wrapper.emitted('update:page')).toEqual([[1]])
-		expect(wrapper.get('nav > span').text()).toBe('Page 1 of 1')
 	})
 
 	it('moves to the last page when mounted with a page that does not exist', async () => {
@@ -329,7 +398,7 @@ describe('NcPagination', () => {
 			const wrapper = mount(NcPagination, { props: { totalItems: 42, pageSize: 5, compact: true } })
 			expect(wrapper.findAll('button').map((button) => button.attributes('aria-label'))).toEqual(['Previous page', 'Next page'])
 			expect(wrapper.find('nav > div > ul').exists()).toBe(false)
-			expect(wrapper.findComponent(NcSelect).exists()).toBe(false)
+			expect(wrapper.findComponent(NcActions).exists()).toBe(false)
 		})
 	})
 })

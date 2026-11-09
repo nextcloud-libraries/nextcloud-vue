@@ -242,6 +242,9 @@ msgstr ""
 msgid "Go back to the list"
 msgstr ""
 
+msgid "Go to page"
+msgstr ""
+
 msgid "Gold"
 msgstr ""
 
@@ -410,9 +413,6 @@ msgid "Options"
 msgstr ""
 
 msgid "Page {page}"
-msgstr ""
-
-msgid "Page {page} of {totalPages}"
 msgstr ""
 
 msgid "Pagination"

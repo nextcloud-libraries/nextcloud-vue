@@ -6,9 +6,9 @@
 <docs>
 ### General description
 
-This component shows the pagination of a paged list or table: the current position, buttons to the first, previous, next, last and numbered pages, and a selector for the page size.
+This component shows the pagination of a paged list or table: buttons to the first, previous, next, last and numbered pages. The "…" between the numbers opens a field to go to any page.
 
-It does not load or slice any data itself: pass `total-items`, bind `v-model:page` and `v-model:page-size`, and show the items of that page.
+It does not load or slice any data itself: pass `total-items`, bind `v-model:page`, and show the items of that page. A page holds 25 items, unless you pass another `page-size`.
 
 ### Usage
 
@@ -22,7 +22,7 @@ It does not load or slice any data itself: pass `total-items`, bind `v-model:pag
 		</ul>
 		<NcPagination
 			v-model:page="page"
-			v-model:page-size="pageSize"
+			:page-size="pageSize"
 			:total-items="items.length" />
 	</div>
 </template>
@@ -85,16 +85,16 @@ export default {
 </script>
 ```
 
-### Without page size selector
+### Choosing the page size
 
-Pass an empty `page-size-options` array to hide the page size selector, for example when the page size is fixed by the server.
+To let users choose how many items a page holds, pass the sizes to offer in `page-size-options` and bind `v-model:page-size`. The sizes are then offered in a menu after the pages. Choosing another size goes back to the first page.
 
 ```vue
 <template>
 	<NcPagination
 		v-model:page="page"
-		:page-size="25"
-		:page-size-options="[]"
+		v-model:page-size="pageSize"
+		:page-size-options="[10, 25, 50, 100]"
 		:total-items="1000" />
 </template>
 
@@ -103,6 +103,7 @@ export default {
 	data() {
 		return {
 			page: 20,
+			pageSize: 25,
 		}
 	},
 }
@@ -111,7 +112,7 @@ export default {
 
 ### Pages as links
 
-When the page is kept in the URL, pass `page-href` or, with Vue Router, `page-to`: a function that returns the link of a page. The pages and the first, previous, next and last buttons are then links that can be opened in a new tab or copied, and a disabled button is rendered without a link. A link does not change the page itself: pass the page from the URL as `page`. Only a changed page size, or a page that no longer exists, emits `update:page`, so replace the URL then.
+When the page is kept in the URL, pass `page-href` or, with Vue Router, `page-to`: a function that returns the link of a page. The pages and the first, previous, next and last buttons are then links that can be opened in a new tab or copied, and a disabled button is rendered without a link. A link does not change the page itself: pass the page from the URL as `page`. Only a page entered after "…", a changed page size, or a page that no longer exists emits `update:page`, so replace the URL then.
 
 ```html static
 <template>
@@ -129,8 +130,8 @@ When the page is kept in the URL, pass `page-href` or, with Vue Router, `page-to
 		ref="nav"
 		:class="[$style.ncPagination, { [$style.ncPagination_compact]: compact }]"
 		:aria-label="ariaLabel">
-		<span :class="$style.ncPagination__info">
-			{{ infoText }}
+		<span v-if="compact" :class="$style.ncPagination__info">
+			{{ rangeText }}
 		</span>
 
 		<div v-if="totalPages > 1" :class="$style.ncPagination__nav">
@@ -159,21 +160,27 @@ When the page is kept in the URL, pass `page-href` or, with Vue Router, `page-to
 			</NcButton>
 
 			<ul v-if="!compact" :class="$style.ncPagination__pages">
-				<li
-					v-for="item in visiblePages"
-					:key="item"
-					:aria-hidden="typeof item === 'string' ? 'true' : undefined">
-					<span
+				<li v-for="item in visiblePages" :key="item">
+					<!-- The skipped pages: a menu with a field to go to any page -->
+					<NcActions
 						v-if="typeof item === 'string'"
-						:class="$style.ncPagination__ellipsis">
-						…
-					</span>
+						:aria-label="t('Go to page')"
+						:open="openMenu === item"
+						@update:open="(open) => toggleMenu(item, open)">
+						<NcActionInput
+							v-model="jumpTarget"
+							type="number"
+							:label="t('Go to page')"
+							:min="1"
+							:max="totalPages"
+							@submit="jumpToPage" />
+					</NcActions>
 					<NcButton
 						v-else
 						v-bind="linkProps(item)"
 						:aria-current="item === page ? 'page' : undefined"
 						:aria-label="t('Page {page}', { page: item })"
-						:variant="item === page ? 'primary' : 'tertiary'"
+						:variant="item === page ? 'secondary' : 'tertiary'"
 						@click="goToPage(item)">
 						{{ item }}
 					</NcButton>
@@ -205,15 +212,22 @@ When the page is kept in the URL, pass `page-href` or, with Vue Router, `page-to
 			</NcButton>
 		</div>
 
-		<div v-if="!compact" :class="$style.ncPagination__end">
-			<NcSelect
-				v-if="pageSizeOptions.length > 0"
-				:class="$style.ncPagination__pageSize"
-				:clearable="false"
-				:inputLabel="t('Items per page')"
-				:modelValue="pageSize"
-				:options="pageSizeOptions"
-				@update:modelValue="setPageSize" />
+		<div v-if="!compact && pageSizeOptions.length > 0" :class="$style.ncPagination__end">
+			<NcActions
+				:aria-label="t('Items per page')"
+				:open="openMenu === 'pageSize'"
+				@update:open="(open) => toggleMenu('pageSize', open)">
+				<NcActionCaption :name="t('Items per page')" />
+				<NcActionRadio
+					v-for="size in pageSizeOptions"
+					:key="size"
+					:name="pageSizeRadioName"
+					:value="size"
+					:modelValue="pageSize"
+					@update:modelValue="setPageSize">
+					{{ size }}
+				</NcActionRadio>
+			</NcActions>
 		</div>
 	</nav>
 </template>
@@ -222,12 +236,16 @@ When the page is kept in the URL, pass `page-href` or, with Vue Router, `page-to
 import type { RouteLocationRaw } from 'vue-router'
 
 import { mdiChevronLeft, mdiChevronRight, mdiPageFirst, mdiPageLast } from '@mdi/js'
-import { computed, inject, nextTick, useTemplateRef, watch, watchPostEffect } from 'vue'
+import { computed, inject, nextTick, ref, useTemplateRef, watch, watchPostEffect } from 'vue'
 import { routerKey } from 'vue-router'
+import NcActionCaption from '../NcActionCaption/NcActionCaption.vue'
+import NcActionInput from '../NcActionInput/NcActionInput.vue'
+import NcActionRadio from '../NcActionRadio/NcActionRadio.vue'
+import NcActions from '../NcActions/NcActions.vue'
 import NcButton from '../NcButton/NcButton.vue'
 import NcIconSvgWrapper from '../NcIconSvgWrapper/NcIconSvgWrapper.vue'
-import NcSelect from '../NcSelect/NcSelect.vue'
 import { t } from '../../l10n.ts'
+import { createElementId } from '../../utils/createElementId.ts'
 
 /**
  * The current page, starting at 1.
@@ -239,10 +257,10 @@ const page = defineModel<number>('page', {
 })
 
 /**
- * The number of items shown per page. Changing it with the selector goes back to the first page.
+ * The number of items shown per page. Choosing another size in the menu goes back to the first page.
  */
 const pageSize = defineModel<number>('pageSize', {
-	default: 20,
+	default: 25,
 	validator: (value: number) => Number.isInteger(value) && value >= 1,
 })
 
@@ -253,10 +271,10 @@ const props = withDefaults(defineProps<{
 	totalItems: number
 
 	/**
-	 * The page sizes offered in the page size selector.
-	 * Pass an empty array to hide the selector.
+	 * The page sizes to offer in a menu after the pages, for example `[10, 25, 50, 100]`.
+	 * Without them there is no menu, and every page holds `pageSize` items.
 	 *
-	 * @default [10, 20, 50, 100]
+	 * @default []
 	 */
 	pageSizeOptions?: number[]
 
@@ -286,7 +304,7 @@ const props = withDefaults(defineProps<{
 	 */
 	pageTo?: (page: number) => RouteLocationRaw
 }>(), {
-	pageSizeOptions: () => [10, 20, 50, 100],
+	pageSizeOptions: () => [],
 	ariaLabel: t('Pagination'),
 	pageHref: undefined,
 	pageTo: undefined,
@@ -345,13 +363,8 @@ watch(page, async () => {
 	target?.focus()
 })
 
-const infoText = computed(() => {
-	if (!props.compact) {
-		// While the items load, a page from the URL can lie beyond the single empty page
-		const total = props.totalItems === 0 ? Math.max(page.value, totalPages.value) : totalPages.value
-		return t('Page {page} of {totalPages}', { page: page.value, totalPages: total })
-	}
-
+// The compact layout has no page numbers, so it shows which items are visible
+const rangeText = computed(() => {
 	const from = props.totalItems === 0 ? 0 : (page.value - 1) * pageSize.value + 1
 	const to = Math.min(page.value * pageSize.value, props.totalItems)
 	return t('{from}–{to} of {total}', { from, to, total: props.totalItems })
@@ -406,12 +419,45 @@ function goToPage(target: number) {
 	}
 }
 
+// The open menu: the page sizes or one of the "…" menus, so choosing closes it
+const openMenu = ref<string | null>(null)
+// The page typed after "…"
+const jumpTarget = ref<number | string>('')
+const pageSizeRadioName = 'nc-pagination-size-' + createElementId()
+
+/**
+ * Open or close a menu.
+ *
+ * @param menu - The menu
+ * @param open - Whether it is open now
+ */
+function toggleMenu(menu: string, open: boolean) {
+	openMenu.value = open ? menu : null
+	jumpTarget.value = ''
+}
+
+/**
+ * Go to the page typed after "…". Also when the pages are links, as there is no link to
+ * follow then: the page is emitted, for the URL to follow it.
+ */
+function jumpToPage() {
+	const target = Number(jumpTarget.value)
+	if (!Number.isInteger(target) || target < 1 || target > totalPages.value) {
+		return
+	}
+	toggleMenu('', false)
+	if (target !== page.value) {
+		page.value = target
+	}
+}
+
 /**
  * Change the page size, and go back to the first page.
  *
- * @param size - The newly selected page size
+ * @param size - The newly chosen page size
  */
-function setPageSize(size: number | null) {
+function setPageSize(size: number | string) {
+	toggleMenu('', false)
 	if (typeof size === 'number' && size !== pageSize.value) {
 		pageSize.value = size
 		page.value = 1
@@ -420,26 +466,24 @@ function setPageSize(size: number | null) {
 </script>
 
 <style lang="scss" module>
+// Three columns of which the outer two share the space equally, so the page buttons
+// stay centered with the page size menu after them
 .ncPagination {
-	display: flex;
-	flex-wrap: wrap;
+	display: grid;
+	grid-template-columns: 1fr auto 1fr;
 	align-items: center;
-	justify-content: space-between;
-	gap: calc(2 * var(--default-grid-baseline)) calc(4 * var(--default-grid-baseline));
+	gap: calc(4 * var(--default-grid-baseline));
 	padding-block: calc(3 * var(--default-grid-baseline));
 }
 
-// The info and the end share the space left of and right of the page buttons
-// equally, so the buttons stay centered whatever the two sides hold
 .ncPagination__info {
-	flex: 1 1 0;
 	color: var(--color-text-maxcontrast);
 	white-space: nowrap;
 }
 
 .ncPagination__nav {
 	display: flex;
-	flex: 0 1 auto;
+	grid-column: 2;
 	align-items: center;
 	justify-content: center;
 	gap: calc(2 * var(--default-grid-baseline));
@@ -456,32 +500,17 @@ function setPageSize(size: number | null) {
 
 .ncPagination__end {
 	display: flex;
-	flex: 1 1 0;
+	grid-column: 3;
 	justify-content: flex-end;
 }
 
-.ncPagination__ellipsis {
-	display: inline-block;
-	min-width: var(--default-clickable-area);
-	color: var(--color-text-maxcontrast);
-	text-align: center;
-}
-
-// NcSelect sets a 260px min-width on `.nc-select.v-select.select`, too wide for a page size
-.ncPagination__pageSize:global(.nc-select.v-select.select) {
-	min-width: calc(5 * var(--default-clickable-area));
-	margin: 0;
-}
-
+// The range on one side and the two buttons on the other
 .ncPagination_compact {
-	flex-wrap: nowrap;
+	display: flex;
+	justify-content: space-between;
 
 	.ncPagination__info {
 		font-size: var(--font-size-small);
-	}
-
-	.ncPagination__nav {
-		flex-grow: 0;
 	}
 }
 </style>
