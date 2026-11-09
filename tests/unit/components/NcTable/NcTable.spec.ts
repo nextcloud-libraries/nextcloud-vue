@@ -197,11 +197,32 @@ describe('NcTable', () => {
 	})
 
 	describe('states', () => {
-		it('shows the loading state instead of the rows', () => {
+		it('shows placeholder rows in the shape of the table instead of the rows', () => {
 			const wrapper = mountBound({ loading: true })
 			expect(wrapper.get('table').attributes('aria-busy')).toBe('true')
-			expect(wrapper.findAll('tbody tr')).toHaveLength(1)
-			expect(wrapper.get('tbody td').attributes('colspan')).toBe('3')
+			const skeletonRows = wrapper.findAll('tbody tr')
+			expect(skeletonRows).toHaveLength(3)
+			expect(skeletonRows.map((row) => row.findAll('td').length)).toEqual([3, 3, 3])
+			expect(wrapper.text()).not.toContain('Alice')
+		})
+
+		it('announces the loading once and hides the other placeholder rows', () => {
+			const wrapper = mountBound({ loading: true })
+			const skeletonRows = wrapper.findAll('tbody tr')
+			expect(skeletonRows[0].get('.hidden-visually').text()).toBe('Loading …')
+			expect(skeletonRows.map((row) => row.attributes('aria-hidden'))).toEqual([undefined, 'true', 'true'])
+		})
+
+		it('leaves the checkboxes and the actions out of the placeholder rows', () => {
+			const wrapper = mount(NcTable, {
+				props: { caption: 'Team members', columns, rows, loading: true, selectable: true },
+				slots: { rowActions: () => 'x' },
+			})
+			const cells = wrapper.get('tbody tr').findAll('td')
+			expect(cells).toHaveLength(5)
+			expect(wrapper.get('tbody').findComponent(NcCheckboxRadioSwitch).exists()).toBe(false)
+			expect(cells[0].text()).toBe('')
+			expect(cells[4].text()).toBe('')
 		})
 
 		it('shows the loading slot while loading', () => {
@@ -332,7 +353,7 @@ describe('NcTable', () => {
 		})
 
 		it('ignores a click that ends a text selection', async () => {
-			const wrapper = mount(NcTable, { attachTo: document.body, props: { caption: 'Team members', columns, rows, caption: 'Team members' } })
+			const wrapper = mount(NcTable, { attachTo: document.body, props: { caption: 'Team members', columns, rows } })
 			const cell = wrapper.findAll('tbody td')[0]
 			window.getSelection()!.selectAllChildren(cell.element)
 			await cell.trigger('click')

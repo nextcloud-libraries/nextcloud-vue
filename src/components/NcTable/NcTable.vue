@@ -59,7 +59,7 @@ export default {
 
 Override a cell with the `#cell-<key>` slot, which receives the row and its value. The `#rowActions` slot adds a trailing column, for example for an `NcActions` menu per row.
 
-A click on a row, outside the controls in it, emits `rowClick`. It is a shortcut for mouse users only: a row cannot be focused, so keyboard and screen reader users cannot click it. Always give a row a real link or button for its main action as well, for example in the name cell, and use a link when the action navigates, so it can be opened in a new tab. A click that ends a text selection does not emit `rowClick`. The rows show a pointer when `rowClick` is listened to; a listener that is added or removed later only shows once the table renders again.
+A click on a row, outside the controls in it, emits `rowClick`. It is a shortcut for mouse users only: a row cannot be focused, so keyboard and screen reader users cannot click it. Always give a row a real link or button for its main action as well, for example in its actions menu like below, and use a link when the action navigates, so it can be opened in a new tab. A click that ends a text selection does not emit `rowClick`. The rows show a pointer when `rowClick` is listened to; a listener that is added or removed later only shows once the table renders again.
 
 ```vue
 <template>
@@ -72,11 +72,6 @@ A click on a row, outside the controls in it, emits `rowClick`. It is a shortcut
 			:columns="columns"
 			:rows="rows"
 			@row-click="(row) => opened = row.name">
-			<template #cell-name="{ row, value }">
-				<NcButton variant="tertiary" @click="opened = row.name">
-					{{ value }}
-				</NcButton>
-			</template>
 			<template #cell-status="{ value }">
 				<NcChip :text="value" :variant="value === 'Published' ? 'success' : 'secondary'" no-close />
 			</template>
@@ -115,6 +110,8 @@ export default {
 ```
 
 ### Loading and empty
+
+While `loading` is set, the table shows placeholder rows in its own shape. The `#loading` slot replaces them with your own content.
 
 ```vue
 <template>
@@ -205,13 +202,31 @@ export default {
 					</tr>
 				</thead>
 				<tbody>
-					<tr v-if="loading">
+					<tr v-if="loading && slots.loading">
 						<td :colspan="columnCount" :class="$style.ncTable__state">
-							<slot name="loading">
-								<NcLoadingIcon :size="32" :name="t('Loading …')" />
-							</slot>
+							<slot name="loading" />
 						</td>
 					</tr>
+					<!-- A skeleton in the shape of the table, without the checkboxes, which do not change -->
+					<template v-else-if="loading">
+						<tr
+							v-for="index in SKELETON_ROWS"
+							:key="'skeleton-' + index"
+							:aria-hidden="index > 1 ? 'true' : undefined">
+							<td v-if="selectable" :class="$style.ncTable__check" />
+							<td
+								v-for="(column, columnIndex) in columns"
+								:key="column.key"
+								:class="[$style.ncTable__cell, alignClass(column)]">
+								<span v-if="index === 1 && columnIndex === 0" class="hidden-visually">{{ loadingLabel }}</span>
+								<span
+									:class="$style.ncTable__skeleton"
+									:style="{ width: skeletonWidth(index, columnIndex) }"
+									aria-hidden="true" />
+							</td>
+							<td v-if="slots.rowActions" :class="$style.ncTable__actions" />
+						</tr>
+					</template>
 					<tr v-else-if="rows.length === 0">
 						<td :colspan="columnCount" :class="$style.ncTable__state">
 							<slot name="empty">
@@ -265,7 +280,6 @@ import { computed, getCurrentInstance, onBeforeUnmount, onMounted, ref, useCssMo
 import NcButton from '../NcButton/NcButton.vue'
 import NcCheckboxRadioSwitch from '../NcCheckboxRadioSwitch/NcCheckboxRadioSwitch.vue'
 import NcIconSvgWrapper from '../NcIconSvgWrapper/NcIconSvgWrapper.vue'
-import NcLoadingIcon from '../NcLoadingIcon/NcLoadingIcon.vue'
 import { t } from '../../l10n.ts'
 import { createElementId } from '../../utils/createElementId.ts'
 
@@ -327,7 +341,7 @@ const props = withDefaults(defineProps<{
 	caption: string
 
 	/**
-	 * Whether the rows are loading. Shows a loading state instead of the rows.
+	 * Whether the rows are loading. Shows placeholder rows in the shape of the table instead of the rows.
 	 */
 	loading?: boolean
 
@@ -389,7 +403,7 @@ const slots = defineSlots<{
 	rowActions?: Slot<{ row: Row }>
 
 	/**
-	 * What is shown while `loading` is set.
+	 * What is shown while `loading` is set, instead of the placeholder rows.
 	 */
 	loading?: Slot
 
@@ -413,6 +427,22 @@ function descriptionId(index: number): string {
 }
 
 const columnCount = computed(() => props.columns.length + (props.selectable ? 1 : 0) + (slots.rowActions ? 1 : 0))
+
+// The number of placeholder rows while loading, and the widths of their bars, which vary so
+// they read as text of different lengths
+const SKELETON_ROWS = 3
+const SKELETON_WIDTHS = ['70%', '50%', '60%', '40%']
+const loadingLabel = t('Loading …')
+
+/**
+ * The width of the placeholder bar in a cell while loading.
+ *
+ * @param row - The number of the placeholder row, from 1
+ * @param column - The index of the column
+ */
+function skeletonWidth(row: number, column: number): string {
+	return SKELETON_WIDTHS[(row + column) % SKELETON_WIDTHS.length]
+}
 
 let warnedMissingKey = false
 
@@ -733,6 +763,28 @@ onBeforeUnmount(() => resizeObserver?.disconnect())
 	padding-block: calc(6 * var(--default-grid-baseline));
 	color: var(--color-text-maxcontrast);
 	text-align: center;
+}
+
+// Like the loading skeleton of the Files list, with the same shimmer
+.ncTable__skeleton {
+	display: inline-block;
+	height: 1em;
+	border-radius: var(--border-radius-small);
+	vertical-align: middle;
+	background: linear-gradient(90deg, var(--color-placeholder-light), var(--color-placeholder-dark), var(--color-placeholder-light));
+	background-size: 200% 100%;
+	// 3.5s like the Files list; --animation-slow is 0 with reduced motion, so the shimmer stops there
+	animation: nc-table-skeleton calc(17.5 * var(--animation-slow)) infinite;
+}
+
+@keyframes nc-table-skeleton {
+	0% {
+		background-position: 200% 0;
+	}
+
+	100% {
+		background-position: -200% 0;
+	}
 }
 
 .ncTable_alignCenter {
