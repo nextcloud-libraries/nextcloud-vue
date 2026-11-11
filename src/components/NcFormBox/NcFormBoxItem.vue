@@ -76,6 +76,7 @@ const hasDescription = () => !!description || !!slots.description
 			<component
 				:is="tag"
 				:class="[$style.formBoxItem__element, itemClasses]"
+				:aria-describedby="hasDescription() && tag !== 'label' ? descriptionId : undefined"
 				v-bind="$attrs"
 				@click="$emit('click', $event)">
 				<slot :descriptionId>
