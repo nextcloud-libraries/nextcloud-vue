@@ -4,9 +4,10 @@
 -->
 
 <script setup lang="ts">
-import type { Slot } from 'vue'
+import type { ComponentPublicInstance, Slot } from 'vue'
 import type { VueClassType } from '../../utils/VueTypes.ts'
 
+import { useTemplateRef } from 'vue'
 import { useNcFormBox } from '../../components/NcFormBox/useNcFormBox.ts'
 import { createElementId } from '../../utils/createElementId.ts'
 import { isLegacy } from '../../utils/legacy.ts'
@@ -57,8 +58,26 @@ const slots = defineSlots<{
 
 const { formBoxItemClass } = useNcFormBox()
 
+defineExpose({
+	focus,
+})
+
+const elementRef = useTemplateRef<HTMLElement | ComponentPublicInstance>('element')
+
 const descriptionId = createElementId()
 const hasDescription = () => !!description || !!slots.description
+
+/**
+ * Focus the interactive element
+ *
+ * @param options - Focus options
+ * @public
+ */
+function focus(options?: FocusOptions) {
+	// The tag can be a component, e.g. RouterLink
+	const element = elementRef.value instanceof HTMLElement ? elementRef.value : elementRef.value?.$el
+	element?.focus(options)
+}
 </script>
 
 <template>
@@ -75,6 +94,7 @@ const hasDescription = () => !!description || !!slots.description
 		<span :class="$style.formBoxItem__content">
 			<component
 				:is="tag"
+				ref="element"
 				:class="[$style.formBoxItem__element, itemClasses]"
 				:aria-describedby="hasDescription() && tag !== 'label' ? descriptionId : undefined"
 				v-bind="$attrs"
