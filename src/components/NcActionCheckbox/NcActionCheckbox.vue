@@ -12,6 +12,7 @@ This component is made to be used inside of the [NcActions](#NcActions) componen
 		<NcActionCheckbox value="second" @change="console.log('(un)checked !')">Second choice</NcActionCheckbox>
 		<NcActionCheckbox :model-value="true" @change="console.log('(un)checked !')">Third choice (checked)</NcActionCheckbox>
 		<NcActionCheckbox :disabled="true" @change="console.log('(un)checked !')">Second choice (disabled)</NcActionCheckbox>
+		<NcActionCheckbox description="Shown below the label and linked for assistive technology">First choice with description</NcActionCheckbox>
 	</NcActions>
 ```
 </docs>
@@ -28,11 +29,18 @@ This component is made to be used inside of the [NcActions](#NcActions) componen
 					:class="{ focusable: !disabled }"
 					:value
 					:disabled
+					:aria-describedby="description || $slots.description ? descriptionId : null"
 					@change="onChange">
 				<NcIconSvgWrapper :path="model ? mdiCheckboxMarked : mdiCheckboxBlankOutline" :size="20" />
 			</span>
 			<span class="action-checkbox__text">{{ text }}</span>
 		</label>
+		<span
+			v-if="description || $slots.description"
+			:id="descriptionId"
+			class="action-checkbox__description">
+			<slot name="description">{{ description }}</slot>
+		</span>
 	</li>
 </template>
 
@@ -93,6 +101,15 @@ export default {
 			type: Boolean,
 			default: false,
 		},
+
+		/**
+		 * Optional description rendered below the label and linked to the input
+		 * through aria-describedby for assistive technology.
+		 */
+		description: {
+			type: String,
+			default: null,
+		},
 	},
 
 	emits: [
@@ -110,6 +127,7 @@ export default {
 		const model = useModel(props, 'modelValue')
 		return {
 			model,
+			descriptionId: 'action-checkbox-description-' + createElementId(),
 			mdiCheckboxBlankOutline,
 			mdiCheckboxMarked,
 		}
@@ -141,6 +159,13 @@ export default {
 .action-checkbox {
 	&__icon {
 		color: var(--color-primary-element);
+	}
+
+	&__description {
+		display: block;
+		padding-inline-start: 34px;
+		color: var(--color-text-maxcontrast);
+		font-size: var(--font-size-small, 13px);
 	}
 
 	&__input {
