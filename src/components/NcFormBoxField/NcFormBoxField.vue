@@ -8,7 +8,8 @@ import type { Slot } from 'vue'
 import type { VueClassType } from '../../utils/VueTypes.ts'
 
 import { mdiAlertCircleOutline, mdiCheck, mdiPencilOutline } from '@mdi/js'
-import { computed, nextTick, ref, useTemplateRef, watch } from 'vue'
+import { useEventListener } from '@vueuse/core'
+import { computed, nextTick, ref, useAttrs, useTemplateRef, watch } from 'vue'
 import NcButton from '../NcButton/NcButton.vue'
 import NcFormBoxItem from '../NcFormBox/NcFormBoxItem.vue'
 import NcFormBoxButton from '../NcFormBoxButton/NcFormBoxButton.vue'
@@ -77,7 +78,10 @@ defineSlots<{
 	submitIcon?: Slot
 }>()
 
-const inputId = createElementId()
+// A consumer's `id` goes to the input, so the label has to point at it too
+const attrs = useAttrs()
+const generatedId = createElementId()
+const inputId = computed(() => (attrs.id as string | undefined) || generatedId)
 
 const draft = ref(modelValue)
 // Leaving the field after a rejected submit must not send the same value again
@@ -110,6 +114,14 @@ watch(editing, async (isEditing) => {
 		fieldRef.value?.select()
 	} else if (hadFocus) {
 		itemRef.value?.focus()
+	}
+})
+
+// The parent can save a new value while the row is open (another tab, polling).
+// Follow it unless the user already typed, otherwise leaving would revert it.
+watch(() => modelValue, (value, oldValue) => {
+	if (editing.value && draft.value === oldValue) {
+		draft.value = value
 	}
 })
 
@@ -169,16 +181,20 @@ function onFocusout(event: FocusEvent) {
 }
 
 /**
- * Keep focus in the input when the label or the empty part of the row is pressed:
- * the blur would apply the value before the label moves focus back.
+ * Keep focus in the input when anything else in the row is pressed. The blur would apply the
+ * value first, and Safari and Firefox on macOS don't focus buttons on click, so the
+ * relatedTarget check in onFocusout can't tell a click on the row's own buttons from leaving.
  *
  * @param event - Mousedown event
  */
 function onMousedown(event: MouseEvent) {
-	if (!(event.target instanceof Element && event.target.closest('input, button'))) {
+	if (!(event.target instanceof HTMLInputElement)) {
 		event.preventDefault()
 	}
 }
+
+// On the whole row, its padding and icon column are outside the label
+useEventListener(() => editing.value ? itemRef.value?.$el : undefined, 'mousedown', onMousedown)
 
 /**
  * Cancel on Escape
@@ -248,8 +264,7 @@ function apply() {
 		:for="inputId"
 		invertedAccent
 		:class="[rootClasses, $style.formBoxField_editing, { [$style.formBoxField_error]: error, [$style.formBoxField_legacy]: isLegacy }]"
-		:label
-		@mousedown="onMousedown">
+		:label>
 		<template #description>
 			<!-- Catches Escape from the input and the password toggle -->
 			<div :class="$style.formBoxField__field" @keydown.esc="onEscape" @focusout="onFocusout">
@@ -334,6 +349,10 @@ function apply() {
 	transform: none !important;
 	cursor: text !important;
 
+	&:has(:disabled) {
+		cursor: default !important;
+	}
+
 	&:focus-within {
 		--nc-form-box-field-border: var(--color-main-text);
 	}
@@ -388,13 +407,19 @@ function apply() {
 			padding: 0;
 		}
 
-		:global(.input-field__main-wrapper .input-field__input) {
+		:global(.input-field .input-field__main-wrapper .input-field__input) {
 			// Above the label's click overlay
 			position: relative;
 			margin: 0;
 			background: transparent;
 			box-shadow: none !important;
-			cursor: text;
+			cursor: inherit;
+		}
+
+		// The row already fades when disabled
+		:global(.input-field--disabled) {
+			opacity: 1;
+			filter: none;
 		}
 
 		// Reaches into the row's gap to sit next to ✓, leaving a baseline so their forced-colours borders don't touch

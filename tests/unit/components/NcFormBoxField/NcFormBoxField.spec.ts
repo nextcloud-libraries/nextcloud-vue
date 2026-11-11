@@ -242,4 +242,73 @@ describe('NcFormBoxField', () => {
 		const wrapper = mount(NcFormBoxButton, { props: { label: 'Name', description: 'Details' }, attrs: { 'aria-describedby': 'external' } })
 		expect(wrapper.find('button').attributes('aria-describedby')?.split(' ')).toHaveLength(2)
 	})
+
+	it('follows a value the parent saves while the row is open, unless the user typed', async () => {
+		const wrapper = mountField({ editing: true })
+		await wrapper.setProps({ modelValue: 'Laptop key' })
+		expect(wrapper.find('input').element.value).toBe('Laptop key')
+		await wrapper.find('input').trigger('focusout')
+		expect(wrapper.emitted('submit')).toBeUndefined()
+		await wrapper.setProps({ editing: true })
+		await flush()
+		await wrapper.find('input').setValue('Typed')
+		await wrapper.setProps({ modelValue: 'From elsewhere' })
+		expect(wrapper.find('input').element.value).toBe('Typed')
+	})
+
+	it('keeps focus in the input when the rest of the row is pressed', async () => {
+		const wrapper = mountField({ editing: true, class: 'row', showTrailingButton: true, trailingButtonLabel: 'Clear name' })
+		// The listener attaches once the row is rendered
+		await nextTick()
+		const press = (element: Element) => {
+			const event = new MouseEvent('mousedown', { bubbles: true, cancelable: true })
+			element.dispatchEvent(event)
+			return event.defaultPrevented
+		}
+		expect(press(wrapper.find('.row').element)).toBe(true)
+		expect(press(wrapper.find('label').element)).toBe(true)
+		expect(press(wrapper.find('button[aria-label="Clear name"]').element)).toBe(true)
+		expect(press(wrapper.find('input').element)).toBe(false)
+	})
+
+	it('labels the input when the consumer passes an id', () => {
+		const wrapper = mountField({ editing: true, id: 'device-name' })
+		expect(wrapper.find('input').attributes('id')).toBe('device-name')
+		expect(wrapper.find('label').attributes('for')).toBe('device-name')
+	})
+
+	it('does not submit a password when leaving it', async () => {
+		const wrapper = mountField({ editing: true, type: 'password', modelValue: '' })
+		await wrapper.find('input').setValue('half')
+		await wrapper.find('input').trigger('focusout')
+		expect(wrapper.emitted('submit')).toBeUndefined()
+		expect(wrapper.props('editing')).toBe(true)
+	})
+
+	it('submits a password with the submit button', async () => {
+		const wrapper = mountField({ editing: true, type: 'password', modelValue: '' })
+		await wrapper.find('input').setValue('secret')
+		await wrapper.find('button[aria-label="Submit"]').trigger('click')
+		expect(wrapper.emitted('submit')).toEqual([['secret']])
+	})
+
+	it('does not apply when focus moves to a button inside the row', async () => {
+		const wrapper = mountField({ editing: true, showTrailingButton: true, trailingButtonLabel: 'Clear name' })
+		await wrapper.find('input').setValue('Changed')
+		await wrapper.find('input').trigger('focusout', { relatedTarget: wrapper.find('button[aria-label="Clear name"]').element })
+		expect(wrapper.emitted('submit')).toBeUndefined()
+	})
+
+	it('closes on Escape from the password submit button without bubbling', async () => {
+		const wrapper = mountField({ editing: true, type: 'password', modelValue: '' })
+		let bubbled = false
+		const onKeydown = () => {
+			bubbled = true
+		}
+		document.body.addEventListener('keydown', onKeydown)
+		await wrapper.find('button[aria-label="Submit"]').trigger('keydown', { key: 'Escape' })
+		document.body.removeEventListener('keydown', onKeydown)
+		expect(bubbled).toBe(false)
+		expect(wrapper.props('editing')).toBe(false)
+	})
 })

@@ -7,8 +7,8 @@
 import type { ComponentPublicInstance, Slot } from 'vue'
 import type { VueClassType } from '../../utils/VueTypes.ts'
 
-import { useTemplateRef } from 'vue'
-import { useNcFormBox } from '../../components/NcFormBox/useNcFormBox.ts'
+import { provide, useTemplateRef } from 'vue'
+import { NC_FORM_BOX_CONTEXT_KEY, useNcFormBox } from '../../components/NcFormBox/useNcFormBox.ts'
 import { createElementId } from '../../utils/createElementId.ts'
 import { isLegacy } from '../../utils/legacy.ts'
 
@@ -57,6 +57,8 @@ const slots = defineSlots<{
 }>()
 
 const { formBoxItemClass } = useNcFormBox()
+// Buttons inside a row are not rows of the box
+provide(NC_FORM_BOX_CONTEXT_KEY, { isInFormBox: false, formBoxItemClass: undefined })
 
 defineExpose({
 	focus,
@@ -96,8 +98,8 @@ function focus(options?: FocusOptions) {
 				:is="tag"
 				ref="element"
 				:class="[$style.formBoxItem__element, itemClasses]"
-				:aria-describedby="hasDescription() && tag !== 'label' ? descriptionId : undefined"
 				v-bind="$attrs"
+				:aria-describedby="[$attrs['aria-describedby'], hasDescription() && tag !== 'label' && descriptionId].filter(Boolean).join(' ') || undefined"
 				@click="$emit('click', $event)">
 				<slot :descriptionId>
 					{{ label || '⚠️ Label is missing' }}
