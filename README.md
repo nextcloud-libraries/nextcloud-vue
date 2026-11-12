@@ -173,8 +173,27 @@ npm run l10n:extract
 
 ## 📤 Releasing a new version
 
+`npm run release` automates everything up to the release commit: it pulls the
+base branch, bumps the version (detecting patch/minor/major from the changes),
+creates the `chore/release-<version>` branch, and updates and commits
+`CHANGELOG.md`. Pushing and opening the PR stay manual — the script prints the
+commands to run.
+
+```sh
+npm run release                       # detect the bump on the current branch
+npm run release -- minor --base main  # override the bump and/or base branch
+```
+
+Requires `git`, `gh` (run `gh auth login` first), `npm`, a clean working tree
+and write access to the repository. Each step is a
+confirmation navigated with `↑`/`↓` + `Enter` (no typing); pass `--yes` to skip
+them, or `--help` for all options.
+
+<details>
+<summary>Doing these steps manually</summary>
+
 - Pull the latest changes from `main` or `stableX`
-- Checkout a new branch with the tag name (e.g `v4.0.1`): `git checkout -b v<version>`
+- Checkout a new branch with the version (e.g `4.0.1`): `git checkout -b chore/release-<version>`
 - Run `npm version patch --no-git-tag-version` (`npm version minor --no-git-tag-version` if minor).
   This will return a new version name, make sure it matches what you expect
 - Generate the changelog content from the [release](https://github.com/nextcloud-libraries/nextcloud-vue/releases) page.
@@ -185,12 +204,18 @@ npm run l10n:extract
      Which this as the replacement: `[\#$4]($2) \([$1]($3$1)\)`
   2. use the the version as tag AND title (e.g `v4.0.1`)
   3. add the changelog content as description (https://github.com/nextcloud-libraries/nextcloud-vue/releases)
-- Commit, push and create PR
+- Stage and commit the changes:
+  `git add package.json package-lock.json CHANGELOG.md && git commit --signoff --message "chore(release): v<version>"`
+
+</details>
+
+- Push and create PR
 - Get your PR reviewed and merged
 - Create a milestone with the follow-up version at https://github.com/nextcloud-libraries/nextcloud-vue/milestones
 - Move all open tickets and PRs to the follow-up
 - Close the milestone of the version you release
-- Publish the previously drafted release on GitHub
+- Create and publish the release on GitHub (or publish the draft, if you made one manually):
+  use the version as tag AND title (e.g `v4.0.1`) and the new `CHANGELOG.md` entry as description
   ![image](https://user-images.githubusercontent.com/14975046/124442568-2a952500-dd7d-11eb-82a2-402f9170231a.png)
 
 <a href="https://www.netlify.com">
