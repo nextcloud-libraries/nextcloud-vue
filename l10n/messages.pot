@@ -8,6 +8,11 @@ msgstr ""
 msgid "{tag} (restricted)"
 msgstr ""
 
+msgid "%n icon found"
+msgid_plural "%n icons found"
+msgstr[0] ""
+msgstr[1] ""
+
 msgid "A color with a HEX value {hex}"
 msgstr ""
 
@@ -245,6 +250,12 @@ msgstr ""
 msgid "Hide password"
 msgstr ""
 
+msgid "Icon picker"
+msgstr ""
+
+msgid "Icons"
+msgstr ""
+
 msgid "Increment hours"
 msgstr ""
 
@@ -337,6 +348,9 @@ msgid "No color"
 msgstr ""
 
 msgid "No emoji found"
+msgstr ""
+
+msgid "No icons found"
 msgstr ""
 
 msgid "No link provider found"
@@ -472,6 +486,9 @@ msgid "Search emoji"
 msgstr ""
 
 msgid "Search for time zone"
+msgstr ""
+
+msgid "Search icons"
 msgstr ""
 
 msgid "Search results"
