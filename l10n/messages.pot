@@ -2,6 +2,14 @@ msgid ""
 msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 
+msgid "{count} item uploaded"
+msgid_plural "{count} items uploaded"
+msgstr[0] ""
+msgstr[1] ""
+
+msgid "{done} of {total}"
+msgstr ""
+
 msgid "{tag} (invisible)"
 msgstr ""
 
@@ -42,6 +50,9 @@ msgstr ""
 
 #. TRANSLATORS: State of the current upload - chunks of the uploaded files are being assembled into the final file
 msgid "assembling"
+msgstr ""
+
+msgid "Assembling"
 msgstr ""
 
 msgid "Avatar of {displayName}"
@@ -86,10 +97,16 @@ msgstr ""
 msgid "Cancel uploads"
 msgstr ""
 
+msgid "Cancelled"
+msgstr ""
+
 msgid "Change name"
 msgstr ""
 
 msgid "Choose"
+msgstr ""
+
+msgid "Clear completed uploads"
 msgstr ""
 
 msgid "Clear search"
@@ -123,6 +140,9 @@ msgid "Collapse menu"
 msgstr ""
 
 msgid "Color picker"
+msgstr ""
+
+msgid "Completed"
 msgstr ""
 
 msgid "Confirm changes"
@@ -206,6 +226,9 @@ msgid "Estimating …"
 msgstr ""
 
 msgid "External documentation"
+msgstr ""
+
+msgid "Failed"
 msgstr ""
 
 msgid "Failed to add the item to the project"
@@ -404,6 +427,9 @@ msgstr ""
 msgid "paused"
 msgstr ""
 
+msgid "Paused"
+msgstr ""
+
 msgid "People & Body"
 msgstr ""
 
@@ -423,6 +449,12 @@ msgid "Pick folder"
 msgstr ""
 
 msgid "Please choose a date"
+msgstr ""
+
+msgid "Preparing"
+msgstr ""
+
+msgid "Preparing uploads"
 msgstr ""
 
 msgid "Previous"
@@ -531,6 +563,9 @@ msgstr ""
 msgid "Show details"
 msgstr ""
 
+msgid "Show more"
+msgstr ""
+
 msgid "Show password"
 msgstr ""
 
@@ -547,6 +582,9 @@ msgid "Smart Picker"
 msgstr ""
 
 msgid "Smileys & Emotion"
+msgstr ""
+
+msgid "Some uploads failed"
 msgstr ""
 
 #. TRANSLATORS: Space key on keyboard
@@ -599,6 +637,9 @@ msgstr ""
 msgid "Undo changes"
 msgstr ""
 
+msgid "Upload failed. Select this file again to retry."
+msgstr ""
+
 msgid "Upload file"
 msgstr ""
 
@@ -611,11 +652,25 @@ msgstr ""
 msgid "Upload from device"
 msgstr ""
 
+msgid "Upload manager"
+msgstr ""
+
+msgid "Upload preparation"
+msgstr ""
+
 msgid "Upload progress"
+msgstr ""
+
+msgid "Uploading"
 msgstr ""
 
 msgid "Uploading …"
 msgstr ""
+
+msgid "Uploading {count} item"
+msgid_plural "Uploading {count} items"
+msgstr[0] ""
+msgstr[1] ""
 
 msgid "User status: {status}"
 msgstr ""
@@ -627,6 +682,9 @@ msgid "View team"
 msgstr ""
 
 msgid "W"
+msgstr ""
+
+msgid "Waiting for upload"
 msgstr ""
 
 #. TRANSLATORS: A color name for RGB(211, 169, 103)

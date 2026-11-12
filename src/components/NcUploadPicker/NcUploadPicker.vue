@@ -18,6 +18,7 @@ import NcButton from '../NcButton/NcButton.vue'
 import NcFilePicker from '../NcFilePicker/NcFilePicker.vue'
 import NcIconSvgWrapper from '../NcIconSvgWrapper/NcIconSvgWrapper.vue'
 import NcProgressBar from '../NcProgressBar/NcProgressBar.vue'
+import UploadManager from './UploadManager.vue'
 import { useFormatRelativeTime } from '../../composables/index.ts'
 import { t } from '../../l10n.ts'
 import { createElementId } from '../../utils/createElementId.ts'
@@ -136,6 +137,7 @@ onUnmounted(() => {
 watch(() => props.destination, () => setDestination(props.destination), { immediate: true })
 
 const isPaused = ref(uploadManager.status === UploaderStatus.PAUSED)
+const isPreparing = ref(false)
 /** Handle uploader paused event */
 function onUploaderPaused() {
 	updateUploadStatus()
@@ -225,6 +227,7 @@ function onUploadFinished(event: CustomEvent<IUpload>) {
  * @param event - The upload started event
  */
 function onUploadStarted(event: CustomEvent<IUpload>) {
+	isPreparing.value = false
 	updateUploadStatus()
 	emit('upload:started', event.detail)
 }
@@ -235,12 +238,14 @@ function onUploadStarted(event: CustomEvent<IUpload>) {
  * @param files - The files to upload
  */
 async function onPick(files: File[]) {
+	isPreparing.value = true
 	try {
 		await uploadManager
 			.batchUpload('', files, { callback: handleConflicts })
 	} catch (error) {
 		logger.debug('Error while uploading', { error })
 	} finally {
+		isPreparing.value = false
 		reset()
 	}
 }
@@ -324,9 +329,9 @@ function onBeforePageUnload(event: BeforeUnloadEvent) {
 
 		<!-- Progressbar and status -->
 		<div
-			v-show="isUploading"
+			v-show="isUploading || isPreparing"
 			:class="[$style.uploadPicker_progress, {
-				[$style.uploadPicker_progress__uploading]: isUploading,
+				[$style.uploadPicker_progress__uploading]: isUploading || isPreparing,
 				[$style.uploadPicker_progress__paused]: isPaused,
 			}]">
 			<NcProgressBar
@@ -336,7 +341,10 @@ function onBeforePageUnload(event: BeforeUnloadEvent) {
 				:value="etaProgress"
 				size="medium" />
 			<p :id="progressTimeId" :class="$style.uploadPicker_progressLabel">
-				<span v-if="isPaused">
+				<span v-if="isPreparing && !isUploading">
+					{{ t('Preparing uploads') }}
+				</span>
+				<span v-else-if="isPaused">
 					{{ t('paused') /* TRANSLATORS: State of the current upload - it is paused */ }}
 				</span>
 				<span v-else-if="isOnlyAssembling">
@@ -351,6 +359,14 @@ function onBeforePageUnload(event: BeforeUnloadEvent) {
 				</span>
 			</p>
 		</div>
+
+		<!-- List of all running and finished uploads -->
+		<UploadManager
+			:eta="etaTime"
+			:paused="isPaused"
+			:preparing="isPreparing"
+			:uploading="isUploading"
+			@cancel="onCancel" />
 
 		<!-- Cancel upload button -->
 		<NcButton
@@ -369,19 +385,26 @@ function onBeforePageUnload(event: BeforeUnloadEvent) {
 <style module>
 .uploadPicker_progress {
 	--upload-picker-progress-width: 200px;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	gap: var(--default-grid-baseline);
+	box-sizing: border-box;
+	/* Bar and label together are as high as the button next to them */
+	height: var(--default-clickable-area);
+	/* The label has some space below its text, so move bar and text down to center them visually */
+	padding-top: calc(0.5 * var(--default-grid-baseline));
 	width: var(--upload-picker-progress-width);
 	/* Animate show/hide */
 	max-width: 0;
 	transition: max-width var(--animation-quick) ease-in-out;
-	/* Align progress/text separation with the middle */
-	margin-top: 8px;
 }
 
 .uploadPicker_progress__uploading {
 	max-width: var(--upload-picker-progress-width);
 
 	/* Visually more pleasing spacing */
-	margin-inline: 8px 20px;
+	margin-inline: 8px 4px;
 }
 
 .uploadPicker_progress__paused {
@@ -389,6 +412,9 @@ function onBeforePageUnload(event: BeforeUnloadEvent) {
 }
 
 .uploadPicker_progressLabel {
+	margin: 0;
+	/* The padding (0.5 baselines), the medium bar (1.5 baselines) and the gap (1 baseline) take the rest of the clickable area */
+	line-height: calc(var(--default-clickable-area) - 3 * var(--default-grid-baseline));
 	overflow: hidden;
 	white-space: nowrap;
 	text-overflow: ellipsis;
@@ -426,6 +452,10 @@ To use the `NcUploadPicker` component, you need to install the following package
 The upload picker lets users pick files – or whole directories – from their device and uploads them
 to a folder on the Nextcloud server, using the shared uploader of `@nextcloud/files/upload`.
 While uploading it shows the progress, the estimated remaining time and a button to cancel all queued uploads.
+A chevron next to the progress bar opens a popover with all running and finished uploads:
+one row per picked file or folder, folders showing how many of their files are done.
+Finished and failed uploads stay in the list after the uploader reset its queue, until they are cleared in the popover.
+Failed uploads are marked, because the uploader does not provide a reason or a way to retry them – the user has to select the file again.
 
 Two props are required to set it up:
 
