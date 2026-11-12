@@ -178,7 +178,7 @@
     "jest-transform-stub": "^2.0.0",
     "remark-gfm": "^4.0.1",
     "resolve-url-loader": "^5.0.0",
-    "sanitize-filename": "^1.6.4",
+    "sanitize-filename": "^1.6.5",
     "sass": "^1.108.1",
     "stylelint": "^17.16.0",
     "ts-node": "^10.9.1",
