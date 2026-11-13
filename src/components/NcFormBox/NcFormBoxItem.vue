@@ -123,6 +123,8 @@ function focus(options?: FocusOptions) {
 .formBoxItem {
 	--nc-form-box-item-border-width: 1px;
 	--nc-form-box-item-min-height: 40px; // Special size defined by the design
+	// TODO: add to theming with animation initiative
+	--nc-form-box-item-active-scale: 0.985;
 	--form-element-label-offset: calc(var(--border-radius-element) + var(--default-grid-baseline));
 	--form-element-label-padding: calc(var(--form-element-label-offset) - var(--nc-form-box-item-border-width));
 	// New colors we don't yet have in theming
@@ -164,8 +166,7 @@ function focus(options?: FocusOptions) {
 	}
 
 	&:active:not(:disabled) {
-		// TODO: add to theming with animation initiative
-		transform: scale(0.985);
+		transform: scale(var(--nc-form-box-item-active-scale));
 	}
 
 	&:has(:focus-visible) {

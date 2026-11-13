@@ -92,6 +92,8 @@ let replacingField = false
 const editLabel = computed(() => t('Edit {label}', { label }) /* TRANSLATORS: {label} is the field's label, e.g. "Device name". Read by screen readers on the button that opens the input. */)
 // Fixed length, so the dots don't give away the real one
 const shownValue = computed(() => type === 'password' ? '•'.repeat(20) : modelValue)
+// Only a row that was edited animates back, not every row on page load
+const wasEdited = ref(false)
 
 const itemRef = useTemplateRef('item')
 const fieldRef = useTemplateRef('field')
@@ -105,6 +107,7 @@ function hasFocus() {
 
 // The focused element unmounts on every swap. Move focus to its replacement, otherwise it drops to <body>.
 watch(editing, async (isEditing) => {
+	wasEdited.value = true
 	draft.value = modelValue
 	lastSubmitted = undefined
 	const hadFocus = hasFocus()
@@ -250,7 +253,7 @@ function apply() {
 	<NcFormBoxButton
 		v-if="!editing"
 		ref="item"
-		:class="rootClasses"
+		:class="[rootClasses, { [$style.formBoxField_edited]: wasEdited }]"
 		:label
 		invertedAccent
 		:aria-label="editLabel"
@@ -432,6 +435,23 @@ function apply() {
 	}
 }
 
+// The two states swap elements, so a press on the button would snap back.
+// Each new row starts where the other one ended and NcFormBoxItem's transition takes over.
+@media (prefers-reduced-motion: no-preference) {
+	@starting-style {
+		.formBoxField_editing {
+			border-color: var(--color-primary-element-extra-light-hover) !important;
+			background-color: var(--color-primary-element-extra-light-hover) !important;
+			transform: scale(var(--nc-form-box-item-active-scale)) !important;
+		}
+
+		.formBoxField_edited {
+			border-color: var(--color-border-maxcontrast) !important;
+			background-color: var(--color-main-background) !important;
+		}
+	}
+}
+
 .formBoxField__actions {
 	display: flex;
 }
@@ -509,7 +529,7 @@ export default {
 
 ### Multi-step
 
-Steps live in the parent: change `label` (and `type`) while `editing` stays `true`. The input resets to `modelValue`, empty for passwords, and keeps focus. The row can have its own label outside editing, like "Change password" here.
+Steps live in the parent: change `label` (and `type`) while `editing` stays `true`. The input resets to `modelValue`, empty for passwords, and keeps focus. The row can have its own label outside editing, like "Password" here.
 
 ```vue
 <script>
@@ -560,7 +580,7 @@ export default {
 		<NcFormBoxField
 			v-model:editing="editing"
 			type="password"
-			:label="!editing ? 'Change password' : step === 'current' ? 'Current password' : 'New password'"
+			:label="!editing ? 'Password' : step === 'current' ? 'Current password' : 'New password'"
 			:autocomplete="step === 'current' ? 'current-password' : 'new-password'"
 			:enterkeyhint="step === 'current' ? 'next' : 'done'"
 			:submitLabel="step === 'current' ? 'Next' : 'Save'"
