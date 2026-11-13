@@ -14,16 +14,14 @@
 				:modelValue="name"
 				label="Device name"
 				:loading="nameLoading"
-				:error="!!nameError"
-				:helperText="nameError"
+				:error="nameError"
 				@submit="saveName" />
 			<NcFormBoxField
 				v-model:editing="passwordEditing"
 				type="password"
 				:label="step === 'current' ? 'Current password' : 'New password'"
 				:loading="passwordLoading"
-				:error="!!passwordError"
-				:helperText="passwordError"
+				:error="passwordError"
 				@submit="submitPassword" />
 			<NcFormBoxField
 				v-model:editing="stepEditing"

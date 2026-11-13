@@ -4,7 +4,7 @@
  */
 
 import { enableAutoUnmount, mount } from '@vue/test-utils'
-import { afterEach, describe, expect, it } from 'vitest'
+import { afterEach, describe, expect, it, vi } from 'vitest'
 import { h, nextTick } from 'vue'
 import NcFormBox from '../../../../src/components/NcFormBox/NcFormBox.vue'
 import NcFormBoxButton from '../../../../src/components/NcFormBoxButton/NcFormBoxButton.vue'
@@ -56,11 +56,11 @@ describe('NcFormBoxField', () => {
 		expect(hiddenDots).toHaveLength(1)
 	})
 
-	it('keeps helper text visible in the button state and describes the button with it', () => {
-		const wrapper = mountField({ helperText: 'Name already taken', error: true })
+	it('keeps the hint visible in the button state and describes the button with it', () => {
+		const wrapper = mountField({ helperText: 'Shown in your security settings' })
 		const description = wrapper.find(`#${wrapper.find(ROW).attributes('aria-describedby')}`)
 		expect(description.text()).toContain('YubiKey')
-		expect(description.text()).toContain('Name already taken')
+		expect(description.text()).toContain('Shown in your security settings')
 	})
 
 	it('returns focus to the row on Escape and does not bubble', async () => {
@@ -110,13 +110,40 @@ describe('NcFormBoxField', () => {
 		expect(wrapper.props('editing')).toBe(true)
 	})
 
-	it('links the error to the password input', async () => {
-		const wrapper = mountField({ editing: true, type: 'password', modelValue: '', helperText: 'Wrong password', error: true })
+	it('reports an error through native validation until the user types', async () => {
+		const reportValidity = vi.spyOn(HTMLInputElement.prototype, 'reportValidity')
+		const wrapper = mountField({ editing: true, type: 'password', modelValue: '', label: 'Current password' })
+		await flush()
+		await wrapper.setProps({ error: 'Wrong password' })
+		await flush()
 		const input = wrapper.find('input')
-		expect(input.attributes('type')).toBe('password')
+		expect(input.element.validationMessage).toBe('Wrong password')
 		expect(input.attributes('aria-invalid')).toBe('true')
-		const helper = wrapper.find(`#${input.attributes('aria-describedby')}`)
-		expect(helper.text()).toBe('Wrong password')
+		expect(reportValidity).toHaveBeenCalled()
+		// Not shown a second time as helper text
+		expect(wrapper.text()).not.toContain('Wrong password')
+		await input.setValue('typed')
+		expect(input.element.validationMessage).toBe('')
+		reportValidity.mockRestore()
+	})
+
+	it('reports the error again on the new input after a step change', async () => {
+		const wrapper = mountField({ editing: true, type: 'password', modelValue: '', label: 'Current password', error: 'Too short' })
+		await wrapper.setProps({ label: 'New password' })
+		await flush()
+		expect(wrapper.find('input').element.validationMessage).toBe('Too short')
+	})
+
+	it('reports the same error again after the next submit finishes', async () => {
+		const reportValidity = vi.spyOn(HTMLInputElement.prototype, 'reportValidity')
+		const wrapper = mountField({ editing: true, error: 'Name already taken' })
+		await flush()
+		reportValidity.mockClear()
+		await wrapper.setProps({ loading: true })
+		await wrapper.setProps({ loading: false })
+		await flush()
+		expect(reportValidity).toHaveBeenCalledTimes(1)
+		reportValidity.mockRestore()
 	})
 
 	it('puts classes on the row and keeps the consumer\'s aria-describedby', async () => {
@@ -146,14 +173,6 @@ describe('NcFormBoxField', () => {
 		await wrapper.find('input').trigger('keydown', { key: 'Enter' })
 		expect(wrapper.emitted('submit')).toBeUndefined()
 		expect(wrapper.props('editing')).toBe(false)
-	})
-
-	it('announces errors through a live region that exists before them', async () => {
-		const wrapper = mountField({ editing: true })
-		const live = wrapper.find('[aria-live="polite"].hidden-visually')
-		expect(live.exists()).toBe(true)
-		await wrapper.setProps({ error: true, helperText: 'Name already taken' })
-		expect(live.text()).toBe('Name already taken')
 	})
 
 	it('passes a trailing button through to the text field without leaving it', async () => {

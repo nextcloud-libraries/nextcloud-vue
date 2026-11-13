@@ -3,8 +3,19 @@
  * SPDX-License-Identifier: AGPL-3.0-or-later
  */
 
+import type { Locator } from '@playwright/test'
+
 import { expect, test } from '@playwright/experimental-ct-vue'
 import NcFormBoxFieldStory from './NcFormBoxField.story.vue'
+
+/**
+ * The message the browser shows in its validation popup
+ *
+ * @param input - Input locator
+ */
+function validationMessage(input: Locator) {
+	return input.evaluate((element: HTMLInputElement) => element.validationMessage)
+}
 
 test.describe('NcFormBoxField', () => {
 	test('edits and saves', async ({ mount, page }) => {
@@ -46,7 +57,7 @@ test.describe('NcFormBoxField', () => {
 
 		const input = page.getByRole('textbox', { name: 'Device name' })
 		await expect(input).toHaveAttribute('aria-invalid', 'true')
-		await expect(input).toHaveAccessibleDescription('Name cannot be empty')
+		await expect.poll(() => validationMessage(input)).toBe('Name cannot be empty')
 		await expect(input).toBeFocused()
 	})
 
@@ -88,7 +99,7 @@ test.describe('NcFormBoxField', () => {
 		await page.getByRole('button', { name: 'Edit Device name' }).click()
 		await page.keyboard.press('Backspace')
 		await page.keyboard.press('Enter')
-		await expect(page.getByRole('textbox', { name: 'Device name' })).toHaveAccessibleDescription('Name cannot be empty')
+		await expect.poll(() => validationMessage(page.getByRole('textbox', { name: 'Device name' }))).toBe('Name cannot be empty')
 		await page.getByRole('button', { name: 'Before' }).click()
 
 		await expect(page.locator('[data-test=name-submits]')).toHaveText('1')
@@ -121,7 +132,7 @@ test.describe('NcFormBoxField', () => {
 
 		await page.keyboard.type('wrong')
 		await page.keyboard.press('Enter')
-		await expect(page.getByLabel('Current password')).toHaveAccessibleDescription('Wrong password')
+		await expect.poll(() => validationMessage(page.getByLabel('Current password'))).toBe('Wrong password')
 		await expect(page.getByLabel('Current password')).toBeFocused()
 
 		await page.keyboard.press('Control+a')

@@ -7,7 +7,7 @@
 import type { Slot } from 'vue'
 import type { VueClassType } from '../../utils/VueTypes.ts'
 
-import { mdiAlertCircleOutline, mdiCheck, mdiPencilOutline } from '@mdi/js'
+import { mdiCheck, mdiPencilOutline } from '@mdi/js'
 import { useEventListener } from '@vueuse/core'
 import { computed, nextTick, ref, useAttrs, useTemplateRef, watch } from 'vue'
 import NcButton from '../NcButton/NcButton.vue'
@@ -36,7 +36,7 @@ const {
 	type = 'text',
 	placeholder = undefined,
 	helperText = '',
-	error = false,
+	error = '',
 	loading = false,
 	disabled = false,
 	submitLabel = t('Submit'),
@@ -50,10 +50,10 @@ const {
 	type?: 'text' | 'password'
 	/** Input placeholder */
 	placeholder?: string
-	/** Helper or error text, visible in both states */
+	/** Hint, visible in both states. Not for errors, use `error`. */
 	helperText?: string
-	/** Error state. Pass `helperText` too, a red border alone doesn't say what's wrong. */
-	error?: boolean
+	/** Error message, shown by the browser's validation popup while editing. Typing clears it until the next submit. */
+	error?: string
 	/** Submit in progress. The input stays focusable but read-only. */
 	loading?: boolean
 	/** Disable the row */
@@ -140,6 +140,24 @@ watch([() => label, () => type], async () => {
 		fieldRef.value?.focus()
 	}
 })
+
+/**
+ * The native input. NcTextField and NcPasswordField don't expose it, and the id is ours.
+ */
+function nativeInput() {
+	return document.getElementById(inputId.value) as HTMLInputElement | null
+}
+
+watch([() => error, () => loading, fieldRef], () => {
+	const input = nativeInput()
+	input?.setCustomValidity(loading ? '' : error)
+	if (error && !loading) {
+		input?.reportValidity()
+	}
+}, { flush: 'post' })
+
+// Typing clears the error so the popup doesn't block the next attempt
+watch(draft, () => nativeInput()?.setCustomValidity(''))
 
 /**
  * Whether the key belongs to an IME (confirming or dismissing a candidate), not to the field.
@@ -245,10 +263,7 @@ function apply() {
 				v-if="shownValue"
 				:class="$style.formBoxField__value"
 				:aria-hidden="type === 'password' || undefined"><bdi>{{ shownValue }}</bdi></span>
-			<span v-if="helperText" :class="[$style.formBoxField__helper, { [$style.formBoxField__helper_error]: error }]">
-				<NcIconSvgWrapper v-if="error" :path="mdiAlertCircleOutline" inline />
-				{{ helperText }}
-			</span>
+			<span v-if="helperText" :class="$style.formBoxField__helper">{{ helperText }}</span>
 		</template>
 		<template #icon>
 			<slot name="icon">
@@ -263,7 +278,7 @@ function apply() {
 		tag="label"
 		:for="inputId"
 		invertedAccent
-		:class="[rootClasses, $style.formBoxField_editing, { [$style.formBoxField_error]: error, [$style.formBoxField_legacy]: isLegacy }]"
+		:class="[rootClasses, $style.formBoxField_editing, { [$style.formBoxField_legacy]: isLegacy }]"
 		:label>
 		<template #description>
 			<!-- Catches Escape from the input and the password toggle -->
@@ -280,14 +295,11 @@ function apply() {
 					labelOutside
 					:placeholder
 					:helperText
-					:error
 					:disabled
 					:readonly="loading"
 					:aria-disabled="loading || undefined"
-					:aria-invalid="error || undefined"
+					:aria-invalid="!!error || undefined"
 					@keydown.enter="onEnter" />
-				<!-- NcInputField's helper text is not a live region, and an error after leaving the field must still be announced -->
-				<span class="hidden-visually" aria-live="polite">{{ helperText }}</span>
 			</div>
 		</template>
 		<template #icon>
@@ -322,15 +334,11 @@ function apply() {
 	display: block;
 }
 
-// Same layout as NcInputField's helper text, so the row keeps its height when editing starts
+// Same as NcInputField's helper text, so the row keeps its look and height when editing starts
 .formBoxField__helper {
 	display: flex;
 	align-items: center;
-	gap: calc(2 * var(--default-grid-baseline));
-}
-
-.formBoxField__helper_error {
-	color: var(--color-text-error, var(--color-error));
+	color: var(--color-text-maxcontrast);
 }
 
 // !important: NcFormBoxItem's :hover, :active and :has(:focus-visible) rules are more specific,
@@ -361,20 +369,6 @@ function apply() {
 	&.formBoxField_legacy {
 		padding-block-end: 0;
 		box-shadow: 0 0 0 1px var(--nc-form-box-field-border) !important;
-	}
-
-	// After :focus-within, so errors stay red while focused
-	&.formBoxField_error {
-		--nc-form-box-field-border: var(--color-border-error, var(--color-error));
-	}
-
-	// A red border can't turn black on focus, so it gets thicker instead, like NcInputField's error state
-	&.formBoxField_error:focus-within {
-		box-shadow: 0 0 0 1px var(--nc-form-box-field-border) !important;
-	}
-
-	&.formBoxField_legacy.formBoxField_error:focus-within {
-		box-shadow: 0 0 0 2px var(--nc-form-box-field-border) !important;
 	}
 
 	// Forced colors flatten the border and drop the box-shadow
@@ -432,11 +426,6 @@ function apply() {
 			translate: 0 -50%;
 		}
 
-		// The helper text has its own icon and the row turns red
-		:global(.input-field__icon--trailing) {
-			display: none;
-		}
-
 		:global(.input-field__helper-text-message) {
 			padding: 0;
 		}
@@ -461,6 +450,8 @@ A form box row that turns into an input in place. It is controlled: the parent s
 Enter or leaving the field applies a changed value, Escape discards it without closing a surrounding dialog. Focus moves into the input on edit and back to the row after Enter or Escape.
 
 Passwords are the exception: leaving the field does nothing, so a click elsewhere or a password manager popup never changes a password. They apply on Enter or with the submit button.
+
+Errors show in the browser's validation popup, like other Nextcloud forms: pass the message as `error` after a failed save. `helperText` is for hints only.
 
 The row holds only the label and the value. Put explanations on the group with `<NcFormGroup description>`.
 
@@ -510,8 +501,7 @@ export default {
 			v-model:editing="editing"
 			label="Device name"
 			:loading
-			:error="!!error"
-			:helperText="error"
+			:error
 			@submit="save" />
 	</NcFormBox>
 </template>
@@ -575,8 +565,7 @@ export default {
 			:enterkeyhint="step === 'current' ? 'next' : 'done'"
 			:submitLabel="step === 'current' ? 'Next' : 'Save'"
 			:loading
-			:error="!!error"
-			:helperText="error"
+			:error
 			@submit="submit">
 			<template v-if="step === 'current'" #submitIcon>
 				<NcIconSvgWrapper :path="mdiArrowRight" directional />
