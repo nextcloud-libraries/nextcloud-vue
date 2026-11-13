@@ -4,10 +4,11 @@
 -->
 
 <script setup lang="ts">
-import type { Slot } from 'vue'
+import type { ComponentPublicInstance, Slot } from 'vue'
 import type { VueClassType } from '../../utils/VueTypes.ts'
 
-import { useNcFormBox } from '../../components/NcFormBox/useNcFormBox.ts'
+import { provide, useTemplateRef } from 'vue'
+import { NC_FORM_BOX_CONTEXT_KEY, useNcFormBox } from '../../components/NcFormBox/useNcFormBox.ts'
 import { createElementId } from '../../utils/createElementId.ts'
 import { isLegacy } from '../../utils/legacy.ts'
 
@@ -56,9 +57,29 @@ const slots = defineSlots<{
 }>()
 
 const { formBoxItemClass } = useNcFormBox()
+// Buttons inside a row are not rows of the box
+provide(NC_FORM_BOX_CONTEXT_KEY, { isInFormBox: false, formBoxItemClass: undefined })
+
+defineExpose({
+	focus,
+})
+
+const elementRef = useTemplateRef<HTMLElement | ComponentPublicInstance>('element')
 
 const descriptionId = createElementId()
 const hasDescription = () => !!description || !!slots.description
+
+/**
+ * Focus the interactive element
+ *
+ * @param options - Focus options
+ * @public
+ */
+function focus(options?: FocusOptions) {
+	// The tag can be a component, e.g. RouterLink
+	const element = elementRef.value instanceof HTMLElement ? elementRef.value : elementRef.value?.$el
+	element?.focus(options)
+}
 </script>
 
 <template>
@@ -75,8 +96,10 @@ const hasDescription = () => !!description || !!slots.description
 		<span :class="$style.formBoxItem__content">
 			<component
 				:is="tag"
+				ref="element"
 				:class="[$style.formBoxItem__element, itemClasses]"
 				v-bind="$attrs"
+				:aria-describedby="[$attrs['aria-describedby'], hasDescription() && tag !== 'label' && descriptionId].filter(Boolean).join(' ') || undefined"
 				@click="$emit('click', $event)">
 				<slot :descriptionId>
 					{{ label || '⚠️ Label is missing' }}
@@ -100,6 +123,8 @@ const hasDescription = () => !!description || !!slots.description
 .formBoxItem {
 	--nc-form-box-item-border-width: 1px;
 	--nc-form-box-item-min-height: 40px; // Special size defined by the design
+	// TODO: add to theming with animation initiative
+	--nc-form-box-item-active-scale: 0.985;
 	--form-element-label-offset: calc(var(--border-radius-element) + var(--default-grid-baseline));
 	--form-element-label-padding: calc(var(--form-element-label-offset) - var(--nc-form-box-item-border-width));
 	// New colors we don't yet have in theming
@@ -141,8 +166,7 @@ const hasDescription = () => !!description || !!slots.description
 	}
 
 	&:active:not(:disabled) {
-		// TODO: add to theming with animation initiative
-		transform: scale(0.985);
+		transform: scale(var(--nc-form-box-item-active-scale));
 	}
 
 	&:has(:focus-visible) {

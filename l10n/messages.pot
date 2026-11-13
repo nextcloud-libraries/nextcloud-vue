@@ -176,6 +176,10 @@ msgstr ""
 msgid "do not disturb"
 msgstr ""
 
+#. TRANSLATORS: {label} is the field's label, e.g. "Device name". Read by screen readers on the button that opens the input.
+msgid "Edit {label}"
+msgstr ""
+
 msgid "Edit item"
 msgstr ""
 

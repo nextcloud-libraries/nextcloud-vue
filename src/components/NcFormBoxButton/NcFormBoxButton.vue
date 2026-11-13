@@ -8,7 +8,7 @@ import type { AnchorHTMLAttributes, Slot } from 'vue'
 import type { RouteLocationRaw } from 'vue-router'
 
 import { mdiArrowTopRight, mdiOpenInNew } from '@mdi/js'
-import { computed, toRef } from 'vue'
+import { computed, toRef, useTemplateRef } from 'vue'
 import NcFormBoxItem from '../NcFormBox/NcFormBoxItem.vue'
 import NcIconSvgWrapper from '../NcIconSvgWrapper/NcIconSvgWrapper.vue'
 import { useButtonLink } from '../../composables/useButtonLink.ts'
@@ -52,6 +52,12 @@ defineSlots<{
 	icon?: Slot // TODO: should the default link icon only be used for _blank links?
 }>()
 
+defineExpose({
+	focus,
+})
+
+const itemRef = useTemplateRef('item')
+
 const { tag, attrs, isLink } = useButtonLink({
 	to: toRef(() => to),
 	href: toRef(() => href),
@@ -65,10 +71,21 @@ const icon = computed(() => {
 	}
 	return undefined
 })
+
+/**
+ * Focus the button or link
+ *
+ * @param options - Focus options
+ * @public
+ */
+function focus(options?: FocusOptions) {
+	itemRef.value?.focus(options)
+}
 </script>
 
 <template>
 	<NcFormBoxItem
+		ref="item"
 		:tag
 		:itemClasses="[
 			'button-vue', /* Reset server's global HTML button styles */
