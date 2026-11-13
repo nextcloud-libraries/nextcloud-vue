@@ -119,10 +119,33 @@ const hasContentOnly = () => hideLabel && (!hasDescription() || hideDescription)
 Labelled group of form elements.
 
 ```vue
+<script>
+export default {
+	data() {
+		return {
+			firstName: 'Jane',
+			lastName: 'Doe',
+			firstNameEditing: false,
+			lastNameEditing: false,
+		}
+	},
+}
+</script>
+
 <template>
 	<NcFormGroup label="Personal information">
-		<NcTextField label="First name" />
-		<NcTextField label="Last name" />
+		<NcFormBox>
+			<NcFormBoxField
+				v-model:editing="firstNameEditing"
+				label="First name"
+				:modelValue="firstName"
+				@submit="firstName = $event; firstNameEditing = false" />
+			<NcFormBoxField
+				v-model:editing="lastNameEditing"
+				label="Last name"
+				:modelValue="lastName"
+				@submit="lastName = $event; lastNameEditing = false" />
+		</NcFormBox>
 	</NcFormGroup>
 </template>
 ```
@@ -130,10 +153,33 @@ Labelled group of form elements.
 ### With description
 
 ```vue
+<script>
+export default {
+	data() {
+		return {
+			firstName: 'Jane',
+			lastName: 'Doe',
+			firstNameEditing: false,
+			lastNameEditing: false,
+		}
+	},
+}
+</script>
+
 <template>
 	<NcFormGroup label="Personal information" description="Your contact details">
-		<NcTextField label="First name" />
-		<NcTextField label="Last name" />
+		<NcFormBox>
+			<NcFormBoxField
+				v-model:editing="firstNameEditing"
+				label="First name"
+				:modelValue="firstName"
+				@submit="firstName = $event; firstNameEditing = false" />
+			<NcFormBoxField
+				v-model:editing="lastNameEditing"
+				label="Last name"
+				:modelValue="lastName"
+				@submit="lastName = $event; lastNameEditing = false" />
+		</NcFormBox>
 	</NcFormGroup>
 </template>
 ```
@@ -144,14 +190,37 @@ You can visually hide the label and/or the description.\
 Note: you still must provide the label. Do not visually hide the missing label warning!
 
 ```vue
+<script>
+export default {
+	data() {
+		return {
+			firstName: 'Jane',
+			lastName: 'Doe',
+			firstNameEditing: false,
+			lastNameEditing: false,
+		}
+	},
+}
+</script>
+
 <template>
 	<NcFormGroup
 		label="Personal information"
 		description="Your contact details"
 		hide-label
 		hide-description>
-		<NcTextField label="First name" />
-		<NcTextField label="Last name" />
+		<NcFormBox>
+			<NcFormBoxField
+				v-model:editing="firstNameEditing"
+				label="First name"
+				:modelValue="firstName"
+				@submit="firstName = $event; firstNameEditing = false" />
+			<NcFormBoxField
+				v-model:editing="lastNameEditing"
+				label="Last name"
+				:modelValue="lastName"
+				@submit="lastName = $event; lastNameEditing = false" />
+		</NcFormBox>
 	</NcFormGroup>
 </template>
 ```
