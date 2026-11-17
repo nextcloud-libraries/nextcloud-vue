@@ -118,7 +118,7 @@
     "unist-builder": "^4.0.0",
     "unist-util-visit-parents": "^6.1.0",
     "vue": "^3.5.45",
-    "vue-router": "^5.5.0"
+    "vue-router": "^5.5.1"
   },
   "devDependencies": {
     "@babel/plugin-transform-typescript": "^8.0.6",
