@@ -394,8 +394,10 @@ function handleClickModalWrapper(event: MouseEvent) {
  * Add focus trap for accessibility.
  */
 async function useFocusTrap() {
-	// Don't do anything if we have a focus trap already
-	if (focusTrap) {
+	// Don't do anything if we have a focus trap already.
+	// Production builds run the enter transition on mount even when hidden by `v-show`,
+	// so a hidden modal must not trap the focus.
+	if (focusTrap || !showModal.value) {
 		return
 	}
 

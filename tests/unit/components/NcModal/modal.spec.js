@@ -3,9 +3,10 @@
  * SPDX-License-Identifier: AGPL-3.0-or-later
  */
 
-import { mount } from '@vue/test-utils'
+import { flushPromises, mount } from '@vue/test-utils'
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
 import NcModal from '../../../../src/components/NcModal/NcModal.vue'
+import { getTrapStack } from '../../../../src/utils/focusTrap.ts'
 
 describe('NcModal', () => {
 	it('closes on click outside without `noClose`', async () => {
@@ -40,6 +41,35 @@ describe('NcModal', () => {
 		await wrapper.find('.modal-wrapper').trigger('mousedown')
 		// One emit('update:show', false)
 		expect(wrapper.emitted('update:show')).toEqual(undefined)
+	})
+
+	describe('focus trap', () => {
+		// Production builds run the enter transition on mount regardless of `v-show`
+		const transition = {
+			emits: ['afterEnter'],
+			mounted() {
+				this.$emit('afterEnter')
+			},
+			render() {
+				return this.$slots.default()
+			},
+		}
+
+		afterEach(() => {
+			getTrapStack().splice(0)
+		})
+
+		it('is not activated while the modal is hidden', async () => {
+			mount(NcModal, { props: { container: null, name: 'modal', show: false }, global: { stubs: { transition } } })
+			await flushPromises()
+			expect(getTrapStack()).toHaveLength(0)
+		})
+
+		it('is activated when the modal is shown', async () => {
+			mount(NcModal, { props: { container: null, name: 'modal', show: true }, global: { stubs: { transition } } })
+			await flushPromises()
+			expect(getTrapStack()).toHaveLength(1)
+		})
 	})
 
 	describe('the name in the header', () => {
