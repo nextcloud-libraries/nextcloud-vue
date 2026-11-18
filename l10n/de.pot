@@ -190,6 +190,11 @@ msgstr "{option} abwählen"
 msgid "do not disturb"
 msgstr "Bitte nicht stören"
 
+#. TRANSLATORS: {label} is the field's label, e.g. "Device name". Read by
+#. screen readers on the button that opens the input.
+msgid "Edit {label}"
+msgstr "{label} bearbeiten"
+
 msgid "Edit item"
 msgstr "Element bearbeiten"
 
