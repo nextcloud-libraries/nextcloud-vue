@@ -100,6 +100,7 @@ A container of supported components with a small gap and rounded corners forming
 Currently supported components:
 - **`<NcFormBoxButton>`**: an action button/link with an optional description specially for the `<NcFormBox>` context
 - **`<NcFormBoxCopyButton>`**: a special case of a button to copy a text to the clipboard
+- **`<NcFormBoxField>`**: a row that turns into a text or password input in place
 - **`<NcFormBoxSwitch>`**: a toggle switch replacing `<NcCheckboxRadioSwitch type="switch">` in a box
 - **`<NcButton>`**: a general button in case there is a kind of primary action within a box
 

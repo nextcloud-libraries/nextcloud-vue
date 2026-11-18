@@ -293,7 +293,7 @@ module.exports = async () => {
 					{
 						name: 'NcFields',
 						components: [
-							'src/components/Nc*Field/*.vue',
+							'src/components/Nc!(FormBox)*Field/*.vue',
 							'src/components/NcTextArea/*.vue',
 						],
 					},
