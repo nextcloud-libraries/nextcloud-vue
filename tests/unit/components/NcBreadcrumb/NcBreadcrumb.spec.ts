@@ -68,4 +68,26 @@ describe('NcBreadcrumb', () => {
 		expect(wrapper.emitted('update:open')?.[0]).toEqual([true])
 		wrapper.unmount()
 	})
+
+	it('names a crumb that only shows the icon of its slot', () => {
+		const wrapper = mount(NcBreadcrumb, {
+			props: { name: 'Home', href: '/' },
+			slots: { icon: () => h('svg') },
+		})
+		expect(wrapper.get('a').attributes('aria-label')).toBe('Home')
+	})
+
+	it('names a crumb that only shows its icon class', () => {
+		const wrapper = mount(NcBreadcrumb, { props: { name: 'Home', href: '/', icon: 'icon-home' } })
+		expect(wrapper.get('a').attributes('aria-label')).toBe('Home')
+	})
+
+	it('does not label a crumb that shows its name next to the icon', () => {
+		const wrapper = mount(NcBreadcrumb, {
+			props: { name: 'Home', href: '/', forceIconText: true },
+			slots: { icon: () => h('svg') },
+		})
+		expect(wrapper.get('a').attributes('aria-label')).toBeUndefined()
+		expect(wrapper.get('a').text()).toBe('Home')
+	})
 })

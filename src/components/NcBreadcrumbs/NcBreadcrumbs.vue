@@ -137,16 +137,16 @@ export default {
 	display: flex;
 	flex-wrap: wrap;
 	align-items: center;
-	gap: 12px;
-	margin-top: 12px;
+	gap: calc(var(--default-grid-baseline) * 3);
+	margin-top: calc(var(--default-grid-baseline) * 3);
 }
 
 .dragme {
 	display: inline-flex;
 	align-items: center;
-	gap: 4px;
+	gap: var(--default-grid-baseline);
 	height: var(--default-clickable-area);
-	padding: 0 12px 0 8px;
+	padding: 0 calc(var(--default-grid-baseline) * 3) 0 calc(var(--default-grid-baseline) * 2);
 	border: 2px dashed var(--color-border-maxcontrast);
 	border-radius: var(--border-radius-element);
 	background-color: var(--color-background-hover);
@@ -215,8 +215,8 @@ export default {
 .deeper {
 	display: flex;
 	flex-wrap: wrap;
-	gap: 4px;
-	margin-top: 8px;
+	gap: var(--default-grid-baseline);
+	margin-top: calc(var(--default-grid-baseline) * 2);
 }
 </style>
 ```

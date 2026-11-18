@@ -26,7 +26,7 @@ Renders a button element when given no redirection props, otherwise, renders <a/
 		@dragleave="dragLeave">
 		<NcButton
 			v-if="(name || icon || $slots.icon) && !$slots.default"
-			:aria-label="icon ? name : undefined"
+			:aria-label="($slots.icon || icon) && !forceIconText ? name : undefined"
 			variant="tertiary"
 			v-bind="linkAttributes">
 			<template v-if="$slots.icon || icon" #icon>

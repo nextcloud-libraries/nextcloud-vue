@@ -63,6 +63,7 @@ describe('NcBreadcrumbs', () => {
 			const vault = wrapper.findAllComponents(NcBreadcrumb)[1]
 			expect(vault.props('title')).toBe('The team vault')
 			expect(vault.find('svg path').attributes('d')).toBe('M0 0h24v24H0z')
+			expect(vault.get('a').attributes('aria-label')).toBe('Team vault')
 		})
 
 		it('links with vue-router when a crumb has to', async () => {
