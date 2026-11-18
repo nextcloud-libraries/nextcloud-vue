@@ -185,6 +185,11 @@ msgstr "Eemalda {option} valik"
 msgid "do not disturb"
 msgstr "ära sega"
 
+#. TRANSLATORS: {label} is the field's label, e.g. "Device name". Read by
+#. screen readers on the button that opens the input.
+msgid "Edit {label}"
+msgstr "Muuda „{label}“ silti"
+
 msgid "Edit item"
 msgstr "Muuda objekti"
 
