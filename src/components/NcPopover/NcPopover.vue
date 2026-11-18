@@ -459,6 +459,7 @@ export default {
 	},
 
 	beforeUnmount() {
+		this.abortTransitionEnd()
 		this.clearFocusTrap()
 		this.clearEscapeStopPropagation()
 	},
@@ -579,8 +580,43 @@ export default {
 			}
 		},
 
+		/**
+		 * Run the callback once the popover's own show or hide transition has ended.
+		 * A callback still pending from a previous show or hide is dropped,
+		 * so it cannot fire on the transition of a later show or hide.
+		 *
+		 * @param {() => void} callback - The callback to run
+		 */
+		onTransitionEnd(callback) {
+			this.abortTransitionEnd()
+
+			const element = this.getPopoverContentElement()
+			if (!element) {
+				return
+			}
+
+			const controller = new AbortController()
+			this.transitionEndController = controller
+			element.addEventListener('transitionend', (event) => {
+				// Ignore transitions of the popover content bubbling up
+				if (event.target !== element) {
+					return
+				}
+				controller.abort()
+				callback()
+			}, { signal: controller.signal, passive: true })
+		},
+
+		/**
+		 * Drop the pending transition end callback, if any.
+		 */
+		abortTransitionEnd() {
+			this.transitionEndController?.abort()
+			this.transitionEndController = null
+		},
+
 		async afterShow() {
-			this.getPopoverContentElement().addEventListener('transitionend', () => {
+			this.onTransitionEnd(() => {
 				/**
 				 * Triggered after the tooltip was visually displayed.
 				 *
@@ -589,7 +625,7 @@ export default {
 				 * tooltip is already visible and in the DOM.
 				 */
 				this.$emit('afterShow')
-			}, { once: true, passive: true })
+			})
 
 			this.removeFloatingVueAriaDescribedBy()
 
@@ -608,7 +644,7 @@ export default {
 			 * 3. Actually removes <Dropdown> node
 			 * 4. Triggers <Dropdown> `unmounted`
 			 */
-			this.getPopoverContentElement()?.addEventListener('transitionend', () => {
+			this.onTransitionEnd(() => {
 				/**
 				 * Triggered after the tooltip was visually hidden.
 				 *
@@ -617,7 +653,7 @@ export default {
 				 * tooltip is already visible and in the DOM.
 				 */
 				this.$emit('afterHide')
-			}, { once: true, passive: true })
+			})
 
 			this.clearFocusTrap()
 			this.clearEscapeStopPropagation()
