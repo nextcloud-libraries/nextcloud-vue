@@ -135,6 +135,9 @@ msgstr "Fold menuen sammen"
 msgid "Color picker"
 msgstr "Farvevælger"
 
+msgid "Completed"
+msgstr "Fuldført"
+
 msgid "Confirm changes"
 msgstr "Bekræft ændringer"
 
@@ -581,6 +584,9 @@ msgstr "Start slideshow"
 
 msgid "Start typing to search"
 msgstr "Begynd at skrive for at søge"
+
+msgid "Steps"
+msgstr "Trin"
 
 msgid "Submit"
 msgstr "Send"
