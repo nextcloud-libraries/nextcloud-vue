@@ -452,9 +452,9 @@ function stopResize() {
 
 	&--image {
 		width: 40%;
-		background-position: center;
-		background-size: cover;
-		background-repeat: no-repeat;
+		contain: size;
+		object-fit: contain;
+		object-position: center;
 	}
 
 	&--name {
