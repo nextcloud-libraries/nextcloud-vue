@@ -17,6 +17,7 @@ const {
 	label = undefined,
 	description = undefined,
 	invertedAccent = false,
+	variant = 'secondary',
 	to = undefined,
 	href = undefined,
 	target = undefined, // TODO: should it be _blank by default?
@@ -28,6 +29,8 @@ const {
 	description?: string
 	/** Accent on the description instead of the label (see docs) */
 	invertedAccent?: boolean
+	/** Visual variant, use `error` for destructive actions. With `error`, `invertedAccent` has no visual effect */
+	variant?: 'secondary' | 'error'
 	/** RouterLink's `to` prop; when provided, renders as `<RouterLink>` (takes precedence over the `href` prop) */
 	to?: RouteLocationRaw
 	/** Hyperlink `href` attribute; when provided, renders as `<a>` */
@@ -92,6 +95,7 @@ function focus(options?: FocusOptions) {
 			$style.formBoxButton,
 		]"
 		:invertedAccent
+		:variant
 		v-bind="attrs"
 		tabindex="0"
 		@click="$emit('click', $event)">
@@ -261,6 +265,40 @@ export default {
 			</NcFormBox>
 		</NcFormGroup>
 	</div>
+</template>
+```
+
+### Error variant
+
+Use `variant="error"` for destructive actions, for example regenerating backup codes or revoking all other sessions.
+
+```vue
+<script>
+import { mdiEyeOutline, mdiRefresh } from '@mdi/js'
+
+export default {
+	setup() {
+		return { mdiEyeOutline, mdiRefresh }
+	},
+}
+</script>
+
+<template>
+	<NcFormBox>
+		<NcFormBoxButton label="Show backup codes">
+			<template #icon>
+				<NcIconSvgWrapper :path="mdiEyeOutline" inline />
+			</template>
+		</NcFormBoxButton>
+		<NcFormBoxButton
+			label="Regenerate backup codes"
+			description="0 out of the 10 current codes have been used"
+			variant="error">
+			<template #icon>
+				<NcIconSvgWrapper :path="mdiRefresh" inline />
+			</template>
+		</NcFormBoxButton>
+	</NcFormBox>
 </template>
 ```
 

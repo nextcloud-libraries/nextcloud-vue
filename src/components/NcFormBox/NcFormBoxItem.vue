@@ -19,6 +19,7 @@ const {
 	label = undefined,
 	description = undefined,
 	invertedAccent = false,
+	variant = 'secondary',
 	class: rootClasses = undefined,
 	itemClasses = undefined,
 } = defineProps<{
@@ -30,6 +31,8 @@ const {
 	description?: string
 	/** Accent on the description instead of the label */
 	invertedAccent?: boolean
+	/** Visual variant, use `error` for destructive actions. With `error`, `invertedAccent` has no visual effect */
+	variant?: 'secondary' | 'error'
 	/** Root element classes */
 	class?: VueClassType
 	/** Interactive item classes */
@@ -91,6 +94,7 @@ function focus(options?: FocusOptions) {
 			{
 				[$style.formBoxItem_inverted]: invertedAccent && hasDescription(),
 				[$style.formBoxItem_legacy]: isLegacy,
+				[$style.formBoxItem_error]: variant === 'error',
 			},
 		]">
 		<span :class="$style.formBoxItem__content">
@@ -190,6 +194,27 @@ function focus(options?: FocusOptions) {
 
 		.formBoxItem__description {
 			color: inherit;
+		}
+	}
+
+	&.formBoxItem_error {
+		border-color: var(--color-error-hover);
+		background-color: var(--color-error);
+		color: var(--color-error-text);
+
+		&:hover:not(:has(:disabled)) {
+			color: var(--color-error-text);
+			background-color: var(--color-error-hover);
+		}
+
+		.formBoxItem__element,
+		.formBoxItem__description {
+			color: inherit;
+		}
+
+		// Before Nextcloud 32 the error text color is a red meant for normal backgrounds
+		&.formBoxItem_legacy {
+			--color-error-text: white;
 		}
 	}
 }
