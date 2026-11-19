@@ -191,6 +191,11 @@ msgstr "Отменить выбор {option}"
 msgid "do not disturb"
 msgstr "не беспокоить"
 
+#. TRANSLATORS: {label} is the field's label, e.g. "Device name". Read by
+#. screen readers on the button that opens the input.
+msgid "Edit {label}"
+msgstr "Изменить «{label}»"
+
 msgid "Edit item"
 msgstr "Изменить элемент"
 
