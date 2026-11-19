@@ -61,7 +61,7 @@ where:
 
 <script>
 	import { ref } from 'vue'
-	import { useHotKey } from '../../src/composables/useHotKey/index.js'
+	import { useHotKey } from '@nextcloud/vue/composables/useHotKey'
 
 	const isMac = /mac|ipad|iphone|darwin/i.test(navigator.userAgent)
 
