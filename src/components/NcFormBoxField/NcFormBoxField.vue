@@ -8,7 +8,7 @@ import type { Slot } from 'vue'
 import type { VueClassType } from '../../utils/VueTypes.ts'
 
 import { mdiCheck, mdiPencilOutline } from '@mdi/js'
-import { useEventListener } from '@vueuse/core'
+import { onClickOutside, useEventListener } from '@vueuse/core'
 import { computed, nextTick, ref, useAttrs, useTemplateRef, watch } from 'vue'
 import NcButton from '../NcButton/NcButton.vue'
 import NcFormBoxItem from '../NcFormBox/NcFormBoxItem.vue'
@@ -200,6 +200,15 @@ function onFocusout(event: FocusEvent) {
 	}
 	apply()
 }
+
+// An empty password has nothing to lose, so a click elsewhere closes it. Not on focusout:
+// password manager popups (Bitwarden) take focus into their own iframe, and clicks in there
+// never reach this page.
+onClickOutside(() => itemRef.value?.$el, () => {
+	if (editing.value && type === 'password' && !draft.value && !loading) {
+		editing.value = false
+	}
+})
 
 /**
  * Keep focus in the input when anything else in the row is pressed. The blur would apply the
@@ -469,7 +478,7 @@ A form box row that turns into an input in place. It is controlled: the parent s
 
 Enter or leaving the field applies a changed value, Escape discards it without closing a surrounding dialog. Focus moves into the input on edit and back to the row after Enter or Escape.
 
-Passwords are the exception: leaving the field does nothing, so a click elsewhere or a password manager popup never changes a password. They apply on Enter or with the submit button.
+Passwords are the exception: leaving the field does nothing, so a click elsewhere or a password manager popup never changes a password. They apply on Enter or with the submit button. Clicking outside an empty password field closes it.
 
 Errors show in the browser's validation popup, like other Nextcloud forms: pass the message as `error` after a failed save. `helperText` is for hints only.
 
