@@ -298,13 +298,14 @@ function onLinkKeydown(event: KeyboardEvent) {
 	}
 }
 
+// A thicker border in the text color, not in the accent color
 .ncCard_active {
-	border-color: var(--color-primary-element);
-	box-shadow: 0 0 0 1px var(--color-primary-element);
+	border-color: var(--color-main-text);
+	box-shadow: 0 0 0 1px var(--color-main-text);
 
 	&.ncCard_link:hover {
-		border-color: var(--color-primary-element);
-		box-shadow: 0 0 0 1px var(--color-primary-element), 0 2px 8px var(--color-box-shadow);
+		border-color: var(--color-main-text);
+		box-shadow: 0 0 0 1px var(--color-main-text), 0 2px 8px var(--color-box-shadow);
 	}
 }
 
@@ -321,13 +322,11 @@ function onLinkKeydown(event: KeyboardEvent) {
 	display: flex;
 	align-items: center;
 	gap: calc(2 * var(--default-grid-baseline));
-	min-height: var(--default-clickable-area);
 }
 
 .ncCard__icon {
 	display: flex;
 	flex-shrink: 0;
-	color: var(--color-primary-element);
 }
 
 .ncCard__name {
@@ -377,6 +376,8 @@ function onLinkKeydown(event: KeyboardEvent) {
 
 .ncCard__description {
 	margin: 0;
+	// Close to the heading, like the description of NcFormGroup and the subname of NcListItem
+	margin-block-start: calc(-1 * var(--default-grid-baseline));
 	color: var(--color-text-maxcontrast);
 }
 

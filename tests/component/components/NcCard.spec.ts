@@ -47,6 +47,29 @@ test('lines up the icon with the description below it', async ({ mount }) => {
 	expect(icon!.x).toBeCloseTo(description!.x, 0)
 })
 
+test('shows the description right below the heading', async ({ mount }) => {
+	const card = await mount(NcCard, {
+		props: { label: 'Design', description: 'The design team', iconPath: mdiPaletteOutline, style: 'width: 400px' },
+	})
+	const [heading, description] = await Promise.all([
+		card.getByRole('heading', { name: 'Design' }).boundingBox(),
+		card.getByText('The design team').boundingBox(),
+	])
+	expect(description!.y - (heading!.y + heading!.height)).toBeLessThanOrEqual(4)
+})
+
+test('shows the icon in the text color', async ({ mount }) => {
+	const card = await mount(NcCard, { props: { label: 'Design', iconPath: mdiPaletteOutline } })
+	const color = await card.evaluate((element) => getComputedStyle(element).color)
+	await expect(card.locator('svg')).toHaveCSS('color', color)
+})
+
+test('marks the active card with a border in the text color', async ({ mount }) => {
+	const card = await mount(NcCard, { props: { label: 'Design', active: true } })
+	const color = await card.evaluate((element) => getComputedStyle(element).color)
+	await expect(card).toHaveCSS('border-top-color', color)
+})
+
 test('marks the active card in forced colors', async ({ mount, page }) => {
 	await page.emulateMedia({ forcedColors: 'active' })
 	const card = await mount(NcCard, { props: { label: 'Design', active: true } })
