@@ -8,7 +8,7 @@ import type { Slot } from 'vue'
 import type { VueClassType } from '../../utils/VueTypes.ts'
 
 import { mdiCheck, mdiPencilOutline } from '@mdi/js'
-import { useEventListener } from '@vueuse/core'
+import { onClickOutside, useEventListener } from '@vueuse/core'
 import { computed, nextTick, ref, useAttrs, useTemplateRef, watch } from 'vue'
 import NcButton from '../NcButton/NcButton.vue'
 import NcFormBoxItem from '../NcFormBox/NcFormBoxItem.vue'
@@ -188,27 +188,27 @@ function onEnter(event: KeyboardEvent) {
 /**
  * Leaving a text field applies it, like a native settings field. Passwords stay open:
  * a click elsewhere or a password manager popup must not change a password.
- * An empty password closes instead, there is nothing to lose.
  *
  * @param event - Focusout event
  */
 function onFocusout(event: FocusEvent) {
-	if (!editing.value || replacingField
+	if (type === 'password' || !editing.value || replacingField || draft.value === lastSubmitted
 		// Switching windows blurs the field too, but the user hasn't left it
 		|| !document.hasFocus()
 		|| (event.relatedTarget instanceof Node && itemRef.value?.$el?.contains(event.relatedTarget))) {
 		return
 	}
-	if (type === 'password') {
-		if (!draft.value && !loading) {
-			editing.value = false
-		}
-		return
-	}
-	if (draft.value !== lastSubmitted) {
-		apply()
-	}
+	apply()
 }
+
+// An empty password has nothing to lose, so a click elsewhere closes it. Not on focusout:
+// password manager popups (Bitwarden) take focus into their own iframe, and clicks in there
+// never reach this page.
+onClickOutside(itemRef, () => {
+	if (editing.value && type === 'password' && !draft.value && !loading) {
+		editing.value = false
+	}
+})
 
 /**
  * Keep focus in the input when anything else in the row is pressed. The blur would apply the
@@ -478,7 +478,7 @@ A form box row that turns into an input in place. It is controlled: the parent s
 
 Enter or leaving the field applies a changed value, Escape discards it without closing a surrounding dialog. Focus moves into the input on edit and back to the row after Enter or Escape.
 
-Passwords are the exception: leaving the field does nothing, so a click elsewhere or a password manager popup never changes a password. They apply on Enter or with the submit button. Leaving an empty password field closes it.
+Passwords are the exception: leaving the field does nothing, so a click elsewhere or a password manager popup never changes a password. They apply on Enter or with the submit button. Clicking outside an empty password field closes it.
 
 Errors show in the browser's validation popup, like other Nextcloud forms: pass the message as `error` after a failed save. `helperText` is for hints only.
 

@@ -304,16 +304,46 @@ describe('NcFormBoxField', () => {
 		expect(wrapper.props('editing')).toBe(true)
 	})
 
-	it('closes an empty password when leaving it', async () => {
-		const wrapper = mountField({ editing: true, type: 'password', modelValue: '' })
-		await wrapper.find('input').trigger('focusout')
-		expect(wrapper.emitted('submit')).toBeUndefined()
-		expect(wrapper.props('editing')).toBe(false)
+	describe('clicking outside a password', () => {
+		const outside = document.createElement('button')
+		document.body.append(outside)
+
+		/**
+		 * Press and release on an element, like a mouse click
+		 *
+		 * @param element - Clicked element
+		 */
+		async function click(element: Element) {
+			element.dispatchEvent(new Event('pointerdown', { bubbles: true }))
+			element.dispatchEvent(new MouseEvent('click', { bubbles: true }))
+			await nextTick()
+		}
+
+		it('closes it when empty', async () => {
+			const wrapper = mountField({ editing: true, type: 'password', modelValue: '' })
+			await click(outside)
+			expect(wrapper.emitted('submit')).toBeUndefined()
+			expect(wrapper.props('editing')).toBe(false)
+		})
+
+		it('keeps it open with something typed', async () => {
+			const wrapper = mountField({ editing: true, type: 'password', modelValue: '' })
+			await wrapper.find('input').setValue('half')
+			await click(outside)
+			expect(wrapper.props('editing')).toBe(true)
+		})
+
+		it('keeps it open for a click on its own reveal toggle', async () => {
+			const wrapper = mountField({ editing: true, type: 'password', modelValue: '' })
+			await click(wrapper.find('button[aria-label="Show password"]').element)
+			expect(wrapper.props('editing')).toBe(true)
+		})
 	})
 
-	it('keeps an empty password open when focus moves to its submit button', async () => {
+	// Password managers like Bitwarden take focus into their own iframe, without a click on this page
+	it('keeps an empty password open when focus leaves without a click', async () => {
 		const wrapper = mountField({ editing: true, type: 'password', modelValue: '' })
-		await wrapper.find('input').trigger('focusout', { relatedTarget: wrapper.find('button[aria-label="Submit"]').element })
+		await wrapper.find('input').trigger('focusout')
 		expect(wrapper.props('editing')).toBe(true)
 	})
 
