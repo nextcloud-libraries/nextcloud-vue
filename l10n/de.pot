@@ -2,12 +2,12 @@
 # Martin Wilichowski, 2025
 # Ferdinand Thiessen, 2025
 # Joas Schilling, 2025
-# Mario Siegmann <mario_siegmann@web.de>, 2026
 # Mark Ziegler <mark.ziegler@rakekniven.de>, 2026
+# Mario Siegmann <mario_siegmann@web.de>, 2026
 # 
 msgid ""
 msgstr ""
-"Last-Translator: Mark Ziegler <mark.ziegler@rakekniven.de>, 2026\n"
+"Last-Translator: Mario Siegmann <mario_siegmann@web.de>, 2026\n"
 "Language-Team: German (https://app.transifex.com/nextcloud/teams/64236/de/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Language: de\n"
@@ -138,6 +138,9 @@ msgstr "Menü einklappen"
 
 msgid "Color picker"
 msgstr "Farbauswahl"
+
+msgid "Completed"
+msgstr "Fertiggestellt"
 
 msgid "Confirm changes"
 msgstr "Änderungen bestätigen"
@@ -585,6 +588,9 @@ msgstr "Diashow starten"
 
 msgid "Start typing to search"
 msgstr "Mit der Eingabe beginnen, um zu suchen"
+
+msgid "Steps"
+msgstr "Schritte"
 
 msgid "Submit"
 msgstr "Einreichen"
