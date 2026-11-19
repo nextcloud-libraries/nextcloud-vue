@@ -504,6 +504,7 @@ function mountPicker(props: Record<string, unknown> = {}) {
 			destination: createFolder(),
 			...props,
 		},
+		attachTo: document.body,
 	})
 }
 
