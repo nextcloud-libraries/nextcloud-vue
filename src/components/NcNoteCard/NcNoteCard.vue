@@ -160,6 +160,7 @@ const iconPath = computed(() => {
 		:class="{
 			[`notecard--${type}`]: type,
 			'notecard--legacy': isLegacy,
+			'notecard--with-actions': slots.actions,
 		}"
 		:role="shouldShowAlert ? 'alert' : 'note'">
 		<slot name="icon">
@@ -209,15 +210,17 @@ const iconPath = computed(() => {
 		min-width: 0;
 	}
 
+	// The note card grows for a button, so it has the same space around it as the text,
+	// and the icon and the text are centered on it
+	&--with-actions {
+		align-items: center;
+	}
+
 	&__actions {
 		display: flex;
 		flex-shrink: 0;
 		align-items: center;
-		align-self: center;
 		gap: var(--default-grid-baseline);
-		// Only one line tall, sticking out into the padding, so a button does not make the
-		// note card taller and is centered on the text like the icon
-		margin-block: calc((1lh - var(--default-clickable-area)) / 2);
 	}
 
 	&__icon {
