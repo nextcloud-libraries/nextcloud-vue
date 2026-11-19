@@ -3,6 +3,8 @@
   - SPDX-License-Identifier: AGPL-3.0-or-later
 -->
 
+# usernameToColor
+
 ```js static
 import { usernameToColor } from '@nextcloud/vue/functions/usernameToColor'
 ```

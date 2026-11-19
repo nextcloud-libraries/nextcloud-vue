@@ -14,7 +14,7 @@
 ### Avatar with image
 
 ```vue
-	<NcAvatar url="favicon-touch.png" />
+	<NcAvatar url="/favicon-touch.png" />
 ```
 
 ### Avatar with material design icon

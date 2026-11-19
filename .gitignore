@@ -27,8 +27,9 @@ nextcloud-vue-*.tgz
 coverage
 
 # Docs compiled build
-styleguide/build/
-styleguide/index.html
+/docs/.vitepress/cache/
+/docs/.vitepress/dist/
+/docs/.vitepress/repl-dist/
 
 # Playwright files
 /test-results/

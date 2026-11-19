@@ -3,6 +3,8 @@
  - SPDX-License-Identifier: AGPL-3.0-or-later
 -->
 
+# useHotKey
+
 This composable allows to use keyboard shortcuts in the application.
 It respects Nextcloud's value of ```OCP.Accessibility.disableKeyboardShortcuts``` parameter.
 

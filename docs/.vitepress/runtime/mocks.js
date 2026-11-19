@@ -4,16 +4,7 @@
  */
 
 import axios from '@nextcloud/axios'
-import NcDialog from '../src/components/NcDialog/index.ts'
-import { useIsDarkTheme } from '../src/composables/useIsDarkTheme/index.ts'
-import { isA11yActivation } from '../src/functions/a11y/index.ts'
-import { spawnDialog } from '../src/functions/dialog/index.ts'
-import { emojiAddRecent, emojiSearch, EmojiSkinTone, getCurrentSkinTone, setCurrentSkinTone } from '../src/functions/emoji/index.ts'
-import { usernameToColor } from '../src/functions/usernameToColor/index.ts'
 import { mockWebDav } from './webdav.mock.js'
-
-import 'regenerator-runtime/runtime.js'
-import 'core-js/stable/index.js'
 
 const USER_GROUPS = [
 	{ id: 'admin', displayname: 'The administrators' },
@@ -49,7 +40,7 @@ function mockRequests(error) {
 						id: referenceValue,
 						name: 'Name for the resolved reference',
 						description: 'Description for the resolved reference',
-						thumb: 'favicon-touch.png',
+						thumb: '/favicon-touch.png',
 						link: referenceValue,
 					},
 					accessible: true,
@@ -91,35 +82,35 @@ axios.interceptors.response.use((r) => r, (e) => mockRequests(e))
 // Fake the WebDAV endpoints used for uploading files
 mockWebDav()
 
-// app name fallback
-window.appName = 'nextcloud-vue'
-
-// Exported Functions
-window.isA11yActivation = isA11yActivation
-window.EmojiSkinTone = EmojiSkinTone
-window.emojiSearch = emojiSearch
-window.emojiAddRecent = emojiAddRecent
-window.getCurrentSkinTone = getCurrentSkinTone
-window.setCurrentSkinTone = setCurrentSkinTone
-window.usernameToColor = usernameToColor
-window.spawnDialog = spawnDialog
-// Exported components
-window.NcDialog = NcDialog
-// Exported composables
-window.useIsDarkTheme = useIsDarkTheme
-
 window.NextcloudVueDocs = {
 	tags: '<?xml version="1.0"?><d:multistatus xmlns:d="DAV:" xmlns:s="http://sabredav.org/ns" xmlns:oc="http://owncloud.org/ns" xmlns:nc="http://nextcloud.org/ns"><d:response><d:href>/remote.php/dav/systemtags/</d:href><d:propstat><d:prop><oc:id/><oc:display-name/><oc:user-visible/><oc:user-assignable/><oc:can-assign/></d:prop><d:status>HTTP/1.1 404 Not Found</d:status></d:propstat></d:response><d:response><d:href>/remote.php/dav/systemtags/7</d:href><d:propstat><d:prop><oc:id>7</oc:id><oc:display-name>tag1</oc:display-name><oc:user-visible>true</oc:user-visible><oc:user-assignable>true</oc:user-assignable><oc:can-assign>true</oc:can-assign></d:prop><d:status>HTTP/1.1 200 OK</d:status></d:propstat></d:response><d:response><d:href>/remote.php/dav/systemtags/2</d:href><d:propstat><d:prop><oc:id>2</oc:id><oc:display-name>tag2</oc:display-name><oc:user-visible>false</oc:user-visible><oc:user-assignable>true</oc:user-assignable><oc:can-assign>true</oc:can-assign></d:prop><d:status>HTTP/1.1 200 OK</d:status></d:propstat></d:response><d:response><d:href>/remote.php/dav/systemtags/3</d:href><d:propstat><d:prop><oc:id>3</oc:id><oc:display-name>tag3</oc:display-name><oc:user-visible>true</oc:user-visible><oc:user-assignable>true</oc:user-assignable><oc:can-assign>true</oc:can-assign></d:prop><d:status>HTTP/1.1 200 OK</d:status></d:propstat></d:response><d:response><d:href>/remote.php/dav/systemtags/4</d:href><d:propstat><d:prop><oc:id>4</oc:id><oc:display-name>important</oc:display-name><oc:user-visible>true</oc:user-visible><oc:user-assignable>true</oc:user-assignable><oc:can-assign>true</oc:can-assign></d:prop><d:status>HTTP/1.1 200 OK</d:status></d:propstat></d:response><d:response><d:href>/remote.php/dav/systemtags/1</d:href><d:propstat><d:prop><oc:id>1</oc:id><oc:display-name>secret</oc:display-name><oc:user-visible>true</oc:user-visible><oc:user-assignable>false</oc:user-assignable><oc:can-assign>true</oc:can-assign></d:prop><d:status>HTTP/1.1 200 OK</d:status></d:propstat></d:response><d:response><d:href>/remote.php/dav/systemtags/5</d:href><d:propstat><d:prop><oc:id>5</oc:id><oc:display-name>test</oc:display-name><oc:user-visible>true</oc:user-visible><oc:user-assignable>false</oc:user-assignable><oc:can-assign>true</oc:can-assign></d:prop><d:status>HTTP/1.1 200 OK</d:status></d:propstat></d:response><d:response><d:href>/remote.php/dav/systemtags/6</d:href><d:propstat><d:prop><oc:id>6</oc:id><oc:display-name>test2</oc:display-name><oc:user-visible>false</oc:user-visible><oc:user-assignable>false</oc:user-assignable><oc:can-assign>true</oc:can-assign></d:prop><d:status>HTTP/1.1 200 OK</d:status></d:propstat></d:response></d:multistatus>',
 }
 
-// Add #skip-actions container
-document.body.insertAdjacentHTML('afterbegin', '<div id="skip-actions"></div>')
+/**
+ * Add the elements the server would render to the body, unless they already exist (like within the REPL).
+ */
+export function addServerElements() {
+	// Add #skip-actions container
+	if (!document.getElementById('skip-actions')) {
+		document.body.insertAdjacentHTML('afterbegin', '<div id="skip-actions"></div>')
+	}
 
-// Add some initial state
-const toInitialStateValue = (value) => btoa(JSON.stringify(value))
-document.body.appendChild(new DOMParser().parseFromString(`
-	<div id="initial-state-container" style="display: none;">
-		<input type="hidden" id="initial-state-core-active-app" value="${toInitialStateValue('nextcloud-vue')}" />
-		<input type="hidden" id="initial-state-core-apps" value="${toInitialStateValue([{ id: 'nextcloud-vue', name: 'Nextcloud Vue' }])}" />
-	</div>
-`, 'text/html').body.firstChild)
+	// Add some initial state
+	if (!document.getElementById('initial-state-container')) {
+		document.body.insertAdjacentHTML('beforeend', serverElementsHtml())
+	}
+}
+
+/**
+ * HTML of the initial state the server would render
+ */
+export function serverElementsHtml() {
+	const toInitialStateValue = (value) => btoa(JSON.stringify(value))
+	return `
+		<div id="initial-state-container" style="display: none;">
+			<input type="hidden" id="initial-state-core-active-app" value="${toInitialStateValue('nextcloud-vue')}" />
+			<input type="hidden" id="initial-state-core-apps" value="${toInitialStateValue([{ id: 'nextcloud-vue', name: 'Nextcloud Vue' }])}" />
+		</div>`
+}
+
+addServerElements()

@@ -3,6 +3,8 @@
  - SPDX-License-Identifier: AGPL-3.0-or-later
 -->
 
+# Composables
+
 ### Registration
 
 To use any composable, import and use it according to documentation or Vue guidelines, for example:

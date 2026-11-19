@@ -3,6 +3,8 @@
   - SPDX-License-Identifier: AGPL-3.0-or-later
 -->
 
+# useIsDarkTheme
+
 ```ts static
 import {
     useIsDarkTheme,

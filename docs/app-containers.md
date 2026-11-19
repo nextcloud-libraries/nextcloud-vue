@@ -3,6 +3,8 @@
  - SPDX-License-Identifier: AGPL-3.0-or-later
 -->
 
+# App containers
+
 All applications **must** be wrapped in one of the provided app containers.
 Those containers provide base styling and context for all components.
 

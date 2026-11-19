@@ -9,7 +9,10 @@ import { beforeMount } from '@playwright/experimental-ct-vue/hooks'
 import { createMemoryHistory, createRouter } from 'vue-router'
 
 // Visual setup
-import '../../../styleguide/assets/additional.css'
+import '../../../docs/assets/default.css'
+import '../../../docs/assets/dark.css'
+import '../../../docs/assets/server.css'
+import '../../../docs/assets/apps.css'
 import '@fontsource/roboto/index.css'
 import './index.css'
 

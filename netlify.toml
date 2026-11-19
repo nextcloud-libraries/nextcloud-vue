@@ -4,3 +4,7 @@
 [build.environment]
 	NODE_VERSION = "24"
 	NPM_VERSION = "11"
+
+[build]
+	command = "npm run docs:build"
+	publish = "docs/.vitepress/dist"

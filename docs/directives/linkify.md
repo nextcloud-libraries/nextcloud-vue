@@ -3,6 +3,8 @@
  - SPDX-License-Identifier: AGPL-3.0-or-later
 -->
 
+# Linkify
+
 ```js static
 import Linkify from '@nextcloud/vue/directives/Linkify'
 ```

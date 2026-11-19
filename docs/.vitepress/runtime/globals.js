@@ -6,6 +6,9 @@
 // Global variables
 window._oc_webroot = ''
 
+// App name fallback, read by the library when it is loaded
+window.appName = 'nextcloud-vue'
+
 // Simulate a logged in user, this is what `getCurrentUser()` of `@nextcloud/auth` reads
 document.head.setAttribute('data-user', 'admin')
 document.head.setAttribute('data-user-displayname', 'Administrator')
