@@ -12,7 +12,11 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        branch: ['main', 'stable8']
+        include:
+          - branch: main
+            assets: docs/assets
+          - branch: stable8
+            assets: styleguide/assets
 
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
@@ -21,8 +25,10 @@ jobs:
           ref: ${{ matrix.branch }}
 
       - name: Download css
+        env:
+          ASSETS_DIR: ${{ matrix.assets }}
         run: |
-          cd styleguide/assets
+          cd "$ASSETS_DIR"
           # Fix img css import
           curl https://nextcloud.github.io/server/apps/theming/css/default.css | sed 's|/apps/theming/img|./img|g' > default.css
           # Fix icons and img css import
@@ -40,7 +46,7 @@ jobs:
           signoff: true
           branch: 'automated/${{ github.run_id }}/server-styling-update-${{ matrix.branch }}'
           title: '[${{ matrix.branch }}] chore(docs): Automated styling update from server'
-          add-paths: styleguide/assets
+          add-paths: ${{ matrix.assets }}
           body: |
             Auto-generated update of our locally cached css styling from
              * https://nextcloud.github.io/server/apps/theming/css/default.css

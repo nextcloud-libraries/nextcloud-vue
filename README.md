@@ -88,20 +88,28 @@ First, install dependencies with `npm`:
 npm ci
 ```
 
-#### 🐸 Development with Styleguidist
+#### 📖 Development with the documentation
 
-The simplest way to develop and debug `@nextcloud/vue` is to use our live documentation via [`vue-styleguidist`](https://vue-styleguidist.github.io). 
+The simplest way to develop and debug `@nextcloud/vue` is to use our live documentation built with [VitePress](https://vitepress.dev).
 
 Run the development server with component documentation and playground:
 ```sh
-npm run styleguide
+npm run docs:dev
 ```
 
 You can also test if the design still works with a legacy Nextcloud version by setting `NEXTCLOUD_LEGACY` ENV variable.
 
 ```sh
-NEXTCLOUD_LEGACY=y npm run styleguide
+NEXTCLOUD_LEGACY=y npm run docs:dev
 ```
+
+The documentation of a component is written in the custom `<docs>` block of the component as markdown.
+Code blocks without language or with the `vue` language are rendered as live examples, which can be edited in the browser.
+Add `static` to the language (e.g. ` ```vue static`) to only show the code.
+The props, events, slots and exposed methods are documented automatically from the component source:
+- Props, events and slots of `<script setup>` components are documented with JSDoc comments on `defineProps`, `defineEmits` and `defineSlots`
+- Events of Options API components are documented with a JSDoc comment on the `$emit` call
+- Slots of Options API components are documented with a `<!-- @slot description -->` comment before the slot
 
 #### Unit tests
 

@@ -3,6 +3,8 @@
   - SPDX-License-Identifier: AGPL-3.0-or-later
 -->
 
+# emoji
+
 ```ts static
 import {
     EmojiSkinTone,
@@ -87,7 +89,8 @@ import { emojiAddRecent, emojiSearch, EmojiSkinTone, getCurrentSkinTone, setCurr
 
 export default {
     data() {
-        const initialSkinTone = getCurrentSkinTone()
+        const initialSkinTone
+ = getCurrentSkinTone()
         return {
             recent: [],
             selectedTone: {

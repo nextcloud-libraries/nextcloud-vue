@@ -3,6 +3,8 @@
  - SPDX-License-Identifier: AGPL-3.0-or-later
 -->
 
+# useFormatDateTime
+
 This composable allows to format a timestamp or `Date` object either as human readable, localized, string or as relative time.
 
 ## Definition

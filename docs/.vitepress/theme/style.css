@@ -1,0 +1,130 @@
+/*!
+ * SPDX-FileCopyrightText: 2026 Nextcloud GmbH and Nextcloud contributors
+ * SPDX-License-Identifier: AGPL-3.0-or-later
+ */
+
+:root {
+	--vp-c-brand-1: #00679e;
+	--vp-c-brand-2: #0082c9;
+	--vp-c-brand-3: #0082c9;
+	--vp-c-brand-soft: rgba(0, 130, 201, .14);
+}
+
+.dark {
+	--vp-c-brand-1: #4db1e8;
+	--vp-c-brand-2: #2b9fde;
+	--vp-c-brand-3: #0082c9;
+}
+
+/* Example container */
+.nc-example {
+	margin: 16px 0;
+	border: 1px solid var(--vp-c-divider);
+	border-radius: 8px;
+	overflow: hidden;
+}
+
+.nc-example__preview {
+	position: relative;
+	padding: 20px;
+	/* Use the Nextcloud styling within the examples */
+	background-color: var(--color-main-background);
+	color: var(--color-main-text);
+	font-family: var(--font-face);
+	font-size: var(--default-font-size);
+	line-height: var(--default-line-height);
+	/* Make sure absolute positioned content of examples stays within the example */
+	transform: translateZ(0);
+	overflow: auto;
+}
+
+.nc-example__preview *,
+.nc-example__preview *::before,
+.nc-example__preview *::after {
+	box-sizing: border-box;
+}
+
+.nc-example__error {
+	color: var(--vp-c-danger-1);
+	font-family: var(--vp-font-family-mono);
+	white-space: pre-wrap;
+}
+
+.nc-example__toolbar {
+	display: flex;
+	gap: 8px;
+	justify-content: flex-end;
+	padding: 4px 8px;
+	border-top: 1px solid var(--vp-c-divider);
+	background-color: var(--vp-c-bg-soft);
+}
+
+.nc-example__toolbar button,
+.nc-example__toolbar a {
+	padding: 4px 12px;
+	border-radius: 6px;
+	color: var(--vp-c-text-2);
+	font-size: 13px;
+	font-weight: 500;
+	text-decoration: none;
+	transition: color .25s, background-color .25s;
+}
+
+.nc-example__toolbar button:hover,
+.nc-example__toolbar button:focus-visible,
+.nc-example__toolbar a:hover,
+.nc-example__toolbar a:focus-visible {
+	color: var(--vp-c-brand-1);
+	background-color: var(--vp-c-default-soft);
+}
+
+.nc-example__code div[class*='language-'] {
+	margin: 0 !important;
+	border-radius: 0 !important;
+}
+
+/* The Nextcloud logo is white, so it needs to be colored for the light theme (approximation of #0082c9) */
+:root:not(.dark) .VPNavBarTitle .logo {
+	filter: brightness(0) invert(32%) sepia(85%) saturate(2350%) hue-rotate(184deg) brightness(93%) contrast(101%);
+}
+
+/*
+ * Wide screens: VitePress centers the layout and grows the sidebar (but not its content).
+ * Instead keep the layout of medium screens with a fixed sidebar and use the space for the content.
+ * The `html .Layout` prefix is needed to override the scoped styles of VitePress.
+ */
+@media (min-width: 1440px) {
+	html .Layout .VPSidebar {
+		padding-left: 32px;
+		width: var(--vp-sidebar-width);
+	}
+
+	html .Layout .VPNavBar.has-sidebar .container > .title {
+		padding: 0 32px;
+		width: var(--vp-sidebar-width);
+	}
+
+	html .Layout .VPNavBar.has-sidebar .content {
+		padding-right: 32px;
+		padding-left: var(--vp-sidebar-width);
+	}
+
+	html .Layout .VPNavBar.has-sidebar .divider,
+	html .Layout .VPLocalNav.has-sidebar {
+		padding-left: var(--vp-sidebar-width);
+	}
+
+	html .Layout .VPContent.has-sidebar {
+		padding-right: 0;
+		padding-left: var(--vp-sidebar-width);
+	}
+
+	html .Layout .VPDoc.has-aside .content-container {
+		max-width: 768px;
+	}
+
+	/* Keep the outline next to the content instead of the edge of the screen */
+	html .Layout .VPDoc.has-aside .container {
+		max-width: calc(768px + 64px + 256px);
+	}
+}

@@ -3,6 +3,8 @@
  - SPDX-License-Identifier: AGPL-3.0-or-later
 -->
 
+# Directives
+
 ### Registration
 
 To use any directive, import and register it locally, for example:

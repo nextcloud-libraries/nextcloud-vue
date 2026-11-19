@@ -3,6 +3,8 @@
  - SPDX-License-Identifier: AGPL-3.0-or-later
 -->
 
+# Focus
+
 ```js static
 import Focus from '@nextcloud/vue/directives/Focus'
 ```
