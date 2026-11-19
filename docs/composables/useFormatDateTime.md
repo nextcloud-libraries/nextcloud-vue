@@ -106,7 +106,7 @@ const formattedTime = useFormatTime(date, timeOptions)
 	import {
 		useFormatRelativeTime,
 		useFormatTime,
-	} from '../../src/composables/useFormatDateTime/index.js'
+	} from '@nextcloud/vue/composables/useFormatDateTime'
 
 	export default {
 		setup() {

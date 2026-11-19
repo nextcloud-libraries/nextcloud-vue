@@ -34,6 +34,8 @@ declare function usernameToColor(username: string): { r: number, g: number, b: n
 </template>
 
 <script>
+import { usernameToColor } from '@nextcloud/vue/functions/usernameToColor'
+
 export default {
     data() {
         return {

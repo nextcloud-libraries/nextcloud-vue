@@ -83,6 +83,8 @@ declare function setCurrentSkinTone(skinTone: EmojiSkinTone): void
 </template>
 
 <script>
+import { emojiAddRecent, emojiSearch, EmojiSkinTone, getCurrentSkinTone, setCurrentSkinTone } from '@nextcloud/vue/functions/emoji'
+
 export default {
     data() {
         const initialSkinTone = getCurrentSkinTone()

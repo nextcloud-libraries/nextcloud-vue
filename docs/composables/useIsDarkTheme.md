@@ -45,6 +45,8 @@ declare function useIsDarkTheme(): DeepReadonly<Ref<boolean>>
 </template>
 
 <script>
+import { useIsDarkTheme } from '@nextcloud/vue/composables/useIsDarkTheme'
+
 export default {
     setup() {
         const isDarkTheme = useIsDarkTheme()
