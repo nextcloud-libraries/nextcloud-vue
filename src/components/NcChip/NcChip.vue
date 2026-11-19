@@ -55,7 +55,7 @@ Also it is possible to pass custom actions.
 		<template #actions>
 			<NcActionButton>
 				<template #icon>
-					<ContactsIcon :size="20" />
+					<NcIconSvgWrapper :path="mdiContacts" />
 				</template>
 				Add to contacts
 			</NcActionButton>
@@ -65,10 +65,12 @@ Also it is possible to pass custom actions.
 	</NcChip>
 </template>
 <script>
-import ContactsIcon from 'vue-material-design-icons/Contacts.vue'
+import { mdiContacts } from '@mdi/js'
 export default {
-	components: {
-		ContactsIcon,
+	setup() {
+		return {
+			mdiContacts,
+		}
 	},
 }
 </script>

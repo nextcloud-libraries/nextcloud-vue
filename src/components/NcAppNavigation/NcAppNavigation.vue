@@ -14,13 +14,13 @@
 					<NcActions>
 						<NcActionButton close-after-click @click="showModal = true">
 							<template #icon>
-								<IconCogOutline />
+								<NcIconSvgWrapper :path="mdiCogOutline" />
 							</template>
 							App settings (close after click)
 						</NcActionButton>
 						<NcActionButton @click="showModal = true">
 							<template #icon>
-								<IconCogOutline />
+								<NcIconSvgWrapper :path="mdiCogOutline" />
 							</template>
 							App settings (handle only click)
 						</NcActionButton>
@@ -30,7 +30,7 @@
 			<template #list>
 				<NcAppNavigationItem v-for="item in items" :key="item" :name="item">
 					<template #icon>
-						<IconCheck :size="20" />
+						<NcIconSvgWrapper :path="mdiCheck" />
 					</template>
 				</NcAppNavigationItem>
 			</template>
@@ -38,7 +38,7 @@
 				<div class="navigation__footer">
 					<NcButton wide @click="showModal = true">
 						<template #icon>
-							<IconCogOutline />
+							<NcIconSvgWrapper :path="mdiCogOutline" />
 						</template>
 						App settings
 					</NcButton>
@@ -55,13 +55,14 @@
 </template>
 
 <script>
-	import IconCheck from 'vue-material-design-icons/Check'
-	import IconCogOutline from 'vue-material-design-icons/CogOutline'
+	import { mdiCheck, mdiCogOutline } from '@mdi/js'
 
 	export default {
-		components: {
-			IconCheck,
-			IconCogOutline,
+		setup() {
+			return {
+				mdiCheck,
+				mdiCogOutline,
+			}
 		},
 		provide() {
 			return {

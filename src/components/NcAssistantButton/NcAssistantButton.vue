@@ -34,12 +34,7 @@
 
 </template>
 <script>
-import Video from 'vue-material-design-icons/Video.vue'
-
 export default {
-	components: {
-		Video,
-	},
 	data() {
 		return {
 			disabled: false,

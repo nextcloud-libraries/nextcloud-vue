@@ -14,7 +14,7 @@ similar to the NcHeaderMenu but to be used when only a trigger button is needed,
 			aria-label="Search"
 			@click="showDialog = true">
 			<template #icon>
-				<Magnify />
+				<NcIconSvgWrapper :path="mdiMagnify" />
 			</template>
 		</NcHeaderButton>
 
@@ -27,18 +27,20 @@ similar to the NcHeaderMenu but to be used when only a trigger button is needed,
 			<NcEmptyContent name="Search"
 				:description="query ? `No results for '${query}'` : 'Start typing to search'">
 				<template #icon>
-					<Magnify />
+					<NcIconSvgWrapper :path="mdiMagnify" />
 				</template>
 			</NcEmptyContent>
 		</NcDialog>
 	</div>
 </template>
 <script>
-import Magnify from 'vue-material-design-icons/Magnify'
+import { mdiMagnify } from '@mdi/js'
 
 export default {
-	components: {
-		Magnify,
+	setup() {
+		return {
+			mdiMagnify,
+		}
 	},
 
 	data() {

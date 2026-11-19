@@ -14,18 +14,20 @@ https://www.w3.org/TR/wai-aria-practices/examples/menu-button/menu-button-action
 	<NcActions>
 		<NcActionButton @click="actionDelete">
 			<template #icon>
-				<IconTrashCanOutline :size="20" />
+				<NcIconSvgWrapper :path="mdiTrashCanOutline" />
 			</template>
 			Delete
 		</NcActionButton>
 	</NcActions>
 </template>
 <script>
-import IconTrashCanOutline from 'vue-material-design-icons/TrashCanOutline.vue'
+import { mdiTrashCanOutline } from '@mdi/js'
 
 export default {
-	components: {
-		IconTrashCanOutline,
+	setup() {
+		return {
+			mdiTrashCanOutline,
+		}
 	},
 	methods: {
 		actionDelete() {
@@ -43,34 +45,34 @@ export default {
 	<NcActions>
 		<NcActionButton @click="showMessage('Edit')">
 			<template #icon>
-				<IconPencilOutline :size="20" />
+				<NcIconSvgWrapper :path="mdiPencilOutline" />
 			</template>
 			Edit
 		</NcActionButton>
 		<NcActionButton @click="showMessage('Delete')">
 			<template #icon>
-				<IconTrashCanOutline :size="20" />
+				<NcIconSvgWrapper :path="mdiTrashCanOutline" />
 			</template>
 			Delete
 		</NcActionButton>
 		<NcActionLink href="https://nextcloud.com">
 			<template #icon>
-				<IconOpenInNew :size="20" />
+				<NcIconSvgWrapper :path="mdiOpenInNew" />
 			</template>
 			Link
 		</NcActionLink>
 	</NcActions>
 </template>
 <script>
-import IconTrashCanOutline from 'vue-material-design-icons/TrashCanOutline.vue'
-import IconOpenInNew from 'vue-material-design-icons/OpenInNew.vue'
-import IconPencilOutline from 'vue-material-design-icons/PencilOutline.vue'
+import { mdiOpenInNew, mdiPencilOutline, mdiTrashCanOutline } from '@mdi/js'
 
 export default {
-	components: {
-		IconTrashCanOutline,
-		IconOpenInNew,
-		IconPencilOutline,
+	setup() {
+		return {
+			mdiOpenInNew,
+			mdiPencilOutline,
+			mdiTrashCanOutline,
+		}
 	},
 	methods: {
 		showMessage(msg) {
@@ -88,42 +90,41 @@ export default {
 	<NcActions :inline="2">
 		<NcActionButton @click="showMessage('Add')">
 			<template #icon>
-				<IconPlus :size="20" />
+				<NcIconSvgWrapper :path="mdiPlus" />
 			</template>
 			Add
 		</NcActionButton>
 		<NcActionButton @click="showMessage('Edit')">
 			<template #icon>
-				<IconPencilOutline :size="20" />
+				<NcIconSvgWrapper :path="mdiPencilOutline" />
 			</template>
 			Edit
 		</NcActionButton>
 		<NcActionButton @click="showMessage('Delete')">
 			<template #icon>
-				<IconTrashCanOutline :size="20" />
+				<NcIconSvgWrapper :path="mdiTrashCanOutline" />
 			</template>
 			Delete
 		</NcActionButton>
 		<NcActionLink href="https://nextcloud.com">
 			<template #icon>
-				<IconOpenInNew :size="20" />
+				<NcIconSvgWrapper :path="mdiOpenInNew" />
 			</template>
 			Link
 		</NcActionLink>
 	</NcActions>
 </template>
 <script>
-import IconPlus from 'vue-material-design-icons/Plus.vue'
-import IconTrashCanOutline from 'vue-material-design-icons/TrashCanOutline.vue'
-import IconOpenInNew from 'vue-material-design-icons/OpenInNew.vue'
-import IconPencilOutline from 'vue-material-design-icons/PencilOutline.vue'
+import { mdiOpenInNew, mdiPencilOutline, mdiPlus, mdiTrashCanOutline } from '@mdi/js'
 
 export default {
-	components: {
-		IconTrashCanOutline,
-		IconOpenInNew,
-		IconPencilOutline,
-		IconPlus,
+	setup() {
+		return {
+			mdiOpenInNew,
+			mdiPencilOutline,
+			mdiPlus,
+			mdiTrashCanOutline,
+		}
 	},
 	methods: {
 		showMessage(msg) {
@@ -141,41 +142,40 @@ export default {
 	<NcActions :force-name="true" :inline="2">
 		<NcActionButton @click="showMessage('Add')">
 			<template #icon>
-				<IconPlus :size="20" />
+				<NcIconSvgWrapper :path="mdiPlus" />
 			</template>
 			Add
 		</NcActionButton>
 		<NcActionButton @click="showMessage('Edit')">
 			<template #icon>
-				<IconPencilOutline :size="20" />
+				<NcIconSvgWrapper :path="mdiPencilOutline" />
 			</template>
 			Edit
 		</NcActionButton>
 		<NcActionButton @click="showMessage('Delete')">
 			<template #icon>
-				<IconTrashCanOutline :size="20" />
+				<NcIconSvgWrapper :path="mdiTrashCanOutline" />
 			</template>
 			Delete
 		</NcActionButton>
 		<NcActionLink href="https://nextcloud.com">
 			<template #icon>
-				<IconOpenInNew :size="20" />
+				<NcIconSvgWrapper :path="mdiOpenInNew" />
 			</template>
 			Link
 		</NcActionLink>
 	</NcActions>
 </template>
 <script>
-import IconPlus from 'vue-material-design-icons/Plus.vue'
-import IconTrashCanOutline from 'vue-material-design-icons/TrashCanOutline.vue'
-import IconOpenInNew from 'vue-material-design-icons/OpenInNew.vue'
-import IconPencilOutline from 'vue-material-design-icons/PencilOutline.vue'
+import { mdiOpenInNew, mdiPencilOutline, mdiPlus, mdiTrashCanOutline } from '@mdi/js'
 export default {
-	components: {
-		IconTrashCanOutline,
-		IconOpenInNew,
-		IconPencilOutline,
-		IconPlus,
+	setup() {
+		return {
+			mdiOpenInNew,
+			mdiPencilOutline,
+			mdiPlus,
+			mdiTrashCanOutline,
+		}
 	},
 	methods: {
 		showMessage(msg) {
@@ -192,38 +192,38 @@ export default {
 <template>
 	<NcActions>
 		<template #icon>
-			<IconPencilOutline :size="20" />
+			<NcIconSvgWrapper :path="mdiPencilOutline" />
 		</template>
 		<NcActionButton @click="showMessage('Edit')">
 			<template #icon>
-				<IconPencilOutline :size="20" />
+				<NcIconSvgWrapper :path="mdiPencilOutline" />
 			</template>
 			Edit
 		</NcActionButton>
 		<NcActionButton @click="showMessage('Delete')">
 			<template #icon>
-				<IconTrashCanOutline :size="20" />
+				<NcIconSvgWrapper :path="mdiTrashCanOutline" />
 			</template>
 			Delete
 		</NcActionButton>
 		<NcActionLink href="https://nextcloud.com">
 			<template #icon>
-				<IconOpenInNew :size="20" />
+				<NcIconSvgWrapper :path="mdiOpenInNew" />
 			</template>
 			Link
 		</NcActionLink>
 	</NcActions>
 </template>
 <script>
-import IconTrashCanOutline from 'vue-material-design-icons/TrashCanOutline.vue'
-import IconOpenInNew from 'vue-material-design-icons/OpenInNew.vue'
-import IconPencilOutline from 'vue-material-design-icons/PencilOutline.vue'
+import { mdiOpenInNew, mdiPencilOutline, mdiTrashCanOutline } from '@mdi/js'
 
 export default {
-	components: {
-		IconTrashCanOutline,
-		IconOpenInNew,
-		IconPencilOutline,
+	setup() {
+		return {
+			mdiOpenInNew,
+			mdiPencilOutline,
+			mdiTrashCanOutline,
+		}
 	},
 	methods: {
 		showMessage(msg) {
@@ -240,46 +240,45 @@ export default {
 <template>
 	<NcActions menu-name="Object management">
 		<template #icon>
-			<IconPencilOutline :size="20" />
+			<NcIconSvgWrapper :path="mdiPencilOutline" />
 		</template>
 		<NcActionButton>
 			<template #icon>
-				<IconPencilOutline :size="20" />
+				<NcIconSvgWrapper :path="mdiPencilOutline" />
 			</template>
 			Rename
 		</NcActionButton>
 		<NcActionButton>
 			<template #icon>
-				<IconTrashCanOutline :size="20" />
+				<NcIconSvgWrapper :path="mdiTrashCanOutline" />
 			</template>
 			Delete
 		</NcActionButton>
 		<NcActionButton>
 			<template #icon>
-				<IconArrowRight :size="20" />
+				<NcIconSvgWrapper :path="mdiArrowRight" />
 			</template>
 			Validate
 		</NcActionButton>
 		<NcActionButton>
 			<template #icon>
-				<IconTrayArrowDown :size="20" />
+				<NcIconSvgWrapper :path="mdiTrayArrowDown" />
 			</template>
 			Download
 		</NcActionButton>
 	</NcActions>
 </template>
 <script>
-import IconArrowRight from 'vue-material-design-icons/ArrowRight.vue'
-import IconTrashCanOutline from 'vue-material-design-icons/TrashCanOutline.vue'
-import IconTrayArrowDown from 'vue-material-design-icons/TrayArrowDown.vue'
-import IconPencilOutline from 'vue-material-design-icons/PencilOutline.vue'
+import { mdiArrowRight, mdiPencilOutline, mdiTrashCanOutline, mdiTrayArrowDown } from '@mdi/js'
 
 export default {
-	components: {
-		IconArrowRight,
-		IconTrashCanOutline,
-		IconTrayArrowDown,
-		IconPencilOutline,
+	setup() {
+		return {
+			mdiArrowRight,
+			mdiPencilOutline,
+			mdiTrashCanOutline,
+			mdiTrayArrowDown,
+		}
 	},
 }
 </script>
@@ -291,26 +290,27 @@ export default {
 	<NcActions :primary="true">
 		<NcActionButton>
 			<template #icon>
-				<IconPencilOutline :size="20" />
+				<NcIconSvgWrapper :path="mdiPencilOutline" />
 			</template>
 			Edit
 		</NcActionButton>
 		<NcActionButton>
 			<template #icon>
-				<IconTrashCanOutline :size="20" />
+				<NcIconSvgWrapper :path="mdiTrashCanOutline" />
 			</template>
 			Delete
 		</NcActionButton>
 	</NcActions>
 </template>
 <script>
-import IconTrashCanOutline from 'vue-material-design-icons/TrashCanOutline.vue'
-import IconPencilOutline from 'vue-material-design-icons/PencilOutline.vue'
+import { mdiPencilOutline, mdiTrashCanOutline } from '@mdi/js'
 
 export default {
-	components: {
-		IconTrashCanOutline,
-		IconPencilOutline,
+	setup() {
+		return {
+			mdiPencilOutline,
+			mdiTrashCanOutline,
+		}
 	},
 }
 </script>
@@ -320,55 +320,53 @@ export default {
 <template>
 	<NcActions :primary="true" menu-name="Object management">
 		<template #icon>
-			<IconPlus :size="20" />
+			<NcIconSvgWrapper :path="mdiPlus" />
 		</template>
 		<NcActionButton>
 			<template #icon>
-				<IconPencilOutline :size="20" />
+				<NcIconSvgWrapper :path="mdiPencilOutline" />
 			</template>
 			Rename
 		</NcActionButton>
 		<NcActionButton>
 			<template #icon>
-				<IconTrashCanOutline :size="20" />
+				<NcIconSvgWrapper :path="mdiTrashCanOutline" />
 			</template>
 			Delete
 		</NcActionButton>
 		<NcActionButton>
 			<template #icon>
-				<IconArrowRight :size="20" />
+				<NcIconSvgWrapper :path="mdiArrowRight" />
 			</template>
 			Validate
 		</NcActionButton>
 		<NcActionButton>
 			<template #icon>
-				<IconTrayArrowDown :size="20" />
+				<NcIconSvgWrapper :path="mdiTrayArrowDown" />
 			</template>
 			Download
 		</NcActionButton>
 	</NcActions>
 </template>
 <script>
-import IconArrowRight from 'vue-material-design-icons/ArrowRight.vue'
-import IconTrashCanOutline from 'vue-material-design-icons/TrashCanOutline.vue'
-import IconTrayArrowDown from 'vue-material-design-icons/TrayArrowDown.vue'
-import IconPencilOutline from 'vue-material-design-icons/PencilOutline.vue'
-import IconPlus from 'vue-material-design-icons/Plus.vue'
+import { mdiArrowRight, mdiPencilOutline, mdiPlus, mdiTrashCanOutline, mdiTrayArrowDown } from '@mdi/js'
 
 export default {
-	components: {
-		IconArrowRight,
-		IconTrashCanOutline,
-		IconTrayArrowDown,
-		IconPencilOutline,
-		IconPlus,
+	setup() {
+		return {
+			mdiArrowRight,
+			mdiPencilOutline,
+			mdiPlus,
+			mdiTrashCanOutline,
+			mdiTrayArrowDown,
+		}
 	},
 }
 </script>
 ```
 
 ### Custom icon slot
-To be used with `vue-material-design-icons` only. For icon classes use the `default-icon` slot.
+Use `NcIconSvgWrapper` with an icon path from `@mdi/js` for the icon. For icon classes use the `default-icon` slot.
 It can be used with one or multiple actions.
 ```vue
 <template>
@@ -376,17 +374,17 @@ It can be used with one or multiple actions.
 		<NcButton @click="toggled = !toggled">Toggle multiple action</NcButton>
 		<NcActions>
 			<template #icon>
-				<IconDotsHorizontalCircleOutline :size="20" />
+				<NcIconSvgWrapper :path="mdiDotsHorizontalCircleOutline" />
 			</template>
 			<NcActionButton>
 				<template #icon>
-					<IconMicrophoneOff :size="20" />
+					<NcIconSvgWrapper :path="mdiMicrophoneOff" />
 				</template>
 				Mute
 			</NcActionButton>
 			<NcActionButton v-if="toggled">
 				<template #icon>
-					<IconTrashCanOutline :size="20" />
+					<NcIconSvgWrapper :path="mdiTrashCanOutline" />
 				</template>
 				Delete
 			</NcActionButton>
@@ -394,15 +392,15 @@ It can be used with one or multiple actions.
 	</div>
 </template>
 <script>
-import IconTrashCanOutline from 'vue-material-design-icons/TrashCanOutline.vue'
-import IconDotsHorizontalCircleOutline from 'vue-material-design-icons/DotsHorizontalCircleOutline.vue'
-import IconMicrophoneOff from 'vue-material-design-icons/MicrophoneOff.vue'
+import { mdiDotsHorizontalCircleOutline, mdiMicrophoneOff, mdiTrashCanOutline } from '@mdi/js'
 
 export default {
-	components: {
-		IconTrashCanOutline,
-		IconDotsHorizontalCircleOutline,
-		IconMicrophoneOff,
+	setup() {
+		return {
+			mdiDotsHorizontalCircleOutline,
+			mdiMicrophoneOff,
+			mdiTrashCanOutline,
+		}
 	},
 	data() {
 		return {
@@ -419,26 +417,27 @@ export default {
 	<NcActions :primary="true">
 		<NcActionButton>
 			<template #icon>
-				<IconMagnify :size="20" />
+				<NcIconSvgWrapper :path="mdiMagnify" />
 			</template>
 			Search
 		</NcActionButton>
 		<NcActionButton>
 			<template #icon>
-				<IconTrashCanOutline :size="20" />
+				<NcIconSvgWrapper :path="mdiTrashCanOutline" />
 			</template>
 			Delete
 		</NcActionButton>
 	</NcActions>
 </template>
 <script>
-import IconTrashCanOutline from 'vue-material-design-icons/TrashCanOutline.vue'
-import IconMagnify from 'vue-material-design-icons/Magnify.vue'
+import { mdiMagnify, mdiTrashCanOutline } from '@mdi/js'
 
 export default {
-	components: {
-		IconTrashCanOutline,
-		IconMagnify,
+	setup() {
+		return {
+			mdiMagnify,
+			mdiTrashCanOutline,
+		}
 	},
 }
 </script>
@@ -451,20 +450,20 @@ export default {
 	<div>
 		<NcActions :variant="current">
 			<template #icon>
-				<IconSelectColor :size="20" />
+				<NcIconSvgWrapper :path="mdiSelectColor" />
 			</template>
 
 			<NcActionButton v-if="current" close-after-click @click="define()">
 				<template #icon>
-					<IconTrashCanOutline :size="20" />
+					<NcIconSvgWrapper :path="mdiTrashCanOutline" />
 				</template>
 				Remove
 			</NcActionButton>
 
 			<NcActionButton v-for="row in variants" close-after-click @click="define(row)" :key="`type-icon--${row}`">
 				<template #icon>
-					<IconCheckboxMarkedCircleOutline v-if="row === current" :size="20" />
-					<IconSelectColor v-else :size="20" />
+					<NcIconSvgWrapper :path="mdiCheckboxMarkedCircleOutline" v-if="row === current" />
+					<NcIconSvgWrapper :path="mdiSelectColor" v-else />
 				</template>
 				{{ row }}
 			</NcActionButton>
@@ -473,15 +472,15 @@ export default {
 		<NcActions :variant="current" menu-name="Choose a variant">
 			<NcActionButton v-if="current" close-after-click @click="define()">
 				<template #icon>
-					<IconTrashCanOutline :size="20" />
+					<NcIconSvgWrapper :path="mdiTrashCanOutline" />
 				</template>
 				Remove
 			</NcActionButton>
 
 			<NcActionButton v-for="row in variants" close-after-click @click="define(row)" :key="`type-text--${row}`">
 				<template #icon>
-					<IconCheckboxMarkedCircleOutline v-if="row === current" :size="20" />
-					<IconSelectColor v-else :size="20" />
+					<NcIconSvgWrapper :path="mdiCheckboxMarkedCircleOutline" v-if="row === current" />
+					<NcIconSvgWrapper :path="mdiSelectColor" v-else />
 				</template>
 				{{ row }}
 			</NcActionButton>
@@ -489,20 +488,20 @@ export default {
 
 		<NcActions :variant="current"  menu-name="Choose a variant">
 			<template #icon>
-				<IconSelectColor :size="20" />
+				<NcIconSvgWrapper :path="mdiSelectColor" />
 			</template>
 
 			<NcActionButton v-if="current" close-after-click @click="define()">
 				<template #icon>
-					<IconTrashCanOutline :size="20" />
+					<NcIconSvgWrapper :path="mdiTrashCanOutline" />
 				</template>
 				Remove
 			</NcActionButton>
 
 			<NcActionButton v-for="row in variants" close-after-click @click="define(row)" :key="`type-icon-text--${row}`">
 				<template #icon>
-					<IconCheckboxMarkedCircleOutline v-if="row === current" :size="20" />
-					<IconSelectColor v-else :size="20" />
+					<NcIconSvgWrapper :path="mdiCheckboxMarkedCircleOutline" v-if="row === current" />
+					<NcIconSvgWrapper :path="mdiSelectColor" v-else />
 				</template>
 				{{ row }}
 			</NcActionButton>
@@ -511,17 +510,15 @@ export default {
 </template>
 
 <script>
-import IconTrashCanOutline from 'vue-material-design-icons/TrashCanOutline.vue'
-import IconPaletteOutline from 'vue-material-design-icons/PaletteOutline.vue'
-import IconSelectColor from 'vue-material-design-icons/SelectColor.vue'
-import IconCheckboxMarkedCircleOutline from 'vue-material-design-icons/CheckboxMarkedCircleOutline.vue'
+import { mdiCheckboxMarkedCircleOutline, mdiPaletteOutline, mdiSelectColor, mdiTrashCanOutline } from '@mdi/js'
 
 export default {
-	components: {
-		IconTrashCanOutline,
-		IconPaletteOutline,
-		IconSelectColor,
-		IconCheckboxMarkedCircleOutline,
+	setup() {
+		return {
+			mdiCheckboxMarkedCircleOutline,
+			mdiSelectColor,
+			mdiTrashCanOutline,
+		}
 	},
 	data() {
 		return {
@@ -551,75 +548,74 @@ export default {
 <template>
 	<NcActions menu-name="Object management" wide>
 		<template #icon>
-			<IconPencilOutline :size="20" />
+			<NcIconSvgWrapper :path="mdiPencilOutline" />
 		</template>
 		<NcActionButton>
 			<template #icon>
-				<IconPencilOutline :size="20" />
+				<NcIconSvgWrapper :path="mdiPencilOutline" />
 			</template>
 			Rename
 		</NcActionButton>
 		<NcActionButton>
 			<template #icon>
-				<IconTrashCanOutline :size="20" />
+				<NcIconSvgWrapper :path="mdiTrashCanOutline" />
 			</template>
 			Delete
 		</NcActionButton>
 		<NcActionButton>
 			<template #icon>
-				<IconArrowRight :size="20" />
+				<NcIconSvgWrapper :path="mdiArrowRight" />
 			</template>
 			Validate
 		</NcActionButton>
 		<NcActionButton>
 			<template #icon>
-				<IconTrayArrowDown :size="20" />
+				<NcIconSvgWrapper :path="mdiTrayArrowDown" />
 			</template>
 			Download
 		</NcActionButton>
 	</NcActions>
 	<NcActions wide>
 		<template #icon>
-			<IconPencilOutline :size="20" />
+			<NcIconSvgWrapper :path="mdiPencilOutline" />
 		</template>
 		<NcActionButton>
 			<template #icon>
-				<IconPencilOutline :size="20" />
+				<NcIconSvgWrapper :path="mdiPencilOutline" />
 			</template>
 			Rename
 		</NcActionButton>
 		<NcActionButton>
 			<template #icon>
-				<IconTrashCanOutline :size="20" />
+				<NcIconSvgWrapper :path="mdiTrashCanOutline" />
 			</template>
 			Delete
 		</NcActionButton>
 		<NcActionButton>
 			<template #icon>
-				<IconArrowRight :size="20" />
+				<NcIconSvgWrapper :path="mdiArrowRight" />
 			</template>
 			Validate
 		</NcActionButton>
 		<NcActionButton>
 			<template #icon>
-				<IconTrayArrowDown :size="20" />
+				<NcIconSvgWrapper :path="mdiTrayArrowDown" />
 			</template>
 			Download
 		</NcActionButton>
 	</NcActions>
 </template>
 <script>
-import IconArrowRight from 'vue-material-design-icons/ArrowRight.vue'
-import IconTrashCanOutline from 'vue-material-design-icons/TrashCanOutline.vue'
-import IconTrayArrowDown from 'vue-material-design-icons/TrayArrowDown.vue'
-import IconPencilOutline from 'vue-material-design-icons/PencilOutline.vue'
+import { mdiArrowRight, mdiPencilOutline, mdiTrashCanOutline, mdiTrayArrowDown } from '@mdi/js'
 
 export default {
-	components: {
-		IconArrowRight,
-		IconTrashCanOutline,
-		IconTrayArrowDown,
-		IconPencilOutline,
+	setup() {
+		return {
+			mdiArrowRight,
+			mdiPencilOutline,
+			mdiTrashCanOutline,
+			mdiTrayArrowDown,
+		}
 	},
 }
 </script>
@@ -638,33 +634,33 @@ export default {
 				<NcActionButtonGroup>
 					<NcActionButton>
 						<template #icon>
-							<IconStarOutline :size="20" />
+							<NcIconSvgWrapper :path="mdiStarOutline" />
 						</template>
 						Favorite
 					</NcActionButton>
 					<NcActionButton>
 						<template #icon>
-							<IconEmail :size="20" />
+							<NcIconSvgWrapper :path="mdiEmail" />
 						</template>
 						Unread
 					</NcActionButton>
 					<NcActionButton>
 						<template #icon>
-							<IconBookmarkOutline :size="20" />
+							<NcIconSvgWrapper :path="mdiBookmarkOutline" />
 						</template>
 						Important
 					</NcActionButton>
 				</NcActionButtonGroup>
 				<NcActionText>
 					<template #icon>
-						<IconClockOutline :size="20" />
+						<NcIconSvgWrapper :path="mdiClockOutline" />
 					</template>
 					{{ new Date().toLocaleDateString('en-US') }}
 				</NcActionText>
 				<NcActionSeparator />
 				<NcActionButton>
 					<template #icon>
-						<IconAlertOctagonOutline :size="20" />
+						<NcIconSvgWrapper :path="mdiAlertOctagonOutline" />
 					</template>
 					Mark as spam
 				</NcActionButton>
@@ -673,13 +669,13 @@ export default {
 				</NcActionCheckbox>
 				<NcActionButton>
 					<template #icon>
-						<IconOpenInNew :size="20" />
+						<NcIconSvgWrapper :path="mdiOpenInNew" />
 					</template>
 					Move thread
 				</NcActionButton>
 				<NcActionLink href="#">
 					<template #icon>
-						<IconTrayArrowDown :size="20" />
+						<NcIconSvgWrapper :path="mdiTrayArrowDown" />
 					</template>
 					Download message
 				</NcActionLink>
@@ -688,41 +684,41 @@ export default {
 		<p>
 			<NcActions aria-label="Text settings" variant="tertiary">
 				<template #icon>
-					<IconFormatTitle :size="20" />
+					<NcIconSvgWrapper :path="mdiFormatTitle" />
 				</template>
 				<NcActionButtonGroup name="Alignment">
 					<NcActionButton aria-label="Left">
 						<template #icon>
-							<IconFormatAlignLeft :size="20" />
+							<NcIconSvgWrapper :path="mdiFormatAlignLeft" />
 						</template>
 					</NcActionButton>
 					<NcActionButton aria-label="Center">
 						<template #icon>
-							<IconFormatAlignCenter :size="20" />
+							<NcIconSvgWrapper :path="mdiFormatAlignCenter" />
 						</template>
 					</NcActionButton>
 					<NcActionButton aria-label="Right">
 						<template #icon>
-							<IconFormatAlignRight :size="20" />
+							<NcIconSvgWrapper :path="mdiFormatAlignRight" />
 						</template>
 					</NcActionButton>
 				</NcActionButtonGroup>
 				<NcActionSeparator />
 				<NcActionCheckbox v-model="checked.bold" value="bold">
 					<template #icon>
-						<IconFormatBold :size="20" />
+						<NcIconSvgWrapper :path="mdiFormatBold" />
 					</template>
 					Bold
 				</NcActionCheckbox>
 				<NcActionCheckbox v-model="checked.italic" value="italic">
 					<template #icon>
-						<IconFormatItalic :size="20" />
+						<NcIconSvgWrapper :path="mdiFormatItalic" />
 					</template>
 					Italic
 				</NcActionCheckbox>
 				<NcActionCheckbox v-model="checked.underline" value="underline">
 					<template #icon>
-						<IconFormatUnderline :size="20" />
+						<NcIconSvgWrapper :path="mdiFormatUnderline" />
 					</template>
 					Underline
 				</NcActionCheckbox>
@@ -764,12 +760,12 @@ export default {
 			<NcActions aria-label="Group management">
 				<NcActionInput trailing-button-label="Submit" label="Rename group">
 					<template #icon>
-						<IconPencilOutline :size="20" />
+						<NcIconSvgWrapper :path="mdiPencilOutline" />
 					</template>
 				</NcActionInput>
 				<NcActionButton>
 					<template #icon>
-						<IconTrashCanOutline :size="20" />
+						<NcIconSvgWrapper :path="mdiTrashCanOutline" />
 					</template>
 					Remove group
 				</NcActionButton>
@@ -793,52 +789,39 @@ export default {
 
 <script>
 // Common icons
-import IconPencilOutline from 'vue-material-design-icons/PencilOutline.vue'
-import IconTrashCanOutline from 'vue-material-design-icons/TrashCanOutline.vue'
+import { mdiAlertOctagonOutline, mdiBookmarkOutline, mdiCheck, mdiClockOutline, mdiEmail, mdiFormatAlignCenter, mdiFormatAlignLeft, mdiFormatAlignRight, mdiFormatBold, mdiFormatItalic, mdiFormatTitle, mdiFormatUnderline, mdiOpenInNew, mdiPencilOutline, mdiStarOutline, mdiTrashCanOutline, mdiTrayArrowDown } from '@mdi/js'
 
 // Email icons
-import IconStarOutline from 'vue-material-design-icons/StarOutline.vue'
-import IconEmail from 'vue-material-design-icons/Email.vue'
-import IconBookmarkOutline from 'vue-material-design-icons/BookmarkOutline.vue'
-import IconClockOutline from 'vue-material-design-icons/ClockOutline.vue'
-import IconAlertOctagonOutline from 'vue-material-design-icons/AlertOctagonOutline.vue'
-import IconCheck from 'vue-material-design-icons/Check.vue'
-import IconOpenInNew from 'vue-material-design-icons/OpenInNew.vue'
-import IconTrayArrowDown from 'vue-material-design-icons/TrayArrowDown.vue'
 
 // Formatting icons
-import IconFormatTitle from 'vue-material-design-icons/FormatTitle.vue'
-import IconFormatAlignLeft from 'vue-material-design-icons/FormatAlignLeft.vue'
-import IconFormatAlignCenter from 'vue-material-design-icons/FormatAlignCenter.vue'
-import IconFormatAlignRight from 'vue-material-design-icons/FormatAlignRight.vue'
-import IconFormatBold from 'vue-material-design-icons/FormatBold.vue'
-import IconFormatItalic from 'vue-material-design-icons/FormatItalic.vue'
-import IconFormatUnderline from 'vue-material-design-icons/FormatUnderline.vue'
 
 export default {
+	setup() {
+		return {
+			mdiAlertOctagonOutline,
+			mdiBookmarkOutline,
+			mdiClockOutline,
+			mdiEmail,
+			mdiFormatAlignCenter,
+			mdiFormatAlignLeft,
+			mdiFormatAlignRight,
+			mdiFormatBold,
+			mdiFormatItalic,
+			mdiFormatTitle,
+			mdiFormatUnderline,
+			mdiOpenInNew,
+			mdiPencilOutline,
+			mdiStarOutline,
+			mdiTrashCanOutline,
+			mdiTrayArrowDown,
+		}
+	},
 	components: {
 		// Common icons
-		IconPencilOutline,
-		IconTrashCanOutline,
 
 		// Email icons
-		IconStarOutline,
-		IconEmail,
-		IconBookmarkOutline,
-		IconClockOutline,
-		IconAlertOctagonOutline,
-		IconCheck,
-		IconOpenInNew,
-		IconTrayArrowDown,
 
 		// Formatting icons
-		IconFormatTitle,
-		IconFormatAlignLeft,
-		IconFormatAlignCenter,
-		IconFormatAlignRight,
-		IconFormatBold,
-		IconFormatItalic,
-		IconFormatUnderline,
 	},
 
 	data() {
@@ -897,7 +880,7 @@ Although it works when actions are not direct children but wrapped in custom com
 				<NcActions>
 					<NcActionButton>
 						<template #icon>
-							<IconAccountOutline :size="20" />
+							<NcIconSvgWrapper :path="mdiAccountOutline" />
 						</template>
 						Button
 					</NcActionButton>
@@ -917,7 +900,7 @@ Although it works when actions are not direct children but wrapped in custom com
 				<NcActions :inline="2">
 					<NcActionButton v-for="i in 4">
 						<template #icon>
-							<IconAccountOutline :size="20" />
+							<NcIconSvgWrapper :path="mdiAccountOutline" />
 						</template>
 						Button
 					</NcActionButton>
@@ -937,7 +920,7 @@ Although it works when actions are not direct children but wrapped in custom com
 				<NcActions>
 					<NcActionButton v-for="i in 4">
 						<template #icon>
-							<IconAccountOutline :size="20" />
+							<NcIconSvgWrapper :path="mdiAccountOutline" />
 						</template>
 						Button
 					</NcActionButton>
@@ -949,27 +932,29 @@ Although it works when actions are not direct children but wrapped in custom com
 
 <script>
 import { h, resolveComponent } from 'vue'
-import IconAccountOutline from 'vue-material-design-icons/AccountOutline.vue'
+import { mdiAccountOutline } from '@mdi/js'
 
 export default {
+	setup() {
+		return {
+			mdiAccountOutline,
+		}
+	},
 	components: {
-		IconAccountOutline,
 
 		MyUserActionButton: {
 			name: 'MyUserActionButton',
-			components: { IconAccountOutline },
-			render: () => h(resolveComponent('NcActionButton'), null, { default: () => 'Button', icon: () => h(IconAccountOutline, { size: 20 }) }),
+			render: () => h(resolveComponent('NcActionButton'), null, { default: () => 'Button', icon: () => h(resolveComponent('NcIconSvgWrapper'), { path: mdiAccountOutline }) }),
 		},
 
 		MyActionsList: {
 			name: 'MyActionsList',
-			components: { IconAccountOutline },
 			render: () => h('div', null, {
 				default: () => [
-					h(resolveComponent('NcActionButton'), null, { default: () => 'Button', icon: () => h(IconAccountOutline, { size: 20 }) }),
-					h(resolveComponent('NcActionButton'), null, { default: () => 'Button', icon: () => h(IconAccountOutline, { size: 20 }) }),
-					h(resolveComponent('NcActionButton'), null, { default: () => 'Button', icon: () => h(IconAccountOutline, { size: 20 }) }),
-					h(resolveComponent('NcActionButton'), null, { default: () => 'Button', icon: () => h(IconAccountOutline, { size: 20 }) }),
+					h(resolveComponent('NcActionButton'), null, { default: () => 'Button', icon: () => h(resolveComponent('NcIconSvgWrapper'), { path: mdiAccountOutline }) }),
+					h(resolveComponent('NcActionButton'), null, { default: () => 'Button', icon: () => h(resolveComponent('NcIconSvgWrapper'), { path: mdiAccountOutline }) }),
+					h(resolveComponent('NcActionButton'), null, { default: () => 'Button', icon: () => h(resolveComponent('NcIconSvgWrapper'), { path: mdiAccountOutline }) }),
+					h(resolveComponent('NcActionButton'), null, { default: () => 'Button', icon: () => h(resolveComponent('NcIconSvgWrapper'), { path: mdiAccountOutline }) }),
 				],
 			}),
 		},

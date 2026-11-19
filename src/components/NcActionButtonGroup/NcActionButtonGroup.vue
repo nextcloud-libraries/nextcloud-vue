@@ -18,7 +18,7 @@ This should be used sparingly for accessibility.
 					type="radio"
 					value="l">
 					<template #icon>
-						<IconAlignHorizontalLeft :size="20" />
+						<NcIconSvgWrapper :path="mdiAlignHorizontalLeft" />
 					</template>
 				</NcActionButton>
 				<NcActionButton aria-label="Align center"
@@ -26,7 +26,7 @@ This should be used sparingly for accessibility.
 					type="radio"
 					value="c">
 					<template #icon>
-						<IconAlignHorizontalCenter :size="20" />
+						<NcIconSvgWrapper :path="mdiAlignHorizontalCenter" />
 					</template>
 				</NcActionButton>
 				<NcActionButton aria-label="Align right"
@@ -34,14 +34,14 @@ This should be used sparingly for accessibility.
 					type="radio"
 					value="r">
 					<template #icon>
-						<IconAlignHorizontalRight :size="20" />
+						<NcIconSvgWrapper :path="mdiAlignHorizontalRight" />
 					</template>
 				</NcActionButton>
 			</NcActionButtonGroup>
 			<NcActionButton :close-after-click="true"
 				@click="showMessage('Some other action')">
 				<template #icon>
-					<IconPlus :size="20" />
+					<NcIconSvgWrapper :path="mdiPlus" />
 				</template>
 				Some other action
 			</NcActionButton>
@@ -49,17 +49,16 @@ This should be used sparingly for accessibility.
 	</div>
 </template>
 <script>
-import IconAlignHorizontalLeft from 'vue-material-design-icons/AlignHorizontalLeft.vue'
-import IconAlignHorizontalRight from 'vue-material-design-icons/AlignHorizontalRight.vue'
-import IconAlignHorizontalCenter from 'vue-material-design-icons/AlignHorizontalCenter.vue'
-import IconPlus from 'vue-material-design-icons/Plus.vue'
+import { mdiAlignHorizontalCenter, mdiAlignHorizontalLeft, mdiAlignHorizontalRight, mdiPlus } from '@mdi/js'
 
 export default {
-	components: {
-		IconAlignHorizontalLeft,
-		IconAlignHorizontalRight,
-		IconAlignHorizontalCenter,
-		IconPlus,
+	setup() {
+		return {
+			mdiAlignHorizontalCenter,
+			mdiAlignHorizontalLeft,
+			mdiAlignHorizontalRight,
+			mdiPlus,
+		}
 	},
 	data() {
 		return { alignment: 'l' }

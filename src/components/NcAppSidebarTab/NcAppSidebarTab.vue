@@ -18,8 +18,8 @@ and an outlined one for the others. The two are crossfaded on selection.
 ```vue
 <NcAppSidebarTab id="settings" name="Settings">
 	<template #icon="{ selected }">
-		<IconCog v-if="selected" :size="20" />
-		<IconCogOutline v-else :size="20" />
+		<NcIconSvgWrapper v-if="selected" :path="mdiCog" />
+		<NcIconSvgWrapper v-else :path="mdiCogOutline" />
 	</template>
 	Settings tab content
 </NcAppSidebarTab>

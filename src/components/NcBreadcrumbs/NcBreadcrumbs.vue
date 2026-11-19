@@ -23,7 +23,7 @@ is dropped on a creadcrumb.
 					href="/"
 					@dropped="droppedOnCrumb">
 					<template #icon>
-						<Folder :size="20" />
+						<NcIconSvgWrapper :path="mdiFolder" />
 					</template>
 				</NcBreadcrumb>
 				<NcBreadcrumb name="Folder 1"
@@ -43,17 +43,17 @@ is dropped on a creadcrumb.
 					href="/Folder 1/Folder 2/Folder 3/Folder 4/Folder 5"
 					:disable-drop="true">
 					<template #menu-icon>
-						<MenuDown :size="20" />
+						<NcIconSvgWrapper :path="mdiMenuDown" />
 					</template>
 					<NcActionButton @click="alert('Share')">
 						<template #icon>
-							<ShareVariant :size="20" />
+							<NcIconSvgWrapper :path="mdiShareVariant" />
 						</template>
 						Share
 					</NcActionButton>
 					<NcActionButton @click="alert('Download')">
 						<template #icon>
-							<Download :size="20" />
+							<NcIconSvgWrapper :path="mdiDownload" />
 						</template>
 						Download
 					</NcActionButton>
@@ -61,7 +61,7 @@ is dropped on a creadcrumb.
 				<template #actions>
 					<NcButton>
 						<template #icon>
-							<Plus :size="20" />
+							<NcIconSvgWrapper :path="mdiPlus" />
 						</template>
 						New
 					</NcButton>
@@ -76,19 +76,17 @@ is dropped on a creadcrumb.
 </template>
 
 <script>
-import Download from 'vue-material-design-icons/Download'
-import Folder from 'vue-material-design-icons/Folder'
-import MenuDown from 'vue-material-design-icons/MenuDown'
-import Plus from 'vue-material-design-icons/Plus'
-import ShareVariant from 'vue-material-design-icons/ShareVariant'
+import { mdiDownload, mdiFolder, mdiMenuDown, mdiPlus, mdiShareVariant } from '@mdi/js'
 
 export default {
-	components: {
-		Download,
-		Folder,
-		MenuDown,
-		Plus,
-		ShareVariant,
+	setup() {
+		return {
+			mdiDownload,
+			mdiFolder,
+			mdiMenuDown,
+			mdiPlus,
+			mdiShareVariant,
+		}
 	},
 	methods: {
 		dropped(e, path) {

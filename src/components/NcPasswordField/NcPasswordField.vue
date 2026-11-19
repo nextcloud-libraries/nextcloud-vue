@@ -38,7 +38,7 @@ General purpose password field component.
 			check-password-strength
 			placeholder="Min. 12 characters">
 			<template #icon>
-				<IconLockOutline :size="20" />
+				<NcIconSvgWrapper :path="mdiLockOutline" />
 			</template>
 		</NcPasswordField>
 
@@ -52,9 +52,14 @@ General purpose password field component.
 	</div>
 </template>
 <script>
-import IconLockOutline from 'vue-material-design-icons/LockOutline'
+import { mdiLockOutline } from '@mdi/js'
 
 export default {
+	setup() {
+		return {
+			mdiLockOutline,
+		}
+	},
 	data() {
 		return {
 			text1: '',
@@ -66,9 +71,6 @@ export default {
 		}
 	},
 
-	components: {
-		IconLockOutline,
-	},
 }
 </script>
 <style lang="scss" scoped>

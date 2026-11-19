@@ -11,16 +11,18 @@
 	<template>
 		<NcAppNavigationNewItem name="New Item" @new-item="function(value){alert(value)}">
 			<template #icon>
-				<Plus :size="20" />
+				<NcIconSvgWrapper :path="mdiPlus" />
 			</template>
 		</NcAppNavigationNewItem>
 	</template>
 	<script>
-	import Plus from 'vue-material-design-icons/Plus'
+	import { mdiPlus } from '@mdi/js'
 
 	export default {
-		components: {
-			Plus,
+		setup() {
+			return {
+				mdiPlus,
+			}
 		},
 	}
 	</script>
@@ -31,16 +33,18 @@
 	<template>
 		<NcAppNavigationNewItem name="New Item" :loading="true">
 			<template #icon>
-				<Plus :size="20" />
+				<NcIconSvgWrapper :path="mdiPlus" />
 			</template>
 		</NcAppNavigationNewItem>
 	</template>
 	<script>
-	import Plus from 'vue-material-design-icons/Plus'
+	import { mdiPlus } from '@mdi/js'
 
 	export default {
-		components: {
-			Plus,
+		setup() {
+			return {
+				mdiPlus,
+			}
 		},
 	}
 	</script>

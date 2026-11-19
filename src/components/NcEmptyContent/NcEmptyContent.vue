@@ -14,17 +14,19 @@ Providing an icon, name, and a description is strongly advised.
 	<NcEmptyContent name="No comments"
 		description="Start writing comments and they will appear here.">
 		<template #icon>
-			<Comment />
+			<NcIconSvgWrapper :path="mdiComment" />
 		</template>
 	</NcEmptyContent>
 </template>
 
 <script>
-import Comment from 'vue-material-design-icons/Comment.vue'
+import { mdiComment } from '@mdi/js'
 
 export default {
-	components: {
-		Comment,
+	setup() {
+		return {
+			mdiComment,
+		}
 	},
 }
 </script>
@@ -36,21 +38,18 @@ export default {
 	<NcEmptyContent
 		name="No files in here">
 		<template #icon>
-			<NcIconSvgWrapper :svg="folderSvg" />
+			<NcIconSvgWrapper :path="mdiFolder" />
 		</template>
 	</NcEmptyContent>
 </template>
 
 <script>
-import folderSvg from '@mdi/svg/svg/folder.svg?raw'
+import { mdiFolder } from '@mdi/js'
 
 export default {
-	components: {
-		Comment,
-	},
-	data() {
+	setup() {
 		return {
-			folderSvg,
+			mdiFolder,
 		}
 	},
 }
@@ -66,7 +65,7 @@ consider only using header elements as the root elements for the name slot.
 	<NcEmptyContent
 		description="No comments in here">
 		<template #icon>
-			<Comment />
+			<NcIconSvgWrapper :path="mdiComment" />
 		</template>
 		<template #name>
 			<h1 class="empty-content__name">
@@ -82,11 +81,13 @@ consider only using header elements as the root elements for the name slot.
 </template>
 
 <script>
-import Comment from 'vue-material-design-icons/Comment.vue'
+import { mdiComment } from '@mdi/js'
 
 export default {
-	components: {
-		Comment,
+	setup() {
+		return {
+			mdiComment,
+		}
 	},
 }
 </script>
@@ -101,7 +102,7 @@ like a link.
 	<NcEmptyContent
 		name="No comments">
 		<template #icon>
-			<Comment />
+			<NcIconSvgWrapper :path="mdiComment" />
 		</template>
 		<template #description>
 			<a href="https://en.wikipedia.org/wiki/Comment">What is even a comment?</a>
@@ -110,11 +111,13 @@ like a link.
 </template>
 
 <script>
-import Comment from 'vue-material-design-icons/Comment.vue'
+import { mdiComment } from '@mdi/js'
 
 export default {
-	components: {
-		Comment,
+	setup() {
+		return {
+			mdiComment,
+		}
 	},
 }
 </script>

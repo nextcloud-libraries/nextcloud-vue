@@ -16,7 +16,7 @@
 						<template #actions>
 							<NcActionButton>
 								<template #icon>
-									<IconPlus :size="20" />
+									<NcIconSvgWrapper :path="mdiPlus" />
 								</template>
 								This is an action
 							</NcActionButton>
@@ -27,11 +27,13 @@
 		</div>
 	</template>
 	<script>
-	import IconPlus from 'vue-material-design-icons/Plus.vue'
+	import { mdiPlus } from '@mdi/js'
 
 	export default {
-		components: {
-			IconPlus,
+		setup() {
+			return {
+				mdiPlus,
+			}
 		},
 	}
 	</script>
@@ -53,30 +55,30 @@
 					<NcAppNavigationCaption
 						name="Your caption goes here">
 						<template #actionsTriggerIcon>
-							<IconPlus slot="icon" :size="20" />
+							<NcIconSvgWrapper :path="mdiPlus" slot="icon" />
 						</template>
 						<template #actions>
 							<NcActionButton>
 								<template #icon>
-									<IconPencil :size="20" />
+									<NcIconSvgWrapper :path="mdiPencil" />
 								</template>
 								Rename
 							</NcActionButton>
 							<NcActionButton>
 								<template #icon>
-									<IconDelete :size="20" />
+									<NcIconSvgWrapper :path="mdiDelete" />
 								</template>
 								Delete
 							</NcActionButton>
 							<NcActionButton>
 								<template #icon>
-									<IconArrowRight :size="20" />
+									<NcIconSvgWrapper :path="mdiArrowRight" />
 								</template>
 								Validate
 							</NcActionButton>
 							<NcActionButton>
 								<template #icon>
-									<IconDownload :size="20" />
+									<NcIconSvgWrapper :path="mdiDownload" />
 								</template>
 								Download
 							</NcActionButton>
@@ -87,20 +89,18 @@
 		</div>
 	</template>
 	<script>
-		import IconArrowRight from 'vue-material-design-icons/ArrowRight.vue'
-		import IconDelete from 'vue-material-design-icons/Delete.vue'
-		import IconDownload from 'vue-material-design-icons/Download.vue'
-		import IconPencil from 'vue-material-design-icons/Pencil.vue'
-		import IconPlus from 'vue-material-design-icons/Plus.vue'
+		import { mdiArrowRight, mdiDelete, mdiDownload, mdiPencil, mdiPlus } from '@mdi/js'
 
 		export default {
-			components: {
-				IconArrowRight,
-				IconDelete,
-				IconDownload,
-				IconPencil,
-				IconPlus,
-			}
+			setup() {
+				return {
+					mdiArrowRight,
+					mdiDelete,
+					mdiDownload,
+					mdiPencil,
+					mdiPlus,
+				}
+			},
 		}
 	</script>
 	<style scoped>
