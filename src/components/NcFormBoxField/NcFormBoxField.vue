@@ -204,7 +204,7 @@ function onFocusout(event: FocusEvent) {
 // An empty password has nothing to lose, so a click elsewhere closes it. Not on focusout:
 // password manager popups (Bitwarden) take focus into their own iframe, and clicks in there
 // never reach this page.
-onClickOutside(itemRef, () => {
+onClickOutside(() => itemRef.value?.$el, () => {
 	if (editing.value && type === 'password' && !draft.value && !loading) {
 		editing.value = false
 	}
