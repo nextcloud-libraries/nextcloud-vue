@@ -186,6 +186,11 @@ msgstr "Fravælg {option}"
 msgid "do not disturb"
 msgstr "forstyr ikke"
 
+#. TRANSLATORS: {label} is the field's label, e.g. "Device name". Read by
+#. screen readers on the button that opens the input.
+msgid "Edit {label}"
+msgstr "Rediger {label}"
+
 msgid "Edit item"
 msgstr "Rediger element"
 
