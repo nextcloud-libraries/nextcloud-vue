@@ -92,7 +92,7 @@ describe('NcAppSidebarTabs sliding highlight', () => {
 
 		const highlight = wrapper.find('.app-sidebar-tabs__highlight')
 		expect(highlight.classes()).toContain('app-sidebar-tabs__highlight--visible')
-		expect(highlight.attributes('style')).toContain('translate(0px, 0px)')
+		expect(highlight.attributes('style')).toContain('translate(0px)')
 		expect(highlight.attributes('style')).toContain('width: 100px')
 	})
 
@@ -109,7 +109,7 @@ describe('NcAppSidebarTabs sliding highlight', () => {
 		const highlight = wrapper.find('.app-sidebar-tabs__highlight')
 		// Sliding is enabled once it is already visible
 		expect(highlight.classes()).toContain('app-sidebar-tabs__highlight--animated')
-		expect(highlight.attributes('style')).toContain('translate(200px, 0px)')
+		expect(highlight.attributes('style')).toContain('translate(200px)')
 	})
 
 	test('turns transparent over the active tab', async () => {
@@ -151,7 +151,7 @@ describe('NcAppSidebarTabs sliding highlight', () => {
 		await nextTick()
 		const highlight = wrapper.find('.app-sidebar-tabs__highlight')
 		expect(highlight.classes()).toContain('app-sidebar-tabs__highlight--visible')
-		expect(highlight.attributes('style')).toContain('translate(200px, 0px)')
+		expect(highlight.attributes('style')).toContain('translate(200px)')
 
 		// Focus moving to something outside the tablist hides it
 		await wrapper.find('[role="tablist"]').trigger('focusout', { relatedTarget: document.body })
