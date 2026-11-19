@@ -100,7 +100,7 @@ export default {
 	}
 }
 </script>
-<style lang="scss" scoped>
+<style scoped>
 .wrapper {
 	display: flex;
 	gap: 4px;

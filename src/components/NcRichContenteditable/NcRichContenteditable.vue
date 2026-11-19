@@ -187,7 +187,7 @@ export default {
 	}
 }
 </script>
-<style lang="scss" scoped>
+<style scoped>
 	h5 {
 		font-weight: var(--font-weight-heading, bold);
 		margin: 40px 0 20px;
@@ -251,7 +251,7 @@ export default {
 	},
 }
 </script>
-<style lang="scss" scoped>
+<style scoped>
 	.buttons-wrapper {
 		display: flex;
 		gap: 10px;
