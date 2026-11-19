@@ -349,5 +349,11 @@ const hasIcon = () => Boolean(props.iconPath || props.iconSvg || !!slots.icon)
 		// Half of its own size, so it stays round when it is larger than a small chip
 		--border-radius-element: calc(var(--chip-actions-size) / 2);
 	}
+
+	// NcActions makes its single button an inline-block, which drops the flex layout of NcButton:
+	// the icon then sits at the top of a taller button instead of in the middle
+	& > &__actions {
+		display: flex;
+	}
 }
 </style>
