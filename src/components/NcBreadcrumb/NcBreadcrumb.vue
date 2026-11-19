@@ -21,12 +21,12 @@ Renders a button element when given no redirection props, otherwise, renders <a/
 		draggable="false"
 		@dragstart.prevent="() => { /** Prevent the breadcrumb from being draggable. */ }"
 		@drop.prevent="dropped"
-		@dragover.prevent="() => {}"
+		@dragover.prevent="dragOver"
 		@dragenter="dragEnter"
 		@dragleave="dragLeave">
 		<NcButton
 			v-if="(name || icon || $slots.icon) && !$slots.default"
-			:aria-label="icon ? name : undefined"
+			:aria-label="($slots.icon || icon) && !forceIconText ? name : undefined"
 			variant="tertiary"
 			v-bind="linkAttributes">
 			<template v-if="$slots.icon || icon" #icon>
@@ -241,6 +241,18 @@ export default {
 			this.$parent.$emit('dropped', e, this.to || this.href)
 			this.hovering = false
 			return false
+		},
+
+		/**
+		 * Show the dragged item whether it can be dropped here: with dropping disabled,
+		 * the browser shows that it cannot and does not fire the drop.
+		 *
+		 * @param {DragEvent} e The drag-over event
+		 */
+		dragOver(e) {
+			if (this.disableDrop && e.dataTransfer) {
+				e.dataTransfer.dropEffect = 'none'
+			}
 		},
 
 		/**
