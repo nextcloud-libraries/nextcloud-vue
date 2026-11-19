@@ -337,7 +337,7 @@ import NcIconSvgWrapper from '../NcIconSvgWrapper/NcIconSvgWrapper.vue'
 import NcTimezonePicker from '../NcTimezonePicker/NcTimezonePicker.vue'
 import { t } from '../../l10n.ts'
 import NcButton from '../NcButton/index.ts'
-import { getDateFormat, getDateTimeFormat, getMonthFormat, getTimeFormat, getWeekFormat, getYearFormat } from './format.ts'
+import { getDateFormat, getDateTimeFormat, getMonthFormat, getTimeFormat, getWeekFormat, getYearFormat, uses24HourClock } from './format.ts'
 import { checkForNonStandardTokens } from './formatValidation.ts'
 import useDateFnsLocale from './useDateFnsLocale.ts'
 
@@ -665,6 +665,11 @@ const realFormat = computed<LibraryFormatOptions>(() => {
 	return undefined
 })
 
+/**
+ * Show the time picker with the same clock (12- or 24-hour) as the formatted value.
+ */
+const is24 = computed(() => uses24HourClock(typeof realFormat.value === 'string' ? realFormat.value : undefined, dateFnsLocale.value))
+
 const textInput = computed<LibraryTextInputOptions>(() => {
 	const realFormatVal = realFormat.value
 	if (typeof realFormatVal === 'function') {
@@ -931,6 +936,7 @@ function sameDay(a: Date, b: Date): boolean {
 			:format="realFormat"
 			:locale="realLocale"
 			:formatLocale="dateFnsLocale"
+			:is24
 			:readonly="dateFnsLocaleIsLoading"
 			:minDate="calcMinMaxTime.minDate"
 			:maxDate="calcMinMaxTime.maxDate"

@@ -31,6 +31,27 @@ export function getTimeFormat(): DateFormat {
 }
 
 /**
+ * Whether the hours of a format string use a 24-hour clock.
+ * A format without hour tokens, like the localized `p`, uses the time format of the locale.
+ *
+ * @param format format string to check
+ * @param locale locale to resolve the localized time format with
+ */
+export function uses24HourClock(format: DateFormat | undefined, locale: Locale): boolean {
+	const hourToken = findHourToken(format ?? '') ?? findHourToken(locale.formatLong.time({ width: 'short' }))
+	return hourToken !== 'h' && hourToken !== 'K'
+}
+
+/**
+ * Find the first hour token of a format string, skipping quoted literals like the `'h'` in `HH 'h' mm`.
+ *
+ * @param format format string to search
+ */
+function findHourToken(format: DateFormat): string | undefined {
+	return format.replaceAll(/'[^']*'/g, '').match(/[HhKk]/)?.[0]
+}
+
+/**
  * Provide the format string for date times.
  *
  * @param locale locale to get the format string for

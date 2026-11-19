@@ -149,6 +149,35 @@ describe('NcDateTimePicker.vue', () => {
 		})
 	})
 
+	describe('Clock of the time picker', () => {
+		beforeEach(() => {
+			resetDateFnsLocaleCache()
+		})
+
+		it.for([
+			['en_US', false],
+			['en_GB', true],
+			['de', true],
+		])('uses the clock of the locale %s (24-hour: %s)', async ([locale, is24]) => {
+			setLocale(locale)
+			const wrapper = mount(NcDateTimePicker, { props: { type: 'time' } })
+
+			await vi.waitFor(() => {
+				expect(wrapper.findComponent(VueDatePicker).props('is24')).toBe(is24)
+			})
+		})
+
+		it.for([
+			['en_US', 'HH:mm', true],
+			['de', 'h:mm a', false],
+		])('uses the clock of the custom format for locale %s and format %s (24-hour: %s)', ([locale, format, is24]) => {
+			setLocale(locale)
+			const wrapper = mount(NcDateTimePicker, { props: { type: 'time', format } })
+
+			expect(wrapper.findComponent(VueDatePicker).props('is24')).toBe(is24)
+		})
+	})
+
 	describe('Presets', () => {
 		const presets = [{ label: 'First week', value: [new Date(2000, 0, 1), new Date(2000, 0, 7)] }]
 
