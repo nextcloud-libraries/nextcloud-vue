@@ -5,6 +5,7 @@
 
 import { setLocale } from '@nextcloud/l10n'
 import { mount } from '@vue/test-utils'
+import VueDatePicker from '@vuepic/vue-datepicker'
 import { beforeEach, describe, expect, it, vi } from 'vitest'
 import { nextTick } from 'vue'
 import NcDateTimePicker from '../../../../src/components/NcDateTimePicker/NcDateTimePicker.vue'
@@ -145,6 +146,31 @@ describe('NcDateTimePicker.vue', () => {
 
 				expect(wrapper.find('input').element.value).toBe('07-2026')
 			})
+		})
+	})
+
+	describe('Presets', () => {
+		const presets = [{ label: 'First week', value: [new Date(2000, 0, 1), new Date(2000, 0, 7)] }]
+
+		it('passes the presets to the date picker library', () => {
+			const wrapper = mount(NcDateTimePicker, { props: { type: 'date-range', presets } })
+			expect(wrapper.findComponent(VueDatePicker).props('presetDates')).toEqual(presets)
+		})
+
+		it('does not pass the presets for a type that does not support them, and warns', () => {
+			const warnHandler = vi.fn()
+			const wrapper = mount(NcDateTimePicker, {
+				props: { type: 'month', presets },
+				global: { config: { warnHandler } },
+			})
+			expect(wrapper.findComponent(VueDatePicker).props('presetDates')).toEqual([])
+			expect(warnHandler.mock.calls.some(([message]) => message.includes('The `presets` property is only used by'))).toBe(true)
+		})
+
+		it('does not warn without presets', () => {
+			const warnHandler = vi.fn()
+			mount(NcDateTimePicker, { props: { type: 'month' }, global: { config: { warnHandler } } })
+			expect(warnHandler.mock.calls.some(([message]) => message.includes('presets'))).toBe(false)
 		})
 	})
 })
