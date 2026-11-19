@@ -189,7 +189,7 @@ export default {
 </script>
 <style lang="scss" scoped>
 	h5 {
-		font-weight: bold;
+		font-weight: var(--font-weight-heading, bold);
 		margin: 40px 0 20px;
 	}
 
@@ -200,6 +200,8 @@ export default {
 ```
 
 ### Using public methods
+
+The example registers a demo reference provider with a custom picker element. To use it, type `/` and select "Demo provider".
 
 ```vue
 <template>
@@ -216,6 +218,23 @@ export default {
 	</div>
 </template>
 <script>
+// Demo provider with a custom picker element, as apps register them
+const providerId = 'demo-provider'
+if (!window._vue_richtext_reference_providers.some((p) => p.id === providerId)) {
+	window._vue_richtext_reference_providers.push({ id: providerId, title: 'Demo provider', icon_url: '', order: 0 })
+	window._registerCustomPickerElement(providerId, (el) => {
+		const button = document.createElement('button')
+		button.textContent = 'Pick https://example.com'
+		button.addEventListener('click', () => {
+			const link = 'https://example.com'
+			el.dispatchEvent(new CustomEvent('pick', { detail: { link } }))
+			el.dispatchEvent(new CustomEvent('submit', { detail: link }))
+		})
+		el.append(button)
+		return { element: el, object: {} }
+	})
+}
+
 export default {
 	data() {
 		return {
@@ -270,10 +289,8 @@ export default {
 			v-bind="$attrs"
 			@focus="moveCursorToEnd"
 			@input="onInput"
-			@compositionstart="isComposing = true"
-			@compositionend="isComposing = false"
 			@keydown.esc.capture="onKeyEsc"
-			@keydown.enter.exact="onEnter"
+			@keydown.exact="onEnter"
 			@keydown.ctrl.enter.exact.stop.prevent="onCtrlEnter"
 			@paste="onPaste"
 			@keyup.stop.prevent.capture="onKeyUp"
@@ -311,6 +328,13 @@ smilesCharacters.forEach((char) => {
 	textSmiles.push(':' + char)
 	textSmiles.push(':-' + char)
 })
+
+/**
+ * keyCode of a keydown event that an IME processed, also after compositionend in Safari
+ *
+ * @see https://developer.mozilla.org/en-US/docs/Web/API/Element/keydown_event#keydown_events_with_ime
+ */
+const IME_KEY_CODE = 229
 
 let isPlaintextOnlySupported = null
 
@@ -363,11 +387,12 @@ export default {
 		},
 
 		/**
-		 * The containing element for the menu popover
+		 * The containing element or selector for the tribute (menu popover)
+		 * Defaults to `body` element
 		 */
 		menuContainer: {
-			type: Element,
-			default: () => document.body,
+			type: [String, Element, null],
+			default: null,
 		},
 
 		/**
@@ -477,9 +502,6 @@ export default {
 			// content is empty or not
 			localValue: this.modelValue,
 
-			// Is in text composition session in IME
-			isComposing: false,
-
 			// Tribute autocomplete
 			isAutocompleteOpen: false,
 			autocompleteActiveId: undefined,
@@ -565,11 +587,6 @@ export default {
 
 		// Update default value
 		this.updateContent(this.modelValue)
-
-		// Tribute.js library ensures that `el.contentEditable = true` when attaching to element.
-		// This overwrites the template binding.
-		// Set the contenteditable attribute to actual value afterward
-		this.$refs.contenteditable.contentEditable = this.contenteditableAttributeValue
 	},
 
 	beforeUnmount() {
@@ -686,15 +703,26 @@ export default {
 				})
 			}
 
+			// Resolve container for Tribute.js to be mounted to (default - `null`)
+			const menuContainer = (typeof this.menuContainer === 'string')
+				? document.querySelector(this.menuContainer)
+				: this.menuContainer
+
 			this.tribute = new Tribute({
 				collection: tributesCollection,
 				// FIXME: tributejs doesn't support allowSpaces as a collection option, only as a global one
 				// Requires to fork a library to allow spaces only in the middle of mentions ('@' trigger)
 				allowSpaces: false,
 				// Where to inject the menu popup
-				menuContainer: this.menuContainer,
+				menuContainer,
 			})
 			this.tribute.attach(this.$refs.contenteditable)
+
+			// Tribute.js library v5.1.3 ensures that `el.contentEditable = true` when attaching to element.
+			// This overwrites the template binding.
+			// Set the contenteditable attribute to actual value afterward
+			// TODO remove when Tribute.js library v5.1.4 is published on npm (or fork it)
+			this.$refs.contenteditable.contentEditable = this.contenteditableAttributeValue
 		},
 
 		getLink(item) {
@@ -815,7 +843,7 @@ export default {
 		/**
 		 * Update the value text from the provided html
 		 *
-		 * @param {string} htmlOrText the html content (or raw text with @mentions)
+		 * @param {string} htmlOrText - The html content (or raw text with \@mentions)
 		 */
 		updateValue(htmlOrText) {
 			// Browsers keep <br> after erasing contenteditable
@@ -841,14 +869,21 @@ export default {
 		 * @param {Event} event the keydown event
 		 */
 		onEnter(event) {
+			// Safari reports key "`\r" for Enter that commits a dead key
+			if (event.key !== 'Enter' && event.code !== 'Enter') {
+				return
+			}
+
 			// Prevent submitting if multiline
 			// or length is over maxlength
 			// or autocompletion menu is opened
 			// or in a text composition session with IME
+			// or confirming an IME candidate
 			if (this.multiline
 				|| this.isOverMaxlength
 				|| this.tribute.isActive
-				|| this.isComposing) {
+				|| event.isComposing
+				|| event.keyCode === IME_KEY_CODE) {
 				return
 			}
 
@@ -1061,7 +1096,7 @@ export default {
 		inset-block-start: -10px;
 		line-height: 1.5; // minimum allowed line height for accessibility
 		font-size: 13px; // minimum allowed font size for accessibility
-		font-weight: 500;
+		font-weight: var(--font-weight-element, 500);
 		border-radius: var(--default-grid-baseline) var(--default-grid-baseline) 0 0;
 		background-color: var(--color-main-background);
 		padding-inline: 5px;

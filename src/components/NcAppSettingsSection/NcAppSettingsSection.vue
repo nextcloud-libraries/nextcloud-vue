@@ -62,6 +62,7 @@ onBeforeUnmount(() => {
 	<section
 		:id="htmlId"
 		:aria-labelledby="`${htmlId}--label`"
+		tabindex="-1"
 		class="app-settings-section"
 		:class="{ 'app-settings-section__legacy': legacy }">
 		<h3 :id="`${htmlId}--label`" class="app-settings-section__name">
@@ -88,7 +89,7 @@ onBeforeUnmount(() => {
 		padding-inline: var(--app-settings-section-text-offset);
 		padding-block: 0;
 		font-size: 20px;
-		font-weight: bold;
+		font-weight: var(--font-weight-heading, bold);
 	}
 
 	&__description {

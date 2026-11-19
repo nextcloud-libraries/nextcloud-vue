@@ -300,6 +300,7 @@ export default {
 			class="checkbox-radio-switch__input"
 			:disabled="disabled"
 			:type="inputType"
+			:role="inputRole"
 			:value="value"
 			:checked="isChecked"
 			:indeterminate.prop="hasIndeterminate ? indeterminate : null"
@@ -619,6 +620,16 @@ export default {
 		},
 
 		/**
+		 * ARIA role for the input. A switch renders as a native checkbox, so it
+		 * needs an explicit `switch` role to be announced correctly.
+		 *
+		 * @return {string|undefined}
+		 */
+		inputRole() {
+			return this.internalType === TYPE_SWITCH ? 'switch' : undefined
+		},
+
+		/**
 		 * Check if that entry is checked
 		 * If value is defined, we use that as the checked value
 		 * If not, we expect true/false in this.checked
@@ -712,6 +723,7 @@ export default {
 	color: var(--color-main-text);
 	background-color: transparent;
 	font-size: var(--default-font-size);
+	font-weight: var(--font-weight-element, normal);
 	line-height: var(--default-line-height);
 	padding: 0;
 	position: relative;
@@ -774,7 +786,7 @@ export default {
 		overflow: hidden;
 
 		&--checked {
-			font-weight: bold;
+			font-weight: var(--font-weight-element, bold);
 
 			.checkbox-radio-switch__content {
 				background-color: var(--color-primary-element);

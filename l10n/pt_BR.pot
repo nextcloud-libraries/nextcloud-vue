@@ -1,4 +1,3 @@
-# 
 # Translators:
 # Joas Schilling, 2025
 # Flávio Veras <flaviove@gmail.com>, 2025
@@ -51,6 +50,11 @@ msgid "Anything shared with the same group of people will show up here"
 msgstr ""
 "Qualquer coisa compartilhada com o mesmo grupo de pessoas aparecerá aqui"
 
+#. TRANSLATORS: State of the current upload - chunks of the uploaded files are
+#. being assembled into the final file
+msgid "assembling"
+msgstr "montando"
+
 msgid "Avatar of {displayName}"
 msgstr "Avatar de {displayName}"
 
@@ -89,6 +93,9 @@ msgstr "Cancelar"
 
 msgid "Cancel changes"
 msgstr "Cancelar alterações"
+
+msgid "Cancel uploads"
+msgstr "Cancelar uploads"
 
 msgid "Change name"
 msgstr "Mudar nome"
@@ -183,6 +190,9 @@ msgstr "não perturbe"
 msgid "Edit item"
 msgstr "Editar item"
 
+msgid "Edit profile"
+msgstr "Editar perfil"
+
 msgid "Emoji picker"
 msgstr "Seletor de emoji"
 
@@ -206,6 +216,9 @@ msgstr ""
 #. TRANSLATORS: Escape key on keyboard
 msgid "Escape"
 msgstr "Escape"
+
+msgid "Estimating …"
+msgstr "Calculando …"
 
 msgid "External documentation"
 msgstr "Documentação externa"
@@ -256,6 +269,9 @@ msgstr "Aumentar minutos"
 msgid "Increment seconds"
 msgstr "Aumentar segundos"
 
+msgid "Invalid date"
+msgstr "Data inválida"
+
 msgid "invisible"
 msgstr "invisível"
 
@@ -274,6 +290,15 @@ msgstr "Carregar mais \"{options}\""
 #. TRANSLATORS: The button is in a loading state
 msgid "Loading …"
 msgstr "Carregando …"
+
+msgid "Loading actions"
+msgstr "Carregando ações"
+
+msgid "Loading profile"
+msgstr "Carregando perfil"
+
+msgid "Local time: {time}"
+msgstr "Hora local: {time}"
 
 #. TRANSLATORS: A color name for RGB(45, 115, 190)
 msgid "Mariner"
@@ -308,6 +333,9 @@ msgstr "Mais opções"
 
 msgid "Neutral skin color"
 msgstr "Tom de pele neutro"
+
+msgid "New"
+msgstr "Novo"
 
 msgid "Next"
 msgstr "Próximo"
@@ -388,6 +416,10 @@ msgstr "A senha é segura"
 msgid "Pause slideshow"
 msgstr "Pausar apresentação de slides"
 
+#. TRANSLATORS: State of the current upload - it is paused
+msgid "paused"
+msgstr "em pausa"
+
 msgid "People & Body"
 msgstr "Pessoas & Corpo"
 
@@ -417,6 +449,9 @@ msgstr "Mês anterior"
 
 msgid "Previous year"
 msgstr "Ano anterior"
+
+msgid "Profile of {user}"
+msgstr "Perfil de {user}"
 
 msgid "Provider icon"
 msgstr "Ícone do provedor"
@@ -497,6 +532,9 @@ msgstr "Selecione ano"
 msgid "Selected"
 msgstr "Selecionado"
 
+msgid "Send message"
+msgstr "Enviar mensagem"
+
 msgid "Settings"
 msgstr "Configurações"
 
@@ -531,6 +569,9 @@ msgstr "Smileys & Emoções"
 #. TRANSLATORS: Space key on keyboard
 msgid "Space"
 msgstr "Barra de espaço"
+
+msgid "Start call"
+msgstr "Iniciar chamada"
 
 msgid "Start slideshow"
 msgstr "Iniciar apresentação de slides"
@@ -584,11 +625,20 @@ msgstr "Enviar arquivos"
 msgid "Upload folder"
 msgstr "Enviar pasta"
 
+msgid "Upload from device"
+msgstr "Enviar do dispositivo"
+
+msgid "Upload progress"
+msgstr "Progresso do upload"
+
 msgid "Uploading …"
 msgstr "Enviando …´"
 
 msgid "User status: {status}"
 msgstr "Status do usuário: {status}"
+
+msgid "View profile"
+msgstr "Ver perfil"
 
 msgid "View team"
 msgstr "Ver equipe"
@@ -602,6 +652,9 @@ msgstr "Uísque"
 
 msgid "White"
 msgstr "Branco"
+
+msgid "Widget height"
+msgstr "Altura do widget"
 
 msgid "Write a message …"
 msgstr "Escreva uma mensagem …"

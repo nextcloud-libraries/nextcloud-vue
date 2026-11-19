@@ -230,7 +230,7 @@ const nameId = createElementId()
 	&__name {
 		margin-bottom: 10px;
 		text-align: center;
-		font-weight: bold;
+		font-weight: var(--font-weight-heading, bold);
 		font-size: 20px;
 		line-height: 30px;
 	}

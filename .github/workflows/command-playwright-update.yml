@@ -39,7 +39,7 @@ jobs:
           reactions: '+1'
 
       - name: Parse command
-        uses: skjnldsv/parse-command-comment@5c955203c52424151e6d0e58fb9de8a9f6a605a1 # v3.1.0
+        uses: skjnldsv/parse-command-comment@5c955203c52424151e6d0e58fb9de8a9f6a605a1 # v3.1
         id: command
 
       - name: Init branch
@@ -52,7 +52,7 @@ jobs:
 
     steps:
       - name: Checkout ${{ needs.init.outputs.head_ref }}
-        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
           fetch-depth: 0
           ref: ${{ needs.init.outputs.head_ref }}
@@ -66,11 +66,11 @@ jobs:
           git config --local user.name "nextcloud-command"
 
       - name: Read package.json
-        uses: nextcloud-libraries/parse-package-engines-action@122ae05d4257008180a514e1ddeb0c1b9d094bdd # v0.1.0
+        uses: nextcloud-libraries/parse-package-engines-action@39fcc545a815c353dd0a3fd8fd2ef6e59fd02b92 # v0.2.0
         id: versions
 
       - name: Set up node
-        uses: actions/setup-node@53b83947a5a98c8d113130e565377fae1a50d02f # v6.3.0
+        uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
         with:
           node-version: ${{ steps.versions.outputs.node-version }}
 

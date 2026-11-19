@@ -128,7 +128,7 @@
 	.hljs-section {
 		/* prettylights-syntax-markup-heading */
 		color: var(--hljs-syntax-markup-heading-color);
-		font-weight: bold
+		font-weight: var(--font-weight-heading, bold);
 	}
 
 	.hljs-bullet {

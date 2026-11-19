@@ -78,7 +78,7 @@ function onUpdate() {
 		<input
 			:aria-labelledby="label ? labelId : undefined"
 			:aria-label="label ? undefined : ariaLabel"
-			class="hidden-visually"
+			:class="$style.radioGroupButton__input"
 			:checked="isChecked"
 			type="radio"
 			:disabled
@@ -95,10 +95,13 @@ function onUpdate() {
 	--radio-group-button--background-color: var(--color-primary-element-light);
 	--radio-group-button--background-color-hover: var(--color-primary-element-light-hover);
 	--radio-group-button--padding: 1px;
+	position: relative;
 	cursor: pointer;
 	color: var(--radio-group-button--color);
 	background-color: var(--radio-group-button--background-color);
-	transition: var(--animation-quick) background-color;
+	will-change: transform;
+	transition-property: color, background-color, transform;
+	transition-duration: var(--animation-quick);
 	border: var(--radio-group-button--border-width) solid var(--radio-group-button--background-color-hover);
 	border-bottom-width: 2px;
 	border-radius: var(--radio-group-button--border-radius);
@@ -116,6 +119,17 @@ function onUpdate() {
 		cursor: pointer;
 	}
 
+	// Not .hidden-visually: its -10000px offset makes the browser scroll the container to the top on focus
+	&__input {
+		position: absolute;
+		inset-block-start: 0;
+		inset-inline-start: 0;
+		width: 1px;
+		height: 1px;
+		opacity: 0;
+		pointer-events: none;
+	}
+
 	&:has(&__label) {
 		padding-inline: calc(var(--radio-group-button--padding) + var(--border-radius-element));
 	}
@@ -126,6 +140,11 @@ function onUpdate() {
 
 	&:hover:not(.radioGroupButton_disabled) {
 		background-color: var(--radio-group-button--background-color-hover);
+	}
+
+	&:active:not(.radioGroupButton_disabled) {
+		// TODO: add to theming with animation initiative
+		transform: scale(0.985);
 	}
 
 	&:focus-within {
@@ -143,7 +162,7 @@ function onUpdate() {
 }
 
 .radioGroupButton__label {
-	font-weight: bold;
+	font-weight: var(--font-weight-element, bold);
 }
 
 .radioGroupButton_disabled {

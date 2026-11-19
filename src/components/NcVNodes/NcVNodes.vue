@@ -52,29 +52,41 @@ export default {
 ```
 </docs>
 
-<script lang="ts">
-import type { PropType, VNode } from 'vue'
+<script setup lang="ts">
+import type { Slot, VNode } from 'vue'
 
-import { defineComponent } from 'vue'
-
-export default defineComponent({
-	name: 'NcVNodes',
-
-	props: {
-		/**
-		 * The vnodes to render
-		 */
-		vnodes: {
-			type: [Array, Object] as PropType<VNode | VNode[]>,
-			default: null,
-		},
-	},
-
+const props = defineProps<{
 	/**
-	 * The render function to display the component
+	 * The vnodes to render
 	 */
-	render() {
-		return this.vnodes || this.$slots?.default?.({})
-	},
-})
+	vnodes?: VNode | VNode[]
+}>()
+
+const slots = defineSlots<{
+	/**
+	 * The content to render if no vnodes are given
+	 */
+	default?: Slot
+}>()
+
+/**
+ * Render the given vnodes or the default slot
+ */
+function render() {
+	const vnodes = props.vnodes || slots.default?.({})
+	return Array.isArray(vnodes) ? preferSingleVNode(vnodes) : vnodes
+}
+
+/**
+ * Single root lets the parent scope id reach the element, like RouterLink custom
+ *
+ * @param vnodes - The vnodes to render
+ */
+function preferSingleVNode(vnodes: VNode[]) {
+	return vnodes.length === 1 ? vnodes[0] : vnodes
+}
 </script>
+
+<template>
+	<component :is="render" />
+</template>

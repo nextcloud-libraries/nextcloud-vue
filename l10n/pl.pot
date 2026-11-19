@@ -1,13 +1,12 @@
-# 
 # Translators:
-# John Molakvoæ <skjnldsv@protonmail.com>, 2023
-# Valdnet, 2024
-# Pirania 3680, 2024
-# Piotr Strebski <strebski@gmail.com>, 2025
+# Joas Schilling, 2025
+# krz otr, 2026
+# Wojciech Anuszczyk, 2026
+# Bartosz Keller, 2026
 # 
 msgid ""
 msgstr ""
-"Last-Translator: Piotr Strebski <strebski@gmail.com>, 2025\n"
+"Last-Translator: Bartosz Keller, 2026\n"
 "Language-Team: Polish (https://app.transifex.com/nextcloud/teams/64236/pl/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Language: pl\n"
@@ -38,6 +37,10 @@ msgstr "Aktywność"
 msgid "Add to a project"
 msgstr "Dodaj do projektu"
 
+#. TRANSLATORS: Alt key on keyboard (Windows/Linux)
+msgid "Alt"
+msgstr "Alt"
+
 msgid "Animals & Nature"
 msgstr "Zwierzęta i natura"
 
@@ -47,6 +50,11 @@ msgstr "Dowolny link"
 msgid "Anything shared with the same group of people will show up here"
 msgstr ""
 "Tutaj pojawi się wszystko, co zostało udostępnione tej samej grupie osób"
+
+#. TRANSLATORS: State of the current upload - chunks of the uploaded files are
+#. being assembled into the final file
+msgid "assembling"
+msgstr "składanie"
 
 msgid "Avatar of {displayName}"
 msgstr "Awatar {displayName}"
@@ -64,6 +72,9 @@ msgstr "Wstecz"
 msgid "Back to provider selection"
 msgstr "Powrót do wyboru dostawcy"
 
+msgid "Black"
+msgstr "Czarny"
+
 #. TRANSLATORS: A color name for RGB(91, 100, 179)
 msgid "Blue Violet"
 msgstr "Niebieski fiolet"
@@ -75,8 +86,17 @@ msgstr "Błękit Bostonu"
 msgid "busy"
 msgstr "zajęty"
 
+msgid "Calendar icon"
+msgstr "Ikonka kalendarza"
+
+msgid "Cancel"
+msgstr "Anuluj"
+
 msgid "Cancel changes"
 msgstr "Anuluj zmiany"
+
+msgid "Cancel uploads"
+msgstr "Anuluj przesyłanie"
 
 msgid "Change name"
 msgstr "Zmień nazwę"
@@ -93,6 +113,9 @@ msgstr "Wyczyść wybrane"
 msgid "Clear text"
 msgstr "Wyczyść tekst"
 
+msgid "Clear value"
+msgstr "Wyczyść wartość"
+
 msgid "Close"
 msgstr "Zamknij"
 
@@ -104,6 +127,9 @@ msgstr "Zamknij pasek boczny"
 
 msgid "Close Smart Picker"
 msgstr "Zamknij inteligentny selektor"
+
+msgid "Close time Picker"
+msgstr "Zamknij wybór czasu"
 
 msgid "Collapse menu"
 msgstr "Zwiń menu"
@@ -117,11 +143,40 @@ msgstr "Potwierdź zmiany"
 msgid "Connect items to a project to make them easier to find"
 msgstr "Połącz elementy z projektem, aby ułatwić ich znalezienie"
 
+msgid "Copied"
+msgstr "Skopiowano"
+
+msgid "Copy to clipboard"
+msgstr "Skopiuj do schowka"
+
+#. TRANSLATORS: Ctrl key on keyboard (Windows/Linux)
+msgid "Ctrl"
+msgstr "Ctrl"
+
 msgid "Custom"
 msgstr "Zwyczajne"
 
 msgid "Dark skin tone"
 msgstr "Ciemna tonacja"
+
+msgid "Datepicker input"
+msgstr "Pole wyboru daty"
+
+msgid "Datepicker menu"
+msgstr "Menu wyboru daty"
+
+msgid "Decrement hours"
+msgstr "Zmniejsz godziny"
+
+msgid "Decrement minutes"
+msgstr "Zmniejsz minuty"
+
+msgid "Decrement seconds"
+msgstr "Zmniejsz sekundy"
+
+#. TRANSLATORS: Delete key on keyboard
+msgid "Delete"
+msgstr "Delete"
 
 #. TRANSLATORS: A color name for RGB(136, 85, 168)
 msgid "Deluge"
@@ -136,11 +191,18 @@ msgstr "nie przeszkadzać"
 msgid "Edit item"
 msgstr "Edytuj element"
 
+msgid "Edit profile"
+msgstr "Edytuj profil"
+
 msgid "Emoji picker"
 msgstr "Wybierz Emoji"
 
 msgid "Enable interactive view"
 msgstr "Włącz widok interaktywny"
+
+#. TRANSLATORS: Enter key on keyboard
+msgid "Enter"
+msgstr "Enter"
 
 msgid "Enter link"
 msgstr "Wprowadź link"
@@ -152,8 +214,15 @@ msgstr ""
 "Błąd podczas pobierania powiązanych zasobów. Jeśli masz jakiekolwiek "
 "pytania, skontaktuj się z administratorem systemu."
 
-msgid "External documentation for {name}"
-msgstr "Dokumentacja zewnętrzna dla {name}"
+#. TRANSLATORS: Escape key on keyboard
+msgid "Escape"
+msgstr "Escape"
+
+msgid "Estimating …"
+msgstr "Szacowanie ..."
+
+msgid "External documentation"
+msgstr "Zewnętrzna dokumentacja"
 
 msgid "Failed to add the item to the project"
 msgstr "Nie udało się dodać elementu do projektu"
@@ -180,9 +249,6 @@ msgstr "Jedzenie i picie"
 msgid "Frequently used"
 msgstr "Często używane"
 
-msgid "Global"
-msgstr "Globalnie"
-
 msgid "Go back to the list"
 msgstr "Powrót do listy"
 
@@ -195,11 +261,26 @@ msgstr "Ukryj szczegóły"
 msgid "Hide password"
 msgstr "Ukryj hasło"
 
+msgid "Increment hours"
+msgstr "Zwiększ godziny"
+
+msgid "Increment minutes"
+msgstr "Zwiększ minuty"
+
+msgid "Increment seconds"
+msgstr "Zwiększ sekundy"
+
+msgid "Invalid date"
+msgstr "Nieprawidłowa data"
+
 msgid "invisible"
 msgstr "niewidzialny"
 
 msgid "Keyboard navigation help"
 msgstr "Pomoc w nawigacji za pomocą klawiatury"
+
+msgid "Keyboard shortcuts"
+msgstr "Skróty klawiszowe"
 
 msgid "Light skin tone"
 msgstr "Jasny odcień skóry"
@@ -209,7 +290,16 @@ msgstr "Załaduj więcej \"{options}\""
 
 #. TRANSLATORS: The button is in a loading state
 msgid "Loading …"
-msgstr "Wczytywanie…"
+msgstr "Wczytywanie ..."
+
+msgid "Loading actions"
+msgstr "Wczytywanie akcji"
+
+msgid "Loading profile"
+msgstr "Wczytywanie profilu"
+
+msgid "Local time: {time}"
+msgstr "Czas lokalny: {time}"
 
 #. TRANSLATORS: A color name for RGB(45, 115, 190)
 msgid "Mariner"
@@ -224,11 +314,21 @@ msgstr "Średnio jasny odcień skóry"
 msgid "Medium skin tone"
 msgstr "Średni odcień skóry"
 
-msgid "Message limit of {count} characters reached"
-msgstr "Przekroczono limit wiadomości wynoszący {count} znaków"
+msgid "Message limit of %n character reached"
+msgid_plural "Message limit of %n characters reached"
+msgstr[0] "Przekroczono limit wiadomości wynoszący %n znak"
+msgstr[1] "Przekroczono limit wiadomości wynoszący %n znaki"
+msgstr[2] "Przekroczono limit wiadomości wynoszący %n znaków"
+msgstr[3] "Przekroczono limit wiadomości wynoszący %n znaków"
+
+msgid "Month picker"
+msgstr "Menu wyboru miesiąca"
+
+msgid "Month picker overlay"
+msgstr "Nakładka wyboru miesiąca"
 
 msgid "More items …"
-msgstr "Więcej pozycji…"
+msgstr "Więcej pozycji ..."
 
 msgid "More options"
 msgstr "Więcej opcji"
@@ -236,11 +336,23 @@ msgstr "Więcej opcji"
 msgid "Neutral skin color"
 msgstr "Neutralny kolor skróry"
 
+msgid "New"
+msgstr "Nowy"
+
 msgid "Next"
 msgstr "Następny"
 
+msgid "Next month"
+msgstr "Następny miesiąc"
+
+msgid "Next year"
+msgstr "Następny rok"
+
 msgid "Nextcloud blue"
 msgstr "Niebieskie Nextcloud"
+
+msgid "No color"
+msgstr "Brak koloru"
 
 msgid "No emoji found"
 msgstr "Nie znaleziono emoji"
@@ -250,6 +362,9 @@ msgstr "Nie znaleziono dostawcy linków"
 
 msgid "No results"
 msgstr "Brak wyników"
+
+msgid "Now"
+msgstr "Teraz"
 
 msgid "Objects"
 msgstr "Obiekty"
@@ -264,17 +379,35 @@ msgstr "Oliwin"
 msgid "online"
 msgstr "online"
 
+msgid "Open hours overlay"
+msgstr "Otwórz nakładkę wyboru godzin"
+
 msgid "Open link to \"{resourceName}\""
 msgstr "Otwórz link do \"{resourceName}\""
 
 msgid "Open menu"
 msgstr "Otwórz menu"
 
-msgid "Open navigation {shortcut}"
-msgstr "Otwórz nawigację {shortcut}"
+msgid "Open minutes overlay"
+msgstr "Otwórz nakładkę wyboru minut"
+
+msgid "Open months overlay"
+msgstr "Otwórz nakładkę wyboru miesięcy"
+
+msgid "Open navigation"
+msgstr "Otwórz nawigację"
+
+msgid "Open seconds overlay"
+msgstr "Otwórz nakładkę wyboru sekund"
 
 msgid "Open sidebar"
 msgstr "Otwórz pasek boczny"
+
+msgid "Open time picker"
+msgstr "Otwórz wybór czasu"
+
+msgid "Open years overlay"
+msgstr "Otwórz nakładkę wyboru roku"
 
 msgid "Options"
 msgstr "Opcje"
@@ -285,35 +418,42 @@ msgstr "Hasło jest bezpieczne"
 msgid "Pause slideshow"
 msgstr "Wstrzymaj pokaz slajdów"
 
+#. TRANSLATORS: State of the current upload - it is paused
+msgid "paused"
+msgstr "wstrzymano"
+
 msgid "People & Body"
 msgstr "Ludzie i ciało"
 
-msgid "Pick a date"
-msgstr "Wybierz datę"
-
-msgid "Pick a date and a time"
-msgstr "Wybierz datę i godzinę"
-
-msgid "Pick a month"
-msgstr "Wybierz miesiąc"
-
-msgid "Pick a time"
-msgstr "Wybierz czas"
-
-msgid "Pick a week"
-msgstr "Wybierz tydzień"
-
-msgid "Pick a year"
-msgstr "Wybierz rok"
+msgid "Pick"
+msgstr "Wybierz"
 
 msgid "Pick an emoji"
 msgstr "Wybierz emoji"
 
-msgid "Please select a time zone:"
-msgstr "Wybierz strefę czasową:"
+msgid "Pick file"
+msgstr "Wybierz plik"
+
+msgid "Pick files"
+msgstr "Wybierz pliki"
+
+msgid "Pick folder"
+msgstr "Wybierz katalog"
+
+msgid "Please choose a date"
+msgstr "Wybierz datę"
 
 msgid "Previous"
 msgstr "Poprzedni"
+
+msgid "Previous month"
+msgstr "Poprzedni miesiąc"
+
+msgid "Previous year"
+msgstr "Poprzedni rok"
+
+msgid "Profile of {user}"
+msgstr "Profil {user}"
 
 msgid "Provider icon"
 msgstr "Dostawca ikony"
@@ -343,6 +483,9 @@ msgstr "Zapisz zmiany"
 msgid "Search"
 msgstr "Szukaj"
 
+msgid "Search …"
+msgstr "Szukaj ..."
+
 msgid "Search emoji"
 msgstr "Szukaj emoji"
 
@@ -351,9 +494,6 @@ msgstr "Szukaj strefy czasowej"
 
 msgid "Search results"
 msgstr "Wyniki wyszukiwania"
-
-msgid "Search…"
-msgstr "Szukaj…"
 
 #. FOR TRANSLATORS: If possible in your language an even shorter version of 'a
 #. few seconds ago'
@@ -367,17 +507,45 @@ msgstr "sekund temu"
 msgid "Select a tag"
 msgstr "Wybierz etykietę"
 
+msgid "Select date"
+msgstr "Wybierz datę"
+
+msgid "Select date and time"
+msgstr "Wybierz datę i godzinę"
+
+msgid "Select month"
+msgstr "Wybierz miesiąc"
+
 msgid "Select provider"
 msgstr "Wybierz dostawcę"
 
+msgid "Select time"
+msgstr "Wybierz czas"
+
+msgid "Select time range"
+msgstr "Wybierz zakres czasowy"
+
+msgid "Select week"
+msgstr "Wybierz tydzień"
+
+msgid "Select year"
+msgstr "Wybierz rok"
+
 msgid "Selected"
 msgstr "Wybrane"
+
+msgid "Send message"
+msgstr "Wyślij wiadomość"
 
 msgid "Settings"
 msgstr "Ustawienia"
 
 msgid "Settings navigation"
 msgstr "Ustawienia nawigacji"
+
+#. TRANSLATORS: Shift key on keyboard
+msgid "Shift"
+msgstr "Shift"
 
 msgid "Show details"
 msgstr "Pokaż szczegóły"
@@ -400,6 +568,13 @@ msgstr "Inteligentne wybieranie"
 msgid "Smileys & Emotion"
 msgstr "Buźki i emotikony"
 
+#. TRANSLATORS: Space key on keyboard
+msgid "Space"
+msgstr "Spacja"
+
+msgid "Start call"
+msgstr "Rozpocznij rozmowę"
+
 msgid "Start slideshow"
 msgstr "Rozpocznij pokaz slajdów"
 
@@ -409,8 +584,24 @@ msgstr "Zacznij pisać, aby wyszukać"
 msgid "Submit"
 msgstr "Wyślij"
 
+msgid "Switch AM/PM mode"
+msgstr "Przełącz tryb AM/PM"
+
 msgid "Symbols"
 msgstr "Symbole"
+
+#. TRANSLATORS: Tab key on keyboard
+msgid "Tab"
+msgstr "Tab"
+
+msgid "Time picker"
+msgstr "Wybór czasu"
+
+msgid "Time zone"
+msgstr "Strefa czasowa"
+
+msgid "Toggle overlay"
+msgstr "Przełącz nakładkę"
 
 msgid "Travel & Places"
 msgstr "Podróże i miejsca"
@@ -427,15 +618,51 @@ msgstr "Nie można przeszukać grupy"
 msgid "Undo changes"
 msgstr "Cofnij zmiany"
 
+msgid "Upload file"
+msgstr "Prześlij plik"
+
+msgid "Upload files"
+msgstr "Prześlij pliki"
+
+msgid "Upload folder"
+msgstr "Prześlij folder"
+
+msgid "Upload from device"
+msgstr "Prześlij z urządzenia"
+
+msgid "Upload progress"
+msgstr "Postęp przesyłania"
+
+msgid "Uploading …"
+msgstr "Przesyłanie ..."
+
 msgid "User status: {status}"
 msgstr "Status użytkownika: {status}"
 
+msgid "View profile"
+msgstr "Zobacz profil"
+
 msgid "View team"
 msgstr "Zobacz grupę"
+
+msgid "W"
+msgstr "W"
 
 #. TRANSLATORS: A color name for RGB(211, 169, 103)
 msgid "Whiskey"
 msgstr "Whisky"
 
+msgid "White"
+msgstr "Biały"
+
+msgid "Widget height"
+msgstr "Wysokość widżetu"
+
 msgid "Write a message …"
-msgstr "Napisz wiadomość…"
+msgstr "Napisz wiadomość ..."
+
+msgid "Year picker"
+msgstr "Wybór roku"
+
+msgid "Year picker overlay"
+msgstr "Otwórz nakładkę wyboru roku"

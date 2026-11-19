@@ -1,0 +1,205 @@
+/**
+ * SPDX-FileCopyrightText: 2023 Nextcloud GmbH and Nextcloud contributors
+ * SPDX-License-Identifier: AGPL-3.0-or-later
+ */
+
+import { setLocale } from '@nextcloud/l10n'
+import { mount } from '@vue/test-utils'
+import VueDatePicker from '@vuepic/vue-datepicker'
+import { beforeEach, describe, expect, it, vi } from 'vitest'
+import { nextTick } from 'vue'
+import NcDateTimePicker from '../../../../src/components/NcDateTimePicker/NcDateTimePicker.vue'
+import useDateFnsLocale, { resetDateFnsLocaleCache } from '../../../../src/components/NcDateTimePicker/useDateFnsLocale.ts'
+
+describe('NcDateTimePicker.vue', () => {
+	describe('Locale loading', async () => {
+		beforeEach(() => {
+			resetDateFnsLocaleCache()
+		})
+
+		it('Make immediately writable for cached local', async () => {
+			setLocale('de')
+			const { isLoading } = useDateFnsLocale()
+			await vi.waitUntil(() => !isLoading.value)
+
+			const wrapper = mount(NcDateTimePicker, {
+				props: {
+					type: 'date',
+				},
+			})
+			const input = wrapper.find('input')
+			await input.setValue('11.02.2000')
+
+			const emitted = wrapper.emitted('update:modelValue')
+			expect(emitted).toBeTruthy()
+			expect(emitted.at(0)[0]).toBeTruthy()
+		})
+
+		it('Make writable after laoding locale', async () => {
+			setLocale('de')
+			const wrapper = mount(NcDateTimePicker, {
+				props: {
+					type: 'date',
+				},
+			})
+
+			const input = wrapper.find('input')
+			await vi.waitUntil(() => !input.element.readOnly)
+			await input.setValue('11.02.2000')
+
+			const emitted = wrapper.emitted('update:modelValue')
+			expect(emitted).toBeTruthy()
+			expect(emitted.at(0)[0]).toBeTruthy()
+		})
+
+		it('Make readonly while loading locale', async () => {
+			setLocale('de')
+			const wrapper = mount(NcDateTimePicker, {
+				props: {
+					type: 'date',
+				},
+			})
+
+			expect(wrapper.find('input').element.readOnly).toBeTruthy()
+		})
+
+		it('Make switch formatting after laoding locale', async () => {
+			setLocale('de')
+			const wrapper = mount(NcDateTimePicker, {
+				props: {
+					type: 'date',
+					modelValue: new Date(2026, 1, 10),
+				},
+			})
+			await nextTick()
+			expect(wrapper.find('input').element.value).toBe('Feb 10, 2026')
+
+			await vi.waitFor(() => {
+				expect(wrapper.find('input').element.value).toBe('10.02.2026')
+			})
+		})
+	})
+
+	describe('Time picker visibility', () => {
+		it.for([
+			['week', false],
+			['month', false],
+			['year', false],
+			['date', false],
+			['date-range', false],
+			['time', false],
+			['time-range', false],
+			['datetime', true],
+			['datetime-range', true],
+		])('renders the time picker button for type %s -> %s', async ([type, isRendered]) => {
+			const wrapper = mount(NcDateTimePicker, {
+				props: {
+					type,
+					inline: true,
+				},
+			})
+
+			await nextTick()
+
+			expect(wrapper.find('[data-test-id="open-time-picker-btn"]').exists()).toBe(isRendered)
+		})
+
+		describe('Non-standard token handling', () => {
+			it('warns about non-standard formatting tokens', () => {
+				const warnHandler = vi.fn()
+
+				mount(NcDateTimePicker, {
+					props: { format: 'Pp' },
+					global: {
+						config: { warnHandler },
+					},
+				})
+
+				expect(warnHandler).toHaveBeenCalledOnce()
+				expect(warnHandler.mock.calls[0][0]).toEqual('[NcDateTimePicker] The `format` property value "Pp" uses the non-standard formating tokens P, p. They will be disabled in the future because they are only supported by the date-fns library. Only use tokens from the Unicode Technical Standard #35. See https://github.com/nextcloud-libraries/nextcloud-vue/issues/8931')
+			})
+
+			it('warns about non-standard formatting tokens after property change', async () => {
+				const warnHandler = vi.fn()
+				const wrapper = mount(NcDateTimePicker, {
+					props: {
+						format: 'HH',
+					},
+					global: {
+						config: { warnHandler },
+					},
+				})
+
+				await wrapper.setProps({ format: 'II-RR' })
+
+				expect(warnHandler).toHaveBeenCalledOnce()
+				expect(warnHandler.mock.calls[0][0])
+					.toContain('[NcDateTimePicker] The `format` property value "II-RR" uses the non-standard formating tokens I, R.')
+			})
+
+			it('supports non-standard tokens', async () => {
+				const wrapper = mount(NcDateTimePicker, {
+					props: { modelValue: new Date(2026, 1, 10), format: 'II-RR' },
+				})
+
+				await nextTick()
+
+				expect(wrapper.find('input').element.value).toBe('07-2026')
+			})
+		})
+	})
+
+	describe('Clock of the time picker', () => {
+		beforeEach(() => {
+			resetDateFnsLocaleCache()
+		})
+
+		it.for([
+			['en_US', false],
+			['en_GB', true],
+			['de', true],
+		])('uses the clock of the locale %s (24-hour: %s)', async ([locale, is24]) => {
+			setLocale(locale)
+			const wrapper = mount(NcDateTimePicker, { props: { type: 'time' } })
+
+			await vi.waitFor(() => {
+				expect(wrapper.findComponent(VueDatePicker).props('is24')).toBe(is24)
+			})
+		})
+
+		it.for([
+			['en_US', 'HH:mm', true],
+			['de', 'h:mm a', false],
+		])('uses the clock of the custom format for locale %s and format %s (24-hour: %s)', ([locale, format, is24]) => {
+			setLocale(locale)
+			const wrapper = mount(NcDateTimePicker, { props: { type: 'time', format } })
+
+			expect(wrapper.findComponent(VueDatePicker).props('is24')).toBe(is24)
+		})
+	})
+
+	describe('Presets', () => {
+		const presets = [{ label: 'First week', value: [new Date(2000, 0, 1), new Date(2000, 0, 7)] }]
+
+		it('passes the presets to the date picker library', () => {
+			const wrapper = mount(NcDateTimePicker, { props: { type: 'date-range', presets } })
+			expect(wrapper.findComponent(VueDatePicker).props('presetDates')).toEqual(presets)
+		})
+
+		it('does not pass the presets for a type that does not support them, and warns', () => {
+			const warnHandler = vi.fn()
+			const wrapper = mount(NcDateTimePicker, {
+				props: { type: 'month', presets },
+				global: { config: { warnHandler } },
+			})
+			expect(wrapper.findComponent(VueDatePicker).props('presetDates')).toEqual([])
+			expect(warnHandler.mock.calls.some(([message]) => message.includes('The `presets` property is only used by'))).toBe(true)
+		})
+
+		it('does not warn without presets', () => {
+			const warnHandler = vi.fn()
+			mount(NcDateTimePicker, { props: { type: 'month' }, global: { config: { warnHandler } } })
+			expect(warnHandler.mock.calls.some(([message]) => message.includes('presets'))).toBe(false)
+		})
+	})
+})

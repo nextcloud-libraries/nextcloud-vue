@@ -57,9 +57,10 @@ export default {
 		/**
 		 * Sets the user status
 		 *
-		 * @param {string} status user's status
-		 * @param {string} message user's message
-		 * @param {string} icon user's icon
+		 * @param {Record<string, string>} options - Options for setting the user status
+		 * @param {string} options.status user's status
+		 * @param {string} options.message user's message
+		 * @param {string} options.icon user's icon
 		 */
 		setUserStatus({ status, message, icon }) {
 			this.userStatus.status = status || ''

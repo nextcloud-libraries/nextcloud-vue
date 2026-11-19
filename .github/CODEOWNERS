@@ -1,0 +1,7 @@
+# SPDX-FileCopyrightText: 2026 Nextcloud GmbH and Nextcloud contributors
+# SPDX-License-Identifier: CC0-1.0
+#
+# Fallback owners for code review - ensure all PRs have someone assigned for review.
+# (the last match will used so this is only used if there is no more specific code owner below)
+
+*    @nextcloud-libraries/frontend

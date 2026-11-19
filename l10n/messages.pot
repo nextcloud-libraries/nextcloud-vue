@@ -40,6 +40,10 @@ msgstr ""
 msgid "Anything shared with the same group of people will show up here"
 msgstr ""
 
+#. TRANSLATORS: State of the current upload - chunks of the uploaded files are being assembled into the final file
+msgid "assembling"
+msgstr ""
+
 msgid "Avatar of {displayName}"
 msgstr ""
 
@@ -79,6 +83,9 @@ msgstr ""
 msgid "Cancel changes"
 msgstr ""
 
+msgid "Cancel uploads"
+msgstr ""
+
 msgid "Change name"
 msgstr ""
 
@@ -116,6 +123,9 @@ msgid "Collapse menu"
 msgstr ""
 
 msgid "Color picker"
+msgstr ""
+
+msgid "Completed"
 msgstr ""
 
 msgid "Confirm changes"
@@ -169,7 +179,14 @@ msgstr ""
 msgid "do not disturb"
 msgstr ""
 
+#. TRANSLATORS: {label} is the field's label, e.g. "Device name". Read by screen readers on the button that opens the input.
+msgid "Edit {label}"
+msgstr ""
+
 msgid "Edit item"
+msgstr ""
+
+msgid "Edit profile"
 msgstr ""
 
 msgid "Emoji picker"
@@ -190,6 +207,9 @@ msgstr ""
 
 #. TRANSLATORS: Escape key on keyboard
 msgid "Escape"
+msgstr ""
+
+msgid "Estimating …"
 msgstr ""
 
 msgid "External documentation"
@@ -241,6 +261,9 @@ msgstr ""
 msgid "Increment seconds"
 msgstr ""
 
+msgid "Invalid date"
+msgstr ""
+
 msgid "invisible"
 msgstr ""
 
@@ -258,6 +281,15 @@ msgstr ""
 
 #. TRANSLATORS: The button is in a loading state
 msgid "Loading …"
+msgstr ""
+
+msgid "Loading actions"
+msgstr ""
+
+msgid "Loading profile"
+msgstr ""
+
+msgid "Local time: {time}"
 msgstr ""
 
 #. TRANSLATORS: A color name for RGB(45, 115, 190)
@@ -291,6 +323,9 @@ msgid "More options"
 msgstr ""
 
 msgid "Neutral skin color"
+msgstr ""
+
+msgid "New"
 msgstr ""
 
 msgid "Next"
@@ -372,6 +407,10 @@ msgstr ""
 msgid "Pause slideshow"
 msgstr ""
 
+#. TRANSLATORS: State of the current upload - it is paused
+msgid "paused"
+msgstr ""
+
 msgid "People & Body"
 msgstr ""
 
@@ -400,6 +439,9 @@ msgid "Previous month"
 msgstr ""
 
 msgid "Previous year"
+msgstr ""
+
+msgid "Profile of {user}"
 msgstr ""
 
 msgid "Provider icon"
@@ -480,6 +522,9 @@ msgstr ""
 msgid "Selected"
 msgstr ""
 
+msgid "Send message"
+msgstr ""
+
 msgid "Settings"
 msgstr ""
 
@@ -515,10 +560,16 @@ msgstr ""
 msgid "Space"
 msgstr ""
 
+msgid "Start call"
+msgstr ""
+
 msgid "Start slideshow"
 msgstr ""
 
 msgid "Start typing to search"
+msgstr ""
+
+msgid "Steps"
 msgstr ""
 
 msgid "Submit"
@@ -567,10 +618,19 @@ msgstr ""
 msgid "Upload folder"
 msgstr ""
 
+msgid "Upload from device"
+msgstr ""
+
+msgid "Upload progress"
+msgstr ""
+
 msgid "Uploading …"
 msgstr ""
 
 msgid "User status: {status}"
+msgstr ""
+
+msgid "View profile"
 msgstr ""
 
 msgid "View team"
@@ -584,6 +644,9 @@ msgid "Whiskey"
 msgstr ""
 
 msgid "White"
+msgstr ""
+
+msgid "Widget height"
 msgstr ""
 
 msgid "Write a message …"

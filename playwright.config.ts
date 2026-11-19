@@ -38,16 +38,17 @@ export default defineConfig({
 	testDir: 'tests/component',
 	/* The base directory, relative to the config file, for snapshot files created with toMatchSnapshot and toHaveScreenshot. */
 	snapshotDir: 'tests/component/snapshots',
-	/* Maximum time one test can run for. */
-	timeout: 10 * 1000,
 	/* Run tests in files in parallel */
 	fullyParallel: true,
 	/* Fail the build on CI if you accidentally left test.only in the source code. */
 	forbidOnly: !!process.env.CI,
 	/* Retry on CI only */
 	retries: process.env.CI ? 2 : 0,
-	/* Opt out of parallel tests on CI. */
-	workers: process.env.CI ? 1 : undefined,
+	/* Two of the runner's four cores on CI, which is where the suite stops
+	   scaling: measured over the whole suite, one worker takes 6m19, two
+	   take 4m49 and four take 4m22, and four workers is also where a
+	   second test starts flaking. */
+	workers: process.env.CI ? 2 : undefined,
 
 	// On CI we are using the github annotations + blob which will be merged by workflow to a downloadable HTML report (like the one we receive locally)
 	reporter: process.env.CI ? 'blob' : 'html',
@@ -66,6 +67,8 @@ export default defineConfig({
 
 		ctViteConfig: async () => ({
 			plugins: [
+				// Add to support multiple locales
+				(await import('./build/date-fns-locales-plugin.mts')).default(),
 				// normally added by default but we overwrite the plugins so we need to add it back manually
 				(await import('@vitejs/plugin-vue')).default(),
 				// We do have some dependencies that use node modules -> we need to polyfill

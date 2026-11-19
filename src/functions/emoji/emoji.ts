@@ -69,7 +69,7 @@ export function emojiSearch(query: string, maxResults: number = 10): object[] {
  * @param emojiOrEmojiData.id the emoji ID from emoji index. Mandatory property to modify 'frequently' array
  */
 export function emojiAddRecent(emojiOrEmojiData: EmojiData | string | null): void {
-	let emojiData: EmojiData | null = null
+	let emojiData: EmojiData | null
 
 	if (typeof emojiOrEmojiData === 'string') {
 		// If this is the first call of function - initialize EmojiIndex

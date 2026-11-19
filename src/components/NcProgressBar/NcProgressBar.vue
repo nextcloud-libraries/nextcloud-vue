@@ -57,6 +57,21 @@ import { computed } from 'vue'
 
 const props = withDefaults(defineProps<{
 	/**
+	 * The accessible label for the progressbar.
+	 */
+	ariaLabel?: string | undefined
+
+	/**
+	 * The id of the element that labels the progressbar.
+	 */
+	ariaLabelledby?: string | undefined
+
+	/**
+	 * The id of the element that describes the progressbar.
+	 */
+	ariaDescribedby?: string | undefined
+
+	/**
 	 * An integer between 0 and 100
 	 */
 	value?: number
@@ -86,6 +101,9 @@ const props = withDefaults(defineProps<{
 	 */
 	showValue?: boolean
 }>(), {
+	ariaLabel: undefined,
+	ariaLabelledby: undefined,
+	ariaDescribedby: undefined,
 	value: 0,
 	color: 'var(--color-primary-element)',
 	size: 'small',
@@ -135,10 +153,13 @@ const clickableAreaSmall = Number.parseInt(window.getComputedStyle(document.body
 <template>
 	<span
 		v-if="type === 'circular'"
-		role="progressbar"
-		:aria-valuenow="value"
+		class="progress-bar progress-bar--circular"
 		:class="{ 'progress-bar--error': error }"
-		class="progress-bar progress-bar--circular">
+		:aria-label
+		:aria-labelledby
+		:aria-describedby
+		:aria-valuenow="value"
+		role="progressbar">
 		<svg
 			:height="height"
 			:width="height">
@@ -166,10 +187,13 @@ const clickableAreaSmall = Number.parseInt(window.getComputedStyle(document.body
 		<progress
 			class="progress-bar progress-bar--linear vue"
 			:class="{ 'progress-bar--error': error }"
+			:aria-label
+			:aria-labelledby
+			:aria-describedby
 			:value
 			max="100" />
 
-		<span v-if="showValue" class="progress-bar__value">{{ value }}%</span>
+		<span v-if="showValue" aria-hidden="true" class="progress-bar__value">{{ value }}%</span>
 	</div>
 </template>
 

@@ -370,7 +370,16 @@ function filterBy(option: { subname?: string }, label: string, search: string) {
 </template>
 
 <style scoped lang="css">
-.nc-select-users :deep(.vs__selected) {
+/* Ensure sufficient height for the user avatar and status */
+.nc-select-users.vs--single :deep(.input-field__main-wrapper) {
+	--default-clickable-area: 42px;
+	/* Default clickable area + 2*4px padding of the input */
+	input {
+		padding-block: 4px !important;
+	}
+}
+
+.nc-select-users.vs--multiple :deep(.vs__selected) {
 	padding-inline: 0 5px !important;
 }
 </style>

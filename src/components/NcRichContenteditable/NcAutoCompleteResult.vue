@@ -88,11 +88,17 @@ export default {
 			default: null,
 		},
 
+		/**
+		 * The source of the bubble, e.g. "users" or "groups"
+		 */
 		source: {
 			type: String,
 			required: true,
 		},
 
+		/**
+		 * The user status of the result
+		 */
 		status: {
 			type: [Object, Array],
 			default: () => ({}),

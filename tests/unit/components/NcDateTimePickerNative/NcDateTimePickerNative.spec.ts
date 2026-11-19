@@ -64,11 +64,46 @@ describe('NcDateTimePickerNative.vue', () => {
 			},
 		})
 
+		// Visible label rendered by NcInputField, no aria-label on the input
 		expect(wrapper.find('label').text()).toBe('the label')
-		expect(wrapper.find('label').classes('hidden-visually')).toBe(false)
+		expect(wrapper.find('input').attributes('aria-label')).toBeUndefined()
 
+		// Hidden label: no visible <label>, exposed to assistive tech via aria-label
 		await wrapper.setProps({ hideLabel: true, label: 'the label' })
-		expect(wrapper.find('label').text()).toBe('the label')
-		expect(wrapper.find('label').classes('hidden-visually')).toBe(true)
+		expect(wrapper.find('label').exists()).toBe(false)
+		expect(wrapper.find('input').attributes('aria-label')).toBe('the label')
+	})
+
+	it('does not show a clear button by default', () => {
+		const wrapper = mount(NcDateTimePickerNative, {
+			props: {
+				modelValue: new Date(),
+			},
+		})
+
+		expect(wrapper.find('button[aria-label="Clear value"]').exists()).toBe(false)
+	})
+
+	it('does not show a clear button when clearable without a value', () => {
+		const wrapper = mount(NcDateTimePickerNative, {
+			props: {
+				clearable: true,
+				modelValue: null,
+			},
+		})
+
+		expect(wrapper.find('button[aria-label="Clear value"]').exists()).toBe(false)
+	})
+
+	it('clears the value with the clear button', async () => {
+		const wrapper = mount(NcDateTimePickerNative, {
+			props: {
+				clearable: true,
+				modelValue: new Date(),
+			},
+		})
+
+		await wrapper.get('button[aria-label="Clear value"]').trigger('click')
+		expect(wrapper.emitted('update:modelValue')).toEqual([[null]])
 	})
 })

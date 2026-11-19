@@ -3,6 +3,29 @@
   - SPDX-License-Identifier: AGPL-3.0-or-later
 -->
 
+<script setup lang="ts">
+import type { Slot } from 'vue'
+
+defineProps<{
+	/**
+	 * Is the list selected
+	 */
+	selection?: boolean
+
+	/**
+	 * Is the details pane shown
+	 */
+	showDetails?: boolean
+}>()
+
+defineSlots<{
+	/**
+	 * The content of the list
+	 */
+	default?: Slot
+}>()
+</script>
+
 <template>
 	<div
 		class="app-content-list"
@@ -10,26 +33,3 @@
 		<slot />
 	</div>
 </template>
-
-<script>
-export default {
-	name: 'NcAppContentList',
-	props: {
-		/**
-		 * Is the list selected
-		 */
-		selection: {
-			type: Boolean,
-			default: false,
-		},
-
-		/**
-		 * Is the details pane shown
-		 */
-		showDetails: {
-			type: Boolean,
-			default: false,
-		},
-	},
-}
-</script>

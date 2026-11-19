@@ -6,6 +6,11 @@
 // Global variables
 window._oc_webroot = ''
 
+// Simulate a logged in user, this is what `getCurrentUser()` of `@nextcloud/auth` reads
+document.head.setAttribute('data-user', 'admin')
+document.head.setAttribute('data-user-displayname', 'Administrator')
+window._oc_isadmin = true
+
 window.OC = {
 	debug: true,
 	getCurrentUser() {

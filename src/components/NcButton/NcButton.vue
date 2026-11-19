@@ -176,7 +176,7 @@ export default {
 }
 
 h5 {
-	font-weight: bold;
+	font-weight: var(--font-weight-heading, bold);
 	margin: 40px 0 20px 0;
 }
 
@@ -417,7 +417,7 @@ td.row-size {
 }
 
 .table-header {
-	font-weight: normal;
+	font-weight: var(--font-weight-default, normal);
 	color: var(--color-text-maxcontrast);
 }
 
@@ -440,7 +440,7 @@ import type { RouteLocationRaw } from 'vue-router'
 
 import { computed, inject } from 'vue'
 import { routerKey } from 'vue-router'
-import { isLegacy } from '../../utils/legacy.ts'
+import { isLegacy, isLegacy34 } from '../../utils/legacy.ts'
 import { useNcFormBox } from '../NcFormBox/useNcFormBox.ts'
 
 export type ButtonAlignment = 'start'
@@ -699,6 +699,7 @@ function onClick(event: MouseEvent) {
 				[`button-vue--${flexAlignment}`]: flexAlignment !== 'center',
 				'button-vue--reverse': isReverseAligned,
 				'button-vue--legacy': isLegacy,
+				'button-vue--legacy34': isLegacy34,
 			},
 			formBoxItemClass,
 		]"
@@ -746,12 +747,13 @@ function onClick(event: MouseEvent) {
 	display: flex;
 	align-items: center;
 	justify-content: center;
-	transition-property: color, border-color, background-color;
+	will-change: transform;
+	transition-property: color, border-color, background-color, transform;
 	transition-duration: 0.1s;
 	transition-timing-function: linear;
 	cursor: pointer;
 	font-size: var(--default-font-size);
-	font-weight: bold;
+	font-weight: var(--font-weight-element, bold);
 
 	// Setup different button sizes
 	&--size-small {
@@ -794,6 +796,8 @@ function onClick(event: MouseEvent) {
 	// TODO: add ripple effect
 	&:active:not(:disabled) {
 		background-color: var(--color-primary-element-light);
+		// TODO: add to theming with animation initiative
+		transform: scale(0.985);
 	}
 
 	&__wrapper {
@@ -847,7 +851,7 @@ function onClick(event: MouseEvent) {
 	}
 
 	&__text {
-		font-weight: bold;
+		font-weight: var(--font-weight-element, bold);
 		margin-bottom: 1px;
 		padding: 2px 0;
 		white-space: nowrap;
@@ -860,7 +864,7 @@ function onClick(event: MouseEvent) {
 	}
 
 	// Icon-only button
-	&:has(#{&}__text:empty) {
+	&:has(#{&}__text:empty):not(#{&}--wide) {
 		--button-padding: var(--button-radius);
 		line-height: 1;
 		width: var(--button-size) !important;
@@ -928,6 +932,12 @@ function onClick(event: MouseEvent) {
 
 		&:hover:not(:disabled) {
 			background-color: var(--color-background-hover);
+		}
+	}
+
+	&--tertiary:not(#{&}--legacy34) {
+		&:hover:not(:disabled) {
+			background-color: color-mix(in srgb, var(--color-primary-element) 8%, transparent);
 		}
 	}
 

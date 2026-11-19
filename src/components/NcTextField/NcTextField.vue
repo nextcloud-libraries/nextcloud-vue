@@ -157,7 +157,14 @@ import NcInputField from '../NcInputField/index.ts'
  */
 const modelValue = defineModel<string | number>('modelValue', { default: '' })
 
-const props = withDefaults(defineProps<NcInputFieldProps & {
+const props = withDefaults(defineProps<Omit<NcInputFieldProps, 'type'> & {
+	/**
+	 * The type of the input element.
+	 *
+	 * Note: date/time types are not supported here; use `NcDateTimePickerNative` instead.
+	 */
+	type?: Exclude<NcInputFieldProps['type'], 'date' | 'datetime-local' | 'month' | 'time' | 'week'>
+
 	/**
 	 * Specifies which material design icon should be used for the trailing button.
 	 */

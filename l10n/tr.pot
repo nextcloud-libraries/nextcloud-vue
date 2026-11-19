@@ -1,4 +1,3 @@
-# 
 # Translators:
 # Joas Schilling, 2025
 # Kaya Zeren <kayazeren@gmail.com>, 2026
@@ -49,6 +48,11 @@ msgstr "Herhangi bir bağlantı"
 msgid "Anything shared with the same group of people will show up here"
 msgstr "Aynı kişi grubu ile paylaşılan herşey burada görüntülenir"
 
+#. TRANSLATORS: State of the current upload - chunks of the uploaded files are
+#. being assembled into the final file
+msgid "assembling"
+msgstr "birleştiriliyor"
+
 msgid "Avatar of {displayName}"
 msgstr "{displayName} avatarı"
 
@@ -87,6 +91,9 @@ msgstr "İptal"
 
 msgid "Cancel changes"
 msgstr "Değişiklikleri iptal et"
+
+msgid "Cancel uploads"
+msgstr "Yüklemeleri iptal et"
 
 msgid "Change name"
 msgstr "Adı değiştir"
@@ -181,6 +188,9 @@ msgstr "Rahatsız etmeyin"
 msgid "Edit item"
 msgstr "Ögeyi düzenle"
 
+msgid "Edit profile"
+msgstr "Profili düzenle"
+
 msgid "Emoji picker"
 msgstr "Emoji seçici"
 
@@ -204,6 +214,9 @@ msgstr ""
 #. TRANSLATORS: Escape key on keyboard
 msgid "Escape"
 msgstr "Escape"
+
+msgid "Estimating …"
+msgstr "Öngörülüyor…"
 
 msgid "External documentation"
 msgstr "Dış belgeler"
@@ -254,6 +267,9 @@ msgstr "Artma dakikası"
 msgid "Increment seconds"
 msgstr "Artma saniyesi"
 
+msgid "Invalid date"
+msgstr "Tarih geçersiz"
+
 msgid "invisible"
 msgstr "görünmez"
 
@@ -272,6 +288,15 @@ msgstr "Diğer \"{options}\""
 #. TRANSLATORS: The button is in a loading state
 msgid "Loading …"
 msgstr "Yükleniyor…"
+
+msgid "Loading actions"
+msgstr "İşlemler yükleniyor"
+
+msgid "Loading profile"
+msgstr "Profil yükleniyor"
+
+msgid "Local time: {time}"
+msgstr "Yerel zaman: {time}"
 
 #. TRANSLATORS: A color name for RGB(45, 115, 190)
 msgid "Mariner"
@@ -305,6 +330,9 @@ msgstr "Diğer seçenekler"
 
 msgid "Neutral skin color"
 msgstr "Nötr deri rengi"
+
+msgid "New"
+msgstr "Yeni"
 
 msgid "Next"
 msgstr "Sonraki"
@@ -385,6 +413,10 @@ msgstr "Parola güvenli"
 msgid "Pause slideshow"
 msgstr "Slayt sunumunu duraklat"
 
+#. TRANSLATORS: State of the current upload - it is paused
+msgid "paused"
+msgstr "duraklatıldı"
+
 msgid "People & Body"
 msgstr "İnsanlar ve beden"
 
@@ -414,6 +446,9 @@ msgstr "Önceki ay"
 
 msgid "Previous year"
 msgstr "Önceki yıl"
+
+msgid "Profile of {user}"
+msgstr "{user} profili"
 
 msgid "Provider icon"
 msgstr "Hizmet sağlayıcı simgesi"
@@ -494,6 +529,9 @@ msgstr "Yıl seçin"
 msgid "Selected"
 msgstr "Seçilmiş"
 
+msgid "Send message"
+msgstr "İleti gönder"
+
 msgid "Settings"
 msgstr "Ayarlar"
 
@@ -528,6 +566,9 @@ msgstr "İfadeler ve duygular"
 #. TRANSLATORS: Space key on keyboard
 msgid "Space"
 msgstr "Space"
+
+msgid "Start call"
+msgstr "Çağrı başlat"
 
 msgid "Start slideshow"
 msgstr "Slayt sunumunu başlat"
@@ -581,11 +622,20 @@ msgstr "Dosyaları yükle"
 msgid "Upload folder"
 msgstr "Klasörü yükle"
 
+msgid "Upload from device"
+msgstr "Aygıttan yükle"
+
+msgid "Upload progress"
+msgstr "Yükleme ilerlemesi"
+
 msgid "Uploading …"
 msgstr "Yükleniyor…"
 
 msgid "User status: {status}"
 msgstr "Kullanıcı durumu: {status}"
+
+msgid "View profile"
+msgstr "Profili görüntüle"
 
 msgid "View team"
 msgstr "Takımı görüntüle"
@@ -599,6 +649,9 @@ msgstr "Viski"
 
 msgid "White"
 msgstr "Beyaz"
+
+msgid "Widget height"
+msgstr "Araç takımı yüksekliği"
 
 msgid "Write a message …"
 msgstr "Bir ileti yazın…"

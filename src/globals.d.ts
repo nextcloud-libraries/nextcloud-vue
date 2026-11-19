@@ -21,6 +21,7 @@ declare global {
 		}
 		// eslint-disable-next-line @typescript-eslint/no-explicit-any
 		OCP: any
+		oc_userconfig?: { avatar?: { version?: number } }
 		_nc_vue_element_id?: number
 		_nc_contacts_menu_hooks: { [id: string]: ContactsMenuAction }
 	}

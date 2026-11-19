@@ -29,6 +29,16 @@ defineOptions({ inheritAttrs: false })
  */
 const showModal = defineModel<boolean>('show', { default: true })
 
+/**
+ * Whether the slideshow is running.
+ *
+ * Bind it to start or stop the slideshow from outside, or to follow the
+ * play / pause button. It resets to `false` when the last slide is reached.
+ *
+ * @since 9.13.0
+ */
+const runSlideshow = defineModel<boolean>('slideshowRunning', { default: false })
+
 const props = withDefaults(defineProps<{
 	/**
 	 * Name to be shown with the modal
@@ -78,6 +88,8 @@ const props = withDefaults(defineProps<{
 	/**
 	 * Defines the modal size.
 	 * All sizes except 'small' change automatically to full-screen on mobile.
+	 * A 'full' modal starts its name at the leading edge, like a page title,
+	 * where the other sizes center it.
 	 */
 	size?: 'small' | 'normal' | 'large' | 'full'
 
@@ -194,10 +206,11 @@ const scopeIdAttrs = useScopeIdAttrs()
 const modalId = createElementId()
 const maskElement = useTemplateRef('mask')
 
-// Set up the focus trap
+// Set up the focus trap (handled by transition event listeners)
 let focusTrap: FocusTrap | undefined
-onMounted(() => useFocusTrap())
+// Ensure focus trap is cleared when the component is unmounted
 onUnmounted(() => clearFocusTrap())
+// and update the focus trap container elements when props change
 watch(() => props.additionalTrapElements, (elements) => {
 	if (focusTrap) {
 		focusTrap.updateContainerElements([maskElement.value!, ...elements])
@@ -212,7 +225,6 @@ const {
 } = useIntervalFn(nextSlide, toRef(() => props.slideshowDelay), { immediate: false })
 
 const animationKey = ref(0)
-const runSlideshow = ref(false)
 watchEffect(() => {
 	if (runSlideshow.value && !props.slideshowPaused) {
 		startSlideshow()
@@ -268,6 +280,13 @@ const numHeaderActions = computed(() => {
 
 	return actions
 })
+
+/**
+ * Whether the modal header is needed.
+ * Only show it when there is a title, outside close button, or header actions —
+ * otherwise the area can be used for the modal content (full height on mobile / full size).
+ */
+const hasHeader = computed(() => props.name.trim() !== '' || numHeaderActions.value > 0)
 
 // for developers we should add a warning if used with invalid props combination
 onMounted(() => {
@@ -375,9 +394,10 @@ function handleClickModalWrapper(event: MouseEvent) {
  * Add focus trap for accessibility.
  */
 async function useFocusTrap() {
-	// Don't do anything if the modal is hidden,
-	// or we have a focus trap already
-	if (!showModal.value || focusTrap) {
+	// Don't do anything if we have a focus trap already.
+	// Production builds run the enter transition on mount even when hidden by `v-show`,
+	// so a hidden modal must not trap the focus.
+	if (focusTrap || !showModal.value) {
 		return
 	}
 
@@ -393,7 +413,6 @@ async function useFocusTrap() {
 		escapeDeactivates: false,
 		setReturnFocus: props.setReturnFocus,
 	}
-
 	// Init focus trap
 	focusTrap = createFocusTrap([maskElement.value!, ...props.additionalTrapElements], options)
 	focusTrap.activate()
@@ -432,12 +451,14 @@ function clearFocusTrap() {
 				:aria-labelledby="labelId || `modal-name-${modalId}`"
 				:aria-describedby="'modal-description-' + modalId"
 				tabindex="-1">
-				<!-- Header -->
+				<!-- Header (only when there is a title, outside close button, or actions) -->
 				<transition name="fade-visibility" appear>
 					<div
+						v-if="hasHeader"
 						class="modal-header"
-						:data-theme-light="lightBackdrop"
-						:data-theme-dark="!lightBackdrop">
+						:class="{ 'modal-header--name-start': size === 'full' }"
+						:data-theme-light="lightBackdrop || undefined"
+						:data-theme-dark="!lightBackdrop || undefined">
 						<h2
 							v-if="name.trim() !== ''"
 							:id="'modal-name-' + modalId"
@@ -464,17 +485,14 @@ function clearFocusTrap() {
 								<svg
 									v-if="isPlaying"
 									:key="`${modalId}-animation-${animationKey}`"
-									class="progress-ring"
-									height="50"
-									width="50">
+									class="progress-ring">
 									<circle
 										class="progress-ring__circle"
 										stroke="white"
 										stroke-width="2"
 										fill="transparent"
-										r="15"
-										cx="25"
-										cy="25" />
+										cx="50%"
+										cy="50%" />
 								</svg>
 							</button>
 
@@ -505,7 +523,10 @@ function clearFocusTrap() {
 						class="modal-wrapper"
 						:class="[
 							`modal-wrapper--${size}`,
-							{ 'modal-wrapper--spread-navigation': spreadNavigation },
+							{
+								'modal-wrapper--spread-navigation': spreadNavigation,
+								'modal-wrapper--no-header': !hasHeader,
+							},
 						]"
 						@mousedown.self="handleClickModalWrapper">
 						<!-- Navigation button -->
@@ -620,11 +641,18 @@ function clearFocusTrap() {
 
 	// On wider screens the name can be centered
 	@media only screen and (min-width: $breakpoint-mobile) {
-		&__name {
+		&:not(.modal-header--name-start) &__name {
 			// On wider screens the name is centered, so we need to compensate for the actions to make the name really centered
 			padding-inline-start: calc(var(--header-height) * v-bind('numHeaderActions'));
 			text-align: center;
 		}
+	}
+
+	// A full size modal is a page of its own: its name starts at the leading
+	// edge like a page title, left or right with the text direction, and the
+	// actions take the other side
+	&--name-start &__name {
+		text-align: start;
 	}
 
 	.icons-menu {
@@ -689,11 +717,17 @@ function clearFocusTrap() {
 }
 
 .modal-wrapper {
+	// Space reserved for the modal header; 0 when the header is not shown
+	--modal-header-offset: var(--header-height);
 	display: flex;
 	align-items: center;
 	justify-content: center;
 	width: 100%;
 	height: 100%;
+
+	&--no-header {
+		--modal-header-offset: var(--body-container-margin);
+	}
 
 	/* Navigation buttons */
 	.prev,
@@ -776,9 +810,9 @@ function clearFocusTrap() {
 	&--full {
 		& > .modal-container {
 			width: 100%;
-			height: calc(100% - var(--header-height));
+			height: calc(100% - var(--modal-header-offset));
 			position: absolute;
-			top: var(--header-height);
+			top: var(--modal-header-offset);
 			border-radius: 0;
 		}
 	}
@@ -789,9 +823,9 @@ function clearFocusTrap() {
 			max-width: initial;
 			width: 100%;
 			max-height: initial;
-			height: calc(100% - var(--header-height));
+			height: calc(100% - var(--modal-header-offset));
 			position: absolute;
-			top: var(--header-height);
+			top: var(--modal-header-offset);
 			border-radius: 0;
 		}
 	}
@@ -839,23 +873,33 @@ function clearFocusTrap() {
 }
 
 // animated circle
-$radius: 15;
-$pi: 3.14159265358979;
-
 .modal-mask .play-pause-icons {
+	// The ring reads as the outline of the disc the button shows on hover, so
+	// it follows the size of that disc. It is deliberately not tied to
+	// --header-height: the two are set independently, and a ring that grew
+	// with the header would drift away from the disc it is drawn around.
+	--progress-ring-radius: calc(var(--default-clickable-area) / 2 + 1px);
+	--progress-ring-circumference: calc(2 * pi * var(--progress-ring-radius));
+
 	.progress-ring {
 		position: absolute;
 		top: 0;
 		inset-inline-start: 0;
+		// The circle is placed at the centre of the svg, so the svg has to
+		// match the button for it to stay centred once --header-height is
+		// anything other than the 50px it used to be
+		width: 100%;
+		height: 100%;
 		transform: rotate(-90deg);
 		.progress-ring__circle {
 			transition: 100ms stroke-dashoffset;
 			transform-origin: 50% 50%; // axis compensation
 			animation: progressring linear v-bind('cssSlideshowDelay') infinite;
 
+			r: var(--progress-ring-radius);
 			stroke-linecap: round;
-			stroke-dashoffset: $radius * 2 * $pi; // radius * 2 * PI
-			stroke-dasharray: $radius * 2 * $pi; // radius * 2 * PI
+			stroke-dashoffset: var(--progress-ring-circumference);
+			stroke-dasharray: var(--progress-ring-circumference);
 		}
 	}
 	&--paused {
@@ -871,7 +915,7 @@ $pi: 3.14159265358979;
 // keyframes get scoped too and break the animation name, we need them unscoped
 @keyframes progressring {
 	from {
-		stroke-dashoffset: $radius * 2 * $pi; // radius * 2 * PI
+		stroke-dashoffset: var(--progress-ring-circumference);
 	}
 	to {
 		stroke-dashoffset: 0;
@@ -947,8 +991,10 @@ export default {
 <template>
 	<div>
 		<NcButton @click="isOpen = true">Show Modal</NcButton>
+		<NcButton @click="isOpen = true; running = true">Show Modal and start the slideshow</NcButton>
 		<NcModal
 			v-if="isOpen"
+			v-model:slideshow-running="running"
 			close-button-outside
 			enable-slideshow
 			:has-next="page < lastPage"
@@ -959,6 +1005,7 @@ export default {
 			@close="isOpen = false">
 			<div class="modal__content" :style="{ background: currentPage.background }">
 				<p class="model__content-text">{{ currentPage.text }}</p>
+				<p class="model__content-text">{{ running ? 'Slideshow running' : 'Slideshow stopped' }}</p>
 			</div>
 		</NcModal>
 	</div>
@@ -975,6 +1022,7 @@ export default {
 	data() {
 		return {
 			isOpen: false,
+			running: false,
 			page: 0,
 			lastPage: PAGES.length - 1,
 		}
@@ -997,7 +1045,7 @@ export default {
 
 .model__content-text {
 	font-size: 16px;
-	font-weight: bold;
+	font-weight: var(--font-weight-heading, bold);
 }
 </style>
 ```

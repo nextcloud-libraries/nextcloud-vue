@@ -7,7 +7,7 @@ import type { Plugin } from 'unified'
 import type { Node, Parent } from 'unist'
 import type { TextNode } from './helpers.ts'
 
-import { SKIP, visit } from 'unist-util-visit'
+import { SKIP, visitParents } from 'unist-util-visit-parents'
 
 /**
  * Check if the given node is a literal and specifically a fenced node (inline code or code block)
@@ -20,7 +20,10 @@ function isCodeNode(node: Node): node is TextNode {
 
 export const remarkStripCode: Plugin = function() {
 	return function(tree: Node) {
-		visit(tree, isCodeNode, (node: TextNode, index?: number, parent?: Parent) => {
+		visitParents(tree, isCodeNode, (node: TextNode, ancestors: Parent[]) => {
+			const parent = ancestors.at(-1)
+			const index = parent!.children.indexOf(node)
+
 			parent!.children.splice(index!, 1, {
 				...node,
 				value: '',

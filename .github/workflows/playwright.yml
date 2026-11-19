@@ -21,26 +21,37 @@ jobs:
   playwright-tests:
     timeout-minutes: 60
     runs-on: ubuntu-latest
+    # Ships the browsers and the system libraries they need, which is the
+    # `playwright install --with-deps` step this job used to run. The tag
+    # has to match the `playwright-core` version resolved by the lockfile,
+    # or Playwright downloads a second set of browsers at runtime.
+    container:
+      image: mcr.microsoft.com/playwright:v1.62.1-noble
+    env:
+      # The steps run as root while the runner's own /github/home belongs
+      # to the image's pwuser, and Firefox refuses to launch when $HOME is
+      # owned by somebody else
+      HOME: /root
     strategy:
       fail-fast: false
       matrix:
-        shardIndex: [1, 2]
-        shardTotal: [2]
+        shardIndex: [1, 2, 3, 4]
+        shardTotal: [4]
     outputs:
       node-version: ${{ steps.versions.outputs.node-version }}
       package-manager-version: ${{ steps.versions.outputs.package-manager-version }}
 
     steps:
-    - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+    - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
       with:
         persist-credentials: false
 
     - name: Read package.json
-      uses: nextcloud-libraries/parse-package-engines-action@122ae05d4257008180a514e1ddeb0c1b9d094bdd # v0.1.0
+      uses: nextcloud-libraries/parse-package-engines-action@39fcc545a815c353dd0a3fd8fd2ef6e59fd02b92 # v0.2.0
       id: versions
 
     - name: Set up node
-      uses: actions/setup-node@53b83947a5a98c8d113130e565377fae1a50d02f # v6.3.0
+      uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
       with:
         node-version: ${{ steps.versions.outputs.node-version }}
 
@@ -50,15 +61,12 @@ jobs:
     - name: Install dependencies
       run: npm ci
 
-    - name: Install Playwright browsers
-      run: npx playwright install --with-deps
-
     - name: Run Playwright tests
       run: npm run test:component -- --shard='${{ matrix.shardIndex }}/${{ matrix.shardTotal }}'
 
     - name: Upload blob report to GitHub Actions Artifacts
       if: ${{ !cancelled() }}
-      uses: actions/upload-artifact@bbbca2ddaa5d8feaa63e36b76fdaad77386f024f # v7.0.0
+      uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
       with:
         name: blob-report-${{ matrix.shardIndex }}
         path: blob-report
@@ -71,11 +79,11 @@ jobs:
 
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+    - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
       with:
         persist-credentials: false
 
-    - uses: actions/setup-node@53b83947a5a98c8d113130e565377fae1a50d02f # v6.3.0
+    - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
       with:
         node-version: ${{ needs.playwright-tests.outputs.node-version }}
 
@@ -86,7 +94,7 @@ jobs:
       run: npm ci
 
     - name: Download blob reports from GitHub Actions Artifacts
-      uses: actions/download-artifact@3e5f45b2cfb9172054b4087a40e8e0b5a5461e7c # v8.0.1
+      uses: actions/download-artifact@9000827ccba6bdab643e8b6fd33ac0654aef8333 # v8.0.2
       with:
         path: all-blob-reports
         pattern: blob-report-*
@@ -96,7 +104,7 @@ jobs:
       run: npx playwright merge-reports --reporter html,github ./all-blob-reports
 
     - name: Upload HTML report
-      uses: actions/upload-artifact@bbbca2ddaa5d8feaa63e36b76fdaad77386f024f # v7.0.0
+      uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
       with:
         name: html-report--attempt-${{ github.run_attempt }}
         path: playwright-report

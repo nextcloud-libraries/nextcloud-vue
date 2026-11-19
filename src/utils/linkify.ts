@@ -9,13 +9,24 @@ import escapeHTML from 'escape-html'
 import { Options, tokenize } from 'linkifyjs'
 
 /**
+ * Longer strings are only escaped: linkifyjs tokenizing is quadratic for
+ * domain-like input (`a.a.a.…` takes ~4s for 32k characters).
+ */
+const MAX_LINKIFY_LENGTH = 10_000
+
+/**
  * Convert a plan text string to an HTML string with links. Expects that the
  * given strings does not contain any HTML entities. Use the linkify-html
  * interface if you need to parse HTML entities.
+ * Strings longer than 10000 characters are escaped but not linkified.
  *
  * @param str - String to linkify
  */
 export function linkifyString(str: string): string {
+	if (str.length > MAX_LINKIFY_LENGTH) {
+		return escapeHTML(str)
+	}
+
 	const options = new Options({
 		defaultProtocol: 'https',
 		target: '_blank',

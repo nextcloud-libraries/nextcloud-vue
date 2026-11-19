@@ -4,10 +4,11 @@
 -->
 
 <script setup lang="ts">
-import type { Slot } from 'vue'
+import type { ComponentPublicInstance, Slot } from 'vue'
 import type { VueClassType } from '../../utils/VueTypes.ts'
 
-import { useNcFormBox } from '../../components/NcFormBox/useNcFormBox.ts'
+import { provide, useTemplateRef } from 'vue'
+import { NC_FORM_BOX_CONTEXT_KEY, useNcFormBox } from '../../components/NcFormBox/useNcFormBox.ts'
 import { createElementId } from '../../utils/createElementId.ts'
 import { isLegacy } from '../../utils/legacy.ts'
 
@@ -18,6 +19,7 @@ const {
 	label = undefined,
 	description = undefined,
 	invertedAccent = false,
+	variant = 'secondary',
 	class: rootClasses = undefined,
 	itemClasses = undefined,
 } = defineProps<{
@@ -29,6 +31,8 @@ const {
 	description?: string
 	/** Accent on the description instead of the label */
 	invertedAccent?: boolean
+	/** Visual variant, use `error` for destructive actions. With `error`, `invertedAccent` has no visual effect */
+	variant?: 'secondary' | 'error'
 	/** Root element classes */
 	class?: VueClassType
 	/** Interactive item classes */
@@ -56,9 +60,29 @@ const slots = defineSlots<{
 }>()
 
 const { formBoxItemClass } = useNcFormBox()
+// Buttons inside a row are not rows of the box
+provide(NC_FORM_BOX_CONTEXT_KEY, { isInFormBox: false, formBoxItemClass: undefined })
+
+defineExpose({
+	focus,
+})
+
+const elementRef = useTemplateRef<HTMLElement | ComponentPublicInstance>('element')
 
 const descriptionId = createElementId()
 const hasDescription = () => !!description || !!slots.description
+
+/**
+ * Focus the interactive element
+ *
+ * @param options - Focus options
+ * @public
+ */
+function focus(options?: FocusOptions) {
+	// The tag can be a component, e.g. RouterLink
+	const element = elementRef.value instanceof HTMLElement ? elementRef.value : elementRef.value?.$el
+	element?.focus(options)
+}
 </script>
 
 <template>
@@ -70,13 +94,16 @@ const hasDescription = () => !!description || !!slots.description
 			{
 				[$style.formBoxItem_inverted]: invertedAccent && hasDescription(),
 				[$style.formBoxItem_legacy]: isLegacy,
+				[$style.formBoxItem_error]: variant === 'error',
 			},
 		]">
 		<span :class="$style.formBoxItem__content">
 			<component
 				:is="tag"
+				ref="element"
 				:class="[$style.formBoxItem__element, itemClasses]"
 				v-bind="$attrs"
+				:aria-describedby="[$attrs['aria-describedby'], hasDescription() && tag !== 'label' && descriptionId].filter(Boolean).join(' ') || undefined"
 				@click="$emit('click', $event)">
 				<slot :descriptionId>
 					{{ label || '⚠️ Label is missing' }}
@@ -100,6 +127,8 @@ const hasDescription = () => !!description || !!slots.description
 .formBoxItem {
 	--nc-form-box-item-border-width: 1px;
 	--nc-form-box-item-min-height: 40px; // Special size defined by the design
+	// TODO: add to theming with animation initiative
+	--nc-form-box-item-active-scale: 0.985;
 	--form-element-label-offset: calc(var(--border-radius-element) + var(--default-grid-baseline));
 	--form-element-label-padding: calc(var(--form-element-label-offset) - var(--nc-form-box-item-border-width));
 	// New colors we don't yet have in theming
@@ -117,7 +146,9 @@ const hasDescription = () => !!description || !!slots.description
 	border-radius: var(--border-radius-element);
 	background-color: var(--color-primary-element-extra-light);
 	color: var(--color-main-text);
-	transition-property: color, border-color, background-color;
+	font-weight: var(--font-weight-element, normal);
+	will-change: transform;
+	transition-property: color, border-color, background-color, transform;
 	transition-duration: var(--animation-quick);
 	transition-timing-function: linear;
 	-webkit-user-select: none;
@@ -138,9 +169,17 @@ const hasDescription = () => !!description || !!slots.description
 		background-color: var(--color-primary-element-extra-light-hover);
 	}
 
+	&:active:not(:disabled) {
+		transform: scale(var(--nc-form-box-item-active-scale));
+	}
+
 	&:has(:focus-visible) {
 		outline: 2px solid var(--color-main-text);
 		box-shadow: 0 0 0 4px var(--color-main-background);
+	}
+
+	&__description {
+		font-weight: var(--font-weight-default, normal);
 	}
 
 	&.formBoxItem_legacy {
@@ -155,6 +194,27 @@ const hasDescription = () => !!description || !!slots.description
 
 		.formBoxItem__description {
 			color: inherit;
+		}
+	}
+
+	&.formBoxItem_error {
+		border-color: var(--color-error-hover);
+		background-color: var(--color-error);
+		color: var(--color-error-text);
+
+		&:hover:not(:has(:disabled)) {
+			color: var(--color-error-text);
+			background-color: var(--color-error-hover);
+		}
+
+		.formBoxItem__element,
+		.formBoxItem__description {
+			color: inherit;
+		}
+
+		// Before Nextcloud 32 the error text color is a red meant for normal backgrounds
+		&.formBoxItem_legacy {
+			--color-error-text: white;
 		}
 	}
 }

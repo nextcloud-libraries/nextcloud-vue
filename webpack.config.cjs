@@ -19,13 +19,8 @@ const sassLoader = {
 	loader: 'sass-loader',
 	options: {
 		additionalData: '@use \'sass:math\'; @use \'variables\' as *; @use \'material-icons\' as *;',
-		/**
-		 * ! needed for resolve-url-loader
-		 */
-		sourceMap: true,
 		sassOptions: {
-			sourceMapContents: false,
-			includePaths: [
+			loadPaths: [
 				path.resolve(__dirname, './src/assets'),
 				path.resolve(__dirname, 'node_modules'),
 			],
@@ -53,7 +48,6 @@ webpackRules.RULE_SCSS = {
 					loader: 'css-loader',
 					options: cssLoaderOptions,
 				},
-				'resolve-url-loader',
 				sassLoader,
 			],
 		},
@@ -61,7 +55,6 @@ webpackRules.RULE_SCSS = {
 			use: [
 				'style-loader',
 				'css-loader',
-				'resolve-url-loader',
 				sassLoader,
 			],
 		},
@@ -79,14 +72,12 @@ webpackRules.RULE_CSS = {
 					loader: 'css-loader',
 					options: cssLoaderOptions,
 				},
-				'resolve-url-loader',
 			],
 		},
 		{
 			use: [
 				'style-loader',
 				'css-loader',
-				'resolve-url-loader',
 			],
 		},
 	],

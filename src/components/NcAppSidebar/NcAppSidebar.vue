@@ -41,14 +41,17 @@ Using `v-show` directly will result in usability issues due to internal focus tr
 				Search tab content
 			</NcAppSidebarTab>
 			<NcAppSidebarTab name="Settings" id="settings-tab">
-				<template #icon>
-					<IconCogOutline :size="20" />
+				<!-- The active tab uses the filled icon variant -->
+				<template #icon="{ selected }">
+					<IconCog v-if="selected" :size="20" />
+					<IconCogOutline v-else :size="20" />
 				</template>
 				Settings tab content
 			</NcAppSidebarTab>
 			<NcAppSidebarTab name="Sharing" id="share-tab">
-				<template #icon>
-					<IconShareVariantOutline :size="20" />
+				<template #icon="{ selected }">
+					<IconShareVariant v-if="selected" :size="20" />
+					<IconShareVariantOutline v-else :size="20" />
 				</template>
 				Sharing tab content
 			</NcAppSidebarTab>
@@ -58,12 +61,16 @@ Using `v-show` directly will result in usability issues due to internal focus tr
 
 <script>
 	import IconMagnify from 'vue-material-design-icons/Magnify.vue'
+	import IconCog from 'vue-material-design-icons/Cog.vue'
 	import IconCogOutline from 'vue-material-design-icons/CogOutline.vue'
+	import IconShareVariant from 'vue-material-design-icons/ShareVariant.vue'
 	import IconShareVariantOutline from 'vue-material-design-icons/ShareVariantOutline.vue'
 
 	export default {
 		components: {
 			IconMagnify,
+			IconCog,
+			IconShareVariant,
 			IconCogOutline,
 			IconShareVariantOutline,
 		},
@@ -138,14 +145,16 @@ Single tab is rendered without navigation, but it is possible to force it.
 				Search tab content
 			</NcAppSidebarTab>
 			<NcAppSidebarTab v-if="showTabs[1]" name="Settings" id="settings-tab">
-				<template #icon>
-					<IconCogOutline :size="20" />
+				<template #icon="{ selected }">
+					<IconCog v-if="selected" :size="20" />
+					<IconCogOutline v-else :size="20" />
 				</template>
 				Settings
 			</NcAppSidebarTab>
 			<NcAppSidebarTab v-if="showTabs[2]" name="Sharing" id="share-tab">
-				<template #icon>
-					<IconShareVariantOutline :size="20" />
+				<template #icon="{ selected }">
+					<IconShareVariant v-if="selected" :size="20" />
+					<IconShareVariantOutline v-else :size="20" />
 				</template>
 				Sharing tab content
 			</NcAppSidebarTab>
@@ -155,13 +164,17 @@ Single tab is rendered without navigation, but it is possible to force it.
 
 <script>
 	import IconMagnify from 'vue-material-design-icons/Magnify.vue'
+	import IconCog from 'vue-material-design-icons/Cog.vue'
 	import IconCogOutline from 'vue-material-design-icons/CogOutline.vue'
+	import IconShareVariant from 'vue-material-design-icons/ShareVariant.vue'
 	import IconShareVariantOutline from 'vue-material-design-icons/ShareVariantOutline.vue'
 
 	export default {
 		components: {
 			IconMagnify,
+			IconCog,
 			IconCogOutline,
+			IconShareVariant,
 			IconShareVariantOutline,
 		},
 		provide() {
@@ -228,14 +241,16 @@ To customize the order of tabs, ``order`` prop can be used on child components.
 				Search tab content
 			</NcAppSidebarTab>
 			<NcAppSidebarTab name="Settings" id="settings-tab" :order="2">
-				<template #icon>
-					<IconCogOutline :size="20" />
+				<template #icon="{ selected }">
+					<IconCog v-if="selected" :size="20" />
+					<IconCogOutline v-else :size="20" />
 				</template>
 				Settings
 			</NcAppSidebarTab>
 			<NcAppSidebarTab name="Sharing" id="share-tab" :order="1">
-				<template #icon>
-					<IconShareVariantOutline :size="20" />
+				<template #icon="{ selected }">
+					<IconShareVariant v-if="selected" :size="20" />
+					<IconShareVariantOutline v-else :size="20" />
 				</template>
 				Sharing tab content
 			</NcAppSidebarTab>
@@ -245,13 +260,17 @@ To customize the order of tabs, ``order`` prop can be used on child components.
 
 <script>
 	import IconMagnify from 'vue-material-design-icons/Magnify.vue'
+	import IconCog from 'vue-material-design-icons/Cog.vue'
 	import IconCogOutline from 'vue-material-design-icons/CogOutline.vue'
+	import IconShareVariant from 'vue-material-design-icons/ShareVariant.vue'
 	import IconShareVariantOutline from 'vue-material-design-icons/ShareVariantOutline.vue'
 
 	export default {
 		components: {
 			IconMagnify,
+			IconCog,
 			IconCogOutline,
+			IconShareVariant,
 			IconShareVariantOutline,
 		},
 		provide() {
@@ -1507,7 +1526,7 @@ body {
 // When AppSidebar is animation is active - also apply transition for the toggle button offset
 body:has(.app-sidebar.slide-right-enter-active),
 body:has(.app-sidebar.slide-right-leave-active) {
-	transition: --app-sidebar-offset var(--animation-quick);
+	transition: --app-sidebar-offset var(--animation-slow);
 }
 
 body:has(.app-sidebar__toggle) {
@@ -1731,7 +1750,7 @@ $desc-height: $desc-name-height + $desc-subname-height;
 							margin: 0;
 							padding: $desc-input-padding;
 							font-size: 20px;
-							font-weight: bold;
+							font-weight: var(--font-weight-heading, bold);
 						}
 					}
 
@@ -1794,7 +1813,7 @@ $desc-height: $desc-name-height + $desc-subname-height;
 
 .slide-right-leave-active,
 .slide-right-enter-active {
-	transition-duration: var(--animation-quick);
+	transition-duration: var(--animation-slow);
 	transition-property: margin-inline-end;
 }
 

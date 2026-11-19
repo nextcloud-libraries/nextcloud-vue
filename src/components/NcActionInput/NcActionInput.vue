@@ -128,6 +128,7 @@ For the `NcSelect` component, all events will be passed through. Please see the 
 			:class="{
 				'action-input-picker--disabled': disabled,
 				'action-input--visible-label': labelOutside && label,
+				'action-input--tight-label': isNativePicker || isMultiselectType,
 			}"
 			@mouseleave="onLeave">
 			<span class="action-input__icon-wrapper">
@@ -240,7 +241,7 @@ For the `NcSelect` component, all events will be passed through. Please see the 
 							:disabled="disabled"
 							:inputClass="{ focusable: isFocusable }"
 							:type="type"
-							trailingButtonIcon="arrowRight"
+							trailingButtonIcon="arrowEnd"
 							:trailingButtonLabel="trailingButtonLabel"
 							:showTrailingButton="showTrailingButton && !disabled"
 							v-bind="$attrs"
@@ -531,11 +532,12 @@ $input-margin: 4px;
 	background-color: transparent;
 	box-shadow: none;
 
-	font-weight: normal;
+	font-weight: var(--font-weight-default, normal);
 
 	&__icon-wrapper {
 		display: flex;
-		align-self: center;
+		align-self: flex-start;
+		margin-top: var(--default-grid-baseline);
 		align-items: center;
 		justify-content: center;
 
@@ -548,6 +550,12 @@ $input-margin: 4px;
 				vertical-align: middle;
 			}
 		}
+	}
+
+	// NcSelect and the native date picker render their own label with a tighter
+	// line-height. Extra margin drops the icon too low, so omitting it there.
+	&--tight-label &__icon-wrapper {
+		margin-top: 0;
 	}
 
 	& > span {

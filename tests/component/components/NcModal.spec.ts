@@ -111,3 +111,112 @@ test('Close button is visible when content is scrolled', async ({ mount, page })
 	await expect(dialog.getByRole('button', { name: 'Close' })).toBeVisible()
 	await expect(dialog.getByRole('button', { name: 'Close' })).toBeInViewport()
 })
+
+test('Modal focus trap works correctly', async ({ mount, page }) => {
+	await mount(NcModal, {
+		props: {
+			show: true,
+			size: 'small',
+			name: 'Focus trap test modal',
+		},
+		slots: {
+			default: '<button>Test Button</button>',
+		},
+	})
+
+	const dialog = page.getByRole('dialog', { name: 'Focus trap test modal' })
+	await expect(dialog).toBeVisible()
+
+	const testButton = dialog.getByRole('button', { name: 'Test Button' })
+	const closeButton = dialog.getByRole('button', { name: 'Close' })
+
+	// first content child is focused by default
+	await expect(testButton).toBeFocused()
+
+	// tab should move focus to the close button
+	await page.keyboard.press('Tab')
+	await expect(closeButton).toBeFocused()
+
+	// due to focus-trap its now back to the first focusable element
+	await page.keyboard.press('Tab')
+	await expect(testButton).toBeFocused()
+})
+
+test('Slideshow progress ring is centred on the play button', async ({ mount, page }) => {
+	await mount(NcModal, {
+		props: {
+			show: true,
+			name: 'My modal',
+			enableSlideshow: true,
+			hasNext: true,
+		},
+		slots: {
+			default: 'Text',
+		},
+	})
+
+	// The ring used to be a fixed 50x50 box, which only lined up while the
+	// header was 50px tall. The bundled styles here still say 50, so ask for
+	// the height Nextcloud actually uses.
+	await page.addStyleTag({ content: '.modal-header { --header-height: 44px !important; }' })
+
+	await page.locator('.play-pause-icons').click()
+	await expect(page.locator('.progress-ring')).toBeVisible()
+
+	const measured = await page.evaluate(() => {
+		const box = (selector: string) => document.querySelector(selector)!.getBoundingClientRect()
+		const centre = (selector: string) => {
+			const rect = box(selector)
+			return [Math.round(rect.x + rect.width / 2), Math.round(rect.y + rect.height / 2)]
+		}
+		return {
+			buttonCentre: centre('.play-pause-icons'),
+			ringCentre: centre('.progress-ring__circle'),
+			ringWidth: Math.round(box('.progress-ring__circle').width),
+			hoverDiscWidth: Math.round(box('.play-pause-icons__icon').width),
+		}
+	})
+
+	expect(measured.ringCentre).toEqual(measured.buttonCentre)
+	// The ring reads as the outline of the disc the button shows on hover,
+	// so it has to sit outside it rather than cut across it
+	expect(measured.ringWidth).toBeGreaterThan(measured.hoverDiscWidth)
+})
+
+test.describe('Full size modal header', () => {
+	for (const dir of ['ltr', 'rtl'] as const) {
+		test(`starts the name at the leading edge, actions on the other side (${dir})`, async ({ mount, page }) => {
+			await page.evaluate((direction) => {
+				document.documentElement.dir = direction
+			}, dir)
+			await mount(NcModal, {
+				props: {
+					show: true,
+					name: 'photo.jpg',
+					size: 'full',
+				},
+				slots: {
+					default: 'Content',
+				},
+			})
+
+			const viewport = page.viewportSize()!
+			const name = await page.getByRole('heading', { name: 'photo.jpg' }).evaluate((heading) => {
+				// Where the text itself sits, not the box that stretches across
+				const range = document.createRange()
+				range.selectNodeContents(heading)
+				const { left, right } = range.getBoundingClientRect()
+				return { left, right }
+			})
+			const close = await page.getByRole('button', { name: 'Close' }).boundingBox()
+
+			if (dir === 'ltr') {
+				expect(name.left).toBeLessThan(viewport.width / 4)
+				expect(close!.x).toBeGreaterThan(viewport.width / 2)
+			} else {
+				expect(name.right).toBeGreaterThan(viewport.width * 3 / 4)
+				expect(close!.x).toBeLessThan(viewport.width / 2)
+			}
+		})
+	}
+})

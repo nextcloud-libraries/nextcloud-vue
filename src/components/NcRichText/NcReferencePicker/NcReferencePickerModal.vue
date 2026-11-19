@@ -41,6 +41,7 @@
 				:focusOnCreate="focusOnCreate"
 				@providerSelected="onProviderSelect"
 				@submit="onSubmit"
+				@pick="onPick"
 				@cancel="onCancel" />
 		</div>
 	</NcModal>
@@ -96,6 +97,7 @@ export default {
 	emits: [
 		'cancel',
 		'submit',
+		'pick',
 	],
 
 	data() {
@@ -152,10 +154,15 @@ export default {
 			this.$emit('submit', value)
 		},
 
+		onPick(value) {
+			this.show = false
+			this.$emit('pick', value)
+		},
+
 		onProviderSelect(provider) {
 			this.selectedProvider = provider
 			// provider was deselected and we started with an inital one: just close the modal
-			if (provider === null && this.initialProvider !== null) {
+			if (provider === null && this.initialProvider !== null && this.show) {
 				this.onCancel()
 			}
 		},

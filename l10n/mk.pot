@@ -1,11 +1,10 @@
-# 
 # Translators:
 # Joas Schilling, 2025
-# Сашко Тодоров <sasetodorov@gmail.com>, 2025
+# Сашко Тодоров <sasetodorov@gmail.com>, 2026
 # 
 msgid ""
 msgstr ""
-"Last-Translator: Сашко Тодоров <sasetodorov@gmail.com>, 2025\n"
+"Last-Translator: Сашко Тодоров <sasetodorov@gmail.com>, 2026\n"
 "Language-Team: Macedonian (https://app.transifex.com/nextcloud/teams/64236/mk/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Language: mk\n"
@@ -49,6 +48,11 @@ msgstr "Секој линк"
 msgid "Anything shared with the same group of people will show up here"
 msgstr "Сè што е споделено со истата група луѓе ќе се појави овде"
 
+#. TRANSLATORS: State of the current upload - chunks of the uploaded files are
+#. being assembled into the final file
+msgid "assembling"
+msgstr "составување"
+
 msgid "Avatar of {displayName}"
 msgstr "Аватар на {displayName}"
 
@@ -87,6 +91,9 @@ msgstr "Откажи"
 
 msgid "Cancel changes"
 msgstr "Откажи ги промените"
+
+msgid "Cancel uploads"
+msgstr "Отажи прикачување"
 
 msgid "Change name"
 msgstr "Промени име"
@@ -133,6 +140,12 @@ msgstr "Потврди ги промените"
 msgid "Connect items to a project to make them easier to find"
 msgstr "Поврзете ги елементите со проект за да биде полесно да се најдат"
 
+msgid "Copied"
+msgstr "Копирано"
+
+msgid "Copy to clipboard"
+msgstr "Копирај во клипбоард"
+
 #. TRANSLATORS: Ctrl key on keyboard (Windows/Linux)
 msgid "Ctrl"
 msgstr "Ctrl"
@@ -175,6 +188,9 @@ msgstr "не вознемирувај"
 msgid "Edit item"
 msgstr "Уреди"
 
+msgid "Edit profile"
+msgstr "Уреди профил"
+
 msgid "Emoji picker"
 msgstr "Избор на emoji"
 
@@ -198,6 +214,9 @@ msgstr ""
 #. TRANSLATORS: Escape key on keyboard
 msgid "Escape"
 msgstr "Esc"
+
+msgid "Estimating …"
+msgstr "Проценување ..."
 
 msgid "External documentation"
 msgstr "Надворешна документација"
@@ -248,11 +267,17 @@ msgstr "Зголеми минути"
 msgid "Increment seconds"
 msgstr "Зголеми секунди"
 
+msgid "Invalid date"
+msgstr "Невалиден датум"
+
 msgid "invisible"
 msgstr "невидливо"
 
 msgid "Keyboard navigation help"
 msgstr "Навигација со тастатура"
+
+msgid "Keyboard shortcuts"
+msgstr "Кратенки со тастатура"
 
 msgid "Light skin tone"
 msgstr "Светла кожа"
@@ -263,6 +288,15 @@ msgstr "Вчитај повеќе \"{options}\""
 #. TRANSLATORS: The button is in a loading state
 msgid "Loading …"
 msgstr "Вчитување …"
+
+msgid "Loading actions"
+msgstr "Вчитување акции"
+
+msgid "Loading profile"
+msgstr "Вчитување профил"
+
+msgid "Local time: {time}"
+msgstr "Локално време: {time}"
 
 #. TRANSLATORS: A color name for RGB(45, 115, 190)
 msgid "Mariner"
@@ -296,6 +330,9 @@ msgstr "Повеќе опции"
 
 msgid "Neutral skin color"
 msgstr "Неутрална боја на кожа"
+
+msgid "New"
+msgstr "Нова"
 
 msgid "Next"
 msgstr "Следно"
@@ -376,6 +413,10 @@ msgstr "Лозинката е безбедна"
 msgid "Pause slideshow"
 msgstr "Пузирај слајдшоу"
 
+#. TRANSLATORS: State of the current upload - it is paused
+msgid "paused"
+msgstr "паузирано"
+
 msgid "People & Body"
 msgstr "Луѓе & Тело"
 
@@ -384,6 +425,15 @@ msgstr "Избери"
 
 msgid "Pick an emoji"
 msgstr "Избери емотикон"
+
+msgid "Pick file"
+msgstr "Избери датотека"
+
+msgid "Pick files"
+msgstr "Избери датотеки"
+
+msgid "Pick folder"
+msgstr "Избери папка"
 
 msgid "Please choose a date"
 msgstr "Избери датум"
@@ -396,6 +446,9 @@ msgstr "Предходен месец"
 
 msgid "Previous year"
 msgstr "Предходна година"
+
+msgid "Profile of {user}"
+msgstr "Профил на {user}"
 
 msgid "Provider icon"
 msgstr "Икона на давател"
@@ -431,7 +484,7 @@ msgstr "Барај…"
 msgid "Search emoji"
 msgstr "Барај emoji"
 
-msgid "Search for timezone"
+msgid "Search for time zone"
 msgstr "Барај временска зона"
 
 msgid "Search results"
@@ -476,6 +529,9 @@ msgstr "Избери година"
 msgid "Selected"
 msgstr "Избрано"
 
+msgid "Send message"
+msgstr "Испрати порака"
+
 msgid "Settings"
 msgstr "Параметри"
 
@@ -511,6 +567,9 @@ msgstr "Смешковци & Емотикони"
 msgid "Space"
 msgstr "Празно место"
 
+msgid "Start call"
+msgstr "Започни повик"
+
 msgid "Start slideshow"
 msgstr "Стартувај слајдшоу"
 
@@ -533,7 +592,7 @@ msgstr "Tab"
 msgid "Time picker"
 msgstr "Избирач на време"
 
-msgid "Timezone"
+msgid "Time zone"
 msgstr "Временска зона"
 
 msgid "Toggle overlay"
@@ -554,8 +613,29 @@ msgstr "Неможе да се пронајде групата"
 msgid "Undo changes"
 msgstr "Врати ги промените"
 
+msgid "Upload file"
+msgstr "Прикачи датотека"
+
+msgid "Upload files"
+msgstr "Прикачи датотеки"
+
+msgid "Upload folder"
+msgstr "Прикачи папка"
+
+msgid "Upload from device"
+msgstr "Прикачи од уред"
+
+msgid "Upload progress"
+msgstr "Прогрес на прикачување"
+
+msgid "Uploading …"
+msgstr "Прикачување …"
+
 msgid "User status: {status}"
 msgstr "Статус: {status}"
+
+msgid "View profile"
+msgstr "Прегледај профил"
 
 msgid "View team"
 msgstr "Прикажи тим"
@@ -569,6 +649,9 @@ msgstr "Виски"
 
 msgid "White"
 msgstr "Бела"
+
+msgid "Widget height"
+msgstr "Висина на виџетот"
 
 msgid "Write a message …"
 msgstr "Напиши порака …"

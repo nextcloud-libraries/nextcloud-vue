@@ -3,39 +3,23 @@
  * SPDX-License-Identifier: AGPL-3.0-or-later
  */
 
+import type { Node, Parent } from 'unist'
 import type { Router } from 'vue-router'
 
 import { getBaseUrl, getRootUrl } from '@nextcloud/router'
 import { u } from 'unist-builder'
-import { SKIP, visit } from 'unist-util-visit'
-import { defineComponent, h } from 'vue'
+import { SKIP, visitParents } from 'unist-util-visit-parents'
+import NcRichTextExternalLink from './NcRichTextExternalLink.vue'
 import { logger } from '../../utils/logger.ts'
 import { URL_PATTERN_AUTOLINK } from './helpers.js'
 
-const NcLink = defineComponent({
-	name: 'NcLink',
-	props: {
-		href: {
-			type: String,
-			required: true,
-		},
-	},
-	render() {
-		return h('a', {
-			href: this.href,
-			rel: 'noopener noreferrer',
-			target: '_blank',
-			class: 'rich-text--external-link',
-		}, [this.href.trim()])
-	},
-})
-
 /**
+ * Remark plugin to autolink URLs in text nodes.
  *
- * @param root0
- * @param root0.autolink
- * @param root0.useMarkdown
- * @param root0.useExtendedMarkdown
+ * @param options - Options for the plugin
+ * @param options.autolink - Whether to enable autolinking of URLs
+ * @param options.useMarkdown - Whether to use markdown parsing
+ * @param options.useExtendedMarkdown - Whether to use extended markdown parsing
  */
 export function remarkAutolink({ autolink, useMarkdown, useExtendedMarkdown }) {
 	return function(tree) {
@@ -45,13 +29,19 @@ export function remarkAutolink({ autolink, useMarkdown, useExtendedMarkdown }) {
 			return
 		}
 
-		visit(tree, (node) => node.type === 'text', (node, index, parent) => {
-			let parsed = parseUrl(node.value)
-			if (typeof parsed === 'string') {
-				parsed = [u('text', parsed)]
-			} else {
-				parsed = parsed
-					.map((n) => {
+		visitParents(tree, (node) => node.type === 'text', (node, ancestors: Parent[]) => {
+			// Do not autolink text already inside a link node
+			if (ancestors.some((ancestor) => ancestor.type === 'link' || ancestor.type === 'linkReference')) {
+				return
+			}
+
+			const parent = ancestors.at(-1)
+			const index = parent!.children.indexOf(node) ?? 0
+
+			const parsed = parseUrl(node.value)
+			const parsedNodes: Node[] = (typeof parsed === 'string')
+				? [u('text', parsed)]
+				: parsed.map((n) => {
 						if (typeof n === 'string') {
 							return u('text', n)
 						}
@@ -60,19 +50,19 @@ export function remarkAutolink({ autolink, useMarkdown, useExtendedMarkdown }) {
 							url: n.props.href,
 						}, [u('text', n.props.href)])
 					})
-					.filter((x) => x)
-					.flat()
-			}
+						.filter((x) => x)
+						.flat()
 
-			parent.children.splice(index, 1, ...parsed)
-			return [SKIP, (index ?? 0) + parsed.length]
+			parent!.children.splice(index, 1, ...parsedNodes)
+			return [SKIP, index + parsedNodes.length]
 		})
 	}
 }
 
 /**
+ * Parses a text and returns either an array of text nodes and link nodes or the original text if no links were found.
  *
- * @param text
+ * @param text - The text to parse
  */
 export function parseUrl(text: string) {
 	let match = URL_PATTERN_AUTOLINK.exec(text)
@@ -93,7 +83,7 @@ export function parseUrl(text: string) {
 			textAfter = lastChar
 		}
 		list.push(textBefore)
-		list.push({ component: NcLink, props: { href } })
+		list.push({ component: NcRichTextExternalLink, props: { href: href.trim(), decorateExternal: true } })
 		if (textAfter) {
 			list.push(textAfter)
 		}

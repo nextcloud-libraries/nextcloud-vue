@@ -3,9 +3,10 @@
  * SPDX-License-Identifier: AGPL-3.0-or-later
  */
 
-import { mount } from '@vue/test-utils'
-import { describe, expect, it } from 'vitest'
+import { flushPromises, mount } from '@vue/test-utils'
+import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
 import NcModal from '../../../../src/components/NcModal/NcModal.vue'
+import { getTrapStack } from '../../../../src/utils/focusTrap.ts'
 
 describe('NcModal', () => {
 	it('closes on click outside without `noClose`', async () => {
@@ -40,5 +41,119 @@ describe('NcModal', () => {
 		await wrapper.find('.modal-wrapper').trigger('mousedown')
 		// One emit('update:show', false)
 		expect(wrapper.emitted('update:show')).toEqual(undefined)
+	})
+
+	describe('focus trap', () => {
+		// Production builds run the enter transition on mount regardless of `v-show`
+		const transition = {
+			emits: ['afterEnter'],
+			mounted() {
+				this.$emit('afterEnter')
+			},
+			render() {
+				return this.$slots.default()
+			},
+		}
+
+		afterEach(() => {
+			getTrapStack().splice(0)
+		})
+
+		it('is not activated while the modal is hidden', async () => {
+			mount(NcModal, { props: { container: null, name: 'modal', show: false }, global: { stubs: { transition } } })
+			await flushPromises()
+			expect(getTrapStack()).toHaveLength(0)
+		})
+
+		it('is activated when the modal is shown', async () => {
+			mount(NcModal, { props: { container: null, name: 'modal', show: true }, global: { stubs: { transition } } })
+			await flushPromises()
+			expect(getTrapStack()).toHaveLength(1)
+		})
+	})
+
+	describe('the name in the header', () => {
+		// A full size modal is a page of its own, titled like one: from the
+		// leading edge, which `text-align: start` follows in RTL
+		it('starts at the leading edge in a full size modal', () => {
+			const wrapper = mount(NcModal, { props: { container: null, name: 'photo.jpg', size: 'full' } })
+			expect(wrapper.find('.modal-header').classes()).toContain('modal-header--name-start')
+		})
+
+		it('stays centered in a smaller one', () => {
+			const wrapper = mount(NcModal, { props: { container: null, name: 'photo.jpg', size: 'large' } })
+			expect(wrapper.find('.modal-header').classes()).not.toContain('modal-header--name-start')
+		})
+	})
+
+	// The server's theme selectors match on presence, so a `false` value
+	// would still pull in the other theme
+	describe('the header theme', () => {
+		it.each([
+			[false, 'data-theme-dark', 'data-theme-light'],
+			[true, 'data-theme-light', 'data-theme-dark'],
+		])('with `lightBackdrop` %s is only %s', (lightBackdrop, set, unset) => {
+			const wrapper = mount(NcModal, { props: { container: null, name: 'modal', lightBackdrop } })
+			const header = wrapper.find('.modal-header')
+			expect(header.attributes()).toHaveProperty(set)
+			expect(header.attributes()).not.toHaveProperty(unset)
+		})
+	})
+
+	describe('slideshow', () => {
+		const props = { container: null, name: 'modal', enableSlideshow: true, hasNext: true, slideshowDelay: 100 }
+
+		beforeEach(() => {
+			vi.useFakeTimers()
+		})
+
+		afterEach(() => {
+			vi.useRealTimers()
+		})
+
+		it('does not run unless started', async () => {
+			const wrapper = mount(NcModal, { props })
+
+			await vi.advanceTimersByTimeAsync(250)
+			expect(wrapper.emitted('next')).toBe(undefined)
+			expect(wrapper.emitted('update:slideshowRunning')).toBe(undefined)
+		})
+
+		it('runs when `slideshowRunning` is bound to true', async () => {
+			const wrapper = mount(NcModal, { props: { ...props, slideshowRunning: true } })
+
+			await vi.advanceTimersByTimeAsync(250)
+			expect(wrapper.emitted('next')).toHaveLength(2)
+		})
+
+		it('stops when `slideshowRunning` is set to false', async () => {
+			const wrapper = mount(NcModal, { props: { ...props, slideshowRunning: true } })
+
+			await vi.advanceTimersByTimeAsync(150)
+			expect(wrapper.emitted('next')).toHaveLength(1)
+
+			await wrapper.setProps({ slideshowRunning: false })
+			await vi.advanceTimersByTimeAsync(250)
+			expect(wrapper.emitted('next')).toHaveLength(1)
+		})
+
+		it('reports the play / pause button through `update:slideshowRunning`', async () => {
+			const wrapper = mount(NcModal, { props })
+
+			await wrapper.find('.play-pause-icons').trigger('click')
+			expect(wrapper.emitted('update:slideshowRunning')).toEqual([[true]])
+
+			await wrapper.find('.play-pause-icons').trigger('click')
+			expect(wrapper.emitted('update:slideshowRunning')).toEqual([[true], [false]])
+		})
+
+		it('reports the stop on the last slide', async () => {
+			const wrapper = mount(NcModal, { props: { ...props, slideshowRunning: true } })
+
+			await wrapper.setProps({ hasNext: false })
+			await vi.advanceTimersByTimeAsync(150)
+			expect(wrapper.emitted('next')).toBe(undefined)
+			expect(wrapper.emitted('update:slideshowRunning')).toEqual([[false]])
+		})
 	})
 })

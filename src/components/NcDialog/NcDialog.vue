@@ -545,7 +545,7 @@ const modalProps = computed(() => ({
 <style lang="scss">
 /** When having the small dialog style we override the modal styling so dialogs look more dialog like */
 @media only screen and (max-width: $breakpoint-small-mobile) {
-	.dialog__modal .modal-wrapper--small .modal-container {
+	.dialog__modal .modal-wrapper.modal-wrapper--small .modal-container {
 		width: fit-content;
 		height: unset;
 		max-height: 90%;
@@ -620,11 +620,13 @@ const modalProps = computed(() => ({
 		font-size: 21px;
 
 		text-align: center;
-		height: fit-content;
-		min-height: var(--default-clickable-area);
-		line-height: var(--default-clickable-area);
+		line-height: var(--default-line-height);
+		// Center the first line with the close button
+		padding-block: calc((var(--default-clickable-area) - var(--default-line-height) * 1em) / 2);
 		overflow-wrap: break-word;
 		margin-block: 0 12px;
+		// Keep space for the close button on both sides, so long names wrap and stay centered
+		margin-inline: calc(var(--default-clickable-area) + 2 * var(--default-grid-baseline));
 	}
 
 	&__content {
@@ -664,7 +666,7 @@ const modalProps = computed(() => ({
 	// Ensure the dialog name does not interfere with the close button
 	.dialog__name {
 		text-align: start;
-		margin-inline-end: var(--default-clickable-area);
+		margin-inline-start: 0;
 	}
 }
 </style>

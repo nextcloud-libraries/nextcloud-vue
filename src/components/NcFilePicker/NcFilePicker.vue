@@ -129,6 +129,7 @@ defineSlots<{
 
 defineExpose({
 	reset,
+	triggerPickFiles,
 })
 
 const formElement = useTemplateRef('form')
@@ -256,6 +257,7 @@ function reset() {
 			:accept="accept?.join(', ')"
 			aria-hidden="true"
 			class="hidden-visually"
+			tabindex="-1"
 			:multiple
 			type="file"
 			@change="onPick">

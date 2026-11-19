@@ -28,6 +28,7 @@ module.exports = async () => {
 		require: [
 			path.join(__dirname, 'styleguide/window.js'),
 			path.join(__dirname, 'styleguide/global.requires.js'),
+			path.join(__dirname, 'styleguide/scrollToHash.js'),
 			path.join(__dirname, 'styleguide/assets/icons.css'),
 			!process.env.NEXTCLOUD_LEGACY
 				? path.join(__dirname, 'styleguide/assets/additional.css')
@@ -63,6 +64,13 @@ module.exports = async () => {
 			resolve: {
 				alias: {
 					vue$: 'vue/dist/vue.esm-browser.js',
+				},
+				byDependency: {
+					// The code of the documentation examples is transpiled to CommonJS,
+					// so without the `import` condition ESM only packages - like `@nextcloud/files` - cannot be imported by them
+					commonjs: {
+						conditionNames: ['require', 'import', 'module', 'browser', 'default'],
+					},
 				},
 			},
 		}),
@@ -205,7 +213,8 @@ module.exports = async () => {
 					'src/components/NcSettings*/*.vue',
 					'src/components/NcTextArea/*.vue',
 					'src/components/NcUserBubble/NcUserBubbleDiv.vue',
-					'src/components/NcFormBox/NcFormBoxItem.vue',
+					'src/components/NcFormBox*/*.vue',
+					'src/components/NcFormGroup/NcFormGroup.vue',
 					'src/components/NcIconToggleSwitch/NcIconToggleSwitch.vue',
 				],
 				sections: [
@@ -284,8 +293,17 @@ module.exports = async () => {
 					{
 						name: 'NcFields',
 						components: [
-							'src/components/Nc*Field/*.vue',
+							'src/components/Nc!(FormBox)*Field/*.vue',
 							'src/components/NcTextArea/*.vue',
+						],
+					},
+					{
+						name: 'NcFormBox',
+						components: [
+							// Put FormBox component first
+							'src/components/NcFormBox/NcFormBox.vue',
+							'src/components/NcFormBox[A-Z]*/*.vue',
+							'src/components/NcFormGroup/NcFormGroup.vue',
 						],
 					},
 					{
