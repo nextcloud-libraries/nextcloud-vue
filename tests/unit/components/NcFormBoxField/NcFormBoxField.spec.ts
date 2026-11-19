@@ -304,6 +304,19 @@ describe('NcFormBoxField', () => {
 		expect(wrapper.props('editing')).toBe(true)
 	})
 
+	it('closes an empty password when leaving it', async () => {
+		const wrapper = mountField({ editing: true, type: 'password', modelValue: '' })
+		await wrapper.find('input').trigger('focusout')
+		expect(wrapper.emitted('submit')).toBeUndefined()
+		expect(wrapper.props('editing')).toBe(false)
+	})
+
+	it('keeps an empty password open when focus moves to its submit button', async () => {
+		const wrapper = mountField({ editing: true, type: 'password', modelValue: '' })
+		await wrapper.find('input').trigger('focusout', { relatedTarget: wrapper.find('button[aria-label="Submit"]').element })
+		expect(wrapper.props('editing')).toBe(true)
+	})
+
 	it('submits a password with the submit button', async () => {
 		const wrapper = mountField({ editing: true, type: 'password', modelValue: '' })
 		await wrapper.find('input').setValue('secret')
