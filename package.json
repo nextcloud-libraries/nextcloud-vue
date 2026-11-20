@@ -147,6 +147,7 @@
     "gettext-parser": "^10.0.0",
     "glob": "^14.0.6",
     "jsdom": "^31.0.1",
+    "postcss": "^8.5.33",
     "remark-gfm": "^4.0.1",
     "sass": "^1.108.2",
     "stylelint": "^17.16.0",

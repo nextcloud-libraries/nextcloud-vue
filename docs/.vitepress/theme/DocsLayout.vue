@@ -7,6 +7,7 @@
 import { useData, useRouter } from 'vitepress'
 import DefaultTheme from 'vitepress/theme'
 import { onMounted, watch } from 'vue'
+import NcVersionSelect from './NcVersionSelect.vue'
 
 const { isDark } = useData()
 const router = useRouter()
@@ -56,5 +57,12 @@ function resolveComponentName(name: string): string {
 </script>
 
 <template>
-	<DefaultTheme.Layout />
+	<DefaultTheme.Layout>
+		<template #nav-bar-content-after>
+			<NcVersionSelect />
+		</template>
+		<template #nav-screen-content-after>
+			<NcVersionSelect />
+		</template>
+	</DefaultTheme.Layout>
 </template>

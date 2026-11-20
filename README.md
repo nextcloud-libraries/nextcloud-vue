@@ -97,10 +97,19 @@ Run the development server with component documentation and playground:
 npm run docs:dev
 ```
 
-You can also test if the design still works with a legacy Nextcloud version by setting `NEXTCLOUD_LEGACY` ENV variable.
+The Nextcloud version simulated by the examples can be selected in the header of the documentation,
+or by the `nc` query parameter (e.g. `?nc=32`). This enables the legacy behavior of the components
+and the server styles of that version. To use the oldest supported Nextcloud version by default,
+set the `NEXTCLOUD_LEGACY` ENV variable.
 
 ```sh
 NEXTCLOUD_LEGACY=y npm run docs:dev
+```
+
+The server styles of all versions are cached in `docs/assets` and updated by a scheduled workflow,
+they can also be updated manually from a checkout of the [server](https://github.com/nextcloud/server):
+```sh
+node docs/.vitepress/scripts/update-server-styles.mjs ../server
 ```
 
 The documentation of a component is written in the custom `<docs>` block of the component as markdown.

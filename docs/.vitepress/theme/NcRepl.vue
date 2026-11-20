@@ -12,6 +12,7 @@ import CodeMirror from '@vue/repl/codemirror-editor'
 import { useData, withBase } from 'vitepress'
 import { computed, onMounted, ref, shallowRef, watch } from 'vue'
 import { serverElementsHtml } from '../runtime/mocks.js'
+import { getSelectedVersion } from '../runtime/nextcloudVersion.js'
 
 const props = withDefaults(defineProps<{
 	/** The initial code of the example */
@@ -46,6 +47,7 @@ const replUrl = (file: string) => new URL(withBase(`/repl/${file}`), window.loca
 
 const previewOptions = computed(() => ({
 	headHTML: [
+		...(manifest.value?.serverStyles[getSelectedVersion().id] ?? []).map((file) => `<link rel="stylesheet" href="${replUrl(file)}">`),
 		...(manifest.value?.styles ?? []).map((file) => `<link rel="stylesheet" href="${replUrl(file)}">`),
 		...(manifest.value?.scripts ?? []).map((file) => `<script src="${replUrl(file)}">${'<'}/script>`),
 		`<style>

@@ -5,7 +5,6 @@
 
 import type { Alias, Plugin } from 'vite'
 
-import { existsSync } from 'node:fs'
 import { join } from 'node:path'
 import dateFnsLocalesPlugin from '../../../build/date-fns-locales-plugin.mts'
 import vueDocsPlugin from '../../../build/docs-plugin.ts'
@@ -16,20 +15,25 @@ import { resolveTsExtension } from './resolveTsExtension.ts'
 
 export const SRC = join(ROOT, 'src')
 
-/** Build the documentation with the styling of the oldest supported Nextcloud version */
+/** Simulate the oldest supported Nextcloud version by default */
 export const isLegacy = !!process.env.NEXTCLOUD_LEGACY
 
-/** Directory of the cached styles of the Nextcloud server */
+/** Directory of the cached styles of the Nextcloud server, one directory per version (`nextcloud-<id>`) */
 export const SERVER_STYLES_DIR = join(DOCS, 'assets')
 
 /**
  * The style files of the server, in the order they need to be loaded.
  * The light theme is the default theme (`default.css`), so it needs no separate styles.
+ * `server.css` imports `icons.css`.
  */
-export const serverStyleFiles = (isLegacy
-	? ['legacy/default.css', 'legacy/server.css', 'legacy/dark.css']
-	: ['default.css', 'dark.css', 'server.css', 'apps.css'])
-	.filter((file) => existsSync(join(SERVER_STYLES_DIR, file)))
+export const SERVER_STYLE_FILES = ['default.css', 'dark.css', 'server.css', 'apps.css']
+
+/**
+ * Get the directory of the server styles of a version
+ *
+ * @param id - The id of the version
+ */
+export const serverStylesDir = (id: string) => join(SERVER_STYLES_DIR, `nextcloud-${id}`)
 
 /** Global constants used by the library and the docs runtime */
 export const defines = {

@@ -10,8 +10,7 @@ import { DOCS } from './lib/components.ts'
 import { componentsHotReloadPlugin } from './lib/componentsHotReload.ts'
 import { examplesMarkdownPlugin, examplesVitePlugin } from './lib/examples.ts'
 import { copyReplBundle, replBundlePlugin } from './lib/replBundle.ts'
-import { scopeServerStyles } from './lib/scopeServerStyles.ts'
-import { serverStylesPlugin } from './lib/serverStyles.ts'
+import { serverStylesPlugin, writeServerStyles } from './lib/serverStyles.ts'
 import { componentsSidebar, pagesSidebar } from './lib/sidebar.ts'
 import { defines, libraryAliases, libraryPlugins, scssOptions } from './lib/viteShared.ts'
 
@@ -61,10 +60,8 @@ export default defineConfig({
 		},
 
 		nav: [
-			{ text: 'Components', link: '/components/', activeMatch: '/components/' },
-			{ text: 'Composables', link: '/composables', activeMatch: '/composables' },
-			{ text: 'Directives', link: '/directives', activeMatch: '/directives' },
-			{ text: 'Functions', link: '/functions', activeMatch: '/functions' },
+			// All pages of the documentation are listed in the sidebar
+			{ text: 'Documentation', link: '/', activeMatch: '^/(?!playground)' },
 			{ text: 'Playground', link: '/playground' },
 			{
 				text: `v${packageJson.version}`,
@@ -96,6 +93,7 @@ export default defineConfig({
 
 	async buildEnd(siteConfig) {
 		await copyReplBundle(siteConfig.outDir)
+		await writeServerStyles(siteConfig.outDir, siteConfig.site.base)
 	},
 
 	vite: {
@@ -129,8 +127,6 @@ export default defineConfig({
 				plugins: [
 					// Do not apply the styles of the documentation to the examples
 					postcssIsolateStyles({ includeFiles: [/vp-doc\.css/, /base\.css/] }),
-					// Do not apply the global styles of the server to the documentation
-					scopeServerStyles(/docs\/assets\/(legacy\/)?(server|apps|icons)\.css$/),
 				],
 			},
 		},
