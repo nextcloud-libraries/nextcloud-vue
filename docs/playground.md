@@ -14,7 +14,8 @@ footer: false
 <script setup>
 import { defineAsyncComponent } from 'vue'
 
-const NcPlayground = defineAsyncComponent(() => import('./.vitepress/theme/NcPlayground.vue'))
+// The playground is only used in the browser, so it is not bundled for the server (SSR)
+const NcPlayground = defineAsyncComponent(() => import.meta.env.SSR ? Promise.resolve({ render: () => null }) : import('./.vitepress/theme/NcPlayground.vue'))
 </script>
 
 <ClientOnly>

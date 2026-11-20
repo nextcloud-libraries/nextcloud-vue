@@ -4,6 +4,8 @@
 [build.environment]
 	NODE_VERSION = "24"
 	NPM_VERSION = "11"
+	# Building the documentation needs more memory than the default heap size of the build image
+	NODE_OPTIONS = "--max-old-space-size=4096"
 
 [build]
 	command = "npm run docs:build"
