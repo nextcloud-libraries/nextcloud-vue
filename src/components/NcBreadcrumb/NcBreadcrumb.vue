@@ -8,7 +8,7 @@
 ### General description
 
 This component is meant to be used inside a Breadcrumbs component.
-Renders a button element when given no redirection props, otherwise, renders <a/> or <router-link/> elements
+Renders a button element when given no redirection props, otherwise, renders `<a>` or `<router-link>` elements
 
 </docs>
 

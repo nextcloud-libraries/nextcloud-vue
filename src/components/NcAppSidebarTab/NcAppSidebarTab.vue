@@ -15,7 +15,7 @@ The `icon` slot renders the icon in the tab navigation. It is passed whether the
 tab is currently active, so a filled icon variant can be used for the active tab
 and an outlined one for the others. The two are crossfaded on selection.
 
-```vue
+```vue static
 <NcAppSidebarTab id="settings" name="Settings">
 	<template #icon="{ selected }">
 		<NcIconSvgWrapper v-if="selected" :path="mdiCog" />

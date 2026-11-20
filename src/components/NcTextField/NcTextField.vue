@@ -54,10 +54,10 @@ and `minlength`.
 			:error="true"
 			@trailing-button-click="clearText">
 		</NcTextField>
-		<NcTextField :model-value=""
+		<NcTextField model-value=""
 			label="Disabled"
 			:disabled="true" />
-		<NcTextField :model-value=""
+		<NcTextField model-value=""
 			label="Disabled + Success"
 			:success="true"
 			:disabled="true" />
