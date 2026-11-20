@@ -310,7 +310,7 @@ $content-inset: calc(3 * var(--default-grid-baseline));
 	:deep(.app-settings__content) {
 		padding: $content-inset;
 		background-color: var(--color-main-background);
-		border-inline-start: 1px solid var(--color-border-dark);
+		border-inline-start: 1px solid var(--color-border);
 		border-start-start-radius: var(--border-radius-element);
 		border-end-start-radius: var(--border-radius-element);
 	}
