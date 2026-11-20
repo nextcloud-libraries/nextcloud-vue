@@ -73,6 +73,39 @@ describe('NcPopover afterShow and afterHide events', () => {
 		expect(wrapper.emitted('afterShow')).toHaveLength(1)
 	})
 
+	test('does not emit afterHide once shown again before the hide transition ended', async () => {
+		const { wrapper, dropdown } = mountPopover()
+
+		await dropdown.vm.$emit('applyHide')
+		// floating-vue requests the show right away but applies it only after a delay and positioning
+		await dropdown.vm.$emit('update:shown', true)
+
+		endTransition(popoverContent)
+		expect(wrapper.emitted('afterHide')).toBeUndefined()
+	})
+
+	test('does not emit afterShow once hidden again before the show transition ended', async () => {
+		const { wrapper, dropdown } = mountPopover()
+
+		await dropdown.vm.$emit('update:shown', true)
+		await dropdown.vm.$emit('applyShow')
+		await dropdown.vm.$emit('update:shown', false)
+
+		endTransition(popoverContent)
+		expect(wrapper.emitted('afterShow')).toBeUndefined()
+	})
+
+	test('does not emit afterHide after unmounting', async () => {
+		const { wrapper, dropdown } = mountPopover()
+
+		await dropdown.vm.$emit('applyHide')
+		const emitted = wrapper.emitted()
+		wrapper.unmount()
+
+		endTransition(popoverContent)
+		expect(emitted.afterHide).toBeUndefined()
+	})
+
 	test('does not emit afterHide of a hide transition that never ended once shown again', async () => {
 		const { wrapper, dropdown } = mountPopover()
 

@@ -450,6 +450,7 @@ export default {
 		},
 
 		internalShown(value) {
+			this.abortTransitionEnd()
 			this.$emit('update:shown', value)
 		},
 	},
@@ -582,8 +583,8 @@ export default {
 
 		/**
 		 * Run the callback once the popover's own show or hide transition has ended.
-		 * A callback still pending from a previous show or hide is dropped,
-		 * so it cannot fire on the transition of a later show or hide.
+		 * A pending callback is dropped when the popover is toggled again
+		 * (see `abortTransitionEnd`), so it cannot fire on a later transition.
 		 *
 		 * @param {() => void} callback - The callback to run
 		 */
@@ -623,6 +624,8 @@ export default {
 				 * This is different from the 'show' and 'apply-show' which
 				 * run earlier than this where there is no guarantee that the
 				 * tooltip is already visible and in the DOM.
+				 *
+				 * Not emitted if the popover is hidden again before the show transition ended.
 				 */
 				this.$emit('afterShow')
 			})
@@ -651,6 +654,8 @@ export default {
 				 * This is different from the 'hide' and 'apply-hide' which
 				 * run earlier than this where there is no guarantee that the
 				 * tooltip is already visible and in the DOM.
+				 *
+				 * Not emitted if the popover is shown again before the hide transition ended.
 				 */
 				this.$emit('afterHide')
 			})
