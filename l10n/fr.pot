@@ -144,6 +144,9 @@ msgstr "Réduire le menu"
 msgid "Color picker"
 msgstr "Sélecteur de couleurs"
 
+msgid "Completed"
+msgstr "Terminé"
+
 msgid "Confirm changes"
 msgstr "Confirmer les modifications"
 
@@ -591,6 +594,9 @@ msgstr "Démarrer le diaporama"
 
 msgid "Start typing to search"
 msgstr "Commencez à écrire pour rechercher"
+
+msgid "Steps"
+msgstr "Étapes"
 
 msgid "Submit"
 msgstr "Valider"
