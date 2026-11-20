@@ -88,6 +88,18 @@
 	filter: brightness(0) invert(32%) sepia(85%) saturate(2350%) hue-rotate(184deg) brightness(93%) contrast(101%);
 }
 
+/* Show only the icon of the search button on medium screens, like VitePress does on small screens, to fit the nav bar */
+@media (min-width: 768px) and (max-width: 959px) {
+	.VPNavBarSearch .DocSearch-Button-Placeholder,
+	.VPNavBarSearch .DocSearch-Button-Keys {
+		display: none;
+	}
+
+	.VPNavBarSearch .DocSearch-Button {
+		padding: 0 8px;
+	}
+}
+
 /*
  * Wide screens: VitePress centers the layout and grows the sidebar (but not its content).
  * Instead keep the layout of medium screens with a fixed sidebar and use the space for the content.

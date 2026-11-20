@@ -5,12 +5,12 @@
 
 import type { Theme } from 'vitepress'
 
+import { loadServerStyles } from 'virtual:nextcloud-server-styles'
 import DefaultTheme from 'vitepress/theme'
 import DocsLayout from './DocsLayout.vue'
 import NcExample from './NcExample.vue'
+import { getSelectedVersion } from '../runtime/nextcloudVersion.js'
 
-// Theming variables and global styles (scoped to the examples) of the Nextcloud server
-import 'virtual:nextcloud-server-styles'
 import './style.css'
 
 export default {
@@ -25,6 +25,8 @@ export default {
 			// The globals are loaded on their own, as bundling could otherwise
 			// move the library modules before the globals they depend on.
 			await import('../runtime/globals.js')
+			// Theming variables and global styles (scoped to the examples) of the simulated Nextcloud version
+			await loadServerStyles(getSelectedVersion().id)
 			const { install } = await import('../runtime/index.js')
 			install(app)
 		}

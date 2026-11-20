@@ -6,7 +6,7 @@ SPDX-PackageSupplier = "Nextcloud GmbH <https://nextcloud.com/impressum/>"
 SPDX-PackageDownloadLocation = "https://github.com/nextcloud-libraries/nextcloud-vue"
 
 [[annotations]]
-path = ["assets/apps.css", "assets/dark.css", "assets/icons.css", "assets/server.css"]
+path = "assets/nextcloud-*/*.css"
 precedence = "aggregate"
 SPDX-FileCopyrightText = "Nextcloud GmbH and Nextcloud contributors"
 SPDX-License-Identifier = "AGPL-3.0-or-later"

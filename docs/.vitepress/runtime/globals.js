@@ -3,6 +3,8 @@
  * SPDX-License-Identifier: AGPL-3.0-or-later
  */
 
+import { getSelectedVersion } from './nextcloudVersion.js'
+
 // Global variables
 window._oc_webroot = ''
 
@@ -32,8 +34,8 @@ window.OC = {
 		return true
 	},
 	config: {
-		// eslint-disable-next-line no-undef -- added by webpack
-		version: NEXTCLOUD_VERSION,
+		// The simulated server version, used by the library for legacy fallbacks
+		version: getSelectedVersion().version,
 	},
 	Util: {
 		/**

@@ -7,18 +7,19 @@
 // The REPL runs the examples in the browser, so the library and the dependencies used by
 // the examples are bundled as browser ES modules, which are loaded using an import map.
 
-import type { Plugin } from 'vite'
+import type { Plugin, Rollup } from 'vite'
 import type { ReplManifest } from '../lib/replBundle.ts'
 
 import vue from '@vitejs/plugin-vue'
 import { globSync } from 'glob'
 import { readFileSync, writeFileSync } from 'node:fs'
 import { createRequire } from 'node:module'
-import { basename, dirname, join } from 'node:path'
-import { defineConfig } from 'vite'
+import { join } from 'node:path'
+import { build, defineConfig } from 'vite'
 import { DOCS, ROOT } from '../lib/components.ts'
 import { REPL_DEPENDENCIES as DEPENDENCIES, REPL_DIST } from '../lib/replBundle.ts'
-import { defines, libraryAliases, libraryPlugins, scssOptions, SERVER_STYLES_DIR, serverStyleFiles, SRC } from '../lib/viteShared.ts'
+import { defines, libraryAliases, libraryPlugins, scssOptions, SERVER_STYLE_FILES, serverStylesDir, SRC } from '../lib/viteShared.ts'
+import { NEXTCLOUD_VERSIONS } from '../runtime/nextcloudVersion.js'
 
 const require = createRequire(import.meta.url)
 
@@ -66,7 +67,7 @@ for (const icon of rawIcons) {
  * and the static files of the REPL (Vue, server styles, manifest)
  */
 function replPlugin(): Plugin {
-	let serverStyles: string[] = []
+	const serverStyles: Record<string, string[]> = {}
 
 	return {
 		name: 'nextcloud-vue-docs:repl',
@@ -100,7 +101,7 @@ function replPlugin(): Plugin {
 			}
 		},
 
-		generateBundle() {
+		async generateBundle() {
 			// Vue with the template compiler, as the examples can use runtime templates
 			this.emitFile({
 				type: 'asset',
@@ -112,36 +113,26 @@ function replPlugin(): Plugin {
 			this.emitFile({
 				type: 'asset',
 				fileName: 'globals.js',
-				source: readFileSync(join(DOCS, '.vitepress/runtime/globals.js'), 'utf8')
-					.replaceAll('NEXTCLOUD_VERSION', defines.NEXTCLOUD_VERSION),
+				source: await buildClassicScript(join(DOCS, '.vitepress/runtime/globals.js')),
 			})
 
-			// Styles of the server, the images are served from the root of the docs
-			const styles: string[] = []
-			const emitted = new Set<string>()
-			for (const file of [...serverStyleFiles, ...serverStyleFiles.map((file) => join(dirname(file), 'icons.css'))]) {
-				const fileName = `server/${basename(file)}`
-				if (emitted.has(fileName)) {
-					continue
-				}
-				emitted.add(fileName)
-				let source: string
-				try {
-					source = readFileSync(join(SERVER_STYLES_DIR, file), 'utf8')
-				} catch {
-					continue
-				}
-				this.emitFile({
-					type: 'asset',
-					fileName,
-					source: source.replace(/url\((['"]?)\.\/img\//g, 'url($1../../'),
-				})
-				if (basename(file) !== 'icons.css') {
-					styles.push(fileName)
+			// Styles of the server of all versions, the images are served from the root of the docs
+			for (const { id } of NEXTCLOUD_VERSIONS) {
+				serverStyles[id] = []
+				for (const file of [...SERVER_STYLE_FILES, 'icons.css']) {
+					const fileName = `server/${id}/${file}`
+					this.emitFile({
+						type: 'asset',
+						fileName,
+						source: readFileSync(join(serverStylesDir(id), file), 'utf8')
+							.replace(/url\((['"]?)\.\.\/img\//g, 'url($1../../../'),
+					})
+					// The icons are imported by the server styles
+					if (file !== 'icons.css') {
+						serverStyles[id].push(fileName)
+					}
 				}
 			}
-
-			serverStyles = styles
 		},
 
 		// The manifest is written after all files are generated, as the styles of the library are emitted last
@@ -154,12 +145,32 @@ function replPlugin(): Plugin {
 						...Object.fromEntries(Object.entries(entries).map(([specifier, [name]]) => [specifier, `${name}.js`])),
 					},
 				},
-				styles: [...serverStyles, ...libraryStyles],
+				serverStyles,
+				styles: libraryStyles,
 				scripts: ['globals.js'],
 			}
 			writeFileSync(join(options.dir!, 'repl.json'), JSON.stringify(manifest, null, '\t'))
 		},
 	}
+}
+
+/**
+ * Bundle a module and its imports into a classic script
+ *
+ * @param entry - The module to bundle
+ */
+async function buildClassicScript(entry: string): Promise<string> {
+	const output = await build({
+		configFile: false,
+		logLevel: 'warn',
+		define: defines,
+		build: {
+			write: false,
+			minify: false,
+			lib: { entry, formats: ['iife'], name: 'ncDocsGlobals' },
+		},
+	}) as Rollup.RollupOutput[]
+	return output[0]!.output[0].code
 }
 
 export default defineConfig({

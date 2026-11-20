@@ -33,7 +33,9 @@ export const REPL_PATH = '/repl/'
 export interface ReplManifest {
 	/** Import map of the REPL, relative to the REPL path */
 	importMap: { imports: Record<string, string> }
-	/** Style sheets to load in the REPL, relative to the REPL path */
+	/** Style sheets of the server by Nextcloud version, relative to the REPL path */
+	serverStyles: Record<string, string[]>
+	/** Style sheets of the library, relative to the REPL path */
 	styles: string[]
 	/** Classic scripts to load in the REPL before any module, relative to the REPL path */
 	scripts: string[]
