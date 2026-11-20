@@ -16,7 +16,8 @@ defineProps<{
 	component: Component
 }>()
 
-const NcRepl = defineAsyncComponent(() => import('./NcRepl.vue'))
+// The REPL is only used in the browser, so it is not bundled for the server (SSR)
+const NcRepl = defineAsyncComponent(() => import.meta.env.SSR ? Promise.resolve({ render: () => null }) : import('./NcRepl.vue'))
 
 const showCode = ref(false)
 const editing = ref(false)

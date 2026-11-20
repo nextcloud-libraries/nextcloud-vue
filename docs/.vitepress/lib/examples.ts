@@ -137,7 +137,8 @@ export function examplesMarkdownPlugin(md: MarkdownRenderer) {
 			return html
 		}
 
-		const imports = ids.map((id) => `${id}: __ncDefineAsyncComponent(() => import(${JSON.stringify(join(EXAMPLES_DIR, `${id}.vue`))}))`)
+		// The examples are only rendered in the browser, so they are not bundled for the server (SSR)
+		const imports = ids.map((id) => `${id}: __ncDefineAsyncComponent(() => import.meta.env.SSR ? Promise.resolve({ render: () => null }) : import(${JSON.stringify(join(EXAMPLES_DIR, `${id}.vue`))}))`)
 		const sources = JSON.stringify(Object.fromEntries(ids.map((id) => [id, examples.get(id)])))
 			// The code is placed within a script tag
 			.replaceAll('</script', '<\\/script')
