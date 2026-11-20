@@ -159,7 +159,7 @@ function focusLastTab() {
  * Focus the current active tab
  */
 function focusActiveTab() {
-	rootElement.value?.querySelector<HTMLElement>(`#tab-button-${activeTab.value}`)?.focus()
+	rootElement.value?.querySelector<HTMLElement>(`#${CSS.escape(`tab-button-${activeTab.value}`)}`)?.focus()
 }
 
 /**
@@ -167,7 +167,7 @@ function focusActiveTab() {
  * see aria accessibility guidelines
  */
 function focusActiveTabContent() {
-	rootElement.value?.querySelector<HTMLElement>(`#tab-${activeTab.value}`)?.focus()
+	rootElement.value?.querySelector<HTMLElement>(`#${CSS.escape(`tab-${activeTab.value}`)}`)?.focus()
 }
 
 /**

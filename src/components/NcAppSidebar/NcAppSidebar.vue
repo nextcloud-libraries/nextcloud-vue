@@ -9,7 +9,7 @@ import type { Slot } from 'vue'
 
 import { vOnClickOutside as vClickOutside } from '@vueuse/components'
 import { createFocusTrap } from 'focus-trap'
-import { computed, inject, nextTick, onBeforeUnmount, provide, ref, useTemplateRef, warn, watch } from 'vue'
+import { computed, getCurrentInstance, inject, onBeforeUnmount, provide, ref, useTemplateRef, warn, watch } from 'vue'
 import IconArrowRight from 'vue-material-design-icons/ArrowRight.vue'
 import IconClose from 'vue-material-design-icons/Close.vue'
 import IconDockRight from 'vue-material-design-icons/DockRight.vue'
@@ -30,6 +30,12 @@ import { CONTENT_SELECTOR_KEY } from '../NcContent/constants.ts'
 import NcEmptyContent from '../NcEmptyContent/index.ts'
 import NcLoadingIcon from '../NcLoadingIcon/index.ts'
 
+/**
+ * Enable the favourite icon if not null.
+ * Without `v-model:starred` the state is toggled locally.
+ */
+const isStarred = defineModel<boolean | null>('starred', { default: null })
+
 const {
 	active = '',
 	background = '',
@@ -43,10 +49,8 @@ const {
 	nameEditable = false,
 	namePlaceholder = '',
 	noToggle = false,
-	onFigureClick = undefined,
 	open = true,
 	starLoading = false,
-	starred = null,
 	subname = '',
 	subtitle = '',
 	title = '',
@@ -88,12 +92,6 @@ const {
 	 * Applied with css
 	 */
 	background?: string
-
-	/**
-	 * Enable the favourite icon if not null
-	 * See fired events
-	 */
-	starred?: boolean | null
 
 	/**
 	 * Show loading spinner instead of the star icon
@@ -165,12 +163,6 @@ const {
 	 * Do not add the built-in toggle button with `open` prop.
 	 */
 	noToggle?: boolean
-
-	/**
-	 * Listener for clicks on the figure / background header (`@figure-click`).
-	 * The figure is only styled as clickable if this listener is set.
-	 */
-	onFigureClick?: (event: MouseEvent | KeyboardEvent) => void
 }>()
 
 const emit = defineEmits<{
@@ -224,11 +216,12 @@ const emit = defineEmits<{
 	'update:open': [open: boolean]
 
 	/**
-	 * Emitted when the starred value changes
+	 * The figure / background header has been clicked.
+	 * The figure is only styled as clickable if there is a listener for this event.
 	 *
-	 * @param starred - The new starred state
+	 * @param event - The click or keyboard event
 	 */
-	'update:starred': [starred: boolean]
+	figureClick: [event: MouseEvent | KeyboardEvent]
 
 	/**
 	 * Emitted when the name edit input has been submitted
@@ -308,19 +301,16 @@ const favoriteTranslated = t('Favorite')
 const sidebarElement = useTemplateRef('sidebar')
 const toggleButton = useTemplateRef('toggle')
 const closeButtonInstance = useTemplateRef('closeButton')
-const nameInputElement = useTemplateRef('nameInput')
 const tabsInstance = useTemplateRef('tabs')
 
-const isStarred = ref(starred)
-watch(() => starred, () => {
-	isStarred.value = starred
-})
+const instance = getCurrentInstance()!
 
 const canStar = computed(() => isStarred.value !== null)
-const hasFigureClickListener = computed(() => !!onFigureClick)
 
 let focusTrap: FocusTrap | null = null
 let elementToReturnFocus: HTMLElement | null = null
+/** Whether `opened` was emitted without a matching `closed` */
+let isOpened = false
 
 watch(isMobile, toggleFocusTrap)
 watch(() => open, checkToggleButtonContainerAvailability)
@@ -330,9 +320,21 @@ checkToggleButtonContainerAvailability()
 
 onBeforeUnmount(() => {
 	// Make sure that the 'closed' event is dispatched even if this element is destroyed before the 'after-leave' event is received.
-	emit('closed')
+	if (isOpened) {
+		isOpened = false
+		emit('closed')
+	}
 	focusTrap?.deactivate()
 })
+
+/**
+ * Check if the parent listens to `figure-click`.
+ * Called on render, as listeners of declared events are neither reactive props nor attrs.
+ */
+function hasFigureClickListener() {
+	const props = instance.vnode.props
+	return !!(props?.onFigureClick || props?.onFigureClickOnce)
+}
 
 /**
  * Save the element that had focus before the sidebar was opened to return back on close
@@ -345,8 +347,11 @@ function preserveElementToReturnFocus() {
 		// If a sidebar was opened from a menu item, we want to return focus to the menu trigger instead of the item
 		if (elementToReturnFocus.getAttribute('role') === 'menuitem') {
 			const menu = elementToReturnFocus.closest('[role="menu"]')
-			if (menu) {
-				elementToReturnFocus = document.querySelector<HTMLElement>(`[aria-controls="${menu.id}"]`)
+			const menuTrigger = menu?.id
+				? document.querySelector<HTMLElement>(`[aria-controls="${CSS.escape(menu.id)}"]`)
+				: null
+			if (menuTrigger) {
+				elementToReturnFocus = menuTrigger
 			}
 		}
 	}
@@ -409,6 +414,7 @@ function onAfterEnter(element: Element) {
 	}
 
 	toggleFocusTrap()
+	isOpened = true
 	emit('opened', element)
 }
 
@@ -418,6 +424,7 @@ function onAfterEnter(element: Element) {
  * @param element - The sidebar element
  */
 function onAfterLeave(element: Element) {
+	isOpened = false
 	emit('closed', element)
 
 	toggleFocusTrap()
@@ -443,19 +450,13 @@ function closeSidebar(event?: Event) {
  */
 function toggleStarred() {
 	isStarred.value = !isStarred.value
-	emit('update:starred', isStarred.value)
 }
 
 /**
- * Request to edit the name and focus the name input if editable
+ * Request to edit the name, the name input is focused by `v-focus` when it is shown
  */
-async function editName() {
+function editName() {
 	emit('update:nameEditable', true)
-	// Focus the name input
-	if (nameEditable) {
-		await nextTick()
-		nameInputElement.value?.focus()
-	}
 }
 
 /**
@@ -575,14 +576,14 @@ function onDismissEditing() {
 							v-if="(isSlotPopulated($slots.header?.()) || background)"
 							class="app-sidebar-header__figure"
 							:class="{
-								'app-sidebar-header__figure--with-action': hasFigureClickListener,
+								'app-sidebar-header__figure--with-action': hasFigureClickListener(),
 							}"
 							:style="{
 								backgroundImage: `url(${background})`,
 							}"
 							tabindex="0"
-							@click="onFigureClick?.($event)"
-							@keydown.enter="onFigureClick?.($event)">
+							@click="emit('figureClick', $event)"
+							@keydown.enter="emit('figureClick', $event)">
 							<slot class="app-sidebar-header__background" name="header" />
 						</div>
 
@@ -632,7 +633,6 @@ function onDismissEditing() {
 											class="app-sidebar-header__mainname-form"
 											@submit.prevent="onSubmitName">
 											<input
-												ref="nameInput"
 												v-focus
 												class="app-sidebar-header__mainname-input"
 												type="text"
@@ -1049,6 +1049,17 @@ $desc-height: $desc-name-height + $desc-subname-height;
 |-------------------------|-------------------------------------------------------------------------------------------------------------------------------------------|
 | `--app-sidebar-padding` | The padding between the toggle button and the page border.                                                                                |
 | `--app-sidebar-offset`  | The minimal offset width required to be reserved for the toggle button. <br /> Automatically changes to 0 when there is no toggle button. |
+
+### Exposed methods
+
+Only these methods are available on a template ref of the component:
+
+| Method                    | Description                                                                         |
+|---------------------------|-------------------------------------------------------------------------------------|
+| `focus()`                 | Focus the sidebar header, or the toggle button if the sidebar is closed.            |
+| `focusActiveTabContent()` | Focus the content of the active tab.                                                |
+
+Use the props and events (e.g. `v-model:open`, `v-model:starred`) instead of calling internal methods.
 
 ### General description
 
