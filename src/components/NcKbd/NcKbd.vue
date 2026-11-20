@@ -229,15 +229,19 @@ In a special case you might want to use a custom content.
 ```vue
 <template>
 	<NcKbd aria-label="Eject">
-		<IconEject :size="15" />
+		<NcIconSvgWrapper inline :path="mdiEject" :size="15" />
 	</NcKbd>
 </template>
 
 <script>
-import IconEject from 'vue-material-design-icons/Eject.vue'
+import { mdiEject } from '@mdi/js'
 
 export default {
-	components: { IconEject }
+	setup() {
+		return {
+			mdiEject,
+		}
+	},
 }
 </script>
 ```

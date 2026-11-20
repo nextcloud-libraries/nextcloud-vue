@@ -36,22 +36,22 @@ Using `v-show` directly will result in usability issues due to internal focus tr
 			@figure-click="figureClick">
 			<NcAppSidebarTab name="Search" id="search-tab">
 				<template #icon>
-					<IconMagnify :size="20" />
+					<NcIconSvgWrapper :path="mdiMagnify" />
 				</template>
 				Search tab content
 			</NcAppSidebarTab>
 			<NcAppSidebarTab name="Settings" id="settings-tab">
 				<!-- The active tab uses the filled icon variant -->
 				<template #icon="{ selected }">
-					<IconCog v-if="selected" :size="20" />
-					<IconCogOutline v-else :size="20" />
+					<NcIconSvgWrapper :path="mdiCog" v-if="selected" />
+					<NcIconSvgWrapper :path="mdiCogOutline" v-else />
 				</template>
 				Settings tab content
 			</NcAppSidebarTab>
 			<NcAppSidebarTab name="Sharing" id="share-tab">
 				<template #icon="{ selected }">
-					<IconShareVariant v-if="selected" :size="20" />
-					<IconShareVariantOutline v-else :size="20" />
+					<NcIconSvgWrapper :path="mdiShareVariant" v-if="selected" />
+					<NcIconSvgWrapper :path="mdiShareVariantOutline" v-else />
 				</template>
 				Sharing tab content
 			</NcAppSidebarTab>
@@ -60,19 +60,17 @@ Using `v-show` directly will result in usability issues due to internal focus tr
 </template>
 
 <script>
-	import IconMagnify from 'vue-material-design-icons/Magnify.vue'
-	import IconCog from 'vue-material-design-icons/Cog.vue'
-	import IconCogOutline from 'vue-material-design-icons/CogOutline.vue'
-	import IconShareVariant from 'vue-material-design-icons/ShareVariant.vue'
-	import IconShareVariantOutline from 'vue-material-design-icons/ShareVariantOutline.vue'
+	import { mdiCog, mdiCogOutline, mdiMagnify, mdiShareVariant, mdiShareVariantOutline } from '@mdi/js'
 
 	export default {
-		components: {
-			IconMagnify,
-			IconCog,
-			IconShareVariant,
-			IconCogOutline,
-			IconShareVariantOutline,
+		setup() {
+			return {
+				mdiCog,
+				mdiCogOutline,
+				mdiMagnify,
+				mdiShareVariant,
+				mdiShareVariantOutline,
+			}
 		},
 		provide() {
 			return {
@@ -140,21 +138,21 @@ Single tab is rendered without navigation, but it is possible to force it.
 			subname="last edited 3 weeks ago">
 			<NcAppSidebarTab v-if="showTabs[0]" name="Search" id="search-tab">
 				<template #icon>
-					<IconMagnify :size="20" />
+					<NcIconSvgWrapper :path="mdiMagnify" />
 				</template>
 				Search tab content
 			</NcAppSidebarTab>
 			<NcAppSidebarTab v-if="showTabs[1]" name="Settings" id="settings-tab">
 				<template #icon="{ selected }">
-					<IconCog v-if="selected" :size="20" />
-					<IconCogOutline v-else :size="20" />
+					<NcIconSvgWrapper :path="mdiCog" v-if="selected" />
+					<NcIconSvgWrapper :path="mdiCogOutline" v-else />
 				</template>
 				Settings
 			</NcAppSidebarTab>
 			<NcAppSidebarTab v-if="showTabs[2]" name="Sharing" id="share-tab">
 				<template #icon="{ selected }">
-					<IconShareVariant v-if="selected" :size="20" />
-					<IconShareVariantOutline v-else :size="20" />
+					<NcIconSvgWrapper :path="mdiShareVariant" v-if="selected" />
+					<NcIconSvgWrapper :path="mdiShareVariantOutline" v-else />
 				</template>
 				Sharing tab content
 			</NcAppSidebarTab>
@@ -163,19 +161,17 @@ Single tab is rendered without navigation, but it is possible to force it.
 </template>
 
 <script>
-	import IconMagnify from 'vue-material-design-icons/Magnify.vue'
-	import IconCog from 'vue-material-design-icons/Cog.vue'
-	import IconCogOutline from 'vue-material-design-icons/CogOutline.vue'
-	import IconShareVariant from 'vue-material-design-icons/ShareVariant.vue'
-	import IconShareVariantOutline from 'vue-material-design-icons/ShareVariantOutline.vue'
+	import { mdiCog, mdiCogOutline, mdiMagnify, mdiShareVariant, mdiShareVariantOutline } from '@mdi/js'
 
 	export default {
-		components: {
-			IconMagnify,
-			IconCog,
-			IconCogOutline,
-			IconShareVariant,
-			IconShareVariantOutline,
+		setup() {
+			return {
+				mdiCog,
+				mdiCogOutline,
+				mdiMagnify,
+				mdiShareVariant,
+				mdiShareVariantOutline,
+			}
 		},
 		provide() {
 			return {
@@ -236,21 +232,21 @@ To customize the order of tabs, ``order`` prop can be used on child components.
 			v-model:active="active">
 			<NcAppSidebarTab name="Search" id="search-tab" :order="3">
 				<template #icon>
-					<IconMagnify :size="20" />
+					<NcIconSvgWrapper :path="mdiMagnify" />
 				</template>
 				Search tab content
 			</NcAppSidebarTab>
 			<NcAppSidebarTab name="Settings" id="settings-tab" :order="2">
 				<template #icon="{ selected }">
-					<IconCog v-if="selected" :size="20" />
-					<IconCogOutline v-else :size="20" />
+					<NcIconSvgWrapper :path="mdiCog" v-if="selected" />
+					<NcIconSvgWrapper :path="mdiCogOutline" v-else />
 				</template>
 				Settings
 			</NcAppSidebarTab>
 			<NcAppSidebarTab name="Sharing" id="share-tab" :order="1">
 				<template #icon="{ selected }">
-					<IconShareVariant v-if="selected" :size="20" />
-					<IconShareVariantOutline v-else :size="20" />
+					<NcIconSvgWrapper :path="mdiShareVariant" v-if="selected" />
+					<NcIconSvgWrapper :path="mdiShareVariantOutline" v-else />
 				</template>
 				Sharing tab content
 			</NcAppSidebarTab>
@@ -259,19 +255,17 @@ To customize the order of tabs, ``order`` prop can be used on child components.
 </template>
 
 <script>
-	import IconMagnify from 'vue-material-design-icons/Magnify.vue'
-	import IconCog from 'vue-material-design-icons/Cog.vue'
-	import IconCogOutline from 'vue-material-design-icons/CogOutline.vue'
-	import IconShareVariant from 'vue-material-design-icons/ShareVariant.vue'
-	import IconShareVariantOutline from 'vue-material-design-icons/ShareVariantOutline.vue'
+	import { mdiCog, mdiCogOutline, mdiMagnify, mdiShareVariant, mdiShareVariantOutline } from '@mdi/js'
 
 	export default {
-		components: {
-			IconMagnify,
-			IconCog,
-			IconCogOutline,
-			IconShareVariant,
-			IconShareVariantOutline,
+		setup() {
+			return {
+				mdiCog,
+				mdiCogOutline,
+				mdiMagnify,
+				mdiShareVariant,
+				mdiShareVariantOutline,
+			}
 		},
 		provide() {
 			return {
@@ -526,7 +520,7 @@ A working alternative would be using an icon together with an `aria-label`:
 			:empty="true">
 			<NcEmptyContent name="Content not found.">
 				<template #icon>
-					<Magnify :size="20" />
+					<NcIconSvgWrapper :path="mdiMagnify" />
 				</template>
 			</NcEmptyContent>
 		</NcAppSidebar>
@@ -534,11 +528,13 @@ A working alternative would be using an icon together with an `aria-label`:
 </template>
 
 <script>
-	import Magnify from 'vue-material-design-icons/Magnify.vue'
+	import { mdiMagnify } from '@mdi/js'
 
 	export default {
-		components: {
-			Magnify,
+		setup() {
+			return {
+				mdiMagnify,
+			}
 		},
 		provide() {
 			return {
@@ -604,7 +600,7 @@ Note: the built-in toggle button is only available then NcAppSidebar is used in 
 			subname="last edited 3 weeks ago">
 			<NcAppSidebarTab name="Settings" id="settings-tab">
 				<template #icon>
-					<Cog :size="20" />
+					<NcIconSvgWrapper :path="mdiCog" />
 				</template>
 				Single tab content
 			</NcAppSidebarTab>
@@ -613,11 +609,13 @@ Note: the built-in toggle button is only available then NcAppSidebar is used in 
 </template>
 
 <script>
-	import Cog from 'vue-material-design-icons/Cog'
+	import { mdiCog } from '@mdi/js'
 
 	export default {
-		components: {
-			Cog,
+		setup() {
+			return {
+				mdiCog,
+			}
 		},
 		provide() {
 			return {
@@ -692,7 +690,7 @@ If the sidebar should be shown conditionally without any explicit toggle button,
 			@close="open = false">
 			<NcAppSidebarTab name="Settings" id="settings-tab">
 				<template #icon>
-					<Cog :size="20" />
+					<NcIconSvgWrapper :path="mdiCog" />
 				</template>
 				Single tab content
 			</NcAppSidebarTab>
@@ -701,11 +699,13 @@ If the sidebar should be shown conditionally without any explicit toggle button,
 </template>
 
 <script>
-	import Cog from 'vue-material-design-icons/Cog'
+	import { mdiCog } from '@mdi/js'
 
 	export default {
-		components: {
-			Cog,
+		setup() {
+			return {
+				mdiCog,
+			}
 		},
 		provide() {
 			return {

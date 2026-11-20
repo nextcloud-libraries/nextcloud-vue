@@ -211,7 +211,7 @@ export default {
 				type="radio"
 				button-variant-grouped="horizontal">
 				Enable settings
-				<template #icon><CheckIcon :size="20"></template>
+				<template #icon><NcIconSvgWrapper :path="mdiCheck"></template>
 			</NcCheckboxRadioSwitch>
 			<NcCheckboxRadioSwitch
 				:button-variant="true"
@@ -221,7 +221,7 @@ export default {
 				type="radio"
 				button-variant-grouped="horizontal">
 				Disable settings
-				<template #icon><CancelIcon :size="20"></template>
+				<template #icon><NcIconSvgWrapper :path="mdiCancel"></template>
 			</NcCheckboxRadioSwitch>
 		</div>
 		<h4>Vertically</h4>
@@ -234,7 +234,7 @@ export default {
 				type="radio"
 				button-variant-grouped="vertical">
 				Enable settings
-				<template #icon><CheckIcon :size="20"></template>
+				<template #icon><NcIconSvgWrapper :path="mdiCheck"></template>
 			</NcCheckboxRadioSwitch>
 			<NcCheckboxRadioSwitch
 				:button-variant="true"
@@ -244,19 +244,20 @@ export default {
 				type="radio"
 				button-variant-grouped="vertical">
 				Disable settings
-				<template #icon><CancelIcon :size="20"></template>
+				<template #icon><NcIconSvgWrapper :path="mdiCancel"></template>
 			</NcCheckboxRadioSwitch>
 		</div>
 		Settings enabled: {{ enableSettings === 'y' ? 'yes' : 'no' }}
 	</div>
 </template>
 <script>
-import CheckIcon from 'vue-material-design-icons/Check.vue'
-import CancelIcon from 'vue-material-design-icons/Cancel.vue'
+import { mdiCancel, mdiCheck } from '@mdi/js'
 export default {
-	components: {
-		CheckIcon,
-		CancelIcon,
+	setup() {
+		return {
+			mdiCancel,
+			mdiCheck,
+		}
 	},
 	data() {
 		return {

@@ -23,7 +23,7 @@ It also will set the skip content buttons needed for accessibility.
 					<NcAppNavigationNew text="Create article" />
 					<NcAppNavigationItem name="My navigation" title="My title">
 						<template #icon>
-							<Check :size="20" />
+							<NcIconSvgWrapper :path="mdiCheck" />
 						</template>
 					</NcAppNavigationItem>
 				</template>
@@ -38,11 +38,13 @@ It also will set the skip content buttons needed for accessibility.
 		</NcContent>
 	</template>
 	<script>
-	import Check from 'vue-material-design-icons/Check'
+	import { mdiCheck } from '@mdi/js'
 
 	export default {
-		components: {
-			Check,
+		setup() {
+			return {
+				mdiCheck,
+			}
 		},
 		data() {
 			return {

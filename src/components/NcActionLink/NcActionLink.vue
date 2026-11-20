@@ -12,7 +12,7 @@ This component is made to be used inside of the [NcActions](#NcActions) componen
 		<NcActions>
 			<NcActionLink href="https://nextcloud.com">
 				<template #icon>
-					<IconOpenInNew :size="20" />
+					<NcIconSvgWrapper :path="mdiOpenInNew" />
 				</template>
 				Nextcloud website
 			</NcActionLink>
@@ -22,7 +22,7 @@ This component is made to be used inside of the [NcActions](#NcActions) componen
 			<NcActionLink href="https://www.gnu.org/licenses/gpl.odt"
 				  download="AGPL License text.odt">
 				<template #icon>
-					<IconDownloadOutline :size="20" />
+					<NcIconSvgWrapper :path="mdiDownloadOutline" />
 				</template>
 				Download AGPL license text
 			</NcActionLink>
@@ -31,14 +31,14 @@ This component is made to be used inside of the [NcActions](#NcActions) componen
 		<NcActions>
 			<NcActionLink href="https://nextcloud.com">
 				<template #icon>
-					<IconOpenInNew :size="20" />
+					<NcIconSvgWrapper :path="mdiOpenInNew" />
 				</template>
 				Nextcloud website
 			</NcActionLink>
 			<NcActionLink href="https://www.gnu.org/licenses/gpl.odt"
 				  download="AGPL License text.odt">
 				<template #icon>
-					<IconDownloadOutline :size="20" />
+					<NcIconSvgWrapper :path="mdiDownloadOutline" />
 				</template>
 				Download AGPL license text
 			</NcActionLink>
@@ -46,13 +46,14 @@ This component is made to be used inside of the [NcActions](#NcActions) componen
 	</div>
 </template>
 <script>
-import IconDownloadOutline from 'vue-material-design-icons/DownloadOutline.vue'
-import IconOpenInNew from 'vue-material-design-icons/OpenInNew.vue'
+import { mdiDownloadOutline, mdiOpenInNew } from '@mdi/js'
 
 export default {
-	components: {
-		IconDownloadOutline,
-		IconOpenInNew,
+	setup() {
+		return {
+			mdiDownloadOutline,
+			mdiOpenInNew,
+		}
 	},
 }
 </script>

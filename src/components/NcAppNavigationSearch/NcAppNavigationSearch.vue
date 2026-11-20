@@ -16,24 +16,24 @@
 						<template #actions>
 							<NcActions aria-label="Filters">
 								<template #icon>
-									<IconFilterOutline :size="20" />
+									<NcIconSvgWrapper :path="mdiFilterOutline" />
 								</template>
 								<NcActionButton>
 									<template #icon>
-										<IconAccountOutline :size="20" />
+										<NcIconSvgWrapper :path="mdiAccountOutline" />
 									</template>
 									Filter by name
 								</NcActionButton>
 								<NcActionButton>
 									<template #icon>
-										<IconCalendarAccountOutline :size="20" />
+										<NcIconSvgWrapper :path="mdiCalendarAccountOutline" />
 									</template>
 									Filter by year
 								</NcActionButton>
 							</NcActions>
 							<NcButton aria-label="Search globally" variant="tertiary">
 								<template #icon>
-									<IconSearchGlobalOutline :size="20" />
+									<NcIconSvgWrapper :path="mdiCloudSearchOutline" />
 								</template>
 							</NcButton>
 						</template>
@@ -42,12 +42,12 @@
 				<template #list>
 					<NcAppNavigationItem name="First navigation entry">
 						<template #icon>
-							<IconStarOutline :size="20" />
+							<NcIconSvgWrapper :path="mdiStarOutline" />
 						</template>
 					</NcAppNavigationItem>
 					<NcAppNavigationItem name="Second navigation entry">
 						<template #icon>
-							<IconStarOutline :size="20" />
+							<NcIconSvgWrapper :path="mdiStarOutline" />
 						</template>
 					</NcAppNavigationItem>
 				</template>
@@ -64,21 +64,19 @@
 	</div>
 </template>
 <script>
-import IconAccountOutline from 'vue-material-design-icons/AccountOutline.vue'
-import IconCalendarAccountOutline from 'vue-material-design-icons/CalendarAccountOutline.vue'
-import IconFilterOutline from 'vue-material-design-icons/FilterOutline.vue'
-import IconSearchGlobalOutline from 'vue-material-design-icons/CloudSearchOutline.vue'
-import IconStarOutline from 'vue-material-design-icons/StarOutline.vue'
+import { mdiAccountOutline, mdiCalendarAccountOutline, mdiCloudSearchOutline, mdiFilterOutline, mdiStarOutline } from '@mdi/js'
 
 const exampleItem = ['Mary', 'Patricia', 'James', 'Michael']
 
 export default {
-	components: {
-		IconAccountOutline,
-		IconCalendarAccountOutline,
-		IconFilterOutline,
-		IconSearchGlobalOutline,
-		IconStarOutline,
+	setup() {
+		return {
+			mdiAccountOutline,
+			mdiCalendarAccountOutline,
+			mdiCloudSearchOutline,
+			mdiFilterOutline,
+			mdiStarOutline,
+		}
 	},
 
 	data() {

@@ -16,58 +16,58 @@ For the `NcSelect` component, all events will be passed through. Please see the 
 		<NcActions>
 			<NcActionInput v-model="text" :label-outside="true" label="Label outside the input">
 				<template #icon>
-					<IconPencilOutline :size="20" />
+					<NcIconSvgWrapper :path="mdiPencilOutline" />
 				</template>
 			</NcActionInput>
 			<NcActionInput v-model="text" :show-trailing-button="false" label="Input without trailing button">
 				<template #icon>
-					<IconPencilOutline :size="20" />
+					<NcIconSvgWrapper :path="mdiPencilOutline" />
 				</template>
 			</NcActionInput>
 			<NcActionInput v-model="text" label="Input with placeholder">
 				<template #icon>
-					<IconPencilOutline :size="20" />
+					<NcIconSvgWrapper :path="mdiPencilOutline" />
 				</template>
 				This is the placeholder
 			</NcActionInput>
 			<NcActionInput type="password" v-model="text" label="Password with visible label">
 				<template #icon>
-					<IconKeyOutline :size="20" />
+					<NcIconSvgWrapper :path="mdiKeyOutline" />
 				</template>
 				Password placeholder
 			</NcActionInput>
 			<NcActionInput type="password" v-model="text" :show-trailing-button="false">
 				<template #icon>
-					<IconKeyOutline :size="20" />
+					<NcIconSvgWrapper :path="mdiKeyOutline" />
 				</template>
 				Password placeholder
 			</NcActionInput>
 			<NcActionInput type="color" v-model="color" label="Favorite color">
 				<template #icon>
-					<IconEyedropper :size="20" />
+					<NcIconSvgWrapper :path="mdiEyedropper" />
 				</template>
 				Color placeholder
 			</NcActionInput>
 			<NcActionInput label="Visible label" v-model="text">
 				<template #icon>
-					<IconPencilOutline :size="20" />
+					<NcIconSvgWrapper :path="mdiPencilOutline" />
 				</template>
 				Input with visible label
 			</NcActionInput>
 			<NcActionInput :disabled="true" label="This is a disabled input">
 				<template #icon>
-					<IconClose :size="20" />
+					<NcIconSvgWrapper :path="mdiClose" />
 				</template>
 			</NcActionInput>
 			<NcActionInput type="date" label="Native date picker" isNativePicker v-model="date">
 				<template #icon>
-					<IconPencilOutline :size="20" />
+					<NcIconSvgWrapper :path="mdiPencilOutline" />
 				</template>
 				Please pick a date
 			</NcActionInput>
 			<NcActionInput type="date" v-model="date">
 				<template #icon>
-					<IconPencilOutline :size="20" />
+					<NcIconSvgWrapper :path="mdiPencilOutline" />
 				</template>
 				Please pick a date
 			</NcActionInput>
@@ -76,7 +76,7 @@ For the `NcSelect` component, all events will be passed through. Please see the 
 				input-label="Fruit selection"
 				:options="['Apple', 'Banana', 'Cherry']">
 				<template #icon>
-					<IconPencilOutline :size="20" />
+					<NcIconSvgWrapper :path="mdiPencilOutline" />
 				</template>
 				Please pick a fruit
 			</NcActionInput>
@@ -89,24 +89,23 @@ For the `NcSelect` component, all events will be passed through. Please see the 
 				:multiple="true"
 				:options="[{label:'Apple', id: 'apple'}, {label:'Banana', id: 'banana'}, {label:'Cherry', id: 'cherry'}]">
 				<template #icon>
-					<IconPencilOutline :size="20" />
+					<NcIconSvgWrapper :path="mdiPencilOutline" />
 				</template>
 				Please pick a fruit object
 			</NcActionInput>
 		</NcActions>
 	</template>
 	<script>
-	import IconClose from 'vue-material-design-icons/Close.vue'
-	import IconEyedropper from 'vue-material-design-icons/Eyedropper.vue'
-	import IconKeyOutline from 'vue-material-design-icons/KeyOutline.vue'
-	import IconPencilOutline from 'vue-material-design-icons/PencilOutline.vue'
+	import { mdiClose, mdiEyedropper, mdiKeyOutline, mdiPencilOutline } from '@mdi/js'
 
 	export default {
-		components: {
-			IconClose,
-			IconEyedropper,
-			IconKeyOutline,
-			IconPencilOutline,
+		setup() {
+			return {
+				mdiClose,
+				mdiEyedropper,
+				mdiKeyOutline,
+				mdiPencilOutline,
+			}
 		},
 		data() {
 			return {

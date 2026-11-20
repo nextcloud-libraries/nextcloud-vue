@@ -16,15 +16,17 @@ It might be used for list rendering or within the multiselect for example
 ```vue
 	<template>
 		<NcListItemIcon name="User 1" :avatar-size="44">
-			<IconAccountOutline :size="20" />
+			<NcIconSvgWrapper :path="mdiAccountOutline" />
 		</NcListItemIcon>
 	</template>
 	<script>
-	import IconAccountOutline from 'vue-material-design-icons/AccountOutline.vue'
+	import { mdiAccountOutline } from '@mdi/js'
 
 	export default {
-		components: {
-			IconAccountOutline,
+		setup() {
+			return {
+				mdiAccountOutline,
+			}
 		},
 	}
 	</script>
@@ -34,15 +36,17 @@ It might be used for list rendering or within the multiselect for example
 ```vue
 	<template>
 		<NcListItemIcon name="Group 1" subname="13 members" :is-no-user="true">
-			<IconAccountMultipleOutline :size="20" />
+			<NcIconSvgWrapper :path="mdiAccountMultipleOutline" />
 		</NcListItemIcon>
 	</template>
 	<script>
-	import IconAccountMultipleOutline from 'vue-material-design-icons/AccountMultipleOutline.vue'
+	import { mdiAccountMultipleOutline } from '@mdi/js'
 
 	export default {
-		components: {
-			IconAccountMultipleOutline,
+		setup() {
+			return {
+				mdiAccountMultipleOutline,
+			}
 		},
 	}
 	</script>
@@ -54,15 +58,17 @@ It might be used for list rendering or within the multiselect for example
 		<NcListItemIcon name="Test user 1" subname="callmetest@domain.com" search="test" />
 		<NcListItemIcon name="Testing admin" subname="testme@example.com" search="test" />
 		<NcListItemIcon name="Test group 2" subname="loremipsum@domain.com" :is-no-user="true" search="test">
-			<IconAccountMultipleOutline :size="20" />
+			<NcIconSvgWrapper :path="mdiAccountMultipleOutline" />
 		</NcListItemIcon>
 	</template>
 	<script>
-	import IconAccountMultipleOutline from 'vue-material-design-icons/AccountMultipleOutline.vue'
+	import { mdiAccountMultipleOutline } from '@mdi/js'
 
 	export default {
-		components: {
-			IconAccountMultipleOutline,
+		setup() {
+			return {
+				mdiAccountMultipleOutline,
+			}
 		},
 	}
 	</script>
@@ -75,13 +81,13 @@ It might be used for list rendering or within the multiselect for example
 			<NcActions>
 				<NcActionButton @click="alert('Edit')">
 					<template #icon>
-						<IconPencilOutline :size="20" />
+						<NcIconSvgWrapper :path="mdiPencilOutline" />
 					</template>
 					Edit
 				</NcActionButton>
 				<NcActionButton @click="alert('Delete')">
 					<template #icon>
-						<IconDeleteOutline :size="20" />
+						<NcIconSvgWrapper :path="mdiDeleteOutline" />
 					</template>
 					Delete
 				</NcActionButton>
@@ -89,13 +95,14 @@ It might be used for list rendering or within the multiselect for example
 		</NcListItemIcon>
 	</template>
 	<script>
-	import IconDeleteOutline from 'vue-material-design-icons/DeleteOutline.vue'
-	import IconPencilOutline from 'vue-material-design-icons/PencilOutline.vue'
+	import { mdiDeleteOutline, mdiPencilOutline } from '@mdi/js'
 
 	export default {
-		components: {
-			IconDeleteOutline,
-			IconPencilOutline,
+		setup() {
+			return {
+				mdiDeleteOutline,
+				mdiPencilOutline,
+			}
 		},
 	}
 	</script>

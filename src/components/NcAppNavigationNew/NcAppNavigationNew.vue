@@ -3,28 +3,30 @@
   - SPDX-License-Identifier: AGPL-3.0-or-later
 -->
 
- <docs>
+<docs>
 ### Usage
 
- ```
- <template>
+```
+<template>
 	<NcAppNavigationNew text="New Element">
 		<template #icon>
-			<Plus :size="20" />
+			<NcIconSvgWrapper :path="mdiPlus" />
 		</template>
 	</NcAppNavigationNew>
- </template>
- <script>
- import Plus from 'vue-material-design-icons/Plus'
+</template>
+<script>
+import { mdiPlus } from '@mdi/js'
 
- export default {
-	components: {
-		Plus,
+export default {
+	setup() {
+		return {
+			mdiPlus,
+		}
 	},
- }
- </script>
- ```
- </docs>
+}
+</script>
+```
+</docs>
 
 <template>
 	<div class="app-navigation-new">

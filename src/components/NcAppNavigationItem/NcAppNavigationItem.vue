@@ -16,17 +16,19 @@
 		<ul>
 			<NcAppNavigationItem name="My name">
 				<template #icon>
-					<Check :size="20" />
+					<NcIconSvgWrapper :path="mdiCheck" />
 				</template>
 			</NcAppNavigationItem>
 		</ul>
 	</template>
 	<script>
-	import Check from 'vue-material-design-icons/Check.vue'
+	import { mdiCheck } from '@mdi/js'
 
 	export default {
-		components: {
-			Check,
+		setup() {
+			return {
+				mdiCheck,
+			}
 		},
 	}
 	</script>
@@ -87,24 +89,24 @@ button will be automatically created.
 			<ul>
 				<NcAppNavigationItem name="Item with actions">
 					<template #icon>
-						<Check :size="20" />
+						<NcIconSvgWrapper :path="mdiCheck" />
 					</template>
 					<template #actions>
 						<NcActionButton @click="alert('Edit')">
 							<template #icon>
-								<Pencil :size="20" />
+								<NcIconSvgWrapper :path="mdiPencil" />
 							</template>
 							Edit
 						</NcActionButton>
 						<NcActionButton @click="alert('Delete')">
 							<template #icon>
-								<Delete :size="20" />
+								<NcIconSvgWrapper :path="mdiDelete" />
 							</template>
 							Delete
 						</NcActionButton>
 						<NcActionLink name="Link" href="https://nextcloud.com">
 							<template #icon>
-								<OpenInNew :size="20" />
+								<NcIconSvgWrapper :path="mdiOpenInNew" />
 							</template>
 						</NcActionLink>
 					</template>
@@ -113,17 +115,16 @@ button will be automatically created.
 		</div>
 	</template>
 	<script>
-	import Check from 'vue-material-design-icons/Check.vue'
-	import Delete from 'vue-material-design-icons/Delete.vue'
-	import OpenInNew from 'vue-material-design-icons/OpenInNew.vue'
-	import Pencil from 'vue-material-design-icons/Pencil.vue'
+	import { mdiCheck, mdiDelete, mdiOpenInNew, mdiPencil } from '@mdi/js'
 
 	export default {
-		components: {
-			Check,
-			Delete,
-			OpenInNew,
-			Pencil,
+		setup() {
+			return {
+				mdiCheck,
+				mdiDelete,
+				mdiOpenInNew,
+				mdiPencil,
+			}
 		},
 		methods: {
 			alert(msg) {
@@ -142,7 +143,7 @@ Just nest the counter in a template within `<NcAppNavigationItem>` and add `#cou
 		<ul>
 			<NcAppNavigationItem name="Item with counter">
 				<template #icon>
-					<IconFolderOutline :size="20" />
+					<NcIconSvgWrapper :path="mdiFolderOutline" />
 				</template>
 				<template #counter>
 					<NcCounterBubble :count="90" />
@@ -151,11 +152,13 @@ Just nest the counter in a template within `<NcAppNavigationItem>` and add `#cou
 		</ul>
 	</template>
 	<script>
-	import IconFolderOutline from 'vue-material-design-icons/FolderOutline.vue'
+	import { mdiFolderOutline } from '@mdi/js'
 
 	export default {
-		components: {
-			IconFolderOutline,
+		setup() {
+			return {
+				mdiFolderOutline,
+			}
 		},
 	}
 	</script>
@@ -171,7 +174,7 @@ prevent the user from collapsing the items.
 		<ul>
 			<NcAppNavigationItem name="Item with children" :allowCollapse="true">
 				<template #icon>
-					<IconFolderOutline :size="20" />
+					<NcIconSvgWrapper :path="mdiFolderOutline" />
 				</template>
 				<template #counter>
 					<NcCounterBubble :count="90" />
@@ -179,19 +182,19 @@ prevent the user from collapsing the items.
 				<template #actions>
 					<NcActionButton @click="alert('Edit')">
 						<template #icon>
-							<Pencil :size="20" />
+							<NcIconSvgWrapper :path="mdiPencil" />
 						</template>
 						Edit
 					</NcActionButton>
 					<NcActionButton @click="alert('Delete')">
 						<template #icon>
-							<Delete :size="20" />
+							<NcIconSvgWrapper :path="mdiDelete" />
 						</template>
 						Delete
 					</NcActionButton>
 					<NcActionLink name="Link" href="https://nextcloud.com">
 						<template #icon>
-							<OpenInNew :size="20" />
+							<NcIconSvgWrapper :path="mdiOpenInNew" />
 						</template>
 					</NcActionLink>
 				</template>
@@ -205,17 +208,16 @@ prevent the user from collapsing the items.
 		</ul>
 	</template>
 	<script>
-	import IconFolderOutline from 'vue-material-design-icons/FolderOutline.vue'
-	import Delete from 'vue-material-design-icons/Delete.vue'
-	import OpenInNew from 'vue-material-design-icons/OpenInNew.vue'
-	import Pencil from 'vue-material-design-icons/Pencil.vue'
+	import { mdiDelete, mdiFolderOutline, mdiOpenInNew, mdiPencil } from '@mdi/js'
 
 	export default {
-		components: {
-			IconFolderOutline,
-			Delete,
-			OpenInNew,
-			Pencil,
+		setup() {
+			return {
+				mdiDelete,
+				mdiFolderOutline,
+				mdiOpenInNew,
+				mdiPencil,
+			}
 		},
 		methods: {
 			alert(msg) {
@@ -236,17 +238,19 @@ the placeholder is the previous name of the element.
 			<NcAppNavigationItem name="Editable Item" :editable="true"
 				editPlaceholder="your_placeholder_here" @update:name="function(value){alert(value)}">
 				<template #icon>
-					<IconFolderOutline :size="20" />
+					<NcIconSvgWrapper :path="mdiFolderOutline" />
 				</template>
 			</NcAppNavigationItem>
 		</ul>
 	</template>
 	<script>
-	import IconFolderOutline from 'vue-material-design-icons/FolderOutline.vue'
+	import { mdiFolderOutline } from '@mdi/js'
 
 	export default {
-		components: {
-			IconFolderOutline,
+		setup() {
+			return {
+				mdiFolderOutline,
+			}
 		},
 		methods: {
 			alert(msg) {

@@ -12,7 +12,7 @@ This component is made to be used in the Nextcloud top header.
 		<NcHeaderMenu id="search"
 			aria-label="Search">
 			<template #trigger>
-				<Magnify />
+				<NcIconSvgWrapper :path="mdiMagnify" />
 			</template>
 			<div>
 				<NcTextField label="Search for files, comments, contacts …"
@@ -23,7 +23,7 @@ This component is made to be used in the Nextcloud top header.
 					name="Search"
 					:description="query ? `No results for '${query}'` : 'Start typing to search'">
 					<template #icon>
-						<Magnify />
+						<NcIconSvgWrapper :path="mdiMagnify" />
 					</template>
 				</NcEmptyContent>
 			</div>
@@ -31,11 +31,13 @@ This component is made to be used in the Nextcloud top header.
 	</div>
 </template>
 <script>
-import Magnify from 'vue-material-design-icons/Magnify'
+import { mdiMagnify } from '@mdi/js'
 
 export default {
-	components: {
-		Magnify,
+	setup() {
+		return {
+			mdiMagnify,
+		}
 	},
 	data() {
 		return {

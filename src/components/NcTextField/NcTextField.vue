@@ -24,7 +24,7 @@ and `minlength`.
 			:show-trailing-button="text1 !== ''"
 			@trailing-button-click="clearText">
 			<template #icon>
-				<Magnify :size="20" />
+				<NcIconSvgWrapper :path="mdiMagnify" />
 			</template>
 		</NcTextField>
 		<NcTextField v-model="text4"
@@ -34,7 +34,7 @@ and `minlength`.
 			:show-trailing-button="text4 !== ''"
 			@trailing-button-click="clearText">
 			<template #icon>
-				<IconLockOutline :size="20" />
+				<NcIconSvgWrapper :path="mdiLockOutline" />
 			</template>
 		</NcTextField>
 		<NcTextField v-model="text2"
@@ -72,11 +72,16 @@ and `minlength`.
 	</div>
 </template>
 <script>
-import Magnify from 'vue-material-design-icons/Magnify'
-import IconLockOutline from 'vue-material-design-icons/LockOutline'
-import Close from 'vue-material-design-icons/Close'
+import { mdiLockOutline, mdiMagnify } from '@mdi/js'
 
 export default {
+	setup() {
+		return {
+			mdiLockOutline,
+			mdiMagnify,
+		}
+	},
+
 	data() {
 		return {
 			text1: '',
@@ -85,12 +90,6 @@ export default {
 			text4: '',
 			text5: '',
 		}
-	},
-
-	components: {
-		Magnify,
-		IconLockOutline,
-		Close,
 	},
 
 	methods: {

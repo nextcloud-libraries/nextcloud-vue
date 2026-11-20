@@ -556,7 +556,7 @@ You can also add icons to the section navigation:
 		<NcAppSettingsDialog v-model:open="settingsOpen" :show-navigation="true" name="Application settings" legacy>
 			<NcAppSettingsSection id="asci-name-1" name="Instagram">
 				<template #icon>
-					<Instagram :size="20" />
+					<NcIconSvgWrapper :path="mdiInstagram" />
 				</template>
 				<p style="height: 100vh;">
 					Instagram setting
@@ -564,7 +564,7 @@ You can also add icons to the section navigation:
 			</NcAppSettingsSection>
 			<NcAppSettingsSection id="asci-name-2" name="Mastodon">
 				<template #icon>
-					<Mastodon :size="20" />
+					<NcIconSvgWrapper :path="mdiMastodon" />
 				</template>
 				<p style="height: 100vh;">
 					Mastodon setting
@@ -572,7 +572,7 @@ You can also add icons to the section navigation:
 			</NcAppSettingsSection>
 			<NcAppSettingsSection id="asci-name-3" name="Twitch">
 				<template #icon>
-					<Twitch :size="20" />
+					<NcIconSvgWrapper :path="mdiTwitch" />
 				</template>
 				<p style="height: 100vh;">
 					Twitch setting
@@ -580,7 +580,7 @@ You can also add icons to the section navigation:
 			</NcAppSettingsSection>
 			<NcAppSettingsSection id="asci-name-4" name="Twitter">
 				<template #icon>
-					<Twitter :size="20" />
+					<NcIconSvgWrapper :path="mdiTwitter" />
 				</template>
 				Twitter setting
 			</NcAppSettingsSection>
@@ -589,17 +589,16 @@ You can also add icons to the section navigation:
 </template>
 
 <script>
-import Instagram from 'vue-material-design-icons/Instagram.vue'
-import Mastodon from 'vue-material-design-icons/Mastodon.vue'
-import Twitch from 'vue-material-design-icons/Twitch.vue'
-import Twitter from 'vue-material-design-icons/Twitter.vue'
+import { mdiInstagram, mdiMastodon, mdiTwitch, mdiTwitter } from '@mdi/js'
 
 export default {
-	components: {
-		Instagram,
-		Mastodon,
-		Twitch,
-		Twitter,
+	setup() {
+		return {
+			mdiInstagram,
+			mdiMastodon,
+			mdiTwitch,
+			mdiTwitter,
+		}
 	},
 	data() {
 		return {

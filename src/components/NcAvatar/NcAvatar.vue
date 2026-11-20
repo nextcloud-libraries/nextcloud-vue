@@ -23,16 +23,18 @@
 <template>
 	<NcAvatar>
 		<template #icon>
-			<IconAccountMultipleOutline :size="20" />
+			<NcIconSvgWrapper :path="mdiAccountMultipleOutline" />
 		</template>
 	</NcAvatar>
 </template>
 <script>
-import IconAccountMultipleOutline from 'vue-material-design-icons/AccountMultipleOutline.vue'
+import { mdiAccountMultipleOutline } from '@mdi/js'
 
 export default {
-	components: {
-		IconAccountMultipleOutline,
+	setup() {
+		return {
+			mdiAccountMultipleOutline,
+		}
 	},
 }
 </script>
@@ -158,13 +160,7 @@ export default {
 </template>
 
 <script>
-import AccountMultiple from 'vue-material-design-icons/AccountMultiple.vue'
-
 export default {
-	components: {
-		AccountMultiple,
-	},
-
 	data() {
 		return {
 			customSize: 20,

@@ -7,11 +7,11 @@
 
 ### General description
 General purpose button component. See props for different options.
-[Use material design icons only for icons](https://www.npmjs.com/package/vue-material-design-icons) and remember to set their size to 20.
+Use [Material Design Icons](https://pictogrammers.com/library/mdi/) (e.g. from [`@mdi/js`](https://www.npmjs.com/package/@mdi/js)) together with `NcIconSvgWrapper` for icons.
 
 ### Usage
 ### Custom icon slot
-To be used with `vue-material-design-icons` only. For icon classes use the `default-icon` slot.
+Use `NcIconSvgWrapper` with an icon path from `@mdi/js` for the icon.
 It can be used with one or multiple actions.
 ```
 <template>
@@ -40,8 +40,7 @@ It can be used with one or multiple actions.
 			:text
 			variant="tertiary-no-background">
 			<template v-if="style.indexOf('icon') !== -1" #icon>
-				<IconVideoOutline
-					:size="20" />
+				<NcIconSvgWrapper :path="mdiVideoOutline" />
 			</template>
 		</NcButton>
 		<NcButton
@@ -51,8 +50,7 @@ It can be used with one or multiple actions.
 			:text
 			variant="tertiary">
 			<template v-if="style.indexOf('icon') !== -1" #icon>
-				<IconVideoOutline
-					:size="20" />
+				<NcIconSvgWrapper :path="mdiVideoOutline" />
 			</template>
 		</NcButton>
 		<NcButton
@@ -61,8 +59,7 @@ It can be used with one or multiple actions.
 			:size
 			:text>
 			<template v-if="style.indexOf('icon') !== -1" #icon>
-				<IconVideoOutline
-					:size="20" />
+				<NcIconSvgWrapper :path="mdiVideoOutline" />
 			</template>
 		</NcButton>
 		<NcButton
@@ -72,8 +69,7 @@ It can be used with one or multiple actions.
 			:text
 			variant="primary">
 			<template v-if="style.indexOf('icon') !== -1" #icon>
-				<IconVideo
-					:size="20" />
+				<NcIconSvgWrapper :path="mdiVideo" />
 			</template>
 		</NcButton>
 	</div>
@@ -87,8 +83,7 @@ It can be used with one or multiple actions.
 		:wide="true"
 		text="Example text">
 		<template #icon>
-			<IconVideoOutline
-				:size="20" />
+			<NcIconSvgWrapper :path="mdiVideoOutline" />
 		</template>
 	</NcButton>
 
@@ -105,8 +100,7 @@ It can be used with one or multiple actions.
 			text="Example text"
 			variant="success">
 			<template #icon>
-				<IconVideoOutline
-					:size="20" />
+				<NcIconSvgWrapper :path="mdiVideoOutline" />
 			</template>
 		</NcButton>
 		<NcButton
@@ -115,8 +109,7 @@ It can be used with one or multiple actions.
 			text="Example text"
 			variant="warning">
 			<template #icon>
-				<IconVideoOutline
-					:size="20" />
+				<NcIconSvgWrapper :path="mdiVideoOutline" />
 			</template>
 		</NcButton>
 		<NcButton
@@ -125,8 +118,7 @@ It can be used with one or multiple actions.
 			text="Example text"
 			variant="error">
 			<template #icon>
-				<IconVideoOutline
-					:size="20" />
+				<NcIconSvgWrapper :path="mdiVideoOutline" />
 			</template>
 		</NcButton>
 		<p> - </p>
@@ -135,13 +127,14 @@ It can be used with one or multiple actions.
 
 </template>
 <script>
-import IconVideo from 'vue-material-design-icons/Video.vue'
-import IconVideoOutline from 'vue-material-design-icons/VideoOutline.vue'
+import { mdiVideo, mdiVideoOutline } from '@mdi/js'
 
 export default {
-	components: {
-		IconVideo,
-		IconVideoOutline,
+	setup() {
+		return {
+			mdiVideo,
+			mdiVideoOutline,
+		}
 	},
 	data() {
 		return {
@@ -200,36 +193,36 @@ Sometimes it is required to change the icon alignment on the button, like for sw
 	<div style="display: flex; flex-direction: column; gap: 12px;">
 		<NcButton text="center (default)" variant="secondary" wide>
 			<template #icon>
-				<IconLeft :size="20" />
+				<NcIconSvgWrapper :path="mdiArrowLeft" />
 			</template>
 		</NcButton>
 		<NcButton alignment="center-reverse" text="center-reverse" variant="secondary" wide>
 			<template #icon>
-				<IconRight :size="20" />
+				<NcIconSvgWrapper :path="mdiArrowRight" />
 			</template>
 		</NcButton>
 		<div style="display: flex; gap: 12px;">
 			<div style="display: flex; flex-direction: column; gap: 12px; flex: 1">
 				<NcButton alignment="start" text="start" variant="secondary" wide>
 					<template #icon>
-						<IconLeft :size="20" />
+						<NcIconSvgWrapper :path="mdiArrowLeft" />
 					</template>
 				</NcButton>
 				<NcButton alignment="start-reverse" text="start-reverse" variant="secondary" wide>
 					<template #icon>
-						<IconRight :size="20" />
+						<NcIconSvgWrapper :path="mdiArrowRight" />
 					</template>
 				</NcButton>
 			</div>
 			<div style="display: flex; flex-direction: column; gap: 12px; flex: 1">
 				<NcButton alignment="end" text="end" variant="secondary" wide>
 					<template #icon>
-						<IconLeft :size="20" />
+						<NcIconSvgWrapper :path="mdiArrowLeft" />
 					</template>
 				</NcButton>
 				<NcButton alignment="end-reverse" text="end-reverse" variant="secondary" wide>
 					<template #icon>
-						<IconRight :size="20" />
+						<NcIconSvgWrapper :path="mdiArrowRight" />
 					</template>
 				</NcButton>
 			</div>
@@ -237,13 +230,14 @@ Sometimes it is required to change the icon alignment on the button, like for sw
 	</div>
 </template>
 <script>
-import IconLeft from 'vue-material-design-icons/ArrowLeft.vue'
-import IconRight from 'vue-material-design-icons/ArrowRight.vue'
+import { mdiArrowLeft, mdiArrowRight } from '@mdi/js'
 
 export default {
-	components: {
-		IconLeft,
-		IconRight,
+	setup() {
+		return {
+			mdiArrowLeft,
+			mdiArrowRight,
+		}
 	},
 }
 </script>
@@ -262,20 +256,20 @@ Do not change `text` or `aria-label` of the pressed/unpressed button. See: https
 		<div style="display: flex; gap: 12px;">
 			<NcButton v-model:pressed="isFavorite" aria-label="Favorite" variant="tertiary-no-background">
 				<template #icon>
-					<IconStar v-if="isFavorite" :size="20" />
-					<IconStarOutline v-else :size="20" />
+					<NcIconSvgWrapper :path="mdiStar" v-if="isFavorite" />
+					<NcIconSvgWrapper :path="mdiStarOutline" v-else />
 				</template>
 			</NcButton>
 			<NcButton v-model:pressed="isFavorite" text="Favorite" variant="tertiary">
 				<template #icon>
-					<IconStar v-if="isFavorite" :size="20" />
-					<IconStarOutline v-else :size="20" />
+					<NcIconSvgWrapper :path="mdiStar" v-if="isFavorite" />
+					<NcIconSvgWrapper :path="mdiStarOutline" v-else />
 				</template>
 			</NcButton>
 			<NcButton v-model:pressed="isFavorite" aria-label="Favorite">
 				<template #icon>
-					<IconStar v-if="isFavorite" :size="20" />
-					<IconStarOutline v-else :size="20" />
+					<NcIconSvgWrapper :path="mdiStar" v-if="isFavorite" />
+					<NcIconSvgWrapper :path="mdiStarOutline" v-else />
 				</template>
 			</NcButton>
 		</div>
@@ -285,13 +279,14 @@ Do not change `text` or `aria-label` of the pressed/unpressed button. See: https
 	</div>
 </template>
 <script>
-import IconStar from 'vue-material-design-icons/Star.vue'
-import IconStarOutline from 'vue-material-design-icons/StarOutline.vue'
+import { mdiStar, mdiStarOutline } from '@mdi/js'
 
 export default {
-	components: {
-		IconStar,
-		IconStarOutline,
+	setup() {
+		return {
+			mdiStar,
+			mdiStarOutline,
+		}
 	},
 	data() {
 		return {
@@ -336,8 +331,8 @@ The standard way to implement sortable table column headers should be like this:
 						variant="tertiary"
 						@click="sortName">
 						<template #icon>
-							<IconDown v-if="sortedName === 'ascending'" class="sort-icon" :size="20" />
-							<IconUp v-else-if="sortedName === 'descending'" class="sort-icon" :size="20" />
+							<NcIconSvgWrapper :path="mdiMenuDown" v-if="sortedName === 'ascending'" class="sort-icon" />
+							<NcIconSvgWrapper :path="mdiMenuUp" v-else-if="sortedName === 'descending'" class="sort-icon" />
 						</template>
 						<span class="table-header">Name</span>
 					</NcButton>
@@ -348,8 +343,8 @@ The standard way to implement sortable table column headers should be like this:
 						variant="tertiary"
 						@click="sortSize">
 						<template #icon>
-							<IconDown v-if="sortedSize === 'ascending'" class="sort-icon" :size="20" />
-							<IconUp v-else-if="sortedSize === 'descending'" class="sort-icon" :size="20" />
+							<NcIconSvgWrapper :path="mdiMenuDown" v-if="sortedSize === 'ascending'" class="sort-icon" />
+							<NcIconSvgWrapper :path="mdiMenuUp" v-else-if="sortedSize === 'descending'" class="sort-icon" />
 						</template>
 						<span class="table-header">Size</span>
 					</NcButton>
@@ -365,13 +360,14 @@ The standard way to implement sortable table column headers should be like this:
 	</table>
 </template>
 <script>
-import IconUp from 'vue-material-design-icons/MenuUp.vue'
-import IconDown from 'vue-material-design-icons/MenuDown.vue'
+import { mdiMenuDown, mdiMenuUp } from '@mdi/js'
 
 export default {
-	components: {
-		IconUp,
-		IconDown,
+	setup() {
+		return {
+			mdiMenuDown,
+			mdiMenuUp,
+		}
 	},
 	data() {
 		return {

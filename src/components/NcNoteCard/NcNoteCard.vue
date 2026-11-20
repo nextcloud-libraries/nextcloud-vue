@@ -40,7 +40,7 @@ The `actions` slot shows actions next to the text, for example a button to resol
 		<h4>Custom icon</h4>
 		<NcNoteCard type="warning" text="Custom icon usage">
 			<template #icon>
-				<IconCogOutline :size="20"/>
+				<NcIconSvgWrapper :path="mdiCogOutline" />
 			</template>
 		</NcNoteCard>
 
@@ -52,7 +52,7 @@ The `actions` slot shows actions next to the text, for example a button to resol
 		<h4>Actions</h4>
 		<NcNoteCard type="neutral" text="You are editing this. Others cannot change it until you unlock it.">
 			<template #icon>
-				<IconLockOutline :size="20" />
+				<NcIconSvgWrapper :path="mdiLockOutline" />
 			</template>
 			<template #actions>
 				<NcButton @click="unlocked = true">
@@ -65,13 +65,14 @@ The `actions` slot shows actions next to the text, for example a button to resol
 </template>
 
 <script>
-	import IconCogOutline from 'vue-material-design-icons/CogOutline.vue'
-	import IconLockOutline from 'vue-material-design-icons/LockOutline.vue'
+	import { mdiCogOutline, mdiLockOutline } from '@mdi/js'
 
 	export default {
-		components: {
-			IconCogOutline,
-			IconLockOutline,
+		setup() {
+			return {
+				mdiCogOutline,
+				mdiLockOutline,
+			}
 		},
 
 		data() {

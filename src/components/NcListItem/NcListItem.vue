@@ -52,7 +52,7 @@
 			</template>
 			<template #indicator>
 				<!-- Color dot -->
-				<CheckboxBlankCircle :size="16" fill-color="#fff" />
+				<NcIconSvgWrapper inline :path="mdiCheckboxBlankCircle" :size="16" style="color: #fff" />
 			</template>
 			<template #actions>
 				<NcActionButton>
@@ -78,11 +78,11 @@
 				In this slot you can put both text and other components such as icons
 			</template>
 			<template #details>
-				<LinkIcon :size="16"/>
+				<NcIconSvgWrapper inline :path="mdiLink" :size="16" />
 			</template>
 			<template #indicator>
 				<!-- Color dot -->
-				<CheckboxBlankCircle :size="16" fill-color="#fff" />
+				<NcIconSvgWrapper inline :path="mdiCheckboxBlankCircle" :size="16" style="color: #fff" />
 			</template>
 			<template #actions>
 				<NcActionButton>
@@ -187,11 +187,11 @@
 				In this slot you can put both text and other components such as icons
 			</template>
 			<template #details>
-				<LinkIcon :size="16"/>
+				<NcIconSvgWrapper inline :path="mdiLink" :size="16" />
 			</template>
 			<template #indicator>
 				<!-- Color dot -->
-				<CheckboxBlankCircle :size="16" fill-color="#0082c9"/>
+				<NcIconSvgWrapper inline :path="mdiCheckboxBlankCircle" :size="16" style="color: #0082c9" />
 			</template>
 			<template #actions>
 				<NcActionButton>
@@ -214,21 +214,22 @@
 			</template>
 			<template #indicator>
 				<!-- Color dot -->
-				<CheckboxBlankCircle :size="16" fill-color="#0082c9"/>
+				<NcIconSvgWrapper inline :path="mdiCheckboxBlankCircle" :size="16" style="color: #0082c9" />
 			</template>
 		</NcListItem>
 	</ul>
 </template>
 
 <script>
-	import CheckboxBlankCircle from 'vue-material-design-icons/CheckboxBlankCircle'
-	import LinkIcon from 'vue-material-design-icons/Link'
+	import { mdiCheckboxBlankCircle, mdiLink } from '@mdi/js'
 
 	export default {
-		components: {
-			CheckboxBlankCircle,
-			LinkIcon,
-		}
+		setup() {
+			return {
+				mdiCheckboxBlankCircle,
+				mdiLink,
+			}
+		},
 	}
 </script>
 
@@ -286,12 +287,12 @@ The `actions-icon` slot can be used to pass icon to the inner NcActions componen
 			<template #extra-actions>
 				<NcButton variant="primary">
 					<template #icon>
-						<IconCog :size="20" />
+						<NcIconSvgWrapper :path="mdiCog" />
 					</template>
 				</NcButton>
 			</template>
 			<template #actions-icon>
-				<IconNoteText :size="20" />
+				<NcIconSvgWrapper :path="mdiNoteText" />
 			</template>
 			<template #actions>
 				<NcActionButton>
@@ -314,17 +315,17 @@ The `actions-icon` slot can be used to pass icon to the inner NcActions componen
 			<template #extra-actions>
 				<NcButton variant="tertiary">
 					<template #icon>
-						<IconPencilOutline :size="20" />
+						<NcIconSvgWrapper :path="mdiPencilOutline" />
 					</template>
 				</NcButton>
 				<NcButton variant="tertiary">
 					<template #icon>
-						<IconCogOutline :size="20" />
+						<NcIconSvgWrapper :path="mdiCogOutline" />
 					</template>
 				</NcButton>
 			</template>
 			<template #actions-icon>
-				<IconNoteTextOutline :size="20" />
+				<NcIconSvgWrapper :path="mdiNoteTextOutline" />
 			</template>
 			<template #actions>
 				<NcActionButton>
@@ -341,21 +342,17 @@ The `actions-icon` slot can be used to pass icon to the inner NcActions componen
 	</div>
 </template>
 <script>
-	import IconCog from 'vue-material-design-icons/Cog.vue'
-	import IconCogOutline from 'vue-material-design-icons/CogOutline.vue'
-	import IconNoteText from 'vue-material-design-icons/NoteText.vue'
-	import IconNoteTextOutline from 'vue-material-design-icons/NoteTextOutline.vue'
-	import IconPencil from 'vue-material-design-icons/Pencil.vue'
-	import IconPencilOutline from 'vue-material-design-icons/PencilOutline.vue'
+	import { mdiCog, mdiCogOutline, mdiNoteText, mdiNoteTextOutline, mdiPencil, mdiPencilOutline } from '@mdi/js'
 
 	export default {
-		components: {
-			IconCog,
-			IconCogOutline,
-			IconNoteText,
-			IconNoteTextOutline,
-			IconPencil,
-			IconPencilOutline,
+		setup() {
+			return {
+				mdiCog,
+				mdiCogOutline,
+				mdiNoteText,
+				mdiNoteTextOutline,
+				mdiPencilOutline,
+			}
 		},
 	}
 </script>
@@ -368,20 +365,20 @@ The `actions-icon` slot can be used to pass icon to the inner NcActions componen
 			compact
 			name="Active item">
 			<template #icon>
-				<IconNoteText :size="20" />
+				<NcIconSvgWrapper :path="mdiNoteText" />
 			</template>
 		</NcListItem>
 		<NcListItem compact
 			name="Name of the element">
 			<template #icon>
-				<IconNoteTextOutline :size="20" />
+				<NcIconSvgWrapper :path="mdiNoteTextOutline" />
 			</template>
 		</NcListItem>
 		<NcListItem compact
 			name="Name of the element"
 			:counter-number="1">
 			<template #icon>
-				<IconNoteTextOutline :size="20" />
+				<NcIconSvgWrapper :path="mdiNoteTextOutline" />
 			</template>
 			<template #subname>
 				This one is with subname
@@ -399,7 +396,7 @@ The `actions-icon` slot can be used to pass icon to the inner NcActions componen
 			name="Name of the element"
 			:counter-number="3">
 			<template #icon>
-				<IconNoteTextOutline :size="20" />
+				<NcIconSvgWrapper :path="mdiNoteTextOutline" />
 			</template>
 			<template #subname>
 				This one is with subname
@@ -418,7 +415,7 @@ The `actions-icon` slot can be used to pass icon to the inner NcActions componen
 			:counter-number="4"
 			href="https://nextcloud.com">
 			<template #icon>
-				<IconNoteTextOutline :size="20" />
+				<NcIconSvgWrapper :path="mdiNoteTextOutline" />
 			</template>
 			<template #subname>
 				This one is with an external link
@@ -427,13 +424,14 @@ The `actions-icon` slot can be used to pass icon to the inner NcActions componen
 	</ul>
 </template>
 <script>
-	import IconNoteText from 'vue-material-design-icons/NoteText.vue'
-	import IconNoteTextOutline from 'vue-material-design-icons/NoteTextOutline.vue'
+	import { mdiNoteText, mdiNoteTextOutline } from '@mdi/js'
 
 	export default {
-		components: {
-			IconNoteText,
-			IconNoteTextOutline,
+		setup() {
+			return {
+				mdiNoteText,
+				mdiNoteTextOutline,
+			}
 		},
 	}
 </script>
