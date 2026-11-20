@@ -134,6 +134,9 @@ msgstr "Ahenda menüü"
 msgid "Color picker"
 msgstr "Värvivalija"
 
+msgid "Completed"
+msgstr "Lõpetatud"
+
 msgid "Confirm changes"
 msgstr "Kinnita muudatused"
 
@@ -580,6 +583,9 @@ msgstr "Alusta slaidiesitust"
 
 msgid "Start typing to search"
 msgstr "Otsimiseks kirjuta midagi"
+
+msgid "Steps"
+msgstr "Sammud"
 
 msgid "Submit"
 msgstr "Saada"
