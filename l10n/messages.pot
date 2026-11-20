@@ -2,6 +2,9 @@ msgid ""
 msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 
+msgid "{from}–{to} of {total}"
+msgstr ""
+
 msgid "{tag} (invisible)"
 msgstr ""
 
@@ -231,6 +234,9 @@ msgstr ""
 msgid "Feldspar"
 msgstr ""
 
+msgid "First page"
+msgstr ""
+
 msgid "Flags"
 msgstr ""
 
@@ -241,6 +247,9 @@ msgid "Frequently used"
 msgstr ""
 
 msgid "Go back to the list"
+msgstr ""
+
+msgid "Go to page"
 msgstr ""
 
 msgid "Gold"
@@ -267,10 +276,16 @@ msgstr ""
 msgid "invisible"
 msgstr ""
 
+msgid "Items per page"
+msgstr ""
+
 msgid "Keyboard navigation help"
 msgstr ""
 
 msgid "Keyboard shortcuts"
+msgstr ""
+
+msgid "Last page"
 msgstr ""
 
 msgid "Light skin tone"
@@ -332,6 +347,9 @@ msgid "Next"
 msgstr ""
 
 msgid "Next month"
+msgstr ""
+
+msgid "Next page"
 msgstr ""
 
 msgid "Next year"
@@ -401,6 +419,12 @@ msgstr ""
 msgid "Options"
 msgstr ""
 
+msgid "Page {page}"
+msgstr ""
+
+msgid "Pagination"
+msgstr ""
+
 msgid "Password is secure"
 msgstr ""
 
@@ -436,6 +460,9 @@ msgid "Previous"
 msgstr ""
 
 msgid "Previous month"
+msgstr ""
+
+msgid "Previous page"
 msgstr ""
 
 msgid "Previous year"
