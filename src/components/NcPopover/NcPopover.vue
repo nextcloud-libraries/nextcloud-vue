@@ -583,29 +583,32 @@ export default {
 
 		/**
 		 * Run the callback once the popover's own show or hide transition has ended.
+		 * Runs right away if there is no transition (e.g. reduced motion) and when the
+		 * transition is cancelled (e.g. floating-vue detached the popover node).
 		 * A pending callback is dropped when the popover is toggled again
-		 * (see `abortTransitionEnd`), so it cannot fire on a later transition.
+		 * (see `abortTransitionEnd`), so it cannot run for a later transition.
 		 *
 		 * @param {() => void} callback - The callback to run
 		 */
-		onTransitionEnd(callback) {
+		async onTransitionEnd(callback) {
 			this.abortTransitionEnd()
+			const controller = new AbortController()
+			this.transitionEndController = controller
 
+			// floating-vue emits `apply-show` and `apply-hide` before it renders the state that starts the transition
+			await this.$nextTick()
 			const element = this.getPopoverContentElement()
-			if (!element) {
+			if (!element || controller.signal.aborted) {
 				return
 			}
 
-			const controller = new AbortController()
-			this.transitionEndController = controller
-			element.addEventListener('transitionend', (event) => {
-				// Ignore transitions of the popover content bubbling up
-				if (event.target !== element) {
-					return
-				}
-				controller.abort()
-				callback()
-			}, { signal: controller.signal, passive: true })
+			const animations = element.getAnimations?.() ?? []
+			await Promise.allSettled(animations.map((animation) => animation.finished))
+			if (controller.signal.aborted) {
+				return
+			}
+			this.transitionEndController = null
+			callback()
 		},
 
 		/**
