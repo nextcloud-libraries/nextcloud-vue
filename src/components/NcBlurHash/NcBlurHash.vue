@@ -48,7 +48,7 @@ as soon as it is loaded the blur hash will be swapped with the real image and th
 			// so imagine that this means the source becomes loaded
 			imageSource() {
 				return this.loaded
-					? 'favicon-touch.png'
+					? '/favicon-touch.png'
 					: 'invalid-file-that-will-never-load.png'
 			},
 		},
@@ -99,7 +99,7 @@ Using `v-if` is also possible, this can e.g. used if the image is not loaded fro
 		<div class="wrapper">
 			<img :class="loaded ? 'shown-image' : 'hidden-visually'"
 				alt=""
-				src="favicon-touch.png">
+				src="/favicon-touch.png">
 			<NcBlurHash v-if="!loaded"
 				class="shown-image"
 				:hash="blurHash" />

@@ -1,13 +1,15 @@
+<!--
+ - SPDX-FileCopyrightText: 2020-2024 Nextcloud GmbH and Nextcloud contributors
+ - SPDX-License-Identifier: AGPL-3.0-or-later
+-->
+
+# Nextcloud Vue
+
 [![npm last version](https://img.shields.io/npm/v/@nextcloud/vue.svg?style=flat-square)](https://www.npmjs.com/package/@nextcloud/vue)
 [![build status](https://img.shields.io/github/actions/workflow/status/nextcloud-libraries/nextcloud-vue/node.yml?style=flat-square)](https://github.com/nextcloud-libraries/nextcloud-vue/actions/workflows/node.yml?query=branch%3Amain)
 [![Dependabot status](https://img.shields.io/badge/Dependabot-enabled-brightgreen.svg?longCache=true&style=flat-square&logo=dependabot)](https://dependabot.com)
 [![Test status](https://img.shields.io/github/actions/workflow/status/nextcloud-libraries/nextcloud-vue/npm-test.yml?style=flat-square&label=Test%20status)](https://github.com/nextcloud-libraries/nextcloud-vue/actions/workflows/npm-test.yml?query=branch%3Amain)
 [![irc](https://img.shields.io/badge/IRC-%23nextcloud--dev%20on%20freenode-blue.svg?style=flat-square)](https://webchat.freenode.net/?channels=nextcloud-dev)
-
-<!--
- - SPDX-FileCopyrightText: 2020-2024 Nextcloud GmbH and Nextcloud contributors
- - SPDX-License-Identifier: AGPL-3.0-or-later
--->
 
 > 🖼️ Nextcloud UI Kit for building Nextcloud apps with Vue
 

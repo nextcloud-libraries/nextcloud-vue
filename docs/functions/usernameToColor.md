@@ -3,6 +3,8 @@
   - SPDX-License-Identifier: AGPL-3.0-or-later
 -->
 
+# usernameToColor
+
 ```js static
 import { usernameToColor } from '@nextcloud/vue/functions/usernameToColor'
 ```
@@ -34,6 +36,8 @@ declare function usernameToColor(username: string): { r: number, g: number, b: n
 </template>
 
 <script>
+import { usernameToColor } from '@nextcloud/vue/functions/usernameToColor'
+
 export default {
     data() {
         return {

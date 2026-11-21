@@ -3,6 +3,8 @@
   - SPDX-License-Identifier: AGPL-3.0-or-later
 -->
 
+# emoji
+
 ```ts static
 import {
     EmojiSkinTone,
@@ -83,9 +85,12 @@ declare function setCurrentSkinTone(skinTone: EmojiSkinTone): void
 </template>
 
 <script>
+import { emojiAddRecent, emojiSearch, EmojiSkinTone, getCurrentSkinTone, setCurrentSkinTone } from '@nextcloud/vue/functions/emoji'
+
 export default {
     data() {
-        const initialSkinTone = getCurrentSkinTone()
+        const initialSkinTone
+ = getCurrentSkinTone()
         return {
             recent: [],
             selectedTone: {

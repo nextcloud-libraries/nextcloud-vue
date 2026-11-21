@@ -9,7 +9,10 @@ import { beforeMount } from '@playwright/experimental-ct-vue/hooks'
 import { createMemoryHistory, createRouter } from 'vue-router'
 
 // Visual setup
-import '../../../styleguide/assets/additional.css'
+import '../../../docs/assets/nextcloud-upcoming/default.css'
+import '../../../docs/assets/nextcloud-upcoming/dark.css'
+import '../../../docs/assets/nextcloud-upcoming/server.css'
+import '../../../docs/assets/nextcloud-upcoming/apps.css'
 import '@fontsource/roboto/index.css'
 import './index.css'
 

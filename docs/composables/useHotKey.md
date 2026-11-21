@@ -3,6 +3,8 @@
  - SPDX-License-Identifier: AGPL-3.0-or-later
 -->
 
+# useHotKey
+
 This composable allows to use keyboard shortcuts in the application.
 It respects Nextcloud's value of ```OCP.Accessibility.disableKeyboardShortcuts``` parameter.
 
@@ -61,7 +63,7 @@ where:
 
 <script>
 	import { ref } from 'vue'
-	import { useHotKey } from '../../src/composables/useHotKey/index.js'
+	import { useHotKey } from '@nextcloud/vue/composables/useHotKey'
 
 	const isMac = /mac|ipad|iphone|darwin/i.test(navigator.userAgent)
 

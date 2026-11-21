@@ -3,6 +3,8 @@
   - SPDX-License-Identifier: AGPL-3.0-or-later
 -->
 
+# useIsDarkTheme
+
 ```ts static
 import {
     useIsDarkTheme,
@@ -45,6 +47,8 @@ declare function useIsDarkTheme(): DeepReadonly<Ref<boolean>>
 </template>
 
 <script>
+import { useIsDarkTheme } from '@nextcloud/vue/composables/useIsDarkTheme'
+
 export default {
     setup() {
         const isDarkTheme = useIsDarkTheme()
