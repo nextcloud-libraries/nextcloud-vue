@@ -9,7 +9,7 @@ import type { IUpload } from '@nextcloud/files/upload'
 import { mdiAlertCircle, mdiCheckCircle, mdiChevronDown, mdiChevronUp, mdiCloseCircle, mdiFile, mdiFolder } from '@mdi/js'
 import { getUploader, UploadStatus } from '@nextcloud/files/upload'
 import { basename } from '@nextcloud/paths'
-import { computed, onMounted, onUnmounted, ref, shallowRef, triggerRef } from 'vue'
+import { computed, onMounted, onUnmounted, ref, shallowRef, triggerRef, watch } from 'vue'
 import NcButton from '../NcButton/NcButton.vue'
 import NcIconSvgWrapper from '../NcIconSvgWrapper/NcIconSvgWrapper.vue'
 import NcLoadingIcon from '../NcLoadingIcon/NcLoadingIcon.vue'
@@ -55,6 +55,8 @@ const open = ref(false)
 const limit = ref(50)
 const uploads = shallowRef<IUpload[]>([])
 const tracked = new Set<IUpload>()
+/** Uploads whose rows were cleared, so they are not shown or tracked again */
+const dismissed = new WeakSet<IUpload>()
 const keys = new WeakMap<IUpload, number>()
 let nextKey = 0
 
@@ -76,7 +78,7 @@ function keyOf(upload: IUpload): number {
 function synchronize() {
 	let added = false
 	for (const upload of uploader.queue) {
-		if (!upload.source || tracked.has(upload)) {
+		if (!upload.source || tracked.has(upload) || dismissed.has(upload)) {
 			continue
 		}
 		tracked.add(upload)
@@ -186,29 +188,40 @@ const nested = computed(() => {
 })
 
 /**
- * One row per picked file or folder. The root of a batch is only shown if it failed itself.
+ * The uploads that get a row for a tracked tree: one per picked file or folder.
+ * The root of a batch is only shown if it failed itself.
+ *
+ * @param root - The root of the tree
  */
-const rows = computed<IUploadRow[]>(() => {
-	const result: IUploadRow[] = []
-	for (const root of uploads.value) {
-		if (nested.value.has(root)) {
-			continue
-		}
-		const children = root.children ?? []
-		if (children.length === 0) {
-			result.push(createRow(root))
-			continue
-		}
-		if (statusOf(root) === UploadStatus.FAILED) {
-			result.push({ ...createRow(root), folder: false, total: 0 })
-		}
-		result.push(...children.map(createRow))
-	}
-	return result
-})
+function rowUploadsOf(root: IUpload): IUpload[] {
+	const children = root.children ?? []
+	const result = children.length === 0
+		? [root]
+		: [...(statusOf(root) === UploadStatus.FAILED ? [root] : []), ...children]
+	return result.filter((upload) => !dismissed.has(upload))
+}
+
+/**
+ * Create the row for an upload of a tree, a failed batch root is shown as a single entry.
+ *
+ * @param upload - The upload of the row
+ * @param root - The root of the tree
+ */
+function createTreeRow(upload: IUpload, root: IUpload): IUploadRow {
+	const row = createRow(upload)
+	return upload === root && (root.children?.length ?? 0) > 0
+		? { ...row, folder: false, total: 0 }
+		: row
+}
+
+const roots = computed(() => uploads.value.filter((upload) => !nested.value.has(upload)))
+const entries = computed(() => roots.value.flatMap((root) => rowUploadsOf(root)
+	.map((upload) => ({ upload, row: createTreeRow(upload, root) }))))
+const rows = computed<IUploadRow[]>(() => entries.value.map(({ row }) => row))
 
 const active = computed(() => rows.value.some((row) => row.status < UploadStatus.FINISHED))
 const failed = computed(() => rows.value.some((row) => row.status === UploadStatus.FAILED))
+const settled = computed(() => !props.preparing && !props.uploading && !active.value)
 const visible = computed(() => props.preparing || props.uploading || rows.value.length > 0)
 const title = computed(() => {
 	if (props.preparing && rows.value.length === 0) {
@@ -245,11 +258,57 @@ function statusLabel(status: number) {
  * Release retained results when no uploads are active.
  */
 function clear() {
+	for (const upload of tracked) {
+		dismissed.add(upload)
+	}
 	tracked.clear()
 	uploads.value = []
 	limit.value = 50
 	open.value = false
 }
+
+/**
+ * Forget an upload and all its descendants.
+ *
+ * @param upload - The upload
+ */
+function forget(upload: IUpload) {
+	tracked.delete(upload)
+	dismissed.add(upload)
+	for (const child of upload.children ?? []) {
+		forget(child)
+	}
+}
+
+/**
+ * Remove all rows that did not fail, so only failures stay until the user clears them.
+ */
+function clearSucceeded() {
+	let changed = false
+	for (const { upload, row } of entries.value) {
+		if (row.status !== UploadStatus.FAILED) {
+			dismissed.add(upload)
+			changed = true
+		}
+	}
+	for (const root of roots.value) {
+		if (rowUploadsOf(root).length === 0) {
+			forget(root)
+		}
+	}
+	if (changed) {
+		uploads.value = [...tracked]
+		limit.value = 50
+	}
+}
+
+// Once all uploads of the batch are done, successful (and cancelled) uploads clear themselves.
+// While the popover is open the results stay visible until it is closed.
+watch([settled, open, rows], () => {
+	if (settled.value && !open.value) {
+		clearSucceeded()
+	}
+})
 
 const events = ['uploadStarted', 'uploadProgress', 'uploadFinished', 'finished', 'reset', 'paused', 'resumed'] as const
 onMounted(() => {
@@ -286,9 +345,9 @@ onUnmounted(() => {
 				:class="$style.popover"
 				role="dialog"
 				:aria-label="t('Upload manager')">
-				<h2 :class="$style.title">
+				<div :class="$style.title">
 					{{ title }}
-				</h2>
+				</div>
 				<div v-if="uploading || (!active && !preparing)" :class="$style.header">
 					<template v-if="uploading">
 						<span :class="$style.eta">{{ paused ? t('Paused') : eta }}</span>
@@ -342,14 +401,14 @@ onUnmounted(() => {
 
 .popover {
 	box-sizing: border-box;
-	width: min(360px, calc(100vw - 32px));
+	width: min(360px, calc(100vw - 8 * var(--default-grid-baseline)));
 	max-height: min(480px, 60vh);
 	overflow: auto;
-	padding: 8px 16px 16px;
+	padding: calc(2 * var(--default-grid-baseline)) calc(4 * var(--default-grid-baseline)) calc(4 * var(--default-grid-baseline));
 }
 
 .title {
-	margin: 8px 0;
+	margin-block: calc(2 * var(--default-grid-baseline));
 	font-size: var(--default-font-size);
 	font-weight: bold;
 }
@@ -358,9 +417,9 @@ onUnmounted(() => {
 	display: flex;
 	align-items: center;
 	justify-content: space-between;
-	gap: 8px;
-	margin-inline: -16px;
-	padding: 0 16px;
+	gap: calc(2 * var(--default-grid-baseline));
+	margin-inline: calc(-4 * var(--default-grid-baseline));
+	padding-inline: calc(4 * var(--default-grid-baseline));
 	background-color: var(--color-background-hover);
 }
 
@@ -372,14 +431,14 @@ onUnmounted(() => {
 .list {
 	list-style: none;
 	padding: 0;
-	margin: 8px 0 0;
+	margin: calc(2 * var(--default-grid-baseline)) 0 0;
 }
 
 .row {
 	display: flex;
 	flex-wrap: wrap;
 	align-items: center;
-	gap: 8px;
+	gap: calc(2 * var(--default-grid-baseline));
 	min-height: var(--default-clickable-area);
 }
 
@@ -419,7 +478,8 @@ onUnmounted(() => {
 
 .failure {
 	flex: 1 0 100%;
-	padding-inline-start: 32px;
+	/* Align the message with the name, after the icon and the gap */
+	padding-inline-start: calc(var(--default-clickable-area) + 2 * var(--default-grid-baseline));
 	color: var(--color-text-error);
 	overflow-wrap: anywhere;
 }

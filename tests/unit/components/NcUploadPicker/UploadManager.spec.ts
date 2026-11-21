@@ -109,6 +109,26 @@ function button(wrapper: VueWrapper, text: string) {
 }
 
 /**
+ * Get the title of the popover.
+ *
+ * @param wrapper - The mounted manager
+ */
+function title(wrapper: VueWrapper) {
+	return wrapper.get('[role="dialog"] > :first-child').text()
+}
+
+/**
+ * Open or close the popover.
+ *
+ * @param wrapper - The mounted manager
+ * @param shown - Whether the popover is shown
+ */
+async function toggle(wrapper: VueWrapper, shown: boolean) {
+	wrapper.findComponent({ name: 'NcPopover' }).vm.$emit('update:shown', shown)
+	await nextTick()
+}
+
+/**
  * Simulate an uploader event.
  *
  * @param event - Name of the event
@@ -122,7 +142,7 @@ describe('UploadManager', () => {
 	it('shows immediate preparation feedback without a queue', async () => {
 		const wrapper = mountManager({ preparing: true })
 		expect(wrapper.get('button[aria-label="Upload manager"]').isVisible()).toBe(true)
-		expect(wrapper.get('h2').text()).toBe('Preparing uploads')
+		expect(title(wrapper)).toBe('Preparing uploads')
 	})
 
 	it('is hidden without uploads', async () => {
@@ -137,7 +157,7 @@ describe('UploadManager', () => {
 		const wrapper = mountManager({ uploading: true })
 		await nextTick()
 		expect(wrapper.findAll('li')).toHaveLength(2)
-		expect(wrapper.get('h2').text()).toBe('Uploading 2 items')
+		expect(title(wrapper)).toBe('Uploading 2 items')
 		expect(statuses(wrapper)).toEqual(['Completed', 'Uploading'])
 	})
 
@@ -156,13 +176,13 @@ describe('UploadManager', () => {
 		expect(rows[0]!.text()).toContain('folder')
 		expect(rows[0]!.text()).toContain('2 of 3')
 		expect(statuses(wrapper)).toEqual(['Uploading', 'Waiting for upload'])
-		expect(wrapper.get('h2').text()).toBe('Uploading 2 items')
+		expect(title(wrapper)).toBe('Uploading 2 items')
 	})
 
 	it('updates states and distinguishes waiting from an actually paused queue', async () => {
 		const upload = file('/one')
 		uploader.queue = [upload]
-		const wrapper = mountManager()
+		const wrapper = mountManager({ uploading: true })
 		await nextTick()
 		expect(statuses(wrapper)).toEqual(['Waiting for upload'])
 		await wrapper.setProps({ paused: true })
@@ -179,23 +199,73 @@ describe('UploadManager', () => {
 		expect(statuses(wrapper)).toEqual(['Completed'])
 	})
 
-	it('retains failed and successful results after automatic reset', async () => {
+	it('keeps only failed results after the batch finished and the queue was reset', async () => {
 		uploader.queue = batch([file('/good', UploadStatus.FINISHED, 100), file('/bad', UploadStatus.FAILED)])
-		const wrapper = mountManager()
+		const wrapper = mountManager({ uploading: true })
 		await nextTick()
+		expect(statuses(wrapper)).toEqual(['Completed', 'Failed'])
+		await wrapper.setProps({ uploading: false })
 		uploader.queue = []
 		await emit('reset')
-		expect(wrapper.text()).toContain('good')
+		expect(wrapper.text()).not.toContain('good')
 		expect(wrapper.text()).toContain('bad')
-		expect(wrapper.get('h2').text()).toBe('Some uploads failed')
+		expect(title(wrapper)).toBe('Some uploads failed')
 		expect(wrapper.get('[role="status"]').text()).toBe('Some uploads failed')
 		expect(wrapper.text()).toContain('Select this file again to retry.')
-		expect(statuses(wrapper)).toEqual(['Completed', 'Failed'])
+		expect(statuses(wrapper)).toEqual(['Failed'])
+	})
+
+	it('clears successful uploads once the whole batch finished', async () => {
+		const first = file('/one', UploadStatus.FINISHED, 100)
+		const second = file('/two', UploadStatus.UPLOADING, 50)
+		uploader.queue = batch([first, second])
+		const wrapper = mountManager({ uploading: true })
+		await nextTick()
+		// a finished file stays while the rest of the batch is still running
+		expect(statuses(wrapper)).toEqual(['Completed', 'Uploading'])
+		Object.assign(second, { status: UploadStatus.FINISHED, uploadedBytes: 100 })
+		await emit('uploadFinished')
+		await wrapper.setProps({ uploading: false })
+		expect(wrapper.find('button').exists()).toBe(false)
+		// still queued uploads are not tracked again
+		await emit('uploadProgress')
+		expect(wrapper.find('button').exists()).toBe(false)
+	})
+
+	it('keeps a folder with a failed file and clears its successful siblings', async () => {
+		const directory = folder('/folder', [
+			file('/folder/a', UploadStatus.FINISHED, 100),
+			file('/folder/b', UploadStatus.FAILED),
+		], UploadStatus.FINISHED)
+		uploader.queue = batch([directory, file('/single', UploadStatus.FINISHED, 100)])
+		const wrapper = mountManager()
+		await nextTick()
+		const rows = wrapper.findAll('li')
+		expect(rows).toHaveLength(1)
+		expect(rows[0]!.text()).toContain('folder')
+		expect(rows[0]!.text()).toContain('1 of 2')
+		expect(statuses(wrapper)).toEqual(['Failed'])
+		expect(wrapper.get('button[aria-label="Upload manager"]').isVisible()).toBe(true)
+	})
+
+	it('keeps the results while the popover is open', async () => {
+		const upload = file('/one', UploadStatus.UPLOADING, 50)
+		uploader.queue = batch([upload])
+		const wrapper = mountManager({ uploading: true })
+		await nextTick()
+		await toggle(wrapper, true)
+		Object.assign(upload, { status: UploadStatus.FINISHED, uploadedBytes: 100 })
+		await emit('uploadFinished')
+		await wrapper.setProps({ uploading: false })
+		expect(statuses(wrapper)).toEqual(['Completed'])
+		expect(title(wrapper)).toBe('1 item uploaded')
+		await toggle(wrapper, false)
+		expect(wrapper.find('button').exists()).toBe(false)
 	})
 
 	it('tracks a fresh attempt for the same path separately', async () => {
 		uploader.queue = [file('/bad', UploadStatus.FAILED)]
-		const wrapper = mountManager()
+		const wrapper = mountManager({ uploading: true })
 		await nextTick()
 		uploader.queue = [file('/bad', UploadStatus.FINISHED, 100)]
 		await emit('uploadStarted')
@@ -209,27 +279,32 @@ describe('UploadManager', () => {
 		expect(wrapper.findAll('li')).toHaveLength(1)
 		expect(statuses(wrapper)).toEqual(['Failed'])
 		expect(wrapper.get('li').text()).toContain('0 of 1')
-		expect(wrapper.get('h2').text()).toBe('Some uploads failed')
+		expect(title(wrapper)).toBe('Some uploads failed')
 	})
 
 	it('shows a failed batch root as an additional row', async () => {
 		uploader.queue = batch([file('/one', UploadStatus.FINISHED, 100)], UploadStatus.FAILED)
-		const wrapper = mountManager()
+		const wrapper = mountManager({ uploading: true })
 		await nextTick()
 		// the failure is listed first, so it is not hidden behind many successful files
 		expect(statuses(wrapper)).toEqual(['Failed', 'Completed'])
 		expect(wrapper.findAll('li')[0]!.text()).toContain('Upload preparation')
 	})
 
-	it('keeps cancelled transfers after reset', async () => {
+	it('shows cancelled transfers until the batch is done, then clears them', async () => {
 		const controller = new AbortController()
-		uploader.queue = [{ ...file('/cancel'), signal: controller.signal } as IUpload]
-		const wrapper = mountManager()
+		const other = file('/other', UploadStatus.UPLOADING, 10)
+		uploader.queue = [{ ...file('/cancel'), signal: controller.signal } as IUpload, other]
+		const wrapper = mountManager({ uploading: true })
 		await nextTick()
 		controller.abort()
+		await emit('uploadProgress')
+		expect(statuses(wrapper)).toEqual(['Cancelled', 'Uploading'])
+		Object.assign(other, { status: UploadStatus.FINISHED, uploadedBytes: 100 })
+		await wrapper.setProps({ uploading: false })
 		uploader.queue = []
 		await emit('reset')
-		expect(statuses(wrapper)).toEqual(['Cancelled'])
+		expect(wrapper.find('button').exists()).toBe(false)
 	})
 
 	it('limits rendered rows for 500 files and can show more', async () => {
@@ -237,7 +312,7 @@ describe('UploadManager', () => {
 		const wrapper = mountManager({ uploading: true })
 		await nextTick()
 		expect(wrapper.findAll('li')).toHaveLength(50)
-		expect(wrapper.get('h2').text()).toBe('Uploading 500 items')
+		expect(title(wrapper)).toBe('Uploading 500 items')
 		await button(wrapper, 'Show more')!.trigger('click')
 		expect(wrapper.findAll('li')).toHaveLength(100)
 	})
@@ -265,14 +340,16 @@ describe('UploadManager', () => {
 		const wrapper = mountManager({ uploading: true, paused: true })
 		await nextTick()
 		expect(wrapper.text()).not.toContain('in 20 seconds')
-		expect(wrapper.get('h2').text()).toBe('Uploading 1 item')
+		expect(title(wrapper)).toBe('Uploading 1 item')
 	})
 
 	it('handles empty files and clears retained terminal results', async () => {
 		uploader.queue = batch([{ ...file('/empty', UploadStatus.FINISHED), totalBytes: 0 } as IUpload])
-		const wrapper = mountManager()
+		const wrapper = mountManager({ uploading: true })
 		await nextTick()
-		expect(wrapper.get('h2').text()).toBe('1 item uploaded')
+		await toggle(wrapper, true)
+		await wrapper.setProps({ uploading: false })
+		expect(title(wrapper)).toBe('1 item uploaded')
 		expect(button(wrapper, 'Cancel')).toBeUndefined()
 		await button(wrapper, 'Clear completed uploads')!.trigger('click')
 		expect(wrapper.findAll('li')).toHaveLength(0)
@@ -284,6 +361,8 @@ describe('UploadManager', () => {
 		const wrapper = mountManager()
 		await nextTick()
 		expect(wrapper.get('[role="dialog"]').attributes('aria-label')).toBe('Upload manager')
+		// a library component must not change the heading outline of the page
+		expect(wrapper.find('h1, h2, h3, h4, h5, h6').exists()).toBe(false)
 		expect(wrapper.get('button[aria-label="Upload manager"]').isVisible()).toBe(true)
 	})
 

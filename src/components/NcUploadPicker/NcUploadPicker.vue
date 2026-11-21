@@ -404,7 +404,7 @@ function onBeforePageUnload(event: BeforeUnloadEvent) {
 	max-width: var(--upload-picker-progress-width);
 
 	/* Visually more pleasing spacing */
-	margin-inline: 8px 4px;
+	margin-inline: calc(2 * var(--default-grid-baseline)) var(--default-grid-baseline);
 }
 
 .uploadPicker_progress__paused {
@@ -454,7 +454,8 @@ to a folder on the Nextcloud server, using the shared uploader of `@nextcloud/fi
 While uploading it shows the progress, the estimated remaining time and a button to cancel all queued uploads.
 A chevron next to the progress bar opens a popover with all running and finished uploads:
 one row per picked file or folder, folders showing how many of their files are done.
-Finished and failed uploads stay in the list after the uploader reset its queue, until they are cleared in the popover.
+Once all uploads are done, successful and cancelled uploads are removed from the list, and the chevron disappears.
+Failed uploads stay in the list, with an alert icon on the chevron, until they are cleared in the popover.
 Failed uploads are marked, because the uploader does not provide a reason or a way to retry them – the user has to select the file again.
 
 Two props are required to set it up:
