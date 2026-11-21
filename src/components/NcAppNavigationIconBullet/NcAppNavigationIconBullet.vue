@@ -7,7 +7,7 @@
 ### Bullet
 This component is made to be used inside of the [NcAppNavigationItem](#NcAppNavigationItem) component slot: `icon`.
 
-```
+```vue static
 <template #icon>
 	<NcAppNavigationIconBullet color="0082c9" />
 </template>

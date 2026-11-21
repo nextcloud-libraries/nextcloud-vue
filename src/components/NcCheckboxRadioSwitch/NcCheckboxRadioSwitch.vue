@@ -211,7 +211,7 @@ export default {
 				type="radio"
 				button-variant-grouped="horizontal">
 				Enable settings
-				<template #icon><NcIconSvgWrapper :path="mdiCheck"></template>
+				<template #icon><NcIconSvgWrapper :path="mdiCheck" /></template>
 			</NcCheckboxRadioSwitch>
 			<NcCheckboxRadioSwitch
 				:button-variant="true"
@@ -221,7 +221,7 @@ export default {
 				type="radio"
 				button-variant-grouped="horizontal">
 				Disable settings
-				<template #icon><NcIconSvgWrapper :path="mdiCancel"></template>
+				<template #icon><NcIconSvgWrapper :path="mdiCancel" /></template>
 			</NcCheckboxRadioSwitch>
 		</div>
 		<h4>Vertically</h4>
@@ -234,7 +234,7 @@ export default {
 				type="radio"
 				button-variant-grouped="vertical">
 				Enable settings
-				<template #icon><NcIconSvgWrapper :path="mdiCheck"></template>
+				<template #icon><NcIconSvgWrapper :path="mdiCheck" /></template>
 			</NcCheckboxRadioSwitch>
 			<NcCheckboxRadioSwitch
 				:button-variant="true"
@@ -244,7 +244,7 @@ export default {
 				type="radio"
 				button-variant-grouped="vertical">
 				Disable settings
-				<template #icon><NcIconSvgWrapper :path="mdiCancel"></template>
+				<template #icon><NcIconSvgWrapper :path="mdiCancel" /></template>
 			</NcCheckboxRadioSwitch>
 		</div>
 		Settings enabled: {{ enableSettings === 'y' ? 'yes' : 'no' }}

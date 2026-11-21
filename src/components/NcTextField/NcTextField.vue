@@ -54,10 +54,10 @@ and `minlength`.
 			:error="true"
 			@trailing-button-click="clearText">
 		</NcTextField>
-		<NcTextField :model-value=""
+		<NcTextField model-value=""
 			label="Disabled"
 			:disabled="true" />
-		<NcTextField :model-value=""
+		<NcTextField model-value=""
 			label="Disabled + Success"
 			:success="true"
 			:disabled="true" />
@@ -100,7 +100,7 @@ export default {
 	}
 }
 </script>
-<style lang="scss" scoped>
+<style scoped>
 .wrapper {
 	display: flex;
 	gap: 4px;
