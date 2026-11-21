@@ -8,17 +8,67 @@ on:
     - cron: "0 5 * * *"
 
 jobs:
-  server-styling-update:
+  # The documentation of main has the styles of all Nextcloud versions it can simulate
+  server-styling-update-main:
     runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        branch: ['main', 'stable8']
 
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
           persist-credentials: false
-          ref: ${{ matrix.branch }}
+          ref: main
+
+      - name: Checkout server
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+          repository: nextcloud/server
+          ref: master
+          path: server
+          # The dependencies are needed to generate the dark theme
+          submodules: true
+
+      - name: Fetch stable branches of server
+        run: git -C server fetch --depth=1 origin '+refs/heads/master:refs/remotes/origin/master' '+refs/heads/stable3*:refs/remotes/origin/stable3*'
+
+      - name: Install PHPUnit of server
+        run: composer --working-dir=server/vendor-bin/phpunit install --no-interaction --no-progress
+
+      - name: Set up node
+        uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
+        with:
+          node-version: 24
+
+      - name: Update styles
+        run: node docs/.vitepress/scripts/update-server-styles.mjs server
+
+      - name: Create Pull Request
+        uses: peter-evans/create-pull-request@3ffccacd46053766916f087ce41d627c0b8cf2d1 # v8.1.3
+        with:
+          token: ${{ secrets.COMMAND_BOT_PAT }}
+          author: nextcloud-command <nextcloud-command@users.noreply.github.com>
+          committer: nextcloud-command <nextcloud-command@users.noreply.github.com>
+          commit-message: "chore(docs): update docs styling from server"
+          signoff: true
+          branch: 'automated/${{ github.run_id }}/server-styling-update-main'
+          title: '[main] chore(docs): Automated styling update from server'
+          add-paths: docs/assets
+          body: |
+            Auto-generated update of our locally cached css styling of all Nextcloud versions
+            from the stable branches and master of https://github.com/nextcloud/server
+            (see `docs/.vitepress/scripts/update-server-styles.mjs`).
+          labels: |
+            dependencies
+            3. to review
+
+  server-styling-update-stable8:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+          ref: stable8
 
       - name: Download css
         run: |
@@ -38,8 +88,8 @@ jobs:
           committer: nextcloud-command <nextcloud-command@users.noreply.github.com>
           commit-message: "chore(docs): update docs styling from server"
           signoff: true
-          branch: 'automated/${{ github.run_id }}/server-styling-update-${{ matrix.branch }}'
-          title: '[${{ matrix.branch }}] chore(docs): Automated styling update from server'
+          branch: 'automated/${{ github.run_id }}/server-styling-update-stable8'
+          title: '[stable8] chore(docs): Automated styling update from server'
           add-paths: styleguide/assets
           body: |
             Auto-generated update of our locally cached css styling from

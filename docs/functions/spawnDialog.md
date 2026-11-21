@@ -2,6 +2,9 @@
  - SPDX-FileCopyrightText: 2024 Nextcloud GmbH and Nextcloud contributors
  - SPDX-License-Identifier: AGPL-3.0-or-later
 -->
+
+# spawnDialog
+
 ```ts static
 import {
 	spawnDialog,
@@ -46,6 +49,9 @@ So a Vue dialog can be spawned in any context and not just from Vue components b
 </template>
 
 <script>
+import NcDialog from '@nextcloud/vue/components/NcDialog'
+import { spawnDialog } from '@nextcloud/vue/functions/dialog'
+
 // Example dialog component that would be normally imported
 // Important: The dialog must emit a 'close' event whenever it is closed
 const ExampleDialog = {
