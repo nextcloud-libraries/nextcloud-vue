@@ -54,7 +54,7 @@ Some examples for markdown syntax:
 	},
 }
 </script>
-<style lang="scss">
+<style>
 textarea {
 	width: 100%;
 	height: 200px;
@@ -140,7 +140,7 @@ const createElementId = (length) => {
 		},
 	}
 </script>
-<style lang="scss">
+<style>
 textarea {
 	width: 100%;
 	height: 200px;

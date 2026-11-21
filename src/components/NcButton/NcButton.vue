@@ -154,7 +154,7 @@ export default {
 }
 </script>
 
-<style lang="scss" scoped>
+<style scoped>
 .wrapper {
 	padding: 0 12px;
 }

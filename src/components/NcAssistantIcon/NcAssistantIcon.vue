@@ -7,23 +7,22 @@
 ```vue
 <template>
 	<NcThemeProvider class="wrapper" :dark="userTheme === 'dark'">
-			<fieldset class="controls">
-				<legend>
-					Color theme
-				</legend>
-				<NcCheckboxRadioSwitch
-					v-model="providerTheme"
-					type="radio"
-					value="dark">
-					Dark
-				</NcCheckboxRadioSwitch>
-				<NcCheckboxRadioSwitch
-					v-model="providerTheme"
-					value="light"
-					type="radio">
-					Light
-				</NcCheckboxRadioSwitch>
-			</div>
+		<fieldset class="controls">
+			<legend>
+				Color theme
+			</legend>
+			<NcCheckboxRadioSwitch
+				v-model="providerTheme"
+				type="radio"
+				value="dark">
+				Dark
+			</NcCheckboxRadioSwitch>
+			<NcCheckboxRadioSwitch
+				v-model="providerTheme"
+				value="light"
+				type="radio">
+				Light
+			</NcCheckboxRadioSwitch>
 		</fieldset>
 		<NcThemeProvider
 			:dark="providerTheme === 'dark'"
