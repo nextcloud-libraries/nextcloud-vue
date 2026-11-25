@@ -135,6 +135,9 @@ msgstr "メニューの折りたたみ"
 msgid "Color picker"
 msgstr "カラーピッカー"
 
+msgid "Completed"
+msgstr "完了"
+
 msgid "Confirm changes"
 msgstr "変更を承認"
 
@@ -185,6 +188,11 @@ msgstr "{option} の選択を解除"
 
 msgid "do not disturb"
 msgstr "邪魔をしないでください"
+
+#. TRANSLATORS: {label} is the field's label, e.g. "Device name". Read by
+#. screen readers on the button that opens the input.
+msgid "Edit {label}"
+msgstr "{label}を編集"
 
 msgid "Edit item"
 msgstr "編集"
@@ -573,6 +581,9 @@ msgstr "スライドショーを開始"
 
 msgid "Start typing to search"
 msgstr "入力を開始して検索します"
+
+msgid "Steps"
+msgstr "手順"
 
 msgid "Submit"
 msgstr "提出"
