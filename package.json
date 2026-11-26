@@ -152,7 +152,7 @@
     "jsdom": "^31.0.1",
     "remark-gfm": "^4.0.1",
     "sass": "^1.108.2",
-    "stylelint": "^17.16.0",
+    "stylelint": "^18.1.0",
     "ts-node": "^10.9.2",
     "typescript": "^5.9.3",
     "url-loader": "^4.1.1",
