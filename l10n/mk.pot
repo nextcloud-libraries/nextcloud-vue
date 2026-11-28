@@ -134,6 +134,9 @@ msgstr "Скриј мени"
 msgid "Color picker"
 msgstr "Избор на боја"
 
+msgid "Completed"
+msgstr "Комплетирано"
+
 msgid "Confirm changes"
 msgstr "Потврди ги промените"
 
@@ -184,6 +187,11 @@ msgstr "Откажи избор на {option}"
 
 msgid "do not disturb"
 msgstr "не вознемирувај"
+
+#. TRANSLATORS: {label} is the field's label, e.g. "Device name". Read by
+#. screen readers on the button that opens the input.
+msgid "Edit {label}"
+msgstr "Уреди {label}"
 
 msgid "Edit item"
 msgstr "Уреди"
@@ -575,6 +583,9 @@ msgstr "Стартувај слајдшоу"
 
 msgid "Start typing to search"
 msgstr "Почни да пишуваш за пребарување"
+
+msgid "Steps"
+msgstr "Чекори"
 
 msgid "Submit"
 msgstr "Испрати"
