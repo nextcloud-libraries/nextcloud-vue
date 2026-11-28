@@ -134,6 +134,9 @@ msgstr "Menüyü daralt"
 msgid "Color picker"
 msgstr "Renk seçici"
 
+msgid "Completed"
+msgstr "Tamamlandı"
+
 msgid "Confirm changes"
 msgstr "Değişiklikleri onayla"
 
@@ -184,6 +187,11 @@ msgstr "{option} bırak"
 
 msgid "do not disturb"
 msgstr "Rahatsız etmeyin"
+
+#. TRANSLATORS: {label} is the field's label, e.g. "Device name". Read by
+#. screen readers on the button that opens the input.
+msgid "Edit {label}"
+msgstr "{label} ögesini düzenle"
 
 msgid "Edit item"
 msgstr "Ögeyi düzenle"
@@ -575,6 +583,9 @@ msgstr "Slayt sunumunu başlat"
 
 msgid "Start typing to search"
 msgstr "Aramak için yazmaya başlayın"
+
+msgid "Steps"
+msgstr "Adımlar"
 
 msgid "Submit"
 msgstr "Gönder"
