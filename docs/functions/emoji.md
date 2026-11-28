@@ -8,6 +8,7 @@ import {
     EmojiSkinTone,
     emojiSearch,
     emojiAddRecent,
+    emojiGetShortName,
     getCurrentSkinTone,
     setCurrentSkinTone,
 } from '@nextcloud/vue/functions/emoji'
@@ -39,6 +40,14 @@ declare function emojiSearch(query: string, maxResults: number = 10): object[]
  * @param emojiData.id the emoji ID from emoji index
  */
 declare function emojiAddRecent(emojiData: { id: string }): void
+
+/**
+ * Get the short name of a native emoji, e.g. `sweat_smile` for 😅
+ *
+ * @param native the native unicode emoji
+ * @return the short name, or null if the emoji is unknown
+ */
+declare function emojiGetShortName(native: string): Promise<string | null>
 
 /**
  * Get the current skin tone index used for emojis
