@@ -1432,6 +1432,7 @@ export default {
 				 * Event emitted when the popover menu is opened.
 				 *
 				 * This event is emitted after `update:open` was emitted and the opening transition finished.
+				 * It is not emitted if the menu is closed again before the opening transition finished.
 				 */
 				this.$emit('opened')
 			})
@@ -1442,6 +1443,7 @@ export default {
 			 * Event emitted when the popover menu is closed.
 			 *
 			 * This event is emitted after `update:open` was emitted and the closing transition finished.
+			 * It is not emitted if the menu is opened again before the closing transition finished.
 			 */
 			this.$emit('closed')
 		},

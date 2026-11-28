@@ -450,6 +450,7 @@ export default {
 		},
 
 		internalShown(value) {
+			this.abortTransitionEnd()
 			this.$emit('update:shown', value)
 		},
 	},
@@ -459,6 +460,7 @@ export default {
 	},
 
 	beforeUnmount() {
+		this.abortTransitionEnd()
 		this.clearFocusTrap()
 		this.clearEscapeStopPropagation()
 	},
@@ -579,17 +581,57 @@ export default {
 			}
 		},
 
+		/**
+		 * Run the callback once the popover's own show or hide transition has ended.
+		 * Runs right away if there is no transition (e.g. reduced motion) and when the
+		 * transition is cancelled (e.g. floating-vue detached the popover node).
+		 * A pending callback is dropped when the popover is toggled again
+		 * (see `abortTransitionEnd`), so it cannot run for a later transition.
+		 *
+		 * @param {() => void} callback - The callback to run
+		 */
+		async onTransitionEnd(callback) {
+			this.abortTransitionEnd()
+			const controller = new AbortController()
+			this.transitionEndController = controller
+
+			// floating-vue emits `apply-show` and `apply-hide` before it renders the state that starts the transition
+			await this.$nextTick()
+			const element = this.getPopoverContentElement()
+			if (!element || controller.signal.aborted) {
+				return
+			}
+
+			const animations = element.getAnimations?.() ?? []
+			await Promise.allSettled(animations.map((animation) => animation.finished))
+			if (controller.signal.aborted) {
+				return
+			}
+			this.transitionEndController = null
+			callback()
+		},
+
+		/**
+		 * Drop the pending transition end callback, if any.
+		 */
+		abortTransitionEnd() {
+			this.transitionEndController?.abort()
+			this.transitionEndController = null
+		},
+
 		async afterShow() {
-			this.getPopoverContentElement().addEventListener('transitionend', () => {
+			this.onTransitionEnd(() => {
 				/**
 				 * Triggered after the tooltip was visually displayed.
 				 *
 				 * This is different from the 'show' and 'apply-show' which
 				 * run earlier than this where there is no guarantee that the
 				 * tooltip is already visible and in the DOM.
+				 *
+				 * Not emitted if the popover is hidden again before the show transition ended.
 				 */
 				this.$emit('afterShow')
-			}, { once: true, passive: true })
+			})
 
 			this.removeFloatingVueAriaDescribedBy()
 
@@ -608,16 +650,18 @@ export default {
 			 * 3. Actually removes <Dropdown> node
 			 * 4. Triggers <Dropdown> `unmounted`
 			 */
-			this.getPopoverContentElement()?.addEventListener('transitionend', () => {
+			this.onTransitionEnd(() => {
 				/**
 				 * Triggered after the tooltip was visually hidden.
 				 *
 				 * This is different from the 'hide' and 'apply-hide' which
 				 * run earlier than this where there is no guarantee that the
 				 * tooltip is already visible and in the DOM.
+				 *
+				 * Not emitted if the popover is shown again before the hide transition ended.
 				 */
 				this.$emit('afterHide')
-			}, { once: true, passive: true })
+			})
 
 			this.clearFocusTrap()
 			this.clearEscapeStopPropagation()
