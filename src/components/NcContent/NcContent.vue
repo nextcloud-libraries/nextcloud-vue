@@ -264,6 +264,13 @@ export default {
 	&:not(&--legacy) {
 		background-color: var(--color-main-background-blur, var(--color-main-background));
 		backdrop-filter: var(--filter-background-blur, none);
+
+		// A backdrop filter pins fixed children to this wrapper rather than to the
+		// page, which would keep a full height sidebar (next to the viewer) below
+		// the header
+		&:has(.app-sidebar--full) {
+			backdrop-filter: none;
+		}
 	}
 
 	&:not(.with-sidebar--full) {
