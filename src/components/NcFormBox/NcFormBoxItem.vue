@@ -154,6 +154,27 @@ const hasDescription = () => !!props.description || !!slots.description
 			color: inherit;
 		}
 	}
+
+	&.formBoxItem_error {
+		border-color: var(--color-error-hover);
+		background-color: var(--color-error);
+		color: var(--color-error-text);
+
+		&:hover:not(:has(:disabled)) {
+			color: var(--color-error-text);
+			background-color: var(--color-error-hover);
+		}
+
+		.formBoxItem__element,
+		.formBoxItem__description {
+			color: inherit;
+		}
+
+		// Before Nextcloud 32 the error text color is a red meant for normal backgrounds
+		&.formBoxItem_legacy {
+			--color-error-text: white;
+		}
+	}
 }
 
 .formBoxItem__content {
